@@ -245,7 +245,7 @@ def _extract_generic(page: Any, source: dict, date: datetime) -> list[dict]:
     return items
 
 
-def ingest_scrape(target_date: datetime) -> list[dict]:
+def ingest_scrape(target_date: datetime, config: dict | None = None) -> list[dict]:
     """Ingest all scrape-method sources. Returns list of RawItem dicts."""
     sources = load_scrape_sources()
     all_items: list[dict] = []

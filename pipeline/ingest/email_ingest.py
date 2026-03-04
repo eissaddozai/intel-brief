@@ -54,7 +54,7 @@ def extract_text_from_message(msg: email.message.Message) -> str:
     return ''
 
 
-def ingest_email(target_date: datetime) -> list[dict]:
+def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict]:
     """
     Connect to IMAP inbox, find CFR Daily Brief for target_date.
     Returns list of RawItem dicts.

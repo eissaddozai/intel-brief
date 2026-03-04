@@ -426,28 +426,23 @@ sources:
 
 excluded:
   state_media_iranian:
-    - "Tehran Times"
-    - "PressTV"
-    - "IRNA (Islamic Republic News Agency)"
-    - "Mehr News Agency"
-    - "Fars News Agency"
-    - "Tasnim News Agency"
-    policy: >
-      Label Iranian state media claims as: "Iranian government asserts..."
-      These outlets may be cited for official Iranian government positions
-      but never as independent factual corroboration.
+    names:
+      - "Tehran Times"
+      - "PressTV"
+      - "IRNA (Islamic Republic News Agency)"
+      - "Mehr News Agency"
+      - "Fars News Agency"
+      - "Tasnim News Agency"
+    policy: "Label Iranian state media claims as: 'Iranian government asserts...' Never use as independent factual corroboration."
 
   raw_osint:
-    - "Raw Twitter/X OSINT accounts (unvetted)"
-    - "Telegram channels without editorial accountability"
-    policy: >
-      Do not ingest raw social media. France 24 Observers performs
-      verification — use that layer instead.
+    names:
+      - "Raw Twitter/X OSINT accounts (unvetted)"
+      - "Telegram channels without editorial accountability"
+    policy: "Do not ingest raw social media. France 24 Observers performs verification — use that layer instead."
 
   policy_advocacy:
-    - "Foundation for Defense of Democracies (FDD) — policy framing"
-    - "Long War Journal — policy framing"
-    policy: >
-      Event tracking from these outlets is usable as Tier 3 with
-      appropriate hedging. Do not import their policy recommendations
-      or escalation advocacy into the brief framing.
+    names:
+      - "Foundation for Defense of Democracies (FDD)"
+      - "Long War Journal"
+    policy: "Event tracking usable as Tier 3 with hedging. Do not import policy recommendations into brief framing."

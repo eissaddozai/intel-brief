@@ -1,0 +1,74 @@
+name: Daily Intel Brief
+
+on:
+  schedule:
+    # 06:00 UTC daily (01:00 ET / before morning briefing)
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Target date (YYYY-MM-DD). Leave blank for today.'
+        required: false
+        default: ''
+      force:
+        description: 'Force re-run even if cache exists'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  generate-brief:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Python dependencies
+        run: |
+          pip install anthropic feedparser --no-deps
+          pip install anthropic pyyaml requests beautifulsoup4
+
+      - name: Install Playwright (for scraping)
+        run: |
+          pip install playwright
+          playwright install chromium --with-deps
+        continue-on-error: true
+
+      - name: Run pipeline
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CSE_EMAIL_USER: ${{ secrets.CSE_EMAIL_USER }}
+          CSE_EMAIL_PASS: ${{ secrets.CSE_EMAIL_PASS }}
+        run: |
+          DATE_ARG=""
+          FORCE_ARG=""
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            DATE_ARG="--date ${{ github.event.inputs.date }}"
+          fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            FORCE_ARG="--force"
+          fi
+          python pipeline/main.py --auto-approve $DATE_ARG $FORCE_ARG
+
+      - name: Commit and push new cycle
+        run: |
+          git config user.name "Intel Brief Bot"
+          git config user.email "bot@intel-brief"
+          git add cycles/ src/data/
+          if git diff --cached --quiet; then
+            echo "No new cycle generated — nothing to commit"
+          else
+            CYCLE_DATE=$(date -u +%Y-%m-%d)
+            git commit -m "cycle: ${CYCLE_DATE} — automated brief"
+            git push origin main
+          fi

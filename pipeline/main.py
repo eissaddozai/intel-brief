@@ -82,6 +82,11 @@ def parse_args() -> argparse.Namespace:
         action='store_true',
         help='Re-run even if cache exists for this date.',
     )
+    parser.add_argument(
+        '--auto-approve',
+        action='store_true',
+        help='Skip interactive review and auto-approve draft (for CI/automation).',
+    )
     return parser.parse_args()
 
 
@@ -212,19 +217,21 @@ def stage_draft(tagged_cache: Path, target_date: datetime, config: dict) -> Path
     return draft_file
 
 
-def stage_review(draft_file: Path) -> Path:
-    """Interactive human review. Returns path to approved draft."""
-    from review.review_cli import run_review
-
+def stage_review(draft_file: Path, auto_approve: bool = False) -> Path:
+    """Interactive human review (or auto-approve in CI). Returns path to approved draft."""
     approved_file = draft_file.parent / draft_file.name.replace('draft_', 'approved_')
-
-    log.info('Opening review CLI for: %s', draft_file)
     draft = json.loads(draft_file.read_text(encoding='utf-8'))
-    approved = run_review(draft)
 
-    if approved is None:
-        log.critical('Review aborted — no output written.')
-        sys.exit(1)
+    if auto_approve:
+        log.info('Auto-approve enabled — skipping interactive review')
+        approved = draft
+    else:
+        from review.review_cli import run_review
+        log.info('Opening review CLI for: %s', draft_file)
+        approved = run_review(draft)
+        if approved is None:
+            log.critical('Review aborted — no output written.')
+            sys.exit(1)
 
     approved_file.write_text(json.dumps(approved, indent=2, ensure_ascii=False), encoding='utf-8')
     log.info('Approved draft written: %s', approved_file)
@@ -274,6 +281,7 @@ def main() -> None:
     logging.getLogger().setLevel(getattr(logging, log_level, logging.INFO))
 
     single_stage = args.stage
+    auto_approve = args.auto_approve
 
     raw_cache: Path
     tagged_cache: Path
@@ -302,7 +310,7 @@ def main() -> None:
     if single_stage in ('review', None):
         if single_stage == 'review':
             draft_file = _resolve_cache('draft', target_date)
-        approved_file = stage_review(draft_file)
+        approved_file = stage_review(draft_file, auto_approve=auto_approve)
         if single_stage:
             return
 
