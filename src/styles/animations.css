@@ -1,0 +1,167 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   ANIMATIONS & TRANSITIONS
+   All animations respect prefers-reduced-motion.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── KEYFRAMES ────────────────────────────────────────────────────────────── */
+
+@keyframes brief-entry {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes badge-pulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.55; }
+}
+
+@keyframes flash-blink {
+  0%, 100% { border-left-color: var(--conf-red); }
+  50%       { border-left-color: rgba(220, 44, 58, 0.3); }
+}
+
+@keyframes strategic-fade-in {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── DOMAIN SECTION ENTRY ─────────────────────────────────────────────────── */
+
+.domain {
+  animation: brief-entry 0.4s ease both;
+}
+
+.domain:nth-of-type(1) { animation-delay: 0.05s; }
+.domain:nth-of-type(2) { animation-delay: 0.12s; }
+.domain:nth-of-type(3) { animation-delay: 0.19s; }
+.domain:nth-of-type(4) { animation-delay: 0.26s; }
+.domain:nth-of-type(5) { animation-delay: 0.33s; }
+
+.strategic-header { animation: strategic-fade-in 0.5s ease both; }
+.flash-points     { animation: brief-entry 0.3s ease both; }
+.exec             { animation: brief-entry 0.35s 0.04s ease both; }
+
+/* ── DOMAIN HOVER: EDGE GLOW + NUDGE ─────────────────────────────────────── */
+
+.domain {
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.domain:hover {
+  transform: translateX(2px);
+}
+
+.domain--d1:hover { box-shadow: -4px 0 28px rgba(220, 46, 60, 0.22); }
+.domain--d2:hover { box-shadow: -4px 0 28px rgba(232, 154, 40, 0.22); }
+.domain--d3:hover { box-shadow: -4px 0 28px rgba(40, 184, 88, 0.22); }
+.domain--d4:hover { box-shadow: -4px 0 28px rgba(138, 80, 204, 0.22); }
+.domain--d5:hover { box-shadow: -4px 0 28px rgba(56, 136, 216, 0.22); }
+
+/* ── KPI CELL HOVER ───────────────────────────────────────────────────────── */
+
+.kpi-strip__cell {
+  transition: filter 0.2s ease;
+}
+
+.kpi-strip__cell:hover {
+  filter: brightness(1.12);
+}
+
+.kpi-strip__number {
+  transition: text-shadow 0.2s ease;
+}
+
+.kpi-strip__cell--d1:hover .kpi-strip__number { text-shadow: 0 0 20px var(--d1-bright); }
+.kpi-strip__cell--d2:hover .kpi-strip__number { text-shadow: 0 0 20px var(--d2-bright); }
+.kpi-strip__cell--d3:hover .kpi-strip__number { text-shadow: 0 0 20px var(--d3-bright); }
+.kpi-strip__cell--d4:hover .kpi-strip__number { text-shadow: 0 0 20px var(--d4-bright); }
+.kpi-strip__cell--d5:hover .kpi-strip__number { text-shadow: 0 0 20px var(--d5-bright); }
+
+/* ── DATA TABLE ROW HOVER ─────────────────────────────────────────────────── */
+
+.data-table tbody tr {
+  transition: filter 0.12s ease;
+}
+
+.data-table tbody tr:hover {
+  filter: brightness(1.18);
+}
+
+/* ── MASTHEAD STRIP CELL HOVER ────────────────────────────────────────────── */
+
+.masthead__strip-cell {
+  transition: background-color 0.15s ease;
+}
+
+.masthead__strip-cell:not(:first-child):hover {
+  background-color: #0D1020;
+}
+
+/* ── MASTHEAD SCROLL SHADOW ───────────────────────────────────────────────── */
+
+.masthead {
+  transition: box-shadow 0.3s ease;
+}
+
+.masthead--scrolled {
+  box-shadow:
+    0 4px 40px rgba(184, 28, 40, 0.3),
+    0 1px 0 rgba(184, 28, 40, 0.5);
+}
+
+/* ── CRITICAL BADGE PULSE ─────────────────────────────────────────────────── */
+
+.badge--red {
+  animation: badge-pulse 2s ease-in-out infinite;
+}
+
+/* ── FLASH POINT BLINK ────────────────────────────────────────────────────── */
+
+.flash-points__item--critical {
+  animation: flash-blink 1.8s ease-in-out infinite;
+}
+
+/* ── ACCESSIBILITY: REDUCE MOTION ─────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .domain,
+  .strategic-header,
+  .flash-points,
+  .exec {
+    animation: none;
+  }
+
+  .domain {
+    transition: none;
+  }
+
+  .kpi-strip__cell,
+  .kpi-strip__number,
+  .data-table tbody tr,
+  .masthead__strip-cell,
+  .masthead {
+    transition: none;
+  }
+
+  .badge--red,
+  .flash-points__item--critical {
+    animation: none;
+  }
+}
+
+/* ── PRINT: DISABLE ALL TRANSITIONS ──────────────────────────────────────── */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

@@ -1,0 +1,98 @@
+"""
+Domain classifier — tags each RawItem with one or more domain IDs
+based on source registry defaults and keyword matching.
+"""
+
+import logging
+import re
+
+log = logging.getLogger(__name__)
+
+# Domain keyword rules — each domain has a set of keywords.
+# Items matching keywords are tagged to that domain even if not in registry.
+DOMAIN_KEYWORDS: dict[str, list[str]] = {
+    'd1': [
+        'missile', 'rocket', 'strike', 'attack', 'irgc', 'idf', 'airstrike',
+        'artillery', 'hezbollah', 'houthi', 'pmf', 'kataib', 'ballistic',
+        'casualt', 'killed', 'wounded', 'bomb', 'drone', 'uav', 'naval',
+        'warship', 'carrier', 'centcom', 'sortie', 'air force', 'army',
+        'brigade', 'battalion', 'front', 'theatre', 'kalibr', 'fattah',
+        'shahab', 'iron dome', 'arrow-3', 'patriot',
+    ],
+    'd2': [
+        'escalat', 'de-escalat', 'threshold', 'red line', 'tripwire',
+        'nuclear', 'enrichment', 'natanz', 'fordow', 'iaea', 'inspector',
+        'breakout', 'uranium', 'centrifuge', 'proliferat', 'deterren',
+        'ceasefire', 'peace', 'mediat', 'negotiat', 'pause', 'halt',
+        'regime change', 'succession', 'khamenei', 'irgc command',
+    ],
+    'd3': [
+        'oil', 'crude', 'brent', 'wti', 'barrel', 'petroleum', 'energy',
+        'gas', 'lng', 'natural gas', 'pipeline', 'refin', 'hormuz',
+        'strait', 'tanker', 'ship', 'vessel', 'maritime', 'ukmto',
+        'sanctions', 'supply chain', 'commodity', 'price', 'market',
+        'goldman', 'insurance', "lloyd's", 'kpler', 'aramco', 'opec',
+        'canadian', 'tsx', 'cad', 'wen', 'western canadian',
+    ],
+    'd4': [
+        'diplomat', 'minister', 'foreign', 'secretary', 'state department',
+        'white house', 'president', 'prime minister', 'nato', 'eu ', 'un ',
+        'united nations', 'security council', 'sanction', 'alliance',
+        'qatar', 'oman', 'saudi', 'uae', 'turkey', 'erdogan', 'russia',
+        'china', 'back-channel', 'negotiat', 'ambassador', 'envoy',
+        'witkoff', 'blinken', 'austin', 'congress', 'senate', 'g7',
+    ],
+    'd5': [
+        'cyber', 'hack', 'malware', 'ransomware', 'ddos', 'phishing',
+        'apt', 'charming kitten', 'phosphorus', 'tortoiseshell',
+        'disinformation', 'psyop', 'information operation', 'propaganda',
+        'deepfake', 'blackout', 'internet disruption', 'netblocks',
+        'scada', 'ics', 'infrastructure attack', 'social media',
+        'telegram', 'hacktivist', 'cyber avenger', 'deface',
+    ],
+}
+
+
+def classify_item(item: dict) -> dict:
+    """
+    Add a 'tagged_domains' field to a RawItem based on source registry
+    and keyword matching. Returns modified item copy.
+    """
+    item = dict(item)
+    text_lower = (item.get('text', '') + ' ' + item.get('title', '')).lower()
+
+    # Start with domains from source registry
+    registry_domains: set[str] = set(item.get('domains', []))
+
+    # Add domains from keyword matching
+    keyword_domains: set[str] = set()
+    for domain, keywords in DOMAIN_KEYWORDS.items():
+        if any(kw in text_lower for kw in keywords):
+            keyword_domains.add(domain)
+
+    # Final tagged_domains = union of registry and keyword hits
+    tagged = registry_domains | keyword_domains
+    item['tagged_domains'] = sorted(tagged)
+
+    return item
+
+
+def classify_items(raw_items: list[dict]) -> list[dict]:
+    """Classify all items. Returns list with 'tagged_domains' field added."""
+    classified = [classify_item(item) for item in raw_items]
+
+    # Log distribution
+    domain_counts: dict[str, int] = {}
+    for item in classified:
+        for d in item.get('tagged_domains', []):
+            domain_counts[d] = domain_counts.get(d, 0) + 1
+
+    log.info('Domain distribution: %s', domain_counts)
+
+    # Warn if any domain has < 3 items
+    for domain in ['d1', 'd2', 'd3', 'd4', 'd5']:
+        count = domain_counts.get(domain, 0)
+        if count < 3:
+            log.warning('Domain %s has only %d items — brief section may be thin', domain, count)
+
+    return classified

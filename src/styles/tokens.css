@@ -1,0 +1,131 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   CSE INTELLIGENCE BRIEF — DESIGN TOKENS
+   Dark war-room aesthetic · Palatino / Georgia / Trebuchet MS / IBM Plex Mono
+   All colour values are authoritative. Modify here only.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+:root {
+
+  /* ── PAGE & SURFACE LAYERS ─────────────────────────────────────────────── */
+  --color-page:        #050810;
+  --color-panel:       #0B0F1E;
+  --color-header-bg:   #030508;
+  --color-strip-bg:    #07091A;
+  --color-meta-bg:     #050710;
+  --color-exec-bg:     #07091C;
+  --color-table-head:  #040710;
+  --color-table-alt:   #090D1C;
+  --color-table-base:  #0B0F1E;
+
+  /* ── ANALYST / CAVEAT SURFACES ─────────────────────────────────────────── */
+  --color-note-hdr:    #191400;
+  --color-note-bg:     #0F0B00;
+  --color-cav-hdr:     #180900;
+  --color-cav-bg:      #0D0500;
+  --color-flash-bg:    #1A0204;
+  --color-warn-bg:     #120900;
+  --color-gap-bg:      #000A18;
+  --color-strategic-bg:#060810;
+
+  /* ── STRUCTURAL COLOURS ────────────────────────────────────────────────── */
+  --color-crimson:     #B81C28;
+  --color-gold:        #C4A038;
+  --color-gold-hi:     #ECC058;
+  --color-gold-dim:    #6C5820;
+  --color-gold-deep:   #3A2C00;
+  --color-silver:      #7888A0;
+  --color-dim:         #2C3448;
+  --color-rule:        #141C2E;
+  --color-sep:         #1E2840;
+
+  /* ── DOMAIN 01 — BATTLESPACE · KINETIC ────────────────────────────────── */
+  --d1-fill:   #4E0810;
+  --d1-shadow: #240406;
+  --d1-deep:   #100204;
+  --d1-bright: #DC2E3C;
+  --d1-body:   #0D0909;
+  --d1-grad:   linear-gradient(180deg, #100204 0%, #240406 40%, #4E0810 100%);
+
+  /* ── DOMAIN 02 — ESCALATION · TRAJECTORY ──────────────────────────────── */
+  --d2-fill:   #4A2800;
+  --d2-shadow: #241400;
+  --d2-deep:   #120A00;
+  --d2-bright: #E89A28;
+  --d2-body:   #100D08;
+  --d2-grad:   linear-gradient(180deg, #120A00 0%, #241400 40%, #4A2800 100%);
+
+  /* ── DOMAIN 03 — ENERGY · ECONOMIC ────────────────────────────────────── */
+  --d3-fill:   #022A14;
+  --d3-shadow: #011408;
+  --d3-deep:   #000A04;
+  --d3-bright: #28B858;
+  --d3-body:   #080E09;
+  --d3-grad:   linear-gradient(180deg, #000A04 0%, #011408 40%, #022A14 100%);
+
+  /* ── DOMAIN 04 — DIPLOMATIC · POLITICAL ───────────────────────────────── */
+  --d4-fill:   #1C0640;
+  --d4-shadow: #0C0220;
+  --d4-deep:   #060110;
+  --d4-bright: #8A50CC;
+  --d4-body:   #0A0812;
+  --d4-grad:   linear-gradient(180deg, #060110 0%, #0C0220 40%, #1C0640 100%);
+
+  /* ── DOMAIN 05 — CYBER · INFORMATION OPS ──────────────────────────────── */
+  --d5-fill:   #001830;
+  --d5-shadow: #000C18;
+  --d5-deep:   #000408;
+  --d5-bright: #3888D8;
+  --d5-body:   #050810;
+  --d5-grad:   linear-gradient(180deg, #000408 0%, #000C18 40%, #001830 100%);
+
+  /* ── CONFIDENCE TIERS ──────────────────────────────────────────────────── */
+  --conf-green:  #26A050;
+  --conf-blue:   #3888D8;
+  --conf-amber:  #DC8C28;
+  --conf-red:    #DC2C3A;
+
+  /* ── THREAT TRAJECTORY ─────────────────────────────────────────────────── */
+  --traj-up:   #DC2E3C;
+  --traj-flat: #7888A0;
+  --traj-down: #26A050;
+
+  /* ── TEXT HIERARCHY ────────────────────────────────────────────────────── */
+  --text-hi:   #ECE6DE;
+  --text-md:   #A8A098;
+  --text-lo:   #686058;
+  --text-dim:  #383840;
+
+  /* ── TYPOGRAPHY ────────────────────────────────────────────────────────── */
+  --font-display: "Palatino Linotype", "Palatino", Georgia, serif;
+  --font-body:    Georgia, "Times New Roman", serif;
+  --font-ui:      "Trebuchet MS", "Gill Sans", Arial, sans-serif;
+  --font-data:    "IBM Plex Mono", "Courier New", Courier, monospace;
+
+  /* ── TYPE SCALE (web-corrected from docx half-points, ~1.4× ratio) ─────── */
+  --size-masthead: 52px;
+  --size-cycle:    52px;
+  --size-section:  13px;
+  --size-aq:       11px;
+  --size-kj:       15px;
+  --size-body:     14px;
+  --size-caption:  10px;
+  --size-badge:    9px;
+  --size-kpi-num:  28px;
+  --size-kpi-sub:  10px;
+  --size-note-h:   11px;
+  --size-note-b:   13px;
+  --size-meta:     10px;
+  --size-foot:     10px;
+
+  /* ── SPACING ────────────────────────────────────────────────────────────── */
+  --gap-section: 24px;
+  --gap-block:   12px;
+  --gap-para:     8px;
+
+  /* ── BORDER WEIGHTS ─────────────────────────────────────────────────────── */
+  --border-rule:    1px solid var(--color-rule);
+  --border-sep:     1px solid var(--color-sep);
+  --border-crimson: 4px solid var(--color-crimson);
+  --border-gold:    3px solid var(--color-gold);
+  --border-amber:   3px solid var(--conf-amber);
+}

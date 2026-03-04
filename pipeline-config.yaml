@@ -1,0 +1,84 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# CSE INTEL BRIEF — PIPELINE CONFIGURATION
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+# CREDENTIALS: Never commit real values. Use environment variables or a
+# secrets manager. Reference env vars with ${VAR_NAME} syntax.
+#
+# To set credentials:
+#   export ANTHROPIC_API_KEY="sk-ant-..."
+#   export CSE_EMAIL_USER="your@email.com"
+#   export CSE_EMAIL_PASS="app-specific-password"
+#   export KPLER_API_KEY="..."  # optional
+# ═══════════════════════════════════════════════════════════════════════════════
+
+# ── SCHEDULE ─────────────────────────────────────────────────────────────────
+schedule:
+  morning: "05:30"     # ET — catches CTP-ISW morning, CFR Daily, overnight RSS
+  evening: "18:30"     # ET — catches CTP-ISW evening, Alma daily, live blog updates
+  timezone: "America/Toronto"
+  # To run as cron: add to crontab with `crontab -e`
+  # 30 5  * * * cd /path/to/intel-brief && python pipeline/main.py >> logs/morning.log 2>&1
+  # 30 18 * * * cd /path/to/intel-brief && python pipeline/main.py >> logs/evening.log 2>&1
+
+# ── EMAIL (CFR DAILY BRIEF) ───────────────────────────────────────────────────
+email:
+  imap_host: "imap.gmail.com"
+  imap_port: 993
+  imap_user: "${CSE_EMAIL_USER}"
+  imap_pass: "${CSE_EMAIL_PASS}"     # Use Gmail App Password, not account password
+  folder: "CFR-Daily"                # Gmail label to monitor
+  lookback_hours: 30                 # Fetch emails from last N hours
+
+# ── CLAUDE API ────────────────────────────────────────────────────────────────
+claude:
+  api_key: "${ANTHROPIC_API_KEY}"
+  model: "claude-opus-4-6"           # Do not downgrade — analytical quality matters
+  temperature: 0.3                   # Low temperature for deterministic, factual output
+  max_tokens_per_domain: 1500        # Per domain section call
+  max_tokens_executive: 1200         # Executive summary call
+  max_tokens_strategic: 400          # Strategic header call
+  max_tokens_indicators: 800         # Warning indicators call
+  max_tokens_gaps: 600               # Collection gaps call
+  retry_attempts: 3
+  retry_delay_seconds: 10
+
+# ── KPLER (OPTIONAL — vessel traffic / energy) ────────────────────────────────
+kpler:
+  api_key: "${KPLER_API_KEY}"        # Leave blank to use blog scraping fallback
+  enabled: false                     # Set true if API key is configured
+
+# ── OUTPUT ────────────────────────────────────────────────────────────────────
+output:
+  cycles_dir: "./cycles"
+  frontend_data_dir: "./src/data"    # Set null to disable frontend copy
+  auto_build: false                  # Set true to run `npm run build` after new cycle
+
+# ── INGEST ────────────────────────────────────────────────────────────────────
+ingest:
+  request_delay_seconds: 0.5         # Polite delay between requests
+  timeout_seconds: 30                # Per-request timeout
+  lookback_hours: 30                 # Items older than this are ignored
+  playwright_headless: true          # Set false to debug scraper issues
+  # Disable individual sources without removing them from sources.yaml:
+  disabled_sources: []               # e.g. ["haaretz", "bbc_persian"]
+
+# ── TRIAGE ────────────────────────────────────────────────────────────────────
+triage:
+  novelty_threshold: 0.35            # Items below this similarity score are filtered
+  # Tier 1 items are NEVER filtered by novelty — only Tier 2/3
+  min_items_per_domain: 2            # Warn (but don't halt) if a domain has fewer
+  halt_if_zero_tier1: true           # Halt pipeline if no Tier 1 items collected
+
+# ── LOGGING ───────────────────────────────────────────────────────────────────
+logging:
+  level: "INFO"                      # DEBUG | INFO | WARNING | ERROR
+  log_dir: "./logs"
+  max_log_files: 14                  # Keep 2 weeks of logs
+
+# ── SCRAPER PLAYWRIGHT ────────────────────────────────────────────────────────
+playwright:
+  browser: "chromium"                # chromium | firefox | webkit
+  viewport_width: 1280
+  viewport_height: 900
+  user_agent: "Mozilla/5.0 (compatible; CSE-Intel-Pipeline/1.0; research)"
