@@ -142,6 +142,9 @@ def ingest_rss(target_date: datetime, config: dict | None = None) -> list[dict]:
             resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
             resp.raise_for_status()
             items = _parse_feed(resp.text, source, cutoff)
+            # Apply relevance filter to general feeds (Tier 1 items pass unconditionally)
+            from ingest.relevance import filter_relevant
+            items = filter_relevant(items)
             all_items.extend(items)
             log.info('%-35s %3d items', source['name'], len(items))
         except Exception as exc:

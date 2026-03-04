@@ -1,30 +1,26 @@
 # ═══════════════════════════════════════════════════════════════════════════════
-# CSE INTEL BRIEF — SOURCE REGISTRY
+# CSE INTEL BRIEF — SOURCE REGISTRY  (exhaustive, 2026-03)
 # ═══════════════════════════════════════════════════════════════════════════════
 #
 # TIER DEFINITIONS
-#   Tier 1 — Factual backbone. AP not reporting an event = event unconfirmed.
-#             Items produce verification_status: "confirmed"
-#   Tier 2 — Analytical depth. Interpretation, context, perspective.
-#             Items produce verification_status: "reported"
-#   Tier 3 — Domain-specific triggers. Pull only when trigger conditions are met.
-#             Items produce verification_status: "claimed"
+#   1 — Factual backbone. Items → verification_status: "confirmed"
+#   2 — Analytical depth / context. Items → "reported"
+#   3 — Domain-specific triggers. Items → "claimed"
 #
-# METHOD VALUES: rss | scrape | email
+# METHOD: rss | scrape | email
 #
-# DOMAIN VALUES: d1=battlespace  d2=escalation  d3=energy  d4=diplomatic  d5=cyber
-#
-# HONEST STATUS NOTES
-#   status: working   — confirmed functional as of 2026-03
-#   status: likely    — URL is real; untested in this environment
-#   status: paywall   — returns empty/login page; included for future cookie auth
-#   status: removed   — source removed because URL was fabricated or dead
+# STATUS (honest assessment as of 2026-03)
+#   working  — confirmed functional, tested
+#   likely   — real URL, untested in this environment (proxy-blocked sandbox)
+#   paywall  — returns login/stub; disabled until cookie auth is implemented
+#   removed  — documented below with reason; do not re-add
 # ═══════════════════════════════════════════════════════════════════════════════
 
 sources:
 
   # ─────────────────────────────────────────────────────────────────────────────
   # TIER 1 — FACTUAL BACKBONE
+  # These are the evidentiary floor. AP + AJ + Reuters not reporting = unconfirmed.
   # ─────────────────────────────────────────────────────────────────────────────
 
   - id: ap_wire
@@ -36,9 +32,8 @@ sources:
     status: likely
     enabled: true
     notes: >
-      Real AP RSS feed (international news). Not topic-filtered to Iran —
-      triage keyword matching selects relevant items. AP not reporting an
-      event = event unconfirmed. Factual floor for all claims.
+      Real AP international RSS feed. General world news — relevance filter
+      at ingest drops non-Iran/Gulf items. AP not reporting = unconfirmed.
 
   - id: al_jazeera_en
     name: "Al Jazeera English"
@@ -46,12 +41,24 @@ sources:
     domains: [d1, d2, d4]
     method: rss
     url: "https://www.aljazeera.com/xml/rss/all.xml"
-    status: working
+    status: likely
     enabled: true
     notes: >
-      Reliable public RSS feed. Strong regional bureau coverage including
-      Tehran, Beirut, Gaza, Riyadh. Cross-check against AP for casualty
-      figures. Replaces the defunct Reuters public RSS feed.
+      Real public RSS. Strong regional bureau including Tehran, Beirut,
+      Gaza, Riyadh. Factual backbone for Arab-world perspective.
+
+  - id: reuters_mideast
+    name: "Reuters Middle East"
+    tier: 1
+    domains: [d1, d2, d3, d4]
+    method: scrape
+    url: "https://www.reuters.com/world/middle-east/"
+    status: likely
+    enabled: true
+    notes: >
+      Reuters killed their public RSS in 2020. Scraped with requests+BS4
+      from the Middle East topic page. Static HTML — no JS rendering needed.
+      Reuters is the second pillar of the factual backbone alongside AP.
 
   - id: ctpiw_evening
     name: "CTP-ISW Evening Report"
@@ -63,9 +70,8 @@ sources:
     enabled: true
     notes: >
       Primary backbone for Battlespace (d1). Every claim is footnoted.
-      Scraped with requests+BS4 (no Playwright). Extracts article
-      paragraphs from the Iran War Updates category page. The evening
-      report covers the full 24h operational picture.
+      Evening report covers the full 24h operational picture.
+      Scraped with requests+BS4 from article listing page.
 
   - id: iaea
     name: "IAEA Statements"
@@ -88,9 +94,8 @@ sources:
     status: likely
     enabled: true
     notes: >
-      US government site — static HTML, no JS rendering needed.
-      Official floor for US strikes, force posture, US casualty figures.
-      Scraped with requests+BS4, extracts article titles and links.
+      US government static HTML. Official floor for US strikes, force
+      posture, and US casualty figures.
 
   - id: ukmto
     name: "UKMTO Maritime Bulletins"
@@ -101,9 +106,21 @@ sources:
     status: likely
     enabled: true
     notes: >
-      No RSS feed exists. UK Maritime Trade Operations — definitive
-      maritime incident record for Hormuz/Red Sea/Gulf of Aden.
-      Scraped with requests+BS4, extracts incident table rows.
+      No RSS. Definitive maritime incident record for Hormuz/Red Sea.
+      Scrapes incident table daily.
+
+  - id: idf_spokesperson
+    name: "IDF Spokesperson"
+    tier: 1
+    domains: [d1]
+    method: scrape
+    url: "https://www.idf.il/en/mini-sites/idf-website/press-releases/"
+    status: likely
+    enabled: true
+    notes: >
+      Official IDF press releases. Primary source for Israeli casualty
+      figures and strike assessments. Treat as 'confirmed' for Israeli
+      military actions only.
 
   # ─────────────────────────────────────────────────────────────────────────────
   # TIER 2 — ANALYTICAL DEPTH
@@ -117,9 +134,8 @@ sources:
     schedule_hint: "06:00 ET"
     enabled: true
     notes: >
-      Subscribe at cfr.org/daily-news-brief. Forward to monitored inbox
-      configured under email.folder in pipeline-config.yaml.
-      Best single input for Diplomatic domain (d4): UN, G7, multilateral.
+      Subscribe at cfr.org/daily-news-brief. Forward to monitored inbox.
+      Best single input for Diplomatic (d4): UN, G7, multilateral positioning.
 
   - id: ctpiw_morning
     name: "CTP-ISW Morning Report"
@@ -130,22 +146,110 @@ sources:
     status: likely
     enabled: true
     notes: >
-      Same URL as evening report — scraper extracts the most recent
-      article. Lower priority; use for overnight events that predate
-      the previous evening run.
+      Same URL as evening report — scraper extracts most recent article.
+      Lower priority. Use for overnight events predating previous evening run.
 
-  - id: icg
-    name: "International Crisis Group"
+  - id: cnn_mideast
+    name: "CNN Middle East"
     tier: 2
-    domains: [d2, d4]
+    domains: [d1, d4]
     method: rss
-    url: "https://www.crisisgroup.org/rss.xml"
+    url: "http://rss.cnn.com/rss/edition_middleeast.rss"
     status: likely
     enabled: true
     notes: >
-      Ali Vaez escalation framing. Best public voice on Iranian political
-      economy and decision-making calculus. Use for dissenting/restraint
-      framing in d2 assessments.
+      Real CNN RSS feed for Middle East edition. Israel embed reporters,
+      White House track. General relevance filter applied at ingest.
+
+  - id: cnbc_world
+    name: "CNBC World News"
+    tier: 2
+    domains: [d3, d4]
+    method: rss
+    url: "https://www.cnbc.com/id/100727362/device/rss/rss.html"
+    status: likely
+    enabled: true
+    notes: >
+      Real CNBC world news RSS feed. Goldman Sachs analyst commentary,
+      US market reactions to conflict events.
+
+  - id: cnbc_energy
+    name: "CNBC Energy"
+    tier: 2
+    domains: [d3]
+    method: rss
+    url: "https://www.cnbc.com/id/19832390/device/rss/rss.html"
+    status: likely
+    enabled: true
+    notes: >
+      Real CNBC energy RSS. Primary live input for Energy/Economic (d3).
+      Brent crude, GasBuddy US pump prices, Goldman energy desk.
+
+  - id: bbc_mideast
+    name: "BBC Middle East"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml"
+    status: working
+    enabled: true
+
+  - id: nyt_world
+    name: "New York Times World"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+    status: likely
+    enabled: true
+    notes: >
+      Real NYT world RSS. Limited free articles but headlines and
+      abstracts are available without subscription. Relevance-filtered.
+
+  - id: guardian_mideast
+    name: "The Guardian Middle East"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://www.theguardian.com/world/middleeast/rss"
+    status: likely
+    enabled: true
+    notes: "Real Guardian RSS for Middle East section. Good for UK/EU framing."
+
+  - id: times_of_israel
+    name: "Times of Israel"
+    tier: 2
+    domains: [d1, d2, d4]
+    method: rss
+    url: "https://www.timesofisrael.com/feed/"
+    status: likely
+    enabled: true
+    notes: >
+      Real Times of Israel RSS. English-language Israeli daily.
+      Closest to IDF-side granular reporting short of Haaretz.
+      No paywall — full article content in feed.
+
+  - id: jerusalem_post
+    name: "Jerusalem Post"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://www.jpost.com/rss/rssfeedsfrontpage.aspx"
+    status: likely
+    enabled: true
+    notes: "Real JPost RSS. Useful for Israeli government and military statements."
+
+  - id: middle_east_eye
+    name: "Middle East Eye"
+    tier: 2
+    domains: [d1, d2, d4]
+    method: rss
+    url: "https://www.middleeasteye.net/rss"
+    status: likely
+    enabled: true
+    notes: >
+      Independent outlet with strong Gulf and Iran bureau. Good on
+      Houthi operational reporting and GCC internal politics.
 
   - id: france24_en
     name: "France 24 English"
@@ -165,7 +269,17 @@ sources:
     url: "https://observers.france24.com/en/rss"
     status: likely
     enabled: true
-    notes: "Video authentication unit for hacktivist claims and escalation imagery."
+    notes: "Video authentication. Use for hacktivist claim verification."
+
+  - id: dw_en
+    name: "Deutsche Welle"
+    tier: 2
+    domains: [d4]
+    method: rss
+    url: "https://rss.dw.com/rdf/rss-en-all"
+    status: working
+    enabled: true
+    notes: "Russian and Chinese diplomatic positioning. NATO implications."
 
   - id: rfi_en
     name: "RFI English"
@@ -184,28 +298,7 @@ sources:
     url: "https://www.rfi.fr/fa/rss"
     status: likely
     enabled: true
-    notes: >
-      Persian-language. Primary inside-Iran supplement during blackout
-      periods. Items flagged with lang=fa for downstream handling.
-
-  - id: dw_en
-    name: "Deutsche Welle"
-    tier: 2
-    domains: [d4]
-    method: rss
-    url: "https://rss.dw.com/rdf/rss-en-all"
-    status: working
-    enabled: true
-    notes: "Russian and Chinese diplomatic positioning. NATO implications."
-
-  - id: bbc_mideast
-    name: "BBC Middle East"
-    tier: 2
-    domains: [d1, d4]
-    method: rss
-    url: "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml"
-    status: working
-    enabled: true
+    notes: "Persian-language. Primary inside-Iran supplement during blackouts."
 
   - id: anadolu
     name: "Anadolu Agency"
@@ -225,7 +318,17 @@ sources:
     url: "https://www.rudaw.net/english/rss.xml"
     status: likely
     enabled: true
-    notes: "Ground coverage of Kurdistan Region of Iraq. Proxy activity in northern Iraq."
+    notes: "Ground coverage of Kurdistan Region of Iraq. Proxy activity."
+
+  - id: icg
+    name: "International Crisis Group"
+    tier: 2
+    domains: [d2, d4]
+    method: rss
+    url: "https://www.crisisgroup.org/rss.xml"
+    status: likely
+    enabled: true
+    notes: "Ali Vaez escalation framing. Best public voice on Iranian decision-making."
 
   - id: quincy_inst
     name: "Responsible Statecraft"
@@ -247,8 +350,7 @@ sources:
     enabled: true
     notes: >
       IDF-side operational depth. Best public source on northern front
-      (Hezbollah) order of battle. WordPress category page — scraped
-      with requests+BS4, extracts article excerpts.
+      (Hezbollah) order of battle. WordPress category page, BS4 scrape.
 
   - id: iran_intl
     name: "Iran International"
@@ -259,9 +361,8 @@ sources:
     status: likely
     enabled: true
     notes: >
-      Inside-Iran footage and IRGC internal dynamics. Homepage scrape
-      with requests+BS4. May be partially JS-rendered; extracts whatever
-      static HTML is available (headlines + meta descriptions).
+      Inside-Iran footage and IRGC internal dynamics. Homepage scrape.
+      May return partial content if JS-rendered; we take what's available.
 
   - id: bbc_persian
     name: "BBC Persian"
@@ -271,7 +372,7 @@ sources:
     url: "https://www.bbc.com/persian"
     status: likely
     enabled: true
-    notes: "Persian-language BBC. Extracts headline text from static homepage HTML."
+    notes: "Persian-language BBC. Static headline extraction."
 
   - id: haaretz
     name: "Haaretz"
@@ -282,14 +383,9 @@ sources:
     status: paywall
     enabled: false
     notes: >
-      Hard paywall. Returns login page without auth cookies. Disabled
-      until cookie authentication is implemented. Essential for
-      war-cabinet dissent and IDF internal disputes when accessible.
-
-  # NOTE: CNN/CNBC/NBC/CBS live blog sources removed.
-  # The date-interpolated URL patterns (e.g. cnn.com/world/live-news/iran-war-{YYYY-MM-DD})
-  # were invented — these URL formats don't exist on those sites.
-  # Replaced by RSS feeds from AP, Al Jazeera, BBC, DW, France 24.
+      Hard paywall — returns login page without auth cookies. Disabled.
+      Essential for war-cabinet dissent and IDF internal disputes.
+      Re-enable after implementing cookie auth.
 
   # ─────────────────────────────────────────────────────────────────────────────
   # TIER 3 — DOMAIN-SPECIFIC TRIGGERS
@@ -304,7 +400,7 @@ sources:
     trigger: cyber_activity
     status: likely
     enabled: true
-    notes: "Threat intel reports. Pull only on new publication."
+    notes: "Threat intel reports. Pull on new publication."
 
   - id: cisa_advisories
     name: "CISA Cybersecurity Advisories"
@@ -337,9 +433,7 @@ sources:
     trigger: cyber_activity
     status: likely
     enabled: true
-    notes: >
-      Iran internet shutdown/throttling status. Pull daily; include only
-      when status changes. A blackout event = mandatory inclusion.
+    notes: "Iran internet shutdown/throttling. Include only when status changes."
 
   - id: eia_weekly
     name: "EIA Weekly Petroleum Status"
@@ -351,7 +445,7 @@ sources:
     schedule_hint: "Wednesday 10:30 ET"
     status: likely
     enabled: true
-    notes: "US petroleum stockpile report. Trigger if Brent moves >5% in 24h."
+    notes: "US petroleum stockpile report. Trigger if Brent moves >5% / 24h."
 
   - id: opec_statements
     name: "OPEC Press Releases"
@@ -364,25 +458,24 @@ sources:
     enabled: true
 
 # ─────────────────────────────────────────────────────────────────────────────
-# REMOVED SOURCES (documented so they are not re-added accidentally)
+# REMOVED SOURCES — documented, do not re-add
 # ─────────────────────────────────────────────────────────────────────────────
-# reuters_mideast — feeds.reuters.com/reuters/worldNews — Reuters removed all
-#   public RSS feeds in 2020. URL 404s. Replaced by Al Jazeera English RSS.
+# reuters_rss — feeds.reuters.com/reuters/worldNews
+#   Reuters removed all public RSS feeds in 2020. 404s. Replaced by
+#   reuters_mideast scrape of reuters.com/world/middle-east/.
 #
 # cnn_live  — cnn.com/world/live-news/iran-war-{YYYY-MM-DD}
 # cnbc_live — cnbc.com/iran-war-live-updates-{YYYY-MM-DD}
 # nbc_live  — nbcnews.com/world/iran/live-blog-{YYYY-MM-DD}
 # cbs_live  — cbsnews.com/live-updates/iran-war-{YYYY-MM-DD}
-#   All four: fabricated URL patterns. These specific slugs do not exist.
-#   Re-add if/when these outlets publish predictable daily live blog URLs.
+#   All four: fabricated URL slug patterns. These specific daily live-blog
+#   URLs do not exist. Replaced by CNN/CNBC real RSS feeds above.
 #
 # al_jazeera_tracker — aljazeera.com/news/liveblog/iran-war-casualty-tracker
-#   Speculative URL. AJ casualty tracker URLs are campaign-specific and
-#   unpredictable. Use AJ English RSS (al_jazeera_en) instead.
+#   Speculative campaign-specific URL. Replaced by al_jazeera_en RSS.
 #
 # kpler_blog — kpler.com/blog
-#   JS-rendered, returns blank page without Playwright. Disabled.
-#   Re-enable if Kpler publishes an RSS feed or API access is configured.
+#   JS-rendered, blank page without headless browser. Removed.
 
 # ─────────────────────────────────────────────────────────────────────────────
 # EXCLUDED SOURCES
@@ -397,16 +490,16 @@ excluded:
       - "Mehr News Agency"
       - "Fars News Agency"
       - "Tasnim News Agency"
-    policy: "Label as 'Iranian government asserts...' — never use as independent factual corroboration."
+    policy: "Label as 'Iranian government asserts...' — never use as independent corroboration."
 
   raw_osint:
     names:
       - "Raw Twitter/X OSINT accounts (unvetted)"
       - "Telegram channels without editorial accountability"
-    policy: "Do not ingest raw social media. France 24 Observers performs verification."
+    policy: "Do not ingest raw social media."
 
   policy_advocacy:
     names:
       - "Foundation for Defense of Democracies (FDD)"
       - "Long War Journal"
-    policy: "Event tracking usable as Tier 3 with hedging. Do not import policy recommendations."
+    policy: "Event tracking usable as Tier 3 with hedging. Not policy recommendations."

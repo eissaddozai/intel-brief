@@ -121,9 +121,11 @@ def stage_ingest(target_date: datetime, force: bool, config: dict) -> Path:
 
     log.info('── Web scrape ──')
     try:
+        from ingest.relevance import filter_relevant
         scraped = ingest_scrape(target_date, config=config)
+        scraped = filter_relevant(scraped)
         raw_items.extend(scraped)
-        log.info('Scrape total: %d items', len(scraped))
+        log.info('Scrape total: %d items (after relevance filter)', len(scraped))
     except Exception as exc:
         log.error('Scrape ingestion failed: %s', exc)
 
