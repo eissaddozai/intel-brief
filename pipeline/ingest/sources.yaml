@@ -7,12 +7,18 @@
 #             Items produce verification_status: "confirmed"
 #   Tier 2 — Analytical depth. Interpretation, context, perspective.
 #             Items produce verification_status: "reported"
-#   Tier 3 — Domain-specific triggers. Pull only when conditions are met.
+#   Tier 3 — Domain-specific triggers. Pull only when trigger conditions are met.
 #             Items produce verification_status: "claimed"
 #
 # METHOD VALUES: rss | scrape | email
 #
 # DOMAIN VALUES: d1=battlespace  d2=escalation  d3=energy  d4=diplomatic  d5=cyber
+#
+# HONEST STATUS NOTES
+#   status: working   — confirmed functional as of 2026-03
+#   status: likely    — URL is real; untested in this environment
+#   status: paywall   — returns empty/login page; included for future cookie auth
+#   status: removed   — source removed because URL was fabricated or dead
 # ═══════════════════════════════════════════════════════════════════════════════
 
 sources:
@@ -26,32 +32,26 @@ sources:
     tier: 1
     domains: [d1, d2, d3, d4, d5]
     method: rss
-    url: "https://rsshub.app/apnews/topics/iran-war"
-    fallback_url: "https://feeds.apnews.com/rss/apf-intlnews"
+    url: "https://feeds.apnews.com/rss/apf-intlnews"
+    status: likely
     enabled: true
     notes: >
-      Factual floor for all event claims. AP not reporting = unconfirmed.
-      If AP and Reuters both silent, mark all other sources as unverified.
+      Real AP RSS feed (international news). Not topic-filtered to Iran —
+      triage keyword matching selects relevant items. AP not reporting an
+      event = event unconfirmed. Factual floor for all claims.
 
-  - id: reuters_mideast
-    name: "Reuters Middle East"
+  - id: al_jazeera_en
+    name: "Al Jazeera English"
     tier: 1
-    domains: [d1, d2, d3, d4]
+    domains: [d1, d2, d4]
     method: rss
-    url: "https://feeds.reuters.com/reuters/worldNews"
-    enabled: true
-    notes: "Secondary factual backbone. Cross-check AP for casualty figures."
-
-  - id: afp_france24
-    name: "AFP via France 24"
-    tier: 1
-    domains: [d1, d4]
-    method: rss
-    url: "https://www.france24.com/en/rss"
+    url: "https://www.aljazeera.com/xml/rss/all.xml"
+    status: working
     enabled: true
     notes: >
-      AFP wire via France 24 aggregator. Good for European diplomatic positioning
-      and French government statements. Supplementary to AP/Reuters for kinetics.
+      Reliable public RSS feed. Strong regional bureau coverage including
+      Tehran, Beirut, Gaza, Riyadh. Cross-check against AP for casualty
+      figures. Replaces the defunct Reuters public RSS feed.
 
   - id: ctpiw_evening
     name: "CTP-ISW Evening Report"
@@ -59,12 +59,13 @@ sources:
     domains: [d1, d2]
     method: scrape
     url: "https://www.criticalthreats.org/analysis/iran-war-updates"
-    schedule_hint: "18:30 ET"
+    status: likely
     enabled: true
     notes: >
-      Primary backbone for Battlespace (d1). Every claim is footnoted to
-      original sources. The evening report covers the full 24h operational
-      picture. Do not treat morning report as equivalent quality.
+      Primary backbone for Battlespace (d1). Every claim is footnoted.
+      Scraped with requests+BS4 (no Playwright). Extracts article
+      paragraphs from the Iran War Updates category page. The evening
+      report covers the full 24h operational picture.
 
   - id: iaea
     name: "IAEA Statements"
@@ -72,6 +73,7 @@ sources:
     domains: [d2]
     method: rss
     url: "https://www.iaea.org/feeds/topstories.xml"
+    status: working
     enabled: true
     notes: >
       Definitive source for Iranian nuclear compliance and inspector access.
@@ -83,22 +85,25 @@ sources:
     domains: [d1]
     method: scrape
     url: "https://www.centcom.mil/MEDIA/NEWS-ARTICLES/"
+    status: likely
     enabled: true
     notes: >
-      Official floor for US strikes, force posture, and US casualty figures.
-      CENTCOM claims are 'confirmed' for US actions only — Israeli figures
-      come from IDF and are 'reported'.
+      US government site — static HTML, no JS rendering needed.
+      Official floor for US strikes, force posture, US casualty figures.
+      Scraped with requests+BS4, extracts article titles and links.
 
   - id: ukmto
     name: "UKMTO Maritime Bulletins"
     tier: 1
-    domains: [d3]
+    domains: [d1, d3]
     method: scrape
     url: "https://www.ukmto.org/indian-ocean/recent-incidents"
+    status: likely
     enabled: true
     notes: >
-      No RSS feed. Definitive maritime incident record for Hormuz/Red Sea.
-      Check daily for incident reports. Pull full incident table each run.
+      No RSS feed exists. UK Maritime Trade Operations — definitive
+      maritime incident record for Hormuz/Red Sea/Gulf of Aden.
+      Scraped with requests+BS4, extracts incident table rows.
 
   # ─────────────────────────────────────────────────────────────────────────────
   # TIER 2 — ANALYTICAL DEPTH
@@ -114,8 +119,7 @@ sources:
     notes: >
       Subscribe at cfr.org/daily-news-brief. Forward to monitored inbox
       configured under email.folder in pipeline-config.yaml.
-      Highest value input for Diplomatic domain (d4). Covers UN, G7,
-      multilateral institutional positioning with editorial curation.
+      Best single input for Diplomatic domain (d4): UN, G7, multilateral.
 
   - id: ctpiw_morning
     name: "CTP-ISW Morning Report"
@@ -123,23 +127,12 @@ sources:
     domains: [d1, d2]
     method: scrape
     url: "https://www.criticalthreats.org/analysis/iran-war-updates"
-    schedule_hint: "05:30 ET"
+    status: likely
     enabled: true
     notes: >
-      Lower priority than evening report. Use for overnight events that
-      predate the previous evening run. Flag if it contradicts evening report.
-
-  - id: alma_research
-    name: "Alma Research Daily"
-    tier: 2
-    domains: [d1, d2]
-    method: scrape
-    url: "https://israel-alma.org/category/reports/"
-    schedule_hint: "19:00 Israel time"
-    enabled: true
-    notes: >
-      IDF-side operational depth. Best public source on Iranian missile
-      inventory degradation and northern front (Hezbollah) order of battle.
+      Same URL as evening report — scraper extracts the most recent
+      article. Lower priority; use for overnight events that predate
+      the previous evening run.
 
   - id: icg
     name: "International Crisis Group"
@@ -147,54 +140,12 @@ sources:
     domains: [d2, d4]
     method: rss
     url: "https://www.crisisgroup.org/rss.xml"
+    status: likely
     enabled: true
     notes: >
       Ali Vaez escalation framing. Best public voice on Iranian political
       economy and decision-making calculus. Use for dissenting/restraint
       framing in d2 assessments.
-
-  - id: cnn_live
-    name: "CNN Live Blog"
-    tier: 2
-    domains: [d1, d4]
-    method: scrape
-    url: "https://www.cnn.com/world/live-news/iran-war-{YYYY-MM-DD}"
-    enabled: true
-    notes: >
-      JS-rendered. Playwright required. Israel embed reporters and White
-      House track. Date-interpolated URL — uses today's date.
-
-  - id: cnbc_live
-    name: "CNBC Live Blog (Energy)"
-    tier: 2
-    domains: [d3]
-    method: scrape
-    url: "https://www.cnbc.com/iran-war-live-updates-{YYYY-MM-DD}"
-    enabled: true
-    notes: >
-      Primary live input for Energy/Economic domain (d3). Goldman Sachs
-      analyst commentary, Brent crude, GasBuddy US pump prices.
-      Date-interpolated URL.
-
-  - id: nbc_live
-    name: "NBC News Live Blog"
-    tier: 2
-    domains: [d1]
-    method: scrape
-    url: "https://www.nbcnews.com/world/iran/live-blog-{YYYY-MM-DD}"
-    enabled: true
-    notes: >
-      Satellite imagery verification via Maxar/Planet partners. Military
-      analyst network (Stavridis, Barry McCaffrey). Date-interpolated URL.
-
-  - id: cbs_live
-    name: "CBS News Live Blog"
-    tier: 2
-    domains: [d4]
-    method: scrape
-    url: "https://www.cbsnews.com/live-updates/iran-war-{YYYY-MM-DD}"
-    enabled: true
-    notes: "State Department sourcing. Foggy Bottom track."
 
   - id: france24_en
     name: "France 24 English"
@@ -202,10 +153,9 @@ sources:
     domains: [d4]
     method: rss
     url: "https://www.france24.com/en/rss"
+    status: working
     enabled: true
-    notes: >
-      EU Council dynamics, French government positioning. Best European
-      institutional sourcing in the stack.
+    notes: "EU Council dynamics, French government positioning."
 
   - id: france24_observers
     name: "France 24 Observers"
@@ -213,10 +163,9 @@ sources:
     domains: [d2, d5]
     method: rss
     url: "https://observers.france24.com/en/rss"
+    status: likely
     enabled: true
-    notes: >
-      Video authentication unit. Use for hacktivist claim verification in
-      Cyber (d5) and escalation imagery cross-check.
+    notes: "Video authentication unit for hacktivist claims and escalation imagery."
 
   - id: rfi_en
     name: "RFI English"
@@ -224,6 +173,7 @@ sources:
     domains: [d4]
     method: rss
     url: "https://www.rfi.fr/en/rss"
+    status: likely
     enabled: true
 
   - id: rfi_persian
@@ -232,11 +182,11 @@ sources:
     domains: [d1, d2]
     method: rss
     url: "https://www.rfi.fr/fa/rss"
+    status: likely
     enabled: true
     notes: >
-      Separate ingestion stream (Persian-language). Primary inside-Iran
-      supplement during communications blackout periods. Items flagged
-      with lang=fa for downstream handling.
+      Persian-language. Primary inside-Iran supplement during blackout
+      periods. Items flagged with lang=fa for downstream handling.
 
   - id: dw_en
     name: "Deutsche Welle"
@@ -244,64 +194,18 @@ sources:
     domains: [d4]
     method: rss
     url: "https://rss.dw.com/rdf/rss-en-all"
+    status: working
     enabled: true
-    notes: >
-      Russian and Chinese diplomatic positioning. NATO implications.
-      Best European outlet for Sino-Russian reaction coverage.
+    notes: "Russian and Chinese diplomatic positioning. NATO implications."
 
-  - id: haaretz
-    name: "Haaretz"
-    tier: 2
-    domains: [d1, d4]
-    method: scrape
-    url: "https://www.haaretz.com/middle-east-news"
-    enabled: true
-    notes: >
-      Only major Israeli outlet consistently critical of government policy.
-      Essential for war-cabinet dissent and IDF internal disputes.
-      Paywall — configure cookie auth if available.
-
-  - id: iran_intl
-    name: "Iran International"
-    tier: 2
-    domains: [d1, d2]
-    method: scrape
-    url: "https://www.iranintl.com/en"
-    enabled: true
-    notes: >
-      Inside-Iran footage via VPN contributors. Best source on IRGC
-      internal dynamics and succession politics. Use for regime-stability
-      signals in d2.
-
-  - id: quincy_inst
-    name: "Quincy / Responsible Statecraft"
-    tier: 2
-    domains: [d2]
-    method: rss
-    url: "https://responsiblestatecraft.org/feed/"
-    enabled: true
-    notes: >
-      Restraint/de-escalation framing. Include to prevent hawkish-framing
-      default. Should inform dissenter notes on escalation assumptions.
-
-  - id: bbc_live
-    name: "BBC Live Blog / Middle East"
+  - id: bbc_mideast
+    name: "BBC Middle East"
     tier: 2
     domains: [d1, d4]
     method: rss
     url: "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml"
+    status: working
     enabled: true
-
-  - id: bbc_persian
-    name: "BBC Persian"
-    tier: 2
-    domains: [d1]
-    method: scrape
-    url: "https://www.bbc.com/persian"
-    enabled: true
-    notes: >
-      Persian-language BBC service. Ground-level reporting inside Iran.
-      Parse headline feed only — full article extraction unreliable.
 
   - id: anadolu
     name: "Anadolu Agency"
@@ -309,10 +213,9 @@ sources:
     domains: [d1, d4]
     method: rss
     url: "https://www.aa.com.tr/en/rss/default?cat=world"
+    status: likely
     enabled: true
-    notes: >
-      Tehran bureau with ground imagery inside Iran. Turkish and
-      Azerbaijani positioning. Useful for northern/Caucasus flank.
+    notes: "Turkish positioning, Caucasus/northern flank, Tehran bureau."
 
   - id: rudaw
     name: "Rudaw"
@@ -320,51 +223,77 @@ sources:
     domains: [d1]
     method: rss
     url: "https://www.rudaw.net/english/rss.xml"
+    status: likely
     enabled: true
-    notes: >
-      Only professional outlet with consistent ground coverage of Kurdistan
-      Region of Iraq (KRI). Essential for proxy activity in northern Iraq.
+    notes: "Ground coverage of Kurdistan Region of Iraq. Proxy activity in northern Iraq."
 
-  - id: al_jazeera_tracker
-    name: "Al Jazeera Casualty Tracker"
+  - id: quincy_inst
+    name: "Responsible Statecraft"
     tier: 2
-    domains: [d1]
-    method: scrape
-    url: "https://www.aljazeera.com/news/liveblog/iran-war-casualty-tracker"
+    domains: [d2]
+    method: rss
+    url: "https://responsiblestatecraft.org/feed/"
+    status: likely
     enabled: true
-    notes: >
-      Structured HTML table — most tractable daily scrape in the stack.
-      Cross-reference against CENTCOM/IDF for corroboration. Gaza Ministry
-      of Health figures are 'claimed'; IDF figures 'reported'.
+    notes: "Restraint framing. Include to prevent hawkish-framing default."
 
-  - id: kpler_blog
-    name: "Kpler Tanker Intelligence"
+  - id: alma_research
+    name: "Alma Research"
     tier: 2
-    domains: [d3]
+    domains: [d1, d2]
     method: scrape
-    url: "https://www.kpler.com/blog"
+    url: "https://israel-alma.org/category/reports/"
+    status: likely
     enabled: true
     notes: >
-      Vessel traffic and Hormuz transit flow data. Commercial API
-      preferred if KPLER_API_KEY is configured; falls back to blog scraping.
+      IDF-side operational depth. Best public source on northern front
+      (Hezbollah) order of battle. WordPress category page — scraped
+      with requests+BS4, extracts article excerpts.
+
+  - id: iran_intl
+    name: "Iran International"
+    tier: 2
+    domains: [d1, d2]
+    method: scrape
+    url: "https://www.iranintl.com/en"
+    status: likely
+    enabled: true
+    notes: >
+      Inside-Iran footage and IRGC internal dynamics. Homepage scrape
+      with requests+BS4. May be partially JS-rendered; extracts whatever
+      static HTML is available (headlines + meta descriptions).
+
+  - id: bbc_persian
+    name: "BBC Persian"
+    tier: 2
+    domains: [d1, d2]
+    method: scrape
+    url: "https://www.bbc.com/persian"
+    status: likely
+    enabled: true
+    notes: "Persian-language BBC. Extracts headline text from static homepage HTML."
+
+  - id: haaretz
+    name: "Haaretz"
+    tier: 2
+    domains: [d1, d4]
+    method: scrape
+    url: "https://www.haaretz.com/middle-east-news"
+    status: paywall
+    enabled: false
+    notes: >
+      Hard paywall. Returns login page without auth cookies. Disabled
+      until cookie authentication is implemented. Essential for
+      war-cabinet dissent and IDF internal disputes when accessible.
+
+  # NOTE: CNN/CNBC/NBC/CBS live blog sources removed.
+  # The date-interpolated URL patterns (e.g. cnn.com/world/live-news/iran-war-{YYYY-MM-DD})
+  # were invented — these URL formats don't exist on those sites.
+  # Replaced by RSS feeds from AP, Al Jazeera, BBC, DW, France 24.
 
   # ─────────────────────────────────────────────────────────────────────────────
   # TIER 3 — DOMAIN-SPECIFIC TRIGGERS
-  # Pull only when trigger conditions are met; do not include in baseline run.
   # ─────────────────────────────────────────────────────────────────────────────
-
-  - id: netblocks
-    name: "NetBlocks Internet Observatory"
-    tier: 3
-    domains: [d5]
-    method: scrape
-    url: "https://netblocks.org"
-    trigger: cyber_activity
-    enabled: true
-    notes: >
-      Iran internet shutdown and throttling status. Pull daily; include in
-      brief only when status changes from previous cycle. A blackout event
-      is a mandatory inclusion regardless of novelty filter.
 
   - id: recorded_future
     name: "Recorded Future Research Blog"
@@ -373,6 +302,7 @@ sources:
     method: rss
     url: "https://www.recordedfuture.com/research/feed"
     trigger: cyber_activity
+    status: likely
     enabled: true
     notes: "Threat intel reports. Pull only on new publication."
 
@@ -383,6 +313,7 @@ sources:
     method: rss
     url: "https://www.cisa.gov/cybersecurity-advisories/all.xml"
     trigger: cyber_activity
+    status: working
     enabled: true
     notes: "US government advisories. Attribution-grade claims only."
 
@@ -393,8 +324,22 @@ sources:
     method: rss
     url: "https://www.mandiant.com/resources/blog/rss.xml"
     trigger: cyber_activity
+    status: likely
     enabled: true
-    notes: "Iranian APT attribution reports. Treat as 'reported' not 'confirmed'."
+    notes: "Iranian APT attribution. Treat as 'reported' not 'confirmed'."
+
+  - id: netblocks
+    name: "NetBlocks Internet Observatory"
+    tier: 3
+    domains: [d5]
+    method: scrape
+    url: "https://netblocks.org"
+    trigger: cyber_activity
+    status: likely
+    enabled: true
+    notes: >
+      Iran internet shutdown/throttling status. Pull daily; include only
+      when status changes. A blackout event = mandatory inclusion.
 
   - id: eia_weekly
     name: "EIA Weekly Petroleum Status"
@@ -404,10 +349,9 @@ sources:
     url: "https://www.eia.gov/petroleum/supply/weekly/"
     trigger: energy_disruption
     schedule_hint: "Wednesday 10:30 ET"
+    status: likely
     enabled: true
-    notes: >
-      US petroleum stockpile report. Pull Wednesday. Trigger if Brent
-      moves >5% in 24h or UKMTO issues Hormuz advisory.
+    notes: "US petroleum stockpile report. Trigger if Brent moves >5% in 24h."
 
   - id: opec_statements
     name: "OPEC Press Releases"
@@ -416,12 +360,32 @@ sources:
     method: scrape
     url: "https://www.opec.org/opec_web/en/press_room/4567.htm"
     trigger: energy_disruption
+    status: likely
     enabled: true
 
 # ─────────────────────────────────────────────────────────────────────────────
+# REMOVED SOURCES (documented so they are not re-added accidentally)
+# ─────────────────────────────────────────────────────────────────────────────
+# reuters_mideast — feeds.reuters.com/reuters/worldNews — Reuters removed all
+#   public RSS feeds in 2020. URL 404s. Replaced by Al Jazeera English RSS.
+#
+# cnn_live  — cnn.com/world/live-news/iran-war-{YYYY-MM-DD}
+# cnbc_live — cnbc.com/iran-war-live-updates-{YYYY-MM-DD}
+# nbc_live  — nbcnews.com/world/iran/live-blog-{YYYY-MM-DD}
+# cbs_live  — cbsnews.com/live-updates/iran-war-{YYYY-MM-DD}
+#   All four: fabricated URL patterns. These specific slugs do not exist.
+#   Re-add if/when these outlets publish predictable daily live blog URLs.
+#
+# al_jazeera_tracker — aljazeera.com/news/liveblog/iran-war-casualty-tracker
+#   Speculative URL. AJ casualty tracker URLs are campaign-specific and
+#   unpredictable. Use AJ English RSS (al_jazeera_en) instead.
+#
+# kpler_blog — kpler.com/blog
+#   JS-rendered, returns blank page without Playwright. Disabled.
+#   Re-enable if Kpler publishes an RSS feed or API access is configured.
+
+# ─────────────────────────────────────────────────────────────────────────────
 # EXCLUDED SOURCES
-# Cite as official claims only (verification_status: "claimed").
-# Never use as factual input. Never cite as corroboration.
 # ─────────────────────────────────────────────────────────────────────────────
 
 excluded:
@@ -433,16 +397,16 @@ excluded:
       - "Mehr News Agency"
       - "Fars News Agency"
       - "Tasnim News Agency"
-    policy: "Label Iranian state media claims as: 'Iranian government asserts...' Never use as independent factual corroboration."
+    policy: "Label as 'Iranian government asserts...' — never use as independent factual corroboration."
 
   raw_osint:
     names:
       - "Raw Twitter/X OSINT accounts (unvetted)"
       - "Telegram channels without editorial accountability"
-    policy: "Do not ingest raw social media. France 24 Observers performs verification — use that layer instead."
+    policy: "Do not ingest raw social media. France 24 Observers performs verification."
 
   policy_advocacy:
     names:
       - "Foundation for Defense of Democracies (FDD)"
       - "Long War Journal"
-    policy: "Event tracking usable as Tier 3 with hedging. Do not import policy recommendations into brief framing."
+    policy: "Event tracking usable as Tier 3 with hedging. Do not import policy recommendations."
