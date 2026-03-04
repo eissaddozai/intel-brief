@@ -66,7 +66,7 @@ def compute_novelty_score(item: dict, known_phrases: set[str]) -> float:
 NOVELTY_THRESHOLD = 0.35  # Items below this are considered repeats
 
 
-def filter_novel(items: list[dict], cycles_dir: Path) -> list[dict]:
+def filter_novel(items: list[dict], cycles_dir: Path, config: dict | None = None) -> list[dict]:
     """
     Filter out items that are largely repetitions of the previous cycle.
     Items from Tier 1 sources are never filtered (factual updates always included).

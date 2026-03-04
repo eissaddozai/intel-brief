@@ -87,6 +87,11 @@ def parse_args() -> argparse.Namespace:
         action='store_true',
         help='Skip interactive review and auto-approve draft (for CI/automation).',
     )
+    parser.add_argument(
+        '--demo',
+        action='store_true',
+        help='Use synthetic seed data (no internet required). Skips ingest stage.',
+    )
     return parser.parse_args()
 
 
@@ -94,6 +99,17 @@ def get_target_date(date_str: str | None) -> datetime:
     if date_str:
         return datetime.strptime(date_str, '%Y-%m-%d').replace(tzinfo=timezone.utc)
     return datetime.now(timezone.utc)
+
+
+def stage_ingest_demo(target_date: datetime) -> Path:
+    """Load synthetic seed items for demo/testing (no internet required)."""
+    from ingest.demo_seed import get_seed_items
+    cache_file = CACHE_DIR / f'raw_{target_date.strftime("%Y%m%d")}.json'
+    CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    items = get_seed_items(target_date)
+    cache_file.write_text(json.dumps(items, indent=2, ensure_ascii=False), encoding='utf-8')
+    log.info('Demo mode: wrote %d seed items to %s', len(items), cache_file)
+    return cache_file
 
 
 def stage_ingest(target_date: datetime, force: bool, config: dict) -> Path:
@@ -189,6 +205,117 @@ def stage_triage(raw_cache: Path, config: dict) -> Path:
     return tagged_file
 
 
+def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) -> dict:
+    """Build a structurally valid placeholder draft when Claude API is unavailable."""
+    DOMAIN_CONFIG = [
+        ('d1', '01', 'BATTLESPACE · KINETIC'),
+        ('d2', '02', 'ESCALATION · TRAJECTORY'),
+        ('d3', '03', 'ENERGY · ECONOMIC'),
+        ('d4', '04', 'DIPLOMATIC · POLITICAL'),
+        ('d5', '05', 'CYBER · INFORMATION OPS'),
+    ]
+
+    def items_for(domain: str) -> list[dict]:
+        return [i for i in tagged_items if domain in i.get('tagged_domains', [])]
+
+    def domain_section(domain_id: str, num: str, title: str) -> dict:
+        items = items_for(domain_id)
+        tier1 = [i for i in items if i.get('tier') == 1]
+        body_items = (tier1 or items)[:3]
+        paras = [
+            {
+                'subLabel': f'ITEM {idx+1}',
+                'text': item.get('text', item.get('title', ''))[:400],
+                'citations': [{'ref': item.get('source_name', ''), 'tier': item.get('tier', 2)}],
+            }
+            for idx, item in enumerate(body_items)
+        ] or [{'subLabel': 'STATUS', 'text': 'No items collected for this domain.', 'citations': []}]
+
+        confidence = 'high' if tier1 else ('moderate' if items else 'low')
+        kj_text = (
+            f'{title}: {len(items)} items collected across {len(tier1)} Tier 1 source(s). '
+            'Re-run --stage draft after topping up Anthropic API credits for AI analysis.'
+        )
+
+        return {
+            'id': domain_id,
+            'num': num,
+            'title': title,
+            'keyJudgment': {
+                'text': kj_text,
+                'confidence': confidence,
+                'probabilityRange': 'placeholder',
+                'corroborated': bool(tier1),
+            },
+            'bodyParagraphs': paras,
+            'confidence': confidence,
+        }
+
+    domains = [domain_section(did, num, title) for did, num, title in DOMAIN_CONFIG]
+    total = len(tagged_items)
+    cycle_id = f'CSE-BRIEF-PLACEHOLDER-{target_date.strftime("%Y%m%d")}'
+
+    return {
+        'meta': {
+            'cycleId': cycle_id,
+            'cycleNum': '000',
+            'classification': 'PROTECTED B',
+            'tlp': 'AMBER',
+            'timestamp': target_date.strftime('%Y-%m-%dT06:00:00Z'),
+            'region': 'Iran · Gulf Region · Eastern Mediterranean',
+            'analystUnit': 'CSE Conflict Assessment Unit',
+            'threatLevel': 'SEVERE',
+            'threatTrajectory': 'escalating',
+            'subtitle': 'Iran War File — Daily Assessment [PLACEHOLDER]',
+            'contextNote': (
+                f'Placeholder draft — {total} items collected. '
+                'Claude API draft unavailable (insufficient credits). '
+                'Re-run pipeline with funded API key.'
+            ),
+            'stripCells': [
+                {'top': 'SEVERE', 'bot': 'THREAT LEVEL'},
+                {'top': str(total), 'bot': 'ITEMS COLLECTED'},
+                {'top': '—', 'bot': 'BRENT CRUDE'},
+                {'top': 'ACTIVE', 'bot': 'HORMUZ STATUS'},
+                {'top': '—', 'bot': 'FLASH POINTS'},
+            ],
+        },
+        'strategicHeader': {
+            'headlineJudgment': (
+                f'PIPELINE PLACEHOLDER — {total} items ingested. '
+                'Fund Anthropic API and re-run to generate AI analysis.'
+            ),
+            'oneLineSummary': 'Placeholder draft pending API credits.',
+        },
+        'flashPoints': [],
+        'executive': {
+            'bluf': (
+                f'PLACEHOLDER — {total} items collected across 5 domains. '
+                'Claude API draft requires funded API key. Re-run --stage draft.'
+            ),
+            'keyJudgments': [d['keyJudgment']['text'] for d in domains],
+            'kpis': [],
+        },
+        'domains': domains,
+        'warningIndicators': [],
+        'collectionGaps': [],
+        'caveats': {
+            'cycleRef': f'CSE-BRIEF-PLACEHOLDER · {target_date.strftime("%d %B %Y").upper()}',
+            'items': [{'label': 'PLACEHOLDER', 'text': 'Not a real intelligence product.'}],
+            'confidenceAssessment': 'N/A — placeholder draft.',
+            'dissenterNotes': [],
+            'sourceQuality': 'See individual domain items.',
+            'handling': 'DRAFT — NOT FOR DISTRIBUTION',
+        },
+        'footer': {
+            'id': cycle_id,
+            'classification': 'PROTECTED B // TLP:AMBER',
+            'sources': 'See domain citations',
+            'handling': 'PLACEHOLDER — NOT FOR DISTRIBUTION',
+        },
+    }
+
+
 def stage_draft(tagged_cache: Path, target_date: datetime, config: dict) -> Path:
     """Run drafting stage via Claude API. Returns path to draft cache."""
     from draft.drafter import draft_cycle
@@ -205,12 +332,24 @@ def stage_draft(tagged_cache: Path, target_date: datetime, config: dict) -> Path
         log.warning('No previous cycle found — drafting without prior context')
 
     log.info('Drafting with Claude API...')
-    draft = draft_cycle(
-        tagged_items=tagged_items,
-        target_date=target_date,
-        prev_cycle=prev_cycle,
-        config=config,
-    )
+    try:
+        draft = draft_cycle(
+            tagged_items=tagged_items,
+            target_date=target_date,
+            prev_cycle=prev_cycle,
+            config=config,
+        )
+    except Exception as exc:
+        err = str(exc)
+        if 'credit balance' in err or 'quota' in err.lower() or 'rate limit' in err.lower():
+            log.warning(
+                'Claude API unavailable (%s). '
+                'Generating placeholder draft — add API credits and re-run --stage draft.',
+                err.split('.')[0],
+            )
+            draft = _build_placeholder_draft(tagged_items, target_date)
+        else:
+            raise
 
     draft_file.write_text(json.dumps(draft, indent=2, ensure_ascii=False), encoding='utf-8')
     log.info('Draft written: %s', draft_file)
@@ -282,6 +421,7 @@ def main() -> None:
 
     single_stage = args.stage
     auto_approve = args.auto_approve
+    demo_mode = args.demo
 
     raw_cache: Path
     tagged_cache: Path
@@ -289,7 +429,10 @@ def main() -> None:
     approved_file: Path
 
     if single_stage == 'ingest' or single_stage is None:
-        raw_cache = stage_ingest(target_date, args.force, config)
+        if demo_mode:
+            raw_cache = stage_ingest_demo(target_date)
+        else:
+            raw_cache = stage_ingest(target_date, args.force, config)
         if single_stage:
             return
 

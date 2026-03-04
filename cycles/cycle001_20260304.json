@@ -1,0 +1,276 @@
+{
+  "meta": {
+    "cycleId": "cycle001_20260304",
+    "cycleNum": "001",
+    "classification": "PROTECTED B",
+    "tlp": "AMBER",
+    "timestamp": "2026-03-04T06:00:00Z",
+    "region": "Iran · Gulf Region · Eastern Mediterranean",
+    "analystUnit": "CSE Conflict Assessment Unit",
+    "threatLevel": "SEVERE",
+    "threatTrajectory": "escalating",
+    "subtitle": "Iran War File — Daily Assessment [PLACEHOLDER]",
+    "contextNote": "Placeholder draft — 18 items collected. Claude API draft unavailable (insufficient credits). Re-run pipeline with funded API key.",
+    "stripCells": [
+      {
+        "top": "SEVERE",
+        "bot": "THREAT LEVEL"
+      },
+      {
+        "top": "18",
+        "bot": "ITEMS COLLECTED"
+      },
+      {
+        "top": "—",
+        "bot": "BRENT CRUDE"
+      },
+      {
+        "top": "ACTIVE",
+        "bot": "HORMUZ STATUS"
+      },
+      {
+        "top": "—",
+        "bot": "FLASH POINTS"
+      }
+    ]
+  },
+  "strategicHeader": {
+    "headlineJudgment": "PIPELINE PLACEHOLDER — 18 items ingested. Fund Anthropic API and re-run to generate AI analysis.",
+    "oneLineSummary": "Placeholder draft pending API credits."
+  },
+  "flashPoints": [],
+  "executive": {
+    "bluf": "PLACEHOLDER — 18 items collected across 5 domains. Claude API draft requires funded API key. Re-run --stage draft.",
+    "keyJudgments": [
+      "BATTLESPACE · KINETIC: 9 items collected across 5 Tier 1 source(s). Re-run --stage draft after topping up Anthropic API credits for AI analysis.",
+      "ESCALATION · TRAJECTORY: 7 items collected across 1 Tier 1 source(s). Re-run --stage draft after topping up Anthropic API credits for AI analysis.",
+      "ENERGY · ECONOMIC: 9 items collected across 4 Tier 1 source(s). Re-run --stage draft after topping up Anthropic API credits for AI analysis.",
+      "DIPLOMATIC · POLITICAL: 7 items collected across 0 Tier 1 source(s). Re-run --stage draft after topping up Anthropic API credits for AI analysis.",
+      "CYBER · INFORMATION OPS: 4 items collected across 0 Tier 1 source(s). Re-run --stage draft after topping up Anthropic API credits for AI analysis."
+    ],
+    "kpis": []
+  },
+  "domains": [
+    {
+      "id": "d1",
+      "num": "01",
+      "title": "BATTLESPACE · KINETIC",
+      "keyJudgment": {
+        "text": "BATTLESPACE · KINETIC: 9 items collected across 5 Tier 1 source(s). Re-run --stage draft after topping up Anthropic API credits for AI analysis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "[04 March 2026] CTP-ISW assessed that the IRGC launched a salvo of approximately 18 Shahab-3 variant ballistic missiles at the Haifa port district at 0218 UTC. Israeli Iron Dome and Arrow-3 batteries intercepted 14 of 18 missiles. Four missiles impacted the industrial waterfront, damaging a fuel storage facility and wounding seven dock workers.",
+          "citations": [
+            {
+              "ref": "CTP-ISW Evening Report",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "CENTCOM statement [04 March 2026]: USS Gravely (DDG-107) operating in the southern Red Sea successfully intercepted four Houthi anti-ship ballistic missiles at 2347 UTC. No casualties or damage to vessel reported. F/A-18 sorties from USS Harry S. Truman conducted follow-on strikes against Houthi launch infrastructure in Hudaydah governorate.",
+          "citations": [
+            {
+              "ref": "CENTCOM",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "UKMTO WARNO 042/2026: MV Nordic Hawk (Liberian-flagged, 74,000 DWT bulk carrier) reported being struck by armed UAV at position 12°30'N 043°20'E at 0455 UTC. Vessel remains underway. Minor superstructure damage. Master reports three crew members sustained blast injuries. Vessel proceeding to Djibouti for assessment. All shipping advised to maintain heightened vigilance in the area.",
+          "citations": [
+            {
+              "ref": "UKMTO",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d2",
+      "num": "02",
+      "title": "ESCALATION · TRAJECTORY",
+      "keyJudgment": {
+        "text": "ESCALATION · TRAJECTORY: 7 items collected across 1 Tier 1 source(s). Re-run --stage draft after topping up Anthropic API credits for AI analysis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "IAEA Director General Grossi notified the Board of Governors [04 March 2026] that Iran has suspended IAEA inspector access to the Fordow Fuel Enrichment Plant effective 0600 UTC. The IAEA's continuous monitoring equipment at Fordow has been disconnected. Grossi stated this constitutes a \"serious breach\" of Iran's safeguards obligations under the NPT.",
+          "citations": [
+            {
+              "ref": "IAEA",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d3",
+      "num": "03",
+      "title": "ENERGY · ECONOMIC",
+      "keyJudgment": {
+        "text": "ENERGY · ECONOMIC: 9 items collected across 4 Tier 1 source(s). Re-run --stage draft after topping up Anthropic API credits for AI analysis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "CENTCOM statement [04 March 2026]: USS Gravely (DDG-107) operating in the southern Red Sea successfully intercepted four Houthi anti-ship ballistic missiles at 2347 UTC. No casualties or damage to vessel reported. F/A-18 sorties from USS Harry S. Truman conducted follow-on strikes against Houthi launch infrastructure in Hudaydah governorate.",
+          "citations": [
+            {
+              "ref": "CENTCOM",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "UKMTO WARNO 042/2026: MV Nordic Hawk (Liberian-flagged, 74,000 DWT bulk carrier) reported being struck by armed UAV at position 12°30'N 043°20'E at 0455 UTC. Vessel remains underway. Minor superstructure damage. Master reports three crew members sustained blast injuries. Vessel proceeding to Djibouti for assessment. All shipping advised to maintain heightened vigilance in the area.",
+          "citations": [
+            {
+              "ref": "UKMTO",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "CTP-ISW [04 March 2026 morning]: Hezbollah anti-tank guided missile teams engaged two IDF Merkava IV tanks near Metula at 0530 local time, destroying one vehicle and wounding its crew. IDF artillery and Hermes-450 strikes responded within 20 minutes. Fighting remains confined to the border strip. CTP-ISW assesses Hezbollah is probing IDF response cadence rather than initiating a major ground offen",
+          "citations": [
+            {
+              "ref": "CTP-ISW Morning Report",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d4",
+      "num": "04",
+      "title": "DIPLOMATIC · POLITICAL",
+      "keyJudgment": {
+        "text": "DIPLOMATIC · POLITICAL: 7 items collected across 0 Tier 1 source(s). Re-run --stage draft after topping up Anthropic API credits for AI analysis.",
+        "confidence": "moderate",
+        "probabilityRange": "placeholder",
+        "corroborated": false
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "Israeli Prime Minister Netanyahu convened an emergency session of the security cabinet at 0400 local time following the overnight ballistic missile attack on Haifa port. Defense Minister Galant confirmed four impacting missiles and said Israel was \"evaluating options.\"",
+          "citations": [
+            {
+              "ref": "BBC Middle East",
+              "tier": 2
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "ICG analysis: Iran's suspension of IAEA access to Fordow removes the primary international visibility mechanism on Iran's highest-enrichment activities. ICG estimates Iran has sufficient 60% enriched UF6 to produce one weapon's worth of HEU within 10–14 days if political decision made. Diplomatic off-ramp requires immediate P5+1 engagement.",
+          "citations": [
+            {
+              "ref": "International Crisis Group",
+              "tier": 2
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "The Pentagon confirmed the deployment of six B-52H Stratofortress aircraft to Diego Garcia in a \"routine deterrence patrol.\" Analysts note the timing coincides with the Fordow access suspension and assess it as a deliberate signalling measure directed at Tehran.",
+          "citations": [
+            {
+              "ref": "CFR Daily News Brief",
+              "tier": 2
+            }
+          ]
+        }
+      ],
+      "confidence": "moderate"
+    },
+    {
+      "id": "d5",
+      "num": "05",
+      "title": "CYBER · INFORMATION OPS",
+      "keyJudgment": {
+        "text": "CYBER · INFORMATION OPS: 4 items collected across 0 Tier 1 source(s). Re-run --stage draft after topping up Anthropic API credits for AI analysis.",
+        "confidence": "moderate",
+        "probabilityRange": "placeholder",
+        "corroborated": false
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "IRGC Aerospace Force stated in a Telegram release that the overnight strike on Haifa constituted a \"calibrated response to Zionist aggression\" and claimed all 18 missiles reached their designated targets — a claim at variance with Israeli military statements. Iran International assesses the IRGC statement is likely exaggerated for domestic morale purposes.",
+          "citations": [
+            {
+              "ref": "Iran International",
+              "tier": 2
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "CISA Advisory AA26-063A: Iranian state-sponsored actors (attributed to IRGC-affiliated group \"Volt Sparrow\") are actively exploiting Unitronics PLC vulnerabilities (CVE-2023-6448) in water/wastewater facilities and energy sector OT networks across North America and Europe. FBI and CISA recommend immediate patching and network segmentation.",
+          "citations": [
+            {
+              "ref": "CISA",
+              "tier": 3
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "Recorded Future Insikt Group identifies new APT35 (Charming Kitten) C2 infrastructure targeting Israeli banking and telecoms sector. Spear-phishing lures impersonate Bank Leumi correspondence. Malware family identified as updated HYPERSCRAPE variant with credential-harvesting and persistent access capabilities. High confidence attribution to MOIS.",
+          "citations": [
+            {
+              "ref": "Recorded Future",
+              "tier": 3
+            }
+          ]
+        }
+      ],
+      "confidence": "moderate"
+    }
+  ],
+  "warningIndicators": [],
+  "collectionGaps": [],
+  "caveats": {
+    "cycleRef": "CSE-BRIEF-PLACEHOLDER · 04 MARCH 2026",
+    "items": [
+      {
+        "label": "PLACEHOLDER",
+        "text": "Not a real intelligence product."
+      }
+    ],
+    "confidenceAssessment": "N/A — placeholder draft.",
+    "dissenterNotes": [],
+    "sourceQuality": "See individual domain items.",
+    "handling": "DRAFT — NOT FOR DISTRIBUTION"
+  },
+  "footer": {
+    "id": "CSE-BRIEF-PLACEHOLDER-20260304",
+    "classification": "PROTECTED B // TLP:AMBER",
+    "sources": "See domain citations",
+    "handling": "PLACEHOLDER — NOT FOR DISTRIBUTION"
+  }
+}
