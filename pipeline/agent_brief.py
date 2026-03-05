@@ -19,14 +19,24 @@ Architecture:
     All six get full d1–d6 source data so there are no sequential
     dependencies — true parallel execution.
 
-  PHASE 3 — 4 SYNTHESIS SUBAGENTS  (all concurrent, after Phase 2)
+  PHASE 2.5 — 6 VOICE REVIEW SUBAGENTS  (all concurrent)
+    Six `claude -p` subprocesses each review one domain section for
+    compliance with intelligence writing standards (sentence length,
+    assessment-led leads, confidence ladder, forbidden phrases).
+
+  PHASE 2.7 — 1 CROSS-DOMAIN EDITORIAL SUBAGENT  (single pass)
+    One `claude -p` subprocess reviews all 6 sections simultaneously
+    for deduplication, contradiction resolution, and cross-domain
+    coherence. Returns corrected sections list.
+
+  PHASE 3 — 4 SYNTHESIS SUBAGENTS  (all concurrent, after Phase 2.7)
     Four `claude -p` subprocesses run simultaneously:
       - Executive BLUF + key judgments + KPIs
       - Strategic header + threat level/trajectory
       - Warning indicators
       - Collection gaps
 
-  Total: 10 concurrent Claude CLI subagents across 2 rounds.
+  Total: 17 Claude CLI subagents across 4 rounds.
 
 Usage (via main.py):
   python pipeline/main.py agent
@@ -500,6 +510,88 @@ def run_voice_review_subagent(section: dict, target_date: datetime, model: str) 
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# PHASE 2.7 — CROSS-DOMAIN EDITORIAL SUBAGENT (single pass after voice review)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+_EDITORIAL_RULES = """\
+CROSS-DOMAIN EDITORIAL STANDARDS — CSE INTELLIGENCE BRIEF
+
+You are the senior editor of the CSE Intelligence Brief. Review all six domain
+sections for internal consistency, cross-domain coherence, and analytical quality.
+
+STANDARDS TO ENFORCE:
+1. DEDUPLICATION: If the same event appears in two domains, keep the primary
+   reference (higher-tier source) and reduce the secondary to a brief cross-ref.
+2. CONTRADICTION CHECK: If two domains make contradictory claims, flag the lower-
+   confidence one with a note. Do NOT silently delete either claim.
+3. LEAD SENTENCE DISCIPLINE: Every body paragraph must begin with an analytical
+   assessment, not a factual description. Fix any that do not.
+4. MINIMUM SENTENCE LENGTH: Every sentence ≥ 8 words. Merge short sentences.
+5. FORBIDDEN PHRASES: Remove any instance of "kinetic activity", "threat actors",
+   "threat landscape", "robust", "leverage" (as verb), "ongoing situation".
+6. BLUF ALIGNMENT: Ensure the executive BLUF (if present) is consistent with the
+   domain key judgments. Do not invent new facts.
+7. CLARITY: Remove jargon, academic hedging, and excessive qualification.
+   Every sentence must be clear to a senior official with no domain expertise.
+
+WHAT YOU MAY CHANGE:
+  - bodyParagraphs[].text in any domain section
+  - keyJudgment.text and keyJudgment.basis in any domain section
+  - You may add a one-sentence cross-reference note to a paragraph's end
+
+WHAT YOU MUST NOT CHANGE:
+  - id, num, title, assessmentQuestion, confidence, language, probabilityRange
+  - citations, subLabel, subLabelVariant, timestamp on any paragraph
+  - Any structural fields — only free-text prose content"""
+
+
+def _editorial_prompt(sections: list[dict], date_iso: str) -> str:
+    sections_json = json.dumps(sections, indent=2, ensure_ascii=False)
+    return f"""\
+You are the senior editor of the CSE Daily Intelligence Brief.
+Date: {date_iso}
+
+{_EDITORIAL_RULES}
+
+ALL SIX DOMAIN SECTIONS (review all simultaneously):
+{sections_json}
+
+Return the complete corrected sections list as a raw JSON array (no fences).
+Each element is a complete domain section object with all fields preserved.
+Only modify prose text fields where improvements are necessary."""
+
+
+def run_editorial_subagent(sections: list[dict], target_date: datetime,
+                           model: str) -> list[dict]:
+    """
+    Single cross-domain editorial review via claude CLI.
+    Reviews all 6 sections simultaneously for consistency and quality.
+    Returns corrected sections list (falls back to original on error).
+    """
+    date_iso = target_date.strftime('%Y-%m-%d')
+    prompt   = _editorial_prompt(sections, date_iso)
+
+    try:
+        text   = _call_claude(prompt, model, label='EDITORIAL')
+        result = _extract_json(text)
+        if isinstance(result, list) and len(result) == len(sections):
+            # Preserve guaranteed structural keys in each section
+            for i, (orig, rev) in enumerate(zip(sections, result)):
+                for key in ('id', 'num', 'title', 'assessmentQuestion',
+                            'confidence', 'keyJudgment', 'bodyParagraphs'):
+                    if key not in rev:
+                        rev[key] = orig.get(key)
+            log.info('Editorial pass complete — %d sections reviewed', len(result))
+            return result
+        else:
+            log.warning('Editorial subagent returned unexpected shape — keeping reviewed draft')
+            return sections
+    except Exception as exc:
+        log.warning('Editorial subagent failed (%s) — keeping reviewed draft', exc)
+        return sections
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # PHASE 3 — 4 SYNTHESIS SUBAGENTS (all concurrent)
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -701,6 +793,10 @@ def run_agent_brief(
         reviewed_list = list(pool.map(_review_section, sections_list))
     sections_list = reviewed_list
     log.info('Voice review complete')
+
+    # ── Phase 2.7: Cross-domain editorial pass — single subagent ──────────────
+    log.info('═══ PHASE 2.7 — CROSS-DOMAIN EDITORIAL ════════════')
+    sections_list = run_editorial_subagent(sections_list, target_date, model)
 
     # ── Phase 3: 4 synthesis subagents in parallel ─────────────────────────────
     log.info('═══ PHASE 3 — 4 SYNTHESIS SUBAGENTS ═══════════════')

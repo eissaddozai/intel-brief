@@ -160,31 +160,29 @@ def _conf_range(language: str | None) -> str:
 
 
 def _cite_inline(citations: list[dict]) -> str:
-    """Render citations as italic parenthetical with source-tier chips."""
+    """Render citations as clean italic parenthetical — no tier chips."""
     if not citations:
         return ''
     parts = []
     for c in citations:
-        source = _e(c.get('source', ''))
-        ts     = _fmt_ts(c.get('timestamp', ''))
-        vs     = c.get('verificationStatus', 'confirmed')
-        tier   = c.get('tier', 2)
-        tier_chip = f'<span class="tier-chip tier-chip--{tier}">T{tier}</span>'
-        ts_part   = f', {ts}' if ts else ''
+        source  = _e(c.get('source', ''))
+        ts      = _fmt_ts(c.get('timestamp', ''))
+        vs      = c.get('verificationStatus', 'confirmed')
+        ts_part = f', {ts}' if ts else ''
 
         if vs == 'confirmed':
-            label = f'{tier_chip}({source}{ts_part})'
+            label = f'({source}{ts_part})'
         elif vs == 'reported':
-            label = f'{tier_chip}(reported: {source}{ts_part})'
+            label = f'(reported: {source}{ts_part})'
         elif vs == 'claimed':
             label = (
-                f'{tier_chip}<span class="cite--claimed">'
+                f'<span class="cite--claimed">'
                 f'(Iranian government asserts: {source}{ts_part})</span>'
             )
         elif vs == 'disputed':
             label = f'<span class="cite--disputed">[DISPUTED — {source}]</span>'
         else:
-            label = f'{tier_chip}({source}{ts_part})'
+            label = f'({source}{ts_part})'
         parts.append(label)
     return ' <em class="body-para__source">' + '; '.join(parts) + '</em>'
 
@@ -220,25 +218,22 @@ def _load_css() -> str:
             chunks.append(f'/* === {path.name} === */\n{path.read_text(encoding="utf-8")}')
         except FileNotFoundError:
             pass  # graceful degradation if animations.css etc. missing
-    # Append inline extras
+    # Append inline extras — clean, purposeful enhancements only
     chunks.append("""
-/* === renderer extras — Palantir-grade enhancements === */
+/* === renderer extras === */
 
-/* Citation status */
+/* ── Citation status markers ──────────────────────────────────────────── */
 .cite--claimed  { color: var(--conf-amber); font-style: italic; }
-.cite--disputed { color: var(--conf-red);   font-weight: 700; font-style: normal; }
+.cite--disputed { color: var(--conf-red); font-weight: 700; font-style: normal; }
 
-/* Source tier chips inline */
-.tier-chip { font-family: var(--font-data); font-size: 8px; font-weight: 700;
-             padding: 1px 4px; border-radius: 2px; vertical-align: middle;
-             margin-left: 3px; letter-spacing: 0.05em; }
-.tier-chip--1 { background: var(--conf-green); color: #000; }
-.tier-chip--2 { background: var(--conf-blue);  color: #fff; }
-.tier-chip--3 { background: var(--text-dim);   color: var(--page-bg); }
-
-/* Probability visualization bar */
-.prob-bar { height: 3px; background: var(--surface-2); border-radius: 2px;
-            margin: 8px 0 5px; overflow: hidden; position: relative; }
+/* ── Probability bar — indicates confidence range visually ────────────── */
+.prob-bar {
+  height: 3px;
+  background: var(--surface-2);
+  border-radius: 2px;
+  margin: 10px 0 6px;
+  overflow: hidden;
+}
 .prob-bar__fill { display: block; height: 100%; border-radius: 2px; }
 .prob-bar__fill--almost-certainly     { width: 97%; background: var(--conf-green); }
 .prob-bar__fill--highly-likely        { width: 85%; background: var(--conf-green); }
@@ -247,40 +242,97 @@ def _load_css() -> str:
 .prob-bar__fill--unlikely             { width: 32%; background: var(--conf-red);   }
 .prob-bar__fill--almost-certainly-not { width:  3%; background: var(--conf-red);   }
 
-/* Evidence density badge (T1/T2 source counts per domain) */
-.evd { display: inline-flex; gap: 5px; align-items: center; margin-left: 8px; }
-.evd__label { font-family: var(--font-ui); font-size: 9px;
-              color: var(--text-dim); letter-spacing: 0.06em; }
-.evd__chip  { font-family: var(--font-data); font-size: 9px; font-weight: 700;
-              padding: 1px 5px; border-radius: 2px; }
-.evd__chip--t1 { background: var(--conf-green); color: #000; }
-.evd__chip--t2 { background: var(--conf-blue);  color: #fff; }
-
-/* Warning indicator icons */
-.wi-icon { display: inline-block; width: 16px; text-align: center;
-           font-size: 13px; margin-right: 2px; }
+/* ── Warning indicator status icons ──────────────────────────────────── */
+.wi-icon { display: inline-block; width: 18px; text-align: center; font-size: 12px; }
 .wi-icon--triggered { color: var(--conf-red);   }
 .wi-icon--elevated  { color: var(--conf-amber); }
 .wi-icon--watching  { color: var(--color-gold); }
 .wi-icon--cleared   { color: var(--conf-green); }
 
-/* BLUF box enhancement */
-.exec__bluf { border-left: 4px solid var(--color-crimson); }
-.exec__bluf-label { font-family: var(--font-ui); font-size: var(--size-badge);
-                    font-weight: 700; letter-spacing: 0.12em;
-                    color: var(--color-crimson); margin-bottom: 8px; }
-
-/* KJ text emphasis */
-.kj__text  { font-size: var(--size-kj); line-height: 1.6;
-             color: var(--text-hi); font-family: var(--font-body); }
-.kj__basis { font-size: var(--size-body); color: var(--text-dim);
-             font-style: italic; margin-top: 6px;
-             border-top: 1px solid var(--surface-2); padding-top: 6px; }
-
-/* Classification running banner — print only */
-.print-class-banner {
-  display: none;
+/* ── BLUF — bottom line up front ──────────────────────────────────────── */
+.exec__bluf {
+  border-left: 4px solid var(--color-crimson);
+  padding: 14px 18px;
+  margin: 16px 0;
+  background: var(--surface-1);
 }
+.exec__bluf-label {
+  font-family: var(--font-ui);
+  font-size: var(--size-badge);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--color-crimson);
+  margin-bottom: 10px;
+}
+.exec__bluf-text {
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  line-height: 1.7;
+  color: var(--text-hi);
+}
+
+/* ── Key judgment box ─────────────────────────────────────────────────── */
+.kj__text {
+  font-size: var(--size-kj);
+  line-height: 1.65;
+  color: var(--text-hi);
+  font-family: var(--font-body);
+  margin: 4px 0 8px;
+}
+.kj__basis {
+  font-size: calc(var(--size-body) * 0.95);
+  color: var(--text-dim);
+  font-style: italic;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--surface-2);
+  line-height: 1.6;
+}
+.kj__confidence-phrase {
+  font-family: var(--font-data);
+  font-size: var(--size-badge);
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+/* ── Domain confidence row (replaces meter bar) ───────────────────────── */
+.domain__conf-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 3px;
+}
+
+/* ── Body paragraph readability ───────────────────────────────────────── */
+.body-para {
+  font-size: var(--size-body);
+  line-height: 1.75;
+  color: var(--text-md);
+  margin-bottom: 12px;
+}
+.body-para:last-child { margin-bottom: 0; }
+.body-para__source { color: var(--text-dim); font-size: 0.88em; }
+
+/* ── Sub-label variants ───────────────────────────────────────────────── */
+.sub-label--observed   { color: var(--text-dim); }
+.sub-label--assessment { color: var(--color-gold-dim); }
+
+/* ── Handling/classification warning bar ──────────────────────────────── */
+.handling-bar {
+  background: var(--conf-red);
+  color: #fff;
+  font-family: var(--font-ui);
+  font-size: var(--size-badge);
+  font-weight: 700;
+  padding: 7px 20px;
+  letter-spacing: 0.12em;
+  text-align: center;
+}
+
+/* ── Classification running banner — print only ──────────────────────── */
+.print-class-banner { display: none; }
 @media print {
   .print-class-banner {
     display: block;
@@ -294,31 +346,12 @@ def _load_css() -> str:
     letter-spacing: 0.12em;
     color: var(--text-dim);
     z-index: 9999;
-    background: var(--page-bg);
+    background: white;
   }
-  .print-class-banner--top {
-    top: 0;
-    border-bottom: 0.5pt solid var(--surface-3);
-    padding: 3pt 0 2pt;
-  }
-  .print-class-banner--bottom {
-    bottom: 0;
-    border-top: 0.5pt solid var(--surface-3);
-    padding: 2pt 0 3pt;
-  }
-  /* Bleed compensation so body content doesn't hide under banners */
-  body { margin-top: 18pt; margin-bottom: 18pt; }
+  .print-class-banner--top    { top: 0; border-bottom: 0.5pt solid #ccc; padding: 3pt 0 2pt; }
+  .print-class-banner--bottom { bottom: 0; border-top: 0.5pt solid #ccc; padding: 2pt 0 3pt; }
+  body { margin-top: 16pt; margin-bottom: 16pt; }
 }
-
-/* Domain confidence meter (right-side mini bar per domain) */
-.domain__conf-meter { display: flex; align-items: center; gap: 6px;
-                       margin-bottom: 4px; }
-.domain__conf-bar   { flex: 1; height: 2px; background: var(--surface-2);
-                       border-radius: 2px; overflow: hidden; max-width: 80px; }
-.domain__conf-bar__fill { height: 100%; border-radius: 2px; display: block; }
-.domain__conf-bar__fill--high     { width: 90%; background: var(--conf-green); }
-.domain__conf-bar__fill--moderate { width: 55%; background: var(--conf-amber); }
-.domain__conf-bar__fill--low      { width: 25%; background: var(--conf-red);   }
 """)
     return '\n'.join(chunks)
 
@@ -613,38 +646,7 @@ class HtmlRenderer:
         an_html     = self._analyst_note(d.get('analystNote'))
         dn_html     = self._dissenter_note(d.get('dissenterNote'))
 
-        # Evidence density: count T1 and T2 paragraphs/citations
-        paras = d.get('bodyParagraphs', [])
-        t1_count = sum(
-            1 for p in paras
-            for c in p.get('citations', [])
-            if c.get('tier') == 1
-        )
-        t2_count = sum(
-            1 for p in paras
-            for c in p.get('citations', [])
-            if c.get('tier') == 2
-        )
-        evd_html = ''
-        if t1_count or t2_count:
-            t1_chip = f'<span class="evd__chip evd__chip--t1">T1:{t1_count}</span>' if t1_count else ''
-            t2_chip = f'<span class="evd__chip evd__chip--t2">T2:{t2_count}</span>' if t2_count else ''
-            evd_html = (
-                f'<span class="evd">'
-                f'<span class="evd__label">SOURCES</span>'
-                f'{t1_chip}{t2_chip}'
-                f'</span>'
-            )
-
-        # Confidence meter bar
-        conf_fill_cls = f'domain__conf-bar__fill--{conf}'
-        conf_meter = (
-            f'<div class="domain__conf-meter">'
-            f'<div class="domain__conf-bar">'
-            f'<span class="domain__conf-bar__fill {conf_fill_cls}"></span>'
-            f'</div>'
-            f'</div>'
-        )
+        conf_badge_html = _conf_badge(conf)
 
         return f"""<section class="domain domain--{_e(did)}">
   <div class="domain__gradient"></div>
@@ -652,10 +654,9 @@ class HtmlRenderer:
     <div class="domain__num">{num}</div>
     <div class="domain__title-cell">
       <div class="domain__title">{title}</div>
-      <div class="domain__aq-badge-inline">{_e(conf).upper()}{evd_html}</div>
+      <div class="domain__conf-row">{conf_badge_html}</div>
     </div>
   </div>
-  {conf_meter}
   <div class="domain__aq">
     <div class="domain__aq-text">{aq}</div>
     <div class="domain__aq-conf">{_e(_DOMAIN_LABELS.get(did, did.upper()))}</div>
@@ -703,7 +704,7 @@ class HtmlRenderer:
         <span class="badge {_CONF_TIER_CLASS.get(conf, 'badge--amber')}">{_e(conf).upper()}</span>
       </div>
     </div>
-    {f'<div style="font-family:var(--font-data);font-size:var(--size-badge);color:var(--text-dim);margin-bottom:4px;letter-spacing:0.06em;">{phrase}…</div>' if phrase else ''}
+    {f'<div class="kj__confidence-phrase">{phrase}\u2026</div>' if phrase else ''}
     {prob_bar}
     <div class="kj__text">{text}</div>
     {f'<div class="kj__basis">{basis}</div>' if basis else ''}
@@ -983,7 +984,7 @@ class HtmlRenderer:
     <div class="caveats__title">CAVEATS &amp; CONFIDENCE</div>
     <div class="caveats__cycle">{cycle_ref}</div>
   </div>
-  {f'<div style="background:var(--conf-red);color:#fff;font-family:var(--font-ui);font-size:var(--size-badge);font-weight:700;padding:6px 20px;letter-spacing:0.1em;">{handling}</div>' if handling else ''}
+  {f'<div class="handling-bar">{handling}</div>' if handling else ''}
   <ul class="caveats__items">
 {''.join(items_html)}
   </ul>
