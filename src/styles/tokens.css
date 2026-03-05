@@ -86,6 +86,47 @@
   --d6-body:   #050E0E;
   --d6-grad:   linear-gradient(180deg, #000808 0%, #001414 40%, #002A28 100%);
 
+  /* ── MASTHEAD CLASSIFICATION BAR ──────────────────────────────────────── */
+  --color-class-bar:    #030406;   /* very dark classification bar bg */
+  --color-class-border: #1A1A1A;   /* classification bar bottom border */
+  --color-class-label:  #A07878;   /* muted crimson classification text */
+  --color-class-unit:   #785858;   /* dim unit / cycle-id text */
+  --color-crimson-deep: #801420;   /* deep crimson (alert strip border) */
+
+  /* ── THREAT LEVELS ─────────────────────────────────────────────────────── */
+  --threat-severe:      #C04020;   /* SEVERE badge background */
+
+  /* ── EXECUTIVE ASSESSMENT SURFACES ────────────────────────────────────── */
+  --exec-grad-start:    #362A00;   /* executive gradient top stop */
+  --exec-header-bg:     #100D00;   /* executive section header bg */
+
+  /* ── FLASH POINTS / D1 SECTION BORDERS ────────────────────────────────── */
+  --d1-border:          #2A0608;   /* flash-points header border */
+  --d1-border-dk:       #1A0204;   /* flash-points item divider */
+
+  /* ── DISSENTER NOTE / D5 SURFACES ─────────────────────────────────────── */
+  --d5-muted:           #2C5088;   /* d5 attribution muted text */
+  --d5-bg-deep:         #000818;   /* d5 very dark header bg */
+
+  /* ── WARNING INDICATORS / CAVEATS SURFACES ────────────────────────────── */
+  --warn-grad-start:    #160700;   /* warning / caveats gradient top */
+  --warn-grad-end:      #0E0400;   /* warning / caveats gradient bottom */
+  --warn-th-bg:         #0A0500;   /* wi-table header bg */
+  --warn-th-border:     #1A0800;   /* wi-table header bottom border */
+  --warn-td-border:     #140600;   /* wi-table cell divider */
+  --warn-conf-bg:       #120900;   /* caveats confidence block bg */
+
+  /* ── COLLECTION GAPS SURFACES ─────────────────────────────────────────── */
+  --gap-grad-start:     #000416;   /* collection-gaps gradient top */
+  --gap-grad-end:       #000810;   /* collection-gaps gradient bottom */
+  --gap-item-border:    #00091C;   /* collection-gaps item divider */
+
+  /* ── DATA TABLE STATUS ROW HIGHLIGHTS ─────────────────────────────────── */
+  --table-elevated:     #091610;   /* data-table elevated row tint */
+  --table-rising:       #0A1208;   /* data-table rising row tint */
+  --table-critical:     #160508;   /* data-table critical row tint */
+  --table-windfall:     #091410;   /* data-table windfall row tint */
+
   /* ── CONFIDENCE TIERS ──────────────────────────────────────────────────── */
   --conf-green:  #26A050;
   --conf-blue:   #3888D8;
