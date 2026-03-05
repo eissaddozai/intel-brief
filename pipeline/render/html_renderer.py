@@ -239,7 +239,7 @@ def _load_css() -> str:
    Masthead gets the full effect; footer a muted echo.
    Fully suppressed in print.
 ───────────────────────────────────────────────────────────────────────────── */
-.masthead{position:sticky;top:0;z-index:100;overflow:hidden}
+.masthead{position:sticky;top:0;z-index:100;overflow:hidden;margin-bottom:48px}
 
 .masthead::before{
   content:'';position:absolute;inset:-30% -15%;
@@ -316,6 +316,9 @@ def _load_css() -> str:
   100%{opacity:1.0; transform:scale(1.003)}
 }
 
+/* ── PRINT-ONLY BRAND ELEMENTS — hidden on screen ───────────────────────── */
+.print-brand-header,.print-brand-footer{display:none}
+
 /* ── PRINT — suppress shimmer + clean per-page branding ──────────────────── */
 @media print{
   body{background:#000!important}
@@ -384,7 +387,7 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 /* ── MASTHEAD BRAND BAR ───────────────────────────────────────────────────── */
 .masthead__brand-bar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:40px 32px 36px;background:#030407;
+  padding:52px 36px 48px;background:#030407;
 }
 .masthead__brand-left{flex:0 0 auto}
 
@@ -616,6 +619,52 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
 .ep-status{font-size:.52rem;color:#383E4C;font-style:italic;text-align:center;padding:5px}
 .ep-edit-active .ep-editable{outline:1px dashed rgba(196,160,48,.30);border-radius:1px;cursor:text}
 .ep-edit-active .ep-editable:focus{outline:1px solid #C4A030;background:rgba(196,160,48,.03)}
+
+/* ── NUCLEAR HORIZONTAL LINE REMOVAL ─────────────────────────────────────────
+   Every border-top and border-bottom in brief content → gone.
+   Intentional left-border domain accents (kj, body-wrap, strategic, exec) are
+   kept because they are vertical colour accents, not lines.
+─────────────────────────────────────────────────────────────────────────────── */
+.masthead__strip,.masthead__ctx,.metadata-bar,
+.masthead__strip-cell,.metadata-bar__cell,
+.sub-label,.strategic-header,.brief-footer,
+.section-end,.section-end--thick,.section-end--thin,
+.kj,.body-wrap,.domain,
+.exec__header,.exec__bluf,.exec__kj-list,.exec__kj-item,
+.kpi-strip,.kpi-strip__cell,
+.flash-points,.flash-points__header,.flash-points__item,
+.analyst-note__header,.analyst-note__body,
+.dissenter-note__header,.dissenter-note__body,
+.strategic-header__content,.strategic-header__meta,
+.classification-banner,.caveat-bar,
+.masthead__cycle-wrap,.masthead__brand-bar,
+.domain__gradient+.kj,.domain__gradient,
+table,thead,tbody,tfoot,th,td,tr,
+.timeline,.timeline__item,
+.actor-matrix,.actor-matrix__row{
+  border-top:none!important;
+  border-bottom:none!important;
+}
+/* Section-end: completely invisible */
+.section-end--thin{border-bottom:none!important;margin:0!important}
+.section-end--thick{border-bottom:none!important}
+
+/* ── NUCLEAR VERTICAL LINE REMOVAL ──────────────────────────────────────────
+   All coloured border-left/border-right accents removed.
+   Colour differentiation comes from background fills only.
+─────────────────────────────────────────────────────────────────────────────── */
+.kj,.body-wrap,.domain,
+.strategic-header,.exec__header,.exec__bluf,.exec__kj-list,
+.analyst-note__header,.analyst-note__body,
+.dissenter-note__header,.dissenter-note__body,
+.flash-points,.flash-points__item,
+.masthead__strip-cell,.metadata-bar__cell,
+table,th,td,tr{
+  border-left:none!important;
+  border-right:none!important;
+}
+/* Re-apply just the domain gradient thin top accent (2px, no glow) */
+.domain__gradient{height:2px;border:none!important}
 """)
     return '\n'.join(chunks)
 
