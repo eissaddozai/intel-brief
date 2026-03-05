@@ -4,19 +4,26 @@ CSE Intel Brief — Pipeline CLI
 
 SUBCOMMANDS
   run            Run the full pipeline (ingest → triage → draft → review → output)
+  agent          Agentic run — Claude fetches sources + drafts the brief autonomously
   check-sources  Test every source URL and report status
   show           Pretty-print a cycle to the terminal
   list           List all generated cycles
+  render         Render cycle JSON to print-ready HTML
 
 EXAMPLES
   python pipeline/main.py run --auto-approve
   python pipeline/main.py run --demo --auto-approve
   python pipeline/main.py run --stage ingest
   python pipeline/main.py run --date 2026-03-01 --auto-approve
+  python pipeline/main.py agent
+  python pipeline/main.py agent --date 2026-03-05
+  python pipeline/main.py agent --model claude-opus-4-6
   python pipeline/main.py check-sources
   python pipeline/main.py show
   python pipeline/main.py show cycles/cycle001_20260304.json
   python pipeline/main.py list
+  python pipeline/main.py render
+  python pipeline/main.py render --cycle cycles/cycle004_20260304.json
 """
 
 import argparse
@@ -476,6 +483,34 @@ def cmd_run(args: argparse.Namespace, config: dict) -> None:
             log.warning('HTML render failed (non-fatal): %s', exc)
 
 
+# ─── Subcommand: agent ───────────────────────────────────────────────────────
+
+def cmd_agent(args: argparse.Namespace, config: dict) -> None:
+    """Agentic brief — Claude fetches sources and drafts the full cycle autonomously."""
+    from agent_brief import run_agent_brief
+
+    target_date = get_target_date(args.date)
+    model       = args.model
+
+    log.info('═══ AGENT MODE ═══════════════════════════════════')
+    log.info('Model   : %s', model)
+    log.info('Date    : %s', target_date.strftime('%Y-%m-%d'))
+    log.info('The agent will fetch sources and draft the brief autonomously.')
+    log.info('══════════════════════════════════════════════════')
+
+    cycle_path, html_path = run_agent_brief(
+        target_date=target_date,
+        config=config,
+        model=model,
+    )
+
+    log.info('═══ AGENT COMPLETE ════════════════════════════════')
+    log.info('Cycle JSON  → %s', cycle_path)
+    log.info('Print HTML  → %s', html_path)
+    log.info('Review with: python pipeline/main.py show')
+    log.info('══════════════════════════════════════════════════')
+
+
 # ─── Subcommand: check-sources ───────────────────────────────────────────────
 
 def cmd_check_sources(args: argparse.Namespace, config: dict) -> None:
@@ -723,6 +758,16 @@ def build_parser() -> argparse.ArgumentParser:
     run_p.add_argument('--demo', action='store_true',
                        help='Use synthetic seed data — no internet or API required')
 
+    # ── agent ──
+    agent_p = sub.add_parser(
+        'agent',
+        help='Agentic run — Claude fetches sources + drafts brief autonomously (no pipeline stages)',
+    )
+    agent_p.add_argument('--date', default=None,
+                         help='Target date YYYY-MM-DD (default: today)')
+    agent_p.add_argument('--model', default='claude-sonnet-4-6',
+                         help='Claude model ID (default: claude-sonnet-4-6)')
+
     # ── check-sources ──
     sub.add_parser('check-sources', help='Test every source URL and report status')
 
@@ -749,7 +794,7 @@ def main() -> None:
 
     # Backward-compat: if first arg is not a subcommand, treat as `run`
     argv = sys.argv[1:]
-    known_cmds = {'run', 'check-sources', 'show', 'list', 'render'}
+    known_cmds = {'run', 'agent', 'check-sources', 'show', 'list', 'render'}
     if argv and argv[0] not in known_cmds and not argv[0].startswith('-'):
         # Unknown positional — fall through to argparse error
         pass
@@ -765,6 +810,8 @@ def main() -> None:
 
     if args.command == 'run':
         cmd_run(args, config)
+    elif args.command == 'agent':
+        cmd_agent(args, config)
     elif args.command == 'check-sources':
         cmd_check_sources(args, config)
     elif args.command == 'show':
