@@ -21,6 +21,18 @@ IRANIAN_STATE_MEDIA: set[str] = {
     'tehran_times', 'presstv', 'irna', 'mehr', 'fars',
 }
 
+# PKK-affiliated and other partisan source IDs — always 'claimed', never 'confirmed'.
+# These sources' statements about their own operations may be cited but never as
+# factual confirmation — only as primary actor claims requiring Tier 1/2 corroboration.
+PKK_AFFILIATED_SOURCES: set[str] = {
+    'anf_news_en', 'anf_news',    # ANF News — PKK/HPG-aligned
+    'sdf_press',                   # SDF Press Office — party to conflict
+    'hpg_communique',              # HPG (PKK armed wing) communiqués
+    'pjak_statement',              # PJAK statements
+    'kdp_news',                    # KDP media — cross-check against neutral sources
+    'puk_media',                   # PUK media — cross-check against neutral sources
+}
+
 
 def assign_confidence(items: list[dict]) -> list[dict]:
     """
@@ -40,6 +52,16 @@ def assign_confidence(items: list[dict]) -> list[dict]:
             item['confidence_tier'] = 'low'
             item['is_state_media'] = True
             log.debug('Iranian state media flagged: %s', source_id)
+            result.append(item)
+            continue
+
+        # PKK-affiliated / partisan source override
+        if source_id in PKK_AFFILIATED_SOURCES:
+            item['verification_status'] = 'claimed'
+            item['confidence_tier'] = 'low'
+            item['is_state_media'] = False
+            item['is_partisan_source'] = True
+            log.debug('PKK-affiliated/partisan source flagged: %s', source_id)
             result.append(item)
             continue
 

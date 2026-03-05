@@ -23,7 +23,9 @@ export type ThreatTrajectory = 'escalating' | 'stable' | 'de-escalating'
 export type ConfidenceTier = 'high' | 'moderate' | 'low'
 
 /** DIA-standard confidence language. Maps to rendered phrases and probability ranges.
- *  Always use these values — never write confidence language as free text. */
+ *  Use these values in the `language` field — never write confidence language as free
+ *  text in ad-hoc ways. Per writing-voice rules, prefer source-attributed leads in
+ *  paragraph text; confidence phrases appear mid-sentence or after evidentiary basis. */
 export type ConfidenceLanguage =
   | 'almost-certainly'     // 95–99% | "We assess with high confidence…"
   | 'highly-likely'        // 75–95% | "We judge it highly likely…"
@@ -41,6 +43,16 @@ export type VerificationStatus =
   | 'disputed'    // Actively contradicted by Tier 1 source
 
 export type ChangeDirection = 'up' | 'down' | 'neutral'
+
+/** Warning indicator change since previous cycle. */
+export type WIChange =
+  | 'new-triggered'   // indicator was at watching/clear and is now triggered
+  | 'newly-elevated'  // indicator was at watching/clear and is now elevated
+  | 'elevated'        // legacy alias — same as newly-elevated
+  | 'new'             // legacy alias — same as new-triggered
+  | 'unchanged'       // no status change from previous cycle
+  | 'downgraded'      // status reduced (triggered→elevated, elevated→watching)
+  | 'cleared'         // previously triggered/elevated; now cleared
 
 // ── SOURCE CITATION ─────────────────────────────────────────────────────────
 
@@ -78,9 +90,14 @@ export interface KeyJudgment {
   /** e.g. "55–75%" */
   probabilityRange: string
   language: ConfidenceLanguage
-  /** Full assessment sentence(s). Must begin with a confidence phrase. */
+  /**
+   * Full assessment sentence(s). Writing-voice preference: lead with a named source
+   * when one is available ("CTP-ISW confirms X; this indicates Y"), reserving
+   * confidence phrases for mid-sentence placement after the evidentiary basis.
+   * Confidence phrases are still correct openers when no Tier 1 source leads.
+   */
   text: string
-  /** Evidence basis: "(satellite imagery, diplomatic reporting, 14 Mar)" */
+  /** Evidence basis — named source, timestamp, corroboration level */
   basis: string
   citations: Citation[]
 }
@@ -89,9 +106,9 @@ export interface KeyJudgment {
 
 export interface KpiCell {
   domain: DomainId
-  /** Displayed number: "14", "+3.2%", "↑ HIGH" */
+  /** Displayed number: "14", "+3.2%", "$0.18/GRT" */
   number: string
-  /** e.g. "INCIDENT COUNT", "BRENT ΔΔ 24H" */
+  /** e.g. "STRIKES (24H)", "BRENT CRUDE (USD/bbl)" */
   label: string
   changeDirection?: ChangeDirection
 }
@@ -123,14 +140,14 @@ export interface DataTable {
   caption: string
   headers: string[]
   rows: TableRow[]
-  /** e.g. "USD/bbl", "USD bn" */
+  /** e.g. "USD/bbl", "USD/GRT/day" */
   unit?: string
 }
 
 // ── TIMELINE ────────────────────────────────────────────────────────────────
 
 export interface TimelineEvent {
-  /** Displayed: "0230 UTC" */
+  /** ISO 8601 — displayed as "0230 UTC 15 Mar" */
   timestamp: string
   actor: string
   action: string
@@ -144,9 +161,19 @@ export interface TimelineEvent {
 export interface ActorMatrixRow {
   actor: string
   posture: string
-  changeSincePrevCycle: string
+  /**
+   * Text description of change since previous cycle.
+   * e.g. "unchanged", "hardening", "softening", "reversed", "newly-engaged"
+   * Both `changeSincePrev` and `changeSincePrevCycle` are accepted in JSON
+   * (the renderer reads `changeSincePrev` with fallback to `changeSincePrevCycle`).
+   */
+  changeSincePrev: string
+  /** @deprecated Use changeSincePrev. Kept for backwards compat with existing cycle JSONs. */
+  changeSincePrevCycle?: string
   assessment: string
   confidence: ConfidenceTier
+  /** Optional lever/tool the actor wields (e.g. "Oil supply", "UNSC veto") */
+  primaryLever?: string
 }
 
 // ── ANALYST NOTE ────────────────────────────────────────────────────────────
@@ -196,22 +223,38 @@ export interface WarningIndicator {
   id: string
   /** What we are watching for */
   indicator: string
+  /** Primary domain — may be slash-separated for cross-domain indicators, e.g. "d1/d4" */
   domain: DomainId
-  status: 'watching' | 'triggered' | 'cleared' | 'elevated'
-  change: 'new' | 'elevated' | 'unchanged' | 'cleared'
+  status: 'watching' | 'triggered' | 'elevated' | 'cleared'
+  change: WIChange
+  /** ≤ 100 words. Named source + timestamp. Explains why status was or was not triggered. */
   detail: string
 }
 
 // ── COLLECTION GAP ──────────────────────────────────────────────────────────
 
+export type CollectionGapCategory =
+  | 'source-outage'
+  | 'terrain-denial'
+  | 'signal-obscuration'
+  | 'attribution-gap'
+  | 'diplomatic-opacity'
+  | 'kurdish-turkish-gap'
+
 export interface CollectionGap {
   id: string
   domain: DomainId
+  /** Gap category for triage and routing */
+  category?: CollectionGapCategory
   /** What we don't know */
   gap: string
-  /** Why it matters for assessment quality */
+  /** Why it matters — which assessment is undermined and how */
   significance: string
   severity: 'critical' | 'significant' | 'minor'
+  /** ID of the key judgment most at risk if this gap were filled, e.g. "kj-d1" */
+  keyJudgmentAtRisk?: string | null
+  /** Named source or source type that would close this gap */
+  gapClosingSource?: string
 }
 
 // ── FULL BRIEF CYCLE ────────────────────────────────────────────────────────
@@ -236,13 +279,14 @@ export interface BriefCycle {
     subtitle: string
     /** Single-sentence framing note below distribution bar */
     contextNote: string
-    /** 5 cells for status strip: first cell is alert level, rest are domain KPIs */
+    /** Status strip cells — first is alert level, remainder are domain KPIs */
     stripCells: { top: string; bot: string }[]
   }
 
   strategicHeader: {
     /** The single most important analytical sentence this cycle */
     headlineJudgment: string
+    /** 3–5 sentence explanation: primary evidence → key variable → tripwire → delta from prior */
     trajectoryRationale: string
   }
 
@@ -250,15 +294,15 @@ export interface BriefCycle {
   flashPoints: FlashPoint[]
 
   executive: {
-    /** 2–4 sentences, bottom line up front */
+    /** 2–4 sentences, bottom line up front, source-attributed first sentence */
     bluf: string
-    /** 4–6 confidence-rated assessments */
+    /** 5–6 confidence-rated cross-domain assessments */
     keyJudgments: KeyJudgment[]
-    /** 5 domain-coloured numbers */
+    /** 6 domain-coloured numbers (d1–d6); use null/"—" for absent domains */
     kpis: KpiCell[]
   }
 
-  /** Six domain sections in order: d1, d2, d3, d4, d5, d6 */
+  /** Domain sections — conditional on available intelligence, not always all 6 */
   domains: DomainSection[]
 
   warningIndicators: WarningIndicator[]
@@ -307,4 +351,15 @@ export const DOMAIN_LABELS: Record<DomainId, string> = {
   d4: 'DIPLOMATIC',
   d5: 'CYBER · IO',
   d6: 'WAR RISK · INSURANCE',
+}
+
+/** Human-readable WI change labels for display. */
+export const WI_CHANGE_LABELS: Partial<Record<WIChange, string>> = {
+  'new-triggered':  '⚡ NEW — TRIGGERED',
+  'newly-elevated': '↑ NEWLY ELEVATED',
+  'elevated':       '↑ ELEVATED',
+  'new':            '⚡ NEW',
+  'unchanged':      '→ UNCHANGED',
+  'downgraded':     '↓ DOWNGRADED',
+  'cleared':        '✓ CLEARED',
 }

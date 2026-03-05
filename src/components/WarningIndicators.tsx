@@ -14,17 +14,23 @@ const STATUS_CLASS: Record<string, string> = {
 }
 
 const CHANGE_CLASS: Record<string, string> = {
-  new:       'wi-change--new',
-  elevated:  'wi-change--elevated',
-  unchanged: 'wi-change--unchanged',
-  cleared:   'wi-change--cleared',
+  'new-triggered':  'wi-change--new-triggered',
+  'newly-elevated': 'wi-change--newly-elevated',
+  'new':            'wi-change--new',
+  'elevated':       'wi-change--elevated',
+  'unchanged':      'wi-change--unchanged',
+  'downgraded':     'wi-change--downgraded',
+  'cleared':        'wi-change--cleared',
 }
 
 const CHANGE_LABEL: Record<string, string> = {
-  new:       '⚡ NEW',
-  elevated:  '↑ ELEVATED',
-  unchanged: '→ UNCHANGED',
-  cleared:   '✓ CLEARED',
+  'new-triggered':  '⚡ NEW — TRIGGERED',
+  'newly-elevated': '↑ NEWLY ELEVATED',
+  'new':            '⚡ NEW',
+  'elevated':       '↑ ELEVATED',
+  'unchanged':      '→ UNCHANGED',
+  'downgraded':     '↓ DOWNGRADED',
+  'cleared':        '✓ CLEARED',
 }
 
 export function WarningIndicators({ indicators, cycleRef }: Props) {

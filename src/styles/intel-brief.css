@@ -19,6 +19,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  overflow: hidden; /* required for ::before/::after galaxy shimmer clipping */
 }
 
 /* Classification bar */
@@ -1644,4 +1645,179 @@
   .gap-item__kj-risk  { color: #8c5800; }
   .gap-item__closing  { color: #555; }
   .data-table__unit   { color: #666; }
+}
+
+/* ── STRATEGIC HEADER — TRAJECTORY RATIONALE ─────────────────────────────── */
+
+.strategic-header__rationale {
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  color: var(--text-dim);
+  line-height: 1.55;
+  margin-top: 10px;
+  font-style: italic;
+  border-top: 1px solid var(--color-rule-dim);
+  padding-top: 8px;
+}
+
+/* ── CAVEATS — DISSENTER NOTES WRAPPER ────────────────────────────────────── */
+
+.caveats__dissenter-notes {
+  padding: 0 0 8px;
+}
+
+/* ── WARNING INDICATORS — ADDITIONAL CHANGE VALUES ───────────────────────── */
+
+.wi-change--new-triggered  { color: var(--conf-red); font-weight: 700; }
+.wi-change--newly-elevated { color: var(--conf-amber); font-weight: 600; }
+.wi-change--downgraded     { color: var(--conf-green); }
+
+/* ── ACTOR MATRIX — CHANGE DIRECTION CLASSES ─────────────────────────────── */
+
+.actor-matrix td.actor-change--neutral { color: var(--text-dim); }
+
+/* ── COLLECTION GAPS — META ROW ──────────────────────────────────────────── */
+
+.gap-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.gap-item__kj-risk-id {
+  font-family: var(--font-data);
+  font-weight: 700;
+  color: var(--conf-amber);
+}
+
+@media print {
+  .strategic-header__rationale { color: #555; border-top-color: #ccc; }
+  .wi-change--new-triggered     { color: #8b0000; }
+  .wi-change--newly-elevated    { color: #7a5000; }
+  .wi-change--downgraded        { color: #006400; }
+  .gap-item__kj-risk-id         { color: #8c5800; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GALAXY SHIMMER — non-text decoration layer on masthead + footer
+   CSS-only: layered radial-gradient + background-position animation.
+   Suppressed in print. Never placed over text — ::before/::after only.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.masthead::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 50%, rgba(123,31,162,0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 55% at 85% 20%, rgba(21,101,192,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 35% at 50% 90%, rgba(0,188,212,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 60% at 72% 65%, rgba(198,40,40,0.05) 0%, transparent 55%);
+  background-size: 300% 300%;
+  animation: galaxy-drift 22s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Star speck layer */
+.masthead::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at  8% 25%, rgba(255,255,255,0.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 23% 68%, rgba(255,255,255,0.40) 0%, transparent 100%),
+    radial-gradient(1px 1px at 41% 18%, rgba(255,255,255,0.50) 0%, transparent 100%),
+    radial-gradient(1px 1px at 57% 79%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 73% 42%, rgba(255,255,255,0.48) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 15%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 12% 85%, rgba(255,255,255,0.30) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 60%, rgba(255,255,255,0.42) 0%, transparent 100%),
+    radial-gradient(2px 2px at 34% 55%, rgba(255,255,255,0.22) 0%, transparent 100%),
+    radial-gradient(1px 1px at 62% 35%, rgba(200,220,255,0.38) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  animation: star-twinkle 14s ease-in-out infinite alternate;
+}
+
+/* All direct children sit above the shimmer layers */
+.masthead > * { position: relative; z-index: 1; }
+
+/* Footer gets a subtle version of the same effect */
+.brief-footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.brief-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(21,101,192,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 75% 40%, rgba(0,188,212,0.06) 0%, transparent 65%);
+  background-size: 200% 200%;
+  animation: galaxy-drift 28s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.brief-footer > * { position: relative; z-index: 1; }
+
+@keyframes galaxy-drift {
+  0%   { background-position: 0%   0%,  100%  0%,   50% 100%, 0%  100%; }
+  33%  { background-position: 40%  60%,  60%  40%,   30%  70%, 70%  30%; }
+  66%  { background-position: 80%  20%,  20%  80%,   70%  30%, 30%  70%; }
+  100% { background-position: 100% 100%,  0% 100%,  100%   0%, 100%  0%; }
+}
+
+@keyframes star-twinkle {
+  0%   { opacity: 0.7; }
+  50%  { opacity: 1.0; }
+  100% { opacity: 0.5; }
+}
+
+/* ── CANADA FLAG BRANDING ─────────────────────────────────────────────────── */
+
+.masthead__flag {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+}
+
+.masthead__flag-banner {
+  height: 22px;
+  width: auto;
+  vertical-align: middle;
+  opacity: 0.92;
+  border: 0.5px solid rgba(255,255,255,0.10);
+}
+
+.brief-footer__flag {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 8px 0 4px;
+  border-top: 1px solid var(--color-rule-dim);
+  margin-top: 8px;
+}
+
+.brief-footer__flag img {
+  height: 18px;
+  width: auto;
+  opacity: 0.80;
+}
+
+/* ── PRINT: suppress shimmer, keep flags ──────────────────────────────────── */
+
+@media print {
+  .masthead::before,
+  .masthead::after,
+  .brief-footer::before  { display: none; }
+  .masthead__flag-banner { height: 16pt; opacity: 1; border: none; }
+  .brief-footer__flag img { height: 14pt; opacity: 1; }
+  .brief-footer { overflow: visible; }
 }

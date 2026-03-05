@@ -10,6 +10,22 @@ const CONF_CLASS: Record<string, string> = {
   low:      'conf-text--low',
 }
 
+/** Map descriptive change strings to arrow glyphs and CSS modifier. */
+function changeArrow(change: string): string {
+  const up = ['hardening', 'escalating', 'newly-engaged', 'reversed', 'up']
+  const down = ['softening', 'de-escalating', 'down']
+  if (up.some(v => change.toLowerCase().includes(v))) return '↑'
+  if (down.some(v => change.toLowerCase().includes(v))) return '↓'
+  return '→'
+}
+
+function changeClass(change: string): string {
+  const arrow = changeArrow(change)
+  if (arrow === '↑') return 'actor-change--up'
+  if (arrow === '↓') return 'actor-change--down'
+  return 'actor-change--neutral'
+}
+
 export function ActorMatrix({ rows }: Props) {
   return (
     <div className="actor-matrix">
@@ -25,21 +41,27 @@ export function ActorMatrix({ rows }: Props) {
           </tr>
         </thead>
         <tbody>
-          {rows.map((row, i) => (
-            <tr key={i}>
-              <td className="actor-name">{row.actor}</td>
-              <td>{row.posture}</td>
-              <td className={`actor-change actor-change--${row.changeSincePrevCycle}`}>
-                {row.changeSincePrevCycle === 'up' ? '↑' : row.changeSincePrevCycle === 'down' ? '↓' : '→'}
-              </td>
-              <td>{row.assessment}</td>
-              <td>
-                <span className={`conf-text ${CONF_CLASS[row.confidence] ?? ''}`}>
-                  {row.confidence.toUpperCase()}
-                </span>
-              </td>
-            </tr>
-          ))}
+          {rows.map((row, i) => {
+            const change = row.changeSincePrev ?? row.changeSincePrevCycle ?? 'unchanged'
+            return (
+              <tr key={i}>
+                <td className="actor-name">{row.actor}</td>
+                <td>{row.posture}</td>
+                <td
+                  className={`actor-change ${changeClass(change)}`}
+                  title={change}
+                >
+                  {changeArrow(change)}
+                </td>
+                <td>{row.assessment}</td>
+                <td>
+                  <span className={`conf-text ${CONF_CLASS[row.confidence] ?? ''}`}>
+                    {row.confidence.toUpperCase()}
+                  </span>
+                </td>
+              </tr>
+            )
+          })}
         </tbody>
       </table>
     </div>

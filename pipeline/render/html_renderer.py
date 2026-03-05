@@ -32,6 +32,15 @@ _PRINT_CSS   = Path(__file__).parent / 'print.css'
 
 # ── Confidence language map (mirrors brief.ts CONFIDENCE_PHRASES) ─────────────
 
+
+# ── Canadian Government Identity Programme flag SVGs (base64-encoded) ────────
+# Official proportions and colours (FF0000 / white per FIP specification).
+# Replace with your actual PNG assets if higher fidelity is required:
+#   base64.b64encode(Path("src/assets/cse-flag-full.png").read_bytes()).decode()
+_CANADA_FLAG_FULL_B64 = "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMTAwIiB3aWR0aD0iODAiIGhlaWdodD0iNDAiPgogIDxyZWN0IHdpZHRoPSIyMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRkYwMDAwIi8+CiAgPHJlY3QgeD0iNTAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjRkZGRkZGIi8+CiAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNTAsMCkgc2NhbGUoMSwxKSI+CiAgICA8cGF0aCBkPSJNIDUwLjAwMCAxNC4yODYKTCA1Mi4zODEgMjguNTcxCkwgNTcuMTQzIDIzLjgxMCA0Ny42MTkgMzUuNzE0IDUyLjM4MSAzMy4zMzMKTCA2NC4yODYgNDIuODU3IDYwLjcxNCA0MS42NjcgNjYuNjY3IDUwLjAwMApMIDYwLjcxNCA1MC4wMDAgNjEuOTA1IDU0Ljc2MiA1Mi4zODEgNTMuNTcxCkwgNTQuNzYyIDU3LjE0MyA1MC4wMDAgNTcuMTQzIDQ1LjIzOCA1Ny4xNDMKTCA0Ny42MTkgNTMuNTcxIDM4LjA5NSA1NC43NjIgMzkuMjg2IDUwLjAwMApMIDMzLjMzMyA1MC4wMDAgMzkuMjg2IDQxLjY2NyAzNS43MTQgNDIuODU3CkwgNDcuNjE5IDMzLjMzMyA1Mi4zODEgMzUuNzE0IDQyLjg1NyAyMy44MTAKTCA0Ny42MTkgMjguNTcxIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUwLDUwKSBzY2FsZSgwLjQyKSB0cmFuc2xhdGUoLTUwLC01MCkiIGZpbGw9IiNGRjAwMDAiLz4KICA8L2c+Cjwvc3ZnPg=="
+_CANADA_FLAG_BANNER_B64 = "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNTAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMjUiPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNTAiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBGbGFnIHN5bWJvbCBpbiBsZWZ0IHBvcnRpb24gLS0+CiAgPHJlY3Qgd2lkdGg9IjI1IiBoZWlnaHQ9IjUwIiBmaWxsPSIjRkYwMDAwIi8+CiAgPHJlY3QgeD0iMjUiIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0iI0ZGRkZGRiIvPgogIDxyZWN0IHg9Ijc1IiB3aWR0aD0iMjUiIGhlaWdodD0iNTAiIGZpbGw9IiNGRjAwMDAiLz4KICA8cGF0aCBkPSJNIDUwLjAwMCAxNC4yODYKTCA1Mi4zODEgMjguNTcxCkwgNTcuMTQzIDIzLjgxMCA0Ny42MTkgMzUuNzE0IDUyLjM4MSAzMy4zMzMKTCA2NC4yODYgNDIuODU3IDYwLjcxNCA0MS42NjcgNjYuNjY3IDUwLjAwMApMIDYwLjcxNCA1MC4wMDAgNjEuOTA1IDU0Ljc2MiA1Mi4zODEgNTMuNTcxCkwgNTQuNzYyIDU3LjE0MyA1MC4wMDAgNTcuMTQzIDQ1LjIzOCA1Ny4xNDMKTCA0Ny42MTkgNTMuNTcxIDM4LjA5NSA1NC43NjIgMzkuMjg2IDUwLjAwMApMIDMzLjMzMyA1MC4wMDAgMzkuMjg2IDQxLjY2NyAzNS43MTQgNDIuODU3CkwgNDcuNjE5IDMzLjMzMyA1Mi4zODEgMzUuNzE0IDQyLjg1NyAyMy44MTAKTCA0Ny42MTkgMjguNTcxIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUwLDI1KSBzY2FsZSgwLjIyKSB0cmFuc2xhdGUoLTUwLC01MCkiIGZpbGw9IiNGRjAwMDAiLz4KICA8IS0tICJDYW5hZGEiIHdvcmRtYXJrIGFyZWEgKHNpbXBsaWZpZWQpIC0tPgogIDxsaW5lIHgxPSIxMTAiIHkxPSIxNCIgeDI9IjExMCIgeTI9IjM2IiBzdHJva2U9IiM5OTkiIHN0cm9rZS13aWR0aD0iMC41Ii8+Cjwvc3ZnPg=="
+_CANADA_FLAG_GOC_B64 = "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCAzMiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjMyIj4KICA8cmVjdCB3aWR0aD0iNjAiIGhlaWdodD0iMzIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3Qgd2lkdGg9IjE1IiBoZWlnaHQ9IjMyIiBmaWxsPSIjRkYwMDAwIi8+CiAgPHJlY3QgeD0iMTUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMiIgZmlsbD0iI0ZGRkZGRiIvPgogIDxyZWN0IHg9IjQ1IiB3aWR0aD0iMTUiIGhlaWdodD0iMzIiIGZpbGw9IiNGRjAwMDAiLz4KICA8cGF0aCBkPSJNIDUwLjAwMCAxNC4yODYKTCA1Mi4zODEgMjguNTcxCkwgNTcuMTQzIDIzLjgxMCA0Ny42MTkgMzUuNzE0IDUyLjM4MSAzMy4zMzMKTCA2NC4yODYgNDIuODU3IDYwLjcxNCA0MS42NjcgNjYuNjY3IDUwLjAwMApMIDYwLjcxNCA1MC4wMDAgNjEuOTA1IDU0Ljc2MiA1Mi4zODEgNTMuNTcxCkwgNTQuNzYyIDU3LjE0MyA1MC4wMDAgNTcuMTQzIDQ1LjIzOCA1Ny4xNDMKTCA0Ny42MTkgNTMuNTcxIDM4LjA5NSA1NC43NjIgMzkuMjg2IDUwLjAwMApMIDMzLjMzMyA1MC4wMDAgMzkuMjg2IDQxLjY2NyAzNS43MTQgNDIuODU3CkwgNDcuNjE5IDMzLjMzMyA1Mi4zODEgMzUuNzE0IDQyLjg1NyAyMy44MTAKTCA0Ny42MTkgMjguNTcxIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwLDE2KSBzY2FsZSgwLjEzNSkgdHJhbnNsYXRlKC01MCwtNTApIiBmaWxsPSIjRkYwMDAwIi8+Cjwvc3ZnPg=="
+
 _CONFIDENCE_PHRASES: dict[str, dict[str, str]] = {
     'almost-certainly':     {'phrase': 'We assess with high confidence',                                  'range': '95–99%'},
     'highly-likely':        {'phrase': 'We judge it highly likely',                                       'range': '75–95%'},
@@ -224,6 +233,125 @@ def _load_css() -> str:
     # Append inline extras — clean, purposeful enhancements only
     chunks.append("""
 /* === renderer extras === */
+
+/* ── GALAXY SHIMMER — non-text areas only ─────────────────────────────────
+   Pure CSS animation using layered radial-gradients + background-position
+   drift. Zero JavaScript. Suppressed in @media print.
+   Only active on .masthead and .brief-footer backgrounds — never on text.
+─────────────────────────────────────────────────────────────────────────── */
+
+.masthead::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 50%, rgba(123,31,162,0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 45% 55% at 85% 20%, rgba(21,101,192,0.08) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 35% at 50% 90%, rgba(0,188,212,0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 30% 60% at 72% 65%, rgba(198,40,40,0.05) 0%, transparent 55%);
+  background-size: 300% 300%;
+  animation: galaxy-drift 22s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* Stars layer — tiny bright specks scattered across the header */
+.masthead::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1px 1px at  8% 25%, rgba(255,255,255,0.55) 0%, transparent 100%),
+    radial-gradient(1px 1px at 23% 68%, rgba(255,255,255,0.40) 0%, transparent 100%),
+    radial-gradient(1px 1px at 41% 18%, rgba(255,255,255,0.50) 0%, transparent 100%),
+    radial-gradient(1px 1px at 57% 79%, rgba(255,255,255,0.35) 0%, transparent 100%),
+    radial-gradient(1px 1px at 73% 42%, rgba(255,255,255,0.48) 0%, transparent 100%),
+    radial-gradient(1px 1px at 88% 15%, rgba(255,255,255,0.45) 0%, transparent 100%),
+    radial-gradient(1px 1px at 12% 85%, rgba(255,255,255,0.30) 0%, transparent 100%),
+    radial-gradient(1px 1px at 95% 60%, rgba(255,255,255,0.42) 0%, transparent 100%),
+    radial-gradient(2px 2px at 34% 55%, rgba(255,255,255,0.22) 0%, transparent 100%),
+    radial-gradient(1px 1px at 62% 35%, rgba(200,220,255,0.38) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
+  animation: star-twinkle 14s ease-in-out infinite alternate;
+}
+
+.masthead > * { position: relative; z-index: 1; }
+
+/* Footer galaxy — subtler aurora, more muted */
+.brief-footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(21,101,192,0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 75% 40%, rgba(0,188,212,0.06) 0%, transparent 65%);
+  background-size: 200% 200%;
+  animation: galaxy-drift 28s ease-in-out infinite alternate-reverse;
+  pointer-events: none;
+  z-index: 0;
+}
+.brief-footer { position: relative; overflow: hidden; }
+.brief-footer > * { position: relative; z-index: 1; }
+
+@keyframes galaxy-drift {
+  0%   { background-position: 0%   0%,  100% 0%,   50% 100%, 0%  100%; }
+  33%  { background-position: 40%  60%,  60% 40%,   30%  70%, 70%  30%; }
+  66%  { background-position: 80%  20%,  20% 80%,   70%  30%, 30%  70%; }
+  100% { background-position: 100% 100%, 0% 100%,  100%   0%, 100%  0%; }
+}
+
+@keyframes star-twinkle {
+  0%   { opacity: 0.7; }
+  50%  { opacity: 1.0; }
+  100% { opacity: 0.5; }
+}
+
+@media print {
+  .masthead::before,
+  .masthead::after,
+  .brief-footer::before { display: none; }
+}
+
+/* ── CANADA FLAG BRANDING ─────────────────────────────────────────────────── */
+
+.masthead__flag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 0 0 4px;
+}
+
+.masthead__flag img {
+  height: 28px;
+  width: auto;
+  vertical-align: middle;
+  border: 0.5px solid rgba(255,255,255,0.12);
+}
+
+.brief-footer__flag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.brief-footer__flag img {
+  height: 20px;
+  width: auto;
+  opacity: 0.85;
+  vertical-align: middle;
+}
+
+@media print {
+  .masthead__flag img,
+  .brief-footer__flag img {
+    height: 20pt;
+    opacity: 1;
+  }
+}
+
 
 /* ── Citation status markers ──────────────────────────────────────────── */
 .cite--claimed  { color: var(--conf-amber); font-style: italic; }
@@ -455,6 +583,7 @@ class HtmlRenderer:
     <span class="masthead__class-label">{_e(m.get('classification', 'PROTECTED B'))}</span>
     <span class="masthead__class-unit">{unit} · {cycle_id}</span>
   </div>
+  <div class="masthead__flag"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA0MDAgNTAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMjUiPgogIDxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iNTAiIGZpbGw9IndoaXRlIi8+CiAgPCEtLSBGbGFnIHN5bWJvbCBpbiBsZWZ0IHBvcnRpb24gLS0+CiAgPHJlY3Qgd2lkdGg9IjI1IiBoZWlnaHQ9IjUwIiBmaWxsPSIjRkYwMDAwIi8+CiAgPHJlY3QgeD0iMjUiIHdpZHRoPSI1MCIgaGVpZ2h0PSI1MCIgZmlsbD0iI0ZGRkZGRiIvPgogIDxyZWN0IHg9Ijc1IiB3aWR0aD0iMjUiIGhlaWdodD0iNTAiIGZpbGw9IiNGRjAwMDAiLz4KICA8cGF0aCBkPSJNIDUwLjAwMCAxNC4yODYKTCA1Mi4zODEgMjguNTcxCkwgNTcuMTQzIDIzLjgxMCA0Ny42MTkgMzUuNzE0IDUyLjM4MSAzMy4zMzMKTCA2NC4yODYgNDIuODU3IDYwLjcxNCA0MS42NjcgNjYuNjY3IDUwLjAwMApMIDYwLjcxNCA1MC4wMDAgNjEuOTA1IDU0Ljc2MiA1Mi4zODEgNTMuNTcxCkwgNTQuNzYyIDU3LjE0MyA1MC4wMDAgNTcuMTQzIDQ1LjIzOCA1Ny4xNDMKTCA0Ny42MTkgNTMuNTcxIDM4LjA5NSA1NC43NjIgMzkuMjg2IDUwLjAwMApMIDMzLjMzMyA1MC4wMDAgMzkuMjg2IDQxLjY2NyAzNS43MTQgNDIuODU3CkwgNDcuNjE5IDMzLjMzMyA1Mi4zODEgMzUuNzE0IDQyLjg1NyAyMy44MTAKTCA0Ny42MTkgMjguNTcxIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUwLDI1KSBzY2FsZSgwLjIyKSB0cmFuc2xhdGUoLTUwLC01MCkiIGZpbGw9IiNGRjAwMDAiLz4KICA8IS0tICJDYW5hZGEiIHdvcmRtYXJrIGFyZWEgKHNpbXBsaWZpZWQpIC0tPgogIDxsaW5lIHgxPSIxMTAiIHkxPSIxNCIgeDI9IjExMCIgeTI9IjM2IiBzdHJva2U9IiM5OTkiIHN0cm9rZS13aWR0aD0iMC41Ii8+Cjwvc3ZnPg==" alt="Canada" class="masthead__flag-banner"></div>
   <div class="masthead__hero">
     <div class="masthead__title-block">
       <div class="masthead__title">
@@ -1018,6 +1147,7 @@ class HtmlRenderer:
         hdlg = _e(f.get('handling', ''))
 
         return f"""<footer class="brief-footer">
+  <div class="brief-footer__flag"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCAzMiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjMyIj4KICA8cmVjdCB3aWR0aD0iNjAiIGhlaWdodD0iMzIiIGZpbGw9IndoaXRlIi8+CiAgPHJlY3Qgd2lkdGg9IjE1IiBoZWlnaHQ9IjMyIiBmaWxsPSIjRkYwMDAwIi8+CiAgPHJlY3QgeD0iMTUiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMiIgZmlsbD0iI0ZGRkZGRiIvPgogIDxyZWN0IHg9IjQ1IiB3aWR0aD0iMTUiIGhlaWdodD0iMzIiIGZpbGw9IiNGRjAwMDAiLz4KICA8cGF0aCBkPSJNIDUwLjAwMCAxNC4yODYKTCA1Mi4zODEgMjguNTcxCkwgNTcuMTQzIDIzLjgxMCA0Ny42MTkgMzUuNzE0IDUyLjM4MSAzMy4zMzMKTCA2NC4yODYgNDIuODU3IDYwLjcxNCA0MS42NjcgNjYuNjY3IDUwLjAwMApMIDYwLjcxNCA1MC4wMDAgNjEuOTA1IDU0Ljc2MiA1Mi4zODEgNTMuNTcxCkwgNTQuNzYyIDU3LjE0MyA1MC4wMDAgNTcuMTQzIDQ1LjIzOCA1Ny4xNDMKTCA0Ny42MTkgNTMuNTcxIDM4LjA5NSA1NC43NjIgMzkuMjg2IDUwLjAwMApMIDMzLjMzMyA1MC4wMDAgMzkuMjg2IDQxLjY2NyAzNS43MTQgNDIuODU3CkwgNDcuNjE5IDMzLjMzMyA1Mi4zODEgMzUuNzE0IDQyLjg1NyAyMy44MTAKTCA0Ny42MTkgMjguNTcxIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMwLDE2KSBzY2FsZSgwLjEzNSkgdHJhbnNsYXRlKC01MCwtNTApIiBmaWxsPSIjRkYwMDAwIi8+Cjwvc3ZnPg==" alt="Government of Canada"></div>
   <div class="brief-footer__main">
     <span class="brief-footer__id">{fid}</span>
     <span class="brief-footer__class">{cls}</span>

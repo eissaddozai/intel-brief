@@ -38,6 +38,15 @@ VALID_CONFIDENCE_LANGUAGE = {
     'possibly', 'unlikely', 'almost-certainly-not',
 }
 VALID_WI_STATUS = {'watching', 'triggered', 'elevated', 'cleared'}
+VALID_WI_CHANGE = {
+    'new-triggered', 'newly-elevated', 'elevated', 'new',
+    'unchanged', 'downgraded', 'cleared',
+}
+VALID_GAP_SEVERITY = {'critical', 'significant', 'minor'}
+VALID_GAP_CATEGORY = {
+    'source-outage', 'terrain-denial', 'signal-obscuration',
+    'attribution-gap', 'diplomatic-opacity', 'kurdish-turkish-gap',
+}
 
 
 def _next_cycle_number(cycles_dir: Path) -> int:
@@ -111,13 +120,38 @@ def validate(cycle: dict) -> list[str]:
         errors.append('Executive missing keyJudgments')
 
     # Warning indicators — structural + enum
-    for wi in cycle.get('warningIndicators', []):
+    wi_list = cycle.get('warningIndicators', [])
+    if len(wi_list) < 12:
+        errors.append(
+            f'warningIndicators has {len(wi_list)} entries; brief standard requires 12. '
+            'Ensure all indicators are assessed even if status is "watching".'
+        )
+    for wi in wi_list:
         wid = wi.get('id', '?')
         if not wi.get('indicator'):
             errors.append(f"warningIndicator {wid}: indicator is missing")
         status = wi.get('status')
         if status not in VALID_WI_STATUS:
             errors.append(f"warningIndicator {wid}: invalid status {status!r}")
+        change = wi.get('change')
+        if change and change not in VALID_WI_CHANGE:
+            errors.append(f"warningIndicator {wid}: invalid change value {change!r}")
+        if not wi.get('detail'):
+            errors.append(f"warningIndicator {wid}: detail line is missing")
+
+    # Collection gaps — structural validation
+    for gap in cycle.get('collectionGaps', []):
+        gid = gap.get('id', '?')
+        if not gap.get('gap'):
+            errors.append(f"collectionGap {gid}: gap field is missing")
+        if not gap.get('significance'):
+            errors.append(f"collectionGap {gid}: significance field is missing")
+        sev = gap.get('severity')
+        if sev not in VALID_GAP_SEVERITY:
+            errors.append(f"collectionGap {gid}: invalid severity {sev!r}")
+        cat = gap.get('category')
+        if cat and cat not in VALID_GAP_CATEGORY:
+            errors.append(f"collectionGap {gid}: invalid category {cat!r}")
 
     return errors
 

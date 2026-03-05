@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 50" width="200" height="25">
+  <rect width="400" height="50" fill="white"/>
+  <!-- Flag symbol in left portion -->
+  <rect width="25" height="50" fill="#FF0000"/>
+  <rect x="25" width="50" height="50" fill="#FFFFFF"/>
+  <rect x="75" width="25" height="50" fill="#FF0000"/>
+  <path d="M 50.000 14.286
+L 52.381 28.571
+L 57.143 23.810 47.619 35.714 52.381 33.333
+L 64.286 42.857 60.714 41.667 66.667 50.000
+L 60.714 50.000 61.905 54.762 52.381 53.571
+L 54.762 57.143 50.000 57.143 45.238 57.143
+L 47.619 53.571 38.095 54.762 39.286 50.000
+L 33.333 50.000 39.286 41.667 35.714 42.857
+L 47.619 33.333 52.381 35.714 42.857 23.810
+L 47.619 28.571 Z" transform="translate(50,25) scale(0.22) translate(-50,-50)" fill="#FF0000"/>
+  <!-- "Canada" wordmark area (simplified) -->
+  <line x1="110" y1="14" x2="110" y2="36" stroke="#999" stroke-width="0.5"/>
+</svg>

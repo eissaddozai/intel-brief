@@ -1,4 +1,6 @@
 import type { BriefCycle } from '../types/brief'
+import canadaFlagBanner from '../assets/canada-flag-banner.svg'
+import canadaFlagGoc from '../assets/canada-flag-goc.svg'
 
 interface Props {
   meta: BriefCycle['meta']
@@ -29,9 +31,12 @@ export function Masthead({ meta }: Props) {
 
   return (
     <header className="masthead" id="masthead">
-      {/* Classification bar */}
+      {/* Classification bar with GoC flag identifier */}
       <div className="masthead__class-bar">
         <span className="masthead__class-label">{meta.classification}</span>
+        <div className="masthead__flag">
+          <img src={canadaFlagBanner} alt="Canada" className="masthead__flag-banner" />
+        </div>
         <span className="masthead__class-unit">{meta.analystUnit}</span>
       </div>
 

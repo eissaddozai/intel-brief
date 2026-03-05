@@ -433,21 +433,206 @@ def _extract_generic(source: dict, soup: BeautifulSoup, date: datetime,
     return items
 
 
+
+
+def _extract_rudaw(source: dict, date: datetime) -> list[dict]:
+    """
+    Rudaw (rudaw.net/english) — Kurdistan Region's leading English-language news outlet.
+    Tier 2 source for KRG-area events. Static HTML article listing.
+    """
+    soup = _fetch(source['url'])
+    if not soup:
+        return []
+
+    items = []
+    for card in soup.select('article, .story, .news-item, .post, li.item')[:20]:
+        heading = card.find(['h1', 'h2', 'h3', 'h4'])
+        if not heading:
+            continue
+        title = _clean(heading.get_text())
+        if len(title) < 15:
+            continue
+        link_el = card.find('a', href=True)
+        link = link_el['href'] if link_el else source['url']
+        if link and link.startswith('/'):
+            link = 'https://www.rudaw.net' + link
+        excerpt_el = card.find('p')
+        excerpt = _clean(excerpt_el.get_text()) if excerpt_el else ''
+        items.append(_make_item(source, title, excerpt, link, date.isoformat()))
+
+    if not items:
+        items = _extract_generic(source, soup, date, max_items=10)
+
+    return items[:15]
+
+
+def _extract_kurdistan24(source: dict, date: datetime) -> list[dict]:
+    """
+    Kurdistan 24 (kurdistan24.net) — Erbil-based English-language broadcaster.
+    Tier 2 for KRG/SDF/Turkish operations coverage.
+    """
+    soup = _fetch(source['url'])
+    if not soup:
+        return []
+
+    items = []
+    for card in soup.select('article, .card, .news-card, .story-item, .post')[:20]:
+        heading = card.find(['h1', 'h2', 'h3', 'h4'])
+        if not heading:
+            continue
+        title = _clean(heading.get_text())
+        if len(title) < 15:
+            continue
+        link_el = card.find('a', href=True)
+        link = link_el['href'] if link_el else source['url']
+        if link and not link.startswith('http'):
+            link = 'https://www.kurdistan24.net' + link
+        excerpt_el = card.find('p')
+        excerpt = _clean(excerpt_el.get_text()) if excerpt_el else ''
+        items.append(_make_item(source, title, excerpt, link, date.isoformat()))
+
+    if not items:
+        items = _extract_generic(source, soup, date, max_items=10)
+
+    return items[:15]
+
+
+def _extract_kirkuknow(source: dict, date: datetime) -> list[dict]:
+    """
+    KirkukNow (kirkuknow.com) — independent news outlet covering Kirkuk, oil infrastructure,
+    Kurdish-Arab-Turkmen tensions. Tier 2 for Kirkuk-Ceyhan pipeline and local security events.
+    """
+    soup = _fetch(source['url'])
+    if not soup:
+        return []
+
+    items = []
+    for el in soup.select('h2 a, h3 a, .entry-title a, article a[href]')[:15]:
+        title = _clean(el.get_text())
+        if len(title) < 15:
+            continue
+        link = el.get('href', source['url'])
+        if link and not link.startswith('http'):
+            link = 'https://kirkuknow.com' + link
+        items.append(_make_item(source, title, '', link, date.isoformat()))
+
+    if not items:
+        items = _extract_generic(source, soup, date, max_items=8)
+
+    return items[:12]
+
+
+def _extract_sohr(source: dict, date: datetime) -> list[dict]:
+    """
+    SOHR — Syrian Observatory for Human Rights (syriahr.com/en).
+    Tier 2 'reported' for northeast Syria events. Single-source caveat always applies.
+    """
+    soup = _fetch(source['url'])
+    if not soup:
+        return []
+
+    items = []
+    for card in soup.select('article, .post, .entry, .item')[:15]:
+        heading = card.find(['h1', 'h2', 'h3', 'h4'])
+        if not heading:
+            continue
+        title = _clean(heading.get_text())
+        if len(title) < 15:
+            continue
+        link_el = card.find('a', href=True)
+        link = link_el['href'] if link_el else source['url']
+        if link and not link.startswith('http'):
+            link = 'https://www.syriahr.com' + link
+        excerpt_el = card.find('p')
+        excerpt = _clean(excerpt_el.get_text()) if excerpt_el else ''
+        items.append(_make_item(source, title, excerpt, link, date.isoformat()))
+
+    if not items:
+        items = _extract_generic(source, soup, date, max_items=8)
+
+    return items[:12]
+
+
+def _extract_bianet(source: dict, date: datetime) -> list[dict]:
+    """
+    Bianet (bianet.org/english) — independent Turkish media; Tier 2 for HDP/Kurdish
+    political suppression, Turkish military operations, human rights documentation.
+    """
+    soup = _fetch(source['url'])
+    if not soup:
+        return []
+
+    items = []
+    for card in soup.select('article, .news-item, .post, h2, h3')[:15]:
+        heading = card if card.name in ['h2', 'h3'] else card.find(['h2', 'h3'])
+        if not heading:
+            continue
+        title = _clean(heading.get_text())
+        if len(title) < 15:
+            continue
+        link_el = heading.find('a', href=True) or card.find('a', href=True)
+        link = link_el['href'] if link_el else source['url']
+        if link and not link.startswith('http'):
+            link = 'https://bianet.org' + link
+        items.append(_make_item(source, title, '', link, date.isoformat()))
+
+    if not items:
+        items = _extract_generic(source, soup, date, max_items=8)
+
+    return items[:12]
+
+
+def _extract_krg_gov(source: dict, date: datetime) -> list[dict]:
+    """
+    KRG Government official statements (gov.krd/en/press-releases).
+    Tier 2 for official KRG diplomatic and administrative positions.
+    """
+    soup = _fetch(source['url'])
+    if not soup:
+        return []
+
+    items = []
+    for el in soup.select('.press-release, article, .release, li a')[:15]:
+        heading = el.find(['h1', 'h2', 'h3', 'h4']) if el.name != 'a' else el
+        if not heading:
+            continue
+        title = _clean(heading.get_text())
+        if len(title) < 15:
+            continue
+        link_el = el.find('a', href=True) if el.name != 'a' else el
+        link = link_el['href'] if link_el else source['url']
+        if link and not link.startswith('http'):
+            link = 'https://gov.krd' + link
+        items.append(_make_item(source, title, '', link, date.isoformat()))
+
+    if not items:
+        items = _extract_generic(source, soup, date, max_items=8)
+
+    return items[:10]
+
 # ─── Dispatch table ───────────────────────────────────────────────────────────
 
 EXTRACTORS: dict[str, callable] = {
-    'reuters_mideast': _extract_reuters,
-    'ctpiw_evening':   _extract_ctpiw,
-    'ctpiw_morning':   _extract_ctpiw,
-    'centcom':         _extract_centcom,
-    'ukmto':           _extract_ukmto,
-    'idf_spokesperson': _extract_idf,
-    'alma_research':   _extract_alma,
-    'iran_intl':       _extract_iran_intl,
-    'bbc_persian':     _extract_bbc_persian,
-    'netblocks':       _extract_netblocks,
-    'eia_weekly':      _extract_eia,
-    'opec_statements': _extract_opec,
+    'reuters_mideast':   _extract_reuters,
+    'ctpiw_evening':     _extract_ctpiw,
+    'ctpiw_morning':     _extract_ctpiw,
+    'centcom':           _extract_centcom,
+    'ukmto':             _extract_ukmto,
+    'idf_spokesperson':  _extract_idf,
+    'alma_research':     _extract_alma,
+    'iran_intl':         _extract_iran_intl,
+    'bbc_persian':       _extract_bbc_persian,
+    'netblocks':         _extract_netblocks,
+    'eia_weekly':        _extract_eia,
+    'opec_statements':   _extract_opec,
+    # Kurdish/Turkish sources
+    'rudaw_en':          _extract_rudaw,
+    'rudaw_extended':    _extract_rudaw,
+    'kurdistan24_en':    _extract_kurdistan24,
+    'kirkuknow_en':      _extract_kirkuknow,
+    'sohr_en':           _extract_sohr,
+    'bianet_en':         _extract_bianet,
+    'krg_gov_press':     _extract_krg_gov,
 }
 
 

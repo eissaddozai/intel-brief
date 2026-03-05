@@ -4,6 +4,26 @@ interface Props {
   paragraphs: BodyParagraph[]
 }
 
+function formatCitationTimestamp(ts: string): string {
+  try {
+    const d = new Date(ts)
+    if (isNaN(d.getTime())) return ''
+    return ' ' + d.toLocaleString('en-CA', {
+      month: 'short', day: 'numeric', hour: '2-digit',
+      minute: '2-digit', timeZone: 'UTC', hour12: false,
+    }) + ' UTC'
+  } catch {
+    return ''
+  }
+}
+
+const STATUS_PREFIX: Record<string, string> = {
+  confirmed: '',
+  reported:  'reported: ',
+  claimed:   'claimed: ',
+  disputed:  'disputed: ',
+}
+
 export function BodyContent({ paragraphs }: Props) {
   return (
     <>
@@ -23,13 +43,9 @@ export function BodyContent({ paragraphs }: Props) {
               <span className="body-para__source">
                 ({para.citations
                   .map(c => {
-                    const ts = c.timestamp
-                      ? ' ' + new Date(c.timestamp).toLocaleString('en-CA', {
-                          month: 'short', day: 'numeric', hour: '2-digit',
-                          minute: '2-digit', timeZone: 'UTC', hour12: false,
-                        }) + ' UTC'
-                      : ''
-                    return c.source + ts
+                    const prefix = STATUS_PREFIX[c.verificationStatus] ?? ''
+                    const ts = c.timestamp ? formatCitationTimestamp(c.timestamp) : ''
+                    return prefix + c.source + ts
                   })
                   .join('; ')})
               </span>
