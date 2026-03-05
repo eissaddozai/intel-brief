@@ -137,6 +137,21 @@ def stage_ingest(target_date: datetime, force: bool, config: dict) -> Path:
     except Exception as exc:
         log.warning('Email ingestion failed (non-fatal): %s', exc)
 
+    log.info('── War Risk Insurance (D6) — parallel subagent collection ──')
+    try:
+        from ingest.war_risk_ingest import ingest_war_risk
+        wr_items = ingest_war_risk(target_date, config=config, force=force)
+        raw_items.extend(wr_items)
+        wr_t1 = sum(1 for i in wr_items if i.get('tier') == 1)
+        log.info(
+            'War risk collection: %d items (%d Tier 1) passed significance gate',
+            len(wr_items), wr_t1,
+        )
+    except Exception as exc:
+        log.warning(
+            'War risk ingestion failed (non-fatal — d6 section will be thin): %s', exc
+        )
+
     if not raw_items:
         log.critical('No items collected from any source. Aborting.')
         sys.exit(1)
@@ -175,7 +190,7 @@ def stage_triage(raw_cache: Path, config: dict) -> Path:
     for item in tagged:
         for d in item.get('tagged_domains', []):
             domain_counts[d] = domain_counts.get(d, 0) + 1
-    for did in ['d1', 'd2', 'd3', 'd4', 'd5']:
+    for did in ['d1', 'd2', 'd3', 'd4', 'd5', 'd6']:
         n = domain_counts.get(did, 0)
         if n < min_items:
             log.warning('Domain %s: only %d items (min %d)', did, n, min_items)
@@ -196,6 +211,7 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
         ('d3', '03', 'ENERGY · ECONOMIC'),
         ('d4', '04', 'DIPLOMATIC · POLITICAL'),
         ('d5', '05', 'CYBER · INFORMATION OPS'),
+        ('d6', '06', 'WAR RISK INSURANCE · MARITIME FINANCE'),
     ]
 
     def items_for(did: str) -> list[dict]:

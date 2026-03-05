@@ -507,6 +507,7 @@
 .exec__kj-domain--d3 { color: var(--d3-bright); }
 .exec__kj-domain--d4 { color: var(--d4-bright); }
 .exec__kj-domain--d5 { color: var(--d5-bright); }
+.exec__kj-domain--d6 { color: var(--d6-bright); }
 
 .exec__kj-text {
   font-family: var(--font-body);
@@ -623,6 +624,7 @@
 .domain--d3 .domain__gradient { background: var(--d3-grad); }
 .domain--d4 .domain__gradient { background: var(--d4-grad); }
 .domain--d5 .domain__gradient { background: var(--d5-grad); }
+.domain--d6 .domain__gradient { background: var(--d6-grad); }
 
 /* Section header */
 .domain__header {
@@ -685,6 +687,9 @@
 .domain--d5 .domain__header                 { background-color: var(--d5-fill); }
 .domain--d5 .domain__num                    { color: var(--d5-bright); border-right-color: var(--d5-bright); }
 .domain--d5 .domain__aq-badge-inline        { color: var(--d5-bright); }
+.domain--d6 .domain__header                 { background-color: var(--d6-fill); }
+.domain--d6 .domain__num                    { color: var(--d6-bright); border-right-color: var(--d6-bright); }
+.domain--d6 .domain__aq-badge-inline        { color: var(--d6-bright); }
 
 /* AQ bar — Assessment Question */
 .domain__aq {
@@ -703,6 +708,7 @@
 .domain--d3 .domain__aq { border-left-color: var(--d3-bright); }
 .domain--d4 .domain__aq { border-left-color: var(--d4-bright); }
 .domain--d5 .domain__aq { border-left-color: var(--d5-bright); }
+.domain--d6 .domain__aq { border-left-color: var(--d6-bright); }
 
 .domain__aq-text {
   font-family: var(--font-body);
@@ -726,6 +732,7 @@
 .domain--d3 .domain__aq-conf { color: var(--d3-bright); }
 .domain--d4 .domain__aq-conf { color: var(--d4-bright); }
 .domain--d5 .domain__aq-conf { color: var(--d5-bright); }
+.domain--d6 .domain__aq-conf { color: var(--d6-bright); }
 
 /* Key Judgment Box */
 .kj {
@@ -740,6 +747,7 @@
 .domain--d3 .kj { background-color: var(--d3-fill); border-left-color: var(--d3-bright); border-top-color: var(--d3-bright); }
 .domain--d4 .kj { background-color: var(--d4-fill); border-left-color: var(--d4-bright); border-top-color: var(--d4-bright); }
 .domain--d5 .kj { background-color: var(--d5-fill); border-left-color: var(--d5-bright); border-top-color: var(--d5-bright); }
+.domain--d6 .kj { background-color: var(--d6-fill); border-left-color: var(--d6-bright); border-top-color: var(--d6-bright); }
 
 .kj__label-row {
   display: flex;
@@ -763,6 +771,7 @@
 .domain--d3 .kj__label { color: var(--d3-bright); }
 .domain--d4 .kj__label { color: var(--d4-bright); }
 .domain--d5 .kj__label { color: var(--d5-bright); }
+.domain--d6 .kj__label { color: var(--d6-bright); }
 
 .kj__meta {
   display: flex;
@@ -781,6 +790,7 @@
 .domain--d3 .kj__domain-ref { color: var(--d3-bright); }
 .domain--d4 .kj__domain-ref { color: var(--d4-bright); }
 .domain--d5 .kj__domain-ref { color: var(--d5-bright); }
+.domain--d6 .kj__domain-ref { color: var(--d6-bright); }
 
 .kj__probability {
   font-family: var(--font-data);
@@ -816,6 +826,7 @@
 .domain--d3 .body-wrap { background-color: var(--d3-body); border-left-color: var(--d3-fill); }
 .domain--d4 .body-wrap { background-color: var(--d4-body); border-left-color: var(--d4-fill); }
 .domain--d5 .body-wrap { background-color: var(--d5-body); border-left-color: var(--d5-fill); }
+.domain--d6 .body-wrap { background-color: var(--d6-body); border-left-color: var(--d6-fill); }
 
 /* Sub-label (OBSERVED ACTIVITY vs ANALYTICAL ASSESSMENT) */
 .sub-label {
@@ -869,6 +880,7 @@
 .domain--d3 .section-end--thick { border-bottom-color: var(--d3-fill); }
 .domain--d4 .section-end--thick { border-bottom-color: var(--d4-fill); }
 .domain--d5 .section-end--thick { border-bottom-color: var(--d5-fill); }
+.domain--d6 .section-end--thick { border-bottom-color: var(--d6-fill); }
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -1177,6 +1189,8 @@
 .domain--d4 .data-table-caption    { color: var(--d4-bright); }
 .domain--d5 .data-table th         { color: var(--d5-bright); border-bottom-color: var(--d5-bright); }
 .domain--d5 .data-table-caption    { color: var(--d5-bright); }
+.domain--d6 .data-table th         { color: var(--d6-bright); border-bottom-color: var(--d6-bright); }
+.domain--d6 .data-table-caption    { color: var(--d6-bright); }
 
 /* Change / status cell colouring */
 .data-table td.change--up          { color: var(--conf-red); }
@@ -1367,6 +1381,7 @@
 .gap-item__domain--d3 { color: var(--d3-bright); }
 .gap-item__domain--d4 { color: var(--d4-bright); }
 .gap-item__domain--d5 { color: var(--d5-bright); }
+.gap-item__domain--d6 { color: var(--d6-bright); }
 
 .gap-item__content { flex: 1; }
 

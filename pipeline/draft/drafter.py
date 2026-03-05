@@ -21,6 +21,7 @@ DOMAIN_CONFIG = [
     ('d3', '03', 'ENERGY · ECONOMIC'),
     ('d4', '04', 'DIPLOMATIC · POLITICAL'),
     ('d5', '05', 'CYBER · INFORMATION OPS'),
+    ('d6', '06', 'WAR RISK INSURANCE · MARITIME FINANCE'),
 ]
 
 DOMAIN_PROMPTS = {
@@ -29,6 +30,7 @@ DOMAIN_PROMPTS = {
     'd3': 'energy.md',
     'd4': 'diplomatic.md',
     'd5': 'cyber.md',
+    'd6': 'war_risk.md',
 }
 
 
@@ -142,13 +144,16 @@ def draft_domain(
     d1_context = _domain_summary(context_sections['d1']) if 'd1' in context_sections else '(not yet available)'
     d2_context = _domain_summary(context_sections['d2']) if 'd2' in context_sections else '(not yet available)'
 
+    # d3 context for d6 (war risk prompt uses {d2_context} slot for energy context)
+    d3_context = _domain_summary(context_sections['d3']) if 'd3' in context_sections else '(not yet available)'
+
     prompt = _fill_template(
         template,
         tier1_items=json.dumps(tier1[:15], indent=2, ensure_ascii=False),
         tier2_items=json.dumps(tier2[:15], indent=2, ensure_ascii=False),
         prev_cycle_kj=prev_kj or '(no previous cycle)',
         d1_context=d1_context,
-        d2_context=d2_context,
+        d2_context=d3_context if domain == 'd6' else d2_context,
     )
 
     log.info('Drafting domain %s (%d T1, %d T2 items)...', domain, len(tier1), len(tier2))
@@ -175,6 +180,7 @@ def draft_executive(
         d3_summary=_domain_summary(section_map.get('d3', {})),
         d4_summary=_domain_summary(section_map.get('d4', {})),
         d5_summary=_domain_summary(section_map.get('d5', {})),
+        d6_summary=_domain_summary(section_map.get('d6', {})),
         prev_cycle_bluf=prev_bluf or '(no previous cycle)',
     )
 
@@ -289,7 +295,8 @@ def draft_cycle(
     """
     Orchestrate full cycle draft.
     Domain order: d1 → d2 (gets d1 context) → d3 (gets d1 context) →
-                  d4 (gets d2 context) → d5 → executive → strategic header →
+                  d4 (gets d2 context) → d5 →
+                  d6 (gets d1+d3 context) → executive → strategic header →
                   warning indicators → collection gaps.
     """
     config = config or {}

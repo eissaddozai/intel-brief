@@ -457,6 +457,483 @@ sources:
     status: likely
     enabled: true
 
+  # ─────────────────────────────────────────────────────────────────────────────
+  # DOMAIN D6 — WAR RISK INSURANCE · MARITIME FINANCE
+  # These sources feed the war_risk_ingest.py parallel collection engine.
+  # All items pass through war_risk_significance.py before reaching triage.
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  # ── TIER 1 — Authoritative market / regulatory bodies ──
+
+  - id: lloyds_mkt_bulletins
+    name: "Lloyd's Market Bulletin"
+    tier: 1
+    domains: [d6]
+    method: scrape
+    url: "https://www.lloyds.com/news-and-insights/market-bulletins"
+    status: likely
+    enabled: true
+    notes: >
+      Lloyd's Market Bulletins include Joint War Committee (JWC) listed area
+      changes, premium directives, and market-wide risk advisories. A new JWC
+      listing = mandatory d6 inclusion regardless of significance score.
+
+  - id: jwc_listed_areas
+    name: "Joint War Committee Listed Areas"
+    tier: 1
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.lmalloyds.com/LMA/Underwriting_Committees/Marine_Committees/LMA_JWC/JWC_war_listed_areas.aspx"
+    status: likely
+    enabled: true
+    notes: >
+      Authoritative JWC listed areas page. Any add/remove of a geographic
+      zone immediately reprices war risk for all vessels transiting that area.
+      Changes here are the single most significant signal for d6.
+
+  - id: imo_circular
+    name: "IMO Circulars & Alerts"
+    tier: 1
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.imo.org/en/MediaCentre/IMONewsletterAndUpdates/Pages/default.aspx"
+    status: likely
+    enabled: true
+    notes: >
+      IMO Maritime Safety Committee circulars on high-risk areas, piracy,
+      and armed conflict. Circular to master notifications = Tier 1 for d6.
+
+  - id: ig_pic_circulars
+    name: "International Group of P&I Clubs"
+    tier: 1
+    domains: [d6]
+    method: scrape
+    url: "https://www.igpandi.org/news/"
+    status: likely
+    enabled: true
+    notes: >
+      The 13 principal P&I clubs collectively insure ~90% of ocean-going
+      tonnage. New circulars on war risk, sanctions, or HRA designations are
+      Tier 1 factual floor for d6. Scrape news listing page.
+
+  - id: bimco_news
+    name: "BIMCO News & Alerts"
+    tier: 1
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.bimco.org/rss/news"
+    status: likely
+    enabled: true
+    notes: >
+      Baltic and International Maritime Council. Industry standard-setter on
+      war risk clauses (CONWARTIME, VOYWAR). New clause guidance = Tier 1 d6.
+
+  - id: nato_shipping_centre
+    name: "NATO Shipping Centre Advisories"
+    tier: 1
+    domains: [d6, d1, d3]
+    method: scrape
+    url: "https://shipping.nato.int/nsc/operations/news"
+    status: likely
+    enabled: true
+    notes: >
+      Official allied maritime advisories including threat level changes for
+      specific sea areas. Treat as Tier 1 confirmed for operational sea areas.
+
+  - id: usmto
+    name: "US Maritime Transportation System ISAC"
+    tier: 1
+    domains: [d6, d1]
+    method: scrape
+    url: "https://www.maritimesecurity.org/news/"
+    status: likely
+    enabled: true
+    notes: >
+      US maritime security advisories complementing UKMTO. Useful for
+      Gulf of Oman, Arabian Sea corridor threat environment.
+
+  # ── TIER 2 — Analytical depth / market intelligence ──
+
+  - id: lloyds_list
+    name: "Lloyd's List"
+    tier: 2
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.lloydslist.com/ll/sector/insurance-and-legal/"
+    status: likely
+    enabled: true
+    notes: >
+      Premier maritime trade publication. War risk premium data, underwriter
+      capacity changes, and P&I club commentary. Paywall for full articles;
+      headlines and abstracts are available. Relevance filter essential.
+
+  - id: tradewinds_insurance
+    name: "TradeWinds — Insurance"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.tradewindsnews.com/insurance"
+    status: likely
+    enabled: true
+    notes: >
+      Shipping industry news with strong insurance desk. War risk premium
+      movements, broker commentary, and shipowner responses to HRA changes.
+
+  - id: reinsurance_news
+    name: "Reinsurance News"
+    tier: 2
+    domains: [d6]
+    method: rss
+    url: "https://www.reinsurancene.ws/feed/"
+    status: likely
+    enabled: true
+    notes: >
+      Specialist reinsurance trade press. Munich Re, Swiss Re, and Lloyd's
+      syndicates commentary on war risk capacity and retrocession pricing.
+
+  - id: insurance_journal
+    name: "Insurance Journal — Marine"
+    tier: 2
+    domains: [d6]
+    method: rss
+    url: "https://www.insurancejournal.com/rss/topics/marine/"
+    status: likely
+    enabled: true
+    notes: >
+      Real Insurance Journal RSS. Marine insurance news including war risk.
+      Good for US market perspective on Lloyd's pricing movements.
+
+  - id: insurance_insider
+    name: "Insurance Insider"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.insuranceinsider.com/marine"
+    status: likely
+    enabled: true
+    notes: >
+      Specialist Lloyd's market intelligence. Syndicate capacity, line-size
+      changes, and market-hardening signals. Partial paywall.
+
+  - id: marine_link
+    name: "MarineLink — Insurance"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.marinelink.com/rss/news"
+    status: likely
+    enabled: true
+    notes: "Broad maritime news; relevance filter for insurance/war risk items."
+
+  - id: splash247
+    name: "Splash 247"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://splash247.com/feed/"
+    status: likely
+    enabled: true
+    notes: >
+      Independent shipping media. War risk commentary, shipowner reactions,
+      and broker market reads. No paywall — full content in RSS.
+
+  - id: hellenicshipping
+    name: "Hellenic Shipping News"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.hellenicshippingnews.com/feed/"
+    status: working
+    enabled: true
+    notes: >
+      Greek shipping hub aggregates Lloyd's List, TradeWinds, and broker
+      circulars. Useful for rapid premium move coverage. Real RSS confirmed.
+
+  - id: bunkerspot
+    name: "Bunkerspot / Maritime Intelligence"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.bunkerspot.com/rss"
+    status: likely
+    enabled: true
+    notes: "Bunkering and fuel market; war risk surcharge implications."
+
+  - id: dryad_global
+    name: "Dryad Global Maritime Security"
+    tier: 2
+    domains: [d6, d1, d3]
+    method: scrape
+    url: "https://www.dryadglobal.com/news"
+    status: likely
+    enabled: true
+    notes: >
+      Specialist maritime risk intelligence firm. Dryad threat-level changes
+      for sea areas directly influence underwriter risk assessments. Their
+      Red Sea/Gulf of Aden updates are key inputs for JWC area decisions.
+
+  - id: ambrey_analytics
+    name: "Ambrey Maritime Security"
+    tier: 2
+    domains: [d6, d1]
+    method: scrape
+    url: "https://www.ambrey.com/intelligence/"
+    status: likely
+    enabled: true
+    notes: >
+      Maritime intelligence firm; route risk assessments fed into Lloyd's
+      war risk syndicate models. Monthly HRA updates and incident analyses.
+
+  - id: eos_risk
+    name: "EOS Risk Group"
+    tier: 2
+    domains: [d6, d1]
+    method: scrape
+    url: "https://www.eosrisk.com/news/"
+    status: likely
+    enabled: true
+    notes: >
+      Risk management consultancy. War risk and kidnap-for-ransom (K&FR)
+      assessments used by marine insurers to price additional premium.
+
+  - id: iumi_news
+    name: "International Union of Marine Insurance"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://iumi.com/news"
+    status: likely
+    enabled: true
+    notes: >
+      IUMI represents marine insurers globally. Annual loss statistics and
+      mid-year market updates on war risk capacity and premium levels.
+
+  - id: marsh_marine
+    name: "Marsh — Marine Risk"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.marsh.com/us/industries/marine/insights.html"
+    status: likely
+    enabled: true
+    notes: >
+      Marsh McLennan war risk desk commentary. Broker market reports on
+      capacity, appetite changes, and client advisory notes.
+
+  - id: willis_marine
+    name: "WTW Marine & Cargo"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.wtwco.com/en-US/Insights/industries/marine"
+    status: likely
+    enabled: true
+    notes: >
+      Willis Towers Watson marine insights. War risk rate forecasts and
+      market-turn analysis from the second-largest marine broker.
+
+  - id: aon_marine
+    name: "Aon Marine Risk"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.aon.com/reinsurance/thought-leadership/marine-insights.jsp"
+    status: likely
+    enabled: true
+    notes: "Aon war risk desk. Quarterly marine market reports."
+
+  - id: clarksons_research
+    name: "Clarksons Research — Shipping Intelligence"
+    tier: 2
+    domains: [d6, d3]
+    method: scrape
+    url: "https://sin.clarksons.net/News"
+    status: likely
+    enabled: true
+    notes: >
+      Clarksons shipping data arm. Vessel diversions, Red Sea transit volumes,
+      and time-charter rate impacts from war risk designations.
+
+  - id: intercargo_news
+    name: "INTERCARGO"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.intercargo.org/news/"
+    status: likely
+    enabled: true
+    notes: "International Association of Dry Cargo Shipowners war risk guidance."
+
+  - id: intertanko_news
+    name: "INTERTANKO"
+    tier: 2
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.intertanko.com/news/"
+    status: likely
+    enabled: true
+    notes: >
+      Tanker owners association. Mandatory additional war risk premium (AWRP)
+      circulars and Hormuz/Red Sea passage guidance are key d6 inputs.
+
+  - id: icc_imb
+    name: "ICC International Maritime Bureau"
+    tier: 2
+    domains: [d6, d1]
+    method: scrape
+    url: "https://www.icc-ccs.org/icc/imb"
+    status: likely
+    enabled: true
+    notes: >
+      IMB Piracy Reporting Centre. Live maritime crime data; armed robbery
+      and piracy incidents feed directly into war risk premium calculations.
+
+  - id: safety4sea
+    name: "Safety4Sea"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://safety4sea.com/feed/"
+    status: likely
+    enabled: true
+    notes: "Maritime safety and risk news. War risk and HRA coverage."
+
+  - id: maritime_executive
+    name: "The Maritime Executive"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://maritime-executive.com/rss/articles"
+    status: likely
+    enabled: true
+    notes: "US-based maritime trade media. Insurance and regulatory coverage."
+
+  - id: offshore_energy
+    name: "Offshore Energy — Insurance"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.offshore-energy.biz/feed/"
+    status: likely
+    enabled: true
+    notes: "Offshore sector insurance; relevant for Persian Gulf platform risk."
+
+  - id: gallagher_marine
+    name: "Gallagher Marine Risk"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.ajg.com/us/industries/marine/insights/"
+    status: likely
+    enabled: true
+    notes: "Gallagher broker war risk commentary and client circulars."
+
+  - id: dnv_maritime
+    name: "DNV — Maritime"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.dnv.com/maritime/news-and-events/news/index.html"
+    status: likely
+    enabled: true
+    notes: >
+      DNV class society news. Ship detentions, flag state advisories, and
+      seaworthiness issues arising from conflict-zone damage reports.
+
+  # ── TIER 3 — Specialist triggers ──
+
+  - id: signal_ocean
+    name: "Signal Ocean — Vessel Tracking"
+    tier: 3
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.signalocean.com/blog"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      Vessel AIS data. War risk trigger: measurable route diversion away from
+      JWC-listed areas or significant drop in transits through Bab el-Mandeb
+      / Hormuz. Diversion data = confirmed premium pressure signal.
+
+  - id: moodys_shipping
+    name: "Moody's — Shipping Sector"
+    tier: 3
+    domains: [d6]
+    method: scrape
+    url: "https://www.moodys.com/researchandratings/market-segment/transportation/shipping/-/0015"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      Credit rating actions on shipping companies citing war risk exposure.
+      Downgrade citing 'heightened war risk costs' = significant d6 signal.
+
+  - id: swissre_sigma
+    name: "Swiss Re Sigma — Marine"
+    tier: 3
+    domains: [d6]
+    method: rss
+    url: "https://www.swissre.com/institute/research/sigma-research/rss.xml"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      Swiss Re annual sigma marine report and emergency research notes.
+      Trigger: sigma note or media release referencing war risk losses.
+
+  - id: munichre_marine
+    name: "Munich Re — Marine"
+    tier: 3
+    domains: [d6]
+    method: scrape
+    url: "https://www.munichre.com/en/solutions/for-industry-clients/marine.html"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      Munich Re lead reinsurer commentary. Any public statement on war risk
+      retrocession pricing or capacity withdrawal is high-significance for d6.
+
+  - id: credit_agricole_shipping
+    name: "Credit Agricole CIB — Shipping Finance"
+    tier: 3
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.ca-cib.com/our-expertise/global-investment-banking/natural-resources-infrastructure/shipping"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      Shipping finance lender commentary on war risk costs affecting vessel
+      valuations and loan covenants. Relevant when war risk premiums threaten
+      P&L viability of affected routes.
+
+  - id: unctad_maritime
+    name: "UNCTAD Maritime Transport"
+    tier: 3
+    domains: [d6, d3]
+    method: scrape
+    url: "https://unctad.org/topic/transport-and-trade-logistics/maritime-transport"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      UN agency. Annual Review of Maritime Transport and emergency reports
+      on conflict impacts on shipping. Useful for systemic assessment of
+      war risk cost pass-through to global trade.
+
+  - id: iras_war_risk
+    name: "International Risk & Advisory Services — War Risk"
+    tier: 3
+    domains: [d6]
+    method: scrape
+    url: "https://www.iras.co.uk/news/"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: "Specialist war risk and K&FR broker. Niche but authoritative."
+
 # ─────────────────────────────────────────────────────────────────────────────
 # REMOVED SOURCES — documented, do not re-add
 # ─────────────────────────────────────────────────────────────────────────────

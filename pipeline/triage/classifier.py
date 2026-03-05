@@ -50,6 +50,40 @@ DOMAIN_KEYWORDS: dict[str, list[str]] = {
         'scada', 'ics', 'infrastructure attack', 'social media',
         'telegram', 'hacktivist', 'cyber avenger', 'deface',
     ],
+    'd6': [
+        # JWC / listed areas
+        'joint war committee', 'jwc', 'listed area', 'breach area',
+        'war risk area', 'conwartime', 'voywar',
+        # War risk premiums & pricing
+        'war risk premium', 'war risk rate', 'hull war', 'additional war risk',
+        'awrp', 'war risk surcharge', 'war peril', 'marine war',
+        # Underwriter / capacity signals
+        "lloyd's war", "lloyd's syndicate", 'marine syndicate', 'underwriting capacity',
+        'war exclusion', 'war risk exclusion', 'capacity withdrawal', 'line reduction',
+        'market hardening', 'market softening', 'reinsurance capacity',
+        # P&I clubs
+        'p&i club', 'p&i circular', 'protection and indemnity', 'defence club',
+        'steamship mutual', 'north of england', 'standard club', 'uk p&i',
+        'gard p&i', 'skuld', 'west of england p&i', 'britannia p&i',
+        # Broker / market commentary
+        'war risk broker', 'marine insurance market', 'marine underwriter',
+        'marsh marine', 'willis marine', 'aon marine', 'gallagher marine',
+        # Reinsurance
+        'munich re marine', 'swiss re marine', 'reinsurance war', 'retrocession',
+        # High risk area designations
+        'high risk area', ' hra ', 'best management practices', 'bmp6',
+        'gulf of aden hra', 'red sea insurance', 'hormuz insurance',
+        # Maritime security-insurance nexus
+        'ship seized insurance', 'vessel seizure claim', 'constructive total loss',
+        ' ctl ', 'war loss', 'hull war claim', 'ransom payment', 'k&fr',
+        # Vessel operations impact
+        'voyage diversion', 'route avoidance', 'ais diversion', 'blank sailing',
+        'crew bonus', 'war risk bonus', 'hardship pay',
+        # Cargo insurance
+        'cargo war risk', 'cargo insurance premium', 'marine cargo',
+        # Industry bodies
+        'bimco war', 'intertanko war', 'intercargo war', 'iumi',
+    ],
 }
 
 
@@ -90,7 +124,7 @@ def classify_items(raw_items: list[dict]) -> list[dict]:
     log.info('Domain distribution: %s', domain_counts)
 
     # Warn if any domain has < 3 items
-    for domain in ['d1', 'd2', 'd3', 'd4', 'd5']:
+    for domain in ['d1', 'd2', 'd3', 'd4', 'd5', 'd6']:
         count = domain_counts.get(domain, 0)
         if count < 3:
             log.warning('Domain %s has only %d items — brief section may be thin', domain, count)

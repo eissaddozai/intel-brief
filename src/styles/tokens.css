@@ -78,6 +78,14 @@
   --d5-body:   #050810;
   --d5-grad:   linear-gradient(180deg, #000408 0%, #000C18 40%, #001830 100%);
 
+  /* ── DOMAIN 06 — WAR RISK INSURANCE · MARITIME FINANCE ────────────────── */
+  --d6-fill:   #002A28;
+  --d6-shadow: #001414;
+  --d6-deep:   #000808;
+  --d6-bright: #2EC4B6;
+  --d6-body:   #050E0E;
+  --d6-grad:   linear-gradient(180deg, #000808 0%, #001414 40%, #002A28 100%);
+
   /* ── CONFIDENCE TIERS ──────────────────────────────────────────────────── */
   --conf-green:  #26A050;
   --conf-blue:   #3888D8;

@@ -12,6 +12,7 @@ export type DomainId =
   | 'd3'  // Energy · Economic
   | 'd4'  // Diplomatic · Political
   | 'd5'  // Cyber · Information Operations
+  | 'd6'  // War Risk Insurance · Maritime Finance
 
 export type TLPLevel = 'RED' | 'AMBER' | 'GREEN' | 'CLEAR'
 
@@ -305,4 +306,5 @@ export const DOMAIN_LABELS: Record<DomainId, string> = {
   d3: 'ENERGY',
   d4: 'DIPLOMATIC',
   d5: 'CYBER · IO',
+  d6: 'WAR RISK · INSURANCE',
 }
