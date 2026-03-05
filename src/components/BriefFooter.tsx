@@ -1,5 +1,5 @@
 import type { BriefCycle } from '../types/brief'
-import canadaFlagGoc from '../assets/canada-flag-goc.svg'
+import canadaFlagGoc from '../assets/canada-flag-goc.png'
 
 interface Props {
   footer: BriefCycle['footer']

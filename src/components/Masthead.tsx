@@ -1,6 +1,6 @@
 import type { BriefCycle } from '../types/brief'
-import canadaFlagBanner from '../assets/canada-flag-banner.svg'
-import canadaFlagGoc from '../assets/canada-flag-goc.svg'
+import canadaFlagBanner from '../assets/canada-flag-banner.png'
+import canadaFlagGoc from '../assets/canada-flag-goc.png'
 
 interface Props {
   meta: BriefCycle['meta']
