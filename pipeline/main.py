@@ -29,6 +29,8 @@ EXAMPLES
 import argparse
 import json
 import logging
+import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -65,17 +67,18 @@ def dim(t: str) -> str:    return _c('2', t)
 # ─── Config ───────────────────────────────────────────────────────────────────
 
 def load_config() -> dict:
-    import os, re
     if not CONFIG_PATH.exists():
         return {}
     try:
         import yaml
         text = CONFIG_PATH.read_text(encoding='utf-8')
+
         def _sub(m: re.Match) -> str:
             val = os.environ.get(m.group(1), '')
             if not val:
                 log.warning('Environment variable %s not set', m.group(1))
             return val
+
         return yaml.safe_load(re.sub(r'\$\{([^}]+)\}', _sub, text)) or {}
     except Exception as exc:
         log.error('Config load failed: %s', exc)

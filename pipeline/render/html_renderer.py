@@ -98,10 +98,13 @@ _WI_STATUS_ICON: dict[str, str] = {
 }
 
 _WI_CHANGE_CLASS: dict[str, str] = {
-    'new':       'wi-change--new',
-    'elevated':  'wi-change--elevated',
-    'unchanged': 'wi-change--unchanged',
-    'cleared':   'wi-change--cleared',
+    'new':             'wi-change--new',
+    'new-triggered':   'wi-change--new',
+    'newly-elevated':  'wi-change--elevated',
+    'elevated':        'wi-change--elevated',
+    'unchanged':       'wi-change--unchanged',
+    'downgraded':      'wi-change--cleared',
+    'cleared':         'wi-change--cleared',
 }
 
 _GAP_SEV_CLASS: dict[str, str] = {
@@ -177,7 +180,7 @@ def _cite_inline(citations: list[dict]) -> str:
         elif vs == 'claimed':
             label = (
                 f'<span class="cite--claimed">'
-                f'(Iranian government asserts: {source}{ts_part})</span>'
+                f'(claimed: {source}{ts_part})</span>'
             )
         elif vs == 'disputed':
             label = f'<span class="cite--disputed">[DISPUTED — {source}]</span>'
@@ -714,7 +717,7 @@ class HtmlRenderer:
         <span class="badge {_CONF_TIER_CLASS.get(conf, 'badge--amber')}">{_e(conf).upper()}</span>
       </div>
     </div>
-    {f'<div class="kj__confidence-phrase">{phrase}\u2026</div>' if phrase else ''}
+    {('<div class="kj__confidence-phrase">' + phrase + '&#8230;</div>') if phrase else ''}
     {prob_bar}
     <div class="kj__text">{text}</div>
     {f'<div class="kj__basis">{basis}</div>' if basis else ''}
@@ -777,7 +780,7 @@ class HtmlRenderer:
                     tds += f'<td class="{cell_cls}">{_e(v)}</td>'
                 tbody_rows.append(f'<tr class="{row_cls}">{tds}</tr>')
 
-            unit_note = f' <span style="color:var(--text-dim);font-size:var(--size-badge);">({unit})</span>' if unit else ''
+            unit_note = f' <span class="data-table__unit">({unit})</span>' if unit else ''
 
             out.append(f"""  <div class="data-table-wrap">
     <div class="data-table-caption">{caption}{unit_note}</div>
@@ -813,7 +816,7 @@ class HtmlRenderer:
         for row in rows:
             actor   = _e(row.get('actor', ''))
             posture = _e(row.get('posture', ''))
-            change  = _e(row.get('changeSincePrevCycle', ''))
+            change  = _e(row.get('changeSincePrev', row.get('changeSincePrevCycle', '')))
             assess  = _e(row.get('assessment', ''))
             conf    = row.get('confidence', 'moderate')
             trs.append(f"""      <tr>
@@ -896,7 +899,7 @@ class HtmlRenderer:
           <span class="wi-icon wi-icon--{_e(status)}">{icon}</span>
           <span class="wi-status {_WI_STATUS_CLASS.get(status, 'wi-status--watching')}">{_e(status).upper()}</span>
         </td>
-        <td style="font-weight:700;color:var(--text-hi);">{indic}</td>
+        <td class="wi-table__indicator">{indic}</td>
         <td><span class="exec__kj-domain exec__kj-domain--{_e(domain)}">{_e(domain_label)}</span></td>
         <td>{detail}</td>
         <td><span class="wi-change {_WI_CHANGE_CLASS.get(change, 'wi-change--unchanged')}">{_e(change).upper()}</span></td>

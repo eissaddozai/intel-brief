@@ -1,8 +1,42 @@
+# ── Node / frontend ───────────────────────────────────────────────────────────
 node_modules/
 dist/
-pipeline/.cache/
-pipeline/__pycache__/
-pipeline/**/__pycache__/
+.vite/
+
+# ── Python ────────────────────────────────────────────────────────────────────
+__pycache__/
+**/__pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+build/
+venv/
+.venv/
+env/
+
+# ── Secrets (never commit) ────────────────────────────────────────────────────
 .env
+.env.local
+.env.production
+secrets.yaml
+credentials.json
+
+# ── Pipeline cache & logs ─────────────────────────────────────────────────────
+pipeline/.cache/
+logs/
 *.log
+
+# ── Playwright browsers ───────────────────────────────────────────────────────
+.playwright/
+
+# ── macOS ─────────────────────────────────────────────────────────────────────
+.DS_Store
+.AppleDouble
+
+# ── IDEs ──────────────────────────────────────────────────────────────────────
+.vscode/settings.json
+.idea/
+*.swp
+*.swo

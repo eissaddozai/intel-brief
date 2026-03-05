@@ -951,6 +951,17 @@ def run_agent_brief(
     cycle['meta']['cycleNum'] = f'{cycle_num:03d}'
     cycle['meta']['cycleId']  = f'cycle{cycle_num:03d}_{date_str}'
 
+    # Validate before writing — catches schema regressions before they land on disk
+    from output.serializer import validate
+    errors = validate(cycle)
+    if errors:
+        for e in errors:
+            log.error('Validation error: %s', e)
+        raise ValueError(
+            f'Agent cycle failed validation with {len(errors)} error(s). '
+            'Check subagent output and re-run.'
+        )
+
     cycle_path = cycles_dir / f'cycle{cycle_num:03d}_{date_str}.json'
     cycle_path.write_text(json.dumps(cycle, indent=2, ensure_ascii=False), encoding='utf-8')
     log.info('Cycle JSON → %s', cycle_path)

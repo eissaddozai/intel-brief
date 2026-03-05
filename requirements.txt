@@ -1,5 +1,12 @@
+# Core pipeline dependencies
 anthropic>=0.84.0
 requests>=2.31.0
 beautifulsoup4>=4.12.0
 pyyaml>=6.0
 playwright>=1.40.0
+
+# Schema validation (optional — graceful degradation if missing, but improves error messages)
+jsonschema>=4.0.0
+
+# Async runtime (required by war_risk_ingest.py via claude_agent_sdk)
+anyio>=3.6.0

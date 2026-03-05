@@ -18,7 +18,7 @@ export function App() {
   useScrollGlow()
 
   useEffect(() => {
-    fetch('./data/latest.json')
+    fetch(`${import.meta.env.BASE_URL}data/latest.json`)
       .then(r => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`)
         return r.json()

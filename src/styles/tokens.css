@@ -127,6 +127,10 @@
   --table-critical:     #160508;   /* data-table critical row tint */
   --table-windfall:     #091410;   /* data-table windfall row tint */
 
+  /* ── SCROLLBAR / UI CHROME ─────────────────────────────────────────────── */
+  --color-scrollbar:    #020407;   /* webkit scrollbar track and gutter */
+  --color-strip-hover:  #0D1020;   /* masthead status strip cell hover tint */
+
   /* ── CONFIDENCE TIERS ──────────────────────────────────────────────────── */
   --conf-green:  #26A050;
   --conf-blue:   #3888D8;

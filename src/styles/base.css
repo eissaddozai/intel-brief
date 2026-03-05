@@ -70,11 +70,11 @@ body::after {
 /* ── CUSTOM SCROLLBAR ─────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 5px;
-  background: #020407;
+  background: var(--color-scrollbar);
 }
 
 ::-webkit-scrollbar-track {
-  background: #020407;
+  background: var(--color-scrollbar);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -106,7 +106,7 @@ body::after {
   }
 
   body {
-    background-color: #050810;
+    background-color: var(--color-page);
   }
 
   .brief {

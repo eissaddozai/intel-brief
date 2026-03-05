@@ -66,6 +66,7 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
     cfg = load_email_config()
 
     host = cfg.get('imap_host', 'imap.gmail.com')
+    port = int(cfg.get('imap_port', 993))
     user = os.environ.get('CSE_EMAIL_USER') or cfg.get('imap_user', '')
     password = os.environ.get('CSE_EMAIL_PASS') or cfg.get('imap_pass', '')
     folder = cfg.get('folder', 'CFR-Daily')
@@ -81,7 +82,7 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
     items: list[dict] = []
 
     try:
-        conn = imaplib.IMAP4_SSL(host)
+        conn = imaplib.IMAP4_SSL(host, port)
         conn.login(user, password)
         conn.select(folder)
 

@@ -84,10 +84,15 @@ def _domain_summary(section: dict) -> str:
     return '\n'.join(summary_parts)
 
 
-def call_claude(client: anthropic.Anthropic, prompt: str, max_tokens: int = 2000) -> dict | list:
+def call_claude(
+    client: anthropic.Anthropic,
+    prompt: str,
+    max_tokens: int = 2000,
+    model: str = 'claude-opus-4-6',
+) -> dict | list:
     """Call Claude API and parse the JSON response."""
     response = client.messages.create(
-        model='claude-opus-4-6',
+        model=model,
         max_tokens=max_tokens,
         temperature=0.3,
         system=(
@@ -122,6 +127,7 @@ def draft_domain(
     target_date: datetime,
     prev_cycle: dict | None = None,
     context_sections: dict | None = None,  # {domain_id: drafted_section_dict}
+    model: str = 'claude-opus-4-6',
 ) -> dict:
     """Draft a single domain section."""
     tier1, tier2 = filter_by_domain(items, domain)
@@ -157,7 +163,7 @@ def draft_domain(
     )
 
     log.info('Drafting domain %s (%d T1, %d T2 items)...', domain, len(tier1), len(tier2))
-    result = call_claude(client, prompt, max_tokens=3000)
+    result = call_claude(client, prompt, max_tokens=3000, model=model)
     return result if isinstance(result, dict) else {}
 
 
@@ -165,6 +171,7 @@ def draft_executive(
     client: anthropic.Anthropic,
     domain_sections: list[dict],
     prev_cycle: dict | None = None,
+    model: str = 'claude-opus-4-6',
 ) -> dict:
     """Draft executive summary (BLUF + key judgments + KPIs)."""
     template = load_prompt('executive.md')
@@ -185,7 +192,7 @@ def draft_executive(
     )
 
     log.info('Drafting executive summary...')
-    result = call_claude(client, prompt, max_tokens=2000)
+    result = call_claude(client, prompt, max_tokens=2000, model=model)
     return result if isinstance(result, dict) else {}
 
 
@@ -194,6 +201,7 @@ def draft_strategic_header(
     domain_sections: list[dict],
     executive: dict,
     prev_cycle: dict | None = None,
+    model: str = 'claude-opus-4-6',
 ) -> dict:
     """Draft the strategic header (headline judgment + trajectory)."""
     template = load_prompt('strategic_header.md')
@@ -218,7 +226,7 @@ def draft_strategic_header(
     )
 
     log.info('Drafting strategic header...')
-    result = call_claude(client, prompt, max_tokens=500)
+    result = call_claude(client, prompt, max_tokens=500, model=model)
     return result if isinstance(result, dict) else {}
 
 
@@ -226,6 +234,7 @@ def draft_warning_indicators(
     client: anthropic.Anthropic,
     domain_sections: list[dict],
     prev_cycle: dict | None = None,
+    model: str = 'claude-opus-4-6',
 ) -> list[dict]:
     """Draft / update warning indicators."""
     template = load_prompt('warning_indicators.md')
@@ -243,7 +252,7 @@ def draft_warning_indicators(
     )
 
     log.info('Drafting warning indicators...')
-    result = call_claude(client, prompt, max_tokens=1200)
+    result = call_claude(client, prompt, max_tokens=1200, model=model)
     if isinstance(result, list):
         return result
     return result.get('warningIndicators', [])
@@ -253,6 +262,7 @@ def draft_collection_gaps(
     client: anthropic.Anthropic,
     tagged_items: list[dict],
     domain_sections: list[dict],
+    model: str = 'claude-opus-4-6',
 ) -> list[dict]:
     """Identify collection gaps from triage output and domain confidence."""
     template = load_prompt('collection_gaps.md')
@@ -280,7 +290,7 @@ def draft_collection_gaps(
     )
 
     log.info('Drafting collection gaps...')
-    result = call_claude(client, prompt, max_tokens=900)
+    result = call_claude(client, prompt, max_tokens=900, model=model)
     if isinstance(result, list):
         return result
     return result.get('collectionGaps', [])
@@ -308,6 +318,8 @@ def draft_cycle(
             'ANTHROPIC_API_KEY not set. Export the variable or add it to pipeline-config.yaml.'
         )
 
+    # Respect configured model — never silently fall back to a different tier
+    model = claude_cfg.get('model', 'claude-opus-4-6')
     client = anthropic.Anthropic(api_key=api_key)
 
     domain_sections: list[dict] = []
@@ -321,6 +333,7 @@ def draft_cycle(
             target_date=target_date,
             prev_cycle=prev_cycle,
             context_sections=drafted,
+            model=model,
         )
         # Ensure schema fields are present
         section.setdefault('id', domain_id)
@@ -330,10 +343,10 @@ def draft_cycle(
         drafted[domain_id] = section
         log.info('Domain %s drafted', domain_id)
 
-    executive = draft_executive(client, domain_sections, prev_cycle)
-    strategic_header = draft_strategic_header(client, domain_sections, executive, prev_cycle)
-    warning_indicators = draft_warning_indicators(client, domain_sections, prev_cycle)
-    collection_gaps = draft_collection_gaps(client, tagged_items, domain_sections)
+    executive = draft_executive(client, domain_sections, prev_cycle, model=model)
+    strategic_header = draft_strategic_header(client, domain_sections, executive, prev_cycle, model=model)
+    warning_indicators = draft_warning_indicators(client, domain_sections, prev_cycle, model=model)
+    collection_gaps = draft_collection_gaps(client, tagged_items, domain_sections, model=model)
 
     # Merge strategicHeader fields into meta for convenience
     threat_level = strategic_header.pop('threatLevel', 'SEVERE')

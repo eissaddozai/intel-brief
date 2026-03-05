@@ -81,7 +81,7 @@
 
   /* ── Domain: left border replaces gradient strip ─────────────────────── */
   .domain {
-    border-left: 5px solid var(--surface-3);
+    border-left: 5px solid var(--color-dim);
     padding-left: 16px;
   }
   .domain--d1 { border-left-color: var(--d1-bright); }
@@ -170,3 +170,42 @@
   ::-webkit-scrollbar { display: none; }
 
 }
+
+  /* ── Kurdish/Turkish dimension — print adjustments ──────────────────────── */
+  .actor-matrix { break-inside: avoid; }
+  .gap-item     { break-inside: avoid; }
+
+  /* ── Collection gap register — print table layout ───────────────────────── */
+  .collection-gaps__items { list-style: none; padding: 0; }
+  .gap-item {
+    display: grid;
+    grid-template-columns: 60pt 50pt 1fr;
+    gap: 4pt;
+    border-bottom: 0.5pt solid #ddd;
+    padding: 4pt 0;
+    font-size: 8.5pt;
+  }
+  .gap-item__category { display: block; margin-top: 2pt; }
+
+  /* ── Warning indicators table — print 12 rows ───────────────────────────── */
+  .wi-table { font-size: 8pt; }
+  .wi-table th, .wi-table td { padding: 3pt 5pt; }
+
+  /* ── KPI strip — 6-cell print layout ───────────────────────────────────── */
+  .kpi-strip { grid-template-columns: repeat(6, 1fr); gap: 4pt; }
+  .kpi-strip__cell {
+    padding: 4pt 6pt;
+    border: 0.5pt solid #ccc;
+    background: white !important;
+  }
+  .kpi-strip__number { font-size: 16pt !important; color: #1a1a2e !important; }
+  .kpi-strip__label  { font-size: 6.5pt !important; color: #555 !important; }
+
+  /* ── Executive KJ list — readable in print ──────────────────────────────── */
+  .exec__kj-list   { padding: 0 0 0 12pt; }
+  .exec__kj-item   { margin-bottom: 4pt; font-size: 9pt; break-inside: avoid; }
+  .exec__kj-domain { font-weight: 700; }
+
+  /* ── Probability bars — hide in print to save ink ───────────────────────── */
+  .prob-bar { display: none; }
+

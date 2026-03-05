@@ -1287,6 +1287,18 @@
 
 .wi-table tr:last-child td { border-bottom: none; }
 
+.wi-table__indicator {
+  color: var(--text-hi);
+  font-weight: 600;
+}
+
+.wi-table__domain {
+  font-family: var(--font-data);
+  font-size: var(--size-badge);
+  white-space: nowrap;
+  color: var(--text-md);
+}
+
 .wi-status {
   font-family: var(--font-ui);
   font-size: var(--size-badge);
@@ -1557,4 +1569,79 @@
 @media (max-width: 420px) {
   .kpi-strip               { grid-template-columns: repeat(2, 1fr); }
   .kpi-strip__cell:nth-child(n+3) { display: none; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ADDITIONS — Kurdish/Turkish dimension, gap register extensions, PDF fixes
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── DATA TABLE UNIT NOTE ─────────────────────────────────────────────────── */
+
+.data-table__unit {
+  color: var(--text-dim);
+  font-size: var(--size-badge);
+  font-family: var(--font-data);
+}
+
+/* ── COLLECTION GAP EXTENSIONS ────────────────────────────────────────────── */
+
+.gap-item__category {
+  display: inline-block;
+  font-family: var(--font-data);
+  font-size: var(--size-badge);
+  letter-spacing: 0.08em;
+  color: var(--text-lo);
+  background: var(--color-gap-bg);
+  border: 1px solid var(--gap-item-border);
+  padding: 1px 6px;
+  margin-bottom: 4px;
+}
+
+.gap-item__kj-risk {
+  font-family: var(--font-data);
+  font-size: var(--size-badge);
+  color: var(--conf-amber);
+  margin-top: 4px;
+}
+
+.gap-item__closing {
+  font-family: var(--font-ui);
+  font-size: var(--size-badge);
+  color: var(--text-lo);
+  font-style: italic;
+  margin-top: 2px;
+}
+
+/* ── ACTOR MATRIX — KURDISH/TURKISH ACTORS ───────────────────────────────── */
+
+/* Kurdish actors use a muted teal accent matching d6 (closest available) */
+.actor-matrix td.actor-name[data-actor="KRG"],
+.actor-matrix td.actor-name[data-actor="PKK"],
+.actor-matrix td.actor-name[data-actor="SDF"],
+.actor-matrix td.actor-name[data-actor="Peshmerga"],
+.actor-matrix td.actor-name[data-actor="PJAK"] {
+  color: var(--d6-bright);
+}
+
+/* Turkish government actors */
+.actor-matrix td.actor-name[data-actor="Turkey"],
+.actor-matrix td.actor-name[data-actor="Turkish Armed Forces"],
+.actor-matrix td.actor-name[data-actor="TAF"] {
+  color: var(--d2-bright);
+}
+
+/* ── WI TABLE ADDITIONS ────────────────────────────────────────────────────── */
+
+/* Kurdish/Turkish warning indicator rows (wi-09, wi-10, wi-11) */
+.wi-table tr.wi-row--kurdish-turkish td {
+  border-left: 2px solid var(--d6-bright);
+}
+
+/* ── PRINT: GAP REGISTER ──────────────────────────────────────────────────── */
+
+@media print {
+  .gap-item__category { background: #f0f0f0; border-color: #ccc; color: #555; }
+  .gap-item__kj-risk  { color: #8c5800; }
+  .gap-item__closing  { color: #555; }
+  .data-table__unit   { color: #666; }
 }

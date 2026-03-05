@@ -154,16 +154,27 @@ def review_executive(executive: dict) -> dict:
 
 
 def review_indicators(indicators: list[dict]) -> list[dict]:
-    """Quick review of warning indicators."""
+    """Quick review of warning indicators. Returns approved (potentially edited) list."""
     print_header('WARNING INDICATORS', colour=AMBER)
     for wi in indicators:
-        status_colour = RED if wi.get('status') == 'triggered' else AMBER
-        print(f'  {status_colour}[{wi.get("status", "?").upper()}]{RESET} {wi.get("indicator", "?")}')
+        status = wi.get('status', '?')
+        status_colour = RED if status == 'triggered' else (AMBER if status == 'elevated' else DIM)
+        change = wi.get('change', '')
+        change_suffix = f'  [{change.upper()}]' if change else ''
+        print(f'  {status_colour}[{status.upper()}]{RESET}{change_suffix} {wi.get("indicator", "?")}')
         print(f'    {DIM}{wi.get("detail", "")[:120]}{RESET}')
     print()
 
-    choice = input('[A]pprove  [S]kip › ').strip().upper()
-    return indicators
+    while True:
+        choice = input(f'{AMBER}[A]pprove  [Q]uit › {RESET}').strip().upper()
+        if choice == 'A':
+            print(f'{GREEN}✓ Warning indicators approved{RESET}')
+            return indicators
+        elif choice == 'Q':
+            print(f'{RED}✗ Review aborted{RESET}')
+            sys.exit(0)
+        else:
+            print('Invalid choice. Enter A or Q.')
 
 
 def run_review(draft: dict) -> dict | None:

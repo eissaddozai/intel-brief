@@ -980,3 +980,287 @@ excluded:
       - "Foundation for Defense of Democracies (FDD)"
       - "Long War Journal"
     policy: "Event tracking usable as Tier 3 with hedging. Not policy recommendations."
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # KURDISH · TURKISH DIMENSION — cross-domain (d1, d2, d4, d5)
+  # Essential for: PKK/PJAK operations, KRG oil exports, Turkish cross-border
+  # ops, Kurdish civil society signals, SDF posture in northeast Syria.
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  - id: rudaw_extended
+    name: "Rudaw — Extended Coverage"
+    tier: 2
+    domains: [d1, d4, d6]
+    method: rss
+    url: "https://www.rudaw.net/english/rss.xml"
+    status: likely
+    enabled: true
+    notes: >
+      Primary English-language outlet for Kurdistan Region of Iraq.
+      Covers: KRG government statements, Peshmerga operations, Turkish
+      cross-border strikes, PKK/PJAK activity, Kirkuk-Ceyhan pipeline
+      disruptions. Treat as Tier 2 "reported" — editorial is pro-KRG but
+      factually reliable for observable events. Do not use for Iranian
+      internal assessments.
+
+  - id: kurdistan24
+    name: "Kurdistan 24"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://www.kurdistan24.net/en/rss.xml"
+    status: likely
+    enabled: true
+    notes: >
+      KRG-aligned, Erbil-based English broadcaster. Primary source for
+      KRG official positions, Peshmerga statements, and Turkish airstrike
+      casualty/impact reporting from Duhok/Zakho/Sinjar areas.
+      Apply editorial filter: pro-KDP (Barzani) framing; less reliable on
+      PUK/Gorran internal politics or Sulaymaniyah dynamics.
+
+  - id: kirkuknow
+    name: "KirkukNow"
+    tier: 2
+    domains: [d1, d4, d6]
+    method: scrape
+    url: "https://kirkuknow.com/en"
+    status: likely
+    enabled: true
+    notes: >
+      Independent, Kirkuk-focused news outlet. Critical for monitoring:
+      Kirkuk-Ceyhan oil pipeline status, Arab-Kurd-Turkmen intercommunal
+      tensions, disputed territories security incidents, and PMF/IRGC
+      presence in Kirkuk Province. Homepage scrape.
+
+  - id: anf_news_en
+    name: "ANF News (English)"
+    tier: 2
+    domains: [d1, d5]
+    method: rss
+    url: "https://anfenglishmobile.com/feed/"
+    status: likely
+    enabled: true
+    notes: >
+      Ajansa Nûçeyan a Firatê — PKK-affiliated Kurdish news agency.
+      IMPORTANT: Editorial is PKK-aligned; treat ALL content as Tier 3 "claimed"
+      for anything about Turkish military operations or PKK activity.
+      Use only for: PKK public statements (their own claims), Qandil
+      spokesperson positions, and HPG communiqués — citing explicitly as
+      "PKK-affiliated ANF reports/claims".
+      Do NOT use for casualty figures, territorial claims, or Turkish military
+      effectiveness assessments.
+
+  - id: bianet_en
+    name: "Bianet (Independent Media in Turkey)"
+    tier: 2
+    domains: [d4, d5]
+    method: rss
+    url: "https://bianet.org/english/rss"
+    status: likely
+    enabled: true
+    notes: >
+      Independent Turkish human rights and media monitoring platform.
+      Best open source for: HDP/DEM party political developments, Kurdish
+      civilian displacement from Turkish operations, press freedom in
+      conflict zones, and IRGC surveillance of Kurdish diaspora. Tier 2
+      "reported" — editorially independent but progressive framing.
+
+  - id: ahval_news
+    name: "Ahval News"
+    tier: 2
+    domains: [d4]
+    method: rss
+    url: "https://ahvalnews.com/rss.xml"
+    status: likely
+    enabled: true
+    notes: >
+      Independent English-language Turkish affairs outlet based in UAE.
+      Strong on: Turkish foreign policy, PKK/HDP political suppression,
+      Turkey-NATO tensions over Kurdish policy, Turkey-Iran bilateral signals.
+      Oppose-government framing — balance with Anadolu for full picture.
+
+  - id: gazete_duvar_en
+    name: "Gazete Duvar (English feed)"
+    tier: 2
+    domains: [d4]
+    method: rss
+    url: "https://www.gazeteduvar.com.tr/english/feed"
+    status: likely
+    enabled: true
+    notes: >
+      Independent Turkish investigative journalism platform. Covers
+      Operation Claw-series civilian impact, PKK-Turkey negotiations
+      (or absence thereof), HDP trials, and Kurdish cultural rights.
+
+  - id: khrn
+    name: "Kurdistan Human Rights Network"
+    tier: 2
+    domains: [d4, d5]
+    method: scrape
+    url: "https://kurdistanhumanrights.net/en/"
+    status: likely
+    enabled: true
+    notes: >
+      Monitors Iranian and Turkish human rights conditions in Kurdish
+      regions. Use for: IRGC detention of Kurdish activists in Iran,
+      cross-border strike civilian casualty documentation, and digital
+      surveillance of Iranian Kurdish diaspora. Tier 2 "reported" for
+      documented cases; Tier 3 for estimates and general claims.
+
+  - id: sohr
+    name: "Syrian Observatory for Human Rights"
+    tier: 2
+    domains: [d1, d4]
+    method: scrape
+    url: "https://www.syriahr.com/en/"
+    status: likely
+    enabled: true
+    notes: >
+      Single-source UK-based monitor with extensive Syrian network.
+      Essential for: SDF-held northeast Syria operations, Turkish cross-
+      border strikes into Rojava/NES, IRGC presence in Deir ez-Zor,
+      HTS (Hayat Tahrir al-Sham) vs. SDF tensions. Caveat every SOHR
+      figure: "SOHR monitors report" not "confirmed". Treat as Tier 2.
+
+  - id: krg_gov
+    name: "KRG Government — Official Statements"
+    tier: 2
+    domains: [d4, d6]
+    method: scrape
+    url: "https://gov.krd/english/news/"
+    status: likely
+    enabled: true
+    notes: >
+      Official KRG government portal. Source for: KRG PM/President
+      statements on Turkish operations, OPEC-plus oil export disputes,
+      Kirkuk-Ceyhan pipeline throughput announcements, and KRG-Baghdad
+      federal government relations. Treat as government statement
+      (Tier 1 for the fact of the statement; Tier 2 for content).
+
+  - id: peshmerga_ministry
+    name: "KRG Ministry of Peshmerga Affairs"
+    tier: 2
+    domains: [d1]
+    method: scrape
+    url: "https://peshmergamol.gov.krd/en/"
+    status: likely
+    enabled: true
+    notes: >
+      Official KRG military statements. Use for: Peshmerga-PKK delineation
+      agreements, Turkish coordination statements, Iranian IRGC frontier
+      incidents. Treat military operational claims as Tier 2 pending
+      independent corroboration.
+
+  - id: northeast_syria_monitor
+    name: "Northeast Syria Monitor (NES Monitor)"
+    tier: 2
+    domains: [d1, d4]
+    method: scrape
+    url: "https://nesyria.com/en/"
+    status: likely
+    enabled: true
+    notes: >
+      Dedicated monitor for northeast Syria / Rojava / Autonomous
+      Administration of North and East Syria (AANES). Covers: SDF
+      operations, Turkish drone strikes on SDF positions, IRGC-affiliated
+      militia activity east of Euphrates. Independent, based in NES.
+
+  - id: kdp_news
+    name: "KDP (Kurdistan Democratic Party) News"
+    tier: 2
+    domains: [d4]
+    method: scrape
+    url: "https://www.kdp.info/en/news/"
+    status: likely
+    enabled: true
+    notes: >
+      Governing KRG party official news. Treat as government-aligned
+      (Tier 3 for operational claims; Tier 2 for confirmed governmental
+      positions and formal statements). Useful for tracking KDP-PKK
+      tensions and KDP-Turkey coordination signals.
+
+  - id: puk_media
+    name: "PUK Media (Patriotic Union of Kurdistan)"
+    tier: 2
+    domains: [d4]
+    method: scrape
+    url: "https://pukmedia.com/en/"
+    status: likely
+    enabled: true
+    notes: >
+      PUK (Talabani-aligned) official media. Balances KDP/Barzani framing.
+      Strong on: Sulaymaniyah politics, PUK-Iran relations (historically
+      warmer than KDP-Iran), disputed territories status, and KRG
+      intra-Kurdish political dynamics.
+
+  - id: sdf_press
+    name: "SDF Press Centre"
+    tier: 2
+    domains: [d1]
+    method: scrape
+    url: "https://sdf-press.com/en/"
+    status: likely
+    enabled: true
+    notes: >
+      Syrian Democratic Forces official press releases. Use for: SDF
+      anti-ISIS operations (which intersect with US basing), Turkish
+      strikes on SDF positions, SDF statements on Iranian-backed militia
+      incursions east of Euphrates. Treat as Tier 3 "claimed" for Turkish
+      casualty figures; Tier 2 for SDF operational acknowledgements.
+
+  - id: niqash_en
+    name: "Niqash (Iraqi Kurdistan Analysis)"
+    tier: 2
+    domains: [d4]
+    method: scrape
+    url: "https://niqash.org/en/categories/politics/"
+    status: likely
+    enabled: true
+    notes: >
+      German-funded independent Iraqi Kurdish analysis outlet. Deeper
+      context pieces on intra-Kurdish political economy, Sinjar status,
+      Yazidi displacement, and KRG-Baghdad fiscal disputes. Not daily
+      news — use for contextual analyst notes.
+
+  - id: turkey_mof_press
+    name: "Turkish Ministry of National Defense"
+    tier: 2
+    domains: [d1, d4]
+    method: scrape
+    url: "https://www.msb.gov.tr/en/"
+    status: likely
+    enabled: true
+    notes: >
+      Official Turkish armed forces statements on cross-border operations
+      (Operation Claw-Lock, Claw-Sword, etc.). Treat as Tier 3 for
+      PKK/PJAK casualty figures and operational success claims;
+      Tier 2 for confirmed operation launches and geographic scope.
+      Anadolu Agency republishes these — prefer cross-referencing both.
+
+  - id: hurriyet_daily_news
+    name: "Hürriyet Daily News"
+    tier: 2
+    domains: [d4, d1]
+    method: rss
+    url: "https://www.hurriyetdailynews.com/rss.aspx"
+    status: likely
+    enabled: true
+    notes: >
+      English-language Turkish liberal daily. Useful for Ankara foreign
+      policy framing, NATO-Turkey tensions on Kurdish issue, and Turkish
+      domestic politics affecting Kurdish policy. Less state-aligned than
+      Anadolu Agency.
+
+  - id: daily_sabah
+    name: "Daily Sabah"
+    tier: 2
+    domains: [d4]
+    method: rss
+    url: "https://www.dailysabah.com/rss"
+    status: likely
+    enabled: true
+    notes: >
+      Turkish government-aligned English daily. Balance with Ahval and
+      Bianet. Use for: official AKP/government framing of PKK operations,
+      Turkey-US security consultations, and Gulf diplomatic positions from
+      Turkish perspective.
