@@ -328,36 +328,14 @@ def _load_css() -> str:
 /* ── PRINT-ONLY BRAND ELEMENTS — hidden on screen ───────────────────────── */
 .print-brand-header,.print-brand-footer{display:none}
 
-/* ── PRINT — suppress shimmer + clean per-page branding ──────────────────── */
+/* ── PRINT — suppress shimmer, static layout, clean type ─────────────────── */
 @media print{
   body{background:#000!important}
   .masthead{position:static!important}
   .masthead::before,.masthead::after,.brief-footer::before{display:none!important}
   .domain__gradient,.masthead__crimson-rule,.exec__gradient{box-shadow:none!important}
   #cse-editor-toggle,#cse-editor-panel{display:none!important}
-
-  /* CSE wordmark — fixed top-left on every page */
-  .print-brand-header{
-    display:block!important;
-    position:fixed;top:7mm;left:12mm;z-index:9999;
-  }
-  .print-brand-header__cse{
-    font-family:"Palatino Linotype","Palatino",Georgia,serif;
-    font-size:14pt;font-weight:900;color:#FFFFFF;
-    letter-spacing:.08em;display:block;line-height:1;
-  }
-  .print-brand-header__brief{
-    font-family:"Trebuchet MS",Arial,sans-serif;
-    font-size:5.5pt;letter-spacing:.18em;color:#707070;
-    text-transform:uppercase;display:block;margin-top:2pt;
-  }
-
-  /* Canada logo — fixed bottom-right on every page */
-  .print-brand-footer{
-    display:block!important;
-    position:fixed;bottom:7mm;right:12mm;z-index:9999;
-  }
-  .print-brand-footer img{height:18pt;width:auto;opacity:.80}
+  .section-divider::before,.section-divider::after{display:none!important}
 }
 
 /* ── DESIGN TOKENS ────────────────────────────────────────────────────────── */
@@ -397,16 +375,6 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 .masthead__brand-bar{
   display:flex;align-items:center;justify-content:space-between;
   padding:44px 36px 40px;background:#030407;gap:32px;
-}
-/* CSE Government of Canada logo — frosted white chip, top-left anchor */
-.masthead__logo-wrap{
-  flex:0 0 auto;display:flex;align-items:center;
-  background:rgba(255,255,255,0.93);
-  padding:9px 18px 9px 14px;
-  box-shadow:0 0 0 1px rgba(255,255,255,0.12),0 4px 24px rgba(0,0,0,0.55);
-}
-.masthead__logo-wrap img{
-  height:44px;width:auto;display:block;
 }
 .masthead__brand-left{flex:1 1 auto;min-width:0}
 
@@ -466,16 +434,29 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 /* ── DOCUMENT PROVENANCE BAR — topmost strip; origin, series, handle ─────── */
 .masthead__provenance{
   display:flex;justify-content:space-between;align-items:center;
-  padding:5px 36px;background:#010204;
+  padding:5px 26px;background:#010204;
   border-bottom:1px solid rgba(184,28,40,0.18);
+  gap:20px;
 }
-.masthead__provenance-left,.masthead__provenance-right{
+.masthead__provenance-logo{
+  flex:0 0 auto;background:#FFFFFF;
+  padding:3px 10px 3px 8px;display:flex;align-items:center;line-height:0;
+}
+.masthead__provenance-logo img{height:20px;width:auto;display:block;}
+.masthead__provenance-left{
   font-family:"IBM Plex Mono","Courier New",monospace;
-  font-size:.44rem;letter-spacing:.16em;color:#2A2E3A;text-transform:uppercase;
+  font-size:.43rem;letter-spacing:.14em;color:#2A2E3A;text-transform:uppercase;
+  flex:0 0 auto;
+}
+.masthead__provenance-right{
+  font-family:"IBM Plex Mono","Courier New",monospace;
+  font-size:.43rem;letter-spacing:.14em;color:#2A2E3A;text-transform:uppercase;
+  flex:0 0 auto;
 }
 .masthead__provenance-centre{
   font-family:"IBM Plex Mono","Courier New",monospace;
-  font-size:.44rem;letter-spacing:.22em;color:#581820;font-weight:700;text-transform:uppercase;
+  font-size:.43rem;letter-spacing:.22em;color:#3A1010;font-weight:700;text-transform:uppercase;
+  flex:1 1 auto;text-align:center;
 }
 
 /* Crimson rule */
@@ -770,15 +751,6 @@ class HtmlRenderer:
 </style>
 </head>
 <body>
-<!-- Print-only: CSE on every page top-left -->
-<div class="print-brand-header">
-  <span class="print-brand-header__cse">CSE</span>
-  <span class="print-brand-header__brief">Intelligence Brief</span>
-</div>
-<!-- Print-only: Canada logo every page bottom-right -->
-<div class="print-brand-footer">
-  <img src="data:image/png;base64,{_CANADA_FLAG_GOC_B64}" alt="Canada">
-</div>
 <div class="brief">
 {body}
 </div>
@@ -808,20 +780,18 @@ class HtmlRenderer:
 
         strip_cells_html = self._strip_cells(m.get('stripCells', []))
 
-        logo_img = f'<img src="data:image/png;base64,{_CSE_LOGO_B64}" alt="Communications Security Establishment — Government of Canada">' if _CSE_LOGO_B64 else ''
+        logo_img = f'<img src="data:image/png;base64,{_CSE_LOGO_B64}" alt="Government of Canada">' if _CSE_LOGO_B64 else ''
 
         return f"""<header class="masthead" id="cse-masthead">
-  <!-- PROVENANCE BAR: originator · series handle · document ref -->
+  <!-- PROVENANCE BAR: GOC logo + originator left | series centre | doc ref right -->
   <div class="masthead__provenance">
-    <span class="masthead__provenance-left">Communications Security Establishment · Canada</span>
+    <div class="masthead__provenance-logo">{logo_img}</div>
+    <span class="masthead__provenance-left">Communications Security Establishment</span>
     <span class="masthead__provenance-centre">Iran War File — Analytical Series</span>
     <span class="masthead__provenance-right">CSE/IWF/{date_long}</span>
   </div>
-  <!-- BRAND BAR: GOC logo left | CSE INTEL wordmark centre | cycle right -->
+  <!-- BRAND BAR: CSE INTEL wordmark left | cycle right -->
   <div class="masthead__brand-bar">
-    <div class="masthead__logo-wrap">
-      {logo_img}
-    </div>
     <div class="masthead__brand-left">
       <div class="masthead__title">
         <span class="masthead__title-main">CSE </span><span class="masthead__title-year">INTEL</span>

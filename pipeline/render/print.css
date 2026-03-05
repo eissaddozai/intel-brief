@@ -22,11 +22,9 @@
   /* ── Page setup ────────────────────────────────────────────────────────── */
   @page {
     size: letter portrait;
-    margin: 0.75in 0.55in 0.75in 0.55in;
+    margin: 0.65in 0.55in 0.65in 0.55in;
     background: #000000;
   }
-
-  @page :first { margin-top: 0.5in; }
 
   /* ── Document: black throughout ───────────────────────────────────────── */
   html, body {
@@ -47,38 +45,34 @@
   /* ── Suppress base.css scanline / vignette overlays ──────────────────── */
   body::before, body::after { display: none !important; }
 
-  /* ── Kill galaxy shimmer (no animation in print) ──────────────────────── */
+  /* ── Kill galaxy shimmer ──────────────────────────────────────────────── */
   .masthead::before, .masthead::after,
   .brief-footer::before { display: none !important; }
 
+  /* ── Provenance logo — keep white pill visible in print ──────────────── */
+  .masthead__provenance-logo {
+    background: #FFFFFF !important;
+    -webkit-print-color-adjust: exact !important;
+  }
+
   /* ── Masthead / footer ─────────────────────────────────────────────────── */
   .masthead, .brief-footer {
-    position: static;
+    position: static !important;
     background: #0a0a14 !important;
-  }
-
-  /* ── Classification bar ─────────────────────────────────────────────────── */
-  .masthead__class-bar {
-    background: #1a0000 !important;
-    color: #ff6060 !important;
-  }
-
-  .print-class-banner {
-    background: #1a0000 !important;
-    color: #ff6060 !important;
-    font-weight: 700;
+    margin-bottom: 20pt !important;
   }
 
   /* ── Domain gradient strips: hidden ─────────────────────────────────────── */
   .domain__gradient, .exec__gradient, .caveats__gradient,
   .collection-gaps__gradient, .warning-indicators__gradient,
-  .analyst-note__gradient, .dissenter-note__gradient { display: none; }
+  .analyst-note__gradient, .dissenter-note__gradient { display: none !important; }
 
   /* ── Domain sections ─────────────────────────────────────────────────────── */
   .domain {
     background: #05050f !important;
-    border-left: 5px solid #444;
-    padding-left: 16px;
+    border-left: 4pt solid #444;
+    padding-left: 12pt;
+    margin-bottom: 12pt;
   }
   .domain--d1 { border-left-color: #c62828 !important; }
   .domain--d2 { border-left-color: #e65100 !important; }
@@ -89,32 +83,22 @@
 
   /* ── Section backgrounds ─────────────────────────────────────────────────── */
   section { background: #05050f !important; }
-
-  .kj { background: #0d0d1a !important; border-color: rgba(255,255,255,0.12) !important; }
-
-  .exec__bluf {
-    background: #0d0d1a !important;
-    border-left-color: #c62828 !important;
-  }
-
+  .kj { background: #0d0d1a !important; border-color: rgba(255,255,255,0.10) !important; }
+  .exec__bluf { background: #0d0d1a !important; border-left-color: #c62828 !important; }
   .strategic-header, .flash-points, .warning-indicators,
   .collection-gaps, .caveats { background: #05050f !important; }
-
-  .metadata-bar {
-    background: #0d0d1a !important;
-    border-top: 1px solid #1e1e2e !important;
-  }
-
+  .metadata-bar { background: #0d0d1a !important; border-top: 0.5pt solid #1e1e2e !important; }
   .analyst-note, .dissenter-note {
     background: #0a0a14 !important;
-    border-color: rgba(255,255,255,0.1) !important;
+    border-color: rgba(255,255,255,0.08) !important;
   }
-
   .section-end { border-color: #1e1e2e !important; }
+
+  /* ── Section divider ─────────────────────────────────────────────────────── */
+  .section-divider { display: none !important; }
 
   /* ── Warning indicators table ────────────────────────────────────────────── */
   .warning-indicators { break-before: page; }
-
   .wi-table {
     border-collapse: collapse;
     width: 100%;
@@ -148,24 +132,20 @@
   .kpi-strip__number { font-size: 15pt !important; color: #c8b870 !important; }
   .kpi-strip__label  { font-size: 6.5pt !important; color: #888 !important; }
 
-  /* ── Body text: light on dark ────────────────────────────────────────────── */
+  /* ── Body text ───────────────────────────────────────────────────────────── */
   .text-hi, .domain__title, .kj__text,
   .exec__bluf-text, .strategic-header__judgment { color: #e0dbd4 !important; }
-
   .text-md, .body-para, .body-wrap { color: #c4bfb8 !important; }
   .text-dim, .meta, .kj__basis     { color: #7a7480 !important; }
   .masthead__cycle-num, .color-gold { color: #c8b870 !important; }
 
   /* ── Type ────────────────────────────────────────────────────────────────── */
   body { font-size: 9.5pt; line-height: 1.55; }
-  .kj__text { font-size: 10.5pt; line-height: 1.6; }
+  .kj__text  { font-size: 10.5pt; line-height: 1.6; }
   .body-para { font-size: 9.5pt; line-height: 1.55; orphans: 3; widows: 3; }
 
-  /* ── GOC logo images: screen blend for dark bg ────────────────────────── */
-  .masthead__img { mix-blend-mode: screen; }
-
   /* ── Page break control ──────────────────────────────────────────────────── */
-  .masthead            { break-inside: avoid; }
+  .masthead            { break-inside: avoid; break-after: page; }
   .strategic-header    { break-inside: avoid; break-after: avoid; }
   .flash-points        { break-inside: avoid; }
   .kj                  { break-inside: avoid; }
@@ -178,7 +158,6 @@
   .caveats             { break-inside: avoid; }
   .wi-table            { break-inside: avoid; }
   .brief-footer        { break-before: page; }
-
   .domain              { break-inside: auto; }
   .domain + .domain    { break-before: auto; }
   .body-wrap           { break-inside: auto; }
