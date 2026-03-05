@@ -234,385 +234,497 @@ def _load_css() -> str:
     chunks.append("""
 /* === renderer extras === */
 
-/* ── GALAXY SHIMMER ────────────────────────────────────────────────────────── */
-.masthead::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 40% at 15% 50%, rgba(123,31,162,0.14) 0%, transparent 70%),
-    radial-gradient(ellipse 45% 55% at 85% 20%, rgba(21,101,192,0.10) 0%, transparent 65%),
-    radial-gradient(ellipse 70% 35% at 50% 90%, rgba(0,188,212,0.09) 0%, transparent 60%),
-    radial-gradient(ellipse 30% 60% at 72% 65%, rgba(198,40,40,0.06) 0%, transparent 55%);
-  background-size: 300% 300%;
-  animation: galaxy-drift 22s ease-in-out infinite alternate;
-  pointer-events: none;
-  z-index: 0;
-  border-radius: inherit;
-}
-.masthead::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(1px 1px at  8% 25%, rgba(255,255,255,0.70) 0%, transparent 100%),
-    radial-gradient(1px 1px at 23% 68%, rgba(255,255,255,0.55) 0%, transparent 100%),
-    radial-gradient(1px 1px at 41% 18%, rgba(255,255,255,0.65) 0%, transparent 100%),
-    radial-gradient(1px 1px at 57% 79%, rgba(255,255,255,0.50) 0%, transparent 100%),
-    radial-gradient(1px 1px at 73% 42%, rgba(255,255,255,0.62) 0%, transparent 100%),
-    radial-gradient(1px 1px at 88% 15%, rgba(255,255,255,0.58) 0%, transparent 100%),
-    radial-gradient(2px 2px at 34% 55%, rgba(255,255,255,0.35) 0%, transparent 100%),
-    radial-gradient(1px 1px at 62% 35%, rgba(200,220,255,0.52) 0%, transparent 100%);
-  pointer-events: none;
-  z-index: 0;
-  animation: star-twinkle 14s ease-in-out infinite alternate;
-}
-.masthead > * { position: relative; z-index: 1; }
-.brief-footer::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 80% 60% at 20% 50%, rgba(21,101,192,0.09) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 40% at 75% 40%, rgba(0,188,212,0.08) 0%, transparent 65%);
-  background-size: 200% 200%;
-  animation: galaxy-drift 28s ease-in-out infinite alternate-reverse;
-  pointer-events: none;
-  z-index: 0;
-}
-.brief-footer { position: relative; overflow: hidden; }
-.brief-footer > * { position: relative; z-index: 1; }
+/* ── RESET previous shimmer overlays ──────────────────────────────────────── */
+.masthead::before,.masthead::after,.brief-footer::before{display:none!important;content:none!important}
+.brief-footer{position:static!important;overflow:visible!important}
 
-@keyframes galaxy-drift {
-  0%   { background-position: 0%   0%,  100%  0%,  50% 100%, 0%  100%; }
-  33%  { background-position: 40%  60%,  60%  40%,  30%  70%, 70%  30%; }
-  66%  { background-position: 80%  20%,  20%  80%,  70%  30%, 30%  70%; }
-  100% { background-position: 100% 100%,  0% 100%, 100%   0%, 100%  0%; }
-}
-@keyframes star-twinkle {
-  0%   { opacity: 0.7; }
-  50%  { opacity: 1.0; }
-  100% { opacity: 0.5; }
-}
-@media print {
-  .masthead::before, .masthead::after, .brief-footer::before { display: none; }
+/* ── DESIGN TOKENS: boosted domain fills, text, structure ─────────────────── */
+:root{
+  --text-hi:#F2EDE4;--text-md:#C8C0B0;--text-lo:#8C8478;--text-dim:#4C5060;
+  --color-crimson:#C81E2C;--color-gold:#C8A034;--color-gold-hi:#E8BC50;
+  --color-gold-dim:#6A5618;--color-gold-deep:#3A2C00;
+  --color-sep:#1C2438;--color-rule:#141C2E;--color-page:#04060E;
+  --color-panel:#090C1C;--color-header-bg:#030508;--color-strip-bg:#060818;
+  --color-strategic-bg:#060810;--color-exec-bg:#080800;
+  --exec-grad-start:#3A2C00;--exec-header-bg:#0E0C00;
+  --color-flash-bg:#0C0204;--color-note-hdr:#181200;--color-note-bg:#0C0A00;
+  --d5-muted:#2C5088;--d5-bg-deep:#000818;
+
+  /* D1 Battlespace/Crimson */
+  --d1-fill:#680E1C;--d1-shadow:#3C0810;--d1-deep:#160408;
+  --d1-bright:#E82E3C;--d1-body:#0F0809;
+  --d1-border:#280608;--d1-border-dk:#1A0406;
+  --d1-grad:linear-gradient(90deg,rgba(104,14,28,0) 0%,#680E1C 15%,#E82E3C 50%,#680E1C 85%,rgba(104,14,28,0) 100%);
+
+  /* D2 Escalation/Amber */
+  --d2-fill:#643600;--d2-shadow:#341C00;--d2-deep:#180C00;
+  --d2-bright:#ECA030;--d2-body:#130F08;
+  --d2-grad:linear-gradient(90deg,rgba(100,54,0,0) 0%,#643600 15%,#ECA030 50%,#643600 85%,rgba(100,54,0,0) 100%);
+
+  /* D3 Energy/Green */
+  --d3-fill:#063C1C;--d3-shadow:#031E0E;--d3-deep:#010C06;
+  --d3-bright:#2EC860;--d3-body:#09100A;
+  --d3-grad:linear-gradient(90deg,rgba(6,60,28,0) 0%,#063C1C 15%,#2EC860 50%,#063C1C 85%,rgba(6,60,28,0) 100%);
+
+  /* D4 Diplomatic/Purple */
+  --d4-fill:#280A5C;--d4-shadow:#160430;--d4-deep:#090218;
+  --d4-bright:#9A60E0;--d4-body:#0C0912;
+  --d4-grad:linear-gradient(90deg,rgba(40,10,92,0) 0%,#280A5C 15%,#9A60E0 50%,#280A5C 85%,rgba(40,10,92,0) 100%);
+
+  /* D5 Cyber/Steel-Blue */
+  --d5-fill:#002848;--d5-shadow:#001428;--d5-deep:#000610;
+  --d5-bright:#4498F0;--d5-body:#060A10;
+  --d5-grad:linear-gradient(90deg,rgba(0,40,72,0) 0%,#002848 15%,#4498F0 50%,#002848 85%,rgba(0,40,72,0) 100%);
+
+  /* D6 Maritime/Teal */
+  --d6-fill:#003C3C;--d6-shadow:#001E1E;--d6-deep:#000C0C;
+  --d6-bright:#36D8C8;--d6-body:#070E0E;
+  --d6-grad:linear-gradient(90deg,rgba(0,60,60,0) 0%,#003C3C 15%,#36D8C8 50%,#003C3C 85%,rgba(0,60,60,0) 100%);
+
+  /* Typography — unified scale */
+  --size-masthead:2.0rem;--size-section:0.8rem;--size-kj:0.965rem;
+  --size-body:0.9rem;--size-badge:0.58rem;--size-meta:0.72rem;
+  --size-note-h:0.7rem;--size-note-b:0.88rem;--size-aq:0.78rem;
+  --size-kpi-num:1.55rem;
 }
 
-/* ── GOC BRANDING ROW ────────────────────────────────────────────────────── */
-.masthead__branding {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 24px 10px;
-  gap: 16px;
+/* ── PAGE ─────────────────────────────────────────────────────────────────── */
+body{background:var(--color-page)}
+.brief{max-width:1080px}
+
+/* ── MASTHEAD — new brand-bar layout ─────────────────────────────────────── */
+.masthead{
+  background:#030508;
+  border-bottom:2px solid #141C2E;
+  position:sticky;top:0;z-index:100;
 }
-.masthead__org-left,
-.masthead__org-right {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
+/* BRAND BAR */
+.masthead__brand-bar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 22px;
+  background:linear-gradient(180deg,#060A14 0%,#030508 100%);
+  border-bottom:1px solid #101828;
 }
-.masthead__hero {
-  flex: 1 1 auto;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 0 24px;
+.masthead__brand-left{
+  display:flex;align-items:center;gap:0;flex:0 0 auto;
 }
-.masthead__img {
-  mix-blend-mode: screen;
-  background: transparent;
+.masthead__img--gov{
+  height:40px;width:auto;mix-blend-mode:screen;opacity:0.92;flex-shrink:0;
 }
-.masthead__img--cse { height: 44px; width: auto; }
-.masthead__img--goc { height: 36px; width: auto; }
-.brief-footer__flag {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 8px;
+.masthead__brand-divider{
+  width:1px;height:30px;
+  background:linear-gradient(180deg,transparent 0%,#3C4860 50%,transparent 100%);
+  margin:0 16px;flex-shrink:0;
 }
-.brief-footer__flag img {
-  height: 20px;
-  width: auto;
-  mix-blend-mode: screen;
-  vertical-align: middle;
+.masthead__brand-name{
+  display:flex;flex-direction:column;gap:0;line-height:1;
 }
-@media print {
-  .masthead__img--cse { height: 32pt; }
-  .masthead__img--goc { height: 26pt; }
-  .masthead__img      { mix-blend-mode: screen; }
-  .brief-footer__flag img { height: 16pt; }
+.masthead__brand-cse{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:1.35rem;font-weight:900;letter-spacing:0.18em;
+  color:#FFFFFF;
+  text-shadow:0 1px 14px rgba(200,30,44,0.45);
+}
+.masthead__brand-brief{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.58rem;font-weight:700;letter-spacing:0.28em;
+  color:#5C7090;text-transform:uppercase;margin-top:3px;
+}
+/* Right side: cycle + date + TLP */
+.masthead__brand-right{
+  display:flex;align-items:center;gap:20px;flex-shrink:0;
+}
+.masthead__cycle-wrap{
+  display:flex;flex-direction:column;align-items:flex-end;gap:1px;
+}
+.masthead__cycle-pre{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.5rem;letter-spacing:0.3em;color:#3A4860;font-weight:700;
+}
+.masthead__cycle-num{
+  font-family:"Palatino Linotype","Palatino",Georgia,serif;
+  font-size:1.7rem;font-weight:900;line-height:1;
+  color:#C8A034;
+  text-shadow:0 0 12px rgba(200,160,52,0.38);
+}
+.masthead__date-wrap{
+  display:flex;flex-direction:column;align-items:flex-end;gap:5px;
+}
+.masthead__date{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.68rem;font-weight:600;color:#B0A898;letter-spacing:0.04em;
 }
 
-/* ── BRIGHTNESS & CONTRAST BOOST ────────────────────────────────────────── */
-/* Override token values with true-white primary text */
-:root {
-  --text-hi:  #FFFFFF;
-  --text-md:  #D8D2C8;
-  --text-lo:  #A09888;
-  --text-dim: #5C5860;
-  --color-gold:    #D4AA40;
-  --color-gold-hi: #F0C844;
-  --color-crimson: #D42030;
+/* ── Hide old branding markup that may still exist ────────────────────────── */
+.masthead__branding,.masthead__hero,.masthead__org-left,.masthead__org-right,
+.masthead__title-block,.masthead__cycle-block{display:none!important}
+
+/* ── CRIMSON RULE ─────────────────────────────────────────────────────────── */
+.masthead__crimson-rule{
+  height:3px;border:none;
+  background:linear-gradient(90deg,
+    transparent 0%,rgba(200,30,44,0.35) 8%,
+    #C81E2C 28%,#F03040 50%,#C81E2C 72%,
+    rgba(200,30,44,0.35) 92%,transparent 100%);
+  box-shadow:0 0 12px rgba(200,30,44,0.55);
 }
 
-/* ── SENSATIONAL MASTHEAD TYPOGRAPHY ─────────────────────────────────────── */
-.masthead__title-main {
-  font-size: 3.2rem !important;
-  font-weight: 900 !important;
-  letter-spacing: 0.12em !important;
-  color: #FFFFFF !important;
-  text-shadow: 0 0 32px rgba(212,32,48,0.7), 0 2px 8px rgba(0,0,0,0.9) !important;
+/* ── STATUS STRIP ─────────────────────────────────────────────────────────── */
+.masthead__strip{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  background:#050810;border-bottom:1px solid #141C2E;
 }
-.masthead__title-year {
-  font-size: 3.2rem !important;
-  font-weight: 300 !important;
-  letter-spacing: 0.18em !important;
-  color: #D4AA40 !important;
-  text-shadow: 0 0 24px rgba(212,170,64,0.6) !important;
+.masthead__strip-cell{
+  background:#060918;padding:8px 10px;
+  border-right:1px solid #141C2E;
+  display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;
 }
-.masthead__subtitle {
-  font-size: 0.78rem !important;
-  letter-spacing: 0.28em !important;
-  color: #B8B0A0 !important;
-  text-transform: uppercase !important;
+.masthead__strip-cell:first-child{
+  background:linear-gradient(180deg,#3C0A14 0%,#1C0408 100%);
+  border-right-color:#2A0610;
 }
-.masthead__cycle-num {
-  font-size: 2.4rem !important;
-  font-weight: 900 !important;
-  color: #D4AA40 !important;
-  text-shadow: 0 0 18px rgba(212,170,64,0.55) !important;
+.masthead__strip-cell:last-child{border-right:none}
+.masthead__strip-top{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.95rem;font-weight:700;color:#F2EDE4;line-height:1.2;
 }
-.masthead__cycle-label {
-  font-size: 0.6rem !important;
-  letter-spacing: 0.3em !important;
-  color: #8888A0 !important;
+.masthead__strip-bot{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.53rem;color:#606878;letter-spacing:0.12em;
 }
-.masthead__cycle-date {
-  font-size: 0.72rem !important;
-  color: #C0B8A8 !important;
-  letter-spacing: 0.05em !important;
+.masthead__strip-cell:first-child .masthead__strip-top{color:#E8BF50}
+.masthead__strip-cell:first-child .masthead__strip-bot{color:#9A8040}
+
+/* ── CTX BAR ─────────────────────────────────────────────────────────────── */
+.masthead__ctx{
+  background:#030610;
+  border-top:1px solid #0E1428;border-bottom:1px solid #141C2E;
+  padding:5px 22px;display:flex;justify-content:space-between;align-items:center;
 }
-.masthead__cycle-meta {
-  font-size: 0.62rem !important;
-  color: #787070 !important;
-  font-family: 'IBM Plex Mono', monospace !important;
+.masthead__ctx-note{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.58rem;color:#4C5868;font-style:italic;
 }
-.masthead__crimson-rule {
-  height: 3px !important;
-  background: linear-gradient(90deg, transparent 0%, #D42030 20%, #FF4050 50%, #D42030 80%, transparent 100%) !important;
-  box-shadow: 0 0 12px rgba(212,32,48,0.8) !important;
+.masthead__tlp{font-size:0.56rem;padding:2px 6px;font-weight:700;letter-spacing:0.1em}
+.masthead__tlp--amber{background:#A06020;color:#FFF0C8}
+.masthead__tlp--red{background:#8B1020;color:#FFCCD0}
+.masthead__tlp--green{background:#205020;color:#C0F0C0}
+
+/* ── METADATA BAR ─────────────────────────────────────────────────────────── */
+.metadata-bar{
+  display:grid;grid-template-columns:repeat(3,auto) 1fr;
+  background:#040710;border-bottom:2px solid #141C2E;
+}
+.metadata-bar__cell{
+  padding:8px 18px;border-right:1px solid #141C2E;
+  display:flex;flex-direction:column;gap:3px;
+}
+.metadata-bar__cell:last-child{border-right:none}
+.metadata-bar__label{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.5rem;font-weight:700;letter-spacing:0.18em;
+  color:#3C4860;text-transform:uppercase;
+}
+.metadata-bar__value{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.75rem;color:#B8B0A0;
+}
+.metadata-bar__value--hi{color:#FFFFFF;font-weight:700}
+
+/* ── DOMAIN GRADIENT BARS — vivid horizontal accent lines ─────────────────── */
+.domain__gradient{height:4px}
+.domain--d1 .domain__gradient{background:var(--d1-grad);box-shadow:0 1px 10px rgba(232,46,60,0.5)}
+.domain--d2 .domain__gradient{background:var(--d2-grad);box-shadow:0 1px 10px rgba(236,160,48,0.45)}
+.domain--d3 .domain__gradient{background:var(--d3-grad);box-shadow:0 1px 10px rgba(46,200,96,0.45)}
+.domain--d4 .domain__gradient{background:var(--d4-grad);box-shadow:0 1px 10px rgba(154,96,224,0.45)}
+.domain--d5 .domain__gradient{background:var(--d5-grad);box-shadow:0 1px 10px rgba(68,152,240,0.45)}
+.domain--d6 .domain__gradient{background:var(--d6-grad);box-shadow:0 1px 10px rgba(54,216,200,0.45)}
+
+/* ── DOMAIN HEADERS — vivid, readable ─────────────────────────────────────── */
+.domain__header{display:grid;grid-template-columns:56px 1fr}
+.domain__num{font-size:18px;font-weight:900;padding:11px 8px}
+.domain__title-cell{padding:11px 16px}
+.domain__title{font-size:0.78rem;font-weight:800;letter-spacing:0.24em;color:#FFFFFF}
+.domain--d1 .domain__header{background:linear-gradient(135deg,#5C0E18 0%,#3C0A10 100%)}
+.domain--d2 .domain__header{background:linear-gradient(135deg,#583000 0%,#382000 100%)}
+.domain--d3 .domain__header{background:linear-gradient(135deg,#053418 0%,#031E0E 100%)}
+.domain--d4 .domain__header{background:linear-gradient(135deg,#220850 0%,#140432 100%)}
+.domain--d5 .domain__header{background:linear-gradient(135deg,#002040 0%,#001428 100%)}
+.domain--d6 .domain__header{background:linear-gradient(135deg,#003030 0%,#001C1C 100%)}
+
+/* AQ bar */
+.domain__aq{background:var(--color-panel);border-bottom:1px solid var(--color-rule);padding:7px 20px}
+.domain__aq-text{font-size:0.76rem;font-style:italic;color:#687080;line-height:1.5}
+
+/* ── KEY JUDGMENT BOXES ───────────────────────────────────────────────────── */
+.kj{padding:13px 20px;margin-bottom:8px;border-left-width:10px}
+.domain--d1 .kj{background:linear-gradient(135deg,#3C0A10 0%,#200408 100%)}
+.domain--d2 .kj{background:linear-gradient(135deg,#3C2000 0%,#201000 100%)}
+.domain--d3 .kj{background:linear-gradient(135deg,#032810 0%,#011408 100%)}
+.domain--d4 .kj{background:linear-gradient(135deg,#180640 0%,#0C0320 100%)}
+.domain--d5 .kj{background:linear-gradient(135deg,#001828 0%,#000C18 100%)}
+.domain--d6 .kj{background:linear-gradient(135deg,#002828 0%,#001414 100%)}
+.kj__label{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.53rem;letter-spacing:0.22em;font-weight:800;
+}
+.kj__text{
+  font-family:"Palatino Linotype","Palatino",Georgia,serif;
+  font-size:0.965rem;font-weight:700;color:#F0EBE2;line-height:1.65;
+  text-shadow:0 1px 8px rgba(0,0,0,0.5);
+}
+.kj__basis{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:0.67rem;color:#686880;margin-top:5px;font-style:italic;
 }
 
-/* ── STRIP CELLS ─────────────────────────────────────────────────────────── */
-.masthead__strip-top {
-  font-size: 1.15rem !important;
-  font-weight: 700 !important;
-  color: #FFFFFF !important;
+/* ── BODY WRAP ────────────────────────────────────────────────────────────── */
+.body-wrap{padding:0 20px 12px;border-left-width:3px}
+.domain--d1 .body-wrap{background:#0E0809}
+.domain--d2 .body-wrap{background:#110E08}
+.domain--d3 .body-wrap{background:#09100A}
+.domain--d4 .body-wrap{background:#0B0912}
+.domain--d5 .body-wrap{background:#060A10}
+.domain--d6 .body-wrap{background:#070E0E}
+
+/* Sub-labels */
+.sub-label{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.53rem;letter-spacing:0.2em;font-weight:700;
+  padding:10px 0 4px;border-bottom:1px solid var(--color-sep);margin-bottom:8px;
 }
-.masthead__strip-bot {
-  font-size: 0.6rem !important;
-  color: #9090A8 !important;
-  letter-spacing: 0.15em !important;
+.sub-label--observed{color:#5C6878}
+.sub-label--assessment{color:#906C30}
+
+/* Body paragraphs */
+.body-para{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:0.9rem;color:#C8C0B0;line-height:1.75;margin-bottom:10px;
+}
+.body-para__source{
+  font-family:"IBM Plex Mono","Courier New",monospace;
+  font-size:0.55rem;color:#4C5868;font-style:italic;
 }
 
-/* ── STRATEGIC HEADER ────────────────────────────────────────────────────── */
-.strategic-header__judgment {
-  font-size: 1.25rem !important;
-  font-weight: 700 !important;
-  color: #FFFFFF !important;
-  line-height: 1.45 !important;
-  letter-spacing: 0.01em !important;
+/* ── STRATEGIC HEADER ─────────────────────────────────────────────────────── */
+.strategic-header{
+  background:linear-gradient(135deg,#060810 0%,#0A0C1A 60%,#060810 100%);
+  border-left:5px solid #C81E2C;border-bottom:2px solid #141C2E;
+  padding:14px 22px;
 }
-.strategic-header__label {
-  font-size: 0.62rem !important;
-  color: #D42030 !important;
-  letter-spacing: 0.3em !important;
-  font-weight: 700 !important;
+.strategic-header__label{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.56rem;color:#C81E2C;letter-spacing:0.24em;font-weight:800;margin-bottom:6px;
 }
-
-/* ── DOMAIN TITLES ───────────────────────────────────────────────────────── */
-.domain__title {
-  font-size: 1.3rem !important;
-  font-weight: 800 !important;
-  color: #FFFFFF !important;
-  letter-spacing: 0.06em !important;
-}
-.domain__title-num {
-  font-size: 2.0rem !important;
-  font-weight: 900 !important;
-  opacity: 0.35 !important;
-}
-.domain__aq-text {
-  font-size: 0.85rem !important;
-  color: #C8C0B0 !important;
-  font-style: italic !important;
+.strategic-header__judgment{
+  font-family:"Palatino Linotype","Palatino",Georgia,serif;
+  font-size:1.1rem;font-weight:700;color:#FFFFFF;line-height:1.5;
 }
 
-/* ── KEY JUDGMENT BOXES ──────────────────────────────────────────────────── */
-.kj__text {
-  font-size: 1.0rem !important;
-  color: #F0EBE0 !important;
-  line-height: 1.65 !important;
+/* ── FLASH POINTS ─────────────────────────────────────────────────────────── */
+.flash-points{background:#0C0204}
+.flash-points__label{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.56rem;color:#E83040;font-weight:800;letter-spacing:0.2em;
 }
-.kj__label {
-  font-size: 0.6rem !important;
-  letter-spacing: 0.28em !important;
-  font-weight: 800 !important;
-  color: #FF5060 !important;
+.flash-points__item-headline{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.88rem;font-weight:700;color:#FFFFFF;
 }
-.kj__basis {
-  font-size: 0.72rem !important;
-  color: #9090A0 !important;
+.flash-points__item-detail{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:0.82rem;color:#C0B8A8;line-height:1.5;
 }
 
-/* ── BODY PARAGRAPHS ─────────────────────────────────────────────────────── */
-.body-para {
-  font-size: 0.915rem !important;
-  color: #D8D2C8 !important;
-  line-height: 1.75 !important;
+/* ── EXECUTIVE SECTION ────────────────────────────────────────────────────── */
+.exec__gradient{
+  background:linear-gradient(90deg,
+    transparent 0%,rgba(200,160,52,0.28) 10%,
+    #C8A034 35%,#E8BC50 50%,#C8A034 65%,
+    rgba(200,160,52,0.28) 90%,transparent 100%);
+  height:4px;box-shadow:0 1px 8px rgba(200,160,52,0.35);
 }
-.sub-label {
-  font-size: 0.58rem !important;
-  letter-spacing: 0.25em !important;
-  font-weight: 700 !important;
-  color: #A0A8B8 !important;
+.exec__header{
+  background:linear-gradient(135deg,#0E0C00 0%,#181400 100%);
+  border-left:5px solid #C8A034;padding:11px 22px;
 }
-.sub-label--assessment {
-  color: #D4AA40 !important;
+.exec__header-title{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.76rem;font-weight:800;letter-spacing:0.24em;color:#C8A034;
 }
-
-/* ── EXECUTIVE SECTION ───────────────────────────────────────────────────── */
-.exec__bluf-text {
-  font-size: 0.95rem !important;
-  color: #F0EBE0 !important;
-  line-height: 1.7 !important;
+.exec__bluf{background:#0A0900;border-left:5px solid #C8A034;padding:12px 22px}
+.exec__bluf-label{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.53rem;color:#6A5618;letter-spacing:0.18em;
 }
-.exec__bluf-label {
-  color: #D42030 !important;
-  letter-spacing: 0.2em !important;
-  font-size: 0.6rem !important;
+.exec__bluf-text{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:0.9rem;color:#EDE8DF;line-height:1.72;
 }
-.exec__header-title {
-  font-size: 1.3rem !important;
-  font-weight: 800 !important;
-  color: #FFFFFF !important;
-  letter-spacing: 0.12em !important;
-}
-.exec__kj-text {
-  color: #E0DAD0 !important;
-  font-size: 0.875rem !important;
+.exec__kj-list{background:#090800;border-left:5px solid #C8A034}
+.exec__kj-text{
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:0.88rem;color:#D8D0C0;
 }
 
-/* ── FLASH POINTS ────────────────────────────────────────────────────────── */
-.flash-points__label {
-  color: #FF3040 !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.25em !important;
+/* KPI strip */
+.kpi-strip__cell{padding:11px 10px;border-right:2px solid var(--color-page)}
+.kpi-strip__number{
+  font-family:"Palatino Linotype","Palatino",Georgia,serif;
+  font-size:1.5rem;font-weight:900;
 }
-.flash-points__item-headline {
-  font-size: 0.9rem !important;
-  font-weight: 700 !important;
-  color: #FFFFFF !important;
-}
-.flash-points__item-detail {
-  color: #C0B8A8 !important;
-  font-size: 0.82rem !important;
+.kpi-strip__label{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.52rem;color:#606878;letter-spacing:0.1em;
 }
 
-/* ── METADATA BAR ────────────────────────────────────────────────────────── */
-.metadata-bar__label {
-  font-size: 0.55rem !important;
-  color: #7080A0 !important;
-  letter-spacing: 0.22em !important;
+/* ── ANALYST / DISSENTER NOTES ────────────────────────────────────────────── */
+.analyst-note__header{
+  background:linear-gradient(135deg,#181200 0%,#100E00 100%);
+  border-left:5px solid #C8A034;border-top:2px solid #C8A034;
 }
-.metadata-bar__value {
-  font-size: 0.8rem !important;
-  color: #D0C8B8 !important;
+.analyst-note__title{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.66rem;color:#C8A034;letter-spacing:0.18em;
 }
-.metadata-bar__value--hi {
-  font-size: 0.9rem !important;
-  color: #FFFFFF !important;
-  font-weight: 700 !important;
+.analyst-note__body{background:#0C0A00;border-left:5px solid #C8A034}
+.analyst-note__text{
+  font-family:Georgia,"Times New Roman",serif;
+  color:#DDD5C0;font-size:0.88rem;line-height:1.72;
 }
-
-/* ── TLP BADGE ───────────────────────────────────────────────────────────── */
-.masthead__ctx-note {
-  color: #8890A8 !important;
-  font-size: 0.7rem !important;
+.dissenter-note__header{background:#000910;border-left:5px solid #4498F0;border-top:2px solid #4498F0}
+.dissenter-note__title{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.66rem;color:#4498F0;letter-spacing:0.16em;
 }
-
-/* ── WARNING INDICATORS ──────────────────────────────────────────────────── */
-.wi-section-header {
-  color: #FFFFFF !important;
-  font-size: 1.15rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.1em !important;
-}
-.wi-table th {
-  color: #C0C8D8 !important;
-  font-size: 0.62rem !important;
-  letter-spacing: 0.18em !important;
-}
-.wi-table td {
-  color: #D0C8B8 !important;
-  font-size: 0.8rem !important;
-}
-.wi-table .wi-name {
-  color: #FFFFFF !important;
-  font-weight: 600 !important;
+.dissenter-note__body{background:#000608;border-left:5px solid #4498F0}
+.dissenter-note__text{
+  font-family:Georgia,"Times New Roman",serif;
+  color:#C8D0E0;font-size:0.88rem;line-height:1.72;
 }
 
-/* ── PROB BARS ───────────────────────────────────────────────────────────── */
-.prob-bar { height: 4px !important; }
-
-/* ── CITATION STATUS ─────────────────────────────────────────────────────── */
-.cite--claimed  { color: #D4AA40; font-style: italic; }
-.cite--disputed { color: #FF4050; font-weight: 700; }
-
-/* ── SECTION HEADER TEXT ─────────────────────────────────────────────────── */
-.collection-gaps__header,
-.warning-indicators__header,
-.caveats__header {
-  color: #FFFFFF !important;
-  font-size: 1.15rem !important;
-  font-weight: 800 !important;
-  letter-spacing: 0.1em !important;
+/* ── FOOTER ───────────────────────────────────────────────────────────────── */
+.brief-footer{
+  background:linear-gradient(180deg,#040710 0%,#020408 100%);
+  border-top:3px solid #C81E2C;padding:16px 24px;
+  display:flex;justify-content:space-between;align-items:center;
 }
-.gap-item__title {
-  color: #E8E0D0 !important;
-  font-weight: 600 !important;
-}
-.gap-item__text {
-  color: #C0B8A8 !important;
+.brief-footer__cycle{color:#FFFFFF;font-weight:700;font-size:0.85rem}
+.brief-footer__note{color:#3C5070;font-size:0.65rem}
+.brief-footer__flag{display:flex;align-items:center;gap:8px;margin-top:4px}
+.brief-footer__flag img{height:20px;width:auto;mix-blend-mode:screen}
+
+/* ── PRINT ────────────────────────────────────────────────────────────────── */
+@media print{
+  body{background:#000000!important}
+  .masthead{position:static!important}
+  .domain__gradient,.masthead__crimson-rule,.exec__gradient{box-shadow:none!important}
+  #cse-editor-toggle,#cse-editor-panel{display:none!important}
 }
 
-/* ── ANALYST / DISSENTER NOTES ───────────────────────────────────────────── */
-.analyst-note__header,
-.dissenter-note__header {
-  color: #FFFFFF !important;
-  font-weight: 700 !important;
-}
-.analyst-note__text,
-.dissenter-note__text {
-  color: #D0C8B8 !important;
-  font-size: 0.875rem !important;
-  line-height: 1.7 !important;
-}
+/* ── EDITOR PANEL CHROME ──────────────────────────────────────────────────── */
+@media print{#cse-editor-toggle,#cse-editor-panel{display:none!important}}
 
-/* ── BRIEF FOOTER ────────────────────────────────────────────────────────── */
-.brief-footer__cycle {
-  color: #FFFFFF !important;
-  font-weight: 700 !important;
-  font-size: 0.9rem !important;
+#cse-editor-toggle{
+  position:fixed;bottom:28px;right:28px;z-index:9999;
+  width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,#1C2238 0%,#0E1424 100%);
+  border:1px solid #303C58;
+  color:#C8A034;font-size:18px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.6);
+  display:flex;align-items:center;justify-content:center;
+  transition:background 0.2s,box-shadow 0.2s;
 }
-.brief-footer__note {
-  color: #9090A8 !important;
-  font-size: 0.72rem !important;
+#cse-editor-toggle:hover{
+  background:linear-gradient(135deg,#2A3248 0%,#1A2034 100%);
+  box-shadow:0 6px 28px rgba(200,160,52,0.2);
+}
+#cse-editor-panel{
+  position:fixed;top:0;right:0;bottom:0;z-index:9998;
+  width:320px;
+  background:linear-gradient(180deg,#070B18 0%,#040710 100%);
+  border-left:1px solid #1C2438;
+  display:none;flex-direction:column;
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  box-shadow:-8px 0 40px rgba(0,0,0,0.7);
+  overflow:hidden;
+}
+#cse-editor-panel.open{display:flex}
+.ep-header{
+  background:linear-gradient(135deg,#0E1428 0%,#060A18 100%);
+  border-bottom:2px solid #C81E2C;
+  padding:14px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+}
+.ep-header-title{color:#FFFFFF;font-size:0.72rem;font-weight:700;letter-spacing:0.2em}
+.ep-header-close{
+  background:none;border:none;color:#808898;cursor:pointer;
+  font-size:16px;padding:0;line-height:1;
+}
+.ep-header-close:hover{color:#FFFFFF}
+.ep-tabs{
+  display:flex;border-bottom:1px solid #141C2E;flex-shrink:0;
+}
+.ep-tab{
+  flex:1;padding:8px 4px;background:none;border:none;cursor:pointer;
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.55rem;font-weight:700;letter-spacing:0.12em;
+  color:#505868;text-transform:uppercase;border-bottom:2px solid transparent;
+  transition:color 0.15s,border-color 0.15s;
+}
+.ep-tab.active{color:#C8A034;border-bottom-color:#C8A034}
+.ep-tab:hover:not(.active){color:#9898A8}
+.ep-body{flex:1;overflow-y:auto;padding:14px 16px}
+.ep-body::-webkit-scrollbar{width:4px}
+.ep-body::-webkit-scrollbar-track{background:#040710}
+.ep-body::-webkit-scrollbar-thumb{background:#1C2438;border-radius:2px}
+.ep-section-title{
+  font-size:0.53rem;font-weight:700;letter-spacing:0.2em;
+  color:#C81E2C;text-transform:uppercase;
+  border-bottom:1px solid #1C2438;padding-bottom:5px;margin:12px 0 8px;
+}
+.ep-section-title:first-child{margin-top:0}
+.ep-row{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+.ep-label{
+  font-size:0.55rem;letter-spacing:0.1em;color:#7080A0;
+  flex:0 0 auto;min-width:80px;
+}
+.ep-input,.ep-select{
+  flex:1;background:#0A0E1C;border:1px solid #1C2438;border-radius:3px;
+  color:#D0C8B8;font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.65rem;padding:5px 7px;outline:none;
+}
+.ep-input:focus,.ep-select:focus{border-color:#C8A034}
+.ep-select{cursor:pointer}
+input[type=color].ep-color{
+  width:36px;height:26px;padding:1px;border-radius:3px;cursor:pointer;
+}
+.ep-btn{
+  display:block;width:100%;padding:8px;
+  background:linear-gradient(135deg,#1C2238 0%,#0E1424 100%);
+  border:1px solid #303C58;border-radius:3px;
+  color:#C8A034;font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.62rem;font-weight:700;letter-spacing:0.1em;
+  cursor:pointer;margin-bottom:8px;text-align:center;
+  transition:background 0.15s;
+}
+.ep-btn:hover{background:linear-gradient(135deg,#2A3248 0%,#1A2034 100%)}
+.ep-btn--red{border-color:#3C1020;color:#E83040}
+.ep-status{
+  font-size:0.58rem;color:#4C5868;font-style:italic;
+  text-align:center;padding:6px;
+}
+.ep-edit-active .ep-editable{
+  outline:1px dashed rgba(200,160,52,0.4);
+  border-radius:1px;cursor:text;
+}
+.ep-edit-active .ep-editable:focus{
+  outline:1px solid #C8A034;background:rgba(200,160,52,0.04);
 }
 """)
     return '\n'.join(chunks)
 
+
+_EDITOR_PANEL_HTML = '<!-- CSE BRIEF EDITOR PANEL -->\n<button id="cse-editor-toggle" title="Open Brief Editor" aria-label="Open editor">&#x270E;</button>\n\n<div id="cse-editor-panel" role="dialog" aria-label="Brief Editor">\n  <div class="ep-header">\n    <span class="ep-header-title">CSE BRIEF EDITOR</span>\n    <button class="ep-header-close" onclick="CSEEditor.close()" title="Close">&times;</button>\n  </div>\n  <div class="ep-tabs">\n    <button class="ep-tab active" onclick="CSEEditor.tab(this,\'content\')" data-tab="content">CONTENT</button>\n    <button class="ep-tab" onclick="CSEEditor.tab(this,\'style\')" data-tab="style">STYLE</button>\n    <button class="ep-tab" onclick="CSEEditor.tab(this,\'meta\')" data-tab="meta">META</button>\n    <button class="ep-tab" onclick="CSEEditor.tab(this,\'export\')" data-tab="export">EXPORT</button>\n  </div>\n\n  <!-- CONTENT TAB -->\n  <div class="ep-body" id="ep-content">\n    <div class="ep-section-title">Text Editing</div>\n    <button class="ep-btn" onclick="CSEEditor.toggleEdit()">&or; Enable Content Editing</button>\n    <div class="ep-status" id="ep-edit-status">Click above to make all text fields editable inline</div>\n    <div class="ep-section-title">Quick Fields</div>\n    <div class="ep-row"><span class="ep-label">Region</span>\n      <input class="ep-input" id="qf-region" placeholder="" oninput="CSEEditor.qf(\'ed-region\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">Context Note</span>\n      <input class="ep-input" id="qf-ctx" placeholder="" oninput="CSEEditor.qf(\'ed-ctx\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">Cycle No.</span>\n      <input class="ep-input" id="qf-cycle" placeholder="" oninput="CSEEditor.qf(\'ed-cycle-num\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">Date</span>\n      <input class="ep-input" id="qf-date" placeholder="" oninput="CSEEditor.qf(\'ed-date\',this.value)"></div>\n  </div>\n\n  <!-- STYLE TAB -->\n  <div class="ep-body" id="ep-style" style="display:none">\n    <div class="ep-section-title">Structural Colours</div>\n    <div class="ep-row"><span class="ep-label">Crimson</span>\n      <input type="color" class="ep-color ep-input" value="#C81E2C"\n        oninput="CSEEditor.cssVar(\'--color-crimson\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">Gold</span>\n      <input type="color" class="ep-color ep-input" value="#C8A034"\n        oninput="CSEEditor.cssVar(\'--color-gold\',this.value)"></div>\n    <div class="ep-section-title">Domain Accent Colours</div>\n    <div class="ep-row"><span class="ep-label">D1 Crimson</span>\n      <input type="color" class="ep-color ep-input" value="#E82E3C"\n        oninput="CSEEditor.cssVar(\'--d1-bright\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">D2 Amber</span>\n      <input type="color" class="ep-color ep-input" value="#ECA030"\n        oninput="CSEEditor.cssVar(\'--d2-bright\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">D3 Green</span>\n      <input type="color" class="ep-color ep-input" value="#2EC860"\n        oninput="CSEEditor.cssVar(\'--d3-bright\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">D4 Purple</span>\n      <input type="color" class="ep-color ep-input" value="#9A60E0"\n        oninput="CSEEditor.cssVar(\'--d4-bright\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">D5 Blue</span>\n      <input type="color" class="ep-color ep-input" value="#4498F0"\n        oninput="CSEEditor.cssVar(\'--d5-bright\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">D6 Teal</span>\n      <input type="color" class="ep-color ep-input" value="#36D8C8"\n        oninput="CSEEditor.cssVar(\'--d6-bright\',this.value)"></div>\n    <div class="ep-section-title">Text Colours</div>\n    <div class="ep-row"><span class="ep-label">Primary</span>\n      <input type="color" class="ep-color ep-input" value="#F2EDE4"\n        oninput="CSEEditor.cssVar(\'--text-hi\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">Body</span>\n      <input type="color" class="ep-color ep-input" value="#C8C0B0"\n        oninput="CSEEditor.cssVar(\'--text-md\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">Muted</span>\n      <input type="color" class="ep-color ep-input" value="#8C8478"\n        oninput="CSEEditor.cssVar(\'--text-lo\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">Dim</span>\n      <input type="color" class="ep-color ep-input" value="#4C5060"\n        oninput="CSEEditor.cssVar(\'--text-dim\',this.value)"></div>\n    <div class="ep-section-title">Page Surfaces</div>\n    <div class="ep-row"><span class="ep-label">Page bg</span>\n      <input type="color" class="ep-color ep-input" value="#04060E"\n        oninput="CSEEditor.cssVar(\'--color-page\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">Panel bg</span>\n      <input type="color" class="ep-color ep-input" value="#090C1C"\n        oninput="CSEEditor.cssVar(\'--color-panel\',this.value)"></div>\n    <div class="ep-section-title">Typography Scale</div>\n    <div class="ep-row"><span class="ep-label">Body</span>\n      <input class="ep-input" value="0.9rem" oninput="CSEEditor.cssVar(\'--size-body\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">Key Judgment</span>\n      <input class="ep-input" value="0.965rem" oninput="CSEEditor.cssVar(\'--size-kj\',this.value)"></div>\n    <div class="ep-row"><span class="ep-label">Badges</span>\n      <input class="ep-input" value="0.58rem" oninput="CSEEditor.cssVar(\'--size-badge\',this.value)"></div>\n    <div style="margin-top:10px">\n      <button class="ep-btn ep-btn--red" onclick="CSEEditor.resetStyles()">Reset Styles</button>\n    </div>\n  </div>\n\n  <!-- META TAB -->\n  <div class="ep-body" id="ep-meta" style="display:none">\n    <div class="ep-section-title">Threat Assessment</div>\n    <div class="ep-row"><span class="ep-label">Threat Level</span>\n      <select class="ep-select" onchange="CSEEditor.setThreat(this.value)">\n        <option value="CRITICAL">CRITICAL</option>\n        <option value="SEVERE" selected>SEVERE</option>\n        <option value="ELEVATED">ELEVATED</option>\n        <option value="GUARDED">GUARDED</option>\n        <option value="LOW">LOW</option>\n      </select></div>\n    <div class="ep-row"><span class="ep-label">Trajectory</span>\n      <select class="ep-select" onchange="CSEEditor.setTrajectory(this.value)">\n        <option value="escalating" selected>Escalating</option>\n        <option value="stable">Stable</option>\n        <option value="de-escalating">De-escalating</option>\n      </select></div>\n    <div class="ep-section-title">Distribution</div>\n    <div class="ep-row"><span class="ep-label">TLP Level</span>\n      <select class="ep-select" onchange="CSEEditor.setTLP(this.value)">\n        <option value="AMBER" selected>TLP:AMBER</option>\n        <option value="RED">TLP:RED</option>\n        <option value="GREEN">TLP:GREEN</option>\n        <option value="CLEAR">TLP:CLEAR</option>\n      </select></div>\n    <div class="ep-section-title">Strip Cells</div>\n    <div id="ep-strip-cells"></div>\n    <div class="ep-section-title">Domain Visibility</div>\n    <div id="ep-domain-toggles"></div>\n  </div>\n\n  <!-- EXPORT TAB -->\n  <div class="ep-body" id="ep-export" style="display:none">\n    <div class="ep-section-title">Export</div>\n    <button class="ep-btn" onclick="CSEEditor.exportHTML()">Download HTML</button>\n    <button class="ep-btn" onclick="CSEEditor.copyHTML()">Copy HTML to Clipboard</button>\n    <div class="ep-section-title">Print / PDF</div>\n    <button class="ep-btn" onclick="CSEEditor.printBrief()">Print / Save as PDF</button>\n    <div class="ep-status">Editor panel is hidden from all print output</div>\n    <div class="ep-section-title">Reset</div>\n    <button class="ep-btn ep-btn--red" onclick="CSEEditor.resetAll()">Reset All Changes</button>\n  </div>\n</div>\n\n<script>\n(function(){\n\'use strict\';\nvar root=document.documentElement;\nvar editMode=false;\nvar origStyles={};\nvar EDITABLE_SEL=[\n  \'.kj__text\',\'.kj__basis\',\n  \'.body-para\',\n  \'.exec__bluf-text\',\'.exec__kj-text\',\n  \'.flash-points__item-headline\',\'.flash-points__item-detail\',\n  \'.strategic-header__judgment\',\n  \'.masthead__brand-brief\',\n  \'.masthead__strip-top\',\'.masthead__strip-bot\',\n  \'.domain__aq-text\',\'.domain__title\',\n  \'.analyst-note__text\',\'.dissenter-note__text\',\n  \'.sub-label\',\n  \'.brief-footer__cycle\',\'.brief-footer__note\',\n  \'.metadata-bar__value\'\n].join(\',\');\nvar THREAT={\n  CRITICAL:\'threat-level--critical\',SEVERE:\'threat-level--severe\',\n  ELEVATED:\'threat-level--elevated\',GUARDED:\'threat-level--guarded\',LOW:\'threat-level--low\'\n};\nvar TRAJ={\n  \'escalating\':{cls:\'trajectory-badge--escalating\',text:\'ESCALATING\'},\n  \'stable\':{cls:\'trajectory-badge--stable\',text:\'STABLE\'},\n  \'de-escalating\':{cls:\'trajectory-badge--de-escalating\',text:\'DE-ESCALATING\'}\n};\nvar TLP_CLS={\n  AMBER:\'masthead__tlp--amber\',RED:\'masthead__tlp--red\',\n  GREEN:\'masthead__tlp--green\',CLEAR:\'masthead__tlp--clear\'\n};\nfunction initStripCells(){\n  var cells=document.querySelectorAll(\'.masthead__strip-cell\');\n  var container=document.getElementById(\'ep-strip-cells\');\n  if(!container)return;\n  container.innerHTML=\'\';\n  cells.forEach(function(cell,i){\n    var top=cell.querySelector(\'.masthead__strip-top\');\n    var bot=cell.querySelector(\'.masthead__strip-bot\');\n    if(!top||!bot)return;\n    var row=document.createElement(\'div\');\n    row.style.cssText=\'margin-bottom:10px;border:1px solid #1C2438;border-radius:3px;padding:7px 8px\';\n    row.innerHTML=\'<div style="font-size:0.5rem;color:#505868;letter-spacing:0.15em;margin-bottom:5px">CELL \'+(i+1)+\'</div>\'+\n      \'<div class="ep-row"><span class="ep-label">Value</span>\'+\n      \'<input class="ep-input" value="\'+top.textContent.replace(/"/g,\'&quot;\')+\'" data-i="\'+i+\'" data-f="top"></div>\'+\n      \'<div class="ep-row"><span class="ep-label">Label</span>\'+\n      \'<input class="ep-input" value="\'+bot.textContent.replace(/"/g,\'&quot;\')+\'" data-i="\'+i+\'" data-f="bot"></div>\';\n    row.querySelectorAll(\'input\').forEach(function(inp){\n      inp.addEventListener(\'input\',function(){\n        var c=cells[this.dataset.i];\n        var el=c.querySelector(\'.masthead__strip-\'+this.dataset.f);\n        if(el)el.textContent=this.value;\n      });\n    });\n    container.appendChild(row);\n  });\n}\nfunction initDomainToggles(){\n  var domains=document.querySelectorAll(\'.domain\');\n  var container=document.getElementById(\'ep-domain-toggles\');\n  if(!container)return;\n  container.innerHTML=\'\';\n  domains.forEach(function(d){\n    var title=d.querySelector(\'.domain__title\');\n    var label=title?title.textContent.trim():\'Domain\';\n    var row=document.createElement(\'div\');\n    row.className=\'ep-row\';\n    row.innerHTML=\'<span class="ep-label">\'+label+\'</span>\'+\n      \'<select class="ep-select" style="flex:0 0 auto;width:80px">\'+\n      \'<option value="block">Show</option><option value="none">Hide</option></select>\';\n    row.querySelector(\'select\').addEventListener(\'change\',function(){\n      d.style.display=this.value;\n    });\n    container.appendChild(row);\n  });\n}\nwindow.CSEEditor={\n  open:function(){document.getElementById(\'cse-editor-panel\').classList.add(\'open\');},\n  close:function(){document.getElementById(\'cse-editor-panel\').classList.remove(\'open\');},\n  tab:function(btn,name){\n    document.querySelectorAll(\'.ep-tab\').forEach(function(t){t.classList.remove(\'active\');});\n    btn.classList.add(\'active\');\n    [\'content\',\'style\',\'meta\',\'export\'].forEach(function(t){\n      document.getElementById(\'ep-\'+t).style.display=(t===name)?\'\':\'none\';\n    });\n  },\n  toggleEdit:function(){\n    editMode=!editMode;\n    document.querySelectorAll(EDITABLE_SEL).forEach(function(el){\n      el.contentEditable=editMode?\'true\':\'false\';\n      el.classList.toggle(\'ep-editable\',editMode);\n    });\n    if(editMode)document.body.classList.add(\'ep-edit-active\');\n    else document.body.classList.remove(\'ep-edit-active\');\n    var btn=document.querySelector(\'#ep-content .ep-btn\');\n    var status=document.getElementById(\'ep-edit-status\');\n    if(editMode){\n      btn.textContent=\'Disable Content Editing\';\n      btn.style.borderColor=\'#C8A034\';\n      status.textContent=\'Click any text on the page to edit it directly\';\n      status.style.color=\'#C8A034\';\n    }else{\n      btn.textContent=\'Enable Content Editing\';\n      btn.style.borderColor=\'\';\n      status.textContent=\'Click above to make all text fields editable inline\';\n      status.style.color=\'\';\n    }\n  },\n  qf:function(id,val){\n    var el=document.getElementById(id);\n    if(el)el.textContent=val;\n  },\n  cssVar:function(name,val){\n    if(!origStyles[name])origStyles[name]=root.style.getPropertyValue(name);\n    root.style.setProperty(name,val);\n  },\n  resetStyles:function(){\n    Object.keys(origStyles).forEach(function(k){root.style.removeProperty(k);});\n    origStyles={};\n  },\n  setThreat:function(val){\n    var el=document.getElementById(\'ed-threat\');\n    if(!el)return;\n    el.className=\'threat-level \'+(THREAT[val]||\'\');\n    el.textContent=val;\n  },\n  setTrajectory:function(val){\n    var el=document.getElementById(\'ed-traj\');\n    if(!el)return;\n    var cfg=TRAJ[val]||TRAJ[\'escalating\'];\n    el.className=\'trajectory-badge \'+cfg.cls;\n    el.textContent=cfg.text;\n  },\n  setTLP:function(val){\n    document.querySelectorAll(\'.masthead__tlp\').forEach(function(el){\n      el.className=\'masthead__tlp \'+(TLP_CLS[val]||\'masthead__tlp--amber\');\n      el.textContent=\'TLP:\'+val;\n    });\n  },\n  exportHTML:function(){\n    var panel=document.getElementById(\'cse-editor-panel\');\n    var toggle=document.getElementById(\'cse-editor-toggle\');\n    panel.classList.remove(\'open\');\n    setTimeout(function(){\n      var html=\'<!DOCTYPE html>\\n\'+document.documentElement.outerHTML;\n      var blob=new Blob([html],{type:\'text/html;charset=utf-8\'});\n      var a=document.createElement(\'a\');\n      a.href=URL.createObjectURL(blob);\n      a.download=\'cse-intelligence-brief.html\';\n      a.click();\n      URL.revokeObjectURL(a.href);\n      panel.classList.add(\'open\');\n    },100);\n  },\n  copyHTML:function(){\n    var html=\'<!DOCTYPE html>\\n\'+document.documentElement.outerHTML;\n    navigator.clipboard.writeText(html).then(function(){\n      var status=document.querySelector(\'#ep-export .ep-status\');\n      var prev=status.textContent;\n      status.textContent=\'Copied!\';\n      setTimeout(function(){status.textContent=prev;},2000);\n    });\n  },\n  printBrief:function(){window.print();},\n  resetAll:function(){\n    if(confirm(\'Reset all edits?\'))window.location.reload();\n  }\n};\ndocument.getElementById(\'cse-editor-toggle\').addEventListener(\'click\',function(){\n  var panel=document.getElementById(\'cse-editor-panel\');\n  if(panel.classList.contains(\'open\'))CSEEditor.close();\n  else{CSEEditor.open();initStripCells();initDomainToggles();}\n});\nfunction syncQF(inputId,elId){\n  var inp=document.getElementById(inputId);\n  var el=document.getElementById(elId);\n  if(inp&&el)inp.value=el.textContent.trim();\n}\nsyncQF(\'qf-region\',\'ed-region\');\nsyncQF(\'qf-ctx\',\'ed-ctx\');\nsyncQF(\'qf-cycle\',\'ed-cycle-num\');\nsyncQF(\'qf-date\',\'ed-date\');\n})();\n</script>\n<!-- END CSE BRIEF EDITOR PANEL -->\n'
 
 # ── Main renderer ─────────────────────────────────────────────────────────────
 
@@ -641,6 +753,7 @@ class HtmlRenderer:
             self._collection_gaps(),
             self._caveats(),
             self._footer(),
+            self._editor_panel(),
         ])
         return self._page(sections)
 
@@ -687,52 +800,55 @@ class HtmlRenderer:
 
         strip_cells_html = self._strip_cells(m.get('stripCells', []))
 
-        return f"""<header class="masthead">
-  <div class="masthead__branding">
-    <div class="masthead__org-left">
-      <img src="data:image/png;base64,{_CANADA_FLAG_BANNER_B64}" alt="Government of Canada / Gouvernement du Canada" class="masthead__img masthead__img--cse">
-    </div>
-    <div class="masthead__hero">
-      <div class="masthead__title-block">
-        <div class="masthead__title">
-          <span class="masthead__title-main">CSE </span><span class="masthead__title-year">INTEL</span>
-        </div>
-        <div class="masthead__subtitle">{subtitle}</div>
-      </div>
-      <div class="masthead__cycle-block">
-        <div class="masthead__cycle-label">CYCLE</div>
-        <div class="masthead__cycle-num">{cycle_num}</div>
-        <div class="masthead__cycle-date">{date_long}</div>
-        <div class="masthead__cycle-meta">{ts_fmt}</div>
+        return f"""<header class="masthead" id="cse-masthead">
+  <!-- BRAND BAR: GOC logo left | CSE wordmark | Cycle right -->
+  <div class="masthead__brand-bar">
+    <div class="masthead__brand-left">
+      <img src="data:image/png;base64,{_CANADA_FLAG_BANNER_B64}" alt="Government of Canada / Gouvernement du Canada" class="masthead__img masthead__img--gov">
+      <div class="masthead__brand-divider"></div>
+      <div class="masthead__brand-name">
+        <span class="masthead__brand-cse">CSE</span>
+        <span class="masthead__brand-brief">INTELLIGENCE BRIEF</span>
       </div>
     </div>
-    <div class="masthead__org-right">
-      <img src="data:image/png;base64,{_CANADA_FLAG_GOC_B64}" alt="Canada" class="masthead__img masthead__img--goc">
+    <div class="masthead__brand-right">
+      <div class="masthead__cycle-wrap">
+        <span class="masthead__cycle-pre">CYCLE</span>
+        <span class="masthead__cycle-num" id="ed-cycle-num">{cycle_num}</span>
+      </div>
+      <div class="masthead__date-wrap">
+        <span class="masthead__date" id="ed-date">{date_long}</span>
+        <span class="masthead__tlp {tlp_cls}" id="ed-tlp-badge">TLP:{_e(tlp)}</span>
+      </div>
     </div>
   </div>
+  <!-- CRIMSON RULE -->
   <div class="masthead__crimson-rule"></div>
+  <!-- STATUS STRIP: 5 domain KPI cells -->
   <div class="masthead__strip">
     {strip_cells_html}
   </div>
+  <!-- CONTEXT / DISTRIBUTION BAR -->
   <div class="masthead__ctx">
-    <span class="masthead__ctx-note">{ctx_note}</span>
+    <span class="masthead__ctx-note" id="ed-ctx">{ctx_note}</span>
     <span class="masthead__tlp {tlp_cls}">TLP:{_e(tlp)}</span>
   </div>
+  <!-- METADATA ROW: region · threat · trajectory -->
   <div class="metadata-bar">
     <div class="metadata-bar__cell">
       <div class="metadata-bar__label">REGION</div>
-      <div class="metadata-bar__value metadata-bar__value--hi">{region}</div>
+      <div class="metadata-bar__value metadata-bar__value--hi" id="ed-region">{region}</div>
     </div>
     <div class="metadata-bar__cell">
       <div class="metadata-bar__label">THREAT LEVEL</div>
       <div class="metadata-bar__value">
-        <span class="threat-level {threat_cls}">{_e(threat)}</span>
+        <span class="threat-level {threat_cls}" id="ed-threat">{_e(threat)}</span>
       </div>
     </div>
     <div class="metadata-bar__cell">
       <div class="metadata-bar__label">TRAJECTORY</div>
       <div class="metadata-bar__value">
-        <span class="trajectory-badge {traj_cls}">{traj_label}</span>
+        <span class="trajectory-badge {traj_cls}" id="ed-traj">{traj_label}</span>
       </div>
     </div>
   </div>
@@ -1244,6 +1360,17 @@ class HtmlRenderer:
   </div>''' if conf_assess else ''}
   {dis_html}
 </section>"""
+
+
+    # ── EDITOR PANEL ────────────────────────────────────────────────────────
+
+    def _editor_panel(self) -> str:
+        """
+        In-browser editor panel.  Hidden from print/PDF via @media print.
+        Provides: contenteditable text editing, CSS-variable colour overrides,
+        metadata controls (threat, trajectory, TLP), and HTML export.
+        """
+        return _EDITOR_PANEL_HTML
 
     # ── FOOTER ──────────────────────────────────────────────────────────────
 
