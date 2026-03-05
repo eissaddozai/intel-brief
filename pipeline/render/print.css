@@ -145,7 +145,7 @@
   .body-para { font-size: 9.5pt; line-height: 1.55; orphans: 3; widows: 3; }
 
   /* ── Page break control ──────────────────────────────────────────────────── */
-  .masthead            { break-inside: avoid; break-after: page; }
+  .masthead            { break-inside: avoid; }
   .strategic-header    { break-inside: avoid; break-after: avoid; }
   .flash-points        { break-inside: avoid; }
   .kj                  { break-inside: avoid; }
