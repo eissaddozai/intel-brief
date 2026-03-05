@@ -52,11 +52,18 @@ jobs:
           cache: 'pip'
 
       - name: Install core dependencies
-        run: pip install anthropic pyyaml requests
+        run: pip install pyyaml requests
+
+      # ── Claude Code CLI (agent mode only) ────────────────────────────────
+      # agent_brief.py spawns `claude -p` subprocesses via subprocess.run.
+      # Node.js ships with ubuntu-latest; this adds the claude CLI to PATH.
+      - name: Install Claude Code CLI
+        if: ${{ github.event.inputs.mode != 'staged' }}
+        run: npm install -g @anthropic-ai/claude-code
 
       - name: Install staged-pipeline extras (staged mode only)
         if: ${{ github.event.inputs.mode == 'staged' }}
-        run: pip install beautifulsoup4
+        run: pip install anthropic beautifulsoup4
 
       - name: Install Playwright (staged mode only)
         if: ${{ github.event.inputs.mode == 'staged' }}
