@@ -80,11 +80,13 @@ jobs:
           INPUT_DATE: ${{ github.event.inputs.date }}
           INPUT_MODEL: ${{ github.event.inputs.model || 'claude-sonnet-4-6' }}
         run: |
-          DATE_ARG=""
+          # Export model so the commit step can include it in the message
+          echo "USED_MODEL=$INPUT_MODEL" >> "$GITHUB_ENV"
           if [ -n "$INPUT_DATE" ]; then
-            DATE_ARG="--date $INPUT_DATE"
+            python pipeline/main.py agent --date "$INPUT_DATE" --model "$INPUT_MODEL"
+          else
+            python pipeline/main.py agent --model "$INPUT_MODEL"
           fi
-          python pipeline/main.py agent $DATE_ARG --model "$INPUT_MODEL"
 
       # ── Staged mode (legacy / explicit) ───────────────────────────────────
       - name: Run staged pipeline
@@ -96,15 +98,16 @@ jobs:
           INPUT_DATE: ${{ github.event.inputs.date }}
           INPUT_FORCE: ${{ github.event.inputs.force }}
         run: |
-          DATE_ARG=""
+          echo "USED_MODEL=staged" >> "$GITHUB_ENV"
           FORCE_ARG=""
-          if [ -n "$INPUT_DATE" ]; then
-            DATE_ARG="--date $INPUT_DATE"
-          fi
           if [ "$INPUT_FORCE" = "true" ]; then
             FORCE_ARG="--force"
           fi
-          python pipeline/main.py run --auto-approve $DATE_ARG $FORCE_ARG
+          if [ -n "$INPUT_DATE" ]; then
+            python pipeline/main.py run --auto-approve --date "$INPUT_DATE" $FORCE_ARG
+          else
+            python pipeline/main.py run --auto-approve $FORCE_ARG
+          fi
 
       - name: Render print-ready HTML (staged mode)
         if: ${{ github.event.inputs.mode == 'staged' }}
@@ -130,8 +133,7 @@ jobs:
             echo "No new cycle generated — nothing to commit"
           else
             CYCLE_DATE=$(date -u +%Y-%m-%d)
-            MODE="${{ github.event.inputs.mode || 'agent' }}"
-            git commit -m "cycle: ${CYCLE_DATE} — daily brief [${MODE}]"
+            git commit -m "cycle: ${CYCLE_DATE} — daily brief [${USED_MODEL:-claude-sonnet-4-6}]"
             git push origin main
           fi
 

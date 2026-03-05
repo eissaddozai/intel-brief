@@ -46,14 +46,18 @@ jobs:
         env:
           INPUT_CYCLE: ${{ github.event.inputs.cycle }}
         run: |
-          CYCLE_ARG=""
           if [ -n "$INPUT_CYCLE" ]; then
-            CYCLE_ARG="--cycle $INPUT_CYCLE"
+            python pipeline/main.py render --cycle "$INPUT_CYCLE"
+          else
+            python pipeline/main.py render
           fi
-          python pipeline/main.py render $CYCLE_ARG
           # Capture the output path for subsequent steps
           BRIEF=$(ls -t briefs/brief_*.html 2>/dev/null | head -1)
-          echo "brief_path=$BRIEF" >> $GITHUB_OUTPUT
+          if [ -z "$BRIEF" ]; then
+            echo "ERROR: No HTML brief was rendered" >&2
+            exit 1
+          fi
+          echo "brief_path=$BRIEF" >> "$GITHUB_OUTPUT"
           echo "Rendered: $BRIEF"
 
       - name: Upload HTML brief

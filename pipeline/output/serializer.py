@@ -32,6 +32,12 @@ REQUIRED_META = {'cycleId', 'cycleNum', 'classification', 'tlp', 'timestamp',
 VALID_DOMAIN_IDS = {'d1', 'd2', 'd3', 'd4', 'd5', 'd6'}
 VALID_TLP = {'RED', 'AMBER', 'GREEN', 'CLEAR'}
 VALID_THREAT = {'CRITICAL', 'SEVERE', 'ELEVATED', 'GUARDED', 'LOW'}
+VALID_TRAJECTORY = {'escalating', 'stable', 'de-escalating'}
+VALID_CONFIDENCE_LANGUAGE = {
+    'almost-certainly', 'highly-likely', 'likely',
+    'possibly', 'unlikely', 'almost-certainly-not',
+}
+VALID_WI_STATUS = {'watching', 'triggered', 'elevated', 'cleared'}
 
 
 def _next_cycle_number(cycles_dir: Path) -> int:
@@ -72,17 +78,30 @@ def validate(cycle: dict) -> list[str]:
     if meta.get('threatLevel') not in VALID_THREAT:
         errors.append(f"Invalid threatLevel: {meta.get('threatLevel')!r}")
 
+    if meta.get('threatTrajectory') not in VALID_TRAJECTORY:
+        errors.append(f"Invalid threatTrajectory: {meta.get('threatTrajectory')!r}")
+
     # Domains
     domains = cycle.get('domains', [])
     if not domains:
         errors.append('No domains in cycle')
     for d in domains:
+        did = d.get('id', '?')
         if d.get('id') not in VALID_DOMAIN_IDS:
-            errors.append(f"Invalid domain id: {d.get('id')!r}")
-        if not d.get('keyJudgment'):
-            errors.append(f"Domain {d.get('id')} missing keyJudgment")
+            errors.append(f"Invalid domain id: {did!r}")
+        kj = d.get('keyJudgment') or {}
+        if not kj:
+            errors.append(f"Domain {did} missing keyJudgment")
+        else:
+            if not kj.get('text'):
+                errors.append(f"Domain {did}: keyJudgment.text is empty")
+            lang = kj.get('language')
+            if not lang:
+                errors.append(f"Domain {did}: keyJudgment.language is missing")
+            elif lang not in VALID_CONFIDENCE_LANGUAGE:
+                errors.append(f"Domain {did}: invalid confidence language {lang!r}")
         if not d.get('bodyParagraphs'):
-            errors.append(f"Domain {d.get('id')} missing bodyParagraphs")
+            errors.append(f"Domain {did} missing bodyParagraphs")
 
     # Executive
     executive = cycle.get('executive', {})
@@ -91,10 +110,14 @@ def validate(cycle: dict) -> list[str]:
     if not executive.get('keyJudgments'):
         errors.append('Executive missing keyJudgments')
 
-    # Warning indicators — just structural
+    # Warning indicators — structural + enum
     for wi in cycle.get('warningIndicators', []):
-        if 'indicator' not in wi or 'status' not in wi:
-            errors.append(f"Malformed warningIndicator: {wi.get('id', '?')}")
+        wid = wi.get('id', '?')
+        if not wi.get('indicator'):
+            errors.append(f"warningIndicator {wid}: indicator is missing")
+        status = wi.get('status')
+        if status not in VALID_WI_STATUS:
+            errors.append(f"warningIndicator {wid}: invalid status {status!r}")
 
     return errors
 

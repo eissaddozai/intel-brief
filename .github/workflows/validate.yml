@@ -43,16 +43,22 @@ jobs:
 
       # ── Schema validation ──────────────────────────────────────────────────
       - name: Validate cycle JSON against schema
+        env:
+          INPUT_CYCLE: ${{ github.event.inputs.cycle }}
         run: |
           python - <<'EOF'
           import json
+          import os
           import sys
           from pathlib import Path
 
-          # Resolve the cycle to validate
-          cycle_arg = "${{ github.event.inputs.cycle }}"
+          # Resolve the cycle to validate — read from env to avoid shell injection
+          cycle_arg = os.environ.get("INPUT_CYCLE", "").strip()
           if cycle_arg:
               cycle_path = Path(cycle_arg)
+              if not cycle_path.exists():
+                  print(f"ERROR: Specified cycle path does not exist: {cycle_path}")
+                  sys.exit(1)
           else:
               latest = Path("cycles/latest.json")
               if latest.exists():
@@ -69,78 +75,107 @@ jobs:
 
           errors = []
 
-          # Required top-level keys
+          # ── Top-level keys ─────────────────────────────────────────────────
           required_keys = {"meta", "strategicHeader", "executive", "domains",
                            "warningIndicators", "collectionGaps", "caveats", "footer"}
           missing = required_keys - set(cycle.keys())
           if missing:
-              errors.append(f"Missing top-level keys: {missing}")
+              errors.append(f"Missing top-level keys: {sorted(missing)}")
 
-          # meta fields
+          # ── Meta fields ────────────────────────────────────────────────────
           meta = cycle.get("meta", {})
-          for field in ("cycleId", "classification", "tlp", "timestamp",
-                        "threatLevel", "threatTrajectory", "subtitle"):
+          for field in ("cycleId", "cycleNum", "classification", "tlp", "timestamp",
+                        "threatLevel", "threatTrajectory", "subtitle", "contextNote",
+                        "region", "analystUnit"):
               if not meta.get(field):
                   errors.append(f"meta.{field} is missing or empty")
 
-          # threatLevel must be a known value
-          valid_levels = {"CRITICAL", "SEVERE", "ELEVATED", "GUARDED", "LOW"}
-          if meta.get("threatLevel") not in valid_levels:
+          VALID_LEVELS = {"CRITICAL", "SEVERE", "ELEVATED", "GUARDED", "LOW"}
+          if meta.get("threatLevel") not in VALID_LEVELS:
               errors.append(
-                  f"meta.threatLevel '{meta.get('threatLevel')}' not in {valid_levels}"
+                  f"meta.threatLevel '{meta.get('threatLevel')}' not in {sorted(VALID_LEVELS)}"
               )
 
-          # domains: expect all six
+          VALID_TRAJECTORIES = {"escalating", "stable", "de-escalating"}
+          if meta.get("threatTrajectory") not in VALID_TRAJECTORIES:
+              errors.append(
+                  f"meta.threatTrajectory '{meta.get('threatTrajectory')}' not in {sorted(VALID_TRAJECTORIES)}"
+              )
+
+          VALID_TLP = {"RED", "AMBER", "GREEN", "CLEAR"}
+          if meta.get("tlp") not in VALID_TLP:
+              errors.append(f"meta.tlp '{meta.get('tlp')}' not in {sorted(VALID_TLP)}")
+
+          # ── Domains ────────────────────────────────────────────────────────
+          VALID_CONFIDENCE = {
+              "almost-certainly", "highly-likely", "likely",
+              "possibly", "unlikely", "almost-certainly-not",
+          }
           domains = cycle.get("domains", [])
           domain_ids = {d.get("id") for d in domains}
           expected_ids = {"d1", "d2", "d3", "d4", "d5", "d6"}
           missing_domains = expected_ids - domain_ids
           if missing_domains:
-              errors.append(f"Missing domain sections: {missing_domains}")
+              errors.append(f"Missing domain sections: {sorted(missing_domains)}")
 
-          # Each domain must have a keyJudgment with text
           for d in domains:
               did = d.get("id", "?")
               kj = d.get("keyJudgment", {})
               if not kj.get("text"):
                   errors.append(f"Domain {did}: keyJudgment.text is empty")
+              lang = kj.get("language")
+              if not lang:
+                  errors.append(f"Domain {did}: keyJudgment.language is missing")
+              elif lang not in VALID_CONFIDENCE:
+                  errors.append(f"Domain {did}: invalid confidence language '{lang}'")
               if not d.get("bodyParagraphs"):
                   errors.append(f"Domain {did}: bodyParagraphs is empty")
 
-          # executive BLUF and key judgments
+          # ── Executive ──────────────────────────────────────────────────────
           executive = cycle.get("executive", {})
           if not executive.get("bluf"):
               errors.append("executive.bluf is empty")
           if not executive.get("keyJudgments"):
               errors.append("executive.keyJudgments is empty")
 
-          # Confidence language enum — language field is required on every keyJudgment
-          VALID_CONFIDENCE = {
-              "almost-certainly", "highly-likely", "likely",
-              "possibly", "unlikely", "almost-certainly-not",
-          }
-          for d in domains:
-              kj = d.get("keyJudgment", {})
-              lang = kj.get("language")
-              if not lang:
-                  errors.append(
-                      f"Domain {d.get('id')}: keyJudgment.language is missing"
-                  )
-              elif lang not in VALID_CONFIDENCE:
-                  errors.append(
-                      f"Domain {d.get('id')}: invalid confidence language '{lang}'"
-                  )
+          # ── Warning indicators ─────────────────────────────────────────────
+          VALID_WI_STATUS = {"watching", "triggered", "elevated", "cleared"}
+          for wi in cycle.get("warningIndicators", []):
+              wid = wi.get("id", "?")
+              if not wi.get("indicator"):
+                  errors.append(f"warningIndicator {wid}: indicator is missing")
+              if wi.get("status") not in VALID_WI_STATUS:
+                  errors.append(f"warningIndicator {wid}: invalid status '{wi.get('status')}'")
 
+          # ── Caveats + footer ───────────────────────────────────────────────
+          caveats = cycle.get("caveats", {})
+          if not caveats.get("handling"):
+              errors.append("caveats.handling is missing")
+          footer = cycle.get("footer", {})
+          if not footer.get("id"):
+              errors.append("footer.id is missing")
+          if not footer.get("classification"):
+              errors.append("footer.classification is missing")
+
+          # ── Result ─────────────────────────────────────────────────────────
           if errors:
               print(f"\nVALIDATION FAILED — {len(errors)} error(s):\n")
               for e in errors:
                   print(f"  ✗ {e}")
               sys.exit(1)
           else:
+              domain_confs = {d.get("id"): d.get("keyJudgment", {}).get("confidence", "?") for d in domains}
+              wi_count = len(cycle.get("warningIndicators", []))
+              gap_count = len(cycle.get("collectionGaps", []))
               print(f"\nVALIDATION PASSED")
-              print(f"  Cycle ID : {meta.get('cycleId')}")
-              print(f"  Domains  : {sorted(domain_ids)}")
-              print(f"  Threat   : {meta.get('threatLevel')} / {meta.get('threatTrajectory')}")
+              print(f"  Cycle ID      : {meta.get('cycleId')}")
+              print(f"  Cycle num     : {meta.get('cycleNum')}")
+              print(f"  Domains       : {sorted(domain_ids)}")
+              print(f"  Confidence    : {domain_confs}")
+              print(f"  Threat        : {meta.get('threatLevel')} / {meta.get('threatTrajectory')}")
+              print(f"  Warning inds  : {wi_count}")
+              print(f"  Collection gaps: {gap_count}")
+              print(f"  Handling      : {caveats.get('handling', '—')}")
           EOF
 
       # ── Pretty-print summary ───────────────────────────────────────────────
