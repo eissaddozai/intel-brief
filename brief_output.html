@@ -2605,7 +2605,7 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 /* ── MASTHEAD BRAND BAR ───────────────────────────────────────────────────── */
 .masthead__brand-bar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:16px 26px;background:#030407;
+  padding:40px 32px 36px;background:#030407;
 }
 .masthead__brand-left{flex:0 0 auto}
 
@@ -2667,13 +2667,15 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 /* Strip */
 .masthead__strip{
   display:grid;grid-template-columns:repeat(5,1fr);
-  background:#04060C;border-bottom:1px solid #10162A;
+  background:#04060C;
 }
 .masthead__strip-cell{
-  background:#060810;padding:9px 10px;border-right:1px solid #10162A;
+  background:#060810;padding:9px 10px;
+  border-right:1px solid;
+  border-image:linear-gradient(to bottom,transparent 0%,rgba(24,30,48,.55) 28%,rgba(24,30,48,.55) 72%,transparent 100%) 1;
   display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;
 }
-.masthead__strip-cell:first-child{background:#160408;border-right-color:#1E0408}
+.masthead__strip-cell:first-child{background:#160408}
 .masthead__strip-cell:last-child{border-right:none}
 .masthead__strip-top{
   font-family:"Trebuchet MS",Arial,sans-serif;font-size:.90rem;font-weight:700;
@@ -2687,14 +2689,14 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 
 /* Ctx bar */
 .masthead__ctx{
-  background:#030509;border-bottom:1px solid #10162A;
+  background:#030509;
   padding:5px 26px;display:flex;justify-content:space-between;align-items:center;
 }
 .masthead__ctx-note{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.54rem;color:#383E4C;font-style:italic}
 
 /* Metadata bar */
-.metadata-bar{display:grid;grid-template-columns:repeat(3,auto) 1fr;background:#030509;border-bottom:2px solid #10162A}
-.metadata-bar__cell{padding:7px 18px;border-right:1px solid #10162A;display:flex;flex-direction:column;gap:3px}
+.metadata-bar{display:grid;grid-template-columns:repeat(3,auto) 1fr;background:#030509;box-shadow:0 1px 0 rgba(16,22,42,.70)}
+.metadata-bar__cell{padding:7px 18px;border-right:1px solid;border-image:linear-gradient(to bottom,transparent 0%,rgba(24,30,48,.50) 25%,rgba(24,30,48,.50) 75%,transparent 100%) 1;display:flex;flex-direction:column;gap:3px}
 .metadata-bar__cell:last-child{border-right:none}
 .metadata-bar__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.47rem;font-weight:700;letter-spacing:.16em;color:#2C3440;text-transform:uppercase}
 .metadata-bar__value{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.72rem;color:#A09888}
@@ -2740,7 +2742,7 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 .sub-label{
   font-family:"Trebuchet MS",Arial,sans-serif;
   font-size:.50rem;letter-spacing:.18em;font-weight:700;
-  padding:10px 0 4px;border-bottom:1px solid var(--color-sep);margin-bottom:8px;
+  padding:10px 0 4px;margin-bottom:8px;
 }
 .sub-label--observed{color:#484E5C}.sub-label--assessment{color:#7C5C24}
 .body-para{
@@ -2750,7 +2752,7 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 .body-para__source{font-family:"IBM Plex Mono","Courier New",monospace;font-size:.50rem;color:#383E4A;font-style:italic}
 
 /* ── STRATEGIC HEADER ─────────────────────────────────────────────────────── */
-.strategic-header{background:#060710;border-left:4px solid #B81C28;border-bottom:1px solid #10162A;padding:14px 22px}
+.strategic-header{background:#060710;border-left:4px solid #B81C28;padding:14px 22px}
 .strategic-header__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.52rem;color:#B81C28;letter-spacing:.20em;font-weight:800;margin-bottom:5px}
 .strategic-header__judgment{font-family:"Palatino Linotype","Palatino",Georgia,serif;font-size:1.05rem;font-weight:700;color:#F0EAE0;line-height:1.5}
 
@@ -2774,17 +2776,17 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 .kpi-strip__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.49rem;color:#484E5C;letter-spacing:.10em}
 
 /* ── NOTES ────────────────────────────────────────────────────────────────── */
-.analyst-note__header{background:#120F00;border-left:4px solid #C4A030;border-top:1px solid #C4A030}
+.analyst-note__header{background:#120F00;border-left:4px solid #C4A030}
 .analyst-note__title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.62rem;color:#C4A030;letter-spacing:.16em}
 .analyst-note__body{background:#0A0800;border-left:4px solid #C4A030}
 .analyst-note__text{font-family:Georgia,"Times New Roman",serif;color:#D8D0C0;font-size:.86rem;line-height:1.70}
-.dissenter-note__header{background:#000710;border-left:4px solid #3C8CE0;border-top:1px solid #3C8CE0}
+.dissenter-note__header{background:#000710;border-left:4px solid #3C8CE0}
 .dissenter-note__title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.62rem;color:#3C8CE0;letter-spacing:.14em}
 .dissenter-note__body{background:#000508;border-left:4px solid #3C8CE0}
 .dissenter-note__text{font-family:Georgia,"Times New Roman",serif;color:#C4CCE0;font-size:.86rem;line-height:1.70}
 
 /* ── FOOTER ───────────────────────────────────────────────────────────────── */
-.brief-footer{background:#030407;border-top:2px solid #B81C28;padding:14px 26px;display:flex;justify-content:space-between;align-items:center}
+.brief-footer{background:#030407;box-shadow:inset 0 1px 0 rgba(184,24,40,.22);padding:14px 26px;display:flex;justify-content:space-between;align-items:center}
 .brief-footer__main{display:flex;flex-direction:column;gap:4px}
 .brief-footer__cycle{color:#F0EAE0;font-weight:700;font-size:.80rem}
 .brief-footer__note{color:#2C3848;font-size:.60rem}
@@ -3203,106 +3205,173 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
   <div class="brief-footer__handling">PLACEHOLDER — NOT FOR DISTRIBUTION</div>
 </footer>
 <!-- CSE BRIEF EDITOR PANEL -->
-<button id="cse-editor-toggle" title="Open Brief Editor" aria-label="Open editor">&#x270E;</button>
+<button id="cse-editor-toggle" title="Open editor" aria-label="Open editor">&#x270E;</button>
 
 <div id="cse-editor-panel" role="dialog" aria-label="Brief Editor">
-  <div class="ep-header">
-    <span class="ep-header-title">CSE BRIEF EDITOR</span>
-    <button class="ep-header-close" onclick="CSEEditor.close()" title="Close">&times;</button>
+  <div class="ep-header" id="ep-drag-handle">
+    <span class="ep-header-title">&#x2630; CSE BRIEF EDITOR</span>
+    <div style="display:flex;align-items:center;gap:8px">
+      <span style="font-size:.48rem;color:#383E4C;letter-spacing:.1em">DRAG TO MOVE</span>
+      <button class="ep-header-close" onclick="CSEEditor.close()" title="Close">&times;</button>
+    </div>
   </div>
   <div class="ep-tabs">
-    <button class="ep-tab active" onclick="CSEEditor.tab(this,'content')" data-tab="content">CONTENT</button>
+    <button class="ep-tab active" onclick="CSEEditor.tab(this,'content')" data-tab="content">TEXT</button>
+    <button class="ep-tab" onclick="CSEEditor.tab(this,'arrange')" data-tab="arrange">MOVE</button>
     <button class="ep-tab" onclick="CSEEditor.tab(this,'style')" data-tab="style">STYLE</button>
     <button class="ep-tab" onclick="CSEEditor.tab(this,'meta')" data-tab="meta">META</button>
     <button class="ep-tab" onclick="CSEEditor.tab(this,'export')" data-tab="export">EXPORT</button>
   </div>
 
-  <!-- CONTENT TAB -->
-  <div class="ep-body" id="ep-content">
-    <div class="ep-section-title">Text Editing</div>
-    <button class="ep-btn" onclick="CSEEditor.toggleEdit()">&or; Enable Content Editing</button>
-    <div class="ep-status" id="ep-edit-status">Click above to make all text fields editable inline</div>
+  <!-- ══ TEXT TAB ══════════════════════════════════════════════════ -->
+  <div class="ep-body ep-tab-pane" id="ep-content">
+    <div class="ep-section-title">Inline Text Editing</div>
+    <button class="ep-btn" id="ep-edit-btn" onclick="CSEEditor.toggleEdit()">Enable Editing</button>
+    <div class="ep-status" id="ep-edit-status">Enables click-to-edit on every text element in the brief</div>
+
+    <div id="ep-fmt-bar" style="display:none;gap:4px;margin-bottom:8px;flex-wrap:wrap">
+      <button class="ep-fmt-btn" onclick="CSEEditor.fmt('bold')" title="Bold"><b>B</b></button>
+      <button class="ep-fmt-btn" onclick="CSEEditor.fmt('italic')" title="Italic"><i>I</i></button>
+      <button class="ep-fmt-btn" onclick="CSEEditor.fmt('underline')" title="Underline"><u>U</u></button>
+      <button class="ep-fmt-btn" onclick="CSEEditor.fmt('strikeThrough')" title="Strike">S&#x0336;</button>
+      <button class="ep-fmt-btn" onclick="CSEEditor.fmt('removeFormat')" title="Clear">&#x2715;</button>
+    </div>
+
     <div class="ep-section-title">Quick Fields</div>
     <div class="ep-row"><span class="ep-label">Region</span>
-      <input class="ep-input" id="qf-region" placeholder="" oninput="CSEEditor.qf('ed-region',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Context Note</span>
-      <input class="ep-input" id="qf-ctx" placeholder="" oninput="CSEEditor.qf('ed-ctx',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Cycle No.</span>
-      <input class="ep-input" id="qf-cycle" placeholder="" oninput="CSEEditor.qf('ed-cycle-num',this.value)"></div>
+      <input class="ep-input" id="qf-region" oninput="CSEEditor.qf('ed-region',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Context note</span>
+      <input class="ep-input" id="qf-ctx" oninput="CSEEditor.qf('ed-ctx',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Cycle no.</span>
+      <input class="ep-input" id="qf-cycle" oninput="CSEEditor.qf('ed-cycle-num',this.value)"></div>
     <div class="ep-row"><span class="ep-label">Date</span>
-      <input class="ep-input" id="qf-date" placeholder="" oninput="CSEEditor.qf('ed-date',this.value)"></div>
+      <input class="ep-input" id="qf-date" oninput="CSEEditor.qf('ed-date',this.value)"></div>
+
+    <div class="ep-section-title">Delete Element</div>
+    <div class="ep-status" id="ep-del-hint">Select any element on the page, then delete it</div>
+    <button class="ep-btn" id="ep-sel-btn" onclick="CSEEditor.togglePick()">Pick Element to Delete</button>
+    <button class="ep-btn ep-btn--red" id="ep-del-btn" style="display:none" onclick="CSEEditor.deleteSelected()">Delete Selected Element</button>
   </div>
 
-  <!-- STYLE TAB -->
-  <div class="ep-body" id="ep-style" style="display:none">
-    <div class="ep-section-title">Structural Colours</div>
+  <!-- ══ MOVE TAB ══════════════════════════════════════════════════ -->
+  <div class="ep-body ep-tab-pane" id="ep-arrange" style="display:none">
+    <div class="ep-section-title">Drag Sections to Reorder</div>
+    <button class="ep-btn" id="ep-drag-sections-btn" onclick="CSEEditor.toggleSectionDrag()">Enable Section Drag</button>
+    <div class="ep-status">Drag the handles &#x2195; on each section to reorder them</div>
+    <div id="ep-section-order"></div>
+
+    <div class="ep-section-title">Move Section</div>
+    <div id="ep-section-movers"></div>
+
+    <div class="ep-section-title">Drag Flash Points to Reorder</div>
+    <button class="ep-btn" id="ep-drag-flash-btn" onclick="CSEEditor.toggleFlashDrag()">Enable Flash Point Drag</button>
+
+    <div class="ep-section-title">Drag Exec Key Judgments</div>
+    <button class="ep-btn" id="ep-drag-kj-btn" onclick="CSEEditor.toggleKJDrag()">Enable KJ Drag</button>
+  </div>
+
+  <!-- ══ STYLE TAB ══════════════════════════════════════════════════ -->
+  <div class="ep-body ep-tab-pane" id="ep-style" style="display:none">
+    <div class="ep-section-title">Structural</div>
     <div class="ep-row"><span class="ep-label">Crimson</span>
-      <input type="color" class="ep-color ep-input" value="#C81E2C"
-        oninput="CSEEditor.cssVar('--color-crimson',this.value)"></div>
+      <input type="color" class="ep-color" value="#B81C28" oninput="CSEEditor.cssVar('--color-crimson',this.value)"></div>
     <div class="ep-row"><span class="ep-label">Gold</span>
-      <input type="color" class="ep-color ep-input" value="#C8A034"
-        oninput="CSEEditor.cssVar('--color-gold',this.value)"></div>
-    <div class="ep-section-title">Domain Accent Colours</div>
+      <input type="color" class="ep-color" value="#C4A030" oninput="CSEEditor.cssVar('--color-gold',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Gold hi</span>
+      <input type="color" class="ep-color" value="#E4B84C" oninput="CSEEditor.cssVar('--color-gold-hi',this.value)"></div>
+
+    <div class="ep-section-title">Domain Accents</div>
     <div class="ep-row"><span class="ep-label">D1 Crimson</span>
-      <input type="color" class="ep-color ep-input" value="#E82E3C"
-        oninput="CSEEditor.cssVar('--d1-bright',this.value)"></div>
+      <input type="color" class="ep-color" value="#D82838" oninput="CSEEditor.cssVar('--d1-bright',this.value)"></div>
     <div class="ep-row"><span class="ep-label">D2 Amber</span>
-      <input type="color" class="ep-color ep-input" value="#ECA030"
-        oninput="CSEEditor.cssVar('--d2-bright',this.value)"></div>
+      <input type="color" class="ep-color" value="#E09828" oninput="CSEEditor.cssVar('--d2-bright',this.value)"></div>
     <div class="ep-row"><span class="ep-label">D3 Green</span>
-      <input type="color" class="ep-color ep-input" value="#2EC860"
-        oninput="CSEEditor.cssVar('--d3-bright',this.value)"></div>
+      <input type="color" class="ep-color" value="#28B850" oninput="CSEEditor.cssVar('--d3-bright',this.value)"></div>
     <div class="ep-row"><span class="ep-label">D4 Purple</span>
-      <input type="color" class="ep-color ep-input" value="#9A60E0"
-        oninput="CSEEditor.cssVar('--d4-bright',this.value)"></div>
+      <input type="color" class="ep-color" value="#8A54D0" oninput="CSEEditor.cssVar('--d4-bright',this.value)"></div>
     <div class="ep-row"><span class="ep-label">D5 Blue</span>
-      <input type="color" class="ep-color ep-input" value="#4498F0"
-        oninput="CSEEditor.cssVar('--d5-bright',this.value)"></div>
+      <input type="color" class="ep-color" value="#3C8CE0" oninput="CSEEditor.cssVar('--d5-bright',this.value)"></div>
     <div class="ep-row"><span class="ep-label">D6 Teal</span>
-      <input type="color" class="ep-color ep-input" value="#36D8C8"
-        oninput="CSEEditor.cssVar('--d6-bright',this.value)"></div>
+      <input type="color" class="ep-color" value="#2EC0B0" oninput="CSEEditor.cssVar('--d6-bright',this.value)"></div>
+
+    <div class="ep-section-title">Domain Fills</div>
+    <div class="ep-row"><span class="ep-label">D1 fill</span>
+      <input type="color" class="ep-color" value="#5C0C16" oninput="CSEEditor.cssVar('--d1-fill',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">D2 fill</span>
+      <input type="color" class="ep-color" value="#583000" oninput="CSEEditor.cssVar('--d2-fill',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">D3 fill</span>
+      <input type="color" class="ep-color" value="#053418" oninput="CSEEditor.cssVar('--d3-fill',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">D4 fill</span>
+      <input type="color" class="ep-color" value="#220850" oninput="CSEEditor.cssVar('--d4-fill',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">D5 fill</span>
+      <input type="color" class="ep-color" value="#002040" oninput="CSEEditor.cssVar('--d5-fill',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">D6 fill</span>
+      <input type="color" class="ep-color" value="#003030" oninput="CSEEditor.cssVar('--d6-fill',this.value)"></div>
+
     <div class="ep-section-title">Text Colours</div>
     <div class="ep-row"><span class="ep-label">Primary</span>
-      <input type="color" class="ep-color ep-input" value="#F2EDE4"
-        oninput="CSEEditor.cssVar('--text-hi',this.value)"></div>
+      <input type="color" class="ep-color" value="#F0EAE0" oninput="CSEEditor.cssVar('--text-hi',this.value)"></div>
     <div class="ep-row"><span class="ep-label">Body</span>
-      <input type="color" class="ep-color ep-input" value="#C8C0B0"
-        oninput="CSEEditor.cssVar('--text-md',this.value)"></div>
+      <input type="color" class="ep-color" value="#C4BCB0" oninput="CSEEditor.cssVar('--text-md',this.value)"></div>
     <div class="ep-row"><span class="ep-label">Muted</span>
-      <input type="color" class="ep-color ep-input" value="#8C8478"
-        oninput="CSEEditor.cssVar('--text-lo',this.value)"></div>
+      <input type="color" class="ep-color" value="#888080" oninput="CSEEditor.cssVar('--text-lo',this.value)"></div>
     <div class="ep-row"><span class="ep-label">Dim</span>
-      <input type="color" class="ep-color ep-input" value="#4C5060"
-        oninput="CSEEditor.cssVar('--text-dim',this.value)"></div>
-    <div class="ep-section-title">Page Surfaces</div>
+      <input type="color" class="ep-color" value="#4A4C58" oninput="CSEEditor.cssVar('--text-dim',this.value)"></div>
+
+    <div class="ep-section-title">Surfaces</div>
     <div class="ep-row"><span class="ep-label">Page bg</span>
-      <input type="color" class="ep-color ep-input" value="#04060E"
-        oninput="CSEEditor.cssVar('--color-page',this.value)"></div>
+      <input type="color" class="ep-color" value="#040609" oninput="CSEEditor.cssVar('--color-page',this.value)"></div>
     <div class="ep-row"><span class="ep-label">Panel bg</span>
-      <input type="color" class="ep-color ep-input" value="#090C1C"
-        oninput="CSEEditor.cssVar('--color-panel',this.value)"></div>
+      <input type="color" class="ep-color" value="#08091A" oninput="CSEEditor.cssVar('--color-panel',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Header bg</span>
+      <input type="color" class="ep-color" value="#030407" oninput="CSEEditor.cssVar('--color-header-bg',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Strip bg</span>
+      <input type="color" class="ep-color" value="#060710" oninput="CSEEditor.cssVar('--color-strip-bg',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Exec bg</span>
+      <input type="color" class="ep-color" value="#080800" oninput="CSEEditor.cssVar('--color-exec-bg',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Note hdr bg</span>
+      <input type="color" class="ep-color" value="#160F00" oninput="CSEEditor.cssVar('--color-note-hdr',this.value)"></div>
+
+    <div class="ep-section-title">Confidence Badges</div>
+    <div class="ep-row"><span class="ep-label">Green</span>
+      <input type="color" class="ep-color" value="#26A050" oninput="CSEEditor.cssVar('--conf-green',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Blue</span>
+      <input type="color" class="ep-color" value="#3888D8" oninput="CSEEditor.cssVar('--conf-blue',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Amber</span>
+      <input type="color" class="ep-color" value="#DC8C28" oninput="CSEEditor.cssVar('--conf-amber',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Red</span>
+      <input type="color" class="ep-color" value="#DC2C3A" oninput="CSEEditor.cssVar('--conf-red',this.value)"></div>
+
     <div class="ep-section-title">Typography Scale</div>
+    <div class="ep-row"><span class="ep-label">Masthead</span>
+      <input class="ep-input" value="2.6rem" oninput="CSEEditor.cssVar('--size-masthead',this.value)"></div>
     <div class="ep-row"><span class="ep-label">Body</span>
-      <input class="ep-input" value="0.9rem" oninput="CSEEditor.cssVar('--size-body',this.value)"></div>
+      <input class="ep-input" value="0.88rem" oninput="CSEEditor.cssVar('--size-body',this.value)"></div>
     <div class="ep-row"><span class="ep-label">Key Judgment</span>
-      <input class="ep-input" value="0.965rem" oninput="CSEEditor.cssVar('--size-kj',this.value)"></div>
+      <input class="ep-input" value="0.94rem" oninput="CSEEditor.cssVar('--size-kj',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Section</span>
+      <input class="ep-input" value="0.76rem" oninput="CSEEditor.cssVar('--size-section',this.value)"></div>
     <div class="ep-row"><span class="ep-label">Badges</span>
-      <input class="ep-input" value="0.58rem" oninput="CSEEditor.cssVar('--size-badge',this.value)"></div>
+      <input class="ep-input" value="0.56rem" oninput="CSEEditor.cssVar('--size-badge',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">AQ text</span>
+      <input class="ep-input" value="0.75rem" oninput="CSEEditor.cssVar('--size-aq',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Notes body</span>
+      <input class="ep-input" value="0.86rem" oninput="CSEEditor.cssVar('--size-note-b',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">KPI number</span>
+      <input class="ep-input" value="1.45rem" oninput="CSEEditor.cssVar('--size-kpi-num',this.value)"></div>
+
     <div style="margin-top:10px">
       <button class="ep-btn ep-btn--red" onclick="CSEEditor.resetStyles()">Reset Styles</button>
     </div>
   </div>
 
-  <!-- META TAB -->
-  <div class="ep-body" id="ep-meta" style="display:none">
+  <!-- ══ META TAB ══════════════════════════════════════════════════ -->
+  <div class="ep-body ep-tab-pane" id="ep-meta" style="display:none">
     <div class="ep-section-title">Threat Assessment</div>
-    <div class="ep-row"><span class="ep-label">Threat Level</span>
+    <div class="ep-row"><span class="ep-label">Threat level</span>
       <select class="ep-select" onchange="CSEEditor.setThreat(this.value)">
-        <option value="CRITICAL">CRITICAL</option>
-        <option value="SEVERE" selected>SEVERE</option>
-        <option value="ELEVATED">ELEVATED</option>
-        <option value="GUARDED">GUARDED</option>
-        <option value="LOW">LOW</option>
+        <option>CRITICAL</option><option selected>SEVERE</option>
+        <option>ELEVATED</option><option>GUARDED</option><option>LOW</option>
       </select></div>
     <div class="ep-row"><span class="ep-label">Trajectory</span>
       <select class="ep-select" onchange="CSEEditor.setTrajectory(this.value)">
@@ -3310,217 +3379,458 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
         <option value="stable">Stable</option>
         <option value="de-escalating">De-escalating</option>
       </select></div>
+
     <div class="ep-section-title">Distribution</div>
-    <div class="ep-row"><span class="ep-label">TLP Level</span>
+    <div class="ep-row"><span class="ep-label">TLP</span>
       <select class="ep-select" onchange="CSEEditor.setTLP(this.value)">
         <option value="AMBER" selected>TLP:AMBER</option>
         <option value="RED">TLP:RED</option>
         <option value="GREEN">TLP:GREEN</option>
         <option value="CLEAR">TLP:CLEAR</option>
       </select></div>
+
     <div class="ep-section-title">Strip Cells</div>
     <div id="ep-strip-cells"></div>
+
     <div class="ep-section-title">Domain Visibility</div>
     <div id="ep-domain-toggles"></div>
   </div>
 
-  <!-- EXPORT TAB -->
-  <div class="ep-body" id="ep-export" style="display:none">
+  <!-- ══ EXPORT TAB ══════════════════════════════════════════════════ -->
+  <div class="ep-body ep-tab-pane" id="ep-export" style="display:none">
     <div class="ep-section-title">Export</div>
-    <button class="ep-btn" onclick="CSEEditor.exportHTML()">Download HTML</button>
-    <button class="ep-btn" onclick="CSEEditor.copyHTML()">Copy HTML to Clipboard</button>
+    <button class="ep-btn" onclick="CSEEditor.exportHTML()">&#x2B07; Download HTML</button>
+    <button class="ep-btn" onclick="CSEEditor.copyHTML()">&#x2398; Copy HTML</button>
+
     <div class="ep-section-title">Print / PDF</div>
-    <button class="ep-btn" onclick="CSEEditor.printBrief()">Print / Save as PDF</button>
+    <button class="ep-btn" onclick="CSEEditor.printBrief()">&#x2399; Print / Save PDF</button>
     <div class="ep-status">Editor panel is hidden from all print output</div>
+
     <div class="ep-section-title">Reset</div>
     <button class="ep-btn ep-btn--red" onclick="CSEEditor.resetAll()">Reset All Changes</button>
   </div>
 </div>
 
+<style>
+.ep-fmt-btn{
+  background:#08091A;border:1px solid #1A2030;color:#C4BCB0;
+  font-size:.72rem;padding:3px 8px;cursor:pointer;border-radius:2px;
+  font-family:Georgia,serif;transition:background .12s;
+}
+.ep-fmt-btn:hover{background:#141828;color:#F0EAE0}
+#ep-fmt-bar{display:none}
+#ep-fmt-bar.visible{display:flex!important}
+.ep-drag-handle-icon{
+  display:inline-block;cursor:grab;color:#8898A8;
+  font-size:14px;padding:0 6px 0 0;user-select:none;
+}
+.ep-drag-handle-icon:active{cursor:grabbing}
+.section-drag-active .domain{
+  cursor:grab;border:1px dashed rgba(196,160,48,.25)!important;
+  margin:2px 0;transition:opacity .15s;
+}
+.section-drag-active .domain.drag-over{
+  border-color:rgba(196,160,48,.7)!important;opacity:.7;
+}
+.section-drag-active .domain.dragging{opacity:.4}
+.ep-pick-mode *{cursor:crosshair!important}
+.ep-pick-mode .ep-pickable:hover{
+  outline:2px solid #C4A030!important;outline-offset:2px;
+}
+.ep-pick-selected{outline:2px solid #D82838!important;outline-offset:2px}
+.ep-mover-row{
+  display:flex;align-items:center;gap:6px;
+  padding:5px 0;border-bottom:1px solid #10162A;
+}
+.ep-mover-label{flex:1;font-size:.52rem;color:#8090A8;letter-spacing:.05em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.ep-mover-btn{
+  background:#08091A;border:1px solid #1A2030;color:#C4BCB0;
+  font-size:.65rem;padding:2px 7px;cursor:pointer;border-radius:2px;flex-shrink:0;
+}
+.ep-mover-btn:hover{background:#141828}
+</style>
+
 <script>
 (function(){
 'use strict';
 var root=document.documentElement;
-var editMode=false;
-var origStyles={};
-var EDITABLE_SEL=[
-  '.kj__text','.kj__basis',
-  '.body-para',
-  '.exec__bluf-text','.exec__kj-text',
-  '.flash-points__item-headline','.flash-points__item-detail',
-  '.strategic-header__judgment',
-  '.masthead__brand-brief',
-  '.masthead__strip-top','.masthead__strip-bot',
-  '.domain__aq-text','.domain__title',
-  '.analyst-note__text','.dissenter-note__text',
-  '.sub-label',
-  '.brief-footer__cycle','.brief-footer__note',
-  '.metadata-bar__value'
-].join(',');
-var THREAT={
-  CRITICAL:'threat-level--critical',SEVERE:'threat-level--severe',
-  ELEVATED:'threat-level--elevated',GUARDED:'threat-level--guarded',LOW:'threat-level--low'
-};
-var TRAJ={
-  'escalating':{cls:'trajectory-badge--escalating',text:'ESCALATING'},
-  'stable':{cls:'trajectory-badge--stable',text:'STABLE'},
-  'de-escalating':{cls:'trajectory-badge--de-escalating',text:'DE-ESCALATING'}
-};
-var TLP_CLS={
-  AMBER:'masthead__tlp--amber',RED:'masthead__tlp--red',
-  GREEN:'masthead__tlp--green',CLEAR:'masthead__tlp--clear'
-};
+var editMode=false,pickMode=false,sectionDragMode=false,flashDragMode=false,kjDragMode=false;
+var origStyles={},pickedEl=null,dragSrc=null;
+var panelEl=document.getElementById('cse-editor-panel');
+var toggleEl=document.getElementById('cse-editor-toggle');
+
+/* ── EXHAUSTIVE text element discovery ────────────────────────────────── */
+function getTextEls(){
+  var skip=['SCRIPT','STYLE','BUTTON','INPUT','SELECT','TEXTAREA','IMG','HR','BR'];
+  var results=[];
+  var walker=document.createTreeWalker(
+    document.querySelector('.brief')||document.body,
+    NodeFilter.SHOW_ELEMENT,
+    {acceptNode:function(n){
+      if(skip.indexOf(n.tagName)!==-1)return NodeFilter.FILTER_REJECT;
+      if(n.closest&&(n.closest('#cse-editor-panel')||n.closest('#cse-editor-toggle')||
+         n.closest('.print-brand-header')||n.closest('.print-brand-footer')))
+        return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }}
+  );
+  while(walker.nextNode()){
+    var el=walker.currentNode;
+    var hasDirect=Array.from(el.childNodes).some(function(n){
+      return n.nodeType===3&&n.textContent.trim().length>0;
+    });
+    if(hasDirect)results.push(el);
+  }
+  return results;
+}
+
+/* ── PANEL DRAG ───────────────────────────────────────────────────────── */
+(function(){
+  var handle=document.getElementById('ep-drag-handle');
+  var dragging=false,ox=0,oy=0,pr=0,pt=0;
+  handle.style.cursor='move';
+  handle.addEventListener('mousedown',function(e){
+    if(e.target.closest('.ep-header-close'))return;
+    dragging=true;
+    ox=e.clientX;oy=e.clientY;
+    var r=panelEl.getBoundingClientRect();
+    pr=window.innerWidth-r.right;pt=r.top;
+    e.preventDefault();
+  });
+  document.addEventListener('mousemove',function(e){
+    if(!dragging)return;
+    var dx=e.clientX-ox,dy=e.clientY-oy;
+    panelEl.style.right=Math.max(0,pr-dx)+'px';
+    panelEl.style.top=Math.max(0,pt+dy)+'px';
+    panelEl.style.bottom='auto';
+  });
+  document.addEventListener('mouseup',function(){dragging=false;});
+})();
+
+/* ── TABS ─────────────────────────────────────────────────────────────── */
+var TABS=['content','arrange','style','meta','export'];
+
+/* ── STRIP CELLS init ─────────────────────────────────────────────────── */
 function initStripCells(){
   var cells=document.querySelectorAll('.masthead__strip-cell');
-  var container=document.getElementById('ep-strip-cells');
-  if(!container)return;
-  container.innerHTML='';
+  var c=document.getElementById('ep-strip-cells');
+  if(!c)return;c.innerHTML='';
   cells.forEach(function(cell,i){
     var top=cell.querySelector('.masthead__strip-top');
     var bot=cell.querySelector('.masthead__strip-bot');
     if(!top||!bot)return;
-    var row=document.createElement('div');
-    row.style.cssText='margin-bottom:10px;border:1px solid #1C2438;border-radius:3px;padding:7px 8px';
-    row.innerHTML='<div style="font-size:0.5rem;color:#505868;letter-spacing:0.15em;margin-bottom:5px">CELL '+(i+1)+'</div>'+
+    var d=document.createElement('div');
+    d.style.cssText='margin-bottom:9px;border:1px solid #14182A;border-radius:2px;padding:6px 8px';
+    d.innerHTML='<div style="font-size:.45rem;color:#3A4050;letter-spacing:.14em;margin-bottom:4px">CELL '+(i+1)+'</div>'+
       '<div class="ep-row"><span class="ep-label">Value</span>'+
-      '<input class="ep-input" value="'+top.textContent.replace(/"/g,'&quot;')+'" data-i="'+i+'" data-f="top"></div>'+
+      '<input class="ep-input" value="'+top.textContent.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'" data-i="'+i+'" data-f="top"></div>'+
       '<div class="ep-row"><span class="ep-label">Label</span>'+
-      '<input class="ep-input" value="'+bot.textContent.replace(/"/g,'&quot;')+'" data-i="'+i+'" data-f="bot"></div>';
-    row.querySelectorAll('input').forEach(function(inp){
+      '<input class="ep-input" value="'+bot.textContent.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'" data-i="'+i+'" data-f="bot"></div>';
+    d.querySelectorAll('input').forEach(function(inp){
       inp.addEventListener('input',function(){
-        var c=cells[this.dataset.i];
-        var el=c.querySelector('.masthead__strip-'+this.dataset.f);
+        var cc=cells[this.dataset.i];
+        var el=cc.querySelector('.masthead__strip-'+this.dataset.f);
         if(el)el.textContent=this.value;
       });
     });
-    container.appendChild(row);
+    c.appendChild(d);
   });
 }
+
+/* ── DOMAIN TOGGLES init ──────────────────────────────────────────────── */
 function initDomainToggles(){
   var domains=document.querySelectorAll('.domain');
-  var container=document.getElementById('ep-domain-toggles');
-  if(!container)return;
-  container.innerHTML='';
+  var c=document.getElementById('ep-domain-toggles');
+  if(!c)return;c.innerHTML='';
   domains.forEach(function(d){
     var title=d.querySelector('.domain__title');
-    var label=title?title.textContent.trim():'Domain';
-    var row=document.createElement('div');
-    row.className='ep-row';
-    row.innerHTML='<span class="ep-label">'+label+'</span>'+
-      '<select class="ep-select" style="flex:0 0 auto;width:80px">'+
+    var label=title?title.textContent.trim().substring(0,28):'Domain';
+    var r=document.createElement('div');
+    r.className='ep-row';
+    r.innerHTML='<span class="ep-label" style="max-width:160px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+label+'</span>'+
+      '<select class="ep-select" style="flex:0 0 auto;width:72px">'+
       '<option value="block">Show</option><option value="none">Hide</option></select>';
-    row.querySelector('select').addEventListener('change',function(){
-      d.style.display=this.value;
-    });
-    container.appendChild(row);
+    r.querySelector('select').addEventListener('change',function(){d.style.display=this.value;});
+    c.appendChild(r);
   });
 }
+
+/* ── SECTION MOVER LIST ───────────────────────────────────────────────── */
+function initSectionMovers(){
+  var order=document.getElementById('ep-section-order');
+  var movers=document.getElementById('ep-section-movers');
+  if(!order||!movers)return;
+  order.innerHTML='';movers.innerHTML='';
+  var domains=Array.from(document.querySelectorAll('.brief .domain'));
+  domains.forEach(function(d,i){
+    var title=d.querySelector('.domain__title,.kj__label');
+    var label=title?title.textContent.trim().substring(0,22):'Section '+(i+1);
+    /* mover row */
+    var r=document.createElement('div');
+    r.className='ep-mover-row';
+    r.innerHTML='<span class="ep-mover-label">'+label+'</span>'+
+      '<button class="ep-mover-btn" data-i="'+i+'" data-dir="-1">&#x2191;</button>'+
+      '<button class="ep-mover-btn" data-i="'+i+'" data-dir="1">&#x2193;</button>'+
+      '<button class="ep-mover-btn ep-btn--red" data-i="'+i+'" data-dir="0">&#x2715;</button>';
+    r.querySelectorAll('button').forEach(function(btn){
+      btn.addEventListener('click',function(){
+        var idx=parseInt(this.dataset.i);
+        var dir=parseInt(this.dataset.dir);
+        var all=Array.from(document.querySelectorAll('.brief .domain'));
+        var el=all[idx];
+        if(!el)return;
+        if(dir===0){if(confirm('Remove this section?'))el.remove();}
+        else if(dir===-1&&idx>0){el.parentNode.insertBefore(el,all[idx-1]);}
+        else if(dir===1&&idx<all.length-1){el.parentNode.insertBefore(all[idx+1],el);}
+        setTimeout(initSectionMovers,50);
+      });
+    });
+    movers.appendChild(r);
+  });
+}
+
+/* ── DRAG SECTION REORDER ─────────────────────────────────────────────── */
+function addDragHandles(){
+  var domains=document.querySelectorAll('.brief .domain');
+  domains.forEach(function(d){
+    if(d.querySelector('.ep-drag-handle-icon'))return;
+    var h=document.createElement('span');
+    h.className='ep-drag-handle-icon';h.textContent='⣿';h.title='Drag to reorder';
+    d.insertBefore(h,d.firstChild);
+    d.draggable=true;
+    d.addEventListener('dragstart',function(e){dragSrc=this;this.classList.add('dragging');e.dataTransfer.effectAllowed='move';});
+    d.addEventListener('dragend',function(){this.classList.remove('dragging');document.querySelectorAll('.drag-over').forEach(function(el){el.classList.remove('drag-over');});});
+    d.addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-over');e.dataTransfer.dropEffect='move';});
+    d.addEventListener('dragleave',function(){this.classList.remove('drag-over');});
+    d.addEventListener('drop',function(e){
+      e.preventDefault();this.classList.remove('drag-over');
+      if(dragSrc&&dragSrc!==this){
+        var p=this.parentNode;var arr=Array.from(p.querySelectorAll(':scope>.domain'));
+        var si=arr.indexOf(dragSrc),ti=arr.indexOf(this);
+        if(si<ti)p.insertBefore(dragSrc,this.nextSibling);
+        else p.insertBefore(dragSrc,this);
+        setTimeout(initSectionMovers,50);
+      }
+    });
+  });
+}
+
+function removeDragHandles(){
+  document.querySelectorAll('.ep-drag-handle-icon').forEach(function(h){h.remove();});
+  document.querySelectorAll('.brief .domain').forEach(function(d){d.draggable=false;});
+}
+
+/* ── FLASH POINT DRAG ─────────────────────────────────────────────────── */
+function enableFlashDrag(){
+  var items=document.querySelectorAll('.flash-points__item');
+  items.forEach(function(item){
+    item.draggable=true;item.style.cursor='grab';
+    item.addEventListener('dragstart',function(e){dragSrc=this;e.dataTransfer.effectAllowed='move';this.style.opacity='.4';});
+    item.addEventListener('dragend',function(){this.style.opacity='';});
+    item.addEventListener('dragover',function(e){e.preventDefault();e.dataTransfer.dropEffect='move';});
+    item.addEventListener('drop',function(e){
+      e.preventDefault();
+      if(dragSrc&&dragSrc!==this){this.parentNode.insertBefore(dragSrc,this);}
+    });
+  });
+}
+function disableFlashDrag(){
+  document.querySelectorAll('.flash-points__item').forEach(function(i){i.draggable=false;i.style.cursor='';});
+}
+
+/* ── EXEC KJ DRAG ─────────────────────────────────────────────────────── */
+function enableKJDrag(){
+  var items=document.querySelectorAll('.exec__kj-item');
+  items.forEach(function(item){
+    item.draggable=true;item.style.cursor='grab';
+    item.addEventListener('dragstart',function(e){dragSrc=this;e.dataTransfer.effectAllowed='move';this.style.opacity='.4';});
+    item.addEventListener('dragend',function(){this.style.opacity='';});
+    item.addEventListener('dragover',function(e){e.preventDefault();});
+    item.addEventListener('drop',function(e){
+      e.preventDefault();
+      if(dragSrc&&dragSrc!==this){this.parentNode.insertBefore(dragSrc,this);}
+    });
+  });
+}
+function disableKJDrag(){
+  document.querySelectorAll('.exec__kj-item').forEach(function(i){i.draggable=false;i.style.cursor='';});
+}
+
+/* ── ELEMENT PICKER ───────────────────────────────────────────────────── */
+function enterPickMode(){
+  pickMode=true;
+  document.body.classList.add('ep-pick-mode');
+  document.getElementById('ep-del-hint').textContent='Click any element in the brief to select it';
+  document.addEventListener('click',pickClickHandler,true);
+}
+function exitPickMode(){
+  pickMode=false;
+  document.body.classList.remove('ep-pick-mode');
+  if(pickedEl){pickedEl.classList.remove('ep-pick-selected');pickedEl=null;}
+  document.removeEventListener('click',pickClickHandler,true);
+  document.getElementById('ep-del-btn').style.display='none';
+  document.getElementById('ep-sel-btn').textContent='Pick Element to Delete';
+  document.getElementById('ep-del-hint').textContent='Select any element on the page, then delete it';
+}
+function pickClickHandler(e){
+  if(e.target.closest('#cse-editor-panel')||e.target.closest('#cse-editor-toggle'))return;
+  e.preventDefault();e.stopPropagation();
+  if(pickedEl)pickedEl.classList.remove('ep-pick-selected');
+  pickedEl=e.target;
+  pickedEl.classList.add('ep-pick-selected');
+  document.getElementById('ep-del-hint').textContent='Selected: '+pickedEl.tagName.toLowerCase()+(pickedEl.className?' .'+pickedEl.className.split(' ')[0]:'');
+  document.getElementById('ep-del-btn').style.display='block';
+}
+
+/* ── SYNC QUICK FIELDS ────────────────────────────────────────────────── */
+function syncQF(iid,eid){
+  var inp=document.getElementById(iid),el=document.getElementById(eid);
+  if(inp&&el)inp.value=el.textContent.trim();
+}
+
+/* ── PUBLIC API ───────────────────────────────────────────────────────── */
 window.CSEEditor={
-  open:function(){document.getElementById('cse-editor-panel').classList.add('open');},
-  close:function(){document.getElementById('cse-editor-panel').classList.remove('open');},
+
+  open:function(){
+    panelEl.classList.add('open');
+    initStripCells();initDomainToggles();initSectionMovers();
+    syncQF('qf-region','ed-region');syncQF('qf-ctx','ed-ctx');
+    syncQF('qf-cycle','ed-cycle-num');syncQF('qf-date','ed-date');
+  },
+  close:function(){panelEl.classList.remove('open');if(pickMode)exitPickMode();},
+
   tab:function(btn,name){
     document.querySelectorAll('.ep-tab').forEach(function(t){t.classList.remove('active');});
     btn.classList.add('active');
-    ['content','style','meta','export'].forEach(function(t){
-      document.getElementById('ep-'+t).style.display=(t===name)?'':'none';
-    });
+    document.querySelectorAll('.ep-tab-pane').forEach(function(p){p.style.display='none';});
+    document.getElementById('ep-'+name).style.display='';
   },
+
+  /* EXHAUSTIVE toggle edit ───────────────────────────────────────────── */
   toggleEdit:function(){
     editMode=!editMode;
-    document.querySelectorAll(EDITABLE_SEL).forEach(function(el){
+    var els=getTextEls();
+    els.forEach(function(el){
       el.contentEditable=editMode?'true':'false';
       el.classList.toggle('ep-editable',editMode);
     });
-    if(editMode)document.body.classList.add('ep-edit-active');
-    else document.body.classList.remove('ep-edit-active');
-    var btn=document.querySelector('#ep-content .ep-btn');
+    document.body.classList.toggle('ep-edit-active',editMode);
+    var btn=document.getElementById('ep-edit-btn');
     var status=document.getElementById('ep-edit-status');
+    var fmt=document.getElementById('ep-fmt-bar');
     if(editMode){
-      btn.textContent='Disable Content Editing';
-      btn.style.borderColor='#C8A034';
-      status.textContent='Click any text on the page to edit it directly';
-      status.style.color='#C8A034';
+      btn.textContent='Disable Editing';btn.style.borderColor='#C4A030';
+      status.textContent='Click any text in the brief to edit it — '+els.length+' elements enabled';
+      status.style.color='#C4A030';
+      fmt.classList.add('visible');
     }else{
-      btn.textContent='Enable Content Editing';
-      btn.style.borderColor='';
-      status.textContent='Click above to make all text fields editable inline';
+      btn.textContent='Enable Editing';btn.style.borderColor='';
+      status.textContent='Enables click-to-edit on every text element in the brief';
       status.style.color='';
+      fmt.classList.remove('visible');
     }
   },
-  qf:function(id,val){
-    var el=document.getElementById(id);
-    if(el)el.textContent=val;
-  },
+
+  fmt:function(cmd){document.execCommand(cmd,false,null);},
+
+  qf:function(id,val){var el=document.getElementById(id);if(el)el.textContent=val;},
+
   cssVar:function(name,val){
-    if(!origStyles[name])origStyles[name]=root.style.getPropertyValue(name);
+    if(!(name in origStyles))origStyles[name]=root.style.getPropertyValue(name)||'';
     root.style.setProperty(name,val);
   },
   resetStyles:function(){
     Object.keys(origStyles).forEach(function(k){root.style.removeProperty(k);});
     origStyles={};
   },
+
   setThreat:function(val){
-    var el=document.getElementById('ed-threat');
-    if(!el)return;
-    el.className='threat-level '+(THREAT[val]||'');
-    el.textContent=val;
+    var el=document.getElementById('ed-threat');if(!el)return;
+    var map={CRITICAL:'threat-level--critical',SEVERE:'threat-level--severe',
+      ELEVATED:'threat-level--elevated',GUARDED:'threat-level--guarded',LOW:'threat-level--low'};
+    el.className='threat-level '+(map[val]||'');el.textContent=val;
   },
   setTrajectory:function(val){
-    var el=document.getElementById('ed-traj');
-    if(!el)return;
-    var cfg=TRAJ[val]||TRAJ['escalating'];
-    el.className='trajectory-badge '+cfg.cls;
-    el.textContent=cfg.text;
+    var el=document.getElementById('ed-traj');if(!el)return;
+    var map={'escalating':{c:'trajectory-badge--escalating',t:'ESCALATING'},
+      'stable':{c:'trajectory-badge--stable',t:'STABLE'},
+      'de-escalating':{c:'trajectory-badge--de-escalating',t:'DE-ESCALATING'}};
+    var cfg=map[val]||map['escalating'];
+    el.className='trajectory-badge '+cfg.c;el.textContent=cfg.t;
   },
   setTLP:function(val){
+    var map={AMBER:'masthead__tlp--amber',RED:'masthead__tlp--red',GREEN:'masthead__tlp--green',CLEAR:'masthead__tlp--clear'};
     document.querySelectorAll('.masthead__tlp').forEach(function(el){
-      el.className='masthead__tlp '+(TLP_CLS[val]||'masthead__tlp--amber');
+      el.className='masthead__tlp '+(map[val]||'masthead__tlp--amber');
       el.textContent='TLP:'+val;
     });
   },
+
+  toggleSectionDrag:function(){
+    sectionDragMode=!sectionDragMode;
+    var btn=document.getElementById('ep-drag-sections-btn');
+    if(sectionDragMode){
+      document.body.classList.add('section-drag-active');
+      addDragHandles();initSectionMovers();
+      btn.textContent='Disable Section Drag';btn.style.borderColor='#C4A030';
+    }else{
+      document.body.classList.remove('section-drag-active');
+      removeDragHandles();
+      btn.textContent='Enable Section Drag';btn.style.borderColor='';
+    }
+  },
+  toggleFlashDrag:function(){
+    flashDragMode=!flashDragMode;
+    var btn=document.getElementById('ep-drag-flash-btn');
+    if(flashDragMode){enableFlashDrag();btn.textContent='Disable Flash Point Drag';btn.style.borderColor='#C4A030';}
+    else{disableFlashDrag();btn.textContent='Enable Flash Point Drag';btn.style.borderColor='';}
+  },
+  toggleKJDrag:function(){
+    kjDragMode=!kjDragMode;
+    var btn=document.getElementById('ep-drag-kj-btn');
+    if(kjDragMode){enableKJDrag();btn.textContent='Disable KJ Drag';btn.style.borderColor='#C4A030';}
+    else{disableKJDrag();btn.textContent='Enable KJ Drag';btn.style.borderColor='';}
+  },
+
+  togglePick:function(){
+    if(pickMode){exitPickMode();}
+    else{enterPickMode();document.getElementById('ep-sel-btn').textContent='Cancel Pick Mode';}
+  },
+  deleteSelected:function(){
+    if(!pickedEl)return;
+    if(confirm('Delete this element?')){pickedEl.remove();pickedEl=null;exitPickMode();}
+  },
+
   exportHTML:function(){
-    var panel=document.getElementById('cse-editor-panel');
-    var toggle=document.getElementById('cse-editor-toggle');
-    panel.classList.remove('open');
+    panelEl.classList.remove('open');
     setTimeout(function(){
-      var html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+      var html='<!DOCTYPE html>
+'+root.outerHTML;
       var blob=new Blob([html],{type:'text/html;charset=utf-8'});
-      var a=document.createElement('a');
-      a.href=URL.createObjectURL(blob);
-      a.download='cse-intelligence-brief.html';
-      a.click();
-      URL.revokeObjectURL(a.href);
-      panel.classList.add('open');
-    },100);
+      var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+      a.download='cse-intelligence-brief.html';a.click();URL.revokeObjectURL(a.href);
+      panelEl.classList.add('open');
+    },120);
   },
   copyHTML:function(){
-    var html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+    var html='<!DOCTYPE html>
+'+root.outerHTML;
     navigator.clipboard.writeText(html).then(function(){
-      var status=document.querySelector('#ep-export .ep-status');
-      var prev=status.textContent;
-      status.textContent='Copied!';
-      setTimeout(function(){status.textContent=prev;},2000);
+      var s=document.querySelector('#ep-export .ep-status');
+      var prev=s.textContent;s.textContent='Copied!';
+      setTimeout(function(){s.textContent=prev;},2000);
     });
   },
   printBrief:function(){window.print();},
-  resetAll:function(){
-    if(confirm('Reset all edits?'))window.location.reload();
-  }
+  resetAll:function(){if(confirm('Reset all edits?'))window.location.reload();},
 };
-document.getElementById('cse-editor-toggle').addEventListener('click',function(){
-  var panel=document.getElementById('cse-editor-panel');
-  if(panel.classList.contains('open'))CSEEditor.close();
-  else{CSEEditor.open();initStripCells();initDomainToggles();}
+
+/* Wire toggle button */
+toggleEl.addEventListener('click',function(){
+  if(panelEl.classList.contains('open'))CSEEditor.close();
+  else CSEEditor.open();
 });
-function syncQF(inputId,elId){
-  var inp=document.getElementById(inputId);
-  var el=document.getElementById(elId);
-  if(inp&&el)inp.value=el.textContent.trim();
-}
-syncQF('qf-region','ed-region');
-syncQF('qf-ctx','ed-ctx');
-syncQF('qf-cycle','ed-cycle-num');
-syncQF('qf-date','ed-date');
+
 })();
 </script>
 <!-- END CSE BRIEF EDITOR PANEL -->
