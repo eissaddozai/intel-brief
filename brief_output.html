@@ -206,10 +206,19 @@ html {
   font-size: 11pt;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+  /* ONE unified deep-space gradient — every section is a transparent overlay */
+  background:
+    radial-gradient(ellipse 150% 58% at   0%   0%, rgba(140,  8, 30, 0.22) 0%, transparent 52%),
+    radial-gradient(ellipse 100% 78% at 100% 100%, rgba( 10,  4, 70, 0.22) 0%, transparent 52%),
+    radial-gradient(ellipse  80% 48% at  94%   4%, rgba(  4, 22, 96, 0.15) 0%, transparent 48%),
+    radial-gradient(ellipse  58% 68% at  12%  74%, rgba( 55,  0, 85, 0.12) 0%, transparent 52%),
+    radial-gradient(ellipse  48% 38% at  50%  44%, rgba(  0, 28, 55, 0.09) 0%, transparent 50%),
+    #020308;
 }
 
 body {
-  background-color: var(--color-page);
+  background: transparent;
   color: var(--text-md);
   font-family: var(--font-ui);
   font-size: var(--size-body);
@@ -252,7 +261,7 @@ body::after {
 .brief {
   max-width: 960px;
   margin: 0 auto;
-  background-color: var(--color-panel);
+  background: rgba(2, 4, 10, 0.68); /* semi-transparent — gradient bleeds through */
   position: relative;
   z-index: 1;
   box-shadow:
@@ -300,7 +309,7 @@ body::after {
   }
 
   body {
-    background-color: var(--color-page);
+    background-color: #020308;
   }
 
   .brief {
@@ -752,30 +761,72 @@ body::after {
 }
 
 .threat-level {
-  font-family: var(--font-ui);
-  font-size: var(--size-badge);
+  font-family: var(--font-data);
+  font-size: 0.50rem;
   font-weight: 700;
-  letter-spacing: 0.12em;
-  padding: 3px 8px;
+  letter-spacing: 0.22em;
+  padding: 3px 11px 2px;
   text-transform: uppercase;
+  border: 1px solid;
+  border-radius: 1px;
+  display: inline-block;
+  white-space: nowrap;
 }
-
-.threat-level--critical { background-color: var(--conf-red);   color: #fff; }
-.threat-level--severe   { background-color: var(--threat-severe);            color: #fff; }
-.threat-level--elevated { background-color: var(--conf-amber);  color: #000; }
-.threat-level--guarded  { background-color: var(--conf-blue);   color: #fff; }
-.threat-level--low      { background-color: var(--conf-green);  color: #000; }
+.threat-level--critical {
+  color: #FF4466;
+  border-color: rgba(255, 44, 88, 0.55);
+  background: rgba(180, 0, 40, 0.18);
+  box-shadow: 0 0 10px rgba(255, 44, 88, 0.15), inset 0 0 4px rgba(255, 44, 88, 0.06);
+}
+.threat-level--severe {
+  color: #FF7744;
+  border-color: rgba(255, 80, 40, 0.48);
+  background: rgba(160, 40, 0, 0.16);
+  box-shadow: 0 0 8px rgba(255, 80, 40, 0.12);
+}
+.threat-level--elevated {
+  color: #FFBB28;
+  border-color: rgba(255, 182, 28, 0.42);
+  background: rgba(110, 70, 0, 0.15);
+}
+.threat-level--guarded {
+  color: #4488FF;
+  border-color: rgba(44, 100, 255, 0.38);
+  background: rgba(10, 28, 100, 0.14);
+}
+.threat-level--low {
+  color: #44BB66;
+  border-color: rgba(44, 180, 88, 0.32);
+  background: rgba(0, 55, 18, 0.12);
+}
 
 .trajectory-badge {
   font-family: var(--font-data);
-  font-size: var(--size-badge);
+  font-size: 0.50rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  padding: 3px 11px 2px;
+  border: 1px solid;
+  border-radius: 1px;
+  display: inline-block;
+  white-space: nowrap;
 }
-
-.trajectory-badge--escalating   { color: var(--traj-up); }
-.trajectory-badge--stable       { color: var(--traj-flat); }
-.trajectory-badge--de-escalating{ color: var(--traj-down); }
+.trajectory-badge--escalating {
+  color: #FF5055;
+  border-color: rgba(255, 60, 65, 0.42);
+  background: rgba(140, 0, 0, 0.14);
+}
+.trajectory-badge--stable {
+  color: #7898B8;
+  border-color: rgba(100, 132, 172, 0.32);
+  background: rgba(18, 30, 52, 0.14);
+}
+.trajectory-badge--de-escalating {
+  color: #44AA66;
+  border-color: rgba(44, 160, 90, 0.32);
+  background: rgba(0, 48, 18, 0.12);
+}
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -1075,16 +1126,17 @@ body::after {
   font-family: var(--font-ui);
   font-size: var(--size-badge);
   font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 2px 6px;
-  color: var(--color-page);
+  letter-spacing: 0.14em;
+  padding: 2px 8px;
   text-transform: uppercase;
+  border-radius: 1px;
+  display: inline-block;
 }
 
-.badge--blue   { background-color: var(--conf-blue);  color: #fff; }
-.badge--green  { background-color: var(--conf-green); color: #000; }
-.badge--amber  { background-color: var(--conf-amber); color: #000; }
-.badge--red    { background-color: var(--conf-red);   color: #fff; }
+.badge--blue  { color: #5599FF; border: 1px solid rgba(55,120,255,0.38); background: rgba(8,20,80,0.20);  }
+.badge--green { color: #44BB66; border: 1px solid rgba(44,170,90,0.32);  background: rgba(0,48,18,0.16);  }
+.badge--amber { color: #DDAA22; border: 1px solid rgba(220,162,22,0.38); background: rgba(80,48,0,0.16);  }
+.badge--red   { color: #FF4466; border: 1px solid rgba(255,44,88,0.42);  background: rgba(140,0,30,0.18); }
 
 /* Confidence as text (no background) */
 .conf-text {
@@ -1269,18 +1321,6 @@ body::after {
   gap: 8px;
 }
 
-.kj__domain-ref {
-  font-family: var(--font-data);
-  font-size: var(--size-badge);
-  letter-spacing: 0.08em;
-}
-
-.domain--d1 .kj__domain-ref { color: var(--d1-bright); }
-.domain--d2 .kj__domain-ref { color: var(--d2-bright); }
-.domain--d3 .kj__domain-ref { color: var(--d3-bright); }
-.domain--d4 .kj__domain-ref { color: var(--d4-bright); }
-.domain--d5 .kj__domain-ref { color: var(--d5-bright); }
-.domain--d6 .kj__domain-ref { color: var(--d6-bright); }
 
 .kj__probability {
   font-family: var(--font-data);
@@ -2201,8 +2241,7 @@ body::after {
 /* === print.css === */
 /* ═══════════════════════════════════════════════════════════════════════════
    PRINT OVERRIDES — CSE Intelligence Brief
-   Dark-mode PDF: full black background, light text, colour preserved.
-   Designed for Chromium headless --print-to-pdf (primary path).
+   Dark-mode PDF via Chromium headless --print-to-pdf (primary path).
    ═══════════════════════════════════════════════════════════════════════════ */
 
 @media print {
@@ -2220,85 +2259,83 @@ body::after {
     color-scheme: dark !important;
   }
 
-  /* ── Page setup ────────────────────────────────────────────────────────── */
+  /* ── Page setup ─────────────────────────────────────────────────────────── */
   @page {
     size: letter portrait;
-    margin: 0.65in 0.55in 0.65in 0.55in;
-    background: #000000;
+    margin: 0.60in 0.55in 0.60in 0.55in;
+    background: #020308;
   }
 
-  /* ── Document: black throughout ───────────────────────────────────────── */
+  /* ── Document ───────────────────────────────────────────────────────────── */
   html, body {
     width: 100%;
     height: auto;
     overflow: visible;
-    background: #000000 !important;
+    background: #020308 !important;
     color: #d4cfc8 !important;
   }
-
   .brief {
     max-width: 100%;
     box-shadow: none;
     border: none;
-    background: #000000 !important;
+    background: transparent !important;
   }
 
-  /* ── Suppress base.css scanline / vignette overlays ──────────────────── */
+  /* ── Suppress overlays ──────────────────────────────────────────────────── */
   body::before, body::after { display: none !important; }
-
-  /* ── Kill galaxy shimmer ──────────────────────────────────────────────── */
   .masthead::before, .masthead::after,
   .brief-footer::before { display: none !important; }
 
-  /* ── Provenance logo — keep white pill visible in print ──────────────── */
-  .masthead__provenance-logo {
-    background: #FFFFFF !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  /* ── Masthead / footer ─────────────────────────────────────────────────── */
-  .masthead, .brief-footer {
+  /* ── Masthead / footer ──────────────────────────────────────────────────── */
+  .masthead {
     position: static !important;
-    background: #0a0a14 !important;
-    margin-bottom: 20pt !important;
+    background: rgba(3, 4, 10, 0.95) !important;
+    margin-bottom: 18pt !important;
+  }
+  .brief-footer {
+    position: static !important;
+    margin-top: 18pt !important;
+    background: rgba(3, 4, 10, 0.95) !important;
   }
 
-  /* ── Domain gradient strips: hidden ─────────────────────────────────────── */
+  /* ── Domain gradient strips ──────────────────────────────────────────────── */
   .domain__gradient, .exec__gradient, .caveats__gradient,
   .collection-gaps__gradient, .warning-indicators__gradient,
   .analyst-note__gradient, .dissenter-note__gradient { display: none !important; }
 
-  /* ── Domain sections ─────────────────────────────────────────────────────── */
+  /* ── Domain sections — coloured left border replaces the wrapper accent ──── */
   .domain {
-    background: #05050f !important;
-    border-left: 4pt solid #444;
-    padding-left: 12pt;
+    background: rgba(3, 4, 10, 0.90) !important;
     margin-bottom: 12pt;
   }
-  .domain--d1 { border-left-color: #c62828 !important; }
-  .domain--d2 { border-left-color: #e65100 !important; }
-  .domain--d3 { border-left-color: #2e7d32 !important; }
-  .domain--d4 { border-left-color: #6a1b9a !important; }
-  .domain--d5 { border-left-color: #1565c0 !important; }
-  .domain--d6 { border-left-color: #00695c !important; }
+  /* Suppress inner wrapper border — domain itself gets the border */
+  .domain__content { border-left: none !important; }
 
-  /* ── Section backgrounds ─────────────────────────────────────────────────── */
-  section { background: #05050f !important; }
-  .kj { background: #0d0d1a !important; border-color: rgba(255,255,255,0.10) !important; }
-  .exec__bluf { background: #0d0d1a !important; border-left-color: #c62828 !important; }
+  /* Per-domain coloured left border on the section itself */
+  .domain                { border-left: 3.5pt solid rgba(100,100,100,0.4); padding-left: 10pt; }
+  .domain--d1            { border-left-color: #c62828 !important; }
+  .domain--d2            { border-left-color: #e65100 !important; }
+  .domain--d3            { border-left-color: #2e7d32 !important; }
+  .domain--d4            { border-left-color: #6a1b9a !important; }
+  .domain--d5            { border-left-color: #1565c0 !important; }
+  .domain--d6            { border-left-color: #00695c !important; }
+
+  /* ── Section backgrounds ────────────────────────────────────────────────── */
+  section { background: rgba(3, 4, 10, 0.90) !important; }
+  .kj     { background: rgba(10, 10, 20, 0.95) !important; border-left: none !important; }
+  .body-wrap { background: transparent !important; border-left: none !important; }
+  .exec__bluf { background: rgba(10, 10, 0, 0.90) !important;
+                border-left-color: #c8a830 !important; }
   .strategic-header, .flash-points, .warning-indicators,
-  .collection-gaps, .caveats { background: #05050f !important; }
-  .metadata-bar { background: #0d0d1a !important; border-top: 0.5pt solid #1e1e2e !important; }
+  .collection-gaps, .caveats { background: rgba(3, 4, 10, 0.90) !important; }
+  .metadata-bar { background: rgba(8, 10, 20, 0.95) !important;
+                  border-top: 0.5pt solid #1e1e2e !important; }
   .analyst-note, .dissenter-note {
-    background: #0a0a14 !important;
+    background: rgba(6, 8, 16, 0.95) !important;
     border-color: rgba(255,255,255,0.08) !important;
   }
-  .section-end { border-color: #1e1e2e !important; }
 
-  /* ── Section divider ─────────────────────────────────────────────────────── */
-  .section-divider { display: none !important; }
-
-  /* ── Warning indicators table ────────────────────────────────────────────── */
+  /* ── Warning indicators table ───────────────────────────────────────────── */
   .warning-indicators { break-before: page; }
   .wi-table {
     border-collapse: collapse;
@@ -2307,7 +2344,7 @@ body::after {
     background: transparent !important;
   }
   .wi-table th {
-    background: #111120 !important;
+    background: rgba(12, 14, 24, 0.95) !important;
     color: #a0a8b0 !important;
     border: 0.5pt solid #2a2a3a !important;
     padding: 3.5pt 5pt;
@@ -2316,40 +2353,41 @@ body::after {
     text-transform: uppercase;
   }
   .wi-table td {
-    background: #05050f !important;
+    background: rgba(4, 5, 12, 0.90) !important;
     color: #c4bfb8 !important;
     border: 0.5pt solid #1e1e2e !important;
     padding: 3.5pt 5pt;
   }
-  .wi-table tr:nth-child(even) td { background: #0a0a18 !important; }
+  .wi-table tr:nth-child(even) td { background: rgba(8, 9, 18, 0.90) !important; }
 
-  /* ── KPI strip ───────────────────────────────────────────────────────────── */
+  /* ── KPI strip ──────────────────────────────────────────────────────────── */
   .kpi-strip { grid-template-columns: repeat(6, 1fr); gap: 4pt; }
   .kpi-strip__cell {
-    background: #0d0d1a !important;
+    background: rgba(10, 12, 24, 0.95) !important;
     border: 0.5pt solid #2a2a3a !important;
     padding: 4pt 6pt;
   }
   .kpi-strip__number { font-size: 15pt !important; color: #c8b870 !important; }
   .kpi-strip__label  { font-size: 6.5pt !important; color: #888 !important; }
 
-  /* ── Body text ───────────────────────────────────────────────────────────── */
+  /* ── Body text ──────────────────────────────────────────────────────────── */
   .text-hi, .domain__title, .kj__text,
   .exec__bluf-text, .strategic-header__judgment { color: #e0dbd4 !important; }
   .text-md, .body-para, .body-wrap { color: #c4bfb8 !important; }
   .text-dim, .meta, .kj__basis     { color: #7a7480 !important; }
   .masthead__cycle-num, .color-gold { color: #c8b870 !important; }
 
-  /* ── Type ────────────────────────────────────────────────────────────────── */
+  /* ── Type ───────────────────────────────────────────────────────────────── */
   body { font-size: 9.5pt; line-height: 1.55; }
   .kj__text  { font-size: 10.5pt; line-height: 1.6; }
-  .body-para { font-size: 9.5pt; line-height: 1.55; orphans: 3; widows: 3; }
+  .body-para { font-size: 9.5pt;  line-height: 1.55; orphans: 3; widows: 3; }
 
-  /* ── Page break control ──────────────────────────────────────────────────── */
+  /* ── Page break control ─────────────────────────────────────────────────── */
   .masthead            { break-inside: avoid; }
   .strategic-header    { break-inside: avoid; break-after: avoid; }
   .flash-points        { break-inside: avoid; }
   .kj                  { break-inside: avoid; }
+  .domain__content     { break-inside: auto; }
   .analyst-note        { break-inside: avoid; }
   .dissenter-note      { break-inside: avoid; }
   .data-table-wrap     { break-inside: avoid; }
@@ -2358,17 +2396,24 @@ body::after {
   .collection-gaps     { break-inside: avoid; }
   .caveats             { break-inside: avoid; }
   .wi-table            { break-inside: avoid; }
-  .brief-footer        { break-before: page; }
+  .brief-footer        { break-inside: avoid; }
   .domain              { break-inside: auto; }
   .domain + .domain    { break-before: auto; }
   .body-wrap           { break-inside: auto; }
   .body-para           { break-inside: avoid; orphans: 3; widows: 3; }
   .kj__label-row + .kj__text { break-before: avoid; }
 
-  /* ── Probability bars ────────────────────────────────────────────────────── */
+  /* ── Badges in print — border style rather than background fill ─────────── */
+  .threat-level, .trajectory-badge, .badge {
+    border: 0.5pt solid currentColor !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* ── Probability bars ───────────────────────────────────────────────────── */
   .prob-bar { height: 2px; display: block; }
 
-  /* ── Collection gap register ─────────────────────────────────────────────── */
+  /* ── Collection gap register ────────────────────────────────────────────── */
   .collection-gaps__items { list-style: none; padding: 0; }
   .gap-item {
     display: grid;
@@ -2381,14 +2426,16 @@ body::after {
   }
   .gap-item__category { display: block; margin-top: 2pt; }
 
-  /* ── Executive KJ list ───────────────────────────────────────────────────── */
+  /* ── Executive KJ list ──────────────────────────────────────────────────── */
   .exec__kj-list { padding: 0 0 0 12pt; }
   .exec__kj-item { margin-bottom: 4pt; font-size: 9pt; break-inside: avoid; }
   .exec__kj-domain { font-weight: 700; }
 
-  /* ── Scrollbars ──────────────────────────────────────────────────────────── */
-  ::-webkit-scrollbar { display: none; }
+  /* ── Editor suppressed ──────────────────────────────────────────────────── */
+  #cse-editor-toggle, #cse-editor-panel { display: none !important; }
+  .section-divider { display: none !important; }
 
+  ::-webkit-scrollbar { display: none; }
 }
 
 
@@ -2657,7 +2704,7 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 
 /* ── DOMAIN section spacing + atmospheric demarcation ──────────────────────── */
 section.domain{
-  margin-bottom:72px;
+  margin-bottom:64px;
   position:relative;
 }
 /* No hairline splice — domain gradient bars provide section breaks */
@@ -2685,17 +2732,25 @@ section.domain::after{
 .domain--d6 .domain__gradient{background:var(--d6-bright)}
 
 /* ── KEY JUDGMENT — glassy panels with left accent stripe ─────────────────── */
+/* ── DOMAIN CONTENT WRAPPER — ONE continuous left accent stripe ──────────── */
+.domain__content{border-left:2px solid transparent}
+.domain--d1 .domain__content{border-left-color:var(--d1-bright)}
+.domain--d2 .domain__content{border-left-color:var(--d2-bright)}
+.domain--d3 .domain__content{border-left-color:var(--d3-bright)}
+.domain--d4 .domain__content{border-left-color:var(--d4-bright)}
+.domain--d5 .domain__content{border-left-color:var(--d5-bright)}
+.domain--d6 .domain__content{border-left-color:var(--d6-bright)}
+
 .kj{
   padding:16px 22px 14px;margin-bottom:0;
-  border-left:3px solid transparent;
-  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
 }
-.domain--d1 .kj{background:rgba(40,8,14,0.44);border-left-color:var(--d1-bright)}
-.domain--d2 .kj{background:rgba(44,24,0,0.44);border-left-color:var(--d2-bright)}
-.domain--d3 .kj{background:rgba(14,28,10,0.44);border-left-color:var(--d3-bright)}
-.domain--d4 .kj{background:rgba(20,8,48,0.44);border-left-color:var(--d4-bright)}
-.domain--d5 .kj{background:rgba(0,18,40,0.44);border-left-color:var(--d5-bright)}
-.domain--d6 .kj{background:rgba(0,28,28,0.44);border-left-color:var(--d6-bright)}
+.domain--d1 .kj{background:rgba(40,8,14,0.36)}
+.domain--d2 .kj{background:rgba(44,24,0,0.36)}
+.domain--d3 .kj{background:rgba(14,28,10,0.36)}
+.domain--d4 .kj{background:rgba(20,8,48,0.36)}
+.domain--d5 .kj{background:rgba(0,18,40,0.36)}
+.domain--d6 .kj{background:rgba(0,28,28,0.36)}
 .kj__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.50rem;letter-spacing:.20em;font-weight:800}
 .kj__text{
   font-family:"Palatino Linotype","Palatino",Georgia,serif;
@@ -2704,13 +2759,13 @@ section.domain::after{
 .kj__basis{font-family:Georgia,"Times New Roman",serif;font-size:.64rem;color:#585870;margin-top:4px;font-style:italic}
 
 /* ── BODY WRAP — nearly transparent, text floats on gradient; border bridges from KJ ── */
-.body-wrap{padding:18px 26px 20px;border-left:3px solid transparent}
-.domain--d1 .body-wrap{background:rgba(12,7,8,0.15);border-left-color:var(--d1-bright)}
-.domain--d2 .body-wrap{background:rgba(16,13,7,0.15);border-left-color:var(--d2-bright)}
-.domain--d3 .body-wrap{background:rgba(8,15,9,0.15);border-left-color:var(--d3-bright)}
-.domain--d4 .body-wrap{background:rgba(10,8,16,0.15);border-left-color:var(--d4-bright)}
-.domain--d5 .body-wrap{background:rgba(6,8,15,0.15);border-left-color:var(--d5-bright)}
-.domain--d6 .body-wrap{background:rgba(6,13,13,0.15);border-left-color:var(--d6-bright)}
+.body-wrap{padding:18px 26px 22px}
+.domain--d1 .body-wrap{background:rgba(12,4,6,0.10)}
+.domain--d2 .body-wrap{background:rgba(16,10,0,0.10)}
+.domain--d3 .body-wrap{background:rgba(6,14,5,0.10)}
+.domain--d4 .body-wrap{background:rgba(10,4,18,0.10)}
+.domain--d5 .body-wrap{background:rgba(0,10,18,0.10)}
+.domain--d6 .body-wrap{background:rgba(0,14,12,0.10)}
 .sub-label{
   font-family:"Trebuchet MS",Arial,sans-serif;
   font-size:.50rem;letter-spacing:.18em;font-weight:700;
@@ -2738,7 +2793,7 @@ section.domain::after{
 .exec__gradient{background:linear-gradient(90deg,transparent,#C4A030 30%,#C4A030 70%,transparent);height:2px}
 .exec__header{background:rgba(10,9,0,0.40);border-left:3px solid #C4A030;padding:14px 28px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .exec__header-title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.22em;color:#C4A030}
-.exec__bluf{background:rgba(8,8,0,0.30);border-left:3px solid #C4A030;padding:18px 28px;margin-top:0}
+.exec__bluf{background:rgba(8,8,0,0.20);border-left:2px solid #C4A030;padding:18px 28px;margin-top:0}
 .exec__bluf-label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.50rem;color:#5A4810;letter-spacing:.16em}
 .exec__bluf-text{font-family:Georgia,"Times New Roman",serif;font-size:.88rem;color:#E8E2D6;line-height:1.70}
 .exec__kj-list{background:rgba(7,7,0,0.25);border-left:3px solid #C4A030;padding:12px 28px 20px;margin-top:0;margin-bottom:48px}
@@ -2766,50 +2821,7 @@ section.domain::after{
   display:block;height:22px;width:auto;opacity:.80;flex-shrink:0;
 }
 
-/* ── EDITOR PANEL ─────────────────────────────────────────────────────────── */
-@media print{#cse-editor-toggle,#cse-editor-panel{display:none!important}}
-#cse-editor-toggle{
-  position:fixed;bottom:24px;right:24px;z-index:9999;
-  width:40px;height:40px;border-radius:50%;border:1px solid #202838;cursor:pointer;
-  background:#0A0E1C;color:#C4A030;font-size:16px;
-  box-shadow:0 3px 14px rgba(0,0,0,.60);
-  display:flex;align-items:center;justify-content:center;transition:background .18s;
-}
-#cse-editor-toggle:hover{background:#141A28}
-#cse-editor-panel{
-  position:fixed;top:0;right:0;bottom:0;z-index:9998;width:310px;
-  background:#060A14;border-left:1px solid #181E30;
-  display:none;flex-direction:column;
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  box-shadow:-6px 0 30px rgba(0,0,0,.70);overflow:hidden;
-}
-#cse-editor-panel.open{display:flex}
-.ep-header{background:#0A1020;border-bottom:2px solid #B81C28;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
-.ep-header-title{color:#F0EAE0;font-size:.66rem;font-weight:700;letter-spacing:.18em}
-.ep-header-close{background:none;border:none;color:#585E6C;cursor:pointer;font-size:15px;padding:0;line-height:1}
-.ep-header-close:hover{color:#F0EAE0}
-.ep-tabs{display:flex;border-bottom:1px solid #10162A;flex-shrink:0}
-.ep-tab{flex:1;padding:7px 4px;background:none;border:none;cursor:pointer;font-family:"Trebuchet MS",Arial,sans-serif;font-size:.50rem;font-weight:700;letter-spacing:.10em;color:#383E4C;text-transform:uppercase;border-bottom:2px solid transparent;transition:color .14s,border-color .14s}
-.ep-tab.active{color:#C4A030;border-bottom-color:#C4A030}
-.ep-tab:hover:not(.active){color:#7888A0}
-.ep-body{flex:1;overflow-y:auto;padding:12px 14px}
-.ep-body::-webkit-scrollbar{width:3px}
-.ep-body::-webkit-scrollbar-track{background:#04060A}
-.ep-body::-webkit-scrollbar-thumb{background:#161C28;border-radius:2px}
-.ep-section-title{font-size:.48rem;font-weight:700;letter-spacing:.18em;color:#B81C28;text-transform:uppercase;border-bottom:1px solid #10162A;padding-bottom:4px;margin:10px 0 7px}
-.ep-section-title:first-child{margin-top:0}
-.ep-row{display:flex;align-items:center;gap:7px;margin-bottom:7px}
-.ep-label{font-size:.50rem;letter-spacing:.08em;color:#505C78;flex:0 0 auto;min-width:76px}
-.ep-input,.ep-select{flex:1;background:#07091A;border:1px solid #161C28;border-radius:2px;color:#C4BCA8;font-family:"Trebuchet MS",Arial,sans-serif;font-size:.60rem;padding:4px 6px;outline:none}
-.ep-input:focus,.ep-select:focus{border-color:#C4A030}
-.ep-select{cursor:pointer}
-input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;cursor:pointer}
-.ep-btn{display:block;width:100%;padding:7px;background:#08091A;border:1px solid #161C28;border-radius:2px;color:#C4A030;font-family:"Trebuchet MS",Arial,sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.10em;cursor:pointer;margin-bottom:7px;text-align:center;transition:background .14s}
-.ep-btn:hover{background:#101428}
-.ep-btn--red{border-color:#280C14;color:#D82838}
-.ep-status{font-size:.52rem;color:#383E4C;font-style:italic;text-align:center;padding:5px}
-.ep-edit-active .ep-editable{outline:1px dashed rgba(196,160,48,.30);border-radius:1px;cursor:text}
-.ep-edit-active .ep-editable:focus{outline:1px solid #C4A030;background:rgba(196,160,48,.03)}
+
 
 
 </style>
@@ -2998,15 +3010,11 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <div class="domain__conf-row"><span class="badge badge--green">HIGH</span></div>
     </div>
   </div>
-  <div class="domain__aq">
-    <div class="domain__aq-text">What is the current disposition of forces, and what kinetic activity occurred across all theatres in the preceding 24 hours?</div>
-    <div class="domain__aq-conf">BATTLESPACE</div>
-  </div>
-    <div class="kj">
+  <div class="domain__content">
+      <div class="kj">
     <div class="kj__label-row">
       <div class="kj__label">KEY JUDGMENT</div>
       <div class="kj__meta">
-        <span class="kj__domain-ref">D1</span>
         <span class="kj__probability">75–95%</span>
         <span class="badge badge--green">HIGH</span>
       </div>
@@ -3016,11 +3024,12 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
     <div class="kj__text">We judge it highly likely that Israel is in the final planning phase for retaliatory strikes, with USAF repositioning of B-2 assets to Diego Garcia and Israeli Air Force sortie rates at levels not observed since October 2023 constituting the primary indicators.</div>
     <div class="kj__basis">(CENTCOM; open-source flight tracking; NBC satellite imagery verification)</div>
   </div>
-    <div class="body-wrap">
+      <div class="body-wrap">
     <div class="sub-label sub-label--observed">OBSERVED ACTIVITY — 0001–0600 UTC 15 MAR</div>
     <span class="body-para__timestamp">As of 0600 UTC 15 Mar</span>
     <p class="body-para">At 0342 UTC, IRGC Aerospace Force launched an estimated 22 ballistic missiles from launch sites in Khuzestan and Isfahan provinces targeting Haifa (14 missiles) and the Tel Aviv metropolitan area (8 missiles). Iron Dome, David&#x27;s Sling, and Arrow-3 interceptors engaged the salvo; official IDF statements confirmed 19 interceptions. Two impacts were confirmed in the Haifa port district, resulting in structural damage to petroleum storage facilities and an estimated 14 civilian casualties. <em class="body-para__source">(AP, 0415 UTC 15 MAR); (Reuters, 0422 UTC 15 MAR); (CENTCOM, 0500 UTC 15 MAR)</em></p>    <p class="body-para">Simultaneously, Hezbollah launched approximately 80 Katyusha rockets and four Kornet anti-tank missiles into the Galilee panhandle. IDF Northern Command initiated a pre-planned defensive fire response with artillery and helicopter gunships. No IDF ground manoeuvre was observed. Rudaw reporting confirms PMF units in Iraq&#x27;s Diyala province moved to elevated readiness posture at approximately 0200 UTC, consistent with pre-conflict axis of resistance coordination protocols. <em class="body-para__source">(AP, 0500 UTC 15 MAR); (reported: Rudaw, 0330 UTC 15 MAR)</em></p>    <div class="sub-label sub-label--assessment">ANALYTICAL ASSESSMENT</div>
     <p class="body-para">We assess that the missile salvo represents a deliberate calibration exercise: the quantity and mix of systems employed — Shahab-3 variants combined with one Fattah-1 hypersonic — signals Iranian intent to demonstrate escalation capability across the velocity spectrum without exhausting reserve stocks. Iran&#x27;s operational missile inventory is estimated to exceed 3,000 units; the 22 employed represents less than 1% of accessible stock. This restraint is analytically significant. Available evidence suggests the attack was designed to generate a retaliatory response from Israel that Iran calculates it can absorb and leverage domestically, rather than as a war-terminating first strike. <em class="body-para__source">(CTP-ISW Evening Report, 2300 UTC 14 MAR); (reported: Alma Research Daily, 2330 UTC 14 MAR)</em></p>
+  </div>
   </div>
   
     <ol class="timeline">
@@ -3072,15 +3081,11 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <div class="domain__conf-row"><span class="badge badge--blue">MODERATE</span></div>
     </div>
   </div>
-  <div class="domain__aq">
-    <div class="domain__aq-text">Are there indicators of escalation, de-escalation, or horizontal expansion? What red lines are being approached or crossed?</div>
-    <div class="domain__aq-conf">ESCALATION</div>
-  </div>
-    <div class="kj">
+  <div class="domain__content">
+      <div class="kj">
     <div class="kj__label-row">
       <div class="kj__label">KEY JUDGMENT</div>
       <div class="kj__meta">
-        <span class="kj__domain-ref">D2</span>
         <span class="kj__probability">55–75%</span>
         <span class="badge badge--blue">MODERATE</span>
       </div>
@@ -3090,11 +3095,12 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
     <div class="kj__text">Available evidence suggests that the conflict is tracking toward a controlled escalatory exchange rather than an uncontrolled regional war, but the margin is narrow and shrinking: three of the five tripwires identified in the previous cycle have now been triggered, and the nuclear facility inspection suspension is the most significant red line indicator observed to date.</div>
     <div class="kj__basis">(ICG escalation framing; IAEA suspension statement; CTP-ISW trajectory assessment)</div>
   </div>
-    <div class="body-wrap">
+      <div class="body-wrap">
     <div class="sub-label sub-label--observed">ESCALATION INDICATORS — TRIGGERED</div>
     <span class="body-para__timestamp">As of 0600 UTC 15 Mar</span>
     <p class="body-para">Three of five pre-identified escalation tripwires have been triggered in this cycle: (1) ballistic missile employment against Israeli territory — confirmed; (2) IAEA inspector access suspension at a declared enrichment facility — confirmed; (3) Hezbollah ground forces observed moving to forward assembly areas in southern Lebanon — confirmed via Anadolu Agency ground imagery. The remaining two indicators — Iraqi PMF cross-border strikes against Israeli territory, and a third-country Arab state&#x27;s infrastructure being struck — remain unactivated. <em class="body-para__source">(IAEA, 2330 UTC 14 MAR); (reported: Anadolu Agency, 0200 UTC 15 MAR)</em></p>    <div class="sub-label sub-label--assessment">DE-ESCALATION SIGNALS</div>
     <p class="body-para">Reporting indicates, though corroboration is limited, that Qatar&#x27;s foreign minister held a one-hour call with the Iranian foreign ministry at approximately 0430 UTC, and that Oman&#x27;s back-channel — which proved functional in the 2019 tanker crisis — is now active. The ICG&#x27;s Ali Vaez has assessed that Iran retains the political will to accept a face-saving pause if Israel&#x27;s retaliation is calibrated to non-nuclear, non-regime-change targets. This assessment aligns with our own analytical judgment, though it carries only moderate confidence given the opacity of Iranian internal deliberation. <em class="body-para__source">(Reuters, 0545 UTC 15 MAR); (reported: ICG, 0500 UTC 15 MAR)</em></p>
+  </div>
   </div>
   
   
@@ -3166,15 +3172,11 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <div class="domain__conf-row"><span class="badge badge--green">HIGH</span></div>
     </div>
   </div>
-  <div class="domain__aq">
-    <div class="domain__aq-text">Is the conflict disrupting energy production, transit, or global commodity markets in ways that affect Canadian economic interests?</div>
-    <div class="domain__aq-conf">ENERGY</div>
-  </div>
-    <div class="kj">
+  <div class="domain__content">
+      <div class="kj">
     <div class="kj__label-row">
       <div class="kj__label">KEY JUDGMENT</div>
       <div class="kj__meta">
-        <span class="kj__domain-ref">D3</span>
         <span class="kj__probability">95–99%</span>
         <span class="badge badge--green">HIGH</span>
       </div>
@@ -3184,11 +3186,12 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
     <div class="kj__text">We assess with high confidence that the combination of UKMTO Hormuz disruption, Lloyd&#x27;s insurance suspension, and Goldman Sachs&#x27;s revised $14 risk premium will drive Brent crude above $100/bbl within five trading days, with direct implications for Canadian TSX energy sector pricing and CAD/USD appreciation.</div>
     <div class="kj__basis">(Goldman Sachs Research; UKMTO bulletin; Kpler vessel flow data; CNBC energy desk)</div>
   </div>
-    <div class="body-wrap">
+      <div class="body-wrap">
     <div class="sub-label sub-label--observed">MARKET INDICATORS — AS OF 0600 UTC</div>
     <span class="body-para__timestamp">As of 0600 UTC 15 Mar</span>
     <p class="body-para">Brent crude opened the European session at $94.20/bbl, a $6.40 (7.3%) increase from the previous close, representing the largest single-day move since the October 2023 Gaza shock. WTI tracks at $89.80/bbl. Goldman Sachs&#x27;s Daan Struyven issued a revised note at 0500 UTC placing the four-week disruption probability at 65%, consistent with the Hormuz interdiction already confirmed by UKMTO. The $14 risk premium is now partially priced in; full materialisation would imply $102–108/bbl. <em class="body-para__source">(reported: CNBC Live Blog, 0530 UTC 15 MAR); (Reuters, 0550 UTC 15 MAR)</em></p>    <div class="sub-label sub-label--assessment">CANADIAN ECONOMIC EXPOSURE</div>
     <p class="body-para">Available evidence suggests Canadian energy sector exposure is asymmetrically positive in the near term: TSX energy index futures indicate a 4–6% opening gain, and Western Canadian Select heavy crude — already trading at a narrowed differential to WTI — would benefit from sustained elevated benchmarks. The risk dimension is LNG export competitiveness: a prolonged Hormuz closure redirecting Qatar LNG to alternative markets would reduce the price incentive for new Canadian LNG facility investment. The British Columbia-to-Asia LNG corridor, currently in financing phase, is the most exposed long-duration Canadian interest in this scenario. <em class="body-para__source">(Reuters, 0550 UTC 15 MAR)</em></p>
+  </div>
   </div>
     <div class="data-table-wrap">
     <div class="data-table-caption">KEY ENERGY INDICATORS — 0600 UTC 15 MAR <span class="data-table__unit">(USD)</span></div>
@@ -3215,15 +3218,11 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <div class="domain__conf-row"><span class="badge badge--blue">MODERATE</span></div>
     </div>
   </div>
-  <div class="domain__aq">
-    <div class="domain__aq-text">What are the positions of key state actors, and are there diplomatic initiatives or breakdowns that shift the conflict trajectory?</div>
-    <div class="domain__aq-conf">DIPLOMATIC</div>
-  </div>
-    <div class="kj">
+  <div class="domain__content">
+      <div class="kj">
     <div class="kj__label-row">
       <div class="kj__label">KEY JUDGMENT</div>
       <div class="kj__meta">
-        <span class="kj__domain-ref">D4</span>
         <span class="kj__probability">45–55%</span>
         <span class="badge badge--blue">MODERATE</span>
       </div>
@@ -3233,11 +3232,12 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
     <div class="kj__text">Reporting indicates, though corroboration is limited, that a 48-hour diplomatic pause is achievable if the United States explicitly constrains Israeli target selection to non-nuclear, non-regime-threatening facilities; the probability is roughly even, with the decisive variable being the Netanyahu coalition&#x27;s domestic political calculus rather than strategic logic.</div>
     <div class="kj__basis">(CFR Daily Brief 15 Mar; Reuters Qatar sourcing; CBS State Department track)</div>
   </div>
-    <div class="body-wrap">
+      <div class="body-wrap">
     <div class="sub-label sub-label--observed">STATE ACTOR POSITIONS</div>
     <span class="body-para__timestamp">As of 0600 UTC 15 Mar</span>
     <p class="body-para">The United States has publicly condemned the Iranian missile attack and reaffirmed its commitment to Israeli security while privately, according to CBS State Department sourcing, urging restraint on target selection to avoid Iranian nuclear facility strikes. The EU Foreign Affairs Council convened an emergency session at 0800 CET; France 24&#x27;s EU coverage indicates France and Germany are pushing for a UN Security Council resolution that neither China nor Russia are expected to veto, as it would avoid a Chapter VII enforcement mechanism. Turkey&#x27;s foreign ministry issued a statement calling for immediate ceasefire that notably omitted its standard reference to Palestinian statehood, a potential signal of Erdogan&#x27;s willingness to play a mediating role. <em class="body-para__source">(reported: CBS News Live, 0500 UTC 15 MAR); (reported: France 24 English, 0530 UTC 15 MAR); (reported: Anadolu Agency, 0445 UTC 15 MAR)</em></p>    <div class="sub-label sub-label--assessment">MEDIATION DYNAMICS</div>
     <p class="body-para">The Qatari and Omani back-channels remain the most credible de-escalation mechanisms available. Reuters diplomatic sourcing — the most reliable single feed for Gulf state positioning — confirms both are active, but the timeline pressure is acute: Israel&#x27;s war cabinet is constitutionally required to vote on any major military action, and the vote is scheduled for a 0800 local time (0600 UTC) session on 16 March. The 24-hour window before that vote represents the functional diplomatic horizon. Available evidence suggests the US is prepared to offer Iran a tacit security guarantee against regime-change operations as part of a pause framework, but this offer has not been formally transmitted as of this cycle&#x27;s close. <em class="body-para__source">(Reuters, 0545 UTC 15 MAR); (reported: CFR Daily News Brief, 0600 UTC 15 MAR)</em></p>
+  </div>
   </div>
   
   
@@ -3267,15 +3267,11 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <div class="domain__conf-row"><span class="badge badge--amber">LOW</span></div>
     </div>
   </div>
-  <div class="domain__aq">
-    <div class="domain__aq-text">What Iranian or proxy-affiliated cyber and information operations are observable in open sources? Confidence is structurally lower in this domain.</div>
-    <div class="domain__aq-conf">CYBER · IO</div>
-  </div>
-    <div class="kj">
+  <div class="domain__content">
+      <div class="kj">
     <div class="kj__label-row">
       <div class="kj__label">KEY JUDGMENT</div>
       <div class="kj__meta">
-        <span class="kj__domain-ref">D5</span>
         <span class="kj__probability">45–55%</span>
         <span class="badge badge--amber">LOW</span>
       </div>
@@ -3285,10 +3281,11 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
     <div class="kj__text">Reporting indicates, though corroboration is limited, that coordinated cyber operations preceded the missile salvo by approximately six hours, targeting Israeli financial sector clearing infrastructure; attribution to IRGC cyber units rather than hacktivist proxies remains unconfirmed and should be treated as a claimed assessment only.</div>
     <div class="kj__basis">(Recorded Future free tier; France 24 Observers video verification; NetBlocks blackout data — all Tier 3)</div>
   </div>
-    <div class="body-wrap">
+      <div class="body-wrap">
     <div class="sub-label sub-label--observed">OBSERVED — WITH VERIFICATION CAVEATS</div>
     <span class="body-para__timestamp">As of 0600 UTC 15 Mar</span>
     <p class="body-para">NetBlocks confirmed a significant degradation of internet connectivity in three Israeli cities beginning at approximately 2150 UTC 14 March — approximately six hours before the missile salvo. The Bank of Israel&#x27;s online service portal was inaccessible for approximately 90 minutes beginning at 2200 UTC; this is a pattern consistent with DDoS activity but equally consistent with precautionary Iranian traffic filtering. Hacktivist group &#x27;Cyber Avengers&#x27; — an IRGC-affiliated account — claimed responsibility for attacks on Israeli power grid SCADA systems via Telegram, but no confirmed outage has been independently verified. This section explicitly notes that cyber claims in open sources carry a materially higher noise-to-signal ratio than kinetic reporting. All items in this domain should be treated as indicative rather than confirmed. <em class="body-para__source"><span class="cite--claimed">(claimed: NetBlocks, 0330 UTC 15 MAR)</span>; (reported: France 24 Observers, 0400 UTC 15 MAR)</em></p>
+  </div>
   </div>
   
   
@@ -3451,634 +3448,577 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
   </div>
   <img src="data:image/png;base64,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" class="brief-footer__flag" alt="Government of Canada">
 </footer>
-<!-- CSE BRIEF EDITOR PANEL -->
-<button id="cse-editor-toggle" title="Open editor" aria-label="Open editor">&#x270E;</button>
+<!-- CSE BRIEF EDITOR -->
+<button id="cse-editor-toggle" title="Brief Editor" aria-label="Brief Editor">&#x270E;</button>
 
-<div id="cse-editor-panel" role="dialog" aria-label="Brief Editor">
+<div id="cse-editor-panel" role="dialog" aria-label="CSE Brief Editor">
+
+  <!-- HEADER -->
   <div class="ep-header" id="ep-drag-handle">
-    <span class="ep-header-title">&#x2630; CSE BRIEF EDITOR</span>
-    <div style="display:flex;align-items:center;gap:8px">
-      <span style="font-size:.48rem;color:#383E4C;letter-spacing:.1em">DRAG TO MOVE</span>
-      <button class="ep-header-close" onclick="CSEEditor.close()" title="Close">&times;</button>
-    </div>
+    <span class="ep-header-title">&#x22B3; CSE BRIEF EDITOR</span>
+    <button class="ep-close" onclick="CSEEditor.toggle()" title="Close">&times;</button>
   </div>
+
+  <!-- TABS -->
   <div class="ep-tabs">
-    <button class="ep-tab active" onclick="CSEEditor.tab(this,'content')" data-tab="content">TEXT</button>
-    <button class="ep-tab" onclick="CSEEditor.tab(this,'arrange')" data-tab="arrange">MOVE</button>
-    <button class="ep-tab" onclick="CSEEditor.tab(this,'style')" data-tab="style">STYLE</button>
-    <button class="ep-tab" onclick="CSEEditor.tab(this,'meta')" data-tab="meta">META</button>
-    <button class="ep-tab" onclick="CSEEditor.tab(this,'export')" data-tab="export">EXPORT</button>
+    <button class="ep-tab active"   onclick="CSETab(this,'edit')">EDIT</button>
+    <button class="ep-tab"          onclick="CSETab(this,'move')">MOVE</button>
+    <button class="ep-tab"          onclick="CSETab(this,'style')">STYLE</button>
+    <button class="ep-tab"          onclick="CSETab(this,'meta')">META</button>
+    <button class="ep-tab"          onclick="CSETab(this,'export')">EXPORT</button>
   </div>
 
-  <!-- ══ TEXT TAB ══════════════════════════════════════════════════ -->
-  <div class="ep-body ep-tab-pane" id="ep-content">
-    <div class="ep-section-title">Inline Text Editing</div>
-    <button class="ep-btn" id="ep-edit-btn" onclick="CSEEditor.toggleEdit()">Enable Editing</button>
-    <div class="ep-status" id="ep-edit-status">Enables click-to-edit on every text element in the brief</div>
-
-    <div id="ep-fmt-bar" style="display:none;gap:4px;margin-bottom:8px;flex-wrap:wrap">
+  <!-- ═══ EDIT TAB ═══════════════════════════════════════════════════════ -->
+  <div class="ep-tab-pane ep-body" id="ep-edit">
+    <div class="ep-section">Text Editing</div>
+    <button class="ep-btn" id="ep-edit-btn" onclick="CSEEditor.toggleEdit()">Enable Edit Mode</button>
+    <div class="ep-status" id="ep-edit-status">Click any text in the brief to edit it</div>
+    <div id="ep-fmt-bar" style="display:none;gap:4px;margin:6px 0;flex-wrap:wrap">
       <button class="ep-fmt-btn" onclick="CSEEditor.fmt('bold')" title="Bold"><b>B</b></button>
       <button class="ep-fmt-btn" onclick="CSEEditor.fmt('italic')" title="Italic"><i>I</i></button>
       <button class="ep-fmt-btn" onclick="CSEEditor.fmt('underline')" title="Underline"><u>U</u></button>
-      <button class="ep-fmt-btn" onclick="CSEEditor.fmt('strikeThrough')" title="Strike">S&#x0336;</button>
-      <button class="ep-fmt-btn" onclick="CSEEditor.fmt('removeFormat')" title="Clear">&#x2715;</button>
+      <button class="ep-fmt-btn" onclick="CSEEditor.fmt('removeFormat')" title="Clear">CLR</button>
     </div>
 
-    <div class="ep-section-title">Quick Fields</div>
-    <div class="ep-row"><span class="ep-label">Region</span>
-      <input class="ep-input" id="qf-region" oninput="CSEEditor.qf('ed-region',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Context note</span>
-      <input class="ep-input" id="qf-ctx" oninput="CSEEditor.qf('ed-ctx',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Cycle no.</span>
-      <input class="ep-input" id="qf-cycle" oninput="CSEEditor.qf('ed-cycle-num',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Date</span>
-      <input class="ep-input" id="qf-date" oninput="CSEEditor.qf('ed-date',this.value)"></div>
-
-    <div class="ep-section-title">Delete Element</div>
-    <div class="ep-status" id="ep-del-hint">Select any element on the page, then delete it</div>
-    <button class="ep-btn" id="ep-sel-btn" onclick="CSEEditor.togglePick()">Pick Element to Delete</button>
-    <button class="ep-btn ep-btn--red" id="ep-del-btn" style="display:none" onclick="CSEEditor.deleteSelected()">Delete Selected Element</button>
+    <div class="ep-section" style="margin-top:14px">Delete Anything</div>
+    <button class="ep-btn ep-btn--danger" id="ep-del-btn" onclick="CSEEditor.toggleDelete()">Enter Delete Mode</button>
+    <div class="ep-status" id="ep-del-status">Click any element on the page to remove it</div>
   </div>
 
-  <!-- ══ MOVE TAB ══════════════════════════════════════════════════ -->
-  <div class="ep-body ep-tab-pane" id="ep-arrange" style="display:none">
-    <div class="ep-section-title">Drag Sections to Reorder</div>
-    <button class="ep-btn" id="ep-drag-sections-btn" onclick="CSEEditor.toggleSectionDrag()">Enable Section Drag</button>
-    <div class="ep-status">Drag the handles &#x2195; on each section to reorder them</div>
-    <div id="ep-section-order"></div>
+  <!-- ═══ MOVE TAB ════════════════════════════════════════════════════════ -->
+  <div class="ep-tab-pane ep-body" id="ep-move" style="display:none">
+    <div class="ep-section">Drag &amp; Drop</div>
+    <button class="ep-btn" id="ep-drag-btn" onclick="CSEEditor.toggleDrag()">Enable Drag Mode</button>
+    <div class="ep-status">Drag sections, paragraphs, KJ boxes, notes, flash points</div>
 
-    <div class="ep-section-title">Move Section</div>
-    <div id="ep-section-movers"></div>
+    <div class="ep-section" style="margin-top:14px">Domain Sections</div>
+    <div id="ep-movers"></div>
 
-    <div class="ep-section-title">Drag Flash Points to Reorder</div>
-    <button class="ep-btn" id="ep-drag-flash-btn" onclick="CSEEditor.toggleFlashDrag()">Enable Flash Point Drag</button>
-
-    <div class="ep-section-title">Drag Exec Key Judgments</div>
-    <button class="ep-btn" id="ep-drag-kj-btn" onclick="CSEEditor.toggleKJDrag()">Enable KJ Drag</button>
+    <div class="ep-section" style="margin-top:14px">KPI Strip</div>
+    <div id="ep-strip"></div>
   </div>
 
-  <!-- ══ STYLE TAB ══════════════════════════════════════════════════ -->
-  <div class="ep-body ep-tab-pane" id="ep-style" style="display:none">
-    <div class="ep-section-title">Structural</div>
-    <div class="ep-row"><span class="ep-label">Crimson</span>
-      <input type="color" class="ep-color" value="#B81C28" oninput="CSEEditor.cssVar('--color-crimson',this.value)"></div>
+  <!-- ═══ STYLE TAB ═══════════════════════════════════════════════════════ -->
+  <div class="ep-tab-pane ep-body" id="ep-style" style="display:none">
+    <div class="ep-section">Colour Variables</div>
     <div class="ep-row"><span class="ep-label">Gold</span>
-      <input type="color" class="ep-color" value="#C4A030" oninput="CSEEditor.cssVar('--color-gold',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Gold hi</span>
-      <input type="color" class="ep-color" value="#E4B84C" oninput="CSEEditor.cssVar('--color-gold-hi',this.value)"></div>
+      <input class="ep-input ep-input--color" type="color" value="#C4A030"
+             oninput="setCSSVar('--color-gold',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Crimson</span>
+      <input class="ep-input ep-input--color" type="color" value="#B81C28"
+             oninput="setCSSVar('--color-crimson',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Text hi</span>
+      <input class="ep-input ep-input--color" type="color" value="#F0EAE0"
+             oninput="setCSSVar('--text-hi',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">Text md</span>
+      <input class="ep-input ep-input--color" type="color" value="#C4BCB0"
+             oninput="setCSSVar('--text-md',this.value)"></div>
+    <div class="ep-section" style="margin-top:10px">Domain Accents</div>
+    <div class="ep-row"><span class="ep-label">D1 red</span>
+      <input class="ep-input ep-input--color" type="color" value="#C83030"
+             oninput="setCSSVar('--d1-bright',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">D2 amber</span>
+      <input class="ep-input ep-input--color" type="color" value="#D08020"
+             oninput="setCSSVar('--d2-bright',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">D3 green</span>
+      <input class="ep-input ep-input--color" type="color" value="#308040"
+             oninput="setCSSVar('--d3-bright',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">D4 purple</span>
+      <input class="ep-input ep-input--color" type="color" value="#A050E8"
+             oninput="setCSSVar('--d4-bright',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">D5 blue</span>
+      <input class="ep-input ep-input--color" type="color" value="#3878C8"
+             oninput="setCSSVar('--d5-bright',this.value)"></div>
+    <div class="ep-row"><span class="ep-label">D6 teal</span>
+      <input class="ep-input ep-input--color" type="color" value="#208878"
+             oninput="setCSSVar('--d6-bright',this.value)"></div>
+    <button class="ep-btn" onclick="resetCSSVars()" style="margin-top:12px">Reset All Styles</button>
+  </div>
 
-    <div class="ep-section-title">Domain Accents</div>
-    <div class="ep-row"><span class="ep-label">D1 Crimson</span>
-      <input type="color" class="ep-color" value="#D82838" oninput="CSEEditor.cssVar('--d1-bright',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">D2 Amber</span>
-      <input type="color" class="ep-color" value="#E09828" oninput="CSEEditor.cssVar('--d2-bright',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">D3 Green</span>
-      <input type="color" class="ep-color" value="#28B850" oninput="CSEEditor.cssVar('--d3-bright',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">D4 Purple</span>
-      <input type="color" class="ep-color" value="#8A54D0" oninput="CSEEditor.cssVar('--d4-bright',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">D5 Blue</span>
-      <input type="color" class="ep-color" value="#3C8CE0" oninput="CSEEditor.cssVar('--d5-bright',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">D6 Teal</span>
-      <input type="color" class="ep-color" value="#2EC0B0" oninput="CSEEditor.cssVar('--d6-bright',this.value)"></div>
+  <!-- ═══ META TAB ════════════════════════════════════════════════════════ -->
+  <div class="ep-tab-pane ep-body" id="ep-meta" style="display:none">
+    <div class="ep-section">Quick Fields</div>
+    <div class="ep-row"><span class="ep-label">Cycle</span>
+      <input class="ep-input" id="qf-cycle"></div>
+    <div class="ep-row"><span class="ep-label">Date</span>
+      <input class="ep-input" id="qf-date"></div>
+    <div class="ep-row"><span class="ep-label">Region</span>
+      <input class="ep-input" id="qf-region"></div>
+    <div class="ep-row"><span class="ep-label">Context</span>
+      <input class="ep-input" id="qf-ctx"></div>
 
-    <div class="ep-section-title">Domain Fills</div>
-    <div class="ep-row"><span class="ep-label">D1 fill</span>
-      <input type="color" class="ep-color" value="#5C0C16" oninput="CSEEditor.cssVar('--d1-fill',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">D2 fill</span>
-      <input type="color" class="ep-color" value="#583000" oninput="CSEEditor.cssVar('--d2-fill',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">D3 fill</span>
-      <input type="color" class="ep-color" value="#053418" oninput="CSEEditor.cssVar('--d3-fill',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">D4 fill</span>
-      <input type="color" class="ep-color" value="#220850" oninput="CSEEditor.cssVar('--d4-fill',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">D5 fill</span>
-      <input type="color" class="ep-color" value="#002040" oninput="CSEEditor.cssVar('--d5-fill',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">D6 fill</span>
-      <input type="color" class="ep-color" value="#003030" oninput="CSEEditor.cssVar('--d6-fill',this.value)"></div>
+    <div class="ep-section" style="margin-top:14px">Threat Level</div>
+    <div class="ep-btn-group">
+      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setThreat('CRITICAL')">CRITICAL</button>
+      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setThreat('SEVERE')">SEVERE</button>
+      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setThreat('ELEVATED')">ELEVATED</button>
+      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setThreat('GUARDED')">GUARDED</button>
+      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setThreat('LOW')">LOW</button>
+    </div>
 
-    <div class="ep-section-title">Text Colours</div>
-    <div class="ep-row"><span class="ep-label">Primary</span>
-      <input type="color" class="ep-color" value="#F0EAE0" oninput="CSEEditor.cssVar('--text-hi',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Body</span>
-      <input type="color" class="ep-color" value="#C4BCB0" oninput="CSEEditor.cssVar('--text-md',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Muted</span>
-      <input type="color" class="ep-color" value="#888080" oninput="CSEEditor.cssVar('--text-lo',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Dim</span>
-      <input type="color" class="ep-color" value="#4A4C58" oninput="CSEEditor.cssVar('--text-dim',this.value)"></div>
-
-    <div class="ep-section-title">Surfaces</div>
-    <div class="ep-row"><span class="ep-label">Page bg</span>
-      <input type="color" class="ep-color" value="#040609" oninput="CSEEditor.cssVar('--color-page',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Panel bg</span>
-      <input type="color" class="ep-color" value="#08091A" oninput="CSEEditor.cssVar('--color-panel',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Header bg</span>
-      <input type="color" class="ep-color" value="#030407" oninput="CSEEditor.cssVar('--color-header-bg',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Strip bg</span>
-      <input type="color" class="ep-color" value="#060710" oninput="CSEEditor.cssVar('--color-strip-bg',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Exec bg</span>
-      <input type="color" class="ep-color" value="#080800" oninput="CSEEditor.cssVar('--color-exec-bg',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Note hdr bg</span>
-      <input type="color" class="ep-color" value="#160F00" oninput="CSEEditor.cssVar('--color-note-hdr',this.value)"></div>
-
-    <div class="ep-section-title">Confidence Badges</div>
-    <div class="ep-row"><span class="ep-label">Green</span>
-      <input type="color" class="ep-color" value="#26A050" oninput="CSEEditor.cssVar('--conf-green',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Blue</span>
-      <input type="color" class="ep-color" value="#3888D8" oninput="CSEEditor.cssVar('--conf-blue',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Amber</span>
-      <input type="color" class="ep-color" value="#DC8C28" oninput="CSEEditor.cssVar('--conf-amber',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Red</span>
-      <input type="color" class="ep-color" value="#DC2C3A" oninput="CSEEditor.cssVar('--conf-red',this.value)"></div>
-
-    <div class="ep-section-title">Typography Scale</div>
-    <div class="ep-row"><span class="ep-label">Masthead</span>
-      <input class="ep-input" value="2.6rem" oninput="CSEEditor.cssVar('--size-masthead',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Body</span>
-      <input class="ep-input" value="0.88rem" oninput="CSEEditor.cssVar('--size-body',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Key Judgment</span>
-      <input class="ep-input" value="0.94rem" oninput="CSEEditor.cssVar('--size-kj',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Section</span>
-      <input class="ep-input" value="0.76rem" oninput="CSEEditor.cssVar('--size-section',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Badges</span>
-      <input class="ep-input" value="0.56rem" oninput="CSEEditor.cssVar('--size-badge',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">AQ text</span>
-      <input class="ep-input" value="0.75rem" oninput="CSEEditor.cssVar('--size-aq',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">Notes body</span>
-      <input class="ep-input" value="0.86rem" oninput="CSEEditor.cssVar('--size-note-b',this.value)"></div>
-    <div class="ep-row"><span class="ep-label">KPI number</span>
-      <input class="ep-input" value="1.45rem" oninput="CSEEditor.cssVar('--size-kpi-num',this.value)"></div>
-
-    <div style="margin-top:10px">
-      <button class="ep-btn ep-btn--red" onclick="CSEEditor.resetStyles()">Reset Styles</button>
+    <div class="ep-section" style="margin-top:10px">Trajectory</div>
+    <div class="ep-btn-group">
+      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setTraj('escalating')">&#x2191; ESCALATING</button>
+      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setTraj('stable')">&#x2014; STABLE</button>
+      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setTraj('de-escalating')">&#x2193; DE-ESC</button>
     </div>
   </div>
 
-  <!-- ══ META TAB ══════════════════════════════════════════════════ -->
-  <div class="ep-body ep-tab-pane" id="ep-meta" style="display:none">
-    <div class="ep-section-title">Threat Assessment</div>
-    <div class="ep-row"><span class="ep-label">Threat level</span>
-      <select class="ep-select" onchange="CSEEditor.setThreat(this.value)">
-        <option>CRITICAL</option><option selected>SEVERE</option>
-        <option>ELEVATED</option><option>GUARDED</option><option>LOW</option>
-      </select></div>
-    <div class="ep-row"><span class="ep-label">Trajectory</span>
-      <select class="ep-select" onchange="CSEEditor.setTrajectory(this.value)">
-        <option value="escalating" selected>Escalating</option>
-        <option value="stable">Stable</option>
-        <option value="de-escalating">De-escalating</option>
-      </select></div>
-
-    <div class="ep-section-title">Distribution</div>
-    <div class="ep-row"><span class="ep-label">TLP</span>
-      <select class="ep-select" onchange="CSEEditor.setTLP(this.value)">
-        <option value="AMBER" selected>TLP:AMBER</option>
-        <option value="RED">TLP:RED</option>
-        <option value="GREEN">TLP:GREEN</option>
-        <option value="CLEAR">TLP:CLEAR</option>
-      </select></div>
-
-    <div class="ep-section-title">Strip Cells</div>
-    <div id="ep-strip-cells"></div>
-
-    <div class="ep-section-title">Domain Visibility</div>
-    <div id="ep-domain-toggles"></div>
+  <!-- ═══ EXPORT TAB ══════════════════════════════════════════════════════ -->
+  <div class="ep-tab-pane ep-body" id="ep-export" style="display:none">
+    <div class="ep-section">Export &amp; Print</div>
+    <button class="ep-btn" onclick="CSEPrint()" style="width:100%">&#x1F5A8; Print / PDF</button>
+    <button class="ep-btn" onclick="CSEExportHTML()" style="width:100%;margin-top:5px">&#x2B07; Download HTML</button>
+    <button class="ep-btn" onclick="CSECopyHTML()" style="width:100%;margin-top:5px">&#x2398; Copy HTML</button>
+    <div class="ep-status" id="ep-copy-status" style="min-height:14px"></div>
+    <div style="height:1px;background:rgba(255,255,255,0.05);margin:14px 0"></div>
+    <button class="ep-btn ep-btn--danger" onclick="CSEReset()" style="width:100%">&#x21BA; Reset All Edits</button>
   </div>
 
-  <!-- ══ EXPORT TAB ══════════════════════════════════════════════════ -->
-  <div class="ep-body ep-tab-pane" id="ep-export" style="display:none">
-    <div class="ep-section-title">Export</div>
-    <button class="ep-btn" onclick="CSEEditor.exportHTML()">&#x2B07; Download HTML</button>
-    <button class="ep-btn" onclick="CSEEditor.copyHTML()">&#x2398; Copy HTML</button>
-
-    <div class="ep-section-title">Print / PDF</div>
-    <button class="ep-btn" onclick="CSEEditor.printBrief()">&#x2399; Print / Save PDF</button>
-    <div class="ep-status">Editor panel is hidden from all print output</div>
-
-    <div class="ep-section-title">Reset</div>
-    <button class="ep-btn ep-btn--red" onclick="CSEEditor.resetAll()">Reset All Changes</button>
-  </div>
-</div>
+</div><!-- #cse-editor-panel -->
 
 <style>
+/* ── EDITOR PANEL CSS ─────────────────────────────────────────────────────── */
+@media print{#cse-editor-toggle,#cse-editor-panel{display:none!important}}
+
+#cse-editor-toggle{
+  position:fixed;bottom:24px;right:24px;z-index:9999;
+  width:42px;height:42px;border-radius:50%;
+  border:1px solid #1E2838;cursor:pointer;
+  background:#070C1A;color:#C4A030;font-size:1.15rem;
+  box-shadow:0 2px 14px rgba(0,0,0,.65),0 0 0 1px rgba(196,160,48,.07);
+  display:flex;align-items:center;justify-content:center;
+  transition:box-shadow .15s,border-color .15s;
+}
+#cse-editor-toggle:hover{
+  border-color:#C4A030;
+  box-shadow:0 2px 18px rgba(0,0,0,.8),0 0 10px rgba(196,160,48,.18);
+}
+
+#cse-editor-panel{
+  position:fixed;top:0;right:0;bottom:0;z-index:9998;width:300px;
+  background:rgba(4,6,14,0.97);
+  border-left:1px solid #141C30;
+  display:none;flex-direction:column;overflow:hidden;
+  box-shadow:-5px 0 28px rgba(0,0,0,.75);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+#cse-editor-panel.open{display:flex}
+
+.ep-header{
+  background:rgba(6,9,18,0.98);border-bottom:1px solid #141C30;
+  padding:13px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-shrink:0;
+}
+.ep-header-title{
+  font-family:"IBM Plex Mono","Courier New",monospace;
+  font-size:.50rem;letter-spacing:.24em;color:#3A4860;font-weight:700;
+}
+.ep-close{
+  background:none;border:none;color:#3A4458;cursor:pointer;
+  font-size:1.2rem;line-height:1;padding:0 3px;transition:color .15s;
+}
+.ep-close:hover{color:#C4A030}
+
+.ep-tabs{
+  display:flex;background:rgba(5,7,15,0.98);
+  border-bottom:1px solid #141C30;flex-shrink:0;
+}
+.ep-tab{
+  flex:1;
+  font-family:"IBM Plex Mono","Courier New",monospace;
+  font-size:.40rem;letter-spacing:.12em;font-weight:700;
+  background:none;border:none;color:#2C3848;cursor:pointer;
+  padding:9px 0;text-transform:uppercase;
+  border-bottom:2px solid transparent;
+  transition:color .15s,border-color .15s;
+}
+.ep-tab:hover{color:#5A6878}
+.ep-tab.active{color:#C4A030;border-bottom-color:#C4A030}
+
+.ep-body{overflow-y:auto;flex:1;padding:14px;scrollbar-width:thin;scrollbar-color:#1E2838 transparent}
+.ep-body::-webkit-scrollbar{width:4px}
+.ep-body::-webkit-scrollbar-thumb{background:#1E2838;border-radius:2px}
+
+.ep-section{
+  font-family:"IBM Plex Mono","Courier New",monospace;
+  font-size:.42rem;letter-spacing:.24em;color:#2A3448;font-weight:700;
+  text-transform:uppercase;margin-bottom:8px;
+}
+
+.ep-btn{
+  display:block;width:100%;
+  background:rgba(8,12,24,0.90);border:1px solid #1A2434;color:#7A8898;
+  font-family:"IBM Plex Mono","Courier New",monospace;
+  font-size:.48rem;letter-spacing:.10em;cursor:pointer;
+  padding:8px 10px;text-align:left;border-radius:1px;
+  transition:border-color .15s,color .15s;margin-bottom:4px;
+}
+.ep-btn:hover{border-color:#3A4860;color:#C4BCB0}
+.ep-btn--danger{color:#783040;border-color:#1A1020}
+.ep-btn--danger:hover{border-color:#B81C28;color:#C83040}
+.ep-btn--sm{
+  display:inline-block;width:auto;
+  padding:5px 8px;margin:0 3px 4px 0;
+  font-size:.40rem;letter-spacing:.08em;
+}
+.ep-btn-group{display:flex;flex-wrap:wrap;margin-bottom:4px}
+
+.ep-status{
+  font-family:"IBM Plex Mono","Courier New",monospace;
+  font-size:.42rem;color:#2A3448;letter-spacing:.08em;
+  margin:3px 0 8px;line-height:1.4;
+}
+
+.ep-row{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.ep-label{
+  font-family:"IBM Plex Mono","Courier New",monospace;
+  font-size:.40rem;color:#3A4458;letter-spacing:.10em;
+  flex:0 0 54px;text-transform:uppercase;
+}
+.ep-input{
+  flex:1;min-width:0;
+  background:rgba(8,12,24,0.90);border:1px solid #181E2E;color:#7A8898;
+  font-family:"IBM Plex Mono","Courier New",monospace;
+  font-size:.48rem;padding:5px 7px;border-radius:1px;
+}
+.ep-input:focus{border-color:#3A4860;outline:none;color:#C4BCB0}
+.ep-input--color{padding:2px 3px;height:26px;width:36px;cursor:pointer;flex:0 0 36px}
+
 .ep-fmt-btn{
-  background:#08091A;border:1px solid #1A2030;color:#C4BCB0;
-  font-size:.72rem;padding:3px 8px;cursor:pointer;border-radius:2px;
-  font-family:Georgia,serif;transition:background .12s;
+  background:rgba(8,12,24,0.90);border:1px solid #181E2E;color:#5A6878;
+  font-size:.65rem;padding:4px 9px;cursor:pointer;border-radius:1px;
+  transition:border-color .15s,color .15s;
 }
-.ep-fmt-btn:hover{background:#141828;color:#F0EAE0}
-#ep-fmt-bar{display:none}
-#ep-fmt-bar.visible{display:flex!important}
-.ep-drag-handle-icon{
-  display:inline-block;cursor:grab;color:#8898A8;
-  font-size:14px;padding:0 6px 0 0;user-select:none;
-}
-.ep-drag-handle-icon:active{cursor:grabbing}
-.section-drag-active .domain{
-  cursor:grab;border:1px dashed rgba(196,160,48,.25)!important;
-  margin:2px 0;transition:opacity .15s;
-}
-.section-drag-active .domain.drag-over{
-  border-color:rgba(196,160,48,.7)!important;opacity:.7;
-}
-.section-drag-active .domain.dragging{opacity:.4}
-.ep-pick-mode *{cursor:crosshair!important}
-.ep-pick-mode .ep-pickable:hover{
-  outline:2px solid #C4A030!important;outline-offset:2px;
-}
-.ep-pick-selected{outline:2px solid #D82838!important;outline-offset:2px}
+.ep-fmt-btn:hover{border-color:#3A4860;color:#C4BCB0}
+
 .ep-mover-row{
-  display:flex;align-items:center;gap:6px;
-  padding:5px 0;border-bottom:1px solid #10162A;
+  display:flex;align-items:center;gap:4px;
+  border:1px solid #141C30;padding:6px 8px;border-radius:2px;
+  margin-bottom:4px;background:rgba(4,6,14,0.60);
 }
-.ep-mover-label{flex:1;font-size:.52rem;color:#8090A8;letter-spacing:.05em;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.ep-mover-label{
+  flex:1;font-family:Georgia,serif;font-size:.54rem;color:#3A4860;
+  overflow:hidden;white-space:nowrap;text-overflow:ellipsis;
+}
 .ep-mover-btn{
-  background:#08091A;border:1px solid #1A2030;color:#C4BCB0;
-  font-size:.65rem;padding:2px 7px;cursor:pointer;border-radius:2px;flex-shrink:0;
+  background:rgba(8,12,24,0.90);border:1px solid #1A2434;color:#5A6878;
+  font-size:.68rem;padding:2px 7px;cursor:pointer;border-radius:1px;flex-shrink:0;
+  transition:border-color .15s,color .15s;
 }
-.ep-mover-btn:hover{background:#141828}
+.ep-mover-btn:hover{border-color:#3A4860;color:#C4BCB0}
+.ep-btn--red{color:#783040;border-color:#1A1020}
+.ep-btn--red:hover{border-color:#B81C28;color:#C83040}
+
+/* ── Edit/drag/delete visual cues ─────────────────────────────────────── */
+.ep-draggable{cursor:grab!important}
+.ep-dragging{opacity:.40;outline:1px dashed rgba(196,160,48,.50)}
+.ep-drag-over{outline:2px solid rgba(196,160,48,.75);outline-offset:2px}
+.ep-del-mode *:not(#cse-editor-panel):not(#cse-editor-panel *):not(#cse-editor-toggle){cursor:crosshair!important}
+.ep-edit-active .ep-editable{outline:1px dashed rgba(196,160,48,.24);cursor:text}
+.ep-edit-active .ep-editable:hover{outline-color:rgba(196,160,48,.50)}
+.ep-edit-active .ep-editable:focus{outline:1px solid #C4A030;background:rgba(196,160,48,.03)}
 </style>
 
 <script>
-(function(){
-'use strict';
-var root=document.documentElement;
-var editMode=false,pickMode=false,sectionDragMode=false,flashDragMode=false,kjDragMode=false;
-var origStyles={},pickedEl=null,dragSrc=null;
-var panelEl=document.getElementById('cse-editor-panel');
-var toggleEl=document.getElementById('cse-editor-toggle');
+(function(){'use strict';
+var panel=document.getElementById('cse-editor-panel');
+var toggleBtn=document.getElementById('cse-editor-toggle');
+var editMode=false,dragMode=false,delMode=false;
+var dragSrc=null;
+function $(id){return document.getElementById(id);}
+function $$(sel,ctx){return Array.from((ctx||document).querySelectorAll(sel));}
+function isUI(el){return el&&el.closest&&(el.closest('#cse-editor-panel')||el.closest('#cse-editor-toggle'));}
 
-/* ── EXHAUSTIVE text element discovery ────────────────────────────────── */
-function getTextEls(){
-  var skip=['SCRIPT','STYLE','BUTTON','INPUT','SELECT','TEXTAREA','IMG','HR','BR'];
-  var results=[];
-  var walker=document.createTreeWalker(
-    document.querySelector('.brief')||document.body,
-    NodeFilter.SHOW_ELEMENT,
-    {acceptNode:function(n){
-      if(skip.indexOf(n.tagName)!==-1)return NodeFilter.FILTER_REJECT;
-      if(n.closest&&(n.closest('#cse-editor-panel')||n.closest('#cse-editor-toggle')||
-         n.closest('.print-brand-header')||n.closest('.print-brand-footer')))
-        return NodeFilter.FILTER_REJECT;
-      return NodeFilter.FILTER_ACCEPT;
-    }}
-  );
-  while(walker.nextNode()){
-    var el=walker.currentNode;
-    var hasDirect=Array.from(el.childNodes).some(function(n){
-      return n.nodeType===3&&n.textContent.trim().length>0;
-    });
-    if(hasDirect)results.push(el);
+/* ── ALL EDITABLE TEXT ELEMENTS ─────────────────────────────────────── */
+var EDITABLE_SEL=[
+  '.kj__text','.kj__basis','.kj__confidence-phrase',
+  '.body-para','.sublabel',
+  '.flash-points__item',
+  '.exec__bluf-text','.exec__kj-item',
+  '.strategic-header__judgment','.strategic-header__rationale',
+  '.masthead__title-main','.masthead__title-year','.masthead__subtitle',
+  '.masthead__cycle-num','.masthead__date','.masthead__ctx-note',
+  '.masthead__strip-top','.masthead__strip-bot',
+  '.masthead__provenance-left','.masthead__provenance-centre','.masthead__provenance-right',
+  '.metadata-bar__value',
+  '.analyst-note__text','.analyst-note__source',
+  '.dissenter-note__text','.dissenter-note__attribution',
+  '.brief-footer__id','.brief-footer__sources',
+  '.wi-row td','.timeline-item__text','.actor-card__name',
+  '.domain__title','.caveats__text',
+].join(',');
+
+function enableEdit(){
+  editMode=true;
+  var els=$$(EDITABLE_SEL);
+  els.forEach(function(el){
+    el.contentEditable='true';
+    el.dataset.ceActive='1';
+    el.classList.add('ep-editable');
+  });
+  document.body.classList.add('ep-edit-active');
+  $('ep-edit-btn').textContent='Disable Edit Mode';
+  $('ep-edit-btn').style.borderColor='#C4A030';
+  $('ep-edit-status').textContent=els.length+' elements editable — click any text';
+  $('ep-edit-status').style.color='#6EB86E';
+  $('ep-fmt-bar').style.display='flex';
+}
+function disableEdit(){
+  editMode=false;
+  $$('[data-ce-active]').forEach(function(el){
+    el.contentEditable='false';
+    el.removeAttribute('data-ce-active');
+    el.classList.remove('ep-editable');
+  });
+  document.body.classList.remove('ep-edit-active');
+  $('ep-edit-btn').textContent='Enable Edit Mode';
+  $('ep-edit-btn').style.borderColor='';
+  $('ep-edit-status').textContent='Click any text in the brief to edit it';
+  $('ep-edit-status').style.color='';
+  $('ep-fmt-bar').style.display='none';
+}
+
+/* ── DRAG MODE — any structural element ────────────────────────────── */
+var DRAG_SEL='.domain,.body-para,.kj,.flash-points__item,.exec__kj-item,.analyst-note,.dissenter-note,.timeline-item,.actor-card,.masthead__strip-cell';
+function enableDrag(){
+  dragMode=true;
+  $$(DRAG_SEL).forEach(function(el){
+    if(isUI(el))return;
+    el.draggable=true;
+    el.classList.add('ep-draggable');
+    el.addEventListener('dragstart',dStart);
+    el.addEventListener('dragend',dEnd);
+    el.addEventListener('dragover',dOver);
+    el.addEventListener('dragleave',dLeave);
+    el.addEventListener('drop',dDrop);
+  });
+  $('ep-drag-btn').textContent='Disable Drag Mode';
+  $('ep-drag-btn').style.borderColor='#C4A030';
+}
+function disableDrag(){
+  dragMode=false;
+  $$('[draggable="true"]').forEach(function(el){
+    if(isUI(el))return;
+    el.draggable=false;
+    el.classList.remove('ep-draggable','ep-drag-over');
+    el.removeEventListener('dragstart',dStart);
+    el.removeEventListener('dragend',dEnd);
+    el.removeEventListener('dragover',dOver);
+    el.removeEventListener('dragleave',dLeave);
+    el.removeEventListener('drop',dDrop);
+  });
+  dragSrc=null;
+  $('ep-drag-btn').textContent='Enable Drag Mode';
+  $('ep-drag-btn').style.borderColor='';
+}
+function dStart(e){dragSrc=this;this.classList.add('ep-dragging');e.dataTransfer.effectAllowed='move';e.stopPropagation();}
+function dEnd(){this.classList.remove('ep-dragging');$$('.ep-drag-over').forEach(function(el){el.classList.remove('ep-drag-over');});}
+function dOver(e){
+  if(!dragSrc||dragSrc===this)return;
+  /* allow drop if same tag or same parent */
+  if(dragSrc.tagName===this.tagName||dragSrc.parentNode===this.parentNode){
+    e.preventDefault();e.stopPropagation();
+    this.classList.add('ep-drag-over');
+    e.dataTransfer.dropEffect='move';
   }
-  return results;
+}
+function dLeave(){this.classList.remove('ep-drag-over');}
+function dDrop(e){
+  e.preventDefault();e.stopPropagation();
+  this.classList.remove('ep-drag-over');
+  if(!dragSrc||dragSrc===this)return;
+  var p=this.parentNode;
+  if(dragSrc.parentNode!==p)return;
+  var all=Array.from(p.children);
+  var si=all.indexOf(dragSrc),ti=all.indexOf(this);
+  if(si<0||ti<0)return;
+  if(si<ti)p.insertBefore(dragSrc,this.nextSibling);
+  else p.insertBefore(dragSrc,this);
+  refreshMovers();
 }
 
-/* ── PANEL DRAG ───────────────────────────────────────────────────────── */
-(function(){
-  var handle=document.getElementById('ep-drag-handle');
-  var dragging=false,ox=0,oy=0,pr=0,pt=0;
-  handle.style.cursor='move';
-  handle.addEventListener('mousedown',function(e){
-    if(e.target.closest('.ep-header-close'))return;
-    dragging=true;
-    ox=e.clientX;oy=e.clientY;
-    var r=panelEl.getBoundingClientRect();
-    pr=window.innerWidth-r.right;pt=r.top;
-    e.preventDefault();
-  });
-  document.addEventListener('mousemove',function(e){
-    if(!dragging)return;
-    var dx=e.clientX-ox,dy=e.clientY-oy;
-    panelEl.style.right=Math.max(0,pr-dx)+'px';
-    panelEl.style.top=Math.max(0,pt+dy)+'px';
-    panelEl.style.bottom='auto';
-  });
-  document.addEventListener('mouseup',function(){dragging=false;});
-})();
-
-/* ── TABS ─────────────────────────────────────────────────────────────── */
-var TABS=['content','arrange','style','meta','export'];
-
-/* ── STRIP CELLS init ─────────────────────────────────────────────────── */
-function initStripCells(){
-  var cells=document.querySelectorAll('.masthead__strip-cell');
-  var c=document.getElementById('ep-strip-cells');
-  if(!c)return;c.innerHTML='';
-  cells.forEach(function(cell,i){
-    var top=cell.querySelector('.masthead__strip-top');
-    var bot=cell.querySelector('.masthead__strip-bot');
-    if(!top||!bot)return;
-    var d=document.createElement('div');
-    d.style.cssText='margin-bottom:9px;border:1px solid #14182A;border-radius:2px;padding:6px 8px';
-    d.innerHTML='<div style="font-size:.45rem;color:#3A4050;letter-spacing:.14em;margin-bottom:4px">CELL '+(i+1)+'</div>'+
-      '<div class="ep-row"><span class="ep-label">Value</span>'+
-      '<input class="ep-input" value="'+top.textContent.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'" data-i="'+i+'" data-f="top"></div>'+
-      '<div class="ep-row"><span class="ep-label">Label</span>'+
-      '<input class="ep-input" value="'+bot.textContent.replace(/</g,'&lt;').replace(/>/g,'&gt;')+'" data-i="'+i+'" data-f="bot"></div>';
-    d.querySelectorAll('input').forEach(function(inp){
-      inp.addEventListener('input',function(){
-        var cc=cells[this.dataset.i];
-        var el=cc.querySelector('.masthead__strip-'+this.dataset.f);
-        if(el)el.textContent=this.value;
-      });
-    });
-    c.appendChild(d);
-  });
+/* ── DELETE MODE ────────────────────────────────────────────────────── */
+function enableDelete(){
+  delMode=true;
+  document.body.classList.add('ep-del-mode');
+  document.addEventListener('click',dClick,true);
+  $('ep-del-btn').textContent='Exit Delete Mode';
+  $('ep-del-btn').style.borderColor='#C4A030';
+  $('ep-del-status').textContent='Click ANY element in the brief to remove it';
+}
+function disableDelete(){
+  delMode=false;
+  document.body.classList.remove('ep-del-mode');
+  document.removeEventListener('click',dClick,true);
+  $('ep-del-btn').textContent='Enter Delete Mode';
+  $('ep-del-btn').style.borderColor='';
+  $('ep-del-status').textContent='Click any element on the page to remove it';
+}
+function dClick(e){
+  if(isUI(e.target))return;
+  e.preventDefault();e.stopPropagation();
+  var el=e.target;
+  var big=el.matches&&el.matches('.domain,.body-wrap,.kj,.executive-assessment,.flash-points,.strategic-header');
+  if(big&&!confirm('Delete this entire block?'))return;
+  el.remove();
+  var tag=el.tagName.toLowerCase();
+  var cls=el.className?(' .'+String(el.className).split(' ')[0]):'';
+  $('ep-del-status').textContent='Removed: '+tag+cls;
 }
 
-/* ── DOMAIN TOGGLES init ──────────────────────────────────────────────── */
-function initDomainToggles(){
-  var domains=document.querySelectorAll('.domain');
-  var c=document.getElementById('ep-domain-toggles');
-  if(!c)return;c.innerHTML='';
-  domains.forEach(function(d){
-    var title=d.querySelector('.domain__title');
-    var label=title?title.textContent.trim().substring(0,28):'Domain';
+/* ── SECTION MOVERS ─────────────────────────────────────────────────── */
+function refreshMovers(){
+  var c=$('ep-movers');if(!c)return;c.innerHTML='';
+  $$('.brief .domain').forEach(function(d,i){
+    var t=d.querySelector('.kj__text,.domain__title');
+    var lbl=t?t.textContent.trim().replace(/\s+/g,' ').substring(0,34):'Section '+(i+1);
     var r=document.createElement('div');
-    r.className='ep-row';
-    r.innerHTML='<span class="ep-label" style="max-width:160px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis">'+label+'</span>'+
-      '<select class="ep-select" style="flex:0 0 auto;width:72px">'+
-      '<option value="block">Show</option><option value="none">Hide</option></select>';
-    r.querySelector('select').addEventListener('change',function(){d.style.display=this.value;});
+    r.className='ep-mover-row';
+    r.innerHTML='<span class="ep-mover-label">'+lbl+'</span>'+
+      '<button class="ep-mover-btn" onclick="CSEEditor.moveSection('+i+',-1)" title="Move up">↑</button>'+
+      '<button class="ep-mover-btn" onclick="CSEEditor.moveSection('+i+',1)"  title="Move down">↓</button>'+
+      '<button class="ep-mover-btn ep-btn--red" onclick="CSEEditor.delSection('+i+')" title="Delete">✕</button>';
     c.appendChild(r);
   });
 }
 
-/* ── SECTION MOVER LIST ───────────────────────────────────────────────── */
-function initSectionMovers(){
-  var order=document.getElementById('ep-section-order');
-  var movers=document.getElementById('ep-section-movers');
-  if(!order||!movers)return;
-  order.innerHTML='';movers.innerHTML='';
-  var domains=Array.from(document.querySelectorAll('.brief .domain'));
-  domains.forEach(function(d,i){
-    var title=d.querySelector('.domain__title,.kj__label');
-    var label=title?title.textContent.trim().substring(0,22):'Section '+(i+1);
-    /* mover row */
-    var r=document.createElement('div');
-    r.className='ep-mover-row';
-    r.innerHTML='<span class="ep-mover-label">'+label+'</span>'+
-      '<button class="ep-mover-btn" data-i="'+i+'" data-dir="-1">&#x2191;</button>'+
-      '<button class="ep-mover-btn" data-i="'+i+'" data-dir="1">&#x2193;</button>'+
-      '<button class="ep-mover-btn ep-btn--red" data-i="'+i+'" data-dir="0">&#x2715;</button>';
-    r.querySelectorAll('button').forEach(function(btn){
-      btn.addEventListener('click',function(){
-        var idx=parseInt(this.dataset.i);
-        var dir=parseInt(this.dataset.dir);
-        var all=Array.from(document.querySelectorAll('.brief .domain'));
-        var el=all[idx];
-        if(!el)return;
-        if(dir===0){if(confirm('Remove this section?'))el.remove();}
-        else if(dir===-1&&idx>0){el.parentNode.insertBefore(el,all[idx-1]);}
-        else if(dir===1&&idx<all.length-1){el.parentNode.insertBefore(all[idx+1],el);}
-        setTimeout(initSectionMovers,50);
+/* ── KPI STRIP EDITOR ───────────────────────────────────────────────── */
+function buildStrip(){
+  var c=$('ep-strip');if(!c)return;c.innerHTML='';
+  $$('.masthead__strip-cell').forEach(function(cell,i){
+    var top=cell.querySelector('.masthead__strip-top');
+    var bot=cell.querySelector('.masthead__strip-bot');
+    if(!top||!bot)return;
+    var wrap=document.createElement('div');
+    wrap.style.cssText='margin-bottom:8px;padding:7px;border:1px solid #141C30;border-radius:2px';
+    wrap.innerHTML='<div style="font-size:.40rem;color:#2A3448;letter-spacing:.14em;margin-bottom:4px">KPI '+(i+1)+'</div>'+
+      '<div class="ep-row"><span class="ep-label">Value</span>'+
+        '<input class="ep-input" value="'+escVal(top.textContent)+'" data-i="'+i+'" data-f="top"></div>'+
+      '<div class="ep-row"><span class="ep-label">Label</span>'+
+        '<input class="ep-input" value="'+escVal(bot.textContent)+'" data-i="'+i+'" data-f="bot"></div>';
+    wrap.querySelectorAll('input').forEach(function(inp){
+      inp.addEventListener('input',function(){
+        var cc=$$('.masthead__strip-cell')[this.dataset.i];
+        var el=cc&&cc.querySelector('.masthead__strip-'+this.dataset.f);
+        if(el)el.textContent=this.value;
       });
     });
-    movers.appendChild(r);
+    c.appendChild(wrap);
   });
 }
+function escVal(s){return s.trim().replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
-/* ── DRAG SECTION REORDER ─────────────────────────────────────────────── */
-function addDragHandles(){
-  var domains=document.querySelectorAll('.brief .domain');
-  domains.forEach(function(d){
-    if(d.querySelector('.ep-drag-handle-icon'))return;
-    var h=document.createElement('span');
-    h.className='ep-drag-handle-icon';h.textContent='⣿';h.title='Drag to reorder';
-    d.insertBefore(h,d.firstChild);
-    d.draggable=true;
-    d.addEventListener('dragstart',function(e){dragSrc=this;this.classList.add('dragging');e.dataTransfer.effectAllowed='move';});
-    d.addEventListener('dragend',function(){this.classList.remove('dragging');document.querySelectorAll('.drag-over').forEach(function(el){el.classList.remove('drag-over');});});
-    d.addEventListener('dragover',function(e){e.preventDefault();this.classList.add('drag-over');e.dataTransfer.dropEffect='move';});
-    d.addEventListener('dragleave',function(){this.classList.remove('drag-over');});
-    d.addEventListener('drop',function(e){
-      e.preventDefault();this.classList.remove('drag-over');
-      if(dragSrc&&dragSrc!==this){
-        var p=this.parentNode;var arr=Array.from(p.querySelectorAll(':scope>.domain'));
-        var si=arr.indexOf(dragSrc),ti=arr.indexOf(this);
-        if(si<ti)p.insertBefore(dragSrc,this.nextSibling);
-        else p.insertBefore(dragSrc,this);
-        setTimeout(initSectionMovers,50);
-      }
-    });
-  });
-}
-
-function removeDragHandles(){
-  document.querySelectorAll('.ep-drag-handle-icon').forEach(function(h){h.remove();});
-  document.querySelectorAll('.brief .domain').forEach(function(d){d.draggable=false;});
-}
-
-/* ── FLASH POINT DRAG ─────────────────────────────────────────────────── */
-function enableFlashDrag(){
-  var items=document.querySelectorAll('.flash-points__item');
-  items.forEach(function(item){
-    item.draggable=true;item.style.cursor='grab';
-    item.addEventListener('dragstart',function(e){dragSrc=this;e.dataTransfer.effectAllowed='move';this.style.opacity='.4';});
-    item.addEventListener('dragend',function(){this.style.opacity='';});
-    item.addEventListener('dragover',function(e){e.preventDefault();e.dataTransfer.dropEffect='move';});
-    item.addEventListener('drop',function(e){
-      e.preventDefault();
-      if(dragSrc&&dragSrc!==this){this.parentNode.insertBefore(dragSrc,this);}
-    });
-  });
-}
-function disableFlashDrag(){
-  document.querySelectorAll('.flash-points__item').forEach(function(i){i.draggable=false;i.style.cursor='';});
-}
-
-/* ── EXEC KJ DRAG ─────────────────────────────────────────────────────── */
-function enableKJDrag(){
-  var items=document.querySelectorAll('.exec__kj-item');
-  items.forEach(function(item){
-    item.draggable=true;item.style.cursor='grab';
-    item.addEventListener('dragstart',function(e){dragSrc=this;e.dataTransfer.effectAllowed='move';this.style.opacity='.4';});
-    item.addEventListener('dragend',function(){this.style.opacity='';});
-    item.addEventListener('dragover',function(e){e.preventDefault();});
-    item.addEventListener('drop',function(e){
-      e.preventDefault();
-      if(dragSrc&&dragSrc!==this){this.parentNode.insertBefore(dragSrc,this);}
-    });
-  });
-}
-function disableKJDrag(){
-  document.querySelectorAll('.exec__kj-item').forEach(function(i){i.draggable=false;i.style.cursor='';});
-}
-
-/* ── ELEMENT PICKER ───────────────────────────────────────────────────── */
-function enterPickMode(){
-  pickMode=true;
-  document.body.classList.add('ep-pick-mode');
-  document.getElementById('ep-del-hint').textContent='Click any element in the brief to select it';
-  document.addEventListener('click',pickClickHandler,true);
-}
-function exitPickMode(){
-  pickMode=false;
-  document.body.classList.remove('ep-pick-mode');
-  if(pickedEl){pickedEl.classList.remove('ep-pick-selected');pickedEl=null;}
-  document.removeEventListener('click',pickClickHandler,true);
-  document.getElementById('ep-del-btn').style.display='none';
-  document.getElementById('ep-sel-btn').textContent='Pick Element to Delete';
-  document.getElementById('ep-del-hint').textContent='Select any element on the page, then delete it';
-}
-function pickClickHandler(e){
-  if(e.target.closest('#cse-editor-panel')||e.target.closest('#cse-editor-toggle'))return;
-  e.preventDefault();e.stopPropagation();
-  if(pickedEl)pickedEl.classList.remove('ep-pick-selected');
-  pickedEl=e.target;
-  pickedEl.classList.add('ep-pick-selected');
-  document.getElementById('ep-del-hint').textContent='Selected: '+pickedEl.tagName.toLowerCase()+(pickedEl.className?' .'+pickedEl.className.split(' ')[0]:'');
-  document.getElementById('ep-del-btn').style.display='block';
-}
-
-/* ── SYNC QUICK FIELDS ────────────────────────────────────────────────── */
-function syncQF(iid,eid){
-  var inp=document.getElementById(iid),el=document.getElementById(eid);
-  if(inp&&el)inp.value=el.textContent.trim();
-}
-
-/* ── PUBLIC API ───────────────────────────────────────────────────────── */
-window.CSEEditor={
-
-  open:function(){
-    panelEl.classList.add('open');
-    initStripCells();initDomainToggles();initSectionMovers();
-    syncQF('qf-region','ed-region');syncQF('qf-ctx','ed-ctx');
-    syncQF('qf-cycle','ed-cycle-num');syncQF('qf-date','ed-date');
-  },
-  close:function(){panelEl.classList.remove('open');if(pickMode)exitPickMode();},
-
-  tab:function(btn,name){
-    document.querySelectorAll('.ep-tab').forEach(function(t){t.classList.remove('active');});
-    btn.classList.add('active');
-    document.querySelectorAll('.ep-tab-pane').forEach(function(p){p.style.display='none';});
-    document.getElementById('ep-'+name).style.display='';
-  },
-
-  /* EXHAUSTIVE toggle edit ───────────────────────────────────────────── */
-  toggleEdit:function(){
-    editMode=!editMode;
-    var els=getTextEls();
-    els.forEach(function(el){
-      el.contentEditable=editMode?'true':'false';
-      el.classList.toggle('ep-editable',editMode);
-    });
-    document.body.classList.toggle('ep-edit-active',editMode);
-    var btn=document.getElementById('ep-edit-btn');
-    var status=document.getElementById('ep-edit-status');
-    var fmt=document.getElementById('ep-fmt-bar');
-    if(editMode){
-      btn.textContent='Disable Editing';btn.style.borderColor='#C4A030';
-      status.textContent='Click any text in the brief to edit it — '+els.length+' elements enabled';
-      status.style.color='#C4A030';
-      fmt.classList.add('visible');
-    }else{
-      btn.textContent='Enable Editing';btn.style.borderColor='';
-      status.textContent='Enables click-to-edit on every text element in the brief';
-      status.style.color='';
-      fmt.classList.remove('visible');
-    }
-  },
-
-  fmt:function(cmd){document.execCommand(cmd,false,null);},
-
-  qf:function(id,val){var el=document.getElementById(id);if(el)el.textContent=val;},
-
-  cssVar:function(name,val){
-    if(!(name in origStyles))origStyles[name]=root.style.getPropertyValue(name)||'';
-    root.style.setProperty(name,val);
-  },
-  resetStyles:function(){
-    Object.keys(origStyles).forEach(function(k){root.style.removeProperty(k);});
-    origStyles={};
-  },
-
-  setThreat:function(val){
-    var el=document.getElementById('ed-threat');if(!el)return;
-    var map={CRITICAL:'threat-level--critical',SEVERE:'threat-level--severe',
-      ELEVATED:'threat-level--elevated',GUARDED:'threat-level--guarded',LOW:'threat-level--low'};
-    el.className='threat-level '+(map[val]||'');el.textContent=val;
-  },
-  setTrajectory:function(val){
-    var el=document.getElementById('ed-traj');if(!el)return;
-    var map={'escalating':{c:'trajectory-badge--escalating',t:'ESCALATING'},
-      'stable':{c:'trajectory-badge--stable',t:'STABLE'},
-      'de-escalating':{c:'trajectory-badge--de-escalating',t:'DE-ESCALATING'}};
-    var cfg=map[val]||map['escalating'];
-    el.className='trajectory-badge '+cfg.c;el.textContent=cfg.t;
-  },
-  setTLP:function(val){
-    var map={AMBER:'masthead__tlp--amber',RED:'masthead__tlp--red',GREEN:'masthead__tlp--green',CLEAR:'masthead__tlp--clear'};
-    document.querySelectorAll('.masthead__tlp').forEach(function(el){
-      el.className='masthead__tlp '+(map[val]||'masthead__tlp--amber');
-      el.textContent='TLP:'+val;
-    });
-  },
-
-  toggleSectionDrag:function(){
-    sectionDragMode=!sectionDragMode;
-    var btn=document.getElementById('ep-drag-sections-btn');
-    if(sectionDragMode){
-      document.body.classList.add('section-drag-active');
-      addDragHandles();initSectionMovers();
-      btn.textContent='Disable Section Drag';btn.style.borderColor='#C4A030';
-    }else{
-      document.body.classList.remove('section-drag-active');
-      removeDragHandles();
-      btn.textContent='Enable Section Drag';btn.style.borderColor='';
-    }
-  },
-  toggleFlashDrag:function(){
-    flashDragMode=!flashDragMode;
-    var btn=document.getElementById('ep-drag-flash-btn');
-    if(flashDragMode){enableFlashDrag();btn.textContent='Disable Flash Point Drag';btn.style.borderColor='#C4A030';}
-    else{disableFlashDrag();btn.textContent='Enable Flash Point Drag';btn.style.borderColor='';}
-  },
-  toggleKJDrag:function(){
-    kjDragMode=!kjDragMode;
-    var btn=document.getElementById('ep-drag-kj-btn');
-    if(kjDragMode){enableKJDrag();btn.textContent='Disable KJ Drag';btn.style.borderColor='#C4A030';}
-    else{disableKJDrag();btn.textContent='Enable KJ Drag';btn.style.borderColor='';}
-  },
-
-  togglePick:function(){
-    if(pickMode){exitPickMode();}
-    else{enterPickMode();document.getElementById('ep-sel-btn').textContent='Cancel Pick Mode';}
-  },
-  deleteSelected:function(){
-    if(!pickedEl)return;
-    if(confirm('Delete this element?')){pickedEl.remove();pickedEl=null;exitPickMode();}
-  },
-
-  exportHTML:function(){
-    panelEl.classList.remove('open');
-    setTimeout(function(){
-      var html='<!DOCTYPE html>\n'+root.outerHTML;
-      var blob=new Blob([html],{type:'text/html;charset=utf-8'});
-      var a=document.createElement('a');a.href=URL.createObjectURL(blob);
-      a.download='cse-intelligence-brief.html';a.click();URL.revokeObjectURL(a.href);
-      panelEl.classList.add('open');
-    },120);
-  },
-  copyHTML:function(){
-    var html='<!DOCTYPE html>\n'+root.outerHTML;
-    navigator.clipboard.writeText(html).then(function(){
-      var s=document.querySelector('#ep-export .ep-status');
-      var prev=s.textContent;s.textContent='Copied!';
-      setTimeout(function(){s.textContent=prev;},2000);
-    });
-  },
-  printBrief:function(){window.print();},
-  resetAll:function(){if(confirm('Reset all edits?'))window.location.reload();},
+/* ── CSS VARIABLE OVERRIDES ─────────────────────────────────────────── */
+var cssOrig={};
+window.setCSSVar=function(name,val){
+  if(!(name in cssOrig))cssOrig[name]=document.documentElement.style.getPropertyValue(name)||'';
+  document.documentElement.style.setProperty(name,val);
+};
+window.resetCSSVars=function(){
+  Object.keys(cssOrig).forEach(function(k){document.documentElement.style.removeProperty(k);});
+  cssOrig={};
 };
 
-/* Wire toggle button */
-toggleEl.addEventListener('click',function(){
-  if(panelEl.classList.contains('open'))CSEEditor.close();
-  else CSEEditor.open();
-});
+/* ── QUICK FIELDS ───────────────────────────────────────────────────── */
+function syncQF(iid,eid){var i=$(iid),e=$(eid);if(i&&e)i.value=e.textContent.trim();}
+function bindQF(iid,eid){
+  var inp=$(iid),tgt=$(eid);
+  if(inp&&tgt)inp.addEventListener('input',function(){tgt.textContent=this.value;});
+}
+
+/* ── TABS ───────────────────────────────────────────────────────────── */
+window.CSETab=function(btn,name){
+  $$('.ep-tab').forEach(function(t){t.classList.remove('active');});
+  btn.classList.add('active');
+  $$('.ep-tab-pane').forEach(function(p){p.style.display='none';});
+  var pane=$('ep-'+name);if(pane)pane.style.display='';
+};
+
+/* ── OPEN / CLOSE ───────────────────────────────────────────────────── */
+function openPanel(){
+  panel.classList.add('open');
+  buildStrip();refreshMovers();
+  syncQF('qf-cycle','ed-cycle-num');
+  syncQF('qf-date','ed-date');
+  syncQF('qf-region','ed-region');
+  syncQF('qf-ctx','ed-ctx');
+}
+function closePanel(){
+  panel.classList.remove('open');
+  if(editMode)disableEdit();
+  if(dragMode)disableDrag();
+  if(delMode)disableDelete();
+}
+
+/* ── EXPORT ─────────────────────────────────────────────────────────── */
+window.CSEPrint=function(){window.print();};
+window.CSEExportHTML=function(){
+  panel.classList.remove('open');
+  setTimeout(function(){
+    var blob=new Blob(['<!DOCTYPE html>
+'+document.documentElement.outerHTML],{type:'text/html;charset=utf-8'});
+    var a=document.createElement('a');
+    a.href=URL.createObjectURL(blob);
+    a.download='cse-brief.html';
+    a.click();
+    URL.revokeObjectURL(a.href);
+    panel.classList.add('open');
+  },150);
+};
+window.CSECopyHTML=function(){
+  navigator.clipboard.writeText('<!DOCTYPE html>
+'+document.documentElement.outerHTML).then(function(){
+    var s=$('ep-copy-status');
+    if(s){s.textContent='Copied!';setTimeout(function(){s.textContent='';},2200);}
+  });
+};
+window.CSEReset=function(){if(confirm('Reset all edits and reload?'))window.location.reload();};
+
+/* ── PUBLIC API ─────────────────────────────────────────────────────── */
+window.CSEEditor={
+  toggle:function(){panel.classList.contains('open')?closePanel():openPanel();},
+  toggleEdit:function(){editMode?disableEdit():enableEdit();},
+  toggleDrag:function(){dragMode?disableDrag():enableDrag();},
+  toggleDelete:function(){delMode?disableDelete():enableDelete();},
+  fmt:function(cmd){document.execCommand(cmd,false,null);},
+  moveSection:function(i,dir){
+    var all=$$('.brief .domain'),el=all[i];if(!el)return;
+    if(dir===-1&&i>0)el.parentNode.insertBefore(el,all[i-1]);
+    else if(dir===1&&i<all.length-1)el.parentNode.insertBefore(all[i+1],el);
+    setTimeout(refreshMovers,50);
+  },
+  delSection:function(i){
+    var el=$$('.brief .domain')[i];
+    if(el&&confirm('Delete this section?'))el.remove();
+    setTimeout(refreshMovers,50);
+  },
+  setThreat:function(v){
+    var el=$('ed-threat');if(!el)return;
+    var m={CRITICAL:'threat-level--critical',SEVERE:'threat-level--severe',
+           ELEVATED:'threat-level--elevated',GUARDED:'threat-level--guarded',LOW:'threat-level--low'};
+    el.className='threat-level '+(m[v]||'threat-level--severe');el.textContent=v;
+  },
+  setTraj:function(v){
+    var el=$('ed-traj');if(!el)return;
+    var m={escalating:{c:'trajectory-badge--escalating',t:'ESCALATING'},
+           stable:{c:'trajectory-badge--stable',t:'STABLE'},
+           'de-escalating':{c:'trajectory-badge--de-escalating',t:'DE-ESCALATING'}};
+    var cfg=m[v]||m.escalating;
+    el.className='trajectory-badge '+cfg.c;el.textContent=cfg.t;
+  },
+};
+
+/* ── INIT ───────────────────────────────────────────────────────────── */
+toggleBtn.addEventListener('click',function(){CSEEditor.toggle();});
+bindQF('qf-cycle','ed-cycle-num');
+bindQF('qf-date','ed-date');
+bindQF('qf-region','ed-region');
+bindQF('qf-ctx','ed-ctx');
 
 })();
 </script>
-<!-- END CSE BRIEF EDITOR PANEL -->
 
 </div>
 </body>

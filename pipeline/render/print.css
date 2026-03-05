@@ -1,7 +1,6 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    PRINT OVERRIDES — CSE Intelligence Brief
-   Dark-mode PDF: full black background, light text, colour preserved.
-   Designed for Chromium headless --print-to-pdf (primary path).
+   Dark-mode PDF via Chromium headless --print-to-pdf (primary path).
    ═══════════════════════════════════════════════════════════════════════════ */
 
 @media print {
@@ -19,85 +18,83 @@
     color-scheme: dark !important;
   }
 
-  /* ── Page setup ────────────────────────────────────────────────────────── */
+  /* ── Page setup ─────────────────────────────────────────────────────────── */
   @page {
     size: letter portrait;
-    margin: 0.65in 0.55in 0.65in 0.55in;
-    background: #000000;
+    margin: 0.60in 0.55in 0.60in 0.55in;
+    background: #020308;
   }
 
-  /* ── Document: black throughout ───────────────────────────────────────── */
+  /* ── Document ───────────────────────────────────────────────────────────── */
   html, body {
     width: 100%;
     height: auto;
     overflow: visible;
-    background: #000000 !important;
+    background: #020308 !important;
     color: #d4cfc8 !important;
   }
-
   .brief {
     max-width: 100%;
     box-shadow: none;
     border: none;
-    background: #000000 !important;
+    background: transparent !important;
   }
 
-  /* ── Suppress base.css scanline / vignette overlays ──────────────────── */
+  /* ── Suppress overlays ──────────────────────────────────────────────────── */
   body::before, body::after { display: none !important; }
-
-  /* ── Kill galaxy shimmer ──────────────────────────────────────────────── */
   .masthead::before, .masthead::after,
   .brief-footer::before { display: none !important; }
 
-  /* ── Provenance logo — keep white pill visible in print ──────────────── */
-  .masthead__provenance-logo {
-    background: #FFFFFF !important;
-    -webkit-print-color-adjust: exact !important;
-  }
-
-  /* ── Masthead / footer ─────────────────────────────────────────────────── */
-  .masthead, .brief-footer {
+  /* ── Masthead / footer ──────────────────────────────────────────────────── */
+  .masthead {
     position: static !important;
-    background: #0a0a14 !important;
-    margin-bottom: 20pt !important;
+    background: rgba(3, 4, 10, 0.95) !important;
+    margin-bottom: 18pt !important;
+  }
+  .brief-footer {
+    position: static !important;
+    margin-top: 18pt !important;
+    background: rgba(3, 4, 10, 0.95) !important;
   }
 
-  /* ── Domain gradient strips: hidden ─────────────────────────────────────── */
+  /* ── Domain gradient strips ──────────────────────────────────────────────── */
   .domain__gradient, .exec__gradient, .caveats__gradient,
   .collection-gaps__gradient, .warning-indicators__gradient,
   .analyst-note__gradient, .dissenter-note__gradient { display: none !important; }
 
-  /* ── Domain sections ─────────────────────────────────────────────────────── */
+  /* ── Domain sections — coloured left border replaces the wrapper accent ──── */
   .domain {
-    background: #05050f !important;
-    border-left: 4pt solid #444;
-    padding-left: 12pt;
+    background: rgba(3, 4, 10, 0.90) !important;
     margin-bottom: 12pt;
   }
-  .domain--d1 { border-left-color: #c62828 !important; }
-  .domain--d2 { border-left-color: #e65100 !important; }
-  .domain--d3 { border-left-color: #2e7d32 !important; }
-  .domain--d4 { border-left-color: #6a1b9a !important; }
-  .domain--d5 { border-left-color: #1565c0 !important; }
-  .domain--d6 { border-left-color: #00695c !important; }
+  /* Suppress inner wrapper border — domain itself gets the border */
+  .domain__content { border-left: none !important; }
 
-  /* ── Section backgrounds ─────────────────────────────────────────────────── */
-  section { background: #05050f !important; }
-  .kj { background: #0d0d1a !important; border-color: rgba(255,255,255,0.10) !important; }
-  .exec__bluf { background: #0d0d1a !important; border-left-color: #c62828 !important; }
+  /* Per-domain coloured left border on the section itself */
+  .domain                { border-left: 3.5pt solid rgba(100,100,100,0.4); padding-left: 10pt; }
+  .domain--d1            { border-left-color: #c62828 !important; }
+  .domain--d2            { border-left-color: #e65100 !important; }
+  .domain--d3            { border-left-color: #2e7d32 !important; }
+  .domain--d4            { border-left-color: #6a1b9a !important; }
+  .domain--d5            { border-left-color: #1565c0 !important; }
+  .domain--d6            { border-left-color: #00695c !important; }
+
+  /* ── Section backgrounds ────────────────────────────────────────────────── */
+  section { background: rgba(3, 4, 10, 0.90) !important; }
+  .kj     { background: rgba(10, 10, 20, 0.95) !important; border-left: none !important; }
+  .body-wrap { background: transparent !important; border-left: none !important; }
+  .exec__bluf { background: rgba(10, 10, 0, 0.90) !important;
+                border-left-color: #c8a830 !important; }
   .strategic-header, .flash-points, .warning-indicators,
-  .collection-gaps, .caveats { background: #05050f !important; }
-  .metadata-bar { background: #0d0d1a !important; border-top: 0.5pt solid #1e1e2e !important; }
+  .collection-gaps, .caveats { background: rgba(3, 4, 10, 0.90) !important; }
+  .metadata-bar { background: rgba(8, 10, 20, 0.95) !important;
+                  border-top: 0.5pt solid #1e1e2e !important; }
   .analyst-note, .dissenter-note {
-    background: #0a0a14 !important;
+    background: rgba(6, 8, 16, 0.95) !important;
     border-color: rgba(255,255,255,0.08) !important;
   }
-  .section-end { border-color: #1e1e2e !important; }
 
-  /* ── Section divider ─────────────────────────────────────────────────────── */
-  .section-divider { display: none !important; }
-
-  /* ── Warning indicators table ────────────────────────────────────────────── */
+  /* ── Warning indicators table ───────────────────────────────────────────── */
   .warning-indicators { break-before: page; }
   .wi-table {
     border-collapse: collapse;
@@ -106,7 +103,7 @@
     background: transparent !important;
   }
   .wi-table th {
-    background: #111120 !important;
+    background: rgba(12, 14, 24, 0.95) !important;
     color: #a0a8b0 !important;
     border: 0.5pt solid #2a2a3a !important;
     padding: 3.5pt 5pt;
@@ -115,40 +112,41 @@
     text-transform: uppercase;
   }
   .wi-table td {
-    background: #05050f !important;
+    background: rgba(4, 5, 12, 0.90) !important;
     color: #c4bfb8 !important;
     border: 0.5pt solid #1e1e2e !important;
     padding: 3.5pt 5pt;
   }
-  .wi-table tr:nth-child(even) td { background: #0a0a18 !important; }
+  .wi-table tr:nth-child(even) td { background: rgba(8, 9, 18, 0.90) !important; }
 
-  /* ── KPI strip ───────────────────────────────────────────────────────────── */
+  /* ── KPI strip ──────────────────────────────────────────────────────────── */
   .kpi-strip { grid-template-columns: repeat(6, 1fr); gap: 4pt; }
   .kpi-strip__cell {
-    background: #0d0d1a !important;
+    background: rgba(10, 12, 24, 0.95) !important;
     border: 0.5pt solid #2a2a3a !important;
     padding: 4pt 6pt;
   }
   .kpi-strip__number { font-size: 15pt !important; color: #c8b870 !important; }
   .kpi-strip__label  { font-size: 6.5pt !important; color: #888 !important; }
 
-  /* ── Body text ───────────────────────────────────────────────────────────── */
+  /* ── Body text ──────────────────────────────────────────────────────────── */
   .text-hi, .domain__title, .kj__text,
   .exec__bluf-text, .strategic-header__judgment { color: #e0dbd4 !important; }
   .text-md, .body-para, .body-wrap { color: #c4bfb8 !important; }
   .text-dim, .meta, .kj__basis     { color: #7a7480 !important; }
   .masthead__cycle-num, .color-gold { color: #c8b870 !important; }
 
-  /* ── Type ────────────────────────────────────────────────────────────────── */
+  /* ── Type ───────────────────────────────────────────────────────────────── */
   body { font-size: 9.5pt; line-height: 1.55; }
   .kj__text  { font-size: 10.5pt; line-height: 1.6; }
-  .body-para { font-size: 9.5pt; line-height: 1.55; orphans: 3; widows: 3; }
+  .body-para { font-size: 9.5pt;  line-height: 1.55; orphans: 3; widows: 3; }
 
-  /* ── Page break control ──────────────────────────────────────────────────── */
+  /* ── Page break control ─────────────────────────────────────────────────── */
   .masthead            { break-inside: avoid; }
   .strategic-header    { break-inside: avoid; break-after: avoid; }
   .flash-points        { break-inside: avoid; }
   .kj                  { break-inside: avoid; }
+  .domain__content     { break-inside: auto; }
   .analyst-note        { break-inside: avoid; }
   .dissenter-note      { break-inside: avoid; }
   .data-table-wrap     { break-inside: avoid; }
@@ -157,17 +155,24 @@
   .collection-gaps     { break-inside: avoid; }
   .caveats             { break-inside: avoid; }
   .wi-table            { break-inside: avoid; }
-  .brief-footer        { break-before: page; }
+  .brief-footer        { break-inside: avoid; }
   .domain              { break-inside: auto; }
   .domain + .domain    { break-before: auto; }
   .body-wrap           { break-inside: auto; }
   .body-para           { break-inside: avoid; orphans: 3; widows: 3; }
   .kj__label-row + .kj__text { break-before: avoid; }
 
-  /* ── Probability bars ────────────────────────────────────────────────────── */
+  /* ── Badges in print — border style rather than background fill ─────────── */
+  .threat-level, .trajectory-badge, .badge {
+    border: 0.5pt solid currentColor !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* ── Probability bars ───────────────────────────────────────────────────── */
   .prob-bar { height: 2px; display: block; }
 
-  /* ── Collection gap register ─────────────────────────────────────────────── */
+  /* ── Collection gap register ────────────────────────────────────────────── */
   .collection-gaps__items { list-style: none; padding: 0; }
   .gap-item {
     display: grid;
@@ -180,12 +185,14 @@
   }
   .gap-item__category { display: block; margin-top: 2pt; }
 
-  /* ── Executive KJ list ───────────────────────────────────────────────────── */
+  /* ── Executive KJ list ──────────────────────────────────────────────────── */
   .exec__kj-list { padding: 0 0 0 12pt; }
   .exec__kj-item { margin-bottom: 4pt; font-size: 9pt; break-inside: avoid; }
   .exec__kj-domain { font-weight: 700; }
 
-  /* ── Scrollbars ──────────────────────────────────────────────────────────── */
-  ::-webkit-scrollbar { display: none; }
+  /* ── Editor suppressed ──────────────────────────────────────────────────── */
+  #cse-editor-toggle, #cse-editor-panel { display: none !important; }
+  .section-divider { display: none !important; }
 
+  ::-webkit-scrollbar { display: none; }
 }
