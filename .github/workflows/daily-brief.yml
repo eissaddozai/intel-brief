@@ -1,5 +1,6 @@
 name: Daily Intel Brief
 
+# ─── Triggers ─────────────────────────────────────────────────────────────────
 on:
   schedule:
     # 06:00 UTC daily (01:00 ET / before morning briefing)
@@ -11,40 +12,75 @@ on:
         required: false
         default: ''
       force:
-        description: 'Force re-run even if cache exists'
+        description: 'Force re-run even if cache exists (staged mode only)'
         required: false
         default: 'false'
+      mode:
+        description: 'Pipeline mode: "agent" (agentic single pass) or "staged" (ingest→draft→output)'
+        required: false
+        default: 'agent'
+      model:
+        description: 'Claude model ID (agent mode only)'
+        required: false
+        default: 'claude-sonnet-4-6'
 
 permissions:
   contents: write
 
+concurrency:
+  group: daily-brief
+  cancel-in-progress: false
+
 jobs:
   generate-brief:
+    name: Generate brief (${{ github.event.inputs.mode || 'agent' }} mode)
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 45
 
     steps:
+      # ── Checkout ──────────────────────────────────────────────────────────
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0     # full history so serialiser can number cycles correctly
 
+      # ── Python ────────────────────────────────────────────────────────────
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
           cache: 'pip'
 
-      - name: Install Python dependencies
-        run: |
-          pip install anthropic feedparser --no-deps
-          pip install anthropic pyyaml requests beautifulsoup4
+      - name: Install core dependencies
+        run: pip install anthropic pyyaml requests
 
-      - name: Install Playwright (for scraping)
+      - name: Install staged-pipeline extras (staged mode only)
+        if: ${{ github.event.inputs.mode == 'staged' }}
+        run: pip install beautifulsoup4
+
+      - name: Install Playwright (staged mode only)
+        if: ${{ github.event.inputs.mode == 'staged' }}
         run: |
           pip install playwright
           playwright install chromium --with-deps
         continue-on-error: true
 
-      - name: Run pipeline
+      # ── Agent mode (default) ──────────────────────────────────────────────
+      - name: Run agentic brief
+        if: ${{ github.event.inputs.mode != 'staged' }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: |
+          DATE_ARG=""
+          MODEL_ARG="--model ${{ github.event.inputs.model || 'claude-sonnet-4-6' }}"
+          if [ -n "${{ github.event.inputs.date }}" ]; then
+            DATE_ARG="--date ${{ github.event.inputs.date }}"
+          fi
+          python pipeline/main.py agent $DATE_ARG $MODEL_ARG
+
+      # ── Staged mode (legacy / explicit) ───────────────────────────────────
+      - name: Run staged pipeline
+        if: ${{ github.event.inputs.mode == 'staged' }}
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CSE_EMAIL_USER: ${{ secrets.CSE_EMAIL_USER }}
@@ -60,18 +96,40 @@ jobs:
           fi
           python pipeline/main.py run --auto-approve $DATE_ARG $FORCE_ARG
 
-      - name: Render print-ready HTML
+      - name: Render print-ready HTML (staged mode)
+        if: ${{ github.event.inputs.mode == 'staged' }}
         run: python pipeline/main.py render
 
+      # ── Commit ────────────────────────────────────────────────────────────
       - name: Commit and push new cycle
         run: |
-          git config user.name "Intel Brief Bot"
+          git config user.name  "Intel Brief Bot"
           git config user.email "bot@intel-brief"
+
+          # Mirror latest cycle to src/data/ for the React SPA
+          if [ -f cycles/latest.json ]; then
+            cp cycles/latest.json src/data/latest.json
+            LATEST=$(ls -t cycles/cycle*.json 2>/dev/null | head -1)
+            if [ -n "$LATEST" ]; then
+              cp "$LATEST" "src/data/$(basename $LATEST)"
+            fi
+          fi
+
           git add cycles/ src/data/ briefs/
           if git diff --cached --quiet; then
             echo "No new cycle generated — nothing to commit"
           else
             CYCLE_DATE=$(date -u +%Y-%m-%d)
-            git commit -m "cycle: ${CYCLE_DATE} — automated brief"
+            MODE="${{ github.event.inputs.mode || 'agent' }}"
+            git commit -m "cycle: ${CYCLE_DATE} — daily brief [${MODE}]"
             git push origin main
           fi
+
+      # ── Upload HTML as run artifact ────────────────────────────────────────
+      - name: Upload HTML brief
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: brief-${{ github.run_id }}
+          path: briefs/
+          retention-days: 90

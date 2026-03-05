@@ -1,0 +1,142 @@
+name: Validate Cycle Output
+
+# ─── Triggers ─────────────────────────────────────────────────────────────────
+# Runs on any PR or push that touches cycle data or the pipeline code itself.
+# Catches schema regressions and malformed JSON before they reach main.
+on:
+  pull_request:
+    paths:
+      - 'cycles/**'
+      - 'pipeline/**'
+      - 'src/types/**'
+  push:
+    branches: [main]
+    paths:
+      - 'cycles/**'
+  workflow_dispatch:
+    inputs:
+      cycle:
+        description: 'Path to cycle JSON to validate (default: cycles/latest.json)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate cycle JSON
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyyaml jsonschema
+
+      # ── Schema validation ──────────────────────────────────────────────────
+      - name: Validate cycle JSON against schema
+        run: |
+          python - <<'EOF'
+          import json
+          import sys
+          from pathlib import Path
+
+          # Resolve the cycle to validate
+          cycle_arg = "${{ github.event.inputs.cycle }}"
+          if cycle_arg:
+              cycle_path = Path(cycle_arg)
+          else:
+              latest = Path("cycles/latest.json")
+              if latest.exists():
+                  cycle_path = latest.resolve()
+              else:
+                  cycles = sorted(Path("cycles").glob("cycle*.json"))
+                  if not cycles:
+                      print("No cycles found — skipping validation")
+                      sys.exit(0)
+                  cycle_path = cycles[-1]
+
+          print(f"Validating: {cycle_path}")
+          cycle = json.loads(cycle_path.read_text(encoding="utf-8"))
+
+          errors = []
+
+          # Required top-level keys
+          required_keys = {"meta", "strategicHeader", "executive", "domains",
+                           "warningIndicators", "collectionGaps", "caveats", "footer"}
+          missing = required_keys - set(cycle.keys())
+          if missing:
+              errors.append(f"Missing top-level keys: {missing}")
+
+          # meta fields
+          meta = cycle.get("meta", {})
+          for field in ("cycleId", "classification", "tlp", "timestamp",
+                        "threatLevel", "threatTrajectory", "subtitle"):
+              if not meta.get(field):
+                  errors.append(f"meta.{field} is missing or empty")
+
+          # threatLevel must be a known value
+          valid_levels = {"CRITICAL", "SEVERE", "ELEVATED", "GUARDED", "LOW"}
+          if meta.get("threatLevel") not in valid_levels:
+              errors.append(
+                  f"meta.threatLevel '{meta.get('threatLevel')}' not in {valid_levels}"
+              )
+
+          # domains: expect all six
+          domains = cycle.get("domains", [])
+          domain_ids = {d.get("id") for d in domains}
+          expected_ids = {"d1", "d2", "d3", "d4", "d5", "d6"}
+          missing_domains = expected_ids - domain_ids
+          if missing_domains:
+              errors.append(f"Missing domain sections: {missing_domains}")
+
+          # Each domain must have a keyJudgment with text
+          for d in domains:
+              did = d.get("id", "?")
+              kj = d.get("keyJudgment", {})
+              if not kj.get("text"):
+                  errors.append(f"Domain {did}: keyJudgment.text is empty")
+              if not d.get("bodyParagraphs"):
+                  errors.append(f"Domain {did}: bodyParagraphs is empty")
+
+          # executive BLUF
+          if not cycle.get("executive", {}).get("bluf"):
+              errors.append("executive.bluf is empty")
+
+          # Confidence language enum
+          VALID_CONFIDENCE = {
+              "almost-certainly", "highly-likely", "likely",
+              "possibly", "unlikely", "almost-certainly-not",
+          }
+          for d in domains:
+              kj = d.get("keyJudgment", {})
+              lang = kj.get("language")
+              if lang and lang not in VALID_CONFIDENCE:
+                  errors.append(
+                      f"Domain {d.get('id')}: invalid confidence language '{lang}'"
+                  )
+
+          if errors:
+              print(f"\nVALIDATION FAILED — {len(errors)} error(s):\n")
+              for e in errors:
+                  print(f"  ✗ {e}")
+              sys.exit(1)
+          else:
+              print(f"\nVALIDATION PASSED")
+              print(f"  Cycle ID : {meta.get('cycleId')}")
+              print(f"  Domains  : {sorted(domain_ids)}")
+              print(f"  Threat   : {meta.get('threatLevel')} / {meta.get('threatTrajectory')}")
+          EOF
+
+      # ── Pretty-print summary ───────────────────────────────────────────────
+      - name: Print cycle summary
+        run: python pipeline/main.py show 2>/dev/null || echo "(show skipped — dependencies not installed)"
+        continue-on-error: true
