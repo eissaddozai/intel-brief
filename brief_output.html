@@ -2455,9 +2455,119 @@ body::after {
 
 /* === renderer extras === */
 
-/* ── RESET previous shimmer overlays ─────────────────────────────────────── */
-.masthead::before,.masthead::after,.brief-footer::before{display:none!important;content:none!important}
-.brief-footer{position:static!important;overflow:visible!important}
+/* ─────────────────────────────────────────────────────────────────────────────
+   GALAXY SHIMMER  ·  Two-layer: nebula drift + star field
+   Masthead gets the full effect; footer a muted echo.
+   Fully suppressed in print.
+───────────────────────────────────────────────────────────────────────────── */
+.masthead{position:sticky;top:0;z-index:100;overflow:hidden}
+
+.masthead::before{
+  content:'';position:absolute;inset:-30% -15%;
+  background:
+    radial-gradient(ellipse 55% 110% at  8% 65%, rgba(184,24,40,0.26)  0%,transparent 60%),
+    radial-gradient(ellipse 40%  90% at 38% 12%, rgba(96,18,160,0.15)  0%,transparent 58%),
+    radial-gradient(ellipse 50% 100% at 90% 50%, rgba(12,72,180,0.14)  0%,transparent 62%),
+    radial-gradient(ellipse 65%  55% at 55% 92%, rgba(0,148,200,0.10)  0%,transparent 55%),
+    radial-gradient(ellipse 30%  70% at 22% 35%, rgba(168,128,16,0.09) 0%,transparent 52%),
+    radial-gradient(ellipse 45%  60% at 72% 20%, rgba(80,10,140,0.07)  0%,transparent 50%);
+  background-size:220% 220%;
+  animation:nebula-drift 32s ease-in-out infinite alternate;
+  pointer-events:none;z-index:0;
+}
+
+.masthead::after{
+  content:'';position:absolute;inset:0;
+  background-image:
+    /* anchor stars – large, vivid */
+    radial-gradient(1.8px 1.8px at 11% 18%, rgba(255,255,255,0.92) 0%,transparent 100%),
+    radial-gradient(2.0px 2.0px at 71% 6%,  rgba(255,255,255,0.85) 0%,transparent 100%),
+    radial-gradient(1.6px 1.6px at 91% 44%, rgba(255,255,255,0.88) 0%,transparent 100%),
+    radial-gradient(1.4px 1.4px at 47% 82%, rgba(255,240,200,0.80) 0%,transparent 100%),
+    /* mid-field stars */
+    radial-gradient(1.0px 1.0px at 28% 58%, rgba(255,255,255,0.68) 0%,transparent 100%),
+    radial-gradient(1.0px 1.0px at 54% 27%, rgba(255,255,255,0.62) 0%,transparent 100%),
+    radial-gradient(1.0px 1.0px at 78% 71%, rgba(255,255,255,0.66) 0%,transparent 100%),
+    radial-gradient(1.0px 1.0px at 18% 82%, rgba(200,218,255,0.58) 0%,transparent 100%),
+    radial-gradient(1.0px 1.0px at 62% 14%, rgba(255,255,255,0.60) 0%,transparent 100%),
+    radial-gradient(1.0px 1.0px at  4% 48%, rgba(255,255,255,0.55) 0%,transparent 100%),
+    radial-gradient(1.0px 1.0px at 84% 28%, rgba(210,230,255,0.60) 0%,transparent 100%),
+    radial-gradient(1.0px 1.0px at 37% 92%, rgba(255,255,255,0.52) 0%,transparent 100%),
+    /* faint background field */
+    radial-gradient(0.7px 0.7px at 21% 10%, rgba(255,255,255,0.44) 0%,transparent 100%),
+    radial-gradient(0.7px 0.7px at 66% 38%, rgba(200,210,255,0.40) 0%,transparent 100%),
+    radial-gradient(0.7px 0.7px at  8% 66%, rgba(255,255,255,0.38) 0%,transparent 100%),
+    radial-gradient(0.7px 0.7px at 95% 80%, rgba(255,255,255,0.42) 0%,transparent 100%),
+    radial-gradient(0.7px 0.7px at 44% 44%, rgba(255,240,180,0.36) 0%,transparent 100%),
+    radial-gradient(0.7px 0.7px at 59% 61%, rgba(255,255,255,0.34) 0%,transparent 100%),
+    /* warm gold stars near title zone */
+    radial-gradient(1.2px 1.2px at 24% 32%, rgba(220,176,64,0.70) 0%,transparent 100%),
+    radial-gradient(0.8px 0.8px at 16% 52%, rgba(220,176,64,0.50) 0%,transparent 100%);
+  animation:starfield-breathe 20s ease-in-out infinite alternate;
+  pointer-events:none;z-index:0;
+}
+
+.masthead>*{position:relative;z-index:1}
+
+/* Footer echo — quieter nebula, no star layer */
+.brief-footer{position:relative;overflow:hidden}
+.brief-footer::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 80% 120% at  0% 60%, rgba(12,72,180,0.07) 0%,transparent 65%),
+    radial-gradient(ellipse 55%  80% at 85% 40%, rgba(0,148,200,0.05) 0%,transparent 58%),
+    radial-gradient(ellipse 45%  70% at 45% 100%,rgba(80,10,140,0.04) 0%,transparent 52%);
+  background-size:180% 180%;
+  animation:nebula-drift 42s ease-in-out infinite alternate-reverse;
+  pointer-events:none;z-index:0;
+}
+.brief-footer>*{position:relative;z-index:1}
+
+@keyframes nebula-drift{
+  0%  {background-position:0% 0%,0% 100%,100% 0%,50% 100%,0% 50%,80% 20%;opacity:.88}
+  20% {background-position:25% 35%,35% 65%,65% 35%,35% 75%,55% 25%,30% 60%;opacity:1.0}
+  45% {background-position:55% 18%,75% 28%,22% 68%,68% 38%,28% 72%,70% 10%;opacity:.92}
+  70% {background-position:38% 75%,18% 65%,78% 18%,48% 55%,75% 45%,15% 80%;opacity:1.0}
+  100%{background-position:100% 50%,50% 0%,0% 100%,82% 22%,100% 10%,50% 90%;opacity:.90}
+}
+@keyframes starfield-breathe{
+  0%  {opacity:.72;transform:scale(1.000)}
+  30% {opacity:.96;transform:scale(1.006)}
+  60% {opacity:.82;transform:scale(0.997)}
+  100%{opacity:1.0; transform:scale(1.003)}
+}
+
+/* ── PRINT — suppress shimmer + clean per-page branding ──────────────────── */
+@media print{
+  body{background:#000!important}
+  .masthead{position:static!important}
+  .masthead::before,.masthead::after,.brief-footer::before{display:none!important}
+  .domain__gradient,.masthead__crimson-rule,.exec__gradient{box-shadow:none!important}
+  #cse-editor-toggle,#cse-editor-panel{display:none!important}
+
+  /* CSE wordmark — fixed top-left on every page */
+  .print-brand-header{
+    display:block!important;
+    position:fixed;top:7mm;left:12mm;z-index:9999;
+  }
+  .print-brand-header__cse{
+    font-family:"Palatino Linotype","Palatino",Georgia,serif;
+    font-size:14pt;font-weight:900;color:#FFFFFF;
+    letter-spacing:.08em;display:block;line-height:1;
+  }
+  .print-brand-header__brief{
+    font-family:"Trebuchet MS",Arial,sans-serif;
+    font-size:5.5pt;letter-spacing:.18em;color:#707070;
+    text-transform:uppercase;display:block;margin-top:2pt;
+  }
+
+  /* Canada logo — fixed bottom-right on every page */
+  .print-brand-footer{
+    display:block!important;
+    position:fixed;bottom:7mm;right:12mm;z-index:9999;
+  }
+  .print-brand-footer img{height:18pt;width:auto;opacity:.80}
+}
 
 /* ── DESIGN TOKENS ────────────────────────────────────────────────────────── */
 :root{
@@ -2471,171 +2581,131 @@ body::after {
   --exec-grad-start:#302800;--exec-header-bg:#0C0B00;
   --color-flash-bg:#0A0203;--color-note-hdr:#160F00;--color-note-bg:#0A0900;
   --d5-muted:#284880;--d5-bg-deep:#000614;
-  /* D1 Battlespace/Crimson */
-  --d1-fill:#5C0C16;--d1-shadow:#380810;--d1-deep:#140406;
-  --d1-bright:#D82838;--d1-body:#0D0708;
+  --d1-fill:#5C0C16;--d1-shadow:#380810;--d1-deep:#140406;--d1-bright:#D82838;--d1-body:#0D0708;
   --d1-border:#240508;--d1-border-dk:#160306;
-  /* D2 Escalation/Amber */
-  --d2-fill:#583000;--d2-shadow:#2E1800;--d2-deep:#140C00;
-  --d2-bright:#E09828;--d2-body:#110E07;
-  /* D3 Energy/Green */
-  --d3-fill:#053418;--d3-shadow:#021A0C;--d3-deep:#010A04;
-  --d3-bright:#28B850;--d3-body:#080F09;
-  /* D4 Diplomatic/Purple */
-  --d4-fill:#220850;--d4-shadow:#120430;--d4-deep:#080216;
-  --d4-bright:#8A54D0;--d4-body:#0A0810;
-  /* D5 Cyber/Steel-Blue */
-  --d5-fill:#002040;--d5-shadow:#001028;--d5-deep:#00040C;
-  --d5-bright:#3C8CE0;--d5-body:#050810;
-  /* D6 Maritime/Teal */
-  --d6-fill:#003030;--d6-shadow:#001818;--d6-deep:#000A0A;
-  --d6-bright:#2EC0B0;--d6-body:#060D0D;
-  /* Gradient bars — subtle fade of domain color, no glow */
+  --d2-fill:#583000;--d2-shadow:#2E1800;--d2-deep:#140C00;--d2-bright:#E09828;--d2-body:#110E07;
+  --d3-fill:#053418;--d3-shadow:#021A0C;--d3-deep:#010A04;--d3-bright:#28B850;--d3-body:#080F09;
+  --d4-fill:#220850;--d4-shadow:#120430;--d4-deep:#080216;--d4-bright:#8A54D0;--d4-body:#0A0810;
+  --d5-fill:#002040;--d5-shadow:#001028;--d5-deep:#00040C;--d5-bright:#3C8CE0;--d5-body:#050810;
+  --d6-fill:#003030;--d6-shadow:#001818;--d6-deep:#000A0A;--d6-bright:#2EC0B0;--d6-body:#060D0D;
   --d1-grad:linear-gradient(90deg,transparent,#5C0C16 30%,#5C0C16 70%,transparent);
   --d2-grad:linear-gradient(90deg,transparent,#583000 30%,#583000 70%,transparent);
   --d3-grad:linear-gradient(90deg,transparent,#053418 30%,#053418 70%,transparent);
   --d4-grad:linear-gradient(90deg,transparent,#220850 30%,#220850 70%,transparent);
   --d5-grad:linear-gradient(90deg,transparent,#002040 30%,#002040 70%,transparent);
   --d6-grad:linear-gradient(90deg,transparent,#003030 30%,#003030 70%,transparent);
-  /* Typography scale */
-  --size-masthead:2.8rem;--size-section:0.76rem;--size-kj:0.94rem;
-  --size-body:0.88rem;--size-badge:0.56rem;--size-meta:0.7rem;
-  --size-note-h:0.68rem;--size-note-b:0.86rem;--size-aq:0.75rem;
-  --size-kpi-num:1.45rem;
+  --size-masthead:2.6rem;--size-section:.76rem;--size-kj:.94rem;
+  --size-body:.88rem;--size-badge:.56rem;--size-meta:.7rem;
+  --size-note-h:.68rem;--size-note-b:.86rem;--size-aq:.75rem;--size-kpi-num:1.45rem;
 }
 
 /* ── PAGE ─────────────────────────────────────────────────────────────────── */
-body{background:var(--color-page)}
-.brief{max-width:1080px}
+body{background:var(--color-page)}.brief{max-width:1080px}
 
-/* ── MASTHEAD ─────────────────────────────────────────────────────────────── */
-.masthead{
-  background:#030407;
-  border-bottom:1px solid #10162A;
-  position:sticky;top:0;z-index:100;
-}
-/* Brand bar */
+/* ── MASTHEAD BRAND BAR ───────────────────────────────────────────────────── */
 .masthead__brand-bar{
   display:flex;align-items:center;justify-content:space-between;
-  padding:14px 24px;
-  background:#030407;
+  padding:16px 26px;background:#030407;
 }
 .masthead__brand-left{flex:0 0 auto}
 
-/* Big CSE INTEL display title — restored */
+/* Big display title — crimson glow on CSE, gold glow on INTEL */
 .masthead__title{
   font-family:"Palatino Linotype","Palatino",Georgia,serif;
-  font-size:var(--size-masthead);
-  font-weight:700;line-height:1.0;
-  margin-bottom:4px;
+  font-size:var(--size-masthead);font-weight:700;line-height:1.0;margin-bottom:5px;
 }
 .masthead__title-main{
-  color:#FFFFFF;font-weight:900;letter-spacing:0.06em;
+  color:#FFFFFF;font-weight:900;letter-spacing:.06em;
+  text-shadow:0 0 38px rgba(184,24,40,.70),0 0 12px rgba(184,24,40,.40),0 2px 10px rgba(0,0,0,.95);
 }
 .masthead__title-year{
-  color:#C4A030;font-weight:300;letter-spacing:0.12em;
+  color:#C8A838;font-weight:300;letter-spacing:.14em;
+  text-shadow:0 0 28px rgba(200,168,56,.55),0 0 8px rgba(200,168,56,.28);
 }
 .masthead__subtitle{
   font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.56rem;letter-spacing:0.22em;color:#485060;
-  text-transform:uppercase;
+  font-size:.54rem;letter-spacing:.22em;color:#3C4858;text-transform:uppercase;
 }
 
-/* Right side: cycle + date + TLP + GOC image */
-.masthead__brand-right{
-  display:flex;align-items:center;gap:18px;flex-shrink:0;
-}
+/* Right: cycle + date + TLP + GOC image */
+.masthead__brand-right{display:flex;align-items:center;gap:20px;flex-shrink:0}
 .masthead__cycle-wrap{
-  display:flex;flex-direction:column;align-items:flex-end;gap:2px;
-  text-align:right;
+  display:flex;flex-direction:column;align-items:flex-end;gap:2px;text-align:right;
 }
 .masthead__cycle-pre{
   font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.48rem;letter-spacing:0.28em;color:#303848;font-weight:700;
+  font-size:.46rem;letter-spacing:.28em;color:#2C3644;font-weight:700;
 }
 .masthead__cycle-num{
   font-family:"Palatino Linotype","Palatino",Georgia,serif;
-  font-size:1.6rem;font-weight:900;line-height:1;color:#C4A030;
+  font-size:1.55rem;font-weight:900;line-height:1;color:#C8A838;
+  text-shadow:0 0 10px rgba(200,168,56,.30);
 }
 .masthead__date{
   font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.65rem;font-weight:600;color:#908880;letter-spacing:0.03em;
+  font-size:.62rem;font-weight:600;color:#807868;letter-spacing:.02em;
 }
-.masthead__img--gov{
-  height:40px;width:auto;mix-blend-mode:screen;opacity:0.88;
-}
-/* Hide old unused markup */
-.masthead__brand-name,.masthead__brand-divider,
-.masthead__brand-cse,.masthead__brand-brief,
-.masthead__org-left,.masthead__org-right,
-.masthead__hero,.masthead__title-block,.masthead__cycle-block{display:none!important}
+.masthead__img--gov{height:38px;width:auto;mix-blend-mode:screen;opacity:.86}
 
-/* TLP badge */
-.masthead__tlp{font-size:0.54rem;padding:2px 6px;font-weight:700;letter-spacing:0.08em}
-.masthead__tlp--amber{background:#7A4C18;color:#EEE0B8}
-.masthead__tlp--red{background:#6A1020;color:#FFCCD0}
-.masthead__tlp--green{background:#1C4018;color:#C0F0C0}
+/* Kill old layout classes */
+.masthead__brand-name,.masthead__brand-divider,.masthead__brand-cse,.masthead__brand-brief,
+.masthead__org-left,.masthead__org-right,.masthead__hero,
+.masthead__title-block,.masthead__cycle-block{display:none!important}
 
-/* Crimson rule — clean, no glow */
+/* TLP */
+.masthead__tlp{font-size:.52rem;padding:2px 6px;font-weight:700;letter-spacing:.08em}
+.masthead__tlp--amber{background:#6E4414;color:#ECD8A0}
+.masthead__tlp--red{background:#601020;color:#FFD0D4}
+.masthead__tlp--green{background:#1A3C14;color:#BCECC0}
+
+/* Crimson rule */
 .masthead__crimson-rule{
   height:2px;border:none;
-  background:linear-gradient(90deg,transparent 0%,#B81C28 20%,#B81C28 80%,transparent 100%);
+  background:linear-gradient(90deg,transparent 0%,#B81C28 20%,#D43040 50%,#B81C28 80%,transparent 100%);
 }
 
-/* Status strip */
+/* Strip */
 .masthead__strip{
   display:grid;grid-template-columns:repeat(5,1fr);
-  background:#050710;border-bottom:1px solid #10162A;
+  background:#04060C;border-bottom:1px solid #10162A;
 }
 .masthead__strip-cell{
-  background:#06080F;padding:9px 10px;
-  border-right:1px solid #10162A;
+  background:#060810;padding:9px 10px;border-right:1px solid #10162A;
   display:flex;flex-direction:column;align-items:center;gap:2px;text-align:center;
 }
-.masthead__strip-cell:first-child{
-  background:#1A0408;border-right-color:#220408;
-}
+.masthead__strip-cell:first-child{background:#160408;border-right-color:#1E0408}
 .masthead__strip-cell:last-child{border-right:none}
 .masthead__strip-top{
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.92rem;font-weight:700;color:#E8E0D4;line-height:1.2;
+  font-family:"Trebuchet MS",Arial,sans-serif;font-size:.90rem;font-weight:700;
+  color:#E8E0D4;line-height:1.2;
 }
 .masthead__strip-bot{
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.52rem;color:#505868;letter-spacing:0.1em;
+  font-family:"Trebuchet MS",Arial,sans-serif;font-size:.50rem;color:#484E5C;letter-spacing:.10em;
 }
-.masthead__strip-cell:first-child .masthead__strip-top{color:#D8B44C}
-.masthead__strip-cell:first-child .masthead__strip-bot{color:#806828}
+.masthead__strip-cell:first-child .masthead__strip-top{color:#D4B048}
+.masthead__strip-cell:first-child .masthead__strip-bot{color:#7A6024}
 
-/* Context bar */
+/* Ctx bar */
 .masthead__ctx{
-  background:#030509;
-  border-bottom:1px solid #10162A;
-  padding:5px 24px;display:flex;justify-content:space-between;align-items:center;
+  background:#030509;border-bottom:1px solid #10162A;
+  padding:5px 26px;display:flex;justify-content:space-between;align-items:center;
 }
-.masthead__ctx-note{
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.56rem;color:#404858;font-style:italic;
-}
+.masthead__ctx-note{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.54rem;color:#383E4C;font-style:italic}
 
 /* Metadata bar */
-.metadata-bar{
-  display:grid;grid-template-columns:repeat(3,auto) 1fr;
-  background:#040609;border-bottom:2px solid #10162A;
-}
-.metadata-bar__cell{
-  padding:7px 18px;border-right:1px solid #10162A;
-  display:flex;flex-direction:column;gap:3px;
-}
+.metadata-bar{display:grid;grid-template-columns:repeat(3,auto) 1fr;background:#030509;border-bottom:2px solid #10162A}
+.metadata-bar__cell{padding:7px 18px;border-right:1px solid #10162A;display:flex;flex-direction:column;gap:3px}
 .metadata-bar__cell:last-child{border-right:none}
-.metadata-bar__label{
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.49rem;font-weight:700;letter-spacing:0.16em;color:#303848;text-transform:uppercase;
-}
-.metadata-bar__value{font-family:"Trebuchet MS",Arial,sans-serif;font-size:0.73rem;color:#A8A098}
+.metadata-bar__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.47rem;font-weight:700;letter-spacing:.16em;color:#2C3440;text-transform:uppercase}
+.metadata-bar__value{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.72rem;color:#A09888}
 .metadata-bar__value--hi{color:#F0EAE0;font-weight:700}
 
-/* ── DOMAIN GRADIENT BARS — restrained 2px color accent ──────────────────── */
+/* ── DOMAIN SECTIONS ──────────────────────────────────────────────────────── */
+/* Hide the coloured section-header bar and AQ question bar entirely */
+.domain__header{display:none!important}
+.domain__aq{display:none!important}
+
+/* Gradient accent bar — thin coloured line, no glow */
 .domain__gradient{height:2px}
 .domain--d1 .domain__gradient{background:var(--d1-bright)}
 .domain--d2 .domain__gradient{background:var(--d2-bright)}
@@ -2644,24 +2714,7 @@ body{background:var(--color-page)}
 .domain--d5 .domain__gradient{background:var(--d5-bright)}
 .domain--d6 .domain__gradient{background:var(--d6-bright)}
 
-/* ── DOMAIN SECTION HEADERS — flat, readable ──────────────────────────────── */
-.domain__header{display:grid;grid-template-columns:1fr}
-.domain__num{display:none!important}
-.domain__num{font-size:17px;font-weight:900;padding:10px 8px}
-.domain__title-cell{padding:10px 20px}
-.domain__title{font-size:0.76rem;font-weight:800;letter-spacing:0.22em;color:#FFFFFF}
-.domain--d1 .domain__header{background:#3A0A10}
-.domain--d2 .domain__header{background:#342000}
-.domain--d3 .domain__header{background:#031E0E}
-.domain--d4 .domain__header{background:#160535}
-.domain--d5 .domain__header{background:#001428}
-.domain--d6 .domain__header{background:#001E1E}
-
-/* AQ bar */
-.domain__aq{background:var(--color-panel);border-bottom:1px solid #10162A;padding:6px 20px}
-.domain__aq-text{font-size:0.73rem;font-style:italic;color:#60686C;line-height:1.5}
-
-/* ── KEY JUDGMENT BOXES — flat, accent border only ────────────────────────── */
+/* Key Judgment — keep exactly as is, flat accent left-border only */
 .kj{padding:12px 20px;margin-bottom:8px;border-left-width:8px;border-top:none}
 .domain--d1 .kj{background:#180508;border-left-color:var(--d1-bright);border-top-color:transparent}
 .domain--d2 .kj{background:#1A1000;border-left-color:var(--d2-bright);border-top-color:transparent}
@@ -2669,20 +2722,14 @@ body{background:var(--color-page)}
 .domain--d4 .kj{background:#0E0620;border-left-color:var(--d4-bright);border-top-color:transparent}
 .domain--d5 .kj{background:#000E1C;border-left-color:var(--d5-bright);border-top-color:transparent}
 .domain--d6 .kj{background:#001414;border-left-color:var(--d6-bright);border-top-color:transparent}
-.kj__label{
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.52rem;letter-spacing:0.2em;font-weight:800;
-}
+.kj__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.50rem;letter-spacing:.20em;font-weight:800}
 .kj__text{
   font-family:"Palatino Linotype","Palatino",Georgia,serif;
-  font-size:0.94rem;font-weight:700;color:#EDE8DF;line-height:1.65;
+  font-size:.94rem;font-weight:700;color:#EDE8DF;line-height:1.65;
 }
-.kj__basis{
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:0.65rem;color:#606070;margin-top:4px;font-style:italic;
-}
+.kj__basis{font-family:Georgia,"Times New Roman",serif;font-size:.64rem;color:#585870;margin-top:4px;font-style:italic}
 
-/* ── BODY WRAP ────────────────────────────────────────────────────────────── */
+/* Body wrap */
 .body-wrap{padding:0 20px 12px;border-left-width:2px}
 .domain--d1 .body-wrap{background:#0C0708}
 .domain--d2 .body-wrap{background:#100D07}
@@ -2690,209 +2737,104 @@ body{background:var(--color-page)}
 .domain--d4 .body-wrap{background:#0A0810}
 .domain--d5 .body-wrap{background:#06080F}
 .domain--d6 .body-wrap{background:#060D0D}
-
-/* Sub-labels */
 .sub-label{
   font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.52rem;letter-spacing:0.18em;font-weight:700;
+  font-size:.50rem;letter-spacing:.18em;font-weight:700;
   padding:10px 0 4px;border-bottom:1px solid var(--color-sep);margin-bottom:8px;
 }
-.sub-label--observed{color:#505868}
-.sub-label--assessment{color:#846028}
-
-/* Body paragraphs */
+.sub-label--observed{color:#484E5C}.sub-label--assessment{color:#7C5C24}
 .body-para{
   font-family:Georgia,"Times New Roman",serif;
-  font-size:0.88rem;color:#C0B8A8;line-height:1.74;margin-bottom:10px;
+  font-size:.88rem;color:#C0B8A8;line-height:1.74;margin-bottom:10px;
 }
-.body-para__source{
-  font-family:"IBM Plex Mono","Courier New",monospace;
-  font-size:0.52rem;color:#404858;font-style:italic;
-}
+.body-para__source{font-family:"IBM Plex Mono","Courier New",monospace;font-size:.50rem;color:#383E4A;font-style:italic}
 
 /* ── STRATEGIC HEADER ─────────────────────────────────────────────────────── */
-.strategic-header{
-  background:#060710;border-left:4px solid #B81C28;border-bottom:1px solid #10162A;
-  padding:14px 22px;
-}
-.strategic-header__label{
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.54rem;color:#B81C28;letter-spacing:0.22em;font-weight:800;margin-bottom:5px;
-}
-.strategic-header__judgment{
-  font-family:"Palatino Linotype","Palatino",Georgia,serif;
-  font-size:1.05rem;font-weight:700;color:#F0EAE0;line-height:1.5;
-}
+.strategic-header{background:#060710;border-left:4px solid #B81C28;border-bottom:1px solid #10162A;padding:14px 22px}
+.strategic-header__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.52rem;color:#B81C28;letter-spacing:.20em;font-weight:800;margin-bottom:5px}
+.strategic-header__judgment{font-family:"Palatino Linotype","Palatino",Georgia,serif;font-size:1.05rem;font-weight:700;color:#F0EAE0;line-height:1.5}
 
 /* ── FLASH POINTS ─────────────────────────────────────────────────────────── */
 .flash-points{background:#080204}
-.flash-points__label{
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.54rem;color:#D82838;font-weight:800;letter-spacing:0.18em;
-}
-.flash-points__item-headline{
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.86rem;font-weight:700;color:#F0EAE0;
-}
-.flash-points__item-detail{
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:0.8rem;color:#B8B0A0;line-height:1.5;
-}
+.flash-points__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.52rem;color:#D82838;font-weight:800;letter-spacing:.18em}
+.flash-points__item-headline{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.86rem;font-weight:700;color:#F0EAE0}
+.flash-points__item-detail{font-family:Georgia,"Times New Roman",serif;font-size:.80rem;color:#B8B0A0;line-height:1.5}
 
 /* ── EXECUTIVE SECTION ────────────────────────────────────────────────────── */
-.exec__gradient{
-  background:linear-gradient(90deg,transparent,#C4A030 30%,#C4A030 70%,transparent);
-  height:2px;
-}
+.exec__gradient{background:linear-gradient(90deg,transparent,#C4A030 30%,#C4A030 70%,transparent);height:2px}
 .exec__header{background:#0A0900;border-left:4px solid #C4A030;padding:10px 22px}
-.exec__header-title{
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.74rem;font-weight:800;letter-spacing:0.22em;color:#C4A030;
-}
+.exec__header-title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.22em;color:#C4A030}
 .exec__bluf{background:#080800;border-left:4px solid #C4A030;padding:12px 22px}
-.exec__bluf-label{
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.52rem;color:#5E4C14;letter-spacing:0.16em;
-}
-.exec__bluf-text{
-  font-family:Georgia,"Times New Roman",serif;
-  font-size:0.88rem;color:#E8E2D6;line-height:1.7;
-}
+.exec__bluf-label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.50rem;color:#5A4810;letter-spacing:.16em}
+.exec__bluf-text{font-family:Georgia,"Times New Roman",serif;font-size:.88rem;color:#E8E2D6;line-height:1.70}
 .exec__kj-list{background:#070700;border-left:4px solid #C4A030}
-.exec__kj-text{font-family:Georgia,"Times New Roman",serif;font-size:0.86rem;color:#D4CCC0}
-
-/* KPI strip */
+.exec__kj-text{font-family:Georgia,"Times New Roman",serif;font-size:.86rem;color:#D4CCC0}
 .kpi-strip__cell{padding:10px 8px;border-right:2px solid var(--color-page)}
 .kpi-strip__number{font-family:"Palatino Linotype","Palatino",Georgia,serif;font-size:1.4rem;font-weight:900}
-.kpi-strip__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:0.5rem;color:#505868;letter-spacing:0.1em}
+.kpi-strip__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.49rem;color:#484E5C;letter-spacing:.10em}
 
 /* ── NOTES ────────────────────────────────────────────────────────────────── */
 .analyst-note__header{background:#120F00;border-left:4px solid #C4A030;border-top:1px solid #C4A030}
-.analyst-note__title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:0.64rem;color:#C4A030;letter-spacing:0.16em}
+.analyst-note__title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.62rem;color:#C4A030;letter-spacing:.16em}
 .analyst-note__body{background:#0A0800;border-left:4px solid #C4A030}
-.analyst-note__text{font-family:Georgia,"Times New Roman",serif;color:#D8D0C0;font-size:0.86rem;line-height:1.7}
+.analyst-note__text{font-family:Georgia,"Times New Roman",serif;color:#D8D0C0;font-size:.86rem;line-height:1.70}
 .dissenter-note__header{background:#000710;border-left:4px solid #3C8CE0;border-top:1px solid #3C8CE0}
-.dissenter-note__title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:0.64rem;color:#3C8CE0;letter-spacing:0.14em}
+.dissenter-note__title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.62rem;color:#3C8CE0;letter-spacing:.14em}
 .dissenter-note__body{background:#000508;border-left:4px solid #3C8CE0}
-.dissenter-note__text{font-family:Georgia,"Times New Roman",serif;color:#C4CCE0;font-size:0.86rem;line-height:1.7}
+.dissenter-note__text{font-family:Georgia,"Times New Roman",serif;color:#C4CCE0;font-size:.86rem;line-height:1.70}
 
 /* ── FOOTER ───────────────────────────────────────────────────────────────── */
-.brief-footer{
-  background:#030407;border-top:2px solid #B81C28;
-  padding:14px 24px;display:flex;justify-content:space-between;align-items:center;
-}
+.brief-footer{background:#030407;border-top:2px solid #B81C28;padding:14px 26px;display:flex;justify-content:space-between;align-items:center}
 .brief-footer__main{display:flex;flex-direction:column;gap:4px}
-.brief-footer__cycle{color:#F0EAE0;font-weight:700;font-size:0.82rem}
-.brief-footer__note{color:#304050;font-size:0.62rem}
+.brief-footer__cycle{color:#F0EAE0;font-weight:700;font-size:.80rem}
+.brief-footer__note{color:#2C3848;font-size:.60rem}
 .brief-footer__flag{display:flex;align-items:center;gap:8px}
-.brief-footer__flag img{height:22px;width:auto;mix-blend-mode:screen;opacity:0.85}
+.brief-footer__flag img{height:20px;width:auto;mix-blend-mode:screen;opacity:.82}
 
-/* ── PRINT — per-page branding ────────────────────────────────────────────── */
-/* Screen: hide print-only elements */
-.print-brand-header,.print-brand-footer{display:none}
-
-@media print{
-  body{background:#000000!important}
-  .masthead{position:static!important}
-  .domain__gradient,.masthead__crimson-rule,.exec__gradient{box-shadow:none!important}
-  #cse-editor-toggle,#cse-editor-panel{display:none!important}
-
-  /* CSE on every page — top-left */
-  .print-brand-header{
-    display:block;position:fixed;top:6mm;left:10mm;z-index:9999;
-    line-height:1.05;
-  }
-  .print-brand-header__cse{
-    font-family:"Palatino Linotype","Palatino",Georgia,serif;
-    font-size:16pt;font-weight:900;color:#FFFFFF;letter-spacing:0.06em;
-    display:block;
-  }
-  .print-brand-header__brief{
-    font-family:"Trebuchet MS",Arial,sans-serif;
-    font-size:6pt;letter-spacing:0.2em;color:#808080;text-transform:uppercase;
-    display:block;
-  }
-
-  /* Canada logo on every page — bottom-right */
-  .print-brand-footer{
-    display:block;position:fixed;bottom:6mm;right:10mm;z-index:9999;
-  }
-  .print-brand-footer img{
-    height:20pt;width:auto;opacity:0.75;
-    mix-blend-mode:screen;
-  }
-}
-
-/* ── EDITOR PANEL CHROME ──────────────────────────────────────────────────── */
+/* ── EDITOR PANEL ─────────────────────────────────────────────────────────── */
 @media print{#cse-editor-toggle,#cse-editor-panel{display:none!important}}
-
 #cse-editor-toggle{
   position:fixed;bottom:24px;right:24px;z-index:9999;
-  width:40px;height:40px;border-radius:50%;border:none;cursor:pointer;
-  background:#0E1424;border:1px solid #283448;
-  color:#C4A030;font-size:16px;
-  box-shadow:0 3px 16px rgba(0,0,0,0.6);
-  display:flex;align-items:center;justify-content:center;
-  transition:background 0.18s;
+  width:40px;height:40px;border-radius:50%;border:1px solid #202838;cursor:pointer;
+  background:#0A0E1C;color:#C4A030;font-size:16px;
+  box-shadow:0 3px 14px rgba(0,0,0,.60);
+  display:flex;align-items:center;justify-content:center;transition:background .18s;
 }
-#cse-editor-toggle:hover{background:#1A2038}
+#cse-editor-toggle:hover{background:#141A28}
 #cse-editor-panel{
   position:fixed;top:0;right:0;bottom:0;z-index:9998;width:310px;
   background:#060A14;border-left:1px solid #181E30;
   display:none;flex-direction:column;
   font-family:"Trebuchet MS",Arial,sans-serif;
-  box-shadow:-6px 0 32px rgba(0,0,0,0.7);overflow:hidden;
+  box-shadow:-6px 0 30px rgba(0,0,0,.70);overflow:hidden;
 }
 #cse-editor-panel.open{display:flex}
-.ep-header{
-  background:#0A1020;border-bottom:2px solid #B81C28;
-  padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
-}
-.ep-header-title{color:#F0EAE0;font-size:0.68rem;font-weight:700;letter-spacing:0.18em}
-.ep-header-close{background:none;border:none;color:#606878;cursor:pointer;font-size:15px;padding:0;line-height:1}
+.ep-header{background:#0A1020;border-bottom:2px solid #B81C28;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
+.ep-header-title{color:#F0EAE0;font-size:.66rem;font-weight:700;letter-spacing:.18em}
+.ep-header-close{background:none;border:none;color:#585E6C;cursor:pointer;font-size:15px;padding:0;line-height:1}
 .ep-header-close:hover{color:#F0EAE0}
 .ep-tabs{display:flex;border-bottom:1px solid #10162A;flex-shrink:0}
-.ep-tab{
-  flex:1;padding:7px 4px;background:none;border:none;cursor:pointer;
-  font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.52rem;font-weight:700;letter-spacing:0.1em;
-  color:#404858;text-transform:uppercase;border-bottom:2px solid transparent;
-  transition:color 0.14s,border-color 0.14s;
-}
+.ep-tab{flex:1;padding:7px 4px;background:none;border:none;cursor:pointer;font-family:"Trebuchet MS",Arial,sans-serif;font-size:.50rem;font-weight:700;letter-spacing:.10em;color:#383E4C;text-transform:uppercase;border-bottom:2px solid transparent;transition:color .14s,border-color .14s}
 .ep-tab.active{color:#C4A030;border-bottom-color:#C4A030}
-.ep-tab:hover:not(.active){color:#8898A8}
+.ep-tab:hover:not(.active){color:#7888A0}
 .ep-body{flex:1;overflow-y:auto;padding:12px 14px}
 .ep-body::-webkit-scrollbar{width:3px}
-.ep-body::-webkit-scrollbar-track{background:#040609}
-.ep-body::-webkit-scrollbar-thumb{background:#18202E;border-radius:2px}
-.ep-section-title{
-  font-size:0.5rem;font-weight:700;letter-spacing:0.18em;color:#B81C28;
-  text-transform:uppercase;border-bottom:1px solid #10162A;
-  padding-bottom:4px;margin:10px 0 7px;
-}
+.ep-body::-webkit-scrollbar-track{background:#04060A}
+.ep-body::-webkit-scrollbar-thumb{background:#161C28;border-radius:2px}
+.ep-section-title{font-size:.48rem;font-weight:700;letter-spacing:.18em;color:#B81C28;text-transform:uppercase;border-bottom:1px solid #10162A;padding-bottom:4px;margin:10px 0 7px}
 .ep-section-title:first-child{margin-top:0}
 .ep-row{display:flex;align-items:center;gap:7px;margin-bottom:7px}
-.ep-label{font-size:0.52rem;letter-spacing:0.08em;color:#6070A0;flex:0 0 auto;min-width:76px}
-.ep-input,.ep-select{
-  flex:1;background:#08091A;border:1px solid #18202E;border-radius:2px;
-  color:#C8C0B0;font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.62rem;padding:4px 6px;outline:none;
-}
+.ep-label{font-size:.50rem;letter-spacing:.08em;color:#505C78;flex:0 0 auto;min-width:76px}
+.ep-input,.ep-select{flex:1;background:#07091A;border:1px solid #161C28;border-radius:2px;color:#C4BCA8;font-family:"Trebuchet MS",Arial,sans-serif;font-size:.60rem;padding:4px 6px;outline:none}
 .ep-input:focus,.ep-select:focus{border-color:#C4A030}
 .ep-select{cursor:pointer}
-input[type=color].ep-color{width:34px;height:24px;padding:1px;border-radius:2px;cursor:pointer}
-.ep-btn{
-  display:block;width:100%;padding:7px;
-  background:#0A0E1C;border:1px solid #18202E;border-radius:2px;
-  color:#C4A030;font-family:"Trebuchet MS",Arial,sans-serif;
-  font-size:0.58rem;font-weight:700;letter-spacing:0.1em;
-  cursor:pointer;margin-bottom:7px;text-align:center;transition:background 0.14s;
-}
-.ep-btn:hover{background:#141828}
-.ep-btn--red{border-color:#301020;color:#D82838}
-.ep-status{font-size:0.55rem;color:#404858;font-style:italic;text-align:center;padding:5px}
-.ep-edit-active .ep-editable{outline:1px dashed rgba(196,160,48,0.35);border-radius:1px;cursor:text}
-.ep-edit-active .ep-editable:focus{outline:1px solid #C4A030;background:rgba(196,160,48,0.03)}
+input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;cursor:pointer}
+.ep-btn{display:block;width:100%;padding:7px;background:#08091A;border:1px solid #161C28;border-radius:2px;color:#C4A030;font-family:"Trebuchet MS",Arial,sans-serif;font-size:.56rem;font-weight:700;letter-spacing:.10em;cursor:pointer;margin-bottom:7px;text-align:center;transition:background .14s}
+.ep-btn:hover{background:#101428}
+.ep-btn--red{border-color:#280C14;color:#D82838}
+.ep-status{font-size:.52rem;color:#383E4C;font-style:italic;text-align:center;padding:5px}
+.ep-edit-active .ep-editable{outline:1px dashed rgba(196,160,48,.30);border-radius:1px;cursor:text}
+.ep-edit-active .ep-editable:focus{outline:1px solid #C4A030;background:rgba(196,160,48,.03)}
 
 </style>
 </head>
