@@ -1,13 +1,7 @@
 /* ═══════════════════════════════════════════════════════════════════════════
    PRINT OVERRIDES — CSE Intelligence Brief
-   Applied only via @media print. Supplements base.css print block.
-   All colour references use CSS custom properties from tokens.css.
-
-   Designed for:
-     - Chrome / Chromium headless --print-to-pdf
-     - wkhtmltopdf --page-size Letter
-     - Firefox print dialog
-     - Safari print preview
+   Dark-mode PDF: full black background, light text, colour preserved.
+   Designed for Chromium headless --print-to-pdf (primary path).
    ═══════════════════════════════════════════════════════════════════════════ */
 
 @media print {
@@ -18,121 +12,159 @@
     transition: none !important;
   }
 
-  /* ── Preserve colour accuracy ─────────────────────────────────────────── */
+  /* ── Preserve colour accuracy — CRITICAL for dark PDF ─────────────────── */
   * {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-scheme: dark !important;
   }
 
-  /* ── Page setup — Letter portrait with classification banner clearance ── */
+  /* ── Page setup ────────────────────────────────────────────────────────── */
   @page {
     size: letter portrait;
-    /* Top/bottom margins enlarged to make room for fixed classification banners */
-    margin: 1.1in 0.65in 1.0in 0.65in;
+    margin: 0.75in 0.55in 0.75in 0.55in;
+    background: #000000;
   }
 
-  @page :first {
-    margin-top: 0.75in;
-  }
+  @page :first { margin-top: 0.5in; }
 
-  /* ── Document wrapper ─────────────────────────────────────────────────── */
+  /* ── Document: black throughout ───────────────────────────────────────── */
   html, body {
     width: 100%;
     height: auto;
     overflow: visible;
-    background: white;
-    color: #1a1a2e;
+    background: #000000 !important;
+    color: #d4cfc8 !important;
   }
 
   .brief {
     max-width: 100%;
     box-shadow: none;
     border: none;
-    background: white;
+    background: #000000 !important;
   }
 
-  /* ── Suppress base.css overlay/scanline effects ───────────────────────── */
-  body::before,
-  body::after {
-    display: none !important;
-  }
+  /* ── Suppress base.css scanline / vignette overlays ──────────────────── */
+  body::before, body::after { display: none !important; }
 
-  /* ── Masthead / footer: un-sticky for print ───────────────────────────── */
-  .masthead,
-  .brief-footer {
+  /* ── Kill galaxy shimmer (no animation in print) ──────────────────────── */
+  .masthead::before, .masthead::after,
+  .brief-footer::before { display: none !important; }
+
+  /* ── Masthead / footer ─────────────────────────────────────────────────── */
+  .masthead, .brief-footer {
     position: static;
+    background: #0a0a14 !important;
   }
 
-  /* ── Classification bar in masthead: redundant on paper (banner covers) ─ */
+  /* ── Classification bar ─────────────────────────────────────────────────── */
   .masthead__class-bar {
-    display: none;
+    background: #1a0000 !important;
+    color: #ff6060 !important;
   }
 
-  /* ── Domain gradient strip: hide (ink-saving) ────────────────────────── */
-  .domain__gradient,
-  .exec__gradient,
-  .caveats__gradient,
-  .collection-gaps__gradient,
-  .warning-indicators__gradient,
-  .analyst-note__gradient,
-  .dissenter-note__gradient {
-    display: none;
+  .print-class-banner {
+    background: #1a0000 !important;
+    color: #ff6060 !important;
+    font-weight: 700;
   }
 
-  /* ── Domain: left border replaces gradient strip ─────────────────────── */
+  /* ── Domain gradient strips: hidden ─────────────────────────────────────── */
+  .domain__gradient, .exec__gradient, .caveats__gradient,
+  .collection-gaps__gradient, .warning-indicators__gradient,
+  .analyst-note__gradient, .dissenter-note__gradient { display: none; }
+
+  /* ── Domain sections ─────────────────────────────────────────────────────── */
   .domain {
-    border-left: 5px solid var(--color-dim);
+    background: #05050f !important;
+    border-left: 5px solid #444;
     padding-left: 16px;
   }
-  .domain--d1 { border-left-color: var(--d1-bright); }
-  .domain--d2 { border-left-color: var(--d2-bright); }
-  .domain--d3 { border-left-color: var(--d3-bright); }
-  .domain--d4 { border-left-color: var(--d4-bright); }
-  .domain--d5 { border-left-color: var(--d5-bright); }
-  .domain--d6 { border-left-color: var(--d6-bright); }
+  .domain--d1 { border-left-color: #c62828 !important; }
+  .domain--d2 { border-left-color: #e65100 !important; }
+  .domain--d3 { border-left-color: #2e7d32 !important; }
+  .domain--d4 { border-left-color: #6a1b9a !important; }
+  .domain--d5 { border-left-color: #1565c0 !important; }
+  .domain--d6 { border-left-color: #00695c !important; }
 
-  /* ── Type: use body-weight serif for print legibility ─────────────────── */
-  body {
-    font-family: Georgia, "Times New Roman", serif;
-    font-size: 10pt;
-    line-height: 1.55;
+  /* ── Section backgrounds ─────────────────────────────────────────────────── */
+  section { background: #05050f !important; }
+
+  .kj { background: #0d0d1a !important; border-color: rgba(255,255,255,0.12) !important; }
+
+  .exec__bluf {
+    background: #0d0d1a !important;
+    border-left-color: #c62828 !important;
   }
 
-  .kj__text {
-    font-size: 11pt;
-    line-height: 1.6;
+  .strategic-header, .flash-points, .warning-indicators,
+  .collection-gaps, .caveats { background: #05050f !important; }
+
+  .metadata-bar {
+    background: #0d0d1a !important;
+    border-top: 1px solid #1e1e2e !important;
   }
 
-  .body-para {
-    font-size: 10pt;
-    line-height: 1.55;
-    orphans: 3;
-    widows: 3;
+  .analyst-note, .dissenter-note {
+    background: #0a0a14 !important;
+    border-color: rgba(255,255,255,0.1) !important;
   }
 
-  /* ── Ensure dark text on white for legibility ─────────────────────────── */
-  .text-hi, .domain__title, .kj__text,
-  .exec__bluf-text, .strategic-header__judgment {
-    color: #1a1a2e !important;
-  }
+  .section-end { border-color: #1e1e2e !important; }
 
-  .text-md, .body-para, .body-wrap { color: #2c2c3c !important; }
-  .text-dim, .meta, .kj__basis     { color: #686070 !important; }
-
-  /* Gold → dark amber for ink printing */
-  .masthead__cycle-num,
-  .color-gold { color: #8c6400 !important; }
-
-  /* Crimson → dark red */
-  .color-crimson,
-  .exec__bluf { border-left-color: #8c1010 !important; }
-
-  /* ── Page break control ───────────────────────────────────────────────── */
-  /* Hard breaks: each major section starts fresh */
+  /* ── Warning indicators table ────────────────────────────────────────────── */
   .warning-indicators { break-before: page; }
-  .brief-footer        { break-before: page; }
 
-  /* Avoid breaking inside key structural elements */
+  .wi-table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 8.5pt;
+    background: transparent !important;
+  }
+  .wi-table th {
+    background: #111120 !important;
+    color: #a0a8b0 !important;
+    border: 0.5pt solid #2a2a3a !important;
+    padding: 3.5pt 5pt;
+    font-size: 7.5pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .wi-table td {
+    background: #05050f !important;
+    color: #c4bfb8 !important;
+    border: 0.5pt solid #1e1e2e !important;
+    padding: 3.5pt 5pt;
+  }
+  .wi-table tr:nth-child(even) td { background: #0a0a18 !important; }
+
+  /* ── KPI strip ───────────────────────────────────────────────────────────── */
+  .kpi-strip { grid-template-columns: repeat(6, 1fr); gap: 4pt; }
+  .kpi-strip__cell {
+    background: #0d0d1a !important;
+    border: 0.5pt solid #2a2a3a !important;
+    padding: 4pt 6pt;
+  }
+  .kpi-strip__number { font-size: 15pt !important; color: #c8b870 !important; }
+  .kpi-strip__label  { font-size: 6.5pt !important; color: #888 !important; }
+
+  /* ── Body text: light on dark ────────────────────────────────────────────── */
+  .text-hi, .domain__title, .kj__text,
+  .exec__bluf-text, .strategic-header__judgment { color: #e0dbd4 !important; }
+
+  .text-md, .body-para, .body-wrap { color: #c4bfb8 !important; }
+  .text-dim, .meta, .kj__basis     { color: #7a7480 !important; }
+  .masthead__cycle-num, .color-gold { color: #c8b870 !important; }
+
+  /* ── Type ────────────────────────────────────────────────────────────────── */
+  body { font-size: 9.5pt; line-height: 1.55; }
+  .kj__text { font-size: 10.5pt; line-height: 1.6; }
+  .body-para { font-size: 9.5pt; line-height: 1.55; orphans: 3; widows: 3; }
+
+  /* ── GOC logo images: screen blend for dark bg ────────────────────────── */
+  .masthead__img { mix-blend-mode: screen; }
+
+  /* ── Page break control ──────────────────────────────────────────────────── */
   .masthead            { break-inside: avoid; }
   .strategic-header    { break-inside: avoid; break-after: avoid; }
   .flash-points        { break-inside: avoid; }
@@ -145,67 +177,36 @@
   .collection-gaps     { break-inside: avoid; }
   .caveats             { break-inside: avoid; }
   .wi-table            { break-inside: avoid; }
+  .brief-footer        { break-before: page; }
 
-  /* Domains may break at boundaries but not mid-paragraph */
   .domain              { break-inside: auto; }
   .domain + .domain    { break-before: auto; }
   .body-wrap           { break-inside: auto; }
   .body-para           { break-inside: avoid; orphans: 3; widows: 3; }
-
-  /* KJ box: never orphan the header from its text */
   .kj__label-row + .kj__text { break-before: avoid; }
 
-  /* ── Probability bars: reduce height for print ────────────────────────── */
-  .prob-bar { height: 2px; }
+  /* ── Probability bars ────────────────────────────────────────────────────── */
+  .prob-bar { height: 2px; display: block; }
 
-  /* ── KPI strip: flat for print ────────────────────────────────────────── */
-  .kpi-strip__cell { border: 1px solid #ccc; background: white !important; }
-  .kpi-strip__number { color: #1a1a2e !important; }
-
-  /* ── Warning indicator table ──────────────────────────────────────────── */
-  .wi-table { border-collapse: collapse; width: 100%; font-size: 9pt; }
-  .wi-table th, .wi-table td { border: 0.5pt solid #d0d0d0; padding: 4pt 6pt; }
-
-  /* ── Scrollbars and overlays — suppressed ─────────────────────────────── */
-  ::-webkit-scrollbar { display: none; }
-
-}
-
-  /* ── Kurdish/Turkish dimension — print adjustments ──────────────────────── */
-  .actor-matrix { break-inside: avoid; }
-  .gap-item     { break-inside: avoid; }
-
-  /* ── Collection gap register — print table layout ───────────────────────── */
+  /* ── Collection gap register ─────────────────────────────────────────────── */
   .collection-gaps__items { list-style: none; padding: 0; }
   .gap-item {
     display: grid;
     grid-template-columns: 60pt 50pt 1fr;
     gap: 4pt;
-    border-bottom: 0.5pt solid #ddd;
+    border-bottom: 0.5pt solid #2a2a3a !important;
     padding: 4pt 0;
     font-size: 8.5pt;
+    color: #c4bfb8 !important;
   }
   .gap-item__category { display: block; margin-top: 2pt; }
 
-  /* ── Warning indicators table — print 12 rows ───────────────────────────── */
-  .wi-table { font-size: 8pt; }
-  .wi-table th, .wi-table td { padding: 3pt 5pt; }
-
-  /* ── KPI strip — 6-cell print layout ───────────────────────────────────── */
-  .kpi-strip { grid-template-columns: repeat(6, 1fr); gap: 4pt; }
-  .kpi-strip__cell {
-    padding: 4pt 6pt;
-    border: 0.5pt solid #ccc;
-    background: white !important;
-  }
-  .kpi-strip__number { font-size: 16pt !important; color: #1a1a2e !important; }
-  .kpi-strip__label  { font-size: 6.5pt !important; color: #555 !important; }
-
-  /* ── Executive KJ list — readable in print ──────────────────────────────── */
-  .exec__kj-list   { padding: 0 0 0 12pt; }
-  .exec__kj-item   { margin-bottom: 4pt; font-size: 9pt; break-inside: avoid; }
+  /* ── Executive KJ list ───────────────────────────────────────────────────── */
+  .exec__kj-list { padding: 0 0 0 12pt; }
+  .exec__kj-item { margin-bottom: 4pt; font-size: 9pt; break-inside: avoid; }
   .exec__kj-domain { font-weight: 700; }
 
-  /* ── Probability bars — hide in print to save ink ───────────────────────── */
-  .prob-bar { display: none; }
+  /* ── Scrollbars ──────────────────────────────────────────────────────────── */
+  ::-webkit-scrollbar { display: none; }
 
+}
