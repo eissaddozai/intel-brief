@@ -21,7 +21,7 @@ from __future__ import annotations
 
 import html as _html
 import re
-from datetime import datetime, timezone
+from datetime import datetime
 from pathlib import Path
 
 # ── Design system file locations ──────────────────────────────────────────────
@@ -125,12 +125,12 @@ def _fmt_ts(iso: str | None) -> str:
     """
     if not iso:
         return ''
-    for fmt in ('%Y-%m-%dT%H:%M:%SZ', '%Y-%m-%dT%H:%M:%S+00:00', '%Y-%m-%dT%H:%M:%S'):
-        try:
-            dt = datetime.strptime(iso[:19], fmt[:len(fmt)])
-            return dt.strftime('%H%M UTC %d %b').upper()
-        except ValueError:
-            continue
+    # Strip timezone suffix before parsing so all variants match '%Y-%m-%dT%H:%M:%S'
+    try:
+        dt = datetime.strptime(iso[:19], '%Y-%m-%dT%H:%M:%S')
+        return dt.strftime('%H%M UTC %d %b').upper()
+    except ValueError:
+        pass
     return _e(iso)
 
 

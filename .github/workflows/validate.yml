@@ -107,11 +107,14 @@ jobs:
               if not d.get("bodyParagraphs"):
                   errors.append(f"Domain {did}: bodyParagraphs is empty")
 
-          # executive BLUF
-          if not cycle.get("executive", {}).get("bluf"):
+          # executive BLUF and key judgments
+          executive = cycle.get("executive", {})
+          if not executive.get("bluf"):
               errors.append("executive.bluf is empty")
+          if not executive.get("keyJudgments"):
+              errors.append("executive.keyJudgments is empty")
 
-          # Confidence language enum
+          # Confidence language enum — language field is required on every keyJudgment
           VALID_CONFIDENCE = {
               "almost-certainly", "highly-likely", "likely",
               "possibly", "unlikely", "almost-certainly-not",
@@ -119,7 +122,11 @@ jobs:
           for d in domains:
               kj = d.get("keyJudgment", {})
               lang = kj.get("language")
-              if lang and lang not in VALID_CONFIDENCE:
+              if not lang:
+                  errors.append(
+                      f"Domain {d.get('id')}: keyJudgment.language is missing"
+                  )
+              elif lang not in VALID_CONFIDENCE:
                   errors.append(
                       f"Domain {d.get('id')}: invalid confidence language '{lang}'"
                   )

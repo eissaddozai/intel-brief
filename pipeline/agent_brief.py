@@ -254,7 +254,7 @@ def fetch_all_sources(sources: list[dict]) -> dict[str, str]:
     t0      = time.time()
     results: dict[str, str] = {}
     with ThreadPoolExecutor(max_workers=FETCH_WORKERS) as pool:
-        for sid, content in pool.map(lambda s: _fetch_one(s), fetchable):
+        for sid, content in pool.map(_fetch_one, fetchable):
             results[sid] = content
     ok = sum(1 for v in results.values() if not v.startswith('['))
     log.info('Fetch done: %d/%d OK — %.1fs', ok, len(fetchable), time.time() - t0)
@@ -879,7 +879,7 @@ def run_agent_brief(
 
     cycle: dict = {
         'meta': {
-            'cycleId':          f'CSE-BRIEF-AGENT-{date_str}',
+            'cycleId':          f'cycle000_{date_str}',  # overwritten after cycle numbering below
             'cycleNum':         '000',
             'classification':   'PROTECTED B',
             'tlp':              'AMBER',
@@ -915,7 +915,7 @@ def run_agent_brief(
             'items': [{
                 'label': 'AGENT DRAFT',
                 'text': (
-                    f'Produced by 10 parallel {model} CLI subagents. '
+                    f'Produced by 17 {model} CLI subagents across 4 phases. '
                     'Human review required before distribution.'
                 ),
             }],
@@ -962,7 +962,6 @@ def run_agent_brief(
     latest.symlink_to(cycle_path.name)
 
     # Render HTML
-    sys.path.insert(0, str(PIPELINE_DIR))
     from render.html_renderer import render_cycle
     html       = render_cycle(cycle)
     briefs_dir = repo_root / 'briefs'

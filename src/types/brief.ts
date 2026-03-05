@@ -174,7 +174,7 @@ export interface DissenterNote {
 
 export interface DomainSection {
   id: DomainId
-  /** "01" through "05" */
+  /** "01" through "06" */
   num: string
   /** e.g. "BATTLESPACE · KINETIC" */
   title: string

@@ -43,10 +43,12 @@ jobs:
 
       - name: Render HTML
         id: render
+        env:
+          INPUT_CYCLE: ${{ github.event.inputs.cycle }}
         run: |
           CYCLE_ARG=""
-          if [ -n "${{ github.event.inputs.cycle }}" ]; then
-            CYCLE_ARG="--cycle ${{ github.event.inputs.cycle }}"
+          if [ -n "$INPUT_CYCLE" ]; then
+            CYCLE_ARG="--cycle $INPUT_CYCLE"
           fi
           python pipeline/main.py render $CYCLE_ARG
           # Capture the output path for subsequent steps

@@ -77,13 +77,14 @@ jobs:
         if: ${{ github.event.inputs.mode != 'staged' }}
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          INPUT_DATE: ${{ github.event.inputs.date }}
+          INPUT_MODEL: ${{ github.event.inputs.model || 'claude-sonnet-4-6' }}
         run: |
           DATE_ARG=""
-          MODEL_ARG="--model ${{ github.event.inputs.model || 'claude-sonnet-4-6' }}"
-          if [ -n "${{ github.event.inputs.date }}" ]; then
-            DATE_ARG="--date ${{ github.event.inputs.date }}"
+          if [ -n "$INPUT_DATE" ]; then
+            DATE_ARG="--date $INPUT_DATE"
           fi
-          python pipeline/main.py agent $DATE_ARG $MODEL_ARG
+          python pipeline/main.py agent $DATE_ARG --model "$INPUT_MODEL"
 
       # ── Staged mode (legacy / explicit) ───────────────────────────────────
       - name: Run staged pipeline
@@ -92,13 +93,15 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CSE_EMAIL_USER: ${{ secrets.CSE_EMAIL_USER }}
           CSE_EMAIL_PASS: ${{ secrets.CSE_EMAIL_PASS }}
+          INPUT_DATE: ${{ github.event.inputs.date }}
+          INPUT_FORCE: ${{ github.event.inputs.force }}
         run: |
           DATE_ARG=""
           FORCE_ARG=""
-          if [ -n "${{ github.event.inputs.date }}" ]; then
-            DATE_ARG="--date ${{ github.event.inputs.date }}"
+          if [ -n "$INPUT_DATE" ]; then
+            DATE_ARG="--date $INPUT_DATE"
           fi
-          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+          if [ "$INPUT_FORCE" = "true" ]; then
             FORCE_ARG="--force"
           fi
           python pipeline/main.py run --auto-approve $DATE_ARG $FORCE_ARG
@@ -118,7 +121,7 @@ jobs:
             cp cycles/latest.json src/data/latest.json
             LATEST=$(ls -t cycles/cycle*.json 2>/dev/null | head -1)
             if [ -n "$LATEST" ]; then
-              cp "$LATEST" "src/data/$(basename $LATEST)"
+              cp "$LATEST" "src/data/$(basename "$LATEST")"
             fi
           fi
 

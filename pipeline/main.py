@@ -240,14 +240,19 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
         confidence = 'high' if tier1 else ('moderate' if items else 'low')
         return {
             'id': did, 'num': num, 'title': title,
+            'assessmentQuestion': '',
             'keyJudgment': {
+                'id': f'kj-{did}',
+                'domain': did,
                 'text': (
                     f'{len(items)} items collected ({len(tier1)} Tier 1). '
                     'Re-run after adding Anthropic API credits for AI synthesis.'
                 ),
                 'confidence': confidence,
-                'probabilityRange': 'placeholder',
-                'corroborated': bool(tier1),
+                'probabilityRange': '—',
+                'language': 'possibly',
+                'basis': 'Placeholder — no AI synthesis performed.',
+                'citations': [],
             },
             'bodyParagraphs': paras,
             'confidence': confidence,
@@ -685,9 +690,9 @@ def cmd_show(args: argparse.Namespace, config: dict) -> None:
     if wi:
         print(bold(yellow('WARNING INDICATORS')))
         for w in wi:
-            level = w.get('level', '?')
-            c = red if level == 'RED' else (yellow if level == 'AMBER' else green)
-            print(f'  {c(level)} {w.get("indicator","?")} — {w.get("assessment","")}')
+            status = w.get('status', '?')
+            c = red if status == 'triggered' else (yellow if status == 'elevated' else green)
+            print(f'  {c(status.upper())} {w.get("indicator","?")} — {w.get("detail","")}')
         print()
 
     # Footer
