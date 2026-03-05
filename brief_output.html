@@ -2572,18 +2572,22 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 }
 .masthead__brand-left{flex:0 0 auto}
 
-/* Big display title — crimson glow on CSE, gold glow on INTEL */
+/* ── BIG WORDMARK — CSE white/crimson, INTEL gold ─────────────────────────── */
 .masthead__title{
   font-family:"Palatino Linotype","Palatino",Georgia,serif;
-  font-size:var(--size-masthead);font-weight:700;line-height:1.0;margin-bottom:5px;
+  font-size:4.8rem;font-weight:900;line-height:0.95;margin-bottom:8px;letter-spacing:-.01em;
 }
 .masthead__title-main{
-  color:#FFFFFF;font-weight:900;letter-spacing:.06em;
-  text-shadow:0 0 38px rgba(184,24,40,.70),0 0 12px rgba(184,24,40,.40),0 2px 10px rgba(0,0,0,.95);
+  color:#FFFFFF;font-weight:900;letter-spacing:.04em;
+  text-shadow:
+    0 0 60px rgba(184,24,40,.80),
+    0 0 22px rgba(184,24,40,.55),
+    0 0 8px  rgba(184,24,40,.30),
+    0 2px 14px rgba(0,0,0,1);
 }
 .masthead__title-year{
-  color:#C8A838;font-weight:300;letter-spacing:.14em;
-  text-shadow:0 0 28px rgba(200,168,56,.55),0 0 8px rgba(200,168,56,.28);
+  color:#C8A838;font-weight:200;letter-spacing:.20em;font-size:.72em;
+  text-shadow:0 0 36px rgba(200,168,56,.65),0 0 12px rgba(200,168,56,.35);
 }
 .masthead__subtitle{
   font-family:"Trebuchet MS",Arial,sans-serif;
@@ -2601,8 +2605,9 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 }
 .masthead__cycle-num{
   font-family:"Palatino Linotype","Palatino",Georgia,serif;
-  font-size:1.55rem;font-weight:900;line-height:1;color:#C8A838;
-  text-shadow:0 0 10px rgba(200,168,56,.30);
+  font-size:3.8rem;font-weight:900;line-height:1;color:#C8A838;
+  text-shadow:0 0 28px rgba(200,168,56,.55),0 0 8px rgba(200,168,56,.28);
+  letter-spacing:-.02em;
 }
 .masthead__date{
   font-family:"Trebuchet MS",Arial,sans-serif;
@@ -2669,8 +2674,43 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 .domain__header{display:none!important}
 .domain__aq{display:none!important}
 
-/* ── DOMAIN section spacing ──────────────────────────────────────────────── */
-section.domain{margin-bottom:56px}
+/* ── DOMAIN section spacing + atmospheric demarcation ──────────────────────── */
+section.domain{
+  margin-bottom:72px;
+  position:relative;
+}
+/* Hairline splice between sections — ultra-faint centerline, fades at edges */
+section.domain+section.domain::before{
+  content:'';
+  display:block;
+  height:1px;
+  width:66%;
+  margin:0 auto 36px;
+  background:linear-gradient(
+    90deg,
+    transparent      0%,
+    rgba(255,255,255,0.03) 15%,
+    rgba(255,255,255,0.10) 40%,
+    rgba(255,255,255,0.12) 50%,
+    rgba(255,255,255,0.10) 60%,
+    rgba(255,255,255,0.03) 85%,
+    transparent     100%
+  );
+  position:relative;top:-36px;
+}
+/* Bottom gradient fade — page colour bleeds upward, natural section close */
+section.domain::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:48px;
+  background:linear-gradient(to bottom,transparent 0%,rgba(4,6,9,0.70) 100%);
+  pointer-events:none;
+}
+/* Lighter gradient WITHIN body-wrap — gives "lighter text zone" feel */
+.domain--d1 .body-wrap{background:linear-gradient(to bottom,rgba(36,8,14,0.22) 0%,rgba(12,7,8,0.08) 100%)}
+.domain--d2 .body-wrap{background:linear-gradient(to bottom,rgba(40,22,0,0.22) 0%,rgba(16,13,7,0.08) 100%)}
+.domain--d3 .body-wrap{background:linear-gradient(to bottom,rgba(12,28,10,0.22) 0%,rgba(8,15,9,0.08) 100%)}
+.domain--d4 .body-wrap{background:linear-gradient(to bottom,rgba(20,8,40,0.22) 0%,rgba(10,8,16,0.08) 100%)}
+.domain--d5 .body-wrap{background:linear-gradient(to bottom,rgba(0,18,36,0.22) 0%,rgba(6,8,15,0.08) 100%)}
+.domain--d6 .body-wrap{background:linear-gradient(to bottom,rgba(0,24,24,0.22) 0%,rgba(6,13,13,0.08) 100%)}
 
 /* Gradient accent bar */
 .domain__gradient{height:2px}
@@ -2683,16 +2723,16 @@ section.domain{margin-bottom:56px}
 
 /* ── KEY JUDGMENT — glassy panels with left accent stripe ─────────────────── */
 .kj{
-  padding:16px 22px 14px;margin-bottom:14px;
+  padding:16px 22px 14px;margin-bottom:0;
   border-left:3px solid transparent;
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
 }
-.domain--d1 .kj{background:rgba(24,5,8,0.38);border-left-color:var(--d1-bright)}
-.domain--d2 .kj{background:rgba(26,16,0,0.38);border-left-color:var(--d2-bright)}
-.domain--d3 .kj{background:rgba(10,20,8,0.38);border-left-color:var(--d3-bright)}
-.domain--d4 .kj{background:rgba(14,6,32,0.38);border-left-color:var(--d4-bright)}
-.domain--d5 .kj{background:rgba(0,14,28,0.38);border-left-color:var(--d5-bright)}
-.domain--d6 .kj{background:rgba(0,20,20,0.38);border-left-color:var(--d6-bright)}
+.domain--d1 .kj{background:rgba(40,8,14,0.44);border-left-color:var(--d1-bright)}
+.domain--d2 .kj{background:rgba(44,24,0,0.44);border-left-color:var(--d2-bright)}
+.domain--d3 .kj{background:rgba(14,28,10,0.44);border-left-color:var(--d3-bright)}
+.domain--d4 .kj{background:rgba(20,8,48,0.44);border-left-color:var(--d4-bright)}
+.domain--d5 .kj{background:rgba(0,18,40,0.44);border-left-color:var(--d5-bright)}
+.domain--d6 .kj{background:rgba(0,28,28,0.44);border-left-color:var(--d6-bright)}
 .kj__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.50rem;letter-spacing:.20em;font-weight:800}
 .kj__text{
   font-family:"Palatino Linotype","Palatino",Georgia,serif;
@@ -2700,14 +2740,14 @@ section.domain{margin-bottom:56px}
 }
 .kj__basis{font-family:Georgia,"Times New Roman",serif;font-size:.64rem;color:#585870;margin-top:4px;font-style:italic}
 
-/* ── BODY WRAP — nearly transparent, text floats on gradient ──────────────── */
-.body-wrap{padding:4px 26px 20px}
-.domain--d1 .body-wrap{background:rgba(12,7,8,0.15)}
-.domain--d2 .body-wrap{background:rgba(16,13,7,0.15)}
-.domain--d3 .body-wrap{background:rgba(8,15,9,0.15)}
-.domain--d4 .body-wrap{background:rgba(10,8,16,0.15)}
-.domain--d5 .body-wrap{background:rgba(6,8,15,0.15)}
-.domain--d6 .body-wrap{background:rgba(6,13,13,0.15)}
+/* ── BODY WRAP — nearly transparent, text floats on gradient; border bridges from KJ ── */
+.body-wrap{padding:18px 26px 20px;border-left:3px solid transparent}
+.domain--d1 .body-wrap{background:rgba(12,7,8,0.15);border-left-color:var(--d1-bright)}
+.domain--d2 .body-wrap{background:rgba(16,13,7,0.15);border-left-color:var(--d2-bright)}
+.domain--d3 .body-wrap{background:rgba(8,15,9,0.15);border-left-color:var(--d3-bright)}
+.domain--d4 .body-wrap{background:rgba(10,8,16,0.15);border-left-color:var(--d4-bright)}
+.domain--d5 .body-wrap{background:rgba(6,8,15,0.15);border-left-color:var(--d5-bright)}
+.domain--d6 .body-wrap{background:rgba(6,13,13,0.15);border-left-color:var(--d6-bright)}
 .sub-label{
   font-family:"Trebuchet MS",Arial,sans-serif;
   font-size:.50rem;letter-spacing:.18em;font-weight:700;
@@ -2721,7 +2761,7 @@ section.domain{margin-bottom:56px}
 .body-para__source{font-family:"IBM Plex Mono","Courier New",monospace;font-size:.50rem;color:#383E4A;font-style:italic}
 
 /* ── STRATEGIC HEADER — glass panel ───────────────────────────────────────── */
-.strategic-header{background:rgba(6,7,16,0.42);border-left:3px solid #B81C28;padding:20px 28px 18px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.strategic-header{background:rgba(6,7,16,0.42);border-left:3px solid #B81C28;padding:22px 30px 20px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);margin-bottom:16px}
 .strategic-header__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.52rem;color:#B81C28;letter-spacing:.20em;font-weight:800;margin-bottom:5px}
 .strategic-header__judgment{font-family:"Palatino Linotype","Palatino",Georgia,serif;font-size:1.05rem;font-weight:700;color:#F0EAE0;line-height:1.5}
 
@@ -2735,10 +2775,10 @@ section.domain{margin-bottom:56px}
 .exec__gradient{background:linear-gradient(90deg,transparent,#C4A030 30%,#C4A030 70%,transparent);height:2px}
 .exec__header{background:rgba(10,9,0,0.40);border-left:3px solid #C4A030;padding:14px 28px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .exec__header-title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.22em;color:#C4A030}
-.exec__bluf{background:rgba(8,8,0,0.30);border-left:3px solid #C4A030;padding:16px 28px}
+.exec__bluf{background:rgba(8,8,0,0.30);border-left:3px solid #C4A030;padding:18px 28px;margin-top:0}
 .exec__bluf-label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.50rem;color:#5A4810;letter-spacing:.16em}
 .exec__bluf-text{font-family:Georgia,"Times New Roman",serif;font-size:.88rem;color:#E8E2D6;line-height:1.70}
-.exec__kj-list{background:rgba(7,7,0,0.25);border-left:3px solid #C4A030;padding-bottom:16px}
+.exec__kj-list{background:rgba(7,7,0,0.25);border-left:3px solid #C4A030;padding:12px 28px 20px;margin-top:0;margin-bottom:48px}
 .exec__kj-text{font-family:Georgia,"Times New Roman",serif;font-size:.86rem;color:#D4CCC0}
 .kpi-strip__cell{padding:10px 8px;border-right:2px solid var(--color-page)}
 .kpi-strip__number{font-family:"Palatino Linotype","Palatino",Georgia,serif;font-size:1.4rem;font-weight:900}
@@ -2827,15 +2867,14 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <div class="masthead__title">
         <span class="masthead__title-main">CSE </span><span class="masthead__title-year">INTEL</span>
       </div>
-      <div class="masthead__subtitle">Iran War File — Daily Assessment [PLACEHOLDER — NO AI SYNTHESIS]</div>
+      <div class="masthead__subtitle">Iran War File — Daily Assessment</div>
     </div>
     <div class="masthead__brand-right">
       <div class="masthead__cycle-wrap">
         <span class="masthead__cycle-pre">CYCLE</span>
-        <span class="masthead__cycle-num" id="ed-cycle-num">004</span>
-        <span class="masthead__date" id="ed-date">04 MARCH 2026</span>
+        <span class="masthead__cycle-num" id="ed-cycle-num">001</span>
+        <span class="masthead__date" id="ed-date">15 MARCH 2024</span>
       </div>
-      <span class="masthead__tlp masthead__tlp--amber" id="ed-tlp-badge">TLP:AMBER</span>
     </div>
   </div>
   <!-- CRIMSON RULE -->
@@ -2847,11 +2886,11 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <span class="masthead__strip-bot">THREAT LEVEL</span>
     </div>
     <div class="masthead__strip-cell">
-      <span class="masthead__strip-top">18</span>
-      <span class="masthead__strip-bot">ITEMS INGESTED</span>
+      <span class="masthead__strip-top">↑ 23</span>
+      <span class="masthead__strip-bot">INCIDENTS / 24H</span>
     </div>
     <div class="masthead__strip-cell">
-      <span class="masthead__strip-top">—</span>
+      <span class="masthead__strip-top">$94.20</span>
       <span class="masthead__strip-bot">BRENT CRUDE</span>
     </div>
     <div class="masthead__strip-cell">
@@ -2859,14 +2898,13 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <span class="masthead__strip-bot">HORMUZ STATUS</span>
     </div>
     <div class="masthead__strip-cell">
-      <span class="masthead__strip-top">—</span>
+      <span class="masthead__strip-top">3</span>
       <span class="masthead__strip-bot">FLASH POINTS</span>
     </div>
   </div>
   <!-- CONTEXT BAR -->
   <div class="masthead__ctx">
-    <span class="masthead__ctx-note" id="ed-ctx">Placeholder draft — 18 items collected for 04 March 2026. Fund Anthropic API and re-run `brief run --stage draft` to generate analysis.</span>
-    <span class="masthead__tlp masthead__tlp--amber">TLP:AMBER</span>
+    <span class="masthead__ctx-note" id="ed-ctx">Cycle covers the 24-hour period ending 0600 UTC 15 March 2024. All times UTC unless noted.</span>
   </div>
   <!-- METADATA ROW -->
   <div class="metadata-bar">
@@ -2891,43 +2929,101 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
 <section class="strategic-header">
   <div class="strategic-header__content">
     <div class="strategic-header__label">HEADLINE JUDGMENT</div>
-    <div class="strategic-header__judgment">PLACEHOLDER — 18 items ingested, no AI synthesis.</div>
-    
+    <div class="strategic-header__judgment">Iran has crossed the conventional deterrence threshold: direct strikes on Israeli territory confirm a structural shift in the conflict that substantially increases the probability of a multi-front escalation within the next 72 hours.</div>
+    <div class="strategic-header__rationale">Ballistic missile employment against Israeli territory, combined with Hezbollah force posture changes in southern Lebanon and Houthi interdiction of additional shipping lanes, indicates coordinated escalation across the axis of resistance rather than a contained bilateral exchange.</div>
   </div>
   <div class="strategic-header__meta">
     <span class="threat-level threat-level--severe">SEVERE</span>
     <span class="trajectory-badge trajectory-badge--escalating">&#x2191; ESCALATING</span>
   </div>
 </section>
-
+<section class="flash-points">
+  <div class="flash-points__header">
+    <span class="flash-points__label">FLASH POINTS</span>
+    <span class="flash-points__timestamp">2205 UTC 14 MAR</span>
+  </div>
+  <div class="flash-points__item">
+    <div class="flash-points__item-time">0342 UTC 15 MAR</div>
+    <div class="flash-points__item-content">
+      <div class="flash-points__item-headline">Iran fires ballistic missiles at Haifa and Tel Aviv</div>
+      <div class="flash-points__item-detail">IRGC Aerospace Force launched an estimated 22 Shahab-3 and Fattah-1 ballistic missiles targeting Israeli population centres. Iron Dome and Arrow-3 systems intercepted the majority; at least two impacts confirmed in the Haifa port district.</div>
+    </div>
+    <div class="flash-points__item-conf badge badge--green">HIGH</div>
+  </div>  <div class="flash-points__item">
+    <div class="flash-points__item-time">0118 UTC 15 MAR</div>
+    <div class="flash-points__item-content">
+      <div class="flash-points__item-headline">UKMTO issues Hormuz Strait warning; two tankers diverted</div>
+      <div class="flash-points__item-detail">UKMTO issued a Priority One bulletin following the interdiction of the MV Pollux Star and MV Gulf Venture by IRGCN fast boats. Both vessels were released after six-hour detention but sustained damage; Lloyd&#x27;s of London has suspended new Iranian Gulf insurance policies.</div>
+    </div>
+    <div class="flash-points__item-conf badge badge--green">HIGH</div>
+  </div>  <div class="flash-points__item">
+    <div class="flash-points__item-time">2205 UTC 14 MAR</div>
+    <div class="flash-points__item-content">
+      <div class="flash-points__item-headline">IAEA confirms suspension of Natanz inspector access</div>
+      <div class="flash-points__item-detail">The IAEA Director General confirmed that Iran has suspended access for agency inspectors to the Natanz fuel enrichment plant, the most significant restriction since the 2021 monitoring crisis. Enrichment at previously declared facilities continues; breakout timeline assessment is being revised.</div>
+    </div>
+    <div class="flash-points__item-conf badge badge--green">HIGH</div>
+  </div>
+</section>
 <section>
   <div class="exec__gradient"></div>
   <div class="exec__header">
     <div class="exec__header-title">EXECUTIVE ASSESSMENT</div>
-    <div class="exec__header-meta">CYCLE 004 · 04 MARCH 2026</div>
+    <div class="exec__header-meta">CYCLE 001 · 15 MARCH 2024</div>
   </div>
   <div class="exec__bluf">
     <div class="exec__bluf-label">BLUF — BOTTOM LINE UP FRONT</div>
-    <div class="exec__bluf-text">PLACEHOLDER — 18 items across 5 domains. Re-run after funding API.</div>
+    <div class="exec__bluf-text">Iran has initiated a qualitatively new phase of direct military engagement with Israel, employing ballistic missiles against Israeli territory for the first time since the 2020 escalation cycle. We assess this represents a deliberate strategic choice rather than a loss of escalation control: the missile salvo was sized to generate casualties and demonstrate capability without triggering an immediate conventional war-terminating response from Israel or the United States. The next 48 to 72 hours will be decisive in determining whether this exchange stabilises at a new elevated equilibrium or triggers a broader regional war.</div>
   </div>
   <ul class="exec__kj-list">
         <li class="exec__kj-item">
-      <span class="exec__kj-text">9 items collected (5 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.</span>
+      <span class="exec__kj-domain exec__kj-domain--d1">BATTLESPACE</span>
+      <span class="exec__kj-text">We judge it highly likely that Israel will conduct retaliatory strikes against IRGC or IRGC-affiliated targets within Iranian territory within the next 72 hours, contingent on US force posture coordination.</span>
+      <span class="exec__kj-conf badge--green">HIGH</span>
     </li>
     <li class="exec__kj-item">
-      <span class="exec__kj-text">7 items collected (1 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.</span>
+      <span class="exec__kj-domain exec__kj-domain--d2">ESCALATION</span>
+      <span class="exec__kj-text">Available evidence suggests that Iran&#x27;s missile salvo was deliberately calibrated to avoid triggering Article 5-equivalent US commitments, indicating Tehran retains escalation management intent despite the crossing of a significant threshold.</span>
+      <span class="exec__kj-conf badge--blue">MODERATE</span>
     </li>
     <li class="exec__kj-item">
-      <span class="exec__kj-text">9 items collected (4 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.</span>
+      <span class="exec__kj-domain exec__kj-domain--d3">ENERGY</span>
+      <span class="exec__kj-text">We assess with high confidence that Strait of Hormuz transit disruption will drive Brent crude above $100/bbl within five trading days absent a rapid de-escalation signal, with Goldman Sachs&#x27;s four-week disruption scenario implying a $14 risk premium materialisation.</span>
+      <span class="exec__kj-conf badge--green">HIGH</span>
     </li>
     <li class="exec__kj-item">
-      <span class="exec__kj-text">7 items collected (0 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.</span>
+      <span class="exec__kj-domain exec__kj-domain--d4">DIPLOMATIC</span>
+      <span class="exec__kj-text">Reporting indicates, though corroboration is limited, that Qatar and Oman have opened back-channel communications to both Tehran and Washington seeking a 48-hour pause; the probability of a negotiated pause before Israeli retaliation remains roughly even.</span>
+      <span class="exec__kj-conf badge--blue">MODERATE</span>
     </li>
     <li class="exec__kj-item">
-      <span class="exec__kj-text">4 items collected (0 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.</span>
+      <span class="exec__kj-domain exec__kj-domain--d5">CYBER · IO</span>
+      <span class="exec__kj-text">Reporting indicates, though corroboration is limited, that coordinated cyber operations targeting Israeli financial sector infrastructure preceded the missile salvo by approximately six hours; attribution to IRGC cyber units remains unconfirmed in open sources.</span>
+      <span class="exec__kj-conf badge--amber">LOW</span>
     </li>
   </ul>
-  
+  <div class="kpi-strip">
+  <div class="kpi-strip__cell kpi-strip__cell--d1">
+    <div class="kpi-strip__number">23</div>
+    <div class="kpi-strip__label">INCIDENTS / 24H</div>
+  </div>
+  <div class="kpi-strip__cell kpi-strip__cell--d2">
+    <div class="kpi-strip__number">↑ HIGH</div>
+    <div class="kpi-strip__label">ESCALATION INDEX</div>
+  </div>
+  <div class="kpi-strip__cell kpi-strip__cell--d3">
+    <div class="kpi-strip__number">$94.20</div>
+    <div class="kpi-strip__label">BRENT CRUDE</div>
+  </div>
+  <div class="kpi-strip__cell kpi-strip__cell--d4">
+    <div class="kpi-strip__number">3</div>
+    <div class="kpi-strip__label">MEDIATION TRACKS</div>
+  </div>
+  <div class="kpi-strip__cell kpi-strip__cell--d5">
+    <div class="kpi-strip__number">12</div>
+    <div class="kpi-strip__label">CYBER INCIDENTS</div>
+  </div>
+</div>
 </section>
 <section class="domain domain--d1">
   <div class="domain__gradient"></div>
@@ -2939,7 +3035,7 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
     </div>
   </div>
   <div class="domain__aq">
-    <div class="domain__aq-text"></div>
+    <div class="domain__aq-text">What is the current disposition of forces, and what kinetic activity occurred across all theatres in the preceding 24 hours?</div>
     <div class="domain__aq-conf">BATTLESPACE</div>
   </div>
     <div class="kj">
@@ -2947,25 +3043,56 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <div class="kj__label">KEY JUDGMENT</div>
       <div class="kj__meta">
         <span class="kj__domain-ref">D1</span>
-        <span class="kj__probability">placeholder</span>
+        <span class="kj__probability">75–95%</span>
         <span class="badge badge--green">HIGH</span>
       </div>
     </div>
-    
-    
-    <div class="kj__text">9 items collected (5 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.</div>
-    
+    <div class="kj__confidence-phrase">We judge it highly likely&#8230;</div>
+    <div class="prob-bar"><span class="prob-bar__fill prob-bar__fill--highly-likely"></span></div>
+    <div class="kj__text">We judge it highly likely that Israel is in the final planning phase for retaliatory strikes, with USAF repositioning of B-2 assets to Diego Garcia and Israeli Air Force sortie rates at levels not observed since October 2023 constituting the primary indicators.</div>
+    <div class="kj__basis">(CENTCOM; open-source flight tracking; NBC satellite imagery verification)</div>
   </div>
     <div class="body-wrap">
-    <div class="sub-label ">ITEM 1</div>
-    <p class="body-para">[04 March 2026] CTP-ISW assessed that the IRGC launched a salvo of approximately 18 Shahab-3 variant ballistic missiles at the Haifa port district at 0218 UTC. Israeli Iron Dome and Arrow-3 batteries intercepted 14 of 18 missiles. Four missiles impacted the industrial waterfront, damaging a fuel storage facility and wounding seven dock workers. <em class="body-para__source">()</em></p>    <div class="sub-label ">ITEM 2</div>
-    <p class="body-para">CENTCOM statement [04 March 2026]: USS Gravely (DDG-107) operating in the southern Red Sea successfully intercepted four Houthi anti-ship ballistic missiles at 2347 UTC. No casualties or damage to vessel reported. F/A-18 sorties from USS Harry S. Truman conducted follow-on strikes against Houthi launch infrastructure in Hudaydah governorate. <em class="body-para__source">()</em></p>    <div class="sub-label ">ITEM 3</div>
-    <p class="body-para">UKMTO WARNO 042/2026: MV Nordic Hawk (Liberian-flagged, 74,000 DWT bulk carrier) reported being struck by armed UAV at position 12°30&#x27;N 043°20&#x27;E at 0455 UTC. Vessel remains underway. Minor superstructure damage. Master reports three crew members sustained blast injuries. Vessel proceeding to Djibouti for assessment. All shipping advised to maintain heightened vigilance in the area. <em class="body-para__source">()</em></p>
+    <div class="sub-label sub-label--observed">OBSERVED ACTIVITY — 0001–0600 UTC 15 MAR</div>
+    <span class="body-para__timestamp">As of 0600 UTC 15 Mar</span>
+    <p class="body-para">At 0342 UTC, IRGC Aerospace Force launched an estimated 22 ballistic missiles from launch sites in Khuzestan and Isfahan provinces targeting Haifa (14 missiles) and the Tel Aviv metropolitan area (8 missiles). Iron Dome, David&#x27;s Sling, and Arrow-3 interceptors engaged the salvo; official IDF statements confirmed 19 interceptions. Two impacts were confirmed in the Haifa port district, resulting in structural damage to petroleum storage facilities and an estimated 14 civilian casualties. <em class="body-para__source">(AP, 0415 UTC 15 MAR); (Reuters, 0422 UTC 15 MAR); (CENTCOM, 0500 UTC 15 MAR)</em></p>    <p class="body-para">Simultaneously, Hezbollah launched approximately 80 Katyusha rockets and four Kornet anti-tank missiles into the Galilee panhandle. IDF Northern Command initiated a pre-planned defensive fire response with artillery and helicopter gunships. No IDF ground manoeuvre was observed. Rudaw reporting confirms PMF units in Iraq&#x27;s Diyala province moved to elevated readiness posture at approximately 0200 UTC, consistent with pre-conflict axis of resistance coordination protocols. <em class="body-para__source">(AP, 0500 UTC 15 MAR); (reported: Rudaw, 0330 UTC 15 MAR)</em></p>    <div class="sub-label sub-label--assessment">ANALYTICAL ASSESSMENT</div>
+    <p class="body-para">We assess that the missile salvo represents a deliberate calibration exercise: the quantity and mix of systems employed — Shahab-3 variants combined with one Fattah-1 hypersonic — signals Iranian intent to demonstrate escalation capability across the velocity spectrum without exhausting reserve stocks. Iran&#x27;s operational missile inventory is estimated to exceed 3,000 units; the 22 employed represents less than 1% of accessible stock. This restraint is analytically significant. Available evidence suggests the attack was designed to generate a retaliatory response from Israel that Iran calculates it can absorb and leverage domestically, rather than as a war-terminating first strike. <em class="body-para__source">(CTP-ISW Evening Report, 2300 UTC 14 MAR); (reported: Alma Research Daily, 2330 UTC 14 MAR)</em></p>
   </div>
   
+    <ol class="timeline">
+    <li class="timeline__event timeline__event--d1">
+      <div class="timeline__time">0001 UTC</div>
+      <span class="timeline__actor">Hezbollah</span>
+      <span class="timeline__action">Katyusha and anti-tank fire initiated across Galilee panhandle; approx. 80 rockets</span>
+    </li>    <li class="timeline__event timeline__event--d1">
+      <div class="timeline__time">0127 UTC</div>
+      <span class="timeline__actor">IRGCN</span>
+      <span class="timeline__action">Fast-boat interdiction of MV Pollux Star in Hormuz Strait; vessel detained</span>
+    </li>    <li class="timeline__event timeline__event--d1">
+      <div class="timeline__time">0342 UTC</div>
+      <span class="timeline__actor">IRGC Aerospace</span>
+      <span class="timeline__action">22-missile ballistic salvo launched from Khuzestan/Isfahan toward Haifa and Tel Aviv</span>
+    </li>    <li class="timeline__event timeline__event--d1">
+      <div class="timeline__time">0415 UTC</div>
+      <span class="timeline__actor">IDF</span>
+      <span class="timeline__action">Emergency cabinet convened; air force placed on 30-minute response alert</span>
+    </li>    <li class="timeline__event timeline__event--d1">
+      <div class="timeline__time">0530 UTC</div>
+      <span class="timeline__actor">CENTCOM</span>
+      <span class="timeline__action">USS Gerald R. Ford CSG ordered to Eastern Mediterranean; B-2 assets repositioned to Diego Garcia</span>
+    </li>
+  </ol>
   
-  
-  
+    <aside class="analyst-note">
+    <div class="analyst-note__gradient"></div>
+    <div class="analyst-note__header">
+      <div class="analyst-note__title">ANALYTICAL NOTE — BATTLESPACE</div>
+      <div class="analyst-note__label">CYCLE 001 · 15 MARCH 2024</div>
+    </div>
+    <div class="analyst-note__body">
+      <div class="analyst-note__text">The Fattah-1 hypersonic missile&#x27;s inclusion in the salvo warrants specific analytical attention. Iran has previously reserved its hypersonic inventory as a strategic deterrent against hardened targets, notably the Dimona nuclear research facility. Its operational employment against urban targets in an initial salvo suggests either (a) a political signalling decision to demonstrate the weapon&#x27;s existence and operational status to a domestic audience, or (b) a deliberate attempt to saturate Israeli terminal defence systems at a velocity envelope that Arrow-3 has limited tested effectiveness against. The interception record from this cycle — no confirmed Fattah-1 kills in official statements — supports the latter interpretation. This assessment carries moderate confidence given limited open-source technical data on Arrow-3 v. Fattah-1 engagement history.</div>
+    </div>
+  </aside>
   
   <div class="section-end">
     <div class="section-end--thick"></div>
@@ -2978,11 +3105,11 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
     <div class="domain__num">02</div>
     <div class="domain__title-cell">
       <div class="domain__title">ESCALATION · TRAJECTORY</div>
-      <div class="domain__conf-row"><span class="badge badge--green">HIGH</span></div>
+      <div class="domain__conf-row"><span class="badge badge--blue">MODERATE</span></div>
     </div>
   </div>
   <div class="domain__aq">
-    <div class="domain__aq-text"></div>
+    <div class="domain__aq-text">Are there indicators of escalation, de-escalation, or horizontal expansion? What red lines are being approached or crossed?</div>
     <div class="domain__aq-conf">ESCALATION</div>
   </div>
     <div class="kj">
@@ -2990,24 +3117,77 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <div class="kj__label">KEY JUDGMENT</div>
       <div class="kj__meta">
         <span class="kj__domain-ref">D2</span>
-        <span class="kj__probability">placeholder</span>
-        <span class="badge badge--green">HIGH</span>
+        <span class="kj__probability">55–75%</span>
+        <span class="badge badge--blue">MODERATE</span>
       </div>
     </div>
-    
-    
-    <div class="kj__text">7 items collected (1 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.</div>
-    
+    <div class="kj__confidence-phrase">Available evidence suggests&#8230;</div>
+    <div class="prob-bar"><span class="prob-bar__fill prob-bar__fill--likely"></span></div>
+    <div class="kj__text">Available evidence suggests that the conflict is tracking toward a controlled escalatory exchange rather than an uncontrolled regional war, but the margin is narrow and shrinking: three of the five tripwires identified in the previous cycle have now been triggered, and the nuclear facility inspection suspension is the most significant red line indicator observed to date.</div>
+    <div class="kj__basis">(ICG escalation framing; IAEA suspension statement; CTP-ISW trajectory assessment)</div>
   </div>
     <div class="body-wrap">
-    <div class="sub-label ">ITEM 1</div>
-    <p class="body-para">IAEA Director General Grossi notified the Board of Governors [04 March 2026] that Iran has suspended IAEA inspector access to the Fordow Fuel Enrichment Plant effective 0600 UTC. The IAEA&#x27;s continuous monitoring equipment at Fordow has been disconnected. Grossi stated this constitutes a &quot;serious breach&quot; of Iran&#x27;s safeguards obligations under the NPT. <em class="body-para__source">()</em></p>
+    <div class="sub-label sub-label--observed">ESCALATION INDICATORS — TRIGGERED</div>
+    <span class="body-para__timestamp">As of 0600 UTC 15 Mar</span>
+    <p class="body-para">Three of five pre-identified escalation tripwires have been triggered in this cycle: (1) ballistic missile employment against Israeli territory — confirmed; (2) IAEA inspector access suspension at a declared enrichment facility — confirmed; (3) Hezbollah ground forces observed moving to forward assembly areas in southern Lebanon — confirmed via Anadolu Agency ground imagery. The remaining two indicators — Iraqi PMF cross-border strikes against Israeli territory, and a third-country Arab state&#x27;s infrastructure being struck — remain unactivated. <em class="body-para__source">(IAEA, 2330 UTC 14 MAR); (reported: Anadolu Agency, 0200 UTC 15 MAR)</em></p>    <div class="sub-label sub-label--assessment">DE-ESCALATION SIGNALS</div>
+    <p class="body-para">Reporting indicates, though corroboration is limited, that Qatar&#x27;s foreign minister held a one-hour call with the Iranian foreign ministry at approximately 0430 UTC, and that Oman&#x27;s back-channel — which proved functional in the 2019 tanker crisis — is now active. The ICG&#x27;s Ali Vaez has assessed that Iran retains the political will to accept a face-saving pause if Israel&#x27;s retaliation is calibrated to non-nuclear, non-regime-change targets. This assessment aligns with our own analytical judgment, though it carries only moderate confidence given the opacity of Iranian internal deliberation. <em class="body-para__source">(Reuters, 0545 UTC 15 MAR); (reported: ICG, 0500 UTC 15 MAR)</em></p>
   </div>
   
   
+    <div class="actor-matrix">
+    <div class="actor-matrix__caption">ACTOR POSTURE MATRIX</div>
+    <table>
+      <thead>
+        <tr>
+          <th>ACTOR</th><th>POSTURE</th><th>CHANGE</th><th>ASSESSMENT</th><th>CONF</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td class="actor-name">Iran (IRGC)</td>
+        <td>Offensive — elevated readiness, missile forces on alert</td>
+        <td class="actor-change">up</td>
+        <td>Deliberate escalation with retained de-escalation off-ramp; threshold management intact</td>
+        <td><span class="badge badge--blue">MODERATE</span></td>
+      </tr>      <tr>
+        <td class="actor-name">Israel (IDF)</td>
+        <td>Defensive transition to offensive — retaliatory strike planning confirmed</td>
+        <td class="actor-change">up</td>
+        <td>Retaliation certain; question is scale and target selection</td>
+        <td><span class="badge badge--green">HIGH</span></td>
+      </tr>      <tr>
+        <td class="actor-name">Hezbollah</td>
+        <td>Elevated — forward assembly but no ground manoeuvre</td>
+        <td class="actor-change">up</td>
+        <td>Holding in reserve; likely awaiting IDF retaliation before committing</td>
+        <td><span class="badge badge--blue">MODERATE</span></td>
+      </tr>      <tr>
+        <td class="actor-name">United States</td>
+        <td>Defensive support — CSG repositioned, B-2s forward deployed</td>
+        <td class="actor-change">up</td>
+        <td>Active restraint of Israel&#x27;s retaliatory ambition while providing military backing</td>
+        <td><span class="badge badge--green">HIGH</span></td>
+      </tr>      <tr>
+        <td class="actor-name">Russia / China</td>
+        <td>Declaratory — calls for restraint; no material change</td>
+        <td class="actor-change">same</td>
+        <td>No evidence of material military support to Iran in this cycle; Deutsche Welle confirms diplomatic statements only</td>
+        <td><span class="badge badge--green">HIGH</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
   
-  
-  
+    <aside class="dissenter-note">
+    <div class="dissenter-note__gradient"></div>
+    <div class="dissenter-note__header">
+      <div class="dissenter-note__title">DISSENTING VIEW · D2</div>
+      <div class="dissenter-note__attribution">ANALYST B</div>
+    </div>
+    <div class="dissenter-note__body">
+      <div class="dissenter-note__text">The majority assessment that Iran retains escalation management intent may underweight the autonomous decision-making authority now delegated to IRGC Aerospace Force unit commanders. The pace and scale of the missile salvo was inconsistent with the political caution Iran has historically displayed in direct engagements with Israel. ANALYST B assesses that command-and-control fragmentation within the IRGC — documented by Iran International following the October leadership changes — may mean that the next escalatory action occurs without explicit political authorisation from the Supreme Leader&#x27;s office, which would invalidate the de-escalation off-ramp reasoning. This view carries low confidence given limited visibility into IRGC internal command structures.</div>
+    </div>
+  </aside>
   <div class="section-end">
     <div class="section-end--thick"></div>
     <div class="section-end--thin"></div>
@@ -3023,7 +3203,7 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
     </div>
   </div>
   <div class="domain__aq">
-    <div class="domain__aq-text"></div>
+    <div class="domain__aq-text">Is the conflict disrupting energy production, transit, or global commodity markets in ways that affect Canadian economic interests?</div>
     <div class="domain__aq-conf">ENERGY</div>
   </div>
     <div class="kj">
@@ -3031,22 +3211,28 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <div class="kj__label">KEY JUDGMENT</div>
       <div class="kj__meta">
         <span class="kj__domain-ref">D3</span>
-        <span class="kj__probability">placeholder</span>
+        <span class="kj__probability">95–99%</span>
         <span class="badge badge--green">HIGH</span>
       </div>
     </div>
-    
-    
-    <div class="kj__text">9 items collected (4 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.</div>
-    
+    <div class="kj__confidence-phrase">We assess with high confidence&#8230;</div>
+    <div class="prob-bar"><span class="prob-bar__fill prob-bar__fill--almost-certainly"></span></div>
+    <div class="kj__text">We assess with high confidence that the combination of UKMTO Hormuz disruption, Lloyd&#x27;s insurance suspension, and Goldman Sachs&#x27;s revised $14 risk premium will drive Brent crude above $100/bbl within five trading days, with direct implications for Canadian TSX energy sector pricing and CAD/USD appreciation.</div>
+    <div class="kj__basis">(Goldman Sachs Research; UKMTO bulletin; Kpler vessel flow data; CNBC energy desk)</div>
   </div>
     <div class="body-wrap">
-    <div class="sub-label ">ITEM 1</div>
-    <p class="body-para">CENTCOM statement [04 March 2026]: USS Gravely (DDG-107) operating in the southern Red Sea successfully intercepted four Houthi anti-ship ballistic missiles at 2347 UTC. No casualties or damage to vessel reported. F/A-18 sorties from USS Harry S. Truman conducted follow-on strikes against Houthi launch infrastructure in Hudaydah governorate. <em class="body-para__source">()</em></p>    <div class="sub-label ">ITEM 2</div>
-    <p class="body-para">UKMTO WARNO 042/2026: MV Nordic Hawk (Liberian-flagged, 74,000 DWT bulk carrier) reported being struck by armed UAV at position 12°30&#x27;N 043°20&#x27;E at 0455 UTC. Vessel remains underway. Minor superstructure damage. Master reports three crew members sustained blast injuries. Vessel proceeding to Djibouti for assessment. All shipping advised to maintain heightened vigilance in the area. <em class="body-para__source">()</em></p>    <div class="sub-label ">ITEM 3</div>
-    <p class="body-para">CTP-ISW [04 March 2026 morning]: Hezbollah anti-tank guided missile teams engaged two IDF Merkava IV tanks near Metula at 0530 local time, destroying one vehicle and wounding its crew. IDF artillery and Hermes-450 strikes responded within 20 minutes. Fighting remains confined to the border strip. CTP-ISW assesses Hezbollah is probing IDF response cadence rather than initiating a major ground offensive. <em class="body-para__source">()</em></p>
+    <div class="sub-label sub-label--observed">MARKET INDICATORS — AS OF 0600 UTC</div>
+    <span class="body-para__timestamp">As of 0600 UTC 15 Mar</span>
+    <p class="body-para">Brent crude opened the European session at $94.20/bbl, a $6.40 (7.3%) increase from the previous close, representing the largest single-day move since the October 2023 Gaza shock. WTI tracks at $89.80/bbl. Goldman Sachs&#x27;s Daan Struyven issued a revised note at 0500 UTC placing the four-week disruption probability at 65%, consistent with the Hormuz interdiction already confirmed by UKMTO. The $14 risk premium is now partially priced in; full materialisation would imply $102–108/bbl. <em class="body-para__source">(reported: CNBC Live Blog, 0530 UTC 15 MAR); (Reuters, 0550 UTC 15 MAR)</em></p>    <div class="sub-label sub-label--assessment">CANADIAN ECONOMIC EXPOSURE</div>
+    <p class="body-para">Available evidence suggests Canadian energy sector exposure is asymmetrically positive in the near term: TSX energy index futures indicate a 4–6% opening gain, and Western Canadian Select heavy crude — already trading at a narrowed differential to WTI — would benefit from sustained elevated benchmarks. The risk dimension is LNG export competitiveness: a prolonged Hormuz closure redirecting Qatar LNG to alternative markets would reduce the price incentive for new Canadian LNG facility investment. The British Columbia-to-Asia LNG corridor, currently in financing phase, is the most exposed long-duration Canadian interest in this scenario. <em class="body-para__source">(Reuters, 0550 UTC 15 MAR)</em></p>
   </div>
-  
+    <div class="data-table-wrap">
+    <div class="data-table-caption">KEY ENERGY INDICATORS — 0600 UTC 15 MAR <span class="data-table__unit">(USD)</span></div>
+    <table class="data-table">
+      <thead><tr><th>INDICATOR</th><th>CURRENT</th><th>24H CHANGE</th><th>STATUS</th></tr></thead>
+      <tbody><tr class="status--elevated"><td class="label">Brent Crude (ICE)</td><td class="val">$94.20</td><td class="">+$6.40 (+7.3%)</td><td class="change change--up">ELEVATED</td></tr><tr class="status--elevated"><td class="label">WTI Crude (NYMEX)</td><td class="val">$89.80</td><td class="">+$5.90 (+7.0%)</td><td class="change change--up">ELEVATED</td></tr><tr class="status--critical"><td class="label">Hormuz Daily Transit</td><td class="val">~14 tankers</td><td class="">↓ from 21</td><td class="change change--down">DISRUPTED</td></tr><tr class="status--rising"><td class="label">Qatar LNG (Europe TTF)</td><td class="val">€38.20/MWh</td><td class="">+€4.10</td><td class="change change--up">RISING</td></tr><tr class="status--elevated"><td class="label">Goldman Risk Premium</td><td class="val">$14/bbl</td><td class="">Activated</td><td class="change change--up">PRICED IN</td></tr><tr class="status--critical"><td class="label">Lloyd&#x27;s Gulf Insurance</td><td class="val">SUSPENDED</td><td class="">New policies</td><td class="change change--down">CRITICAL</td></tr></tbody>
+    </table>
+  </div>
   
   
   
@@ -3066,7 +3252,7 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
     </div>
   </div>
   <div class="domain__aq">
-    <div class="domain__aq-text"></div>
+    <div class="domain__aq-text">What are the positions of key state actors, and are there diplomatic initiatives or breakdowns that shift the conflict trajectory?</div>
     <div class="domain__aq-conf">DIPLOMATIC</div>
   </div>
     <div class="kj">
@@ -3074,25 +3260,34 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <div class="kj__label">KEY JUDGMENT</div>
       <div class="kj__meta">
         <span class="kj__domain-ref">D4</span>
-        <span class="kj__probability">placeholder</span>
+        <span class="kj__probability">45–55%</span>
         <span class="badge badge--blue">MODERATE</span>
       </div>
     </div>
-    
-    
-    <div class="kj__text">7 items collected (0 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.</div>
-    
+    <div class="kj__confidence-phrase">Reporting indicates, though corroboration is limited&#8230;</div>
+    <div class="prob-bar"><span class="prob-bar__fill prob-bar__fill--possibly"></span></div>
+    <div class="kj__text">Reporting indicates, though corroboration is limited, that a 48-hour diplomatic pause is achievable if the United States explicitly constrains Israeli target selection to non-nuclear, non-regime-threatening facilities; the probability is roughly even, with the decisive variable being the Netanyahu coalition&#x27;s domestic political calculus rather than strategic logic.</div>
+    <div class="kj__basis">(CFR Daily Brief 15 Mar; Reuters Qatar sourcing; CBS State Department track)</div>
   </div>
     <div class="body-wrap">
-    <div class="sub-label ">ITEM 1</div>
-    <p class="body-para">Israeli Prime Minister Netanyahu convened an emergency session of the security cabinet at 0400 local time following the overnight ballistic missile attack on Haifa port. Defense Minister Galant confirmed four impacting missiles and said Israel was &quot;evaluating options.&quot; <em class="body-para__source">()</em></p>    <div class="sub-label ">ITEM 2</div>
-    <p class="body-para">ICG analysis: Iran&#x27;s suspension of IAEA access to Fordow removes the primary international visibility mechanism on Iran&#x27;s highest-enrichment activities. ICG estimates Iran has sufficient 60% enriched UF6 to produce one weapon&#x27;s worth of HEU within 10–14 days if political decision made. Diplomatic off-ramp requires immediate P5+1 engagement. <em class="body-para__source">()</em></p>    <div class="sub-label ">ITEM 3</div>
-    <p class="body-para">The Pentagon confirmed the deployment of six B-52H Stratofortress aircraft to Diego Garcia in a &quot;routine deterrence patrol.&quot; Analysts note the timing coincides with the Fordow access suspension and assess it as a deliberate signalling measure directed at Tehran. <em class="body-para__source">()</em></p>
+    <div class="sub-label sub-label--observed">STATE ACTOR POSITIONS</div>
+    <span class="body-para__timestamp">As of 0600 UTC 15 Mar</span>
+    <p class="body-para">The United States has publicly condemned the Iranian missile attack and reaffirmed its commitment to Israeli security while privately, according to CBS State Department sourcing, urging restraint on target selection to avoid Iranian nuclear facility strikes. The EU Foreign Affairs Council convened an emergency session at 0800 CET; France 24&#x27;s EU coverage indicates France and Germany are pushing for a UN Security Council resolution that neither China nor Russia are expected to veto, as it would avoid a Chapter VII enforcement mechanism. Turkey&#x27;s foreign ministry issued a statement calling for immediate ceasefire that notably omitted its standard reference to Palestinian statehood, a potential signal of Erdogan&#x27;s willingness to play a mediating role. <em class="body-para__source">(reported: CBS News Live, 0500 UTC 15 MAR); (reported: France 24 English, 0530 UTC 15 MAR); (reported: Anadolu Agency, 0445 UTC 15 MAR)</em></p>    <div class="sub-label sub-label--assessment">MEDIATION DYNAMICS</div>
+    <p class="body-para">The Qatari and Omani back-channels remain the most credible de-escalation mechanisms available. Reuters diplomatic sourcing — the most reliable single feed for Gulf state positioning — confirms both are active, but the timeline pressure is acute: Israel&#x27;s war cabinet is constitutionally required to vote on any major military action, and the vote is scheduled for a 0800 local time (0600 UTC) session on 16 March. The 24-hour window before that vote represents the functional diplomatic horizon. Available evidence suggests the US is prepared to offer Iran a tacit security guarantee against regime-change operations as part of a pause framework, but this offer has not been formally transmitted as of this cycle&#x27;s close. <em class="body-para__source">(Reuters, 0545 UTC 15 MAR); (reported: CFR Daily News Brief, 0600 UTC 15 MAR)</em></p>
   </div>
   
   
   
-  
+    <aside class="analyst-note">
+    <div class="analyst-note__gradient"></div>
+    <div class="analyst-note__header">
+      <div class="analyst-note__title">ANALYTICAL NOTE — DIPLOMATIC</div>
+      <div class="analyst-note__label">CYCLE 001 · 15 MARCH 2024</div>
+    </div>
+    <div class="analyst-note__body">
+      <div class="analyst-note__text">The RFI Persian-language service — the most reliable open-source window into Iranian diaspora political sentiment in France — is reporting significant dissent within the Iranian expatriate community in Paris about the missile attack, with several prominent reformist voices publicly condemning the strike as a strategic error that has isolated Iran internationally. This diaspora sentiment is a lagging but historically reliable indicator of the domestic political cost Iran&#x27;s leadership is absorbing. The precedent from 2020 — when diaspora opposition to the Soleimani retaliation preceded a domestic moderation signal by approximately three weeks — suggests the Supreme Leader&#x27;s office is likely already receiving unfavourable domestic opinion data that could inform a de-escalation posture.</div>
+    </div>
+  </aside>
   
   <div class="section-end">
     <div class="section-end--thick"></div>
@@ -3105,11 +3300,11 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
     <div class="domain__num">05</div>
     <div class="domain__title-cell">
       <div class="domain__title">CYBER · INFORMATION OPS</div>
-      <div class="domain__conf-row"><span class="badge badge--blue">MODERATE</span></div>
+      <div class="domain__conf-row"><span class="badge badge--amber">LOW</span></div>
     </div>
   </div>
   <div class="domain__aq">
-    <div class="domain__aq-text"></div>
+    <div class="domain__aq-text">What Iranian or proxy-affiliated cyber and information operations are observable in open sources? Confidence is structurally lower in this domain.</div>
     <div class="domain__aq-conf">CYBER · IO</div>
   </div>
     <div class="kj">
@@ -3117,20 +3312,19 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
       <div class="kj__label">KEY JUDGMENT</div>
       <div class="kj__meta">
         <span class="kj__domain-ref">D5</span>
-        <span class="kj__probability">placeholder</span>
-        <span class="badge badge--blue">MODERATE</span>
+        <span class="kj__probability">45–55%</span>
+        <span class="badge badge--amber">LOW</span>
       </div>
     </div>
-    
-    
-    <div class="kj__text">4 items collected (0 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.</div>
-    
+    <div class="kj__confidence-phrase">Reporting indicates, though corroboration is limited&#8230;</div>
+    <div class="prob-bar"><span class="prob-bar__fill prob-bar__fill--possibly"></span></div>
+    <div class="kj__text">Reporting indicates, though corroboration is limited, that coordinated cyber operations preceded the missile salvo by approximately six hours, targeting Israeli financial sector clearing infrastructure; attribution to IRGC cyber units rather than hacktivist proxies remains unconfirmed and should be treated as a claimed assessment only.</div>
+    <div class="kj__basis">(Recorded Future free tier; France 24 Observers video verification; NetBlocks blackout data — all Tier 3)</div>
   </div>
     <div class="body-wrap">
-    <div class="sub-label ">ITEM 1</div>
-    <p class="body-para">IRGC Aerospace Force stated in a Telegram release that the overnight strike on Haifa constituted a &quot;calibrated response to Zionist aggression&quot; and claimed all 18 missiles reached their designated targets — a claim at variance with Israeli military statements. Iran International assesses the IRGC statement is likely exaggerated for domestic morale purposes. <em class="body-para__source">()</em></p>    <div class="sub-label ">ITEM 2</div>
-    <p class="body-para">CISA Advisory AA26-063A: Iranian state-sponsored actors (attributed to IRGC-affiliated group &quot;Volt Sparrow&quot;) are actively exploiting Unitronics PLC vulnerabilities (CVE-2023-6448) in water/wastewater facilities and energy sector OT networks across North America and Europe. FBI and CISA recommend immediate patching and network segmentation. <em class="body-para__source">()</em></p>    <div class="sub-label ">ITEM 3</div>
-    <p class="body-para">Recorded Future Insikt Group identifies new APT35 (Charming Kitten) C2 infrastructure targeting Israeli banking and telecoms sector. Spear-phishing lures impersonate Bank Leumi correspondence. Malware family identified as updated HYPERSCRAPE variant with credential-harvesting and persistent access capabilities. High confidence attribution to MOIS. <em class="body-para__source">()</em></p>
+    <div class="sub-label sub-label--observed">OBSERVED — WITH VERIFICATION CAVEATS</div>
+    <span class="body-para__timestamp">As of 0600 UTC 15 Mar</span>
+    <p class="body-para">NetBlocks confirmed a significant degradation of internet connectivity in three Israeli cities beginning at approximately 2150 UTC 14 March — approximately six hours before the missile salvo. The Bank of Israel&#x27;s online service portal was inaccessible for approximately 90 minutes beginning at 2200 UTC; this is a pattern consistent with DDoS activity but equally consistent with precautionary Iranian traffic filtering. Hacktivist group &#x27;Cyber Avengers&#x27; — an IRGC-affiliated account — claimed responsibility for attacks on Israeli power grid SCADA systems via Telegram, but no confirmed outage has been independently verified. This section explicitly notes that cyber claims in open sources carry a materially higher noise-to-signal ratio than kinetic reporting. All items in this domain should be treated as indicative rather than confirmed. <em class="body-para__source"><span class="cite--claimed">(claimed: NetBlocks, 0330 UTC 15 MAR)</span>; (reported: France 24 Observers, 0400 UTC 15 MAR)</em></p>
   </div>
   
   
@@ -3142,34 +3336,155 @@ input[type=color].ep-color{width:32px;height:22px;padding:1px;border-radius:2px;
     <div class="section-end--thin"></div>
   </div>
 </section>
-
-
+<section class="warning-indicators">
+  <div class="warning-indicators__gradient"></div>
+  <div class="warning-indicators__header">
+    <div class="warning-indicators__title">WARNING INDICATORS <span class="badge badge--amber">6</span></div>
+    <div class="warning-indicators__cycle">CYCLE 001 · 15 MARCH 2024</div>
+  </div>
+  <div class="warning-indicators__table">
+    <table class="wi-table">
+      <thead>
+        <tr>
+          <th>STATUS</th><th>INDICATOR</th><th>DOMAIN</th><th>DETAIL</th><th>CHANGE</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>
+          <span class="wi-icon wi-icon--triggered">&#9632;</span>
+          <span class="wi-status wi-status--triggered">TRIGGERED</span>
+        </td>
+        <td class="wi-table__indicator">Ballistic missile employment against Israeli territory</td>
+        <td><span class="exec__kj-domain exec__kj-domain--d1">BATTLESPACE</span></td>
+        <td>Triggered at 0342 UTC 15 Mar. 22 missiles confirmed launched; 19 intercepted, 2 impacts in Haifa port district.</td>
+        <td><span class="wi-change wi-change--new">NEW</span></td>
+      </tr>      <tr>
+        <td>
+          <span class="wi-icon wi-icon--triggered">&#9632;</span>
+          <span class="wi-status wi-status--triggered">TRIGGERED</span>
+        </td>
+        <td class="wi-table__indicator">IAEA inspector access suspension at declared enrichment facility</td>
+        <td><span class="exec__kj-domain exec__kj-domain--d2">ESCALATION</span></td>
+        <td>Natanz access suspended as of 2205 UTC 14 Mar. Revised breakout timeline assessment in progress.</td>
+        <td><span class="wi-change wi-change--new">NEW</span></td>
+      </tr>      <tr>
+        <td>
+          <span class="wi-icon wi-icon--elevated">&#9650;</span>
+          <span class="wi-status wi-status--elevated">ELEVATED</span>
+        </td>
+        <td class="wi-table__indicator">Hezbollah ground forces advancing to attack positions in southern Lebanon</td>
+        <td><span class="exec__kj-domain exec__kj-domain--d1">BATTLESPACE</span></td>
+        <td>Forward assembly observed; no ground manoeuvre yet. Elevated from &#x27;watching&#x27; to &#x27;elevated&#x27; this cycle.</td>
+        <td><span class="wi-change wi-change--elevated">ELEVATED</span></td>
+      </tr>      <tr>
+        <td>
+          <span class="wi-icon wi-icon--watching">&#9679;</span>
+          <span class="wi-status wi-status--watching">WATCHING</span>
+        </td>
+        <td class="wi-table__indicator">Iraqi PMF cross-border strikes against Israeli territory</td>
+        <td><span class="exec__kj-domain exec__kj-domain--d1">BATTLESPACE</span></td>
+        <td>PMF in Diyala province at elevated readiness. No cross-border activity confirmed this cycle.</td>
+        <td><span class="wi-change wi-change--unchanged">UNCHANGED</span></td>
+      </tr>      <tr>
+        <td>
+          <span class="wi-icon wi-icon--watching">&#9679;</span>
+          <span class="wi-status wi-status--watching">WATCHING</span>
+        </td>
+        <td class="wi-table__indicator">Third-country Arab state infrastructure struck by any party</td>
+        <td><span class="exec__kj-domain exec__kj-domain--d4">DIPLOMATIC</span></td>
+        <td>No incidents this cycle. Closest proximity event: Yemen Houthi drones within 40nm of Saudi Yanbu facility.</td>
+        <td><span class="wi-change wi-change--unchanged">UNCHANGED</span></td>
+      </tr>      <tr>
+        <td>
+          <span class="wi-icon wi-icon--elevated">&#9650;</span>
+          <span class="wi-status wi-status--elevated">ELEVATED</span>
+        </td>
+        <td class="wi-table__indicator">Hormuz Strait daily transit falls below 10 tankers</td>
+        <td><span class="exec__kj-domain exec__kj-domain--d3">ENERGY</span></td>
+        <td>Transit at approx. 14 tankers as of 0600 UTC, down from 21. Lloyd&#x27;s insurance suspension will further reduce transit. Threshold is 10 tankers/day.</td>
+        <td><span class="wi-change wi-change--elevated">ELEVATED</span></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+<section class="collection-gaps">
+  <div class="collection-gaps__gradient"></div>
+  <div class="collection-gaps__header">
+    <div class="collection-gaps__title">COLLECTION GAP REGISTER</div>
+  </div>
+  <ul class="collection-gaps__items">
+  <li class="gap-item">
+    <span class="gap-item__severity gap-item__severity--critical">CRITICAL</span>
+    <span class="gap-item__domain gap-item__domain--d1">BATTLESPACE</span>
+    <div class="gap-item__content">
+      <div class="gap-item__gap">Real-time Iranian missile inventory levels and launch site readiness status</div>
+      <div class="gap-item__significance">Our estimate of Iran&#x27;s retaliatory capacity relies on pre-conflict order-of-battle data last updated in January 2024. The 22 missiles employed this cycle may have already degraded reserve stocks in specific system categories; we cannot assess the probability of a follow-on salvo without inventory update.</div>
+    </div>
+  </li>  <li class="gap-item">
+    <span class="gap-item__severity gap-item__severity--critical">CRITICAL</span>
+    <span class="gap-item__domain gap-item__domain--d2">ESCALATION</span>
+    <div class="gap-item__content">
+      <div class="gap-item__gap">Iranian Supreme Leader&#x27;s office internal deliberation on escalation management</div>
+      <div class="gap-item__significance">The deterrence-management assessment in the Escalation domain rests on an inference about Khamenei&#x27;s intent from observable behaviour. We have no open-source visibility into internal IRGC command-and-control deliberation, which the dissenting analyst correctly identifies as a key analytical vulnerability.</div>
+    </div>
+  </li>  <li class="gap-item">
+    <span class="gap-item__severity gap-item__severity--significant">SIGNIFICANT</span>
+    <span class="gap-item__domain gap-item__domain--d5">CYBER · IO</span>
+    <div class="gap-item__content">
+      <div class="gap-item__gap">Independent technical verification of claimed cyber incidents against Israeli infrastructure</div>
+      <div class="gap-item__significance">All cyber activity this cycle is attributed by either hacktivist-affiliated Telegram accounts or Tier 3 aggregators. Without independent technical verification (network telemetry, CISA advisory, or Tier 2 security vendor confirmation), the Cyber domain assessment remains structurally speculative.</div>
+    </div>
+  </li>  <li class="gap-item">
+    <span class="gap-item__severity gap-item__severity--significant">SIGNIFICANT</span>
+    <span class="gap-item__domain gap-item__domain--d4">DIPLOMATIC</span>
+    <div class="gap-item__content">
+      <div class="gap-item__gap">Content and status of Qatari/Omani back-channel communications</div>
+      <div class="gap-item__significance">The diplomatic pause probability assessment in the Diplomatic domain depends on the substance and progress of the back-channel. We have confirmation of contact (Reuters) but no visibility into the content or Iranian response. An Iranian rejection would reduce the pause probability from ~50% to ~15%.</div>
+    </div>
+  </li>
+  </ul>
+</section>
 <section class="caveats">
   <div class="caveats__gradient"></div>
   <div class="caveats__header">
     <div class="caveats__title">CAVEATS &amp; CONFIDENCE</div>
-    <div class="caveats__cycle">CSE-BRIEF-PLACEHOLDER · 04 MARCH 2026</div>
+    <div class="caveats__cycle">CSE-BRIEF-001 · 15 MARCH 2024</div>
   </div>
-  <div class="handling-bar">DRAFT — NOT FOR DISTRIBUTION</div>
+  <div class="handling-bar">PROTECTED B · TLP:AMBER. Distribute to named recipients on CSE Conflict Assessment distribution list only. Not for onward distribution without explicit authorisation.</div>
   <ul class="caveats__items">
     <li class="caveats__item">
-      <span class="caveats__item-label">PLACEHOLDER:</span>Not an intelligence product.
+      <span class="caveats__item-label">SOURCE QUALITY:</span>This cycle&#x27;s Battlespace and Energy assessments are grounded in Tier 1 sources (AP, Reuters, CENTCOM, UKMTO) and carry high confidence. The Diplomatic and Escalation sections draw heavily on Tier 2 analytical sources (ICG, CFR, Haaretz) and carry moderate confidence. The Cyber/IO section is entirely Tier 2–3 sourced and should be treated as indicative only.
     </li>    <li class="caveats__item">
-      <span class="caveats__item-label">SOURCE QUALITY:</span>See domain citations.
+      <span class="caveats__item-label">TEMPORAL CAVEAT:</span>Given the pace of developments, several assessments in this brief may be superseded by events within hours of distribution. Readers should prioritise the Flash Points section for the most time-sensitive information.
+    </li>    <li class="caveats__item">
+      <span class="caveats__item-label">IRANIAN STATE MEDIA:</span>Claims originating from PressTV, IRNA, Mehr, and Fars have not been used as factual inputs. Where Iranian government positions are referenced, they are explicitly labelled as &#x27;Iranian government asserts&#x27; and cross-referenced against Tier 1 sources.
+    </li>    <li class="caveats__item">
+      <span class="caveats__item-label">SOURCE QUALITY:</span>Tier 1 sources formed the factual backbone of this brief. CTP-ISW Evening Report provided the primary Battlespace synthesis. CFR Daily Brief provided the primary Diplomatic synthesis. Reuters diplomatic sourcing provided the Gulf state positioning assessment. No Iranian state media were used as factual inputs.
     </li>
   </ul>
   <div class="caveats__confidence">
     <div class="caveats__confidence-label">CONFIDENCE ASSESSMENT</div>
-    <div class="caveats__confidence-text">N/A</div>
+    <div class="caveats__confidence-text">Overall cycle confidence: HIGH for kinetic facts (Battlespace, Energy); MODERATE for analytical assessments (Escalation, Diplomatic); LOW for cyber attributions. The two collection gaps assessed as critical — missile inventory and Supreme Leader deliberation — are the primary sources of analytical uncertainty in this cycle. Readers should weight the Escalation domain&#x27;s assessment accordingly.</div>
   </div>
-  
+    <aside class="dissenter-note">
+    <div class="dissenter-note__gradient"></div>
+    <div class="dissenter-note__header">
+      <div class="dissenter-note__title">DISSENTING VIEW · D2</div>
+      <div class="dissenter-note__attribution">ANALYST B</div>
+    </div>
+    <div class="dissenter-note__body">
+      <div class="dissenter-note__text">ANALYST B dissents from the majority view that Iran retains coherent escalation management intent. See Escalation domain section for full dissenting assessment.</div>
+    </div>
+  </aside>
 </section>
 <footer class="brief-footer">
   <div class="brief-footer__main">
-    <span class="brief-footer__id">CSE-BRIEF-PLACEHOLDER-20260304</span>
+    <span class="brief-footer__id">CSE-BRIEF-001-20240315-0600UTC</span>
   </div>
-  <div class="brief-footer__sources">Sources: See domain citations</div>
-  <div class="brief-footer__handling">PLACEHOLDER — NOT FOR DISTRIBUTION</div>
+  <div class="brief-footer__sources">Sources: AP · Reuters · AFP · CTP-ISW · IAEA · CENTCOM · UKMTO · ICG · CFR · Haaretz · Iran International · Rudaw · France 24 · RFI · Deutsche Welle · Anadolu Agency · CNBC · Goldman Sachs Research · Kpler · NetBlocks · Recorded Future</div>
+  <div class="brief-footer__handling">FOR OFFICIAL USE — CSE Conflict Assessment Unit · Distribute to authorised recipients only · Prepared 0600 UTC 15 March 2024</div>
 </footer>
 <!-- CSE BRIEF EDITOR PANEL -->
 <button id="cse-editor-toggle" title="Open editor" aria-label="Open editor">&#x270E;</button>

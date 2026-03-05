@@ -391,18 +391,22 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 }
 .masthead__brand-left{flex:0 0 auto}
 
-/* Big display title — crimson glow on CSE, gold glow on INTEL */
+/* ── BIG WORDMARK — CSE white/crimson, INTEL gold ─────────────────────────── */
 .masthead__title{
   font-family:"Palatino Linotype","Palatino",Georgia,serif;
-  font-size:var(--size-masthead);font-weight:700;line-height:1.0;margin-bottom:5px;
+  font-size:4.8rem;font-weight:900;line-height:0.95;margin-bottom:8px;letter-spacing:-.01em;
 }
 .masthead__title-main{
-  color:#FFFFFF;font-weight:900;letter-spacing:.06em;
-  text-shadow:0 0 38px rgba(184,24,40,.70),0 0 12px rgba(184,24,40,.40),0 2px 10px rgba(0,0,0,.95);
+  color:#FFFFFF;font-weight:900;letter-spacing:.04em;
+  text-shadow:
+    0 0 60px rgba(184,24,40,.80),
+    0 0 22px rgba(184,24,40,.55),
+    0 0 8px  rgba(184,24,40,.30),
+    0 2px 14px rgba(0,0,0,1);
 }
 .masthead__title-year{
-  color:#C8A838;font-weight:300;letter-spacing:.14em;
-  text-shadow:0 0 28px rgba(200,168,56,.55),0 0 8px rgba(200,168,56,.28);
+  color:#C8A838;font-weight:200;letter-spacing:.20em;font-size:.72em;
+  text-shadow:0 0 36px rgba(200,168,56,.65),0 0 12px rgba(200,168,56,.35);
 }
 .masthead__subtitle{
   font-family:"Trebuchet MS",Arial,sans-serif;
@@ -420,8 +424,9 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 }
 .masthead__cycle-num{
   font-family:"Palatino Linotype","Palatino",Georgia,serif;
-  font-size:1.55rem;font-weight:900;line-height:1;color:#C8A838;
-  text-shadow:0 0 10px rgba(200,168,56,.30);
+  font-size:3.8rem;font-weight:900;line-height:1;color:#C8A838;
+  text-shadow:0 0 28px rgba(200,168,56,.55),0 0 8px rgba(200,168,56,.28);
+  letter-spacing:-.02em;
 }
 .masthead__date{
   font-family:"Trebuchet MS",Arial,sans-serif;
@@ -488,8 +493,43 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 .domain__header{display:none!important}
 .domain__aq{display:none!important}
 
-/* ── DOMAIN section spacing ──────────────────────────────────────────────── */
-section.domain{margin-bottom:56px}
+/* ── DOMAIN section spacing + atmospheric demarcation ──────────────────────── */
+section.domain{
+  margin-bottom:72px;
+  position:relative;
+}
+/* Hairline splice between sections — ultra-faint centerline, fades at edges */
+section.domain+section.domain::before{
+  content:'';
+  display:block;
+  height:1px;
+  width:66%;
+  margin:0 auto 36px;
+  background:linear-gradient(
+    90deg,
+    transparent      0%,
+    rgba(255,255,255,0.03) 15%,
+    rgba(255,255,255,0.10) 40%,
+    rgba(255,255,255,0.12) 50%,
+    rgba(255,255,255,0.10) 60%,
+    rgba(255,255,255,0.03) 85%,
+    transparent     100%
+  );
+  position:relative;top:-36px;
+}
+/* Bottom gradient fade — page colour bleeds upward, natural section close */
+section.domain::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:48px;
+  background:linear-gradient(to bottom,transparent 0%,rgba(4,6,9,0.70) 100%);
+  pointer-events:none;
+}
+/* Lighter gradient WITHIN body-wrap — gives "lighter text zone" feel */
+.domain--d1 .body-wrap{background:linear-gradient(to bottom,rgba(36,8,14,0.22) 0%,rgba(12,7,8,0.08) 100%)}
+.domain--d2 .body-wrap{background:linear-gradient(to bottom,rgba(40,22,0,0.22) 0%,rgba(16,13,7,0.08) 100%)}
+.domain--d3 .body-wrap{background:linear-gradient(to bottom,rgba(12,28,10,0.22) 0%,rgba(8,15,9,0.08) 100%)}
+.domain--d4 .body-wrap{background:linear-gradient(to bottom,rgba(20,8,40,0.22) 0%,rgba(10,8,16,0.08) 100%)}
+.domain--d5 .body-wrap{background:linear-gradient(to bottom,rgba(0,18,36,0.22) 0%,rgba(6,8,15,0.08) 100%)}
+.domain--d6 .body-wrap{background:linear-gradient(to bottom,rgba(0,24,24,0.22) 0%,rgba(6,13,13,0.08) 100%)}
 
 /* Gradient accent bar */
 .domain__gradient{height:2px}
@@ -502,16 +542,16 @@ section.domain{margin-bottom:56px}
 
 /* ── KEY JUDGMENT — glassy panels with left accent stripe ─────────────────── */
 .kj{
-  padding:16px 22px 14px;margin-bottom:14px;
+  padding:16px 22px 14px;margin-bottom:0;
   border-left:3px solid transparent;
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
 }
-.domain--d1 .kj{background:rgba(24,5,8,0.38);border-left-color:var(--d1-bright)}
-.domain--d2 .kj{background:rgba(26,16,0,0.38);border-left-color:var(--d2-bright)}
-.domain--d3 .kj{background:rgba(10,20,8,0.38);border-left-color:var(--d3-bright)}
-.domain--d4 .kj{background:rgba(14,6,32,0.38);border-left-color:var(--d4-bright)}
-.domain--d5 .kj{background:rgba(0,14,28,0.38);border-left-color:var(--d5-bright)}
-.domain--d6 .kj{background:rgba(0,20,20,0.38);border-left-color:var(--d6-bright)}
+.domain--d1 .kj{background:rgba(40,8,14,0.44);border-left-color:var(--d1-bright)}
+.domain--d2 .kj{background:rgba(44,24,0,0.44);border-left-color:var(--d2-bright)}
+.domain--d3 .kj{background:rgba(14,28,10,0.44);border-left-color:var(--d3-bright)}
+.domain--d4 .kj{background:rgba(20,8,48,0.44);border-left-color:var(--d4-bright)}
+.domain--d5 .kj{background:rgba(0,18,40,0.44);border-left-color:var(--d5-bright)}
+.domain--d6 .kj{background:rgba(0,28,28,0.44);border-left-color:var(--d6-bright)}
 .kj__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.50rem;letter-spacing:.20em;font-weight:800}
 .kj__text{
   font-family:"Palatino Linotype","Palatino",Georgia,serif;
@@ -519,14 +559,14 @@ section.domain{margin-bottom:56px}
 }
 .kj__basis{font-family:Georgia,"Times New Roman",serif;font-size:.64rem;color:#585870;margin-top:4px;font-style:italic}
 
-/* ── BODY WRAP — nearly transparent, text floats on gradient ──────────────── */
-.body-wrap{padding:4px 26px 20px}
-.domain--d1 .body-wrap{background:rgba(12,7,8,0.15)}
-.domain--d2 .body-wrap{background:rgba(16,13,7,0.15)}
-.domain--d3 .body-wrap{background:rgba(8,15,9,0.15)}
-.domain--d4 .body-wrap{background:rgba(10,8,16,0.15)}
-.domain--d5 .body-wrap{background:rgba(6,8,15,0.15)}
-.domain--d6 .body-wrap{background:rgba(6,13,13,0.15)}
+/* ── BODY WRAP — nearly transparent, text floats on gradient; border bridges from KJ ── */
+.body-wrap{padding:18px 26px 20px;border-left:3px solid transparent}
+.domain--d1 .body-wrap{background:rgba(12,7,8,0.15);border-left-color:var(--d1-bright)}
+.domain--d2 .body-wrap{background:rgba(16,13,7,0.15);border-left-color:var(--d2-bright)}
+.domain--d3 .body-wrap{background:rgba(8,15,9,0.15);border-left-color:var(--d3-bright)}
+.domain--d4 .body-wrap{background:rgba(10,8,16,0.15);border-left-color:var(--d4-bright)}
+.domain--d5 .body-wrap{background:rgba(6,8,15,0.15);border-left-color:var(--d5-bright)}
+.domain--d6 .body-wrap{background:rgba(6,13,13,0.15);border-left-color:var(--d6-bright)}
 .sub-label{
   font-family:"Trebuchet MS",Arial,sans-serif;
   font-size:.50rem;letter-spacing:.18em;font-weight:700;
@@ -540,7 +580,7 @@ section.domain{margin-bottom:56px}
 .body-para__source{font-family:"IBM Plex Mono","Courier New",monospace;font-size:.50rem;color:#383E4A;font-style:italic}
 
 /* ── STRATEGIC HEADER — glass panel ───────────────────────────────────────── */
-.strategic-header{background:rgba(6,7,16,0.42);border-left:3px solid #B81C28;padding:20px 28px 18px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.strategic-header{background:rgba(6,7,16,0.42);border-left:3px solid #B81C28;padding:22px 30px 20px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);margin-bottom:16px}
 .strategic-header__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.52rem;color:#B81C28;letter-spacing:.20em;font-weight:800;margin-bottom:5px}
 .strategic-header__judgment{font-family:"Palatino Linotype","Palatino",Georgia,serif;font-size:1.05rem;font-weight:700;color:#F0EAE0;line-height:1.5}
 
@@ -554,10 +594,10 @@ section.domain{margin-bottom:56px}
 .exec__gradient{background:linear-gradient(90deg,transparent,#C4A030 30%,#C4A030 70%,transparent);height:2px}
 .exec__header{background:rgba(10,9,0,0.40);border-left:3px solid #C4A030;padding:14px 28px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .exec__header-title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.72rem;font-weight:800;letter-spacing:.22em;color:#C4A030}
-.exec__bluf{background:rgba(8,8,0,0.30);border-left:3px solid #C4A030;padding:16px 28px}
+.exec__bluf{background:rgba(8,8,0,0.30);border-left:3px solid #C4A030;padding:18px 28px;margin-top:0}
 .exec__bluf-label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.50rem;color:#5A4810;letter-spacing:.16em}
 .exec__bluf-text{font-family:Georgia,"Times New Roman",serif;font-size:.88rem;color:#E8E2D6;line-height:1.70}
-.exec__kj-list{background:rgba(7,7,0,0.25);border-left:3px solid #C4A030;padding-bottom:16px}
+.exec__kj-list{background:rgba(7,7,0,0.25);border-left:3px solid #C4A030;padding:12px 28px 20px;margin-top:0;margin-bottom:48px}
 .exec__kj-text{font-family:Georgia,"Times New Roman",serif;font-size:.86rem;color:#D4CCC0}
 .kpi-strip__cell{padding:10px 8px;border-right:2px solid var(--color-page)}
 .kpi-strip__number{font-family:"Palatino Linotype","Palatino",Georgia,serif;font-size:1.4rem;font-weight:900}
@@ -729,7 +769,6 @@ class HtmlRenderer:
         <span class="masthead__cycle-num" id="ed-cycle-num">{cycle_num}</span>
         <span class="masthead__date" id="ed-date">{date_long}</span>
       </div>
-      <span class="masthead__tlp {tlp_cls}" id="ed-tlp-badge">TLP:{_e(tlp)}</span>
     </div>
   </div>
   <!-- CRIMSON RULE -->
@@ -741,7 +780,6 @@ class HtmlRenderer:
   <!-- CONTEXT BAR -->
   <div class="masthead__ctx">
     <span class="masthead__ctx-note" id="ed-ctx">{ctx_note}</span>
-    <span class="masthead__tlp {tlp_cls}">TLP:{_e(tlp)}</span>
   </div>
   <!-- METADATA ROW -->
   <div class="metadata-bar">
