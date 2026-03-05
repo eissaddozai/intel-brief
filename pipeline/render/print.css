@@ -158,9 +158,6 @@
   /* ── Probability bars: reduce height for print ────────────────────────── */
   .prob-bar { height: 2px; }
 
-  /* ── Evidence density and tier chips: scale for print ─────────────────── */
-  .evd__chip, .tier-chip { font-size: 7pt; padding: 0 3px; }
-
   /* ── KPI strip: flat for print ────────────────────────────────────────── */
   .kpi-strip__cell { border: 1px solid #ccc; background: white !important; }
   .kpi-strip__number { color: #1a1a2e !important; }
@@ -168,9 +165,6 @@
   /* ── Warning indicator table ──────────────────────────────────────────── */
   .wi-table { border-collapse: collapse; width: 100%; font-size: 9pt; }
   .wi-table th, .wi-table td { border: 0.5pt solid #d0d0d0; padding: 4pt 6pt; }
-
-  /* ── Domain confidence meter: print as thin rule ─────────────────────── */
-  .domain__conf-meter { display: none; }
 
   /* ── Scrollbars and overlays — suppressed ─────────────────────────────── */
   ::-webkit-scrollbar { display: none; }

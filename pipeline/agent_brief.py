@@ -1,7 +1,7 @@
 """
 pipeline/agent_brief.py
 
-Agentic brief runner — parallel fetch + 10 concurrent CLI subagents.
+Agentic brief runner — parallel fetch + 17 CLI subagents across 4 phases.
 
 All Claude interaction is done via the `claude` CLI (Claude Code),
 NOT via the Anthropic Python SDK. No API calls in this module.
@@ -287,46 +287,77 @@ def _domain_content_block(domain_id: str, sources: list[dict],
 # CLAUDE CLI INVOCATION
 # ═══════════════════════════════════════════════════════════════════════════════
 
+_RETRYABLE_PATTERNS = ('rate limit', 'overloaded', 'too many requests', 'temporarily')
+_RETRY_DELAYS       = (8, 20)   # seconds between attempts 1→2 and 2→3
+
+
 def _call_claude(prompt: str, model: str, label: str = '') -> str:
     """
     Invoke the claude CLI with the given prompt.
     Returns the stdout response text.
-    Raises RuntimeError on non-zero exit.
+
+    Retries up to 2 times with backoff on transient errors (rate limits,
+    server overload, subprocess timeout).  Permanent errors (bad model,
+    invalid flags) raise immediately after the first attempt.
     """
     cmd = ['claude', '-p', prompt]
     if model:
         cmd += ['--model', model]
     cmd += ['--dangerously-skip-permissions']
 
+    max_attempts = len(_RETRY_DELAYS) + 1
     log.info('CLI subagent %-20s starting...', label or '?')
     t0 = time.time()
-    try:
-        result = subprocess.run(
-            cmd,
-            capture_output=True,
-            text=True,
-            timeout=CLI_TIMEOUT,
-        )
-    except subprocess.TimeoutExpired:
-        raise RuntimeError(f'claude CLI timed out after {CLI_TIMEOUT}s [{label}]')
-    except FileNotFoundError:
-        raise RuntimeError(
-            'claude CLI not found. Ensure Claude Code CLI is installed and on PATH.'
-        )
 
-    elapsed = time.time() - t0
-    if result.returncode != 0:
-        stderr = result.stderr.strip()[:400]
-        raise RuntimeError(
-            f'claude CLI exited {result.returncode} [{label}]: {stderr}'
-        )
+    for attempt in range(max_attempts):
+        try:
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=CLI_TIMEOUT,
+            )
+        except subprocess.TimeoutExpired:
+            if attempt < max_attempts - 1:
+                delay = _RETRY_DELAYS[attempt]
+                log.warning('CLI subagent %s timed out (attempt %d/%d) — retrying in %ds',
+                            label, attempt + 1, max_attempts, delay)
+                time.sleep(delay)
+                continue
+            raise RuntimeError(f'claude CLI timed out after {CLI_TIMEOUT}s [{label}]')
+        except FileNotFoundError:
+            raise RuntimeError(
+                'claude CLI not found. Ensure Claude Code CLI is installed and on PATH.'
+            )
 
-    log.info('CLI subagent %-20s done — %.1fs', label or '?', elapsed)
-    return result.stdout.strip()
+        if result.returncode != 0:
+            stderr = result.stderr.strip()
+            is_transient = any(p in stderr.lower() for p in _RETRYABLE_PATTERNS)
+            if is_transient and attempt < max_attempts - 1:
+                delay = _RETRY_DELAYS[attempt]
+                log.warning('CLI subagent %s transient error (attempt %d/%d) — retrying in %ds: %s',
+                            label, attempt + 1, max_attempts, delay, stderr[:200])
+                time.sleep(delay)
+                continue
+            raise RuntimeError(
+                f'claude CLI exited {result.returncode} [{label}]: {stderr[:400]}'
+            )
+
+        elapsed = time.time() - t0
+        log.info('CLI subagent %-20s done — %.1fs', label or '?', elapsed)
+        return result.stdout.strip()
+
+    raise RuntimeError(f'CLI subagent [{label}] failed after {max_attempts} attempts')
 
 
 def _extract_json(text: str) -> dict | list:
-    """Extract a JSON object or array from CLI response text."""
+    """
+    Extract a JSON object or array from CLI response text.
+
+    Tries code fences first, then bare JSON, then searches for the outermost
+    bracket that appears FIRST in the text — so an array response like
+    `[{...}, {...}]` isn't mistakenly parsed as the first inner dict.
+    """
     text = text.strip()
     if '```json' in text:
         text = text.split('```json', 1)[1].split('```', 1)[0].strip()
@@ -336,11 +367,19 @@ def _extract_json(text: str) -> dict | list:
         return json.loads(text)
     except json.JSONDecodeError:
         pass
-    # Find outermost { } or [ ]
-    for open_ch, close_ch in [('{', '}'), ('[', ']')]:
-        start = text.find(open_ch)
-        if start == -1:
-            continue
+
+    # Find whichever outermost bracket appears first in the text.
+    # This is critical: if the response is a JSON array, trying '{' first
+    # would extract the first inner dict instead of the full array.
+    brace_pos   = text.find('{')
+    bracket_pos = text.find('[')
+
+    candidates: list[tuple[int, str, str]] = []
+    if brace_pos   != -1: candidates.append((brace_pos,   '{', '}'))
+    if bracket_pos != -1: candidates.append((bracket_pos, '[', ']'))
+    candidates.sort(key=lambda t: t[0])  # try whichever comes first
+
+    for start, open_ch, close_ch in candidates:
         depth = 0
         for i, ch in enumerate(text[start:], start):
             if ch == open_ch:

@@ -315,6 +315,16 @@ def _load_css() -> str:
 .body-para:last-child { margin-bottom: 0; }
 .body-para__source { color: var(--text-dim); font-size: 0.88em; }
 
+/* ── Strategic header trajectory rationale ────────────────────────────── */
+.strategic-header__rationale {
+  font-family: var(--font-body);
+  font-size: var(--size-aq);
+  font-style: italic;
+  color: var(--text-lo);
+  margin-top: 6px;
+  line-height: 1.6;
+}
+
 /* ── Sub-label variants ───────────────────────────────────────────────── */
 .sub-label--observed   { color: var(--text-dim); }
 .sub-label--assessment { color: var(--color-gold-dim); }
@@ -515,7 +525,7 @@ class HtmlRenderer:
   <div class="strategic-header__content">
     <div class="strategic-header__label">HEADLINE JUDGMENT</div>
     <div class="strategic-header__judgment">{judg}</div>
-    {f'<div style="font-family:var(--font-body);font-size:var(--size-aq);font-style:italic;color:var(--text-lo);margin-top:6px;">{traj}</div>' if traj else ''}
+    {f'<div class="strategic-header__rationale">{traj}</div>' if traj else ''}
   </div>
   <div class="strategic-header__meta">
     <span class="threat-level {threat_cls}">{_e(threat)}</span>
