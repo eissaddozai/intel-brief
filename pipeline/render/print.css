@@ -1,0 +1,87 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PRINT OVERRIDES — CSE Intelligence Brief
+   Applied only via @media print. Supplements base.css print block.
+   All colour references use CSS custom properties from tokens.css.
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media print {
+
+  /* ── Kill all motion ──────────────────────────────────────────────────── */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* ── Preserve colour accuracy (set by base.css, repeated for insurance) ─ */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Page setup ──────────────────────────────────────────────────────── */
+  @page {
+    size: letter portrait;
+    margin: 0.75in 0.6in;
+  }
+
+  @page :first {
+    margin-top: 0.5in;
+  }
+
+  /* ── Document wrapper ─────────────────────────────────────────────────── */
+  html, body {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+
+  .brief {
+    max-width: 100%;
+    box-shadow: none;
+    border: none;
+  }
+
+  /* ── Masthead: un-sticky for print ───────────────────────────────────── */
+  .masthead {
+    position: static;
+  }
+
+  /* ── Footer: un-sticky for print ─────────────────────────────────────── */
+  .brief-footer {
+    position: static;
+  }
+
+  /* ── Domain gradient strip: hide (ink-saving) ────────────────────────── */
+  .domain__gradient {
+    display: none;
+  }
+
+  /* ── Page break control ───────────────────────────────────────────────── */
+  .masthead            { page-break-inside: avoid; }
+  .strategic-header    { page-break-inside: avoid; page-break-after: avoid; }
+  .flash-points        { page-break-inside: avoid; }
+  .exec__gradient      { page-break-after: avoid; }
+  .kj                  { page-break-inside: avoid; }
+  .analyst-note        { page-break-inside: avoid; }
+  .dissenter-note      { page-break-inside: avoid; }
+  .data-table-wrap     { page-break-inside: avoid; }
+  .actor-matrix        { page-break-inside: avoid; }
+  .timeline            { page-break-inside: avoid; }
+  .warning-indicators  { page-break-before: always; page-break-inside: avoid; }
+  .collection-gaps     { page-break-inside: avoid; }
+  .caveats             { page-break-inside: avoid; }
+  .brief-footer        { page-break-before: always; }
+
+  /* Allow domains to break at their boundaries, not mid-content */
+  .domain              { page-break-inside: auto; }
+  .domain + .domain    { page-break-before: auto; }
+  .body-wrap           { page-break-inside: auto; }
+  .body-para           { page-break-inside: avoid; orphans: 3; widows: 3; }
+
+  /* ── Suppress UI-only chrome ─────────────────────────────────────────── */
+  /* Classification bar is redundant header/footer territory on paper */
+  .masthead__class-bar { display: none; }
+
+  /* Scrollbars and overlays suppressed by base.css @media print block */
+
+}

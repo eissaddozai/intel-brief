@@ -367,6 +367,38 @@ def stage_output(approved_file: Path, config: dict) -> Path:
     return out_path
 
 
+def stage_render(cycle_path: Path | None = None, out_path: Path | None = None) -> Path:
+    """Render cycle JSON → self-contained print-ready HTML."""
+    from render.html_renderer import render_cycle
+
+    if cycle_path is None:
+        # Default: latest symlink
+        latest = CYCLES_DIR / 'latest.json'
+        if latest.exists() or latest.is_symlink():
+            cycle_path = latest.resolve()
+        else:
+            cycles = sorted(CYCLES_DIR.glob('cycle*.json'))
+            if not cycles:
+                log.error('No cycles found — run pipeline first.')
+                sys.exit(1)
+            cycle_path = cycles[-1]
+
+    cycle = json.loads(cycle_path.read_text(encoding='utf-8'))
+    html  = render_cycle(cycle)
+
+    if out_path is None:
+        ts = cycle.get('meta', {}).get('timestamp', '')[:10].replace('-', '')
+        if not ts:
+            ts = cycle_path.stem
+        briefs_dir = REPO_ROOT / 'briefs'
+        briefs_dir.mkdir(exist_ok=True)
+        out_path = briefs_dir / f'brief_{ts}.html'
+
+    out_path.write_text(html, encoding='utf-8')
+    log.info('Rendered HTML → %s', out_path)
+    return out_path
+
+
 def _find_previous_cycle() -> dict | None:
     if not CYCLES_DIR.exists():
         return None
@@ -434,6 +466,14 @@ def cmd_run(args: argparse.Namespace, config: dict) -> None:
             approved_file = _resolve_cache('approved', target_date)
         out = stage_output(approved_file, config)
         log.info('Pipeline complete → %s', out)
+
+    if stage is None:
+        # Full pipeline: automatically render HTML after output
+        try:
+            html_out = stage_render()
+            log.info('Print-ready HTML → %s', html_out)
+        except Exception as exc:
+            log.warning('HTML render failed (non-fatal): %s', exc)
 
 
 # ─── Subcommand: check-sources ───────────────────────────────────────────────
@@ -694,6 +734,13 @@ def build_parser() -> argparse.ArgumentParser:
     # ── list ──
     sub.add_parser('list', help='List all generated cycles')
 
+    # ── render ──
+    render_p = sub.add_parser('render', help='Render cycle JSON to print-ready HTML')
+    render_p.add_argument('--cycle', default=None,
+                          help='Path to cycle JSON (default: cycles/latest.json)')
+    render_p.add_argument('--out', default=None,
+                          help='Output HTML path (default: briefs/brief_YYYYMMDD.html)')
+
     return parser
 
 
@@ -702,7 +749,7 @@ def main() -> None:
 
     # Backward-compat: if first arg is not a subcommand, treat as `run`
     argv = sys.argv[1:]
-    known_cmds = {'run', 'check-sources', 'show', 'list'}
+    known_cmds = {'run', 'check-sources', 'show', 'list', 'render'}
     if argv and argv[0] not in known_cmds and not argv[0].startswith('-'):
         # Unknown positional — fall through to argparse error
         pass
@@ -724,6 +771,10 @@ def main() -> None:
         cmd_show(args, config)
     elif args.command == 'list':
         cmd_list(args, config)
+    elif args.command == 'render':
+        cycle_path = Path(args.cycle) if args.cycle else None
+        out_path   = Path(args.out)   if args.out   else None
+        stage_render(cycle_path, out_path)
     else:
         parser.print_help()
 

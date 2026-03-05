@@ -28,7 +28,7 @@ REQUIRED_TOP_LEVEL = {'meta', 'strategicHeader', 'flashPoints', 'executive',
                       'domains', 'warningIndicators', 'collectionGaps', 'caveats', 'footer'}
 REQUIRED_META = {'cycleId', 'cycleNum', 'classification', 'tlp', 'timestamp',
                  'region', 'analystUnit', 'threatLevel', 'threatTrajectory'}
-VALID_DOMAIN_IDS = {'d1', 'd2', 'd3', 'd4', 'd5'}
+VALID_DOMAIN_IDS = {'d1', 'd2', 'd3', 'd4', 'd5', 'd6'}
 VALID_TLP = {'RED', 'AMBER', 'GREEN', 'CLEAR'}
 VALID_THREAT = {'CRITICAL', 'SEVERE', 'ELEVATED', 'GUARDED', 'LOW'}
 
@@ -162,11 +162,9 @@ def write_cycle(approved: dict, config: dict) -> Path:
         frontend_dir.mkdir(parents=True, exist_ok=True)
         dest = frontend_dir / f'{cycle_id}.json'
         shutil.copy2(out_path, dest)
-        # Also update latest.json in frontend dir
+        # Also write latest.json as a real file (not symlink) so Vite dev server can serve it
         fe_latest = frontend_dir / 'latest.json'
-        if fe_latest.exists() or fe_latest.is_symlink():
-            fe_latest.unlink()
-        fe_latest.symlink_to(dest.name)
+        shutil.copy2(out_path, fe_latest)
         log.info('Copied to frontend data dir → %s', dest)
 
     return out_path

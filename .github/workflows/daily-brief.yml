@@ -58,13 +58,16 @@ jobs:
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
             FORCE_ARG="--force"
           fi
-          python pipeline/main.py --auto-approve $DATE_ARG $FORCE_ARG
+          python pipeline/main.py run --auto-approve $DATE_ARG $FORCE_ARG
+
+      - name: Render print-ready HTML
+        run: python pipeline/main.py render
 
       - name: Commit and push new cycle
         run: |
           git config user.name "Intel Brief Bot"
           git config user.email "bot@intel-brief"
-          git add cycles/ src/data/
+          git add cycles/ src/data/ briefs/
           if git diff --cached --quiet; then
             echo "No new cycle generated — nothing to commit"
           else

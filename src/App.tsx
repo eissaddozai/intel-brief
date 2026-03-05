@@ -1,5 +1,5 @@
+import { useState, useEffect } from 'react'
 import type { BriefCycle } from './types/brief'
-import cycleData from './data/cycle001.json'
 import { useScrollGlow } from './hooks/useScrollGlow'
 import { Masthead } from './components/Masthead'
 import { StrategicHeader } from './components/StrategicHeader'
@@ -11,11 +11,40 @@ import { CollectionGaps } from './components/CollectionGaps'
 import { Caveats } from './components/Caveats'
 import { BriefFooter } from './components/BriefFooter'
 
-// Cast JSON import to typed schema
-const cycle = cycleData as unknown as BriefCycle
-
 export function App() {
+  const [cycle, setCycle] = useState<BriefCycle | null>(null)
+  const [error, setError] = useState<string | null>(null)
+
   useScrollGlow()
+
+  useEffect(() => {
+    fetch('./data/latest.json')
+      .then(r => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`)
+        return r.json()
+      })
+      .then(data => setCycle(data as BriefCycle))
+      .catch(err => setError(String(err)))
+  }, [])
+
+  if (error) {
+    return (
+      <div className="brief" style={{ padding: '40px 20px', color: 'var(--conf-red)', fontFamily: 'var(--font-data)' }}>
+        LOAD ERROR: {error}
+        <div style={{ marginTop: '12px', color: 'var(--text-dim)', fontSize: 'var(--size-aq)' }}>
+          Ensure src/data/latest.json exists. Run: python pipeline/main.py run --demo --auto-approve
+        </div>
+      </div>
+    )
+  }
+
+  if (!cycle) {
+    return (
+      <div className="brief" style={{ padding: '40px 20px', color: 'var(--text-dim)', fontFamily: 'var(--font-data)' }}>
+        LOADING CYCLE DATA…
+      </div>
+    )
+  }
 
   const cycleRef = `CYCLE ${cycle.meta.cycleNum} · ${new Date(cycle.meta.timestamp)
     .toLocaleDateString('en-CA', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
