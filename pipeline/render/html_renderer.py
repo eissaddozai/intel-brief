@@ -90,6 +90,13 @@ _WI_STATUS_CLASS: dict[str, str] = {
     'cleared':   'wi-status--cleared',
 }
 
+_WI_STATUS_ICON: dict[str, str] = {
+    'triggered': '&#9632;',   # ■ solid square — critical
+    'elevated':  '&#9650;',   # ▲ triangle — elevated
+    'watching':  '&#9679;',   # ● circle — monitoring
+    'cleared':   '&#10003;',  # ✓ check — cleared
+}
+
 _WI_CHANGE_CLASS: dict[str, str] = {
     'new':       'wi-change--new',
     'elevated':  'wi-change--elevated',
@@ -153,28 +160,31 @@ def _conf_range(language: str | None) -> str:
 
 
 def _cite_inline(citations: list[dict]) -> str:
-    """Render citations as an italic parenthetical string."""
+    """Render citations as italic parenthetical with source-tier chips."""
     if not citations:
         return ''
     parts = []
     for c in citations:
         source = _e(c.get('source', ''))
-        ts = _fmt_ts(c.get('timestamp', ''))
-        vs = c.get('verificationStatus', 'confirmed')
+        ts     = _fmt_ts(c.get('timestamp', ''))
+        vs     = c.get('verificationStatus', 'confirmed')
+        tier   = c.get('tier', 2)
+        tier_chip = f'<span class="tier-chip tier-chip--{tier}">T{tier}</span>'
+        ts_part   = f', {ts}' if ts else ''
+
         if vs == 'confirmed':
-            label = f'({source}{", " + ts if ts else ""})'
+            label = f'{tier_chip}({source}{ts_part})'
         elif vs == 'reported':
-            label = f'(reported: {source}{", " + ts if ts else ""})'
+            label = f'{tier_chip}(reported: {source}{ts_part})'
         elif vs == 'claimed':
             label = (
-                f'<span class="cite--claimed">'
-                f'(Iranian government asserts: {source}{", " + ts if ts else ""})'
-                f'</span>'
+                f'{tier_chip}<span class="cite--claimed">'
+                f'(Iranian government asserts: {source}{ts_part})</span>'
             )
         elif vs == 'disputed':
             label = f'<span class="cite--disputed">[DISPUTED — {source}]</span>'
         else:
-            label = f'({source}{", " + ts if ts else ""})'
+            label = f'{tier_chip}({source}{ts_part})'
         parts.append(label)
     return ' <em class="body-para__source">' + '; '.join(parts) + '</em>'
 
@@ -210,11 +220,105 @@ def _load_css() -> str:
             chunks.append(f'/* === {path.name} === */\n{path.read_text(encoding="utf-8")}')
         except FileNotFoundError:
             pass  # graceful degradation if animations.css etc. missing
-    # Append inline extras: citation status styles + cite-claimed/disputed
+    # Append inline extras
     chunks.append("""
-/* === renderer extras === */
-.cite--claimed { color: var(--conf-amber); font-style: italic; }
-.cite--disputed { color: var(--conf-red); font-weight: 700; font-style: normal; }
+/* === renderer extras — Palantir-grade enhancements === */
+
+/* Citation status */
+.cite--claimed  { color: var(--conf-amber); font-style: italic; }
+.cite--disputed { color: var(--conf-red);   font-weight: 700; font-style: normal; }
+
+/* Source tier chips inline */
+.tier-chip { font-family: var(--font-data); font-size: 8px; font-weight: 700;
+             padding: 1px 4px; border-radius: 2px; vertical-align: middle;
+             margin-left: 3px; letter-spacing: 0.05em; }
+.tier-chip--1 { background: var(--conf-green); color: #000; }
+.tier-chip--2 { background: var(--conf-blue);  color: #fff; }
+.tier-chip--3 { background: var(--text-dim);   color: var(--page-bg); }
+
+/* Probability visualization bar */
+.prob-bar { height: 3px; background: var(--surface-2); border-radius: 2px;
+            margin: 8px 0 5px; overflow: hidden; position: relative; }
+.prob-bar__fill { display: block; height: 100%; border-radius: 2px; }
+.prob-bar__fill--almost-certainly     { width: 97%; background: var(--conf-green); }
+.prob-bar__fill--highly-likely        { width: 85%; background: var(--conf-green); }
+.prob-bar__fill--likely               { width: 65%; background: var(--conf-blue);  }
+.prob-bar__fill--possibly             { width: 50%; background: var(--conf-amber); }
+.prob-bar__fill--unlikely             { width: 32%; background: var(--conf-red);   }
+.prob-bar__fill--almost-certainly-not { width:  3%; background: var(--conf-red);   }
+
+/* Evidence density badge (T1/T2 source counts per domain) */
+.evd { display: inline-flex; gap: 5px; align-items: center; margin-left: 8px; }
+.evd__label { font-family: var(--font-ui); font-size: 9px;
+              color: var(--text-dim); letter-spacing: 0.06em; }
+.evd__chip  { font-family: var(--font-data); font-size: 9px; font-weight: 700;
+              padding: 1px 5px; border-radius: 2px; }
+.evd__chip--t1 { background: var(--conf-green); color: #000; }
+.evd__chip--t2 { background: var(--conf-blue);  color: #fff; }
+
+/* Warning indicator icons */
+.wi-icon { display: inline-block; width: 16px; text-align: center;
+           font-size: 13px; margin-right: 2px; }
+.wi-icon--triggered { color: var(--conf-red);   }
+.wi-icon--elevated  { color: var(--conf-amber); }
+.wi-icon--watching  { color: var(--color-gold); }
+.wi-icon--cleared   { color: var(--conf-green); }
+
+/* BLUF box enhancement */
+.exec__bluf { border-left: 4px solid var(--color-crimson); }
+.exec__bluf-label { font-family: var(--font-ui); font-size: var(--size-badge);
+                    font-weight: 700; letter-spacing: 0.12em;
+                    color: var(--color-crimson); margin-bottom: 8px; }
+
+/* KJ text emphasis */
+.kj__text  { font-size: var(--size-kj); line-height: 1.6;
+             color: var(--text-hi); font-family: var(--font-body); }
+.kj__basis { font-size: var(--size-body); color: var(--text-dim);
+             font-style: italic; margin-top: 6px;
+             border-top: 1px solid var(--surface-2); padding-top: 6px; }
+
+/* Classification running banner — print only */
+.print-class-banner {
+  display: none;
+}
+@media print {
+  .print-class-banner {
+    display: block;
+    position: fixed;
+    left: 0;
+    right: 0;
+    font-family: var(--font-ui);
+    font-size: 7pt;
+    font-weight: 700;
+    text-align: center;
+    letter-spacing: 0.12em;
+    color: var(--text-dim);
+    z-index: 9999;
+    background: var(--page-bg);
+  }
+  .print-class-banner--top {
+    top: 0;
+    border-bottom: 0.5pt solid var(--surface-3);
+    padding: 3pt 0 2pt;
+  }
+  .print-class-banner--bottom {
+    bottom: 0;
+    border-top: 0.5pt solid var(--surface-3);
+    padding: 2pt 0 3pt;
+  }
+  /* Bleed compensation so body content doesn't hide under banners */
+  body { margin-top: 18pt; margin-bottom: 18pt; }
+}
+
+/* Domain confidence meter (right-side mini bar per domain) */
+.domain__conf-meter { display: flex; align-items: center; gap: 6px;
+                       margin-bottom: 4px; }
+.domain__conf-bar   { flex: 1; height: 2px; background: var(--surface-2);
+                       border-radius: 2px; overflow: hidden; max-width: 80px; }
+.domain__conf-bar__fill { height: 100%; border-radius: 2px; display: block; }
+.domain__conf-bar__fill--high     { width: 90%; background: var(--conf-green); }
+.domain__conf-bar__fill--moderate { width: 55%; background: var(--conf-amber); }
+.domain__conf-bar__fill--low      { width: 25%; background: var(--conf-red);   }
 """)
     return '\n'.join(chunks)
 
@@ -252,7 +356,11 @@ class HtmlRenderer:
     # ── Page shell ──────────────────────────────────────────────────────────
 
     def _page(self, body: str) -> str:
-        title = _e(self.meta.get('cycleId', 'CSE Intel Brief'))
+        title      = _e(self.meta.get('cycleId', 'CSE Intel Brief'))
+        cls_mark   = _e(self.meta.get('classification', 'PROTECTED B'))
+        tlp        = _e(self.meta.get('tlp', 'AMBER'))
+        cycle_id   = _e(self.meta.get('cycleId', ''))
+        class_line = f'{cls_mark} // TLP:{tlp}'
         return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -264,6 +372,9 @@ class HtmlRenderer:
 </style>
 </head>
 <body>
+<!-- Classification running banners — visible in print only -->
+<div class="print-class-banner print-class-banner--top">{class_line} — DRAFT — NOT FOR DISTRIBUTION</div>
+<div class="print-class-banner print-class-banner--bottom">{class_line} · {cycle_id} — DRAFT — NOT FOR DISTRIBUTION</div>
 <div class="brief">
 {body}
 </div>
@@ -494,13 +605,46 @@ class HtmlRenderer:
         aq    = _e(d.get('assessmentQuestion', ''))
         conf  = d.get('confidence', 'moderate')
 
-        kj_html    = self._key_judgment(d.get('keyJudgment', {}), did)
-        body_html  = self._body_wrap(d.get('bodyParagraphs', []))
+        kj_html     = self._key_judgment(d.get('keyJudgment', {}), did)
+        body_html   = self._body_wrap(d.get('bodyParagraphs', []))
         tables_html = self._tables(d.get('tables', []), did)
-        tl_html    = self._timeline(d.get('timeline', []), did)
-        am_html    = self._actor_matrix(d.get('actorMatrix', []))
-        an_html    = self._analyst_note(d.get('analystNote'))
-        dn_html    = self._dissenter_note(d.get('dissenterNote'))
+        tl_html     = self._timeline(d.get('timeline', []), did)
+        am_html     = self._actor_matrix(d.get('actorMatrix', []))
+        an_html     = self._analyst_note(d.get('analystNote'))
+        dn_html     = self._dissenter_note(d.get('dissenterNote'))
+
+        # Evidence density: count T1 and T2 paragraphs/citations
+        paras = d.get('bodyParagraphs', [])
+        t1_count = sum(
+            1 for p in paras
+            for c in p.get('citations', [])
+            if c.get('tier') == 1
+        )
+        t2_count = sum(
+            1 for p in paras
+            for c in p.get('citations', [])
+            if c.get('tier') == 2
+        )
+        evd_html = ''
+        if t1_count or t2_count:
+            t1_chip = f'<span class="evd__chip evd__chip--t1">T1:{t1_count}</span>' if t1_count else ''
+            t2_chip = f'<span class="evd__chip evd__chip--t2">T2:{t2_count}</span>' if t2_count else ''
+            evd_html = (
+                f'<span class="evd">'
+                f'<span class="evd__label">SOURCES</span>'
+                f'{t1_chip}{t2_chip}'
+                f'</span>'
+            )
+
+        # Confidence meter bar
+        conf_fill_cls = f'domain__conf-bar__fill--{conf}'
+        conf_meter = (
+            f'<div class="domain__conf-meter">'
+            f'<div class="domain__conf-bar">'
+            f'<span class="domain__conf-bar__fill {conf_fill_cls}"></span>'
+            f'</div>'
+            f'</div>'
+        )
 
         return f"""<section class="domain domain--{_e(did)}">
   <div class="domain__gradient"></div>
@@ -508,9 +652,10 @@ class HtmlRenderer:
     <div class="domain__num">{num}</div>
     <div class="domain__title-cell">
       <div class="domain__title">{title}</div>
-      <div class="domain__aq-badge-inline">{_e(conf).upper()}</div>
+      <div class="domain__aq-badge-inline">{_e(conf).upper()}{evd_html}</div>
     </div>
   </div>
+  {conf_meter}
   <div class="domain__aq">
     <div class="domain__aq-text">{aq}</div>
     <div class="domain__aq-conf">{_e(_DOMAIN_LABELS.get(did, did.upper()))}</div>
@@ -538,6 +683,16 @@ class HtmlRenderer:
         basis    = _e(kj.get('basis', ''))
         phrase   = _e(_conf_phrase(language))
         rng      = _e(_conf_range(language) or prob)
+        lang_slug = re.sub(r'[^a-z-]', '', (language or '').lower())
+
+        # Probability bar
+        prob_bar = ''
+        if lang_slug:
+            prob_bar = (
+                f'<div class="prob-bar">'
+                f'<span class="prob-bar__fill prob-bar__fill--{lang_slug}"></span>'
+                f'</div>'
+            )
 
         return f"""  <div class="kj">
     <div class="kj__label-row">
@@ -548,7 +703,8 @@ class HtmlRenderer:
         <span class="badge {_CONF_TIER_CLASS.get(conf, 'badge--amber')}">{_e(conf).upper()}</span>
       </div>
     </div>
-    {f'<div style="font-family:var(--font-data);font-size:var(--size-badge);color:var(--text-dim);margin-bottom:5px;">{phrase}…</div>' if phrase else ''}
+    {f'<div style="font-family:var(--font-data);font-size:var(--size-badge);color:var(--text-dim);margin-bottom:4px;letter-spacing:0.06em;">{phrase}…</div>' if phrase else ''}
+    {prob_bar}
     <div class="kj__text">{text}</div>
     {f'<div class="kj__basis">{basis}</div>' if basis else ''}
   </div>"""
@@ -723,8 +879,12 @@ class HtmlRenderer:
             domain  = wi.get('domain', 'd1')
             detail  = _e(wi.get('detail', ''))
             domain_label = _DOMAIN_LABELS.get(domain, domain.upper())
+            icon = _WI_STATUS_ICON.get(status, '&#9679;')
             rows.append(f"""      <tr>
-        <td><span class="wi-status {_WI_STATUS_CLASS.get(status, 'wi-status--watching')}">{_e(status).upper()}</span></td>
+        <td>
+          <span class="wi-icon wi-icon--{_e(status)}">{icon}</span>
+          <span class="wi-status {_WI_STATUS_CLASS.get(status, 'wi-status--watching')}">{_e(status).upper()}</span>
+        </td>
         <td style="font-weight:700;color:var(--text-hi);">{indic}</td>
         <td><span class="exec__kj-domain exec__kj-domain--{_e(domain)}">{_e(domain_label)}</span></td>
         <td>{detail}</td>

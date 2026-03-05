@@ -74,6 +74,49 @@ HEADERS = {
     'Accept-Language': 'en-US,en;q=0.5',
 }
 
+_VOICE_REVIEW_RULES = """\
+INTELLIGENCE WRITING QUALITY CONTROL — MANDATORY STANDARDS
+
+1. MINIMUM SENTENCE LENGTH: Every sentence must be at least 8 words.
+   Merge fragments into complete analytical sentences. Never write:
+   BAD: "Hostilities continue."
+   GOOD: "Hostilities across all five active theatres continued through the reporting period."
+
+2. ASSESSMENT-LED PARAGRAPHS: Every paragraph's first sentence must be a judgment or assessment.
+   Never open a paragraph with a bare factual description.
+   BAD: "Three Houthi missiles were launched toward Israeli territory."
+   GOOD: "We assess Houthi long-range targeting remains operationally viable; three ballistic missiles
+          were launched toward Israeli territory during the reporting period (AP, 05 Mar 0430 UTC)."
+
+3. CONFIDENCE LANGUAGE — use ONLY these exact phrases from the approved ladder:
+   "We assess with high confidence..."        (95-99%)
+   "We judge it highly likely..."             (75-95%)
+   "Available evidence suggests..."           (55-75%)
+   "Reporting indicates, though corroboration is limited..."  (45-55%)
+   "We judge it unlikely, though we cannot exclude..."  (20-45%)
+   "We assess with high confidence this will not..."   (1-5%)
+   Never paraphrase. Never use phrases like "it appears", "it seems", "likely indicates".
+
+4. SOURCE ATTRIBUTION: Every factual sentence must close with
+   (Source Name, DD Mon HHMM UTC) — e.g., (AP, 05 Mar 0620 UTC).
+   If timestamp is unavailable: (AP, 05 Mar).
+
+5. TEMPORAL PRECISION: Every kinetic claim, nuclear development, or market-moving event
+   must specify the UTC time and date: "As of 0600 UTC 05 Mar" or "at 1430 UTC 04 Mar".
+
+6. FORBIDDEN PHRASES — rewrite any sentence containing:
+   "kinetic activity"   → describe the specific military action
+   "threat actors"      → name the specific group or use "adversary forces"
+   "threat landscape"   → describe the specific threat environment
+   "robust"             → use "substantial", "significant", or "extensive" with qualification
+   "leverage" (verb)    → use "exploit", "employ", "use", or "apply"
+   "ongoing situation"  → describe the specific developing event
+   "fluid situation"    → describe what is changing and how rapidly
+
+7. PARAGRAPH COMPLETENESS: Every paragraph must contain at least two complete sentences.
+   A second sentence must either provide evidence, elaborate the assessment, or identify uncertainty.
+"""
+
 DOMAINS = [
     ('d1', '01', 'BATTLESPACE · KINETIC',
      'What is the current disposition of forces, and what activity occurred across all theatres in the last 24 hours?'),
@@ -400,6 +443,63 @@ def run_domain_subagent(domain_id: str, domain_num: str, domain_title: str,
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
+# PHASE 2.5 — VOICE REVIEW SUBAGENTS (6 concurrent, after domain drafts)
+# ═══════════════════════════════════════════════════════════════════════════════
+
+_VOICE_REVIEW_SCHEMA = """\
+Return the corrected domain section as a single JSON object (raw JSON, no fences).
+Keep all fields identical to the input — only rewrite the TEXT CONTENT of:
+  - keyJudgment.text
+  - keyJudgment.basis
+  - bodyParagraphs[].text
+Do NOT change: id, num, title, assessmentQuestion, confidence, language,
+probabilityRange, citations, subLabel, subLabelVariant, timestamp.
+If a paragraph already meets all standards, reproduce it unchanged."""
+
+
+def _voice_review_prompt(section: dict, date_iso: str) -> str:
+    section_json = json.dumps(section, indent=2, ensure_ascii=False)
+    return f"""\
+You are an intelligence product quality control reviewer.
+Your task is to correct the following domain section so it fully complies with
+the intelligence writing standards below. You are reviewing for publication.
+Date: {date_iso}
+
+{_VOICE_REVIEW_RULES}
+
+DOMAIN SECTION TO REVIEW:
+{section_json}
+
+{_VOICE_REVIEW_SCHEMA}"""
+
+
+def run_voice_review_subagent(section: dict, target_date: datetime, model: str) -> dict:
+    """
+    Run a voice compliance review on one domain section via claude CLI.
+    Returns the corrected section dict (same schema, improved prose).
+    """
+    domain_id = section.get('id', '?')
+    date_iso  = target_date.strftime('%Y-%m-%d')
+    prompt    = _voice_review_prompt(section, date_iso)
+
+    try:
+        text   = _call_claude(prompt, model, label=f'voice-{domain_id.upper()}')
+        result = _extract_json(text)
+        if not isinstance(result, dict):
+            log.warning('Voice review %s returned non-dict — keeping original', domain_id)
+            return section
+        # Preserve guaranteed keys in case the reviewer dropped them
+        for key in ('id', 'num', 'title', 'assessmentQuestion', 'confidence',
+                    'keyJudgment', 'bodyParagraphs'):
+            if key not in result:
+                result[key] = section.get(key)
+        return result
+    except Exception as exc:
+        log.warning('Voice review %s failed (%s) — keeping original draft', domain_id, exc)
+        return section
+
+
+# ═══════════════════════════════════════════════════════════════════════════════
 # PHASE 3 — 4 SYNTHESIS SUBAGENTS (all concurrent)
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -590,6 +690,17 @@ def run_agent_brief(
     # Preserve ordered list for JSON output
     sections_list = [domain_sections[d[0]] for d in DOMAINS if d[0] in domain_sections]
     log.info('Phase 2 complete — %d/6 domain sections drafted', len(sections_list))
+
+    # ── Phase 2.5: Voice review — 6 concurrent CLI subagents ─────────────────
+    log.info('═══ PHASE 2.5 — VOICE REVIEW (6 concurrent) ════════')
+
+    def _review_section(section: dict) -> dict:
+        return run_voice_review_subagent(section, target_date, model)
+
+    with ThreadPoolExecutor(max_workers=6) as pool:
+        reviewed_list = list(pool.map(_review_section, sections_list))
+    sections_list = reviewed_list
+    log.info('Voice review complete')
 
     # ── Phase 3: 4 synthesis subagents in parallel ─────────────────────────────
     log.info('═══ PHASE 3 — 4 SYNTHESIS SUBAGENTS ═══════════════')
