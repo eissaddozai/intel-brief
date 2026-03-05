@@ -790,9 +790,11 @@ def run_agent_brief(
     """
     Run the full parallel agentic brief workflow.
 
-    Phase 1 — Parallel HTTP fetch of all sources (Python, no Claude)
-    Phase 2 — 6 concurrent domain subagents (claude CLI)
-    Phase 3 — 4 concurrent synthesis subagents (claude CLI)
+    Phase 1   — Parallel HTTP fetch of all sources (Python, no Claude)
+    Phase 2   — 6 concurrent domain subagents (claude CLI)
+    Phase 2.5 — 6 concurrent voice review subagents (claude CLI)
+    Phase 2.7 — 1 cross-domain editorial subagent (claude CLI)
+    Phase 3   — 4 concurrent synthesis subagents (claude CLI)
 
     Returns (cycle_json_path, html_path).
     """

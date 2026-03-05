@@ -229,7 +229,7 @@ def _load_css() -> str:
 /* ── Probability bar — indicates confidence range visually ────────────── */
 .prob-bar {
   height: 3px;
-  background: var(--surface-2);
+  background: var(--color-sep);
   border-radius: 2px;
   margin: 10px 0 6px;
   overflow: hidden;
@@ -254,7 +254,7 @@ def _load_css() -> str:
   border-left: 4px solid var(--color-crimson);
   padding: 14px 18px;
   margin: 16px 0;
-  background: var(--surface-1);
+  background: var(--color-exec-bg);
 }
 .exec__bluf-label {
   font-family: var(--font-ui);
@@ -285,7 +285,7 @@ def _load_css() -> str:
   font-style: italic;
   margin-top: 10px;
   padding-top: 10px;
-  border-top: 1px solid var(--surface-2);
+  border-top: 1px solid var(--color-sep);
   line-height: 1.6;
 }
 .kj__confidence-phrase {

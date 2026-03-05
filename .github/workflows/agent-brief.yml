@@ -46,7 +46,13 @@ jobs:
           cache: 'pip'
 
       - name: Install dependencies
-        run: pip install anthropic pyyaml requests
+        run: pip install pyyaml requests
+
+      # ── Claude Code CLI ───────────────────────────────────────────────────
+      # The agentic pipeline spawns `claude -p` subprocesses via subprocess.run.
+      # Node.js ships with ubuntu-latest; this adds the claude CLI to PATH.
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
 
       # ── Agent run ─────────────────────────────────────────────────────────
       - name: Run agentic brief
@@ -84,7 +90,8 @@ jobs:
             echo "No new cycle generated — nothing to commit"
           else
             CYCLE_DATE=$(date -u +%Y-%m-%d)
-            git commit -m "cycle: ${CYCLE_DATE} — agent brief [claude-sonnet-4-6]"
+            USED_MODEL="${MODEL:-claude-sonnet-4-6}"
+            git commit -m "cycle: ${CYCLE_DATE} — agent brief [${USED_MODEL}]"
             git push origin main
           fi
 
