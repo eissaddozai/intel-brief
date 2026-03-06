@@ -67,6 +67,10 @@ body::after {
     0 0 160px rgba(184, 28, 40, 0.05);
 }
 
+.brief__inner {
+  padding: 0;
+}
+
 /* ── CUSTOM SCROLLBAR ─────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 5px;
