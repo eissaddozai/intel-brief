@@ -102,7 +102,7 @@ sources:
     tier: 1
     domains: [d1, d3]
     method: scrape
-    url: "https://www.ukmto.org/indian-ocean/recent-incidents"
+    url: "https://www.ukmto.org/recent-incidents"
     status: likely
     enabled: true
     notes: >
@@ -114,7 +114,7 @@ sources:
     tier: 1
     domains: [d1]
     method: scrape
-    url: "https://www.idf.il/en/mini-sites/idf-website/press-releases/"
+    url: "https://www.idf.il/en/mini-sites/idf-press-releases-israel-at-war/"
     status: likely
     enabled: true
     notes: >
