@@ -61,9 +61,11 @@ export interface FlashPoint {
   /** ISO 8601 — displayed as "0430 UTC" */
   timestamp: string
   domain: DomainId
-  /** ≤ 12 words */
+  /** ≤ 12 words. Assessment-first: lead with judgment, not description.
+   *  GOOD: "IDF shifts to attrition posture in Bekaa Valley"
+   *  BAD: "Israeli forces strike targets in Lebanon" */
   headline: string
-  /** 1–2 sentences, BLUF construction */
+  /** 1–2 sentences, BLUF construction. Must begin with assessment, not chronology. */
   detail: string
   confidence: ConfidenceTier
   citations: Citation[]
@@ -75,12 +77,15 @@ export interface KeyJudgment {
   id: string
   domain: DomainId
   confidence: ConfidenceTier
-  /** e.g. "55–75%" */
+  /** e.g. "55–75%" — must match the probability range for the chosen ConfidenceLanguage */
   probabilityRange: string
   language: ConfidenceLanguage
-  /** Full assessment sentence(s). Must begin with a confidence phrase. */
+  /** Full assessment sentence(s). MUST begin with a confidence phrase from the ladder.
+   *  MUST lead with judgment, not description. Never nominalize verbs.
+   *  Word limits enforced per domain: d1≤30, d2≤35, d3≤30, d4≤35, d5≤25, d6≤35. */
   text: string
-  /** Evidence basis: "(satellite imagery, diplomatic reporting, 14 Mar)" */
+  /** Evidence basis: 1–2 sentences explaining WHAT EVIDENCE supports this judgment.
+   *  Must cite specific sources. Must be substantive (≥5 words). */
   basis: string
   citations: Citation[]
 }
@@ -99,13 +104,24 @@ export interface KpiCell {
 // ── BODY PARAGRAPH ──────────────────────────────────────────────────────────
 
 export interface BodyParagraph {
-  /** If present, renders a sub-label row above this paragraph */
+  /** If present, renders a sub-label row above this paragraph.
+   *  Standard labels: "OBSERVED ACTIVITY", "OPERATIONAL ASSESSMENT", "ESCALATION INDICATORS",
+   *  "CONTAINMENT SIGNALS", "TRAJECTORY ASSESSMENT", "ENERGY INDICATORS",
+   *  "SUPPLY CHAIN DISRUPTION", "CANADIAN EXPOSURE", "STATE POSITIONS",
+   *  "MEDIATION STATUS", "ASSESSMENT", "JWC / LISTED AREAS", "PREMIUM MARKET",
+   *  "CAPACITY & UNDERWRITER POSTURE", "VESSEL OPERATIONS IMPACT" */
   subLabel?: string
-  /** Controls sub-label colour: observed=dim, assessment=gold-dim */
+  /** Controls sub-label colour: observed=dim (Tier 1 facts only), assessment=gold-dim (analytical judgment).
+   *  OBSERVED paragraphs MUST have citations and temporal precision (UTC timestamps).
+   *  ASSESSMENT paragraphs MUST begin with a confidence phrase. */
   subLabelVariant?: 'observed' | 'assessment'
+  /** Paragraph text. MUST contain ≥ 2 sentences. No fragment leads.
+   *  Active voice required. No nominalizations. No forbidden jargon.
+   *  Word limits: combined body ≤ domain limit (d1:200, d2:200, d3:180, d4:180, d5:120, d6:220). */
   text: string
   /** Displayed as monospace timestamp above paragraph: "As of 0600 UTC 15 Mar" */
   timestamp?: string
+  /** OBSERVED paragraphs MUST have ≥ 1 citation. Citation source must be outlet name, not URL. */
   citations: Citation[]
   confidenceLanguage?: ConfidenceLanguage
 }
@@ -163,10 +179,13 @@ export interface AnalystNote {
 // ── DISSENTER NOTE ──────────────────────────────────────────────────────────
 
 export interface DissenterNote {
-  /** Anonymized: "ANALYST B", "ANALYST C" */
+  /** Must follow pattern "ANALYST B", "ANALYST C", etc. Never anonymous.
+   *  Validated by quality gate: must match /^ANALYST [A-Z]$/ */
   analystId: string
   domain: DomainId
-  /** Alternative analytical view with explicit reasoning. */
+  /** Alternative analytical view with explicit reasoning. ≥ 2 sentences.
+   *  Must state the counter-assessment and the evidence supporting it.
+   *  Must be substantive — not merely "another view is possible". */
   text: string
 }
 
@@ -174,7 +193,7 @@ export interface DissenterNote {
 
 export interface DomainSection {
   id: DomainId
-  /** "01" through "05" */
+  /** "01" through "06" */
   num: string
   /** e.g. "BATTLESPACE · KINETIC" */
   title: string
@@ -194,11 +213,16 @@ export interface DomainSection {
 
 export interface WarningIndicator {
   id: string
-  /** What we are watching for */
+  /** What we are watching for — pre-defined tripwire description */
   indicator: string
   domain: DomainId
+  /** "triggered" requires Tier 1 confirmation; "elevated" requires Tier 2 minimum.
+   *  Status is binary — never hedge ("possibly triggered" is invalid). */
   status: 'watching' | 'triggered' | 'cleared' | 'elevated'
+  /** Change from previous cycle. "new" = first time elevated/triggered. */
   change: 'new' | 'elevated' | 'unchanged' | 'cleared'
+  /** ≤ 80 words. ≥ 2 sentences. Must cite source and timestamp for triggered/elevated.
+   *  Must state what would change the status for watching/cleared. */
   detail: string
 }
 
@@ -258,7 +282,7 @@ export interface BriefCycle {
     kpis: KpiCell[]
   }
 
-  /** Exactly 5 domain sections in order: d1, d2, d3, d4, d5 */
+  /** Domain sections in order: d1, d2, d3, d4, d5, d6 (d6 optional) */
   domains: DomainSection[]
 
   warningIndicators: WarningIndicator[]

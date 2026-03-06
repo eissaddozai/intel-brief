@@ -1,6 +1,7 @@
 """
 Cycle JSON serializer — validates and writes approved cycle dict to disk.
 Assigns cycle number, symlinks latest.json, optionally copies to src/data/.
+Runs content quality validation in addition to structural validation.
 """
 
 import json
@@ -18,6 +19,8 @@ try:
 except ImportError:
     HAS_JSONSCHEMA = False
 
+from pipeline.draft.quality_checks import validate_cycle as run_quality_checks
+
 log = logging.getLogger(__name__)
 
 CYCLES_DIR = Path(__file__).resolve().parents[2] / 'cycles'
@@ -28,7 +31,7 @@ REQUIRED_TOP_LEVEL = {'meta', 'strategicHeader', 'flashPoints', 'executive',
                       'domains', 'warningIndicators', 'collectionGaps', 'caveats', 'footer'}
 REQUIRED_META = {'cycleId', 'cycleNum', 'classification', 'tlp', 'timestamp',
                  'region', 'analystUnit', 'threatLevel', 'threatTrajectory'}
-VALID_DOMAIN_IDS = {'d1', 'd2', 'd3', 'd4', 'd5'}
+VALID_DOMAIN_IDS = {'d1', 'd2', 'd3', 'd4', 'd5', 'd6'}
 VALID_TLP = {'RED', 'AMBER', 'GREEN', 'CLEAR'}
 VALID_THREAT = {'CRITICAL', 'SEVERE', 'ELEVATED', 'GUARDED', 'LOW'}
 
@@ -95,6 +98,24 @@ def validate(cycle: dict) -> list[str]:
         if 'indicator' not in wi or 'status' not in wi:
             errors.append(f"Malformed warningIndicator: {wi.get('id', '?')}")
 
+    # ── Content quality validation ──────────────────────────────────────────
+    quality_warnings = run_quality_checks(cycle)
+    # Forbidden jargon and invalid confidence values are hard errors
+    hard_fail_rules = {
+        'FORBIDDEN_JARGON',
+        'INVALID_CONFIDENCE_LANGUAGE',
+        'INVALID_CONFIDENCE_TIER',
+        'INVALID_VERIFICATION_STATUS',
+        'INVALID_SOURCE_TIER',
+    }
+    for qw in quality_warnings:
+        if qw.rule in hard_fail_rules:
+            errors.append(f'[{qw.rule}] {qw.domain}.{qw.field}: {qw.message}')
+        else:
+            # Soft warnings — logged but do not block output
+            log.warning('Quality advisory: [%s] %s.%s → %s',
+                        qw.rule, qw.domain, qw.field, qw.message)
+
     return errors
 
 
@@ -134,6 +155,9 @@ def write_cycle(approved: dict, config: dict) -> Path:
     if not meta.get('timestamp'):
         meta['timestamp'] = datetime.now(timezone.utc).isoformat()
     approved['meta'] = meta
+
+    # ── Strip internal pipeline metadata before validation/write ──────────
+    approved.pop('_qualityWarnings', None)
 
     # ── Validation ─────────────────────────────────────────────────────────
     errors = validate(approved)
