@@ -36,7 +36,11 @@ def extract_known_facts(prev_cycle: dict) -> set[str]:
     exec_data = prev_cycle.get('executive', {})
     add_text(exec_data.get('bluf', ''))
     for kj in exec_data.get('keyJudgments', []):
-        add_text(kj.get('text', ''))
+        # keyJudgments may be strings or dicts depending on cycle version
+        if isinstance(kj, str):
+            add_text(kj)
+        elif isinstance(kj, dict):
+            add_text(kj.get('text', ''))
 
     for domain in prev_cycle.get('domains', []):
         for para in domain.get('bodyParagraphs', []):
@@ -71,8 +75,11 @@ def filter_novel(items: list[dict], cycles_dir: Path, config: dict | None = None
     Filter out items that are largely repetitions of the previous cycle.
     Items from Tier 1 sources are never filtered (factual updates always included).
     """
-    # Find most recent cycle
-    cycle_files = sorted(cycles_dir.glob('cycle_*.json'))
+    # Find most recent cycle (files are named cycleNNN_YYYYMMDD.json)
+    cycle_files = sorted(
+        p for p in cycles_dir.glob('cycle*.json')
+        if not p.is_symlink()
+    )
     if not cycle_files:
         log.info('No previous cycles found — treating all items as novel')
         return items

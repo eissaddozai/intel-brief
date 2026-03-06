@@ -87,9 +87,17 @@ RELEVANCE_KEYWORDS: frozenset[str] = frozenset([
     'disinformation', 'influence operation',
 ])
 
-# Pre-compile for speed
+# Pre-compile for speed.
+# Short keywords (≤4 chars like 'uae', 'uss') get word boundaries to avoid
+# false positives in longer words (e.g. 'cause' matching 'uae').
+def _kw_to_pattern(kw: str) -> str:
+    escaped = re.escape(kw)
+    if len(kw) <= 4 and kw.isalpha():
+        return rf'\b{escaped}\b'
+    return escaped
+
 _PATTERN = re.compile(
-    '|'.join(re.escape(kw) for kw in sorted(RELEVANCE_KEYWORDS, key=len, reverse=True)),
+    '|'.join(_kw_to_pattern(kw) for kw in sorted(RELEVANCE_KEYWORDS, key=len, reverse=True)),
     re.IGNORECASE,
 )
 

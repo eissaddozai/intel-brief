@@ -17,27 +17,22 @@ HONEST LIMITATIONS
 import logging
 import re
 import time
+from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
 
-import requests
 import yaml
 from bs4 import BeautifulSoup
+
+from ingest.http_util import build_session, fetch_with_backoff, HEADERS_BROWSER
 
 log = logging.getLogger(__name__)
 
 SOURCES_FILE = Path(__file__).parent / 'sources.yaml'
 REQUEST_DELAY = 1.5
-REQUEST_TIMEOUT = 20
 
-HEADERS = {
-    'User-Agent': (
-        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
-        '(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-    ),
-    'Accept': 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.8',
-    'Accept-Language': 'en-US,en;q=0.9',
-}
+# Module-level session — reused across all scrape calls in a single pipeline run
+_session = build_session(headers=HEADERS_BROWSER)
 
 
 def load_scrape_sources() -> list[dict]:
@@ -49,13 +44,10 @@ def load_scrape_sources() -> list[dict]:
 
 
 def _fetch(url: str) -> BeautifulSoup | None:
-    try:
-        resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
-        resp.raise_for_status()
-        return BeautifulSoup(resp.text, 'html.parser')
-    except Exception as exc:
-        log.error('Fetch failed %s: %s', url, exc)
+    resp = fetch_with_backoff(url, _session)
+    if resp is None:
         return None
+    return BeautifulSoup(resp.text, 'html.parser')
 
 
 def _clean(text: str) -> str:
@@ -435,7 +427,7 @@ def _extract_generic(source: dict, soup: BeautifulSoup, date: datetime,
 
 # ─── Dispatch table ───────────────────────────────────────────────────────────
 
-EXTRACTORS: dict[str, callable] = {
+EXTRACTORS: dict[str, Callable] = {
     'reuters_mideast': _extract_reuters,
     'ctpiw_evening':   _extract_ctpiw,
     'ctpiw_morning':   _extract_ctpiw,
