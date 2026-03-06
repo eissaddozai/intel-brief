@@ -308,3 +308,12 @@ export const DOMAIN_LABELS: Record<DomainId, string> = {
   d5: 'CYBER · IO',
   d6: 'WAR RISK · INSURANCE',
 }
+
+// ── CONFIDENCE BADGE CLASSES ─────────────────────────────────────────────────
+// Shared by DomainSection and KeyJudgmentBox — single source of truth.
+
+export const BADGE_CLASS: Record<ConfidenceTier, string> = {
+  high:     'badge badge--green',
+  moderate: 'badge badge--blue',
+  low:      'badge badge--amber',
+}

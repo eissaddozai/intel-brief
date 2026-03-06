@@ -27,6 +27,7 @@ export function StrategicHeader({ strategicHeader, threatLevel, threatTrajectory
       <div className="strategic-header__content">
         <div className="strategic-header__label">STRATEGIC ASSESSMENT</div>
         <p className="strategic-header__judgment">{strategicHeader.headlineJudgment}</p>
+        <p className="strategic-header__rationale">{strategicHeader.trajectoryRationale}</p>
       </div>
       <div className="strategic-header__meta">
         <span className={`threat-level ${THREAT_CLASS[threatLevel]}`}>

@@ -1,17 +1,11 @@
 import type { KeyJudgment } from '../types/brief'
-import { CONFIDENCE_PHRASES, DOMAIN_LABELS } from '../types/brief'
+import { BADGE_CLASS, CONFIDENCE_PHRASES, DOMAIN_LABELS } from '../types/brief'
 
 interface Props {
   judgment: KeyJudgment
   /** When true, renders inside a domain section (uses domain CSS context).
    *  When false, renders in the executive summary list. */
   variant?: 'domain' | 'exec'
-}
-
-const CONF_CLASS: Record<string, string> = {
-  high:     'badge badge--green',
-  moderate: 'badge badge--blue',
-  low:      'badge badge--amber',
 }
 
 export function KeyJudgmentBox({ judgment, variant = 'domain' }: Props) {
@@ -31,7 +25,7 @@ export function KeyJudgmentBox({ judgment, variant = 'domain' }: Props) {
             </span>
           )}
         </span>
-        <span className={CONF_CLASS[judgment.confidence] ?? 'badge badge--blue'}>
+        <span className={BADGE_CLASS[judgment.confidence] ?? 'badge badge--blue'}>
           {judgment.confidence.toUpperCase()}
         </span>
       </li>
@@ -47,7 +41,7 @@ export function KeyJudgmentBox({ judgment, variant = 'domain' }: Props) {
             {judgment.domain.toUpperCase()} · {DOMAIN_LABELS[judgment.domain]}
           </span>
           <span className="kj__probability">{judgment.probabilityRange}</span>
-          <span className={CONF_CLASS[judgment.confidence] ?? 'badge badge--blue'}>
+          <span className={BADGE_CLASS[judgment.confidence] ?? 'badge badge--blue'}>
             {judgment.confidence.toUpperCase()}
           </span>
         </div>

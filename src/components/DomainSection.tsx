@@ -1,4 +1,5 @@
 import type { DomainSection as DomainSectionType } from '../types/brief'
+import { BADGE_CLASS } from '../types/brief'
 import { KeyJudgmentBox } from './KeyJudgmentBox'
 import { BodyContent } from './BodyContent'
 import { DataTable } from './DataTable'
@@ -9,12 +10,6 @@ import { DissenterNote } from './DissenterNote'
 
 interface Props {
   section: DomainSectionType
-}
-
-const CONF_CLASS: Record<string, string> = {
-  high:     'badge badge--green',
-  moderate: 'badge badge--blue',
-  low:      'badge badge--amber',
 }
 
 export function DomainSection({ section }: Props) {
@@ -30,7 +25,7 @@ export function DomainSection({ section }: Props) {
         <div className="domain__title-cell">
           <h2 className="domain__title">{section.title}</h2>
           <div className="domain__aq-badge-inline">
-            <span className={CONF_CLASS[section.confidence] ?? 'badge badge--blue'}>
+            <span className={BADGE_CLASS[section.confidence] ?? 'badge badge--blue'}>
               {section.confidence.toUpperCase()} CONFIDENCE
             </span>
           </div>

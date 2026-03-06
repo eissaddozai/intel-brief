@@ -9,7 +9,7 @@ export function DataTable({ table }: Props) {
     <div className="data-table-wrap">
       <div className="data-table-caption">
         {table.caption}
-        {table.unit && <span style={{ fontWeight: 400, marginLeft: 6 }}>({table.unit})</span>}
+        {table.unit && <span className="data-table-caption__unit">({table.unit})</span>}
       </div>
       <table className="data-table">
         <thead>

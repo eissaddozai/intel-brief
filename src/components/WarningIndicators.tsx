@@ -1,4 +1,4 @@
-import type { WarningIndicator, BriefCycle } from '../types/brief'
+import type { WarningIndicator } from '../types/brief'
 import { DOMAIN_LABELS } from '../types/brief'
 
 interface Props {
@@ -49,10 +49,8 @@ export function WarningIndicators({ indicators, cycleRef }: Props) {
           <tbody>
             {indicators.map(wi => (
               <tr key={wi.id}>
-                <td style={{ color: 'var(--text-hi)', fontWeight: 600 }}>{wi.indicator}</td>
-                <td style={{ fontFamily: 'var(--font-data)', fontSize: 'var(--size-badge)', whiteSpace: 'nowrap' }}>
-                  {DOMAIN_LABELS[wi.domain]}
-                </td>
+                <td className="wi-indicator">{wi.indicator}</td>
+                <td className="wi-domain">{DOMAIN_LABELS[wi.domain]}</td>
                 <td>
                   <span className={`wi-status ${STATUS_CLASS[wi.status] ?? ''}`}>
                     {wi.status.toUpperCase()}

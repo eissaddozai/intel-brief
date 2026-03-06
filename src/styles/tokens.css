@@ -97,6 +97,59 @@
   --traj-flat: #7888A0;
   --traj-down: #26A050;
 
+  /* ── CLASSIFICATION BAR ────────────────────────────────────────────────── */
+  --color-class-bar:    #030406;
+  --color-class-border: #1A1A1A;
+  --color-class-label:  #A07878;
+  --color-class-unit:   #785858;
+
+  /* ── STRUCTURAL ACCENTS ─────────────────────────────────────────────────── */
+  --color-crimson-dark: #801420;
+  --color-severe:       #C04020;
+
+  /* ── FLASH POINTS ───────────────────────────────────────────────────────── */
+  --color-flash-border:      #2A0608;
+  --color-flash-item-border: #1A0204;
+
+  /* ── EXECUTIVE SECTION ──────────────────────────────────────────────────── */
+  --color-exec-hdr:      #100D00;
+  --color-exec-grad-top: #362A00;
+
+  /* ── AMBER SECTION TINTS (Warning Indicators / Caveats) ─────────────────── */
+  --color-warn-grad-top:   #160700;
+  --color-warn-grad-mid:   #0E0400;
+  --color-warn-th-bg:      #0A0500;
+  --color-warn-th-border:  #1A0800;
+  --color-warn-td-border:  #140600;
+
+  /* ── BLUE SECTION TINTS (Collection Gaps) ───────────────────────────────── */
+  --color-gap-grad-top:    #000416;
+  --color-gap-grad-mid:    #000810;
+  --color-gap-item-border: #00091C;
+
+  /* ── STEEL SECTION TINTS (Dissenter Note) ───────────────────────────────── */
+  --color-dissent-grad-top: #000C28;
+  --color-dissent-grad-mid: #001038;
+  --color-dissent-hdr-bg:   #000818;
+  --color-dissent-attr:     #2C5088;
+  --color-dissent-body-bg:  #00060E;
+  --color-dissent-border:   #001830;
+
+  /* ── DATA TABLE STATUS ROW FILLS ────────────────────────────────────────── */
+  --color-table-elevated: #091610;
+  --color-table-rising:   #0A1208;
+  --color-table-critical: #160508;
+  --color-table-windfall: #091410;
+
+  /* ── CAVEATS SECTION ────────────────────────────────────────────────────── */
+  --color-cav-conf-bg: #120900;
+
+  /* ── ADDITIONAL TYPE SCALE ──────────────────────────────────────────────── */
+  --size-cycle-date:  13px;
+  --size-headline:    17px;
+  --size-domain-num:  26px;
+  --size-flash-label:  8px;
+
   /* ── TEXT HIERARCHY ────────────────────────────────────────────────────── */
   --text-hi:   #ECE6DE;
   --text-md:   #A8A098;
