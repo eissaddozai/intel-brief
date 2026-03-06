@@ -1,0 +1,76 @@
+name: Render Brief on Demand
+
+# ─── Triggers ─────────────────────────────────────────────────────────────────
+# Manual trigger only — re-render any cycle to a fresh print-ready HTML.
+# Useful for re-generating a brief after template changes without re-running
+# the full agent/pipeline.
+on:
+  workflow_dispatch:
+    inputs:
+      cycle:
+        description: 'Path to cycle JSON (e.g. cycles/cycle005_20260305.json). Default: latest.'
+        required: false
+        default: ''
+      upload:
+        description: 'Upload rendered HTML as a workflow artifact'
+        required: false
+        default: 'true'
+      commit:
+        description: 'Commit the rendered HTML back to main'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    name: Render print-ready HTML
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Render HTML
+        id: render
+        run: |
+          CYCLE_ARG=""
+          if [ -n "${{ github.event.inputs.cycle }}" ]; then
+            CYCLE_ARG="--cycle ${{ github.event.inputs.cycle }}"
+          fi
+          python pipeline/main.py render $CYCLE_ARG
+          # Capture the output path for subsequent steps
+          BRIEF=$(ls -t briefs/brief_*.html 2>/dev/null | head -1)
+          echo "brief_path=$BRIEF" >> $GITHUB_OUTPUT
+          echo "Rendered: $BRIEF"
+
+      - name: Upload HTML brief
+        if: ${{ github.event.inputs.upload != 'false' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: brief-render-${{ github.run_id }}
+          path: ${{ steps.render.outputs.brief_path }}
+          retention-days: 30
+
+      - name: Commit rendered HTML
+        if: ${{ github.event.inputs.commit == 'true' }}
+        run: |
+          git config user.name  "Intel Brief Bot"
+          git config user.email "bot@intel-brief"
+          git add briefs/
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "render: regenerate HTML brief [on-demand]"
+            git push origin main
+          fi

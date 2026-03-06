@@ -282,6 +282,7 @@ export interface BriefCycle {
     kpis: KpiCell[]
   }
 
+  /** Six domain sections in order: d1, d2, d3, d4, d5, d6 */
   /** 6 domain sections in order: d1, d2, d3, d4, d5, d6 */
   /** Domain sections in order: d1, d2, d3, d4, d5, d6 (d6 optional) */
   domains: DomainSection[]

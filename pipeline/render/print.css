@@ -1,0 +1,172 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   PRINT OVERRIDES — CSE Intelligence Brief
+   Applied only via @media print. Supplements base.css print block.
+   All colour references use CSS custom properties from tokens.css.
+
+   Designed for:
+     - Chrome / Chromium headless --print-to-pdf
+     - wkhtmltopdf --page-size Letter
+     - Firefox print dialog
+     - Safari print preview
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@media print {
+
+  /* ── Kill all motion ──────────────────────────────────────────────────── */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* ── Preserve colour accuracy ─────────────────────────────────────────── */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* ── Page setup — Letter portrait with classification banner clearance ── */
+  @page {
+    size: letter portrait;
+    /* Top/bottom margins enlarged to make room for fixed classification banners */
+    margin: 1.1in 0.65in 1.0in 0.65in;
+  }
+
+  @page :first {
+    margin-top: 0.75in;
+  }
+
+  /* ── Document wrapper ─────────────────────────────────────────────────── */
+  html, body {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    background: white;
+    color: #1a1a2e;
+  }
+
+  .brief {
+    max-width: 100%;
+    box-shadow: none;
+    border: none;
+    background: white;
+  }
+
+  /* ── Suppress base.css overlay/scanline effects ───────────────────────── */
+  body::before,
+  body::after {
+    display: none !important;
+  }
+
+  /* ── Masthead / footer: un-sticky for print ───────────────────────────── */
+  .masthead,
+  .brief-footer {
+    position: static;
+  }
+
+  /* ── Classification bar in masthead: redundant on paper (banner covers) ─ */
+  .masthead__class-bar {
+    display: none;
+  }
+
+  /* ── Domain gradient strip: hide (ink-saving) ────────────────────────── */
+  .domain__gradient,
+  .exec__gradient,
+  .caveats__gradient,
+  .collection-gaps__gradient,
+  .warning-indicators__gradient,
+  .analyst-note__gradient,
+  .dissenter-note__gradient {
+    display: none;
+  }
+
+  /* ── Domain: left border replaces gradient strip ─────────────────────── */
+  .domain {
+    border-left: 5px solid var(--surface-3);
+    padding-left: 16px;
+  }
+  .domain--d1 { border-left-color: var(--d1-bright); }
+  .domain--d2 { border-left-color: var(--d2-bright); }
+  .domain--d3 { border-left-color: var(--d3-bright); }
+  .domain--d4 { border-left-color: var(--d4-bright); }
+  .domain--d5 { border-left-color: var(--d5-bright); }
+  .domain--d6 { border-left-color: var(--d6-bright); }
+
+  /* ── Type: use body-weight serif for print legibility ─────────────────── */
+  body {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 10pt;
+    line-height: 1.55;
+  }
+
+  .kj__text {
+    font-size: 11pt;
+    line-height: 1.6;
+  }
+
+  .body-para {
+    font-size: 10pt;
+    line-height: 1.55;
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* ── Ensure dark text on white for legibility ─────────────────────────── */
+  .text-hi, .domain__title, .kj__text,
+  .exec__bluf-text, .strategic-header__judgment {
+    color: #1a1a2e !important;
+  }
+
+  .text-md, .body-para, .body-wrap { color: #2c2c3c !important; }
+  .text-dim, .meta, .kj__basis     { color: #686070 !important; }
+
+  /* Gold → dark amber for ink printing */
+  .masthead__cycle-num,
+  .color-gold { color: #8c6400 !important; }
+
+  /* Crimson → dark red */
+  .color-crimson,
+  .exec__bluf { border-left-color: #8c1010 !important; }
+
+  /* ── Page break control ───────────────────────────────────────────────── */
+  /* Hard breaks: each major section starts fresh */
+  .warning-indicators { break-before: page; }
+  .brief-footer        { break-before: page; }
+
+  /* Avoid breaking inside key structural elements */
+  .masthead            { break-inside: avoid; }
+  .strategic-header    { break-inside: avoid; break-after: avoid; }
+  .flash-points        { break-inside: avoid; }
+  .kj                  { break-inside: avoid; }
+  .analyst-note        { break-inside: avoid; }
+  .dissenter-note      { break-inside: avoid; }
+  .data-table-wrap     { break-inside: avoid; }
+  .actor-matrix        { break-inside: avoid; }
+  .timeline            { break-inside: avoid; }
+  .collection-gaps     { break-inside: avoid; }
+  .caveats             { break-inside: avoid; }
+  .wi-table            { break-inside: avoid; }
+
+  /* Domains may break at boundaries but not mid-paragraph */
+  .domain              { break-inside: auto; }
+  .domain + .domain    { break-before: auto; }
+  .body-wrap           { break-inside: auto; }
+  .body-para           { break-inside: avoid; orphans: 3; widows: 3; }
+
+  /* KJ box: never orphan the header from its text */
+  .kj__label-row + .kj__text { break-before: avoid; }
+
+  /* ── Probability bars: reduce height for print ────────────────────────── */
+  .prob-bar { height: 2px; }
+
+  /* ── KPI strip: flat for print ────────────────────────────────────────── */
+  .kpi-strip__cell { border: 1px solid #ccc; background: white !important; }
+  .kpi-strip__number { color: #1a1a2e !important; }
+
+  /* ── Warning indicator table ──────────────────────────────────────────── */
+  .wi-table { border-collapse: collapse; width: 100%; font-size: 9pt; }
+  .wi-table th, .wi-table td { border: 0.5pt solid #d0d0d0; padding: 4pt 6pt; }
+
+  /* ── Scrollbars and overlays — suppressed ─────────────────────────────── */
+  ::-webkit-scrollbar { display: none; }
+
+}
