@@ -1388,10 +1388,10 @@ body::after {
   letter-spacing: 0.04em;
 }
 
-/* Section end — double rule */
-.section-end { margin: 16px 0 2px; border: none; }
-.section-end--thick { height: 0; }
-.section-end--thin  { height: 0; margin-top: 2px; }
+/* Section end — double rule (thick + thin hairline separators) */
+.section-end { margin: 16px 0 2px; }
+.section-end--thick { height: 0; border-top: 1px solid rgba(255,255,255,0.10); }
+.section-end--thin  { height: 0; margin-top: 3px; border-top: 1px solid rgba(255,255,255,0.04); }
 
 
 
@@ -2403,12 +2403,16 @@ body::after {
   .analyst-note, .dissenter-note, .metadata-bar,
   .kj, .body-wrap, .body-para, .sub-label,
   .timeline, .actor-matrix, .data-table-wrap,
+  .domain__header, .domain__aq, .domain__content,
+  .warning-indicators__rows, .wi-row,
+  .am-header, .am-row,
   .brief-footer {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     overflow: visible !important;
   }
+  .am-header, .am-row { display: grid !important; }
 
   /* ── Suppress overlays ──────────────────────────────────────────────────── */
   body::before, body::after { display: none !important; }
@@ -2451,8 +2455,14 @@ body::after {
 
   /* ── Section backgrounds ────────────────────────────────────────────────── */
   section { background: rgba(3, 4, 10, 0.90) !important; }
-  .kj     { background: rgba(10, 10, 20, 0.95) !important; border-left: none !important; }
-  .body-wrap { background: transparent !important; border-left: none !important; }
+  .kj     { background: rgba(10, 10, 20, 0.95) !important; }
+  .domain--d1 .kj { border-left-color: #c62828 !important; }
+  .domain--d2 .kj { border-left-color: #e65100 !important; }
+  .domain--d3 .kj { border-left-color: #2e7d32 !important; }
+  .domain--d4 .kj { border-left-color: #6a1b9a !important; }
+  .domain--d5 .kj { border-left-color: #1565c0 !important; }
+  .domain--d6 .kj { border-left-color: #00695c !important; }
+  .body-wrap { background: transparent !important; border-left-color: rgba(255,255,255,0.08) !important; }
   .exec__bluf { background: rgba(10, 10, 0, 0.90) !important;
                 border-left-color: #c8a830 !important; }
   .strategic-header, .flash-points, .warning-indicators,
@@ -2464,30 +2474,93 @@ body::after {
     border-color: rgba(255,255,255,0.08) !important;
   }
 
-  /* ── Warning indicators table ───────────────────────────────────────────── */
+  /* ── Warning indicators — new card-row layout ───────────────────────────── */
   .warning-indicators { break-before: page; }
-  .wi-table {
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 8.5pt;
+  .warning-indicators__rows { border-left: 3pt solid #C8A030 !important; display: block !important; }
+  .wi-row {
+    display: grid !important;
+    grid-template-columns: 140pt 1fr;
+    gap: 8pt;
+    padding: 6pt 10pt;
+    border-bottom: 0.5pt solid #1e1e2e !important;
+    break-inside: avoid;
+    align-items: baseline;
+  }
+  .wi-row:last-child { border-bottom: none !important; }
+  .wi-row--triggered { border-left: 2pt solid #c62828 !important; padding-left: 8pt; }
+  .wi-row--elevated  { border-left: 2pt solid #e65100 !important; padding-left: 8pt; }
+  .wi-row--watching  { border-left: 2pt solid #555566 !important; padding-left: 8pt; }
+  .wi-row--cleared   { border-left: 2pt solid #2e7d32 !important; padding-left: 8pt; }
+  .wi-row__indicator { font-size: 8pt !important; font-weight: 700 !important; color: #e0dbd4 !important; }
+  .wi-row__body      { font-size: 8pt !important; color: #c4bfb8 !important; line-height: 1.5; }
+
+  /* Status token — flatten for print (no gradients/animations) */
+  .wi-token {
+    display: inline-block !important;
+    padding: 1pt 5pt !important;
+    border-radius: 1pt !important;
+    font-size: 7pt !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    border: 0.5pt solid currentColor !important;
     background: transparent !important;
+    box-shadow: none !important;
+    animation: none !important;
+    vertical-align: middle !important;
+    margin-right: 5pt !important;
   }
-  .wi-table th {
-    background: rgba(12, 14, 24, 0.95) !important;
+  .wi-token__dot { display: none !important; }
+  .wi-token--triggered { color: #ff7080 !important; }
+  .wi-token--elevated  { color: #e8a030 !important; }
+  .wi-token--watching  { color: #c89830 !important; }
+  .wi-token--cleared   { color: #40c060 !important; }
+  .wi-token--stable    { color: #6080b8 !important; }
+
+  /* Change tag */
+  .wi-change {
+    display: inline-block !important;
+    font-size: 6.5pt !important;
+    font-weight: 700 !important;
+    padding: 0.5pt 4pt !important;
+    border: 0.5pt solid currentColor !important;
+    background: transparent !important;
+    vertical-align: middle !important;
+    margin-left: 5pt !important;
+  }
+
+  /* ── Actor matrix — grid layout ──────────────────────────────────────────── */
+  .actor-matrix { break-inside: auto; }
+  .am-header {
+    display: grid !important;
+    grid-template-columns: 90pt 100pt 1fr 42pt;
+    background: rgba(12,14,24,0.95) !important;
+    padding: 4pt 8pt !important;
+    font-size: 7pt !important;
     color: #a0a8b0 !important;
-    border: 0.5pt solid #2a2a3a !important;
-    padding: 3.5pt 5pt;
-    font-size: 7.5pt;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase !important;
   }
-  .wi-table td {
-    background: rgba(4, 5, 12, 0.90) !important;
-    color: #c4bfb8 !important;
-    border: 0.5pt solid #1e1e2e !important;
-    padding: 3.5pt 5pt;
+  .am-row {
+    display: grid !important;
+    grid-template-columns: 90pt 100pt 1fr 42pt;
+    padding: 5pt 8pt !important;
+    border-bottom: 0.5pt solid #1e1e2e !important;
+    break-inside: avoid;
+    align-items: start;
   }
-  .wi-table tr:nth-child(even) td { background: rgba(8, 9, 18, 0.90) !important; }
+  .am-row:last-child { border-bottom: none !important; }
+  .am-row:nth-child(even) { background: rgba(8,9,18,0.90) !important; }
+  .am-actor      { font-size: 8pt !important; font-weight: 700 !important; color: #e0dbd4 !important; }
+  .am-posture    { font-size: 8pt !important; color: #c4bfb8 !important; }
+  .am-posture__text { display: block !important; }
+  .am-assess     { font-size: 8pt !important; color: #c4bfb8 !important; line-height: 1.4; }
+  .am-delta      { font-size: 7pt !important; font-weight: 700 !important; display: block !important; }
+  .am-delta--up   { color: #ff7080 !important; }
+  .am-delta--down { color: #40c060 !important; }
+  .am-delta--same { color: #666677 !important; }
+  .am-conf       { display: flex !important; justify-content: flex-end !important; }
 
   /* ── KPI strip ──────────────────────────────────────────────────────────── */
   .kpi-strip { grid-template-columns: repeat(6, 1fr) !important; gap: 4pt; }
@@ -2525,6 +2598,8 @@ body::after {
   .collection-gaps     { break-inside: avoid; }
   .caveats             { break-inside: avoid; }
   .wi-table            { break-inside: avoid; }
+  .wi-row              { break-inside: avoid; }
+  .am-row              { break-inside: avoid; }
   .brief-footer        { break-inside: avoid; }
   .domain              { break-inside: auto; }
   .domain + .domain    { break-before: auto; }
@@ -3154,9 +3229,9 @@ section.domain::after{
     <div class="domain__num">01</div>
     <div class="domain__title-cell">
       <div class="domain__title">BATTLESPACE · KINETIC</div>
-      <div class="domain__conf-row"><span class="badge badge--green">HIGH</span></div>
     </div>
   </div>
+  <div class="domain__aq"><div class="domain__aq-text">What is the current disposition of forces, and what kinetic activity occurred across all theatres in the preceding 24 hours?</div><div class="domain__aq-conf"><span class="badge badge--green">HIGH</span></div></div>
   <div class="domain__content">
       <div class="kj">
     <div class="kj__label-row">
@@ -3225,9 +3300,9 @@ section.domain::after{
     <div class="domain__num">02</div>
     <div class="domain__title-cell">
       <div class="domain__title">ESCALATION · TRAJECTORY</div>
-      <div class="domain__conf-row"><span class="badge badge--blue">MODERATE</span></div>
     </div>
   </div>
+  <div class="domain__aq"><div class="domain__aq-text">Are there indicators of escalation, de-escalation, or horizontal expansion? What red lines are being approached or crossed?</div><div class="domain__aq-conf"><span class="badge badge--blue">MODERATE</span></div></div>
   <div class="domain__content">
       <div class="kj">
     <div class="kj__label-row">
@@ -3305,9 +3380,9 @@ section.domain::after{
     <div class="domain__num">03</div>
     <div class="domain__title-cell">
       <div class="domain__title">ENERGY · ECONOMIC</div>
-      <div class="domain__conf-row"><span class="badge badge--green">HIGH</span></div>
     </div>
   </div>
+  <div class="domain__aq"><div class="domain__aq-text">Is the conflict disrupting energy production, transit, or global commodity markets in ways that affect Canadian economic interests?</div><div class="domain__aq-conf"><span class="badge badge--green">HIGH</span></div></div>
   <div class="domain__content">
       <div class="kj">
     <div class="kj__label-row">
@@ -3351,9 +3426,9 @@ section.domain::after{
     <div class="domain__num">04</div>
     <div class="domain__title-cell">
       <div class="domain__title">DIPLOMATIC · POLITICAL</div>
-      <div class="domain__conf-row"><span class="badge badge--blue">MODERATE</span></div>
     </div>
   </div>
+  <div class="domain__aq"><div class="domain__aq-text">What are the positions of key state actors, and are there diplomatic initiatives or breakdowns that shift the conflict trajectory?</div><div class="domain__aq-conf"><span class="badge badge--blue">MODERATE</span></div></div>
   <div class="domain__content">
       <div class="kj">
     <div class="kj__label-row">
@@ -3400,9 +3475,9 @@ section.domain::after{
     <div class="domain__num">05</div>
     <div class="domain__title-cell">
       <div class="domain__title">CYBER · INFORMATION OPS</div>
-      <div class="domain__conf-row"><span class="badge badge--amber">LOW</span></div>
     </div>
   </div>
+  <div class="domain__aq"><div class="domain__aq-text">What Iranian or proxy-affiliated cyber and information operations are observable in open sources? Confidence is structurally lower in this domain.</div><div class="domain__aq-conf"><span class="badge badge--amber">LOW</span></div></div>
   <div class="domain__content">
       <div class="kj">
     <div class="kj__label-row">
@@ -3728,17 +3803,34 @@ section.domain::after{
 #ep-floatbar button:hover{color:#C4BCB0;background:rgba(255,255,255,.05)}
 #ep-floatbar .ep-fb-danger:hover{color:#FF5060;background:rgba(184,28,40,.12)}
 
-/* DRAG GRIP — top-right corner, inside element bounds */
+/* DRAG GRIP — full-height rail on right edge, prominent when editor active */
 .ep-grip{
-  position:absolute;right:6px;top:6px;transform:none;
-  color:rgba(196,160,48,0);font-size:0.78rem;
-  cursor:grab;user-select:none;line-height:1;
-  transition:color .15s;
-  z-index:10;
-  pointer-events:auto;
+  position:absolute;right:0;top:0;bottom:0;
+  width:18px;
+  display:flex;align-items:center;justify-content:center;
+  cursor:grab;user-select:none;z-index:20;pointer-events:auto;
+  opacity:0;
+  background:rgba(5,8,18,0);
+  border-left:1px solid transparent;
+  transition:opacity 0.18s,background 0.18s,border-color 0.18s;
+  font-size:11px;letter-spacing:-1px;line-height:1;color:transparent;
 }
-.ed-on .ep-grip{color:rgba(196,160,48,0.22)}
-.ed-on [data-ep-drag]:hover>.ep-grip{color:rgba(196,160,48,0.72)}
+.ed-on .ep-grip{
+  opacity:1;
+  background:rgba(5,8,18,0.50);
+  border-left-color:rgba(196,160,48,0.12);
+  color:rgba(196,160,48,0.28);
+}
+.ed-on [data-ep-drag]:hover>.ep-grip{
+  background:rgba(196,160,48,0.12);
+  border-left-color:rgba(196,160,48,0.50);
+  color:rgba(196,160,48,0.92);
+  box-shadow:-3px 0 12px rgba(196,160,48,0.12);
+}
+.ed-on [data-ep-drag].ep-dragging>.ep-grip{
+  cursor:grabbing;
+  color:rgba(196,160,48,0.60);
+}
 .ed-on [data-ep-drag].ep-dragging{opacity:.38}
 .ed-on [data-ep-drag].ep-drop-target{outline:1px solid rgba(196,160,48,.60);outline-offset:1px}
 
@@ -3747,7 +3839,7 @@ section.domain::after{
 .ed-on [data-ep-text]:hover{background:rgba(255,255,255,.028);border-radius:1px;outline:1px dashed rgba(196,160,48,.20);outline-offset:1px}
 .ed-on [data-ep-text]:focus{outline:1px solid rgba(196,160,48,.50);border-radius:1px;background:rgba(196,160,48,.025)}
 
-.ed-on [data-ep-drag]{position:relative!important}
+.ed-on [data-ep-drag]{position:relative!important;padding-right:22px!important}
 </style>
 
 <script>
@@ -3766,27 +3858,48 @@ function isUI(el){return el&&el.closest&&(el.closest("#cse-editor-panel")||el.cl
 
 /* ── ALL EDITABLE TEXT ELEMENTS ──────────────────────────────────── */
 var TEXT_SEL=[
+  /* Key Judgment */
   ".kj__text",".kj__basis",".kj__confidence-phrase",".kj__probability",".kj__label",
-  ".body-para",".sub-label",
+  /* Body */
+  ".body-para",".sub-label",".body-para__source",".body-para__timestamp",
+  /* Flash points */
   ".flash-points__item-headline",".flash-points__item-detail",".flash-points__item-time",".flash-points__item-conf",
-  ".exec__bluf-text",".exec__kj-text",".exec__kj-domain",
+  ".flash-points__label",".flash-points__timestamp",
+  /* Executive */
+  ".exec__bluf-text",".exec__kj-text",".exec__kj-conf",
+  ".exec__bluf-label",".exec__header-title",".exec__header-meta",
+  /* Strategic header */
   ".strategic-header__judgment",".strategic-header__rationale",".strategic-header__label",
-  ".masthead__title-main",".masthead__title-conflict",".masthead__title-year",".masthead__subtitle",
+  /* Masthead */
+  ".masthead__title-main",".masthead__title-conflict",".masthead__subtitle",
   ".masthead__cycle-num",".masthead__date",".masthead__ctx-note",
   ".masthead__strip-top",".masthead__strip-bot",
   ".masthead__provenance-left",".masthead__provenance-centre",".masthead__provenance-right",
+  /* Metadata */
   ".metadata-bar__value",".metadata-bar__label",
-  ".analyst-note__text",".analyst-note__title",
+  /* Notes */
+  ".analyst-note__text",".analyst-note__title",".analyst-note__label",
   ".dissenter-note__text",".dissenter-note__attribution",".dissenter-note__title",
+  /* Footer */
   ".brief-footer__id",".brief-footer__sources",".brief-footer__handling",
-  ".domain__title",".domain__num",
-  ".gap-item__gap",".gap-item__significance",".collection-gaps__title",
-  ".caveats__confidence-text",".caveats__title",
-  ".warning-indicators__title",
+  /* Domain */
+  ".domain__title",".domain__num",".domain__aq-text",".domain__aq-conf",
+  /* Gaps */
+  ".gap-item__gap",".gap-item__significance",".collection-gaps__title",".gap-item__severity",
+  /* Caveats */
+  ".caveats__confidence-text",".caveats__confidence-label",".caveats__title",
+  ".caveats__item",".caveats__item-label",".caveats__cycle",
+  /* Warning indicators */
+  ".warning-indicators__title",".warning-indicators__cycle",
+  ".wi-row__indicator",".wi-row__body",".wi-change",".wi-token",
+  /* Timeline */
   ".timeline__actor",".timeline__action",".timeline__time",
-  ".actor-name",".actor-matrix__caption",
+  /* Actor matrix */
+  ".am-actor",".am-posture__text",".am-assess",".am-delta",".actor-matrix__caption",
+  /* KPI strip */
   ".kpi-strip__number",".kpi-strip__label",
-  ".data-table-caption",
+  /* Data tables */
+  ".data-table-caption",".data-table__unit",
 ].join(",");
 
 /* ── ALL DRAGGABLE STRUCTURAL ELEMENTS ───────────────────────────── */
@@ -3802,6 +3915,8 @@ var DRAG_SEL=[
   ".brief .timeline__event",
   ".brief .gap-item",
   ".brief .caveats__item",
+  ".brief .wi-row",
+  ".brief .am-row",
 ].join(",");
 
 /* ── ACTIVATE / DEACTIVATE ──────────────────────────────────────── */
@@ -3818,7 +3933,7 @@ function activateEditor(){
     if(isUI(el))return;
     var g=document.createElement("span");
     g.className="ep-grip";
-    g.textContent="⠇";
+    g.textContent="⠿⠿";
     g.title="Drag to reorder";
     g.setAttribute("draggable","false");
     el.setAttribute("data-ep-drag","1");

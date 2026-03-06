@@ -884,10 +884,10 @@
   letter-spacing: 0.04em;
 }
 
-/* Section end — double rule */
-.section-end { margin: 16px 0 2px; border: none; }
-.section-end--thick { height: 0; }
-.section-end--thin  { height: 0; margin-top: 2px; }
+/* Section end — double rule (thick + thin hairline separators) */
+.section-end { margin: 16px 0 2px; }
+.section-end--thick { height: 0; border-top: 1px solid rgba(255,255,255,0.10); }
+.section-end--thin  { height: 0; margin-top: 3px; border-top: 1px solid rgba(255,255,255,0.04); }
 
 
 
