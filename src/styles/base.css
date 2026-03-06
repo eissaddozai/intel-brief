@@ -19,7 +19,7 @@ body {
   color: var(--text-md);
   font-family: var(--font-ui);
   font-size: var(--size-body);
-  line-height: 1.55;
+  line-height: var(--lh-body);
   min-height: 100vh;
   position: relative;
 }
@@ -48,28 +48,28 @@ body::after {
   background: repeating-linear-gradient(
     0deg,
     transparent 0px,
-    transparent 2px,
-    var(--color-scanline) 2px,
-    var(--color-scanline) 3px
+    transparent var(--sp-2),
+    var(--color-scanline) var(--sp-2),
+    var(--color-scanline) var(--sp-3)
   );
 }
 
 /* ── DOCUMENT WRAPPER ─────────────────────────────────────────────────────── */
 .brief {
-  max-width: 960px;
+  max-width: var(--layout-max);
   margin: 0 auto;
   background-color: var(--color-panel);
   position: relative;
   z-index: 1;
   box-shadow:
-    0 0 0 1px var(--color-crimson-a14),
+    0 0 0 var(--bw-rule) var(--color-crimson-a14),
     0 0 80px var(--color-shadow-deep),
     0 0 160px var(--color-crimson-a05);
 }
 
 /* ── CUSTOM SCROLLBAR ─────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 5px;
+  width: var(--layout-scrollbar);
   background: var(--color-scrollbar);
 }
 
@@ -94,8 +94,8 @@ body::after {
 
 /* ── FOCUS ────────────────────────────────────────────────────────────────── */
 :focus-visible {
-  outline: 1px solid var(--color-gold);
-  outline-offset: 2px;
+  outline: var(--bw-rule) solid var(--color-gold);
+  outline-offset: var(--sp-2);
 }
 
 /* ── PRINT BASE ───────────────────────────────────────────────────────────── */
