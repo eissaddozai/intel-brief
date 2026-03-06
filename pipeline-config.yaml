@@ -59,7 +59,6 @@ ingest:
   request_delay_seconds: 0.5         # Polite delay between requests
   timeout_seconds: 30                # Per-request timeout
   lookback_hours: 30                 # Items older than this are ignored
-  playwright_headless: true          # Set false to debug scraper issues
   # Disable individual sources without removing them from sources.yaml:
   disabled_sources: []               # e.g. ["haaretz", "bbc_persian"]
 
@@ -76,9 +75,3 @@ logging:
   log_dir: "./logs"
   max_log_files: 14                  # Keep 2 weeks of logs
 
-# ── SCRAPER PLAYWRIGHT ────────────────────────────────────────────────────────
-playwright:
-  browser: "chromium"                # chromium | firefox | webkit
-  viewport_width: 1280
-  viewport_height: 900
-  user_agent: "Mozilla/5.0 (compatible; CSE-Intel-Pipeline/1.0; research)"

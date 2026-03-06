@@ -85,6 +85,19 @@ RELEVANCE_KEYWORDS: frozenset[str] = frozenset([
     'cyberattack', 'cyber attack', 'ics attack', 'ot attack',
     'scada', 'industrial control',
     'disinformation', 'influence operation',
+    # ── Kurdish / Turkish dimension ──────────────────────────────────────────
+    'pkk', 'pjak', 'hpg', 'hbkm', 'ypg', 'ypj', 'sdf', 'aanes', 'rojava',
+    'kurdish', 'kurdistan', 'kurd', 'peshmerga', 'krg',
+    'erbil', 'sulaymaniyah', 'duhok', 'zakho', 'kirkuk', 'qandil',
+    'barzani', 'talabani', 'puk', 'kdp',
+    'hdp', 'dem parti', 'dem party',
+    'kdpi', 'komala', 'khrn', 'kurdistan human rights',
+    'rudaw', 'kurdistan24', 'kirkuknow', 'anf news',
+    'operation claw', 'operation pence', 'turk hack team',
+    'erdogan', 'turkish military', 'turkish armed forces', 'tsk',
+    'kirkuk-ceyhan', 'ceyhan terminal', 'ceyhan pipeline',
+    'northeast syria', 'northern syria', 'northern iraq',
+    'deir ez-zor', 'manbij', 'kobane', 'qamishli', 'hasakah',
 ])
 
 # Pre-compile for speed

@@ -12,10 +12,20 @@ html {
   font-size: 11pt;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-height: 100%;
+  /* ONE smooth diagonal gradient — deep blood-crimson to near-black to deep indigo */
+  background: linear-gradient(
+    142deg,
+    #160210  0%,
+    #080214 22%,
+    #030418 45%,
+    #020518 68%,
+    #010208 100%
+  );
 }
 
 body {
-  background-color: var(--color-page);
+  background: transparent;
   color: var(--text-md);
   font-family: var(--font-ui);
   font-size: var(--size-body);
@@ -58,7 +68,7 @@ body::after {
 .brief {
   max-width: 960px;
   margin: 0 auto;
-  background-color: var(--color-panel);
+  background: rgba(2, 4, 10, 0.68); /* semi-transparent — gradient bleeds through */
   position: relative;
   z-index: 1;
   box-shadow:
@@ -70,11 +80,11 @@ body::after {
 /* ── CUSTOM SCROLLBAR ─────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 5px;
-  background: #020407;
+  background: var(--color-scrollbar);
 }
 
 ::-webkit-scrollbar-track {
-  background: #020407;
+  background: var(--color-scrollbar);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -106,7 +116,7 @@ body::after {
   }
 
   body {
-    background-color: #050810;
+    background-color: #020308;
   }
 
   .brief {

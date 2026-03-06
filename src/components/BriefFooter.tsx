@@ -1,4 +1,5 @@
 import type { BriefCycle } from '../types/brief'
+import canadaFlagGoc from '../assets/canada-flag-goc.png'
 
 interface Props {
   footer: BriefCycle['footer']
@@ -15,6 +16,9 @@ export function BriefFooter({ footer, meta }: Props) {
       </div>
       <p className="brief-footer__sources">Sources: {footer.sources}</p>
       <p className="brief-footer__handling">{footer.handling}</p>
+      <div className="brief-footer__flag">
+        <img src={canadaFlagGoc} alt="Government of Canada" />
+      </div>
     </footer>
   )
 }

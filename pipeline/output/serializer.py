@@ -8,6 +8,7 @@ import logging
 import os
 import re
 import shutil
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -27,10 +28,26 @@ FRONTEND_DATA_DIR = Path(__file__).resolve().parents[2] / 'src' / 'data'
 REQUIRED_TOP_LEVEL = {'meta', 'strategicHeader', 'flashPoints', 'executive',
                       'domains', 'warningIndicators', 'collectionGaps', 'caveats', 'footer'}
 REQUIRED_META = {'cycleId', 'cycleNum', 'classification', 'tlp', 'timestamp',
-                 'region', 'analystUnit', 'threatLevel', 'threatTrajectory'}
-VALID_DOMAIN_IDS = {'d1', 'd2', 'd3', 'd4', 'd5'}
+                 'region', 'analystUnit', 'threatLevel', 'threatTrajectory',
+                 'subtitle', 'contextNote'}
+VALID_DOMAIN_IDS = {'d1', 'd2', 'd3', 'd4', 'd5', 'd6'}
 VALID_TLP = {'RED', 'AMBER', 'GREEN', 'CLEAR'}
 VALID_THREAT = {'CRITICAL', 'SEVERE', 'ELEVATED', 'GUARDED', 'LOW'}
+VALID_TRAJECTORY = {'escalating', 'stable', 'de-escalating'}
+VALID_CONFIDENCE_LANGUAGE = {
+    'almost-certainly', 'highly-likely', 'likely',
+    'possibly', 'unlikely', 'almost-certainly-not',
+}
+VALID_WI_STATUS = {'watching', 'triggered', 'elevated', 'cleared'}
+VALID_WI_CHANGE = {
+    'new-triggered', 'newly-elevated',
+    'unchanged', 'downgraded', 'cleared',
+}
+VALID_GAP_SEVERITY = {'critical', 'significant', 'minor'}
+VALID_GAP_CATEGORY = {
+    'source-outage', 'terrain-denial', 'signal-obscuration',
+    'attribution-gap', 'diplomatic-opacity', 'kurdish-turkish-gap',
+}
 
 
 def _next_cycle_number(cycles_dir: Path) -> int:
@@ -71,17 +88,39 @@ def validate(cycle: dict) -> list[str]:
     if meta.get('threatLevel') not in VALID_THREAT:
         errors.append(f"Invalid threatLevel: {meta.get('threatLevel')!r}")
 
+    if meta.get('threatTrajectory') not in VALID_TRAJECTORY:
+        errors.append(f"Invalid threatTrajectory: {meta.get('threatTrajectory')!r}")
+
     # Domains
     domains = cycle.get('domains', [])
     if not domains:
         errors.append('No domains in cycle')
     for d in domains:
+        did = d.get('id', '?')
         if d.get('id') not in VALID_DOMAIN_IDS:
-            errors.append(f"Invalid domain id: {d.get('id')!r}")
-        if not d.get('keyJudgment'):
-            errors.append(f"Domain {d.get('id')} missing keyJudgment")
+            errors.append(f"Invalid domain id: {did!r}")
+        conf = d.get('confidence')
+        if conf and conf not in {'high', 'moderate', 'low'}:
+            errors.append(f"Domain {did}: invalid confidence {conf!r}")
+        kj = d.get('keyJudgment') or {}
+        if not kj:
+            errors.append(f"Domain {did} missing keyJudgment")
+        else:
+            if not kj.get('text'):
+                errors.append(f"Domain {did}: keyJudgment.text is empty")
+            lang = kj.get('language')
+            if not lang:
+                errors.append(f"Domain {did}: keyJudgment.language is missing")
+            elif lang not in VALID_CONFIDENCE_LANGUAGE:
+                errors.append(f"Domain {did}: invalid confidence language {lang!r}")
+            prob = kj.get('probabilityRange', '')
+            if not prob or prob == '—':
+                errors.append(
+                    f"Domain {did}: keyJudgment.probabilityRange is missing or blank "
+                    f"(expected format: e.g. '55-75%')"
+                )
         if not d.get('bodyParagraphs'):
-            errors.append(f"Domain {d.get('id')} missing bodyParagraphs")
+            errors.append(f"Domain {did} missing bodyParagraphs")
 
     # Executive
     executive = cycle.get('executive', {})
@@ -90,10 +129,50 @@ def validate(cycle: dict) -> list[str]:
     if not executive.get('keyJudgments'):
         errors.append('Executive missing keyJudgments')
 
-    # Warning indicators — just structural
-    for wi in cycle.get('warningIndicators', []):
-        if 'indicator' not in wi or 'status' not in wi:
-            errors.append(f"Malformed warningIndicator: {wi.get('id', '?')}")
+    # flashPoints must be a list
+    flash = cycle.get('flashPoints')
+    if flash is not None and not isinstance(flash, list):
+        errors.append("flashPoints must be a list")
+
+    # Warning indicators — structural + enum
+    wi_list = cycle.get('warningIndicators', [])
+    if len(wi_list) < 12:
+        errors.append(
+            f'warningIndicators has {len(wi_list)} entries; brief standard requires 12. '
+            'Ensure all indicators are assessed even if status is "watching".'
+        )
+    for wi in wi_list:
+        wid = wi.get('id', '?')
+        if not wi.get('indicator'):
+            errors.append(f"warningIndicator {wid}: indicator is missing")
+        wi_domain = wi.get('domain')
+        if wi_domain and wi_domain not in VALID_DOMAIN_IDS:
+            errors.append(f"warningIndicator {wid}: invalid domain {wi_domain!r}")
+        status = wi.get('status')
+        if status not in VALID_WI_STATUS:
+            errors.append(f"warningIndicator {wid}: invalid status {status!r}")
+        change = wi.get('change')
+        if change and change not in VALID_WI_CHANGE:
+            errors.append(f"warningIndicator {wid}: invalid change value {change!r}")
+        if not wi.get('detail'):
+            errors.append(f"warningIndicator {wid}: detail line is missing")
+
+    # Collection gaps — structural validation
+    for gap in cycle.get('collectionGaps', []):
+        gid = gap.get('id', '?')
+        if not gap.get('gap'):
+            errors.append(f"collectionGap {gid}: gap field is missing")
+        if not gap.get('significance'):
+            errors.append(f"collectionGap {gid}: significance field is missing")
+        sev = gap.get('severity')
+        if sev not in VALID_GAP_SEVERITY:
+            errors.append(f"collectionGap {gid}: invalid severity {sev!r}")
+        cat = gap.get('category')
+        if cat and cat not in VALID_GAP_CATEGORY:
+            errors.append(f"collectionGap {gid}: invalid category {cat!r}")
+        gap_domain = gap.get('domain')
+        if gap_domain and gap_domain not in VALID_DOMAIN_IDS:
+            errors.append(f"collectionGap {gid}: invalid domain {gap_domain!r}")
 
     return errors
 
@@ -142,10 +221,16 @@ def write_cycle(approved: dict, config: dict) -> Path:
             log.error('Validation error: %s', e)
         raise ValueError(f'Cycle failed validation with {len(errors)} error(s). See log.')
 
-    # ── Write cycle file ───────────────────────────────────────────────────
+    # ── Write cycle file (atomic: write to temp then rename) ──────────────
     out_path = cycles_dir / f'{cycle_id}.json'
-    with open(out_path, 'w', encoding='utf-8') as fh:
-        json.dump(approved, fh, indent=2, ensure_ascii=False)
+    payload = json.dumps(approved, indent=2, ensure_ascii=False)
+    with tempfile.NamedTemporaryFile(
+        mode='w', encoding='utf-8', dir=cycles_dir,
+        prefix='.tmp_', suffix='.json', delete=False,
+    ) as fh:
+        fh.write(payload)
+        tmp_path = Path(fh.name)
+    tmp_path.replace(out_path)
     log.info('Cycle written → %s', out_path)
 
     # ── Symlink latest.json ────────────────────────────────────────────────
@@ -162,11 +247,9 @@ def write_cycle(approved: dict, config: dict) -> Path:
         frontend_dir.mkdir(parents=True, exist_ok=True)
         dest = frontend_dir / f'{cycle_id}.json'
         shutil.copy2(out_path, dest)
-        # Also update latest.json in frontend dir
+        # Also write latest.json as a real file (not symlink) so Vite dev server can serve it
         fe_latest = frontend_dir / 'latest.json'
-        if fe_latest.exists() or fe_latest.is_symlink():
-            fe_latest.unlink()
-        fe_latest.symlink_to(dest.name)
+        shutil.copy2(out_path, fe_latest)
         log.info('Copied to frontend data dir → %s', dest)
 
     return out_path

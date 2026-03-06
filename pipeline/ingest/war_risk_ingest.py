@@ -31,7 +31,12 @@ import yaml
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
 
-from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
+try:
+    from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
+    _AGENT_SDK_AVAILABLE = True
+except ImportError:
+    _AGENT_SDK_AVAILABLE = False
+    query = ClaudeAgentOptions = ResultMessage = None  # type: ignore[assignment,misc]
 
 log = logging.getLogger(__name__)
 
@@ -282,6 +287,10 @@ def ingest_war_risk(
 
     Returns list of significant items in pipeline RawItem dict format.
     """
+    if not _AGENT_SDK_AVAILABLE:
+        log.warning('claude_agent_sdk not installed — war risk ingest skipped')
+        return []
+
     config = config or {}
     wr_cfg = config.get('war_risk', {})
     threshold: int = wr_cfg.get('significance_threshold', 45)
@@ -316,14 +325,19 @@ def ingest_war_risk(
             log.error('Significance subagent failed (%s) — using pre-score fallback', exc)
             # Fallback: pass items with tier ≤ 2 that mention insurance/war keywords
             insurance_kw = ['insurance', 'premium', 'war risk', 'p&i', 'lloyd', 'underwriter']
-            scored_pass = [
-                i for i in needs_scoring
-                if i.get('tier', 3) <= 2
-                and any(kw in (i.get('title', '') + i.get('text', '')).lower()
-                        for kw in insurance_kw)
-            ]
+            scored_pass = []
+            for i in needs_scoring:
+                if (
+                    i.get('tier', 3) <= 2
+                    and any(kw in (i.get('title', '') + i.get('text', '')).lower()
+                            for kw in insurance_kw)
+                ):
+                    i['significance_score'] = 50
+                    i['significance_rationale'] = 'Fallback: significance subagent unavailable.'
+                    i['passed_gate'] = True
+                    scored_pass.append(i)
             log.warning('Fallback: %d items passed', len(scored_pass))
 
         return hard_pass + scored_pass
 
-    return anyio.run(_pipeline)
+    return anyio.run(_pipeline, backend='asyncio')

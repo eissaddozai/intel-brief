@@ -4,25 +4,37 @@ CSE Intel Brief — Pipeline CLI
 
 SUBCOMMANDS
   run            Run the full pipeline (ingest → triage → draft → review → output)
+  agent          Agentic run — Claude fetches sources + drafts the brief autonomously
   check-sources  Test every source URL and report status
   show           Pretty-print a cycle to the terminal
   list           List all generated cycles
+  render         Render cycle JSON to print-ready HTML
 
 EXAMPLES
   python pipeline/main.py run --auto-approve
   python pipeline/main.py run --demo --auto-approve
   python pipeline/main.py run --stage ingest
   python pipeline/main.py run --date 2026-03-01 --auto-approve
+  python pipeline/main.py agent
+  python pipeline/main.py agent --date 2026-03-05
+  python pipeline/main.py agent --model claude-opus-4-6
   python pipeline/main.py check-sources
   python pipeline/main.py show
   python pipeline/main.py show cycles/cycle001_20260304.json
   python pipeline/main.py list
+  python pipeline/main.py render
+  python pipeline/main.py render --cycle cycles/cycle004_20260304.json
 """
 
 import argparse
+import hashlib
 import json
 import logging
+import os
+import re
 import sys
+import time
+import yaml
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -58,17 +70,17 @@ def dim(t: str) -> str:    return _c('2', t)
 # ─── Config ───────────────────────────────────────────────────────────────────
 
 def load_config() -> dict:
-    import os, re
     if not CONFIG_PATH.exists():
         return {}
     try:
-        import yaml
         text = CONFIG_PATH.read_text(encoding='utf-8')
+
         def _sub(m: re.Match) -> str:
             val = os.environ.get(m.group(1), '')
             if not val:
                 log.warning('Environment variable %s not set', m.group(1))
             return val
+
         return yaml.safe_load(re.sub(r'\$\{([^}]+)\}', _sub, text)) or {}
     except Exception as exc:
         log.error('Config load failed: %s', exc)
@@ -77,7 +89,11 @@ def load_config() -> dict:
 
 def get_target_date(date_str: str | None) -> datetime:
     if date_str:
-        return datetime.strptime(date_str, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+        try:
+            return datetime.strptime(date_str, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+        except ValueError:
+            log.error('Invalid date format: %r — expected YYYY-MM-DD', date_str)
+            sys.exit(1)
     return datetime.now(timezone.utc)
 
 
@@ -156,6 +172,24 @@ def stage_ingest(target_date: datetime, force: bool, config: dict) -> Path:
         log.critical('No items collected from any source. Aborting.')
         sys.exit(1)
 
+    # Deduplicate by (url, title) — D6 sources may be fetched by both rss_ingest
+    # and war_risk_ingest subagents, so cross-ingestor dedup is required here.
+    _seen: set[str] = set()
+    _deduped: list[dict] = []
+    for _item in raw_items:
+        _key = hashlib.sha256(
+            (_item.get('url', '') + _item.get('title', '')).encode('utf-8')
+        ).hexdigest()[:16]
+        if _key not in _seen:
+            _seen.add(_key)
+            _deduped.append(_item)
+    if len(_deduped) < len(raw_items):
+        log.info(
+            'Deduplication: removed %d duplicate items (%d → %d unique)',
+            len(raw_items) - len(_deduped), len(raw_items), len(_deduped),
+        )
+    raw_items = _deduped
+
     tier1 = [i for i in raw_items if i.get('tier') == 1]
     if not tier1 and config.get('triage', {}).get('halt_if_zero_tier1', True):
         log.critical('Zero Tier 1 items. Brief integrity cannot be guaranteed. Aborting.')
@@ -233,14 +267,19 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
         confidence = 'high' if tier1 else ('moderate' if items else 'low')
         return {
             'id': did, 'num': num, 'title': title,
+            'assessmentQuestion': '',
             'keyJudgment': {
+                'id': f'kj-{did}',
+                'domain': did,
                 'text': (
                     f'{len(items)} items collected ({len(tier1)} Tier 1). '
                     'Re-run after adding Anthropic API credits for AI synthesis.'
                 ),
                 'confidence': confidence,
-                'probabilityRange': 'placeholder',
-                'corroborated': bool(tier1),
+                'probabilityRange': '—',
+                'language': 'possibly',
+                'basis': 'Placeholder — no AI synthesis performed.',
+                'citations': [],
             },
             'bodyParagraphs': paras,
             'confidence': confidence,
@@ -279,7 +318,19 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
         'flashPoints': [],
         'executive': {
             'bluf': f'PLACEHOLDER — {total} items across 5 domains. Re-run after funding API.',
-            'keyJudgments': [d['keyJudgment']['text'] for d in domains],
+            'keyJudgments': [
+                {
+                    'id': d['keyJudgment']['id'],
+                    'domain': d['id'],
+                    'text': d['keyJudgment']['text'],
+                    'confidence': d['keyJudgment']['confidence'],
+                    'probabilityRange': '—',
+                    'language': 'possibly',
+                    'basis': 'Placeholder.',
+                    'citations': [],
+                }
+                for d in domains
+            ],
             'kpis': [],
         },
         'domains': domains,
@@ -367,13 +418,50 @@ def stage_output(approved_file: Path, config: dict) -> Path:
     return out_path
 
 
+def stage_render(cycle_path: Path | None = None, out_path: Path | None = None) -> Path:
+    """Render cycle JSON → self-contained print-ready HTML."""
+    from render.html_renderer import render_cycle
+
+    if cycle_path is None:
+        # Default: latest symlink
+        latest = CYCLES_DIR / 'latest.json'
+        if latest.exists() or latest.is_symlink():
+            cycle_path = latest.resolve()
+        else:
+            cycles = sorted(CYCLES_DIR.glob('cycle*.json'))
+            if not cycles:
+                log.error('No cycles found — run pipeline first.')
+                sys.exit(1)
+            cycle_path = cycles[-1]
+
+    cycle = json.loads(cycle_path.read_text(encoding='utf-8'))
+    html  = render_cycle(cycle)
+
+    if out_path is None:
+        ts = cycle.get('meta', {}).get('timestamp', '')[:10].replace('-', '')
+        if not ts:
+            ts = cycle_path.stem
+        briefs_dir = REPO_ROOT / 'briefs'
+        briefs_dir.mkdir(exist_ok=True)
+        out_path = briefs_dir / f'brief_{ts}.html'
+
+    out_path.write_text(html, encoding='utf-8')
+    log.info('Rendered HTML → %s', out_path)
+    return out_path
+
+
+def _cycle_num_from_path(p: Path) -> int:
+    m = re.match(r'cycle_?(\d+)', p.name)
+    return int(m.group(1)) if m else 0
+
+
 def _find_previous_cycle() -> dict | None:
     if not CYCLES_DIR.exists():
         return None
     cycles = [p for p in CYCLES_DIR.glob('cycle*.json') if not p.is_symlink()]
     if not cycles:
         return None
-    latest = max(cycles, key=lambda p: p.stat().st_mtime)
+    latest = max(cycles, key=_cycle_num_from_path)
     try:
         return json.loads(latest.read_text(encoding='utf-8'))
     except Exception:
@@ -435,19 +523,53 @@ def cmd_run(args: argparse.Namespace, config: dict) -> None:
         out = stage_output(approved_file, config)
         log.info('Pipeline complete → %s', out)
 
+    if stage is None:
+        # Full pipeline: automatically render HTML after output
+        try:
+            html_out = stage_render()
+            log.info('Print-ready HTML → %s', html_out)
+        except Exception as exc:
+            log.warning('HTML render failed (non-fatal): %s', exc)
+
+
+# ─── Subcommand: agent ───────────────────────────────────────────────────────
+
+def cmd_agent(args: argparse.Namespace, config: dict) -> None:
+    """Agentic brief — Claude fetches sources and drafts the full cycle autonomously."""
+    from agent_brief import run_agent_brief
+
+    target_date = get_target_date(args.date)
+    model       = args.model
+
+    log.info('═══ AGENT MODE ═══════════════════════════════════')
+    log.info('Model   : %s', model)
+    log.info('Date    : %s', target_date.strftime('%Y-%m-%d'))
+    log.info('The agent will fetch sources and draft the brief autonomously.')
+    log.info('══════════════════════════════════════════════════')
+
+    cycle_path, html_path = run_agent_brief(
+        target_date=target_date,
+        config=config,
+        model=model,
+    )
+
+    log.info('═══ AGENT COMPLETE ════════════════════════════════')
+    log.info('Cycle JSON  → %s', cycle_path)
+    log.info('Print HTML  → %s', html_path)
+    log.info('Review with: python pipeline/main.py show')
+    log.info('══════════════════════════════════════════════════')
+
 
 # ─── Subcommand: check-sources ───────────────────────────────────────────────
 
 def cmd_check_sources(args: argparse.Namespace, config: dict) -> None:
     """Test every enabled source URL and report status."""
-    import yaml
-    import time
+    import requests as req
 
     sources_file = PIPELINE_DIR / 'ingest' / 'sources.yaml'
     data = yaml.safe_load(sources_file.read_text(encoding='utf-8'))
     sources = [s for s in data.get('sources', []) if s.get('enabled', True)]
 
-    import requests as req
     TIMEOUT = 10
     HEADERS = {'User-Agent': 'CSE-Intel-Brief/1.0 check-sources'}
 
@@ -610,9 +732,9 @@ def cmd_show(args: argparse.Namespace, config: dict) -> None:
     if wi:
         print(bold(yellow('WARNING INDICATORS')))
         for w in wi:
-            level = w.get('level', '?')
-            c = red if level == 'RED' else (yellow if level == 'AMBER' else green)
-            print(f'  {c(level)} {w.get("indicator","?")} — {w.get("assessment","")}')
+            status = w.get('status', '?')
+            c = red if status == 'triggered' else (yellow if status == 'elevated' else green)
+            print(f'  {c(status.upper())} {w.get("indicator","?")} — {w.get("detail","")}')
         print()
 
     # Footer
@@ -631,7 +753,7 @@ def cmd_list(args: argparse.Namespace, config: dict) -> None:
 
     cycles = sorted(
         [p for p in CYCLES_DIR.glob('cycle*.json') if not p.is_symlink()],
-        key=lambda p: p.stat().st_mtime,
+        key=_cycle_num_from_path,
         reverse=True,
     )
 
@@ -683,6 +805,16 @@ def build_parser() -> argparse.ArgumentParser:
     run_p.add_argument('--demo', action='store_true',
                        help='Use synthetic seed data — no internet or API required')
 
+    # ── agent ──
+    agent_p = sub.add_parser(
+        'agent',
+        help='Agentic run — Claude fetches sources + drafts brief autonomously (no pipeline stages)',
+    )
+    agent_p.add_argument('--date', default=None,
+                         help='Target date YYYY-MM-DD (default: today)')
+    agent_p.add_argument('--model', default='claude-sonnet-4-6',
+                         help='Claude model ID (default: claude-sonnet-4-6)')
+
     # ── check-sources ──
     sub.add_parser('check-sources', help='Test every source URL and report status')
 
@@ -694,6 +826,13 @@ def build_parser() -> argparse.ArgumentParser:
     # ── list ──
     sub.add_parser('list', help='List all generated cycles')
 
+    # ── render ──
+    render_p = sub.add_parser('render', help='Render cycle JSON to print-ready HTML')
+    render_p.add_argument('--cycle', default=None,
+                          help='Path to cycle JSON (default: cycles/latest.json)')
+    render_p.add_argument('--out', default=None,
+                          help='Output HTML path (default: briefs/brief_YYYYMMDD.html)')
+
     return parser
 
 
@@ -702,7 +841,7 @@ def main() -> None:
 
     # Backward-compat: if first arg is not a subcommand, treat as `run`
     argv = sys.argv[1:]
-    known_cmds = {'run', 'check-sources', 'show', 'list'}
+    known_cmds = {'run', 'agent', 'check-sources', 'show', 'list', 'render'}
     if argv and argv[0] not in known_cmds and not argv[0].startswith('-'):
         # Unknown positional — fall through to argparse error
         pass
@@ -718,12 +857,18 @@ def main() -> None:
 
     if args.command == 'run':
         cmd_run(args, config)
+    elif args.command == 'agent':
+        cmd_agent(args, config)
     elif args.command == 'check-sources':
         cmd_check_sources(args, config)
     elif args.command == 'show':
         cmd_show(args, config)
     elif args.command == 'list':
         cmd_list(args, config)
+    elif args.command == 'render':
+        cycle_path = Path(args.cycle) if args.cycle else None
+        out_path   = Path(args.out)   if args.out   else None
+        stage_render(cycle_path, out_path)
     else:
         parser.print_help()
 

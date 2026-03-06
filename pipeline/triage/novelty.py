@@ -71,13 +71,20 @@ def filter_novel(items: list[dict], cycles_dir: Path, config: dict | None = None
     Filter out items that are largely repetitions of the previous cycle.
     Items from Tier 1 sources are never filtered (factual updates always included).
     """
-    # Find most recent cycle
-    cycle_files = sorted(cycles_dir.glob('cycle_*.json'))
+    # Find most recent cycle — glob matches cycle001_20260304.json (no underscore after 'cycle')
+    cycle_files = [
+        p for p in cycles_dir.glob('cycle*.json')
+        if not p.is_symlink()
+    ]
     if not cycle_files:
         log.info('No previous cycles found — treating all items as novel')
         return items
 
-    prev_file = max(cycle_files, key=lambda p: p.stat().st_mtime)
+    def _cycle_num(p: Path) -> int:
+        m = re.match(r'cycle_?(\d+)', p.name)
+        return int(m.group(1)) if m else 0
+
+    prev_file = max(cycle_files, key=_cycle_num)
     log.info('Comparing against previous cycle: %s', prev_file.name)
 
     try:

@@ -21,6 +21,18 @@ IRANIAN_STATE_MEDIA: set[str] = {
     'tehran_times', 'presstv', 'irna', 'mehr', 'fars',
 }
 
+# PKK-affiliated and other partisan source IDs — always 'claimed', never 'confirmed'.
+# These sources' statements about their own operations may be cited but never as
+# factual confirmation — only as primary actor claims requiring Tier 1/2 corroboration.
+PKK_AFFILIATED_SOURCES: set[str] = {
+    'anf_news_en', 'anf_news',    # ANF News — PKK/HPG-aligned
+    'sdf_press',                   # SDF Press Office — party to conflict
+    'hpg_communique',              # HPG (PKK armed wing) communiqués
+    'pjak_statement',              # PJAK statements
+    'kdp_news',                    # KDP media — cross-check against neutral sources
+    'puk_media',                   # PUK media — cross-check against neutral sources
+}
+
 
 def assign_confidence(items: list[dict]) -> list[dict]:
     """
@@ -40,6 +52,16 @@ def assign_confidence(items: list[dict]) -> list[dict]:
             item['confidence_tier'] = 'low'
             item['is_state_media'] = True
             log.debug('Iranian state media flagged: %s', source_id)
+            result.append(item)
+            continue
+
+        # PKK-affiliated / partisan source override
+        if source_id in PKK_AFFILIATED_SOURCES:
+            item['verification_status'] = 'claimed'
+            item['confidence_tier'] = 'low'
+            item['is_state_media'] = False
+            item['is_partisan_source'] = True
+            log.debug('PKK-affiliated/partisan source flagged: %s', source_id)
             result.append(item)
             continue
 
@@ -91,7 +113,14 @@ def _apply_corroboration_boost(items: list[dict]) -> None:
 
     for item in items:
         text_phrases = _extract_key_phrases(item.get('text', ''))
-        item['corroborated'] = bool(text_phrases & corroborated_phrases)
+        is_corroborated = bool(text_phrases & corroborated_phrases)
+        item['corroborated'] = is_corroborated
+
+        # Upgrade confidence_tier for Tier 2 items that are corroborated by Tier 1 sources.
+        # Tier 1 items are already 'high'; Tier 3 items are not upgraded (source quality
+        # cannot be bootstrapped through corroboration).
+        if is_corroborated and item.get('tier') == 2:
+            item['confidence_tier'] = 'moderate-corroborated'
 
     corroborated_count = sum(1 for item in items if item.get('corroborated'))
     log.info('%d items corroborated by 2+ Tier 1 sources', corroborated_count)

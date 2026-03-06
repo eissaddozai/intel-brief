@@ -1,4 +1,6 @@
 import type { BriefCycle } from '../types/brief'
+import canadaFlagBanner from '../assets/canada-flag-banner.png'
+import canadaFlagGoc from '../assets/canada-flag-goc.png'
 
 interface Props {
   meta: BriefCycle['meta']
@@ -9,11 +11,6 @@ const TLP_CLASS: Record<string, string> = {
   AMBER: 'masthead__tlp--amber',
   GREEN: 'masthead__tlp--green',
   CLEAR: 'masthead__tlp--clear',
-}
-
-function formatTimestamp(iso: string): string {
-  const d = new Date(iso)
-  return d.toUTCString().replace('GMT', 'UTC').toUpperCase()
 }
 
 export function Masthead({ meta }: Props) {
@@ -34,9 +31,12 @@ export function Masthead({ meta }: Props) {
 
   return (
     <header className="masthead" id="masthead">
-      {/* Classification bar */}
+      {/* Classification bar with GoC flag identifier */}
       <div className="masthead__class-bar">
         <span className="masthead__class-label">{meta.classification}</span>
+        <div className="masthead__flag">
+          <img src={canadaFlagBanner} alt="Canada" className="masthead__flag-banner" />
+        </div>
         <span className="masthead__class-unit">{meta.analystUnit}</span>
       </div>
 

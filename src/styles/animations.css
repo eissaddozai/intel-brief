@@ -42,6 +42,7 @@
 .domain:nth-of-type(3) { animation-delay: 0.19s; }
 .domain:nth-of-type(4) { animation-delay: 0.26s; }
 .domain:nth-of-type(5) { animation-delay: 0.33s; }
+.domain:nth-of-type(6) { animation-delay: 0.40s; }
 
 .strategic-header { animation: strategic-fade-in 0.5s ease both; }
 .flash-points     { animation: brief-entry 0.3s ease both; }
@@ -62,6 +63,7 @@
 .domain--d3:hover { box-shadow: -4px 0 28px rgba(40, 184, 88, 0.22); }
 .domain--d4:hover { box-shadow: -4px 0 28px rgba(138, 80, 204, 0.22); }
 .domain--d5:hover { box-shadow: -4px 0 28px rgba(56, 136, 216, 0.22); }
+.domain--d6:hover { box-shadow: -4px 0 28px rgba(46, 196, 182, 0.22); }
 
 /* ── KPI CELL HOVER ───────────────────────────────────────────────────────── */
 
@@ -82,6 +84,7 @@
 .kpi-strip__cell--d3:hover .kpi-strip__number { text-shadow: 0 0 20px var(--d3-bright); }
 .kpi-strip__cell--d4:hover .kpi-strip__number { text-shadow: 0 0 20px var(--d4-bright); }
 .kpi-strip__cell--d5:hover .kpi-strip__number { text-shadow: 0 0 20px var(--d5-bright); }
+.kpi-strip__cell--d6:hover .kpi-strip__number { text-shadow: 0 0 20px var(--d6-bright); }
 
 /* ── DATA TABLE ROW HOVER ─────────────────────────────────────────────────── */
 
@@ -100,7 +103,7 @@
 }
 
 .masthead__strip-cell:not(:first-child):hover {
-  background-color: #0D1020;
+  background-color: var(--color-strip-hover);
 }
 
 /* ── MASTHEAD SCROLL SHADOW ───────────────────────────────────────────────── */

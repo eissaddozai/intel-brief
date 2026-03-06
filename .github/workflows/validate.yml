@@ -1,0 +1,184 @@
+name: Validate Cycle Output
+
+# ─── Triggers ─────────────────────────────────────────────────────────────────
+# Runs on any PR or push that touches cycle data or the pipeline code itself.
+# Catches schema regressions and malformed JSON before they reach main.
+on:
+  pull_request:
+    paths:
+      - 'cycles/**'
+      - 'pipeline/**'
+      - 'src/types/**'
+  push:
+    branches: [main]
+    paths:
+      - 'cycles/**'
+  workflow_dispatch:
+    inputs:
+      cycle:
+        description: 'Path to cycle JSON to validate (default: cycles/latest.json)'
+        required: false
+        default: ''
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate cycle JSON
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyyaml jsonschema
+
+      # ── Schema validation ──────────────────────────────────────────────────
+      - name: Validate cycle JSON against schema
+        env:
+          INPUT_CYCLE: ${{ github.event.inputs.cycle }}
+        run: |
+          python - <<'EOF'
+          import json
+          import os
+          import sys
+          from pathlib import Path
+
+          # Resolve the cycle to validate — read from env to avoid shell injection
+          cycle_arg = os.environ.get("INPUT_CYCLE", "").strip()
+          if cycle_arg:
+              cycle_path = Path(cycle_arg)
+              if not cycle_path.exists():
+                  print(f"ERROR: Specified cycle path does not exist: {cycle_path}")
+                  sys.exit(1)
+          else:
+              latest = Path("cycles/latest.json")
+              if latest.exists():
+                  cycle_path = latest.resolve()
+              else:
+                  cycles = sorted(Path("cycles").glob("cycle*.json"))
+                  if not cycles:
+                      print("No cycles found — skipping validation")
+                      sys.exit(0)
+                  cycle_path = cycles[-1]
+
+          print(f"Validating: {cycle_path}")
+          cycle = json.loads(cycle_path.read_text(encoding="utf-8"))
+
+          errors = []
+
+          # ── Top-level keys ─────────────────────────────────────────────────
+          required_keys = {"meta", "strategicHeader", "executive", "domains",
+                           "warningIndicators", "collectionGaps", "caveats", "footer"}
+          missing = required_keys - set(cycle.keys())
+          if missing:
+              errors.append(f"Missing top-level keys: {sorted(missing)}")
+
+          # ── Meta fields ────────────────────────────────────────────────────
+          meta = cycle.get("meta", {})
+          for field in ("cycleId", "cycleNum", "classification", "tlp", "timestamp",
+                        "threatLevel", "threatTrajectory", "subtitle", "contextNote",
+                        "region", "analystUnit"):
+              if not meta.get(field):
+                  errors.append(f"meta.{field} is missing or empty")
+
+          VALID_LEVELS = {"CRITICAL", "SEVERE", "ELEVATED", "GUARDED", "LOW"}
+          if meta.get("threatLevel") not in VALID_LEVELS:
+              errors.append(
+                  f"meta.threatLevel '{meta.get('threatLevel')}' not in {sorted(VALID_LEVELS)}"
+              )
+
+          VALID_TRAJECTORIES = {"escalating", "stable", "de-escalating"}
+          if meta.get("threatTrajectory") not in VALID_TRAJECTORIES:
+              errors.append(
+                  f"meta.threatTrajectory '{meta.get('threatTrajectory')}' not in {sorted(VALID_TRAJECTORIES)}"
+              )
+
+          VALID_TLP = {"RED", "AMBER", "GREEN", "CLEAR"}
+          if meta.get("tlp") not in VALID_TLP:
+              errors.append(f"meta.tlp '{meta.get('tlp')}' not in {sorted(VALID_TLP)}")
+
+          # ── Domains ────────────────────────────────────────────────────────
+          VALID_CONFIDENCE = {
+              "almost-certainly", "highly-likely", "likely",
+              "possibly", "unlikely", "almost-certainly-not",
+          }
+          domains = cycle.get("domains", [])
+          domain_ids = {d.get("id") for d in domains}
+          expected_ids = {"d1", "d2", "d3", "d4", "d5", "d6"}
+          missing_domains = expected_ids - domain_ids
+          if missing_domains:
+              errors.append(f"Missing domain sections: {sorted(missing_domains)}")
+
+          for d in domains:
+              did = d.get("id", "?")
+              kj = d.get("keyJudgment", {})
+              if not kj.get("text"):
+                  errors.append(f"Domain {did}: keyJudgment.text is empty")
+              lang = kj.get("language")
+              if not lang:
+                  errors.append(f"Domain {did}: keyJudgment.language is missing")
+              elif lang not in VALID_CONFIDENCE:
+                  errors.append(f"Domain {did}: invalid confidence language '{lang}'")
+              if not d.get("bodyParagraphs"):
+                  errors.append(f"Domain {did}: bodyParagraphs is empty")
+
+          # ── Executive ──────────────────────────────────────────────────────
+          executive = cycle.get("executive", {})
+          if not executive.get("bluf"):
+              errors.append("executive.bluf is empty")
+          if not executive.get("keyJudgments"):
+              errors.append("executive.keyJudgments is empty")
+
+          # ── Warning indicators ─────────────────────────────────────────────
+          VALID_WI_STATUS = {"watching", "triggered", "elevated", "cleared"}
+          for wi in cycle.get("warningIndicators", []):
+              wid = wi.get("id", "?")
+              if not wi.get("indicator"):
+                  errors.append(f"warningIndicator {wid}: indicator is missing")
+              if wi.get("status") not in VALID_WI_STATUS:
+                  errors.append(f"warningIndicator {wid}: invalid status '{wi.get('status')}'")
+
+          # ── Caveats + footer ───────────────────────────────────────────────
+          caveats = cycle.get("caveats", {})
+          if not caveats.get("handling"):
+              errors.append("caveats.handling is missing")
+          footer = cycle.get("footer", {})
+          if not footer.get("id"):
+              errors.append("footer.id is missing")
+          if not footer.get("classification"):
+              errors.append("footer.classification is missing")
+
+          # ── Result ─────────────────────────────────────────────────────────
+          if errors:
+              print(f"\nVALIDATION FAILED — {len(errors)} error(s):\n")
+              for e in errors:
+                  print(f"  ✗ {e}")
+              sys.exit(1)
+          else:
+              domain_confs = {d.get("id"): d.get("keyJudgment", {}).get("confidence", "?") for d in domains}
+              wi_count = len(cycle.get("warningIndicators", []))
+              gap_count = len(cycle.get("collectionGaps", []))
+              print(f"\nVALIDATION PASSED")
+              print(f"  Cycle ID      : {meta.get('cycleId')}")
+              print(f"  Cycle num     : {meta.get('cycleNum')}")
+              print(f"  Domains       : {sorted(domain_ids)}")
+              print(f"  Confidence    : {domain_confs}")
+              print(f"  Threat        : {meta.get('threatLevel')} / {meta.get('threatTrajectory')}")
+              print(f"  Warning inds  : {wi_count}")
+              print(f"  Collection gaps: {gap_count}")
+              print(f"  Handling      : {caveats.get('handling', '—')}")
+          EOF
+
+      # ── Pretty-print summary ───────────────────────────────────────────────
+      - name: Print cycle summary
+        run: python pipeline/main.py show 2>/dev/null || echo "(show skipped — dependencies not installed)"
+        continue-on-error: true

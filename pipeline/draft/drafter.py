@@ -6,6 +6,8 @@ Drafts each domain section, then the executive summary, using structured JSON ou
 import json
 import logging
 import os
+import re
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -40,10 +42,20 @@ def _fill_template(template: str, **kwargs: str) -> str:
 
     Uses manual replacement instead of str.format() to avoid clashing with
     literal curly braces in JSON examples inside the prompt files.
+    Logs a warning for any placeholder that was not replaced (typo guard).
     """
     result = template
     for key, value in kwargs.items():
-        result = result.replace('{' + key + '}', value)
+        result = result.replace('{' + key + '}', str(value))
+
+    # Detect unreplaced placeholders — only flag simple snake_case identifiers
+    # (not short domain IDs like d1/d2 which appear in JSON schema examples)
+    unfilled = re.findall(r'\{([a-z][a-z0-9_]{2,})\}', result)
+    if unfilled:
+        log.warning(
+            '_fill_template: unreplaced placeholder(s) in prompt: %s — check kwargs',
+            unfilled,
+        )
     return result
 
 
@@ -55,11 +67,16 @@ def load_prompt(filename: str) -> str:
 
 
 def filter_by_domain(items: list[dict], domain: str) -> tuple[list[dict], list[dict]]:
-    """Split items into (tier1, tier2) for a given domain."""
+    """Split items into (tier1, tier2_plus) for a given domain.
+
+    tier2_plus includes Tier 2 and Tier 3 items — Tier 3 (PKK-affiliated,
+    Iranian state media) are included so prompts can cite them as claimed
+    sources; their verification_status distinguishes them from Tier 2.
+    """
     domain_items = [i for i in items if domain in i.get('tagged_domains', [])]
     tier1 = [i for i in domain_items if i.get('tier') == 1]
-    tier2 = [i for i in domain_items if i.get('tier') == 2]
-    return tier1, tier2
+    tier2_plus = [i for i in domain_items if i.get('tier') != 1]
+    return tier1, tier2_plus
 
 
 def _domain_kj_text(domain_sections: list[dict], domain_id: str) -> str:
@@ -76,43 +93,71 @@ def _domain_summary(section: dict) -> str:
     paras = section.get('bodyParagraphs', [])
     summary_parts = [
         f"Domain: {section.get('title', '')}",
-        f"Key Judgment: {kj.get('text', '')} [confidence: {kj.get('confidence', '?')}, {kj.get('probabilityRange', '')}]",
+        f"Key Judgment: {kj.get('text', '')} "
+        f"[confidence: {kj.get('confidence', '?')}, {kj.get('probabilityRange', '')}, "
+        f"language: {kj.get('language', '?')}]",
     ]
-    for p in paras[:2]:
+    # Include up to 4 paragraphs with up to 500 chars each for richer cross-domain context
+    for p in paras[:4]:
         text = p.get('text', '')
-        summary_parts.append(f"  [{p.get('subLabel', 'PARA')}]: {text[:300]}")
+        if len(text) > 500:
+            text = text[:500] + '…'
+        summary_parts.append(f"  [{p.get('subLabel', 'PARA')}]: {text}")
     return '\n'.join(summary_parts)
 
 
-def call_claude(client: anthropic.Anthropic, prompt: str, max_tokens: int = 2000) -> dict | list:
-    """Call Claude API and parse the JSON response."""
-    response = client.messages.create(
-        model='claude-opus-4-6',
-        max_tokens=max_tokens,
-        temperature=0.3,
-        system=(
-            'You are a senior conflict intelligence analyst. '
-            'Write in the dispassionate, precise voice of serious foreign affairs journalism. '
-            'Always produce structured JSON output exactly as specified. '
-            'Never fabricate citations. Never use forbidden jargon. '
-            'Distinguish Tier 1 confirmed facts from Tier 2 analytical interpretation.'
-        ),
-        messages=[{'role': 'user', 'content': prompt}],
+_CALL_RETRY_DELAYS = (5, 15, 30)  # seconds between retries for transient API errors
+
+
+def call_claude(
+    client: anthropic.Anthropic,
+    prompt: str,
+    max_tokens: int = 2000,
+    model: str = 'claude-opus-4-6',
+) -> dict | list:
+    """Call Claude API and parse the JSON response. Retries on transient errors."""
+    system = (
+        'You are a senior conflict intelligence analyst. '
+        'Write in the dispassionate, precise voice of serious foreign affairs journalism. '
+        'Always produce structured JSON output exactly as specified. '
+        'Never fabricate citations. Never use forbidden jargon. '
+        'Distinguish Tier 1 confirmed facts from Tier 2 analytical interpretation.'
     )
-
-    text = response.content[0].text
-
-    # Strip markdown code fences if present
-    if '```json' in text:
-        text = text.split('```json')[1].split('```')[0].strip()
-    elif '```' in text:
-        text = text.split('```')[1].split('```')[0].strip()
-
-    try:
-        return json.loads(text)
-    except json.JSONDecodeError as exc:
-        log.error('JSON parse failed: %s\nRaw response (first 600 chars): %s', exc, text[:600])
-        raise
+    last_exc: Exception | None = None
+    for attempt, delay in enumerate([0] + list(_CALL_RETRY_DELAYS)):
+        if delay:
+            time.sleep(delay)
+        try:
+            response = client.messages.create(
+                model=model,
+                max_tokens=max_tokens,
+                temperature=0.3,
+                system=system,
+                messages=[{'role': 'user', 'content': prompt}],
+            )
+        except Exception as exc:
+            err_str = str(exc).lower()
+            _transient = any(kw in err_str for kw in ('rate limit', 'overloaded', '529', '529'))
+            if _transient and attempt < len(_CALL_RETRY_DELAYS):
+                log.warning('Claude API transient error (attempt %d/%d): %s — retrying in %ds',
+                            attempt + 1, len(_CALL_RETRY_DELAYS) + 1, exc, _CALL_RETRY_DELAYS[attempt])
+                last_exc = exc
+                continue
+            raise
+        else:
+            text = response.content[0].text
+            # Strip markdown code fences if present
+            if '```json' in text:
+                text = text.split('```json')[1].split('```')[0].strip()
+            elif '```' in text:
+                text = text.split('```')[1].split('```')[0].strip()
+            try:
+                return json.loads(text)
+            except json.JSONDecodeError as exc:
+                log.error('JSON parse failed: %s\nRaw response (first 600 chars): %s',
+                          exc, text[:600])
+                raise
+    raise RuntimeError(f'Claude API failed after {len(_CALL_RETRY_DELAYS) + 1} attempts') from last_exc
 
 
 def draft_domain(
@@ -122,6 +167,7 @@ def draft_domain(
     target_date: datetime,
     prev_cycle: dict | None = None,
     context_sections: dict | None = None,  # {domain_id: drafted_section_dict}
+    model: str = 'claude-opus-4-6',
 ) -> dict:
     """Draft a single domain section."""
     tier1, tier2 = filter_by_domain(items, domain)
@@ -144,7 +190,7 @@ def draft_domain(
     d1_context = _domain_summary(context_sections['d1']) if 'd1' in context_sections else '(not yet available)'
     d2_context = _domain_summary(context_sections['d2']) if 'd2' in context_sections else '(not yet available)'
 
-    # d3 context for d6 (war risk prompt uses {d2_context} slot for energy context)
+    # d3 (energy) context — needed by the d6 war_risk template as {d3_context}
     d3_context = _domain_summary(context_sections['d3']) if 'd3' in context_sections else '(not yet available)'
 
     prompt = _fill_template(
@@ -153,11 +199,12 @@ def draft_domain(
         tier2_items=json.dumps(tier2[:15], indent=2, ensure_ascii=False),
         prev_cycle_kj=prev_kj or '(no previous cycle)',
         d1_context=d1_context,
-        d2_context=d3_context if domain == 'd6' else d2_context,
+        d2_context=d2_context,
+        d3_context=d3_context,  # war_risk.md uses {d3_context}; others ignore it harmlessly
     )
 
     log.info('Drafting domain %s (%d T1, %d T2 items)...', domain, len(tier1), len(tier2))
-    result = call_claude(client, prompt, max_tokens=3000)
+    result = call_claude(client, prompt, max_tokens=3000, model=model)
     return result if isinstance(result, dict) else {}
 
 
@@ -165,6 +212,7 @@ def draft_executive(
     client: anthropic.Anthropic,
     domain_sections: list[dict],
     prev_cycle: dict | None = None,
+    model: str = 'claude-opus-4-6',
 ) -> dict:
     """Draft executive summary (BLUF + key judgments + KPIs)."""
     template = load_prompt('executive.md')
@@ -185,7 +233,7 @@ def draft_executive(
     )
 
     log.info('Drafting executive summary...')
-    result = call_claude(client, prompt, max_tokens=2000)
+    result = call_claude(client, prompt, max_tokens=2000, model=model)
     return result if isinstance(result, dict) else {}
 
 
@@ -194,6 +242,7 @@ def draft_strategic_header(
     domain_sections: list[dict],
     executive: dict,
     prev_cycle: dict | None = None,
+    model: str = 'claude-opus-4-6',
 ) -> dict:
     """Draft the strategic header (headline judgment + trajectory)."""
     template = load_prompt('strategic_header.md')
@@ -218,7 +267,7 @@ def draft_strategic_header(
     )
 
     log.info('Drafting strategic header...')
-    result = call_claude(client, prompt, max_tokens=500)
+    result = call_claude(client, prompt, max_tokens=800, model=model)
     return result if isinstance(result, dict) else {}
 
 
@@ -226,6 +275,7 @@ def draft_warning_indicators(
     client: anthropic.Anthropic,
     domain_sections: list[dict],
     prev_cycle: dict | None = None,
+    model: str = 'claude-opus-4-6',
 ) -> list[dict]:
     """Draft / update warning indicators."""
     template = load_prompt('warning_indicators.md')
@@ -243,7 +293,7 @@ def draft_warning_indicators(
     )
 
     log.info('Drafting warning indicators...')
-    result = call_claude(client, prompt, max_tokens=1200)
+    result = call_claude(client, prompt, max_tokens=2500, model=model)
     if isinstance(result, list):
         return result
     return result.get('warningIndicators', [])
@@ -253,6 +303,7 @@ def draft_collection_gaps(
     client: anthropic.Anthropic,
     tagged_items: list[dict],
     domain_sections: list[dict],
+    model: str = 'claude-opus-4-6',
 ) -> list[dict]:
     """Identify collection gaps from triage output and domain confidence."""
     template = load_prompt('collection_gaps.md')
@@ -280,10 +331,85 @@ def draft_collection_gaps(
     )
 
     log.info('Drafting collection gaps...')
-    result = call_claude(client, prompt, max_tokens=900)
+    result = call_claude(client, prompt, max_tokens=1500, model=model)
     if isinstance(result, list):
         return result
     return result.get('collectionGaps', [])
+
+
+_BRENT_PATTERN = re.compile(
+    r'\$\s*(\d{2,3}(?:\.\d{1,2})?)\s*/?\s*(?:bbl|barrel|b)?',
+    re.IGNORECASE,
+)
+
+
+def _extract_brent_price(items: list[dict]) -> str:
+    """
+    Attempt to extract a Brent crude price from d3 energy items.
+    Returns formatted price string like '$94.20' or '—' if not found.
+    """
+    for item in items:
+        if 'd3' not in item.get('tagged_domains', []):
+            continue
+        haystack = item.get('title', '') + ' ' + item.get('text', '')
+        m = _BRENT_PATTERN.search(haystack)
+        if m:
+            return f'${m.group(1)}/bbl'
+    return '—'
+
+
+def _count_kinetic_incidents(items: list[dict]) -> str:
+    """
+    Count d1 (battlespace/kinetic) items as a proxy for 24h incident volume.
+    Returns string like '14' or '—'.
+    """
+    count = sum(1 for i in items if 'd1' in i.get('tagged_domains', []))
+    return str(count) if count > 0 else '—'
+
+
+def _build_flash_points(
+    client: anthropic.Anthropic,
+    domain_sections: list[dict],
+    executive: dict,
+    model: str,
+) -> list[dict]:
+    """
+    Draft flash-point alerts from domain key judgments and executive summary.
+    Flash points are 1–3 items representing the most time-critical events.
+    Returns a list of flash-point dicts: {headline, detail, domain, urgency}.
+    """
+    all_kjs = '\n'.join(
+        f"[{s.get('id')}] {s.get('keyJudgment', {}).get('text', '')}"
+        for s in domain_sections
+    )
+    bluf = executive.get('bluf', '')
+
+    prompt = (
+        'You are a senior conflict intelligence analyst drafting FLASH POINTS for a daily brief.\n\n'
+        'FLASH POINTS are the 1–3 most time-critical developments from the current cycle that '
+        'require immediate analyst attention — not a summary of the brief, but the sharpest '
+        'operational tripwires.\n\n'
+        f'EXECUTIVE BLUF:\n{bluf}\n\n'
+        f'DOMAIN KEY JUDGMENTS:\n{all_kjs}\n\n'
+        'Select up to 3 flash points. For each, return a JSON object with exactly these fields:\n'
+        '  "id": "fp-1" | "fp-2" | "fp-3"\n'
+        '  "timestamp": ISO 8601 UTC timestamp of the event (use cycle timestamp if unknown)\n'
+        '  "headline": one sharp sentence (≤12 words) — the event itself\n'
+        '  "detail": one analytical sentence (≤25 words) — why it matters now\n'
+        '  "domain": the primary domain id (d1/d2/d3/d4/d5/d6)\n'
+        '  "confidence": "high" | "moderate" | "low"\n'
+        '  "citations": [] (empty array unless you can name a specific Tier 1 source)\n\n'
+        'Return ONLY a JSON array of 1–3 objects. No markdown, no commentary.\n'
+        'If no events meet flash-point threshold, return [].'
+    )
+
+    try:
+        result = call_claude(client, prompt, max_tokens=700, model=model)
+        if isinstance(result, list):
+            return result[:3]
+    except Exception as exc:
+        log.warning('Flash point drafting failed: %s', exc)
+    return []
 
 
 def draft_cycle(
@@ -308,6 +434,8 @@ def draft_cycle(
             'ANTHROPIC_API_KEY not set. Export the variable or add it to pipeline-config.yaml.'
         )
 
+    # Respect configured model — never silently fall back to a different tier
+    model = claude_cfg.get('model', 'claude-opus-4-6')
     client = anthropic.Anthropic(api_key=api_key)
 
     domain_sections: list[dict] = []
@@ -321,6 +449,7 @@ def draft_cycle(
             target_date=target_date,
             prev_cycle=prev_cycle,
             context_sections=drafted,
+            model=model,
         )
         # Ensure schema fields are present
         section.setdefault('id', domain_id)
@@ -330,10 +459,26 @@ def draft_cycle(
         drafted[domain_id] = section
         log.info('Domain %s drafted', domain_id)
 
-    executive = draft_executive(client, domain_sections, prev_cycle)
-    strategic_header = draft_strategic_header(client, domain_sections, executive, prev_cycle)
-    warning_indicators = draft_warning_indicators(client, domain_sections, prev_cycle)
-    collection_gaps = draft_collection_gaps(client, tagged_items, domain_sections)
+    executive = draft_executive(client, domain_sections, prev_cycle, model=model)
+    strategic_header = draft_strategic_header(client, domain_sections, executive, prev_cycle, model=model)
+    warning_indicators = draft_warning_indicators(client, domain_sections, prev_cycle, model=model)
+    collection_gaps = draft_collection_gaps(client, tagged_items, domain_sections, model=model)
+    flash_points = _build_flash_points(client, domain_sections, executive, model=model)
+
+    # Derive live strip cell values from collected/drafted data
+    brent_price = _extract_brent_price(tagged_items)
+    incident_count = _count_kinetic_incidents(tagged_items)
+    flash_point_count = str(len(flash_points)) if flash_points else '0'
+
+    # Hormuz status from warning indicators
+    hormuz_wi = next(
+        (wi for wi in warning_indicators if 'hormuz' in wi.get('indicator', '').lower()),
+        None,
+    )
+    hormuz_status = (
+        'DISRUPTED' if hormuz_wi and hormuz_wi.get('status') in ('triggered', 'elevated')
+        else 'ACTIVE'
+    )
 
     # Merge strategicHeader fields into meta for convenience
     threat_level = strategic_header.pop('threatLevel', 'SEVERE')
@@ -358,15 +503,15 @@ def draft_cycle(
                 f'{target_date.strftime("%d %B %Y")}. All times UTC unless noted.'
             ),
             'stripCells': [
-                {'top': threat_level, 'bot': 'THREAT LEVEL'},
-                {'top': '—', 'bot': 'INCIDENTS / 24H'},
-                {'top': '—', 'bot': 'BRENT CRUDE'},
-                {'top': 'ACTIVE', 'bot': 'HORMUZ STATUS'},
-                {'top': '—', 'bot': 'FLASH POINTS'},
+                {'top': threat_level,      'bot': 'THREAT LEVEL'},
+                {'top': incident_count,    'bot': 'INCIDENTS / 24H'},
+                {'top': brent_price,       'bot': 'BRENT CRUDE'},
+                {'top': hormuz_status,     'bot': 'HORMUZ STATUS'},
+                {'top': flash_point_count, 'bot': 'FLASH POINTS'},
             ],
         },
         'strategicHeader': strategic_header,
-        'flashPoints': [],
+        'flashPoints': flash_points,
         'executive': executive,
         'domains': domain_sections,
         'warningIndicators': warning_indicators,

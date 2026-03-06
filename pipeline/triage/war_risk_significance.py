@@ -40,7 +40,10 @@ import logging
 from datetime import datetime, timezone
 from pathlib import Path
 
-from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
+try:
+    from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage  # type: ignore[import]
+except ImportError:
+    query = ClaudeAgentOptions = ResultMessage = None  # type: ignore[assignment,misc]
 
 log = logging.getLogger(__name__)
 
@@ -74,11 +77,14 @@ async def score_items_cip(
     results_by_batch: list[list[dict]] = [[] for _ in batches]
 
     # Semaphore-limited concurrent scoring
+    cycle_year = target_date.year if target_date else 0
     sem = anyio.Semaphore(MAX_CONCURRENT)
 
     async def score_one(idx: int, batch: list[dict]) -> None:
         async with sem:
-            results_by_batch[idx] = await _score_batch_cip(batch, threshold, idx)
+            results_by_batch[idx] = await _score_batch_cip(
+                batch, threshold, idx, _cycle_year=cycle_year
+            )
 
     async with anyio.create_task_group() as tg:
         for idx, batch in enumerate(batches):
@@ -116,6 +122,7 @@ async def _score_batch_cip(
     batch: list[dict],
     threshold: int,
     batch_idx: int,
+    _cycle_year: int = 0,
 ) -> list[dict]:
     """
     One CIP subagent call scores a batch of up to BATCH_SIZE items.
@@ -134,7 +141,7 @@ async def _score_batch_cip(
         for idx, item in enumerate(batch)
     ]
 
-    prompt = _build_scoring_prompt(items_payload, threshold)
+    prompt = _build_scoring_prompt(items_payload, threshold, cycle_year=_cycle_year)
     raw_results: list[dict] = []
 
     try:
@@ -144,7 +151,7 @@ async def _score_batch_cip(
                 allowed_tools=[],          # no web access — reasoning only
                 permission_mode='dontAsk',
                 model='claude-opus-4-6',
-                max_turns=3,
+                max_turns=6,
             ),
         ):
             if isinstance(message, ResultMessage):
@@ -170,7 +177,10 @@ async def _score_batch_cip(
             score     = 0
             rationale = 'No score returned by CIP scoring subagent.'
         else:
-            score     = int(result.get('score', 0))
+            try:
+                score = int(result.get('score', 0))
+            except (TypeError, ValueError):
+                score = 0
             rationale = result.get('rationale', '')
 
         out.append({
@@ -260,16 +270,17 @@ Output ONLY valid JSON — no markdown, no explanation outside the JSON.\
 """
 
 
-def _build_scoring_prompt(items: list[dict], threshold: int) -> str:
+def _build_scoring_prompt(items: list[dict], threshold: int, cycle_year: int = 0) -> str:
     items_json = json.dumps(items, indent=2, ensure_ascii=False)
+    year_note = f' ({cycle_year})' if cycle_year else ''
     return f"""\
 {_SYSTEM_PROMPT}
 
 Score each of the following {len(items)} war risk insurance items.
 
-Current market context (2026): Active conflict in the Middle East / Gulf region.
+Current market context{year_note}: Active conflict in the Middle East / Gulf region.
 Red Sea shipping disruption ongoing. JWC areas under review. Lloyd's war risk
-market hardening with premiums elevated vs. 2024 baseline.
+market hardening with premiums elevated vs. prior-year baseline.
 
 Significance threshold for inclusion in the daily brief: {threshold}/100.
 

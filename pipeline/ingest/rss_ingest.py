@@ -4,21 +4,26 @@ Uses requests + stdlib xml.etree (no feedparser dependency).
 """
 
 import logging
+import re
 import time
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 import requests
 import yaml
 
+from ingest.relevance import filter_relevant
+
 log = logging.getLogger(__name__)
 
 SOURCES_FILE = Path(__file__).parent / 'sources.yaml'
-MAX_ITEM_AGE_HOURS = 30
 REQUEST_DELAY = 0.5
 REQUEST_TIMEOUT = 15
+
+# Fallback age limit — pipeline-config.yaml ingest.lookback_hours takes precedence
+_DEFAULT_LOOKBACK_HOURS = 30
 
 HEADERS = {'User-Agent': 'CSE-Intel-Brief/1.0 (Research pipeline; contact: research@cse.ca)'}
 
@@ -29,29 +34,37 @@ NS = {
     'dc': 'http://purl.org/dc/elements/1.1/',
 }
 
+_HTML_TAG_RE = re.compile(r'<[^>]+>')
+
 
 def load_rss_sources(config: dict | None = None) -> list[dict]:
     data = yaml.safe_load(SOURCES_FILE.read_text(encoding='utf-8'))
-    return [s for s in data.get('sources', []) if s.get('method') == 'rss']
+    return [
+        s for s in data.get('sources', [])
+        if s.get('method') == 'rss' and s.get('enabled', True)
+    ]
 
 
 def _parse_date(text: str | None) -> datetime | None:
     if not text:
         return None
     text = text.strip()
-    # Try RFC 2822 (RSS pubDate)
+    # Try RFC 2822 (RSS pubDate) — most common for RSS feeds
     try:
         return parsedate_to_datetime(text).astimezone(timezone.utc)
-    except Exception:
+    except (TypeError, ValueError, OverflowError):
         pass
-    # Try ISO 8601 (Atom)
-    for fmt in ('%Y-%m-%dT%H:%M:%SZ', '%Y-%m-%dT%H:%M:%S%z', '%Y-%m-%d'):
+    # Try ISO 8601 (Atom) — use the full string for timezone-aware formats
+    # so that offsets like +05:30 are not truncated by an [:25] slice.
+    for fmt in ('%Y-%m-%dT%H:%M:%SZ', '%Y-%m-%dT%H:%M:%S%z',
+                '%Y-%m-%dT%H:%M%z', '%Y-%m-%d'):
         try:
-            dt = datetime.strptime(text[:25], fmt)
+            sample = text[:20] if fmt == '%Y-%m-%dT%H:%M:%SZ' else text
+            dt = datetime.strptime(sample, fmt)
             if dt.tzinfo is None:
                 dt = dt.replace(tzinfo=timezone.utc)
             return dt.astimezone(timezone.utc)
-        except Exception:
+        except (ValueError, OverflowError):
             continue
     return None
 
@@ -75,8 +88,12 @@ def _parse_feed(xml_text: str, source: dict, cutoff: datetime) -> list[dict]:
         log.error('%s: XML parse error — %s', source['name'], exc)
         return items
 
-    # Detect RSS vs Atom
-    is_atom = root.tag.startswith('{http://www.w3.org/2005/Atom}') or root.tag == 'feed'
+    # Detect RSS vs Atom — handle both bare and namespace-prefixed root tags
+    is_atom = (
+        root.tag.startswith('{http://www.w3.org/2005/Atom}')
+        or root.tag == 'feed'
+        or root.tag.endswith('}feed')
+    )
     entries = (
         root.findall('{http://www.w3.org/2005/Atom}entry')
         if is_atom
@@ -105,9 +122,7 @@ def _parse_feed(xml_text: str, source: dict, cutoff: datetime) -> list[dict]:
         if ts and ts < cutoff:
             continue
 
-        # Strip HTML tags from summary
-        import re
-        summary_clean = re.sub(r'<[^>]+>', ' ', summary or '').strip()
+        summary_clean = _HTML_TAG_RE.sub(' ', summary or '').strip()
 
         items.append({
             'source_id': source['id'],
@@ -128,7 +143,11 @@ def _parse_feed(xml_text: str, source: dict, cutoff: datetime) -> list[dict]:
 
 def ingest_rss(target_date: datetime, config: dict | None = None) -> list[dict]:
     sources = load_rss_sources(config)
-    cutoff = target_date - timedelta(hours=MAX_ITEM_AGE_HOURS)
+    lookback = (config or {}).get('ingest', {}).get('lookback_hours', _DEFAULT_LOOKBACK_HOURS)
+    timeout  = (config or {}).get('ingest', {}).get('timeout_seconds', REQUEST_TIMEOUT)
+    delay    = (config or {}).get('ingest', {}).get('request_delay_seconds', REQUEST_DELAY)
+
+    cutoff = target_date - timedelta(hours=lookback)
     all_items: list[dict] = []
     failed_tier1: list[str] = []
 
@@ -139,12 +158,15 @@ def ingest_rss(target_date: datetime, config: dict | None = None) -> list[dict]:
             continue
 
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
+            resp = requests.get(url, headers=HEADERS, timeout=timeout)
             resp.raise_for_status()
             items = _parse_feed(resp.text, source, cutoff)
-            # Apply relevance filter to general feeds (Tier 1 items pass unconditionally)
-            from ingest.relevance import filter_relevant
-            items = filter_relevant(items)
+
+            # Tier 1 items always pass; apply relevance filter to Tier 2/3 only
+            tier1 = [i for i in items if i.get('tier') == 1]
+            tier2plus = filter_relevant([i for i in items if i.get('tier') != 1])
+            items = tier1 + tier2plus
+
             all_items.extend(items)
             log.info('%-35s %3d items', source['name'], len(items))
         except Exception as exc:
@@ -152,7 +174,7 @@ def ingest_rss(target_date: datetime, config: dict | None = None) -> list[dict]:
             if source['tier'] == 1:
                 failed_tier1.append(source['name'])
 
-        time.sleep(REQUEST_DELAY)
+        time.sleep(delay)
 
     if failed_tier1:
         log.error('TIER 1 RSS FAILURES: %s', ', '.join(failed_tier1))

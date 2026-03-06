@@ -1,0 +1,98 @@
+name: Agent Intel Brief
+
+# ─── Triggers ─────────────────────────────────────────────────────────────────
+# Manual-dispatch only. Daily scheduled runs are handled by daily-brief.yml.
+# Use this workflow to trigger a one-off agent run with specific date/model overrides.
+on:
+  workflow_dispatch:
+    inputs:
+      date:
+        description: 'Target date (YYYY-MM-DD). Leave blank for today.'
+        required: false
+        default: ''
+      model:
+        description: 'Claude model ID'
+        required: false
+        default: 'claude-sonnet-4-6'
+
+permissions:
+  contents: write
+
+# Only one agent run at a time — prevent overlapping daily runs
+concurrency:
+  group: agent-brief
+  cancel-in-progress: false
+
+jobs:
+  agent-brief:
+    name: Generate brief (agentic)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45      # agent loop can take up to ~30 min on heavy days
+
+    steps:
+      # ── Checkout ──────────────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0     # full history so serialiser can number cycles correctly
+
+      # ── Python ────────────────────────────────────────────────────────────
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install pyyaml requests
+
+      # ── Claude Code CLI ───────────────────────────────────────────────────
+      # The agentic pipeline spawns `claude -p` subprocesses via subprocess.run.
+      # Node.js ships with ubuntu-latest; this adds the claude CLI to PATH.
+      - name: Install Claude Code CLI
+        run: npm install -g @anthropic-ai/claude-code
+
+      # ── Agent run ─────────────────────────────────────────────────────────
+      - name: Run agentic brief
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          INPUT_DATE: ${{ github.event.inputs.date }}
+          INPUT_MODEL: ${{ github.event.inputs.model || 'claude-sonnet-4-6' }}
+        run: |
+          echo "USED_MODEL=$INPUT_MODEL" >> "$GITHUB_ENV"
+          if [ -n "$INPUT_DATE" ]; then
+            python pipeline/main.py agent --date "$INPUT_DATE" --model "$INPUT_MODEL"
+          else
+            python pipeline/main.py agent --model "$INPUT_MODEL"
+          fi
+
+      # ── Commit artifacts ───────────────────────────────────────────────────
+      - name: Commit cycle JSON and HTML brief
+        run: |
+          git config user.name  "Intel Brief Bot"
+          git config user.email "bot@intel-brief"
+          git add cycles/ briefs/
+          # Copy latest cycle to src/data/ for the React SPA
+          if [ -f cycles/latest.json ]; then
+            cp cycles/latest.json src/data/latest.json
+            LATEST=$(readlink -f cycles/latest.json || ls -t cycles/cycle*.json | head -1)
+            BASENAME=$(basename "$LATEST")
+            cp "$LATEST" "src/data/$BASENAME"
+            git add src/data/
+          fi
+          if git diff --cached --quiet; then
+            echo "No new cycle generated — nothing to commit"
+          else
+            CYCLE_DATE=$(date -u +%Y-%m-%d)
+            git commit -m "cycle: ${CYCLE_DATE} — agent brief [${USED_MODEL:-claude-sonnet-4-6}]"
+            git push origin main
+          fi
+
+      # ── Upload HTML brief as artifact ──────────────────────────────────────
+      - name: Upload HTML brief
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: brief-${{ github.run_id }}
+          path: briefs/
+          retention-days: 90

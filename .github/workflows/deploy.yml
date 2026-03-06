@@ -1,11 +1,15 @@
 name: Deploy to GitHub Pages
 
+# ─── Triggers ─────────────────────────────────────────────────────────────────
+# Fires on pushes to main that touch the React app, cycle data, or HTML briefs.
+# Also fires whenever a new cycle is committed by the daily-brief workflow.
 on:
   push:
     branches: [main]
     paths:
       - 'src/**'
       - 'cycles/**'
+      - 'briefs/**'
       - 'index.html'
       - 'vite.config.ts'
       - 'package.json'
@@ -22,6 +26,7 @@ concurrency:
 
 jobs:
   build:
+    name: Build React SPA
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -39,12 +44,24 @@ jobs:
       - name: Build
         run: npm run build
 
+      # Serve the static HTML briefs alongside the SPA at /briefs/
+      - name: Copy HTML briefs into dist
+        run: |
+          if compgen -G "briefs/*.html" > /dev/null 2>&1; then
+            mkdir -p dist/briefs
+            cp briefs/*.html dist/briefs/
+            echo "Copied $(ls briefs/*.html | wc -l) brief(s) to dist/briefs/"
+          else
+            echo "No HTML briefs to copy yet"
+          fi
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
 
   deploy:
+    name: Deploy to Pages
     needs: build
     runs-on: ubuntu-latest
     environment:
