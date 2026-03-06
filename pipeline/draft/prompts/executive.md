@@ -62,10 +62,12 @@ Synthesize the six domain sections into an integrated executive assessment with:
 - "Reporting indicates, though corroboration is limited..." → 45–55% (possibly)
 - "We judge it unlikely, though we cannot exclude..." → 20–45% (unlikely)
 
-**Writing Rules:**
-- BLUF is not a neutral summary — it is an analytical judgment
+**Writing Rules (MANDATORY):**
+- BLUF is not a neutral summary — it is an analytical judgment. The first sentence must state an assessment, not set a scene.
+- Every paragraph must contain at least two sentences. No fragment leads.
 - Cross-domain synthesis is the primary value of the executive section
-- FORBIDDEN PHRASES: "kinetic activity", "threat actors", "ongoing situation", "international community", "stakeholders", "going forward"
+- Use ONLY the six confidence phrases from the ladder above. No ad-hoc hedging: never write "it is possible that it might", "appears to be", "may have", "could potentially", "remains to be seen".
+- FORBIDDEN PHRASES (automatic rejection): "kinetic activity", "threat actors", "threat landscape", "robust", "leverage" (verb), "diplomatic efforts", "international community", "stakeholders", "going forward", "ongoing situation", "fluid situation", "escalatory dynamics", "remains to be seen", "ongoing conflict", "risk environment", "uncertain times"
 
 ## Output Format
 

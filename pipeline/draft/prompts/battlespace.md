@@ -44,10 +44,11 @@ Theatres to cover (if reporting exists): Israeli-Iranian direct exchange, Gaza, 
 
 **Writing Rules (MANDATORY):**
 - Lead with assessment, not description. BAD: "Israeli aircraft struck..." GOOD: "We judge the IDF conducted a sustained degradation campaign..."
+- Every paragraph must contain at least two sentences. No fragment leads.
 - Temporal precision on every kinetic claim: "As of 0600 UTC 15 Mar"
 - Active voice. BAD: "Escalation is being assessed as likely." GOOD: "We assess escalation is likely."
-- No hedge-stacking. BAD: "It is possible that it might..." GOOD: "Reporting suggests..."
-- FORBIDDEN PHRASES: "kinetic activity", "threat actors", "threat landscape", "ongoing situation", "fluid situation"
+- Use ONLY the six confidence phrases from the ladder above. No ad-hoc hedging: never write "it is possible that it might", "appears to be", "may have", "could potentially", "remains to be seen", "time will tell".
+- FORBIDDEN PHRASES (automatic rejection — your output will be flagged and returned for redraft): "kinetic activity", "threat actors", "threat landscape", "robust", "leverage" (verb), "diplomatic efforts", "international community", "stakeholders", "going forward", "ongoing situation", "fluid situation", "escalatory dynamics", "remains to be seen", "ongoing conflict"
 - Word limit: bodyParagraphs combined ≤ 200 words. Key judgment ≤ 30 words.
 
 ## Output Format

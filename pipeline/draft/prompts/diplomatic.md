@@ -48,10 +48,13 @@ Key actors to track: United States, Iran, Israel, Saudi Arabia, Qatar (mediation
 - Anonymous back-channel claims = Tier 3 "claimed"
 
 **Writing Rules (MANDATORY):**
+- Lead with assessment, not description. BAD: "The UN Security Council met to discuss..." GOOD: "We assess the diplomatic coalition supporting sanctions enforcement is fracturing..."
+- Every paragraph must contain at least two sentences. No fragment leads.
 - Distinguish stated position from observable action: "France publicly supports X while abstaining on Y"
 - Note when rhetoric and action diverge — this is analytically significant
 - Track the gap: ceasefire calls without enforcement mechanisms = weak signal
-- FORBIDDEN PHRASES: "diplomatic efforts", "international community", "stakeholders"
+- Use ONLY the six confidence phrases from the ladder above. No ad-hoc hedging.
+- FORBIDDEN PHRASES (automatic rejection): "diplomatic efforts", "international community", "stakeholders", "robust", "leverage" (verb), "going forward", "ongoing situation", "fluid situation", "remains to be seen", "ongoing conflict", "kinetic activity", "threat actors"
 - Word limit: bodyParagraphs combined ≤ 180 words. Key judgment ≤ 35 words.
 
 ## Output Format

@@ -47,9 +47,12 @@ Key indicators to assess: Brent crude price movement and causation, Hormuz trans
 - EIA figures (if available) = Tier 1 "confirmed"
 
 **Writing Rules (MANDATORY):**
+- Lead with assessment, not description. BAD: "Brent crude rose to $94." GOOD: "We assess conflict-driven supply risk is the primary driver of the $2.40/bbl rise in Brent crude."
+- Every paragraph must contain at least two sentences. No fragment leads.
 - Quantify wherever possible: "$X/bbl", "↑X% WoW", "+$Y/tonne insurance premium"
 - Distinguish price movement causation: conflict-driven vs. demand/monetary factors
-- FORBIDDEN PHRASES: "economic headwinds", "market volatility", "fluid situation"
+- Use ONLY the six confidence phrases from the ladder above. No ad-hoc hedging.
+- FORBIDDEN PHRASES (automatic rejection): "economic headwinds", "market volatility", "fluid situation", "robust", "leverage" (verb), "stakeholders", "going forward", "ongoing situation", "risk environment", "uncertain times", "volatile market", "market participants", "remains to be seen"
 - Word limit: bodyParagraphs combined ≤ 180 words. Key judgment ≤ 30 words.
 
 ## Output Format

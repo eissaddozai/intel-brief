@@ -28,10 +28,11 @@ Based on the triage report (what sources were available) and the domain drafts (
 
 **Scope:** 3–6 gaps. Do not pad. If only 2 genuine gaps exist, report 2. Do not invent gaps.
 
-**Writing Rules:**
+**Writing Rules (MANDATORY):**
 - Specific gaps, not generic "limited open-source intelligence available"
 - State the consequence: "This gap prevents confident assessment of X"
-- FORBIDDEN: "we cannot know", "impossible to determine" — say what would fill the gap instead
+- Every gap and significance field must contain at least two sentences.
+- FORBIDDEN: "we cannot know", "impossible to determine", "threat actors", "threat landscape", "remains to be seen", "fluid situation", "ongoing situation" — say what would fill the gap instead
 
 ## Output Format
 

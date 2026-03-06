@@ -59,10 +59,13 @@ Key indicators to assess: Lloyd's JWC listed area changes (add/remove), war risk
 - AIS diversion data = Tier 2 "reported" (cite Signal Ocean / Dryad)
 
 **Writing Rules (MANDATORY):**
+- Lead with assessment, not description. BAD: "War risk premiums rose." GOOD: "We assess underwriters are pricing-in a sustained escalation scenario, with Hormuz transit premiums rising 18% since the previous cycle."
+- Every paragraph must contain at least two sentences. No fragment leads.
 - Quantify premium movements wherever possible: "$X/GRT/day", "+X% vs. prior cycle", "↑Y basis points"
 - Distinguish premium causation: conflict-driven (military events) vs. demand/capacity-driven (market cycle)
 - Name specific insurers and brokers when citing market data — do not write "a major insurer"
-- FORBIDDEN PHRASES: "risk environment", "uncertain times", "volatile market", "market participants"
+- Use ONLY the six confidence phrases from the ladder above. No ad-hoc hedging.
+- FORBIDDEN PHRASES (automatic rejection): "risk environment", "uncertain times", "volatile market", "market participants", "robust", "leverage" (verb), "stakeholders", "going forward", "ongoing situation", "fluid situation", "remains to be seen", "ongoing conflict", "market volatility", "economic headwinds"
 - When JWC listed areas are unchanged, state this explicitly — omission is ambiguous
 - Word limit: bodyParagraphs combined ≤ 220 words. Key judgment ≤ 35 words.
 

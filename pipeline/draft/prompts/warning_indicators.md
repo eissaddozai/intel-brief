@@ -33,11 +33,12 @@ Review the domain assessments and source material and update the status of each 
 4. Write a detail line: ≤ 80 words, precise, cited
 5. "triggered" requires Tier 1 confirmation; "elevated" requires Tier 2 minimum
 
-**Writing Rules:**
+**Writing Rules (MANDATORY):**
 - Be specific: name the source and timestamp for triggered/elevated status
 - If clearing an indicator, note what changed
 - Do not trigger an indicator on Tier 3 claims alone
-- FORBIDDEN: "may have", "possibly triggered", "appears to be" — status is binary; use "elevated" if uncertain
+- Every detail field must contain at least two sentences.
+- FORBIDDEN: "may have", "possibly triggered", "appears to be", "remains to be seen", "could potentially", "fluid situation", "ongoing situation", "threat actors", "threat landscape" — status is binary; use "elevated" if uncertain
 
 ## Output Format
 

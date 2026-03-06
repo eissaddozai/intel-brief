@@ -166,6 +166,28 @@ def review_indicators(indicators: list[dict]) -> list[dict]:
     return indicators
 
 
+def display_quality_warnings(draft: dict) -> None:
+    """Surface any quality warnings from the draft pipeline to the reviewer."""
+    warnings = draft.get('_qualityWarnings', [])
+    if not warnings:
+        print(f'{GREEN}✓ Quality gate: all checks passed — no issues found{RESET}\n')
+        return
+
+    print(f'{RED}{"─" * 80}{RESET}')
+    print(f'{RED}{BOLD} QUALITY GATE: {len(warnings)} ISSUE(S) DETECTED{RESET}')
+    print(f'{RED}{"─" * 80}{RESET}')
+    for w in warnings:
+        rule = w.get('rule', '?')
+        domain = w.get('domain', '?')
+        field = w.get('field', '?')
+        msg = w.get('message', '')
+        colour = RED if rule in ('FORBIDDEN_JARGON', 'INVALID_CONFIDENCE_LANGUAGE') else AMBER
+        print(f'  {colour}[{rule}]{RESET} {domain}.{field}')
+        print(f'    {DIM}{msg}{RESET}')
+    print(f'{RED}{"─" * 80}{RESET}')
+    print(f'{AMBER}Review flagged sections carefully before approving.{RESET}\n')
+
+
 def run_review(draft: dict) -> dict | None:
     """
     Run the full review workflow for a complete cycle draft.
@@ -173,6 +195,9 @@ def run_review(draft: dict) -> dict | None:
     """
     print(f'\n{BOLD}{CYAN}CSE INTEL BRIEF — HUMAN REVIEW{RESET}')
     print(f'{DIM}Review each section. Target: ~10 minutes total.{RESET}\n')
+
+    # Surface quality warnings before review begins
+    display_quality_warnings(draft)
 
     approved = dict(draft)
 

@@ -1,6 +1,8 @@
 """
 Claude API drafting module.
 Drafts each domain section, then the executive summary, using structured JSON output.
+Runs post-draft quality checks to catch forbidden jargon, ad-hoc hedging,
+description-first leads, and other writing-clarity violations before review.
 """
 
 import json
@@ -10,6 +12,13 @@ from datetime import datetime
 from pathlib import Path
 
 import anthropic
+
+from pipeline.draft.quality_checks import (
+    validate_domain_section,
+    validate_executive,
+    validate_strategic_header,
+    validate_cycle,
+)
 
 log = logging.getLogger(__name__)
 
@@ -91,11 +100,26 @@ def call_claude(client: anthropic.Anthropic, prompt: str, max_tokens: int = 2000
         max_tokens=max_tokens,
         temperature=0.3,
         system=(
-            'You are a senior conflict intelligence analyst. '
-            'Write in the dispassionate, precise voice of serious foreign affairs journalism. '
-            'Always produce structured JSON output exactly as specified. '
-            'Never fabricate citations. Never use forbidden jargon. '
-            'Distinguish Tier 1 confirmed facts from Tier 2 analytical interpretation.'
+            'You are a senior conflict intelligence analyst writing for the CSE daily brief. '
+            'Write in the dispassionate, precise voice of serious foreign-affairs journalism. '
+            'Always produce structured JSON output exactly as specified.\n\n'
+            'WRITING CLARITY RULES — violations will be flagged and returned for redraft:\n'
+            '1. Lead every key judgment and BLUF with an ASSESSMENT, never a factual description. '
+            'BAD: "Israeli aircraft struck targets." GOOD: "We assess the IDF has shifted to a sustained attrition posture."\n'
+            '2. Use ONLY the six confidence phrases from the ladder — never ad-hoc hedging '
+            '("it is possible that it might", "appears to be", "may have", "remains to be seen").\n'
+            '3. Every paragraph must contain at least two sentences. No fragment leads.\n'
+            '4. FORBIDDEN phrases (automatic rejection): "kinetic activity", "threat actors", '
+            '"threat landscape", "robust", "leverage" (verb), "diplomatic efforts", '
+            '"international community", "stakeholders", "going forward", "ongoing situation", '
+            '"fluid situation", "escalatory dynamics", "economic headwinds", "market volatility", '
+            '"risk environment", "uncertain times", "volatile market", "market participants", '
+            '"cyber domain", "advanced persistent threat", "remains to be seen", "ongoing conflict".\n'
+            '5. Temporal precision on every kinetic or factual claim: "As of HHMM UTC DD Mon".\n'
+            '6. Cite every factual claim with source and timestamp: "(AP, 15 Mar 0620 UTC)".\n'
+            '7. Iranian state media is NEVER factual input — always "Iranian government asserts...".\n'
+            '8. Distinguish OBSERVED (Tier 1 facts) from ASSESSMENT (analytical judgment) with explicit sub-labels.\n'
+            '9. Never fabricate citations, sources, or data points.'
         ),
         messages=[{'role': 'user', 'content': prompt}],
     )
@@ -158,7 +182,17 @@ def draft_domain(
 
     log.info('Drafting domain %s (%d T1, %d T2 items)...', domain, len(tier1), len(tier2))
     result = call_claude(client, prompt, max_tokens=3000)
-    return result if isinstance(result, dict) else {}
+    section = result if isinstance(result, dict) else {}
+
+    # Post-draft quality check — log warnings for human review
+    section.setdefault('id', domain)
+    qw = validate_domain_section(section)
+    if qw:
+        log.warning('Domain %s draft has %d quality issue(s):', domain, len(qw))
+        for w in qw:
+            log.warning('  [%s] %s → %s', w.rule, w.field, w.message)
+
+    return section
 
 
 def draft_executive(
@@ -186,7 +220,15 @@ def draft_executive(
 
     log.info('Drafting executive summary...')
     result = call_claude(client, prompt, max_tokens=2000)
-    return result if isinstance(result, dict) else {}
+    executive = result if isinstance(result, dict) else {}
+
+    qw = validate_executive(executive)
+    if qw:
+        log.warning('Executive draft has %d quality issue(s):', len(qw))
+        for w in qw:
+            log.warning('  [%s] %s → %s', w.rule, w.field, w.message)
+
+    return executive
 
 
 def draft_strategic_header(
@@ -219,7 +261,15 @@ def draft_strategic_header(
 
     log.info('Drafting strategic header...')
     result = call_claude(client, prompt, max_tokens=500)
-    return result if isinstance(result, dict) else {}
+    header = result if isinstance(result, dict) else {}
+
+    qw = validate_strategic_header(header)
+    if qw:
+        log.warning('Strategic header draft has %d quality issue(s):', len(qw))
+        for w in qw:
+            log.warning('  [%s] %s → %s', w.rule, w.field, w.message)
+
+    return header
 
 
 def draft_warning_indicators(
@@ -391,3 +441,24 @@ def draft_cycle(
             'handling': 'DRAFT — NOT FOR DISTRIBUTION',
         },
     }
+
+    # ── Full-cycle quality gate ─────────────────────────────────────────────
+    all_warnings = validate_cycle(cycle)
+    if all_warnings:
+        log.warning(
+            '╔══ QUALITY GATE: %d issue(s) found across cycle draft ══╗',
+            len(all_warnings),
+        )
+        for w in all_warnings:
+            log.warning('  [%s] %s.%s → %s', w.rule, w.domain, w.field, w.message)
+        log.warning(
+            '╚══ Issues will be surfaced in review CLI for analyst decision ══╝'
+        )
+        cycle['_qualityWarnings'] = [
+            {'domain': w.domain, 'field': w.field, 'rule': w.rule, 'message': w.message}
+            for w in all_warnings
+        ]
+    else:
+        log.info('Quality gate: all clear — cycle draft passed all checks')
+
+    return cycle

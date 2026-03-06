@@ -40,10 +40,11 @@ Produce:
 - GUARDED: Conflict active but contained; diplomatic track functional
 - LOW: Ceasefire holding; de-escalation underway
 
-**Writing Rules:**
-- Headline is a judgment, not a headline-writer's hook
+**Writing Rules (MANDATORY):**
+- Headline is a judgment, not a headline-writer's hook. BAD: "Israeli forces conducted strikes." GOOD: "The conflict has entered a direct-exchange phase with both parties demonstrating willingness to absorb escalation costs."
 - Trajectory rationale names the key variable driving the assessment
-- FORBIDDEN PHRASES: "fluid situation", "ongoing conflict", "remains to be seen"
+- Use ONLY the six confidence phrases from the ladder. No ad-hoc hedging: never write "appears to be", "may have", "could potentially", "remains to be seen".
+- FORBIDDEN PHRASES (automatic rejection): "fluid situation", "ongoing conflict", "remains to be seen", "kinetic activity", "threat actors", "threat landscape", "robust", "leverage" (verb), "diplomatic efforts", "international community", "stakeholders", "going forward", "ongoing situation", "escalatory dynamics"
 
 ## Output Format
 

@@ -38,11 +38,12 @@ Key focus areas: IRGC-linked cyber activity (APT33/Charming Kitten/etc.), hackti
 - NetBlocks shutdown data = Tier 3 "claimed" (observable but limited context)
 - France 24 Observers video verification = Tier 2 "reported"
 
-**Writing Rules:**
-- Hedge level is higher here than in other domains — this is appropriate
+**Writing Rules (MANDATORY):**
+- Every paragraph must contain at least two sentences. No fragment leads.
+- Hedge level is higher here than in other domains — this is appropriate, but use ONLY the six confidence phrases from the ladder. No ad-hoc hedging ("appears to be", "may have", "could potentially").
 - Never assert attribution without citing a named intelligence firm's report
 - "Group X claims responsibility" ≠ "Group X conducted"
-- FORBIDDEN PHRASES: "threat actors", "threat landscape", "cyber domain", "advanced persistent threat" (use group names instead)
+- FORBIDDEN PHRASES (automatic rejection): "threat actors", "threat landscape", "cyber domain", "advanced persistent threat" (use group names instead), "robust", "leverage" (verb), "ongoing situation", "fluid situation", "remains to be seen", "ongoing conflict", "going forward"
 - Flag collection gap if no Tier 1/2 cyber sources produced items — this is common
 
 ## Output Format

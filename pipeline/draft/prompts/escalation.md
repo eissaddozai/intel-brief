@@ -50,9 +50,11 @@ Key signals to assess: threshold crossings (direct Iran-Israel exchange, US invo
 - Back-channel diplomatic reporting = Tier 2 "reported" at best
 
 **Writing Rules (MANDATORY):**
-- Lead with assessment, not description
+- Lead with assessment, not description. BAD: "Tensions rose after..." GOOD: "We assess escalation probability has increased materially..."
+- Every paragraph must contain at least two sentences. No fragment leads.
+- Use ONLY the six confidence phrases from the ladder above. No ad-hoc hedging: never write "it is possible that it might", "appears to be", "may have", "could potentially", "remains to be seen".
 - If dissenter view exists (e.g., ICG/Quincy counter-argument is substantial), flag it; it should go into a DissenterNote
-- FORBIDDEN PHRASES: "kinetic activity", "threat actors", "threat landscape", "escalatory dynamics"
+- FORBIDDEN PHRASES (automatic rejection): "kinetic activity", "threat actors", "threat landscape", "robust", "leverage" (verb), "diplomatic efforts", "international community", "stakeholders", "going forward", "ongoing situation", "fluid situation", "escalatory dynamics", "remains to be seen", "ongoing conflict"
 - Word limit: bodyParagraphs combined ≤ 200 words. Key judgment ≤ 35 words.
 
 **Dissenter Note:** If the evidence supports a materially different escalation assessment (e.g., strong de-escalation signals that contradict the key judgment), set `dissenterNote` with `analystId: "ANALYST B"` and a concise counter-assessment.
