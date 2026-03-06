@@ -49,8 +49,8 @@ export function WarningIndicators({ indicators, cycleRef }: Props) {
           <tbody>
             {indicators.map(wi => (
               <tr key={wi.id}>
-                <td style={{ color: 'var(--text-hi)', fontWeight: 600 }}>{wi.indicator}</td>
-                <td style={{ fontFamily: 'var(--font-data)', fontSize: 'var(--size-badge)', whiteSpace: 'nowrap' }}>
+                <td className="wi-table__indicator">{wi.indicator}</td>
+                <td className="wi-table__domain">
                   {DOMAIN_LABELS[wi.domain]}
                 </td>
                 <td>
