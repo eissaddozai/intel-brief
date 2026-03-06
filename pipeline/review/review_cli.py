@@ -9,6 +9,7 @@ import json
 import logging
 import sys
 import textwrap
+from pathlib import Path
 from typing import Any
 
 log = logging.getLogger(__name__)
@@ -381,10 +382,15 @@ def display_quality_warnings(draft: dict) -> None:
     print(f'{AMBER}Review flagged sections carefully before approving.{RESET}\n')
 
 
-def run_review(draft: dict) -> dict | None:
+def run_review(draft: dict, prev_cycle: dict | None = None, session_file: Path | None = None) -> dict | None:
     """
     Run the full review workflow for a complete cycle draft.
     Returns the approved cycle dict, or None if aborted.
+
+    Args:
+        draft: The cycle draft dict to review.
+        prev_cycle: Previous cycle dict for delta context (optional).
+        session_file: Path to save/resume review session (optional).
     """
     print(f'\n{BOLD}{CYAN}CSE INTEL BRIEF — HUMAN REVIEW{RESET}')
     print(f'{DIM}Review each section. Target: ~10 minutes total.{RESET}\n')
