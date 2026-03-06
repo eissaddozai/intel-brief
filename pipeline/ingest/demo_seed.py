@@ -17,6 +17,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'CTP-ISW Evening Report',
             'tier': 1,
             'domains': ['d1'],
+            'tagged_domains': ['d1'],
             'title': 'CTP-ISW: IRGC ballistic missile salvo targets Haifa port district',
             'text': (
                 f'[{date_str}] CTP-ISW assessed that the IRGC launched a salvo of '
@@ -36,6 +37,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'CENTCOM',
             'tier': 1,
             'domains': ['d1'],
+            'tagged_domains': ['d1'],
             'title': 'CENTCOM: USS Gravely intercepts four Houthi anti-ship ballistic missiles',
             'text': (
                 f'CENTCOM statement [{date_str}]: USS Gravely (DDG-107) operating in the '
@@ -55,6 +57,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'UKMTO',
             'tier': 1,
             'domains': ['d1', 'd3'],
+            'tagged_domains': ['d1', 'd3'],
             'title': 'UKMTO: Armed drone attack on MV Nordic Hawk, Bab el-Mandeb',
             'text': (
                 'UKMTO WARNO 042/2026: MV Nordic Hawk (Liberian-flagged, 74,000 DWT bulk '
@@ -75,6 +78,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'CTP-ISW Morning Report',
             'tier': 1,
             'domains': ['d1'],
+            'tagged_domains': ['d1'],
             'title': 'CTP-ISW: Ground situation — Hezbollah re-infiltrates Blue Line buffer',
             'text': (
                 f'CTP-ISW [{date_str} morning]: Hezbollah anti-tank guided missile teams '
@@ -96,6 +100,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'BBC Middle East',
             'tier': 2,
             'domains': ['d1'],
+            'tagged_domains': ['d1'],
             'title': 'BBC: Israeli PM convenes emergency security cabinet after Haifa strike',
             'text': (
                 'Israeli Prime Minister Netanyahu convened an emergency session of the '
@@ -114,6 +119,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'Iran International',
             'tier': 2,
             'domains': ['d1', 'd2'],
+            'tagged_domains': ['d1', 'd2'],
             'title': 'Iran International: IRGC Aerospace claims "precision suppression" of Haifa port',
             'text': (
                 'IRGC Aerospace Force stated in a Telegram release that the overnight strike '
@@ -134,6 +140,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'IAEA',
             'tier': 1,
             'domains': ['d2'],
+            'tagged_domains': ['d2'],
             'title': 'IAEA Board of Governors: Iran bars inspectors from Fordow',
             'text': (
                 f'IAEA Director General Grossi notified the Board of Governors [{date_str}] '
@@ -154,6 +161,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'International Crisis Group',
             'tier': 2,
             'domains': ['d2', 'd4'],
+            'tagged_domains': ['d2', 'd4'],
             'title': 'ICG: Fordow access suspension raises weaponization breakout risk',
             'text': (
                 'ICG analysis: Iran\'s suspension of IAEA access to Fordow removes the '
@@ -173,6 +181,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'CFR Daily News Brief',
             'tier': 2,
             'domains': ['d2', 'd4'],
+            'tagged_domains': ['d2', 'd4'],
             'title': 'CFR: US strategic bombers deploy to Diego Garcia amid Iran nuclear standoff',
             'text': (
                 'The Pentagon confirmed the deployment of six B-52H Stratofortress aircraft '
@@ -192,6 +201,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'CENTCOM',
             'tier': 1,
             'domains': ['d3'],
+            'tagged_domains': ['d3'],
             'title': 'CENTCOM: Strait of Hormuz transit corridor operating with escort',
             'text': (
                 'CENTCOM confirms the Strait of Hormuz transit corridor remains operational '
@@ -212,6 +222,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'Reuters',
             'tier': 2,
             'domains': ['d3'],
+            'tagged_domains': ['d3'],
             'title': 'Reuters: Brent crude hits $147/bbl as Hormuz throughput falls',
             'text': (
                 'Brent crude futures surged to $147.20 per barrel at open, the highest '
@@ -232,6 +243,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'CNBC Energy',
             'tier': 2,
             'domains': ['d3'],
+            'tagged_domains': ['d3'],
             'title': 'CNBC: LNG spot prices spike 40% as tankers avoid Red Sea',
             'text': (
                 'Asian LNG spot prices jumped 40% week-on-week to $32/MMBtu as operators '
@@ -251,6 +263,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'Associated Press',
             'tier': 2,
             'domains': ['d4'],
+            'tagged_domains': ['d4'],
             'title': 'AP: UN Security Council emergency session fails, Russia/China veto ceasefire',
             'text': (
                 'The UN Security Council failed to pass an emergency resolution calling '
@@ -270,6 +283,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'CFR Daily',
             'tier': 2,
             'domains': ['d4'],
+            'tagged_domains': ['d4'],
             'title': 'CFR: Omani back-channel to Iran described as "active but not productive"',
             'text': (
                 'Omani Foreign Minister Al Busaidi briefed EU envoys in Brussels that '
@@ -289,6 +303,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'ICG',
             'tier': 2,
             'domains': ['d4'],
+            'tagged_domains': ['d4'],
             'title': 'ICG: GCC states divide on Iran policy as UAE-Iran trade links persist',
             'text': (
                 'ICG notes GCC states are not unified: UAE has maintained trade and banking '
@@ -309,6 +324,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'CISA',
             'tier': 3,
             'domains': ['d5'],
+            'tagged_domains': ['d5'],
             'title': 'CISA AA26-063A: Iranian threat actors targeting critical infrastructure OT/ICS',
             'text': (
                 'CISA Advisory AA26-063A: Iranian state-sponsored actors (attributed to '
@@ -328,6 +344,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'Recorded Future',
             'tier': 3,
             'domains': ['d5'],
+            'tagged_domains': ['d5'],
             'title': 'Recorded Future: APT35 infrastructure expansion targets Israeli financial sector',
             'text': (
                 'Recorded Future Insikt Group identifies new APT35 (Charming Kitten) '
@@ -348,6 +365,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'source_name': 'NetBlocks',
             'tier': 3,
             'domains': ['d5'],
+            'tagged_domains': ['d5'],
             'title': 'NetBlocks: Major internet disruption detected across Iran, 60% connectivity loss',
             'text': (
                 'NetBlocks Observatory confirms a significant internet disruption affecting '

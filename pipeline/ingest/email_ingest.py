@@ -79,11 +79,17 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
         return []
 
     items: list[dict] = []
+    conn = None
 
     try:
-        conn = imaplib.IMAP4_SSL(host)
+        conn = imaplib.IMAP4_SSL(host, timeout=30)
         conn.login(user, password)
-        conn.select(folder)
+
+        # Select folder — handle missing folder gracefully
+        status, _ = conn.select(folder)
+        if status != 'OK':
+            log.warning('IMAP folder %r not found — check folder name', folder)
+            return []
 
         # Search for emails from CFR on or near target_date
         date_str = target_date.strftime('%d-%b-%Y')
@@ -97,12 +103,11 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
 
         if not ids[0]:
             log.info('No CFR Daily Brief found for %s', target_date.date())
-            conn.logout()
             return []
 
         for msg_id in ids[0].split():
             status, data = conn.fetch(msg_id, '(RFC822)')
-            if status != 'OK':
+            if status != 'OK' or not data or not data[0]:
                 continue
 
             raw = data[0][1]
@@ -132,10 +137,19 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
                     'method': 'email',
                 })
 
-        conn.logout()
         log.info('CFR Daily Brief: extracted %d paragraphs', len(items))
 
+    except imaplib.IMAP4.error as exc:
+        log.error('IMAP protocol error: %s', exc)
+    except OSError as exc:
+        log.error('Email connection failed (network): %s', exc)
     except Exception as exc:
         log.error('Email ingestion failed: %s', exc)
+    finally:
+        if conn is not None:
+            try:
+                conn.logout()
+            except Exception:
+                pass
 
     return items

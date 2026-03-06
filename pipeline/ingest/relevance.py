@@ -14,7 +14,7 @@ import logging
 
 log = logging.getLogger(__name__)
 
-# Comprehensive keyword set covering all five domains.
+# Comprehensive keyword set covering all six domains.
 # Lowercase, matched against lowercased title+text.
 RELEVANCE_KEYWORDS: frozenset[str] = frozenset([
     # ── Core state actors ───────────────────────────────────────────────────
@@ -85,11 +85,37 @@ RELEVANCE_KEYWORDS: frozenset[str] = frozenset([
     'cyberattack', 'cyber attack', 'ics attack', 'ot attack',
     'scada', 'industrial control',
     'disinformation', 'influence operation',
+    # ── War risk insurance / maritime finance (d6) ────────────────────────
+    'war risk', 'war risk insurance', 'war risk premium',
+    'joint war committee', 'jwc listed', 'jwc area', 'listed area',
+    'hull war risk', 'hull premium', 'war premium',
+    'p&i club', 'p&i circular', 'protection and indemnity',
+    'lloyds', "lloyd's", 'lloyds market', "lloyd's market",
+    'lloyds list', "lloyd's list",
+    'bimco', 'bimco clause', 'conwartime', 'voywar',
+    'marine insurance', 'marine underwriter', 'marine reinsurance',
+    'war exclusion zone', 'high risk area', 'extended war risk',
+    'breach of warranty', 'additional premium',
+    'ig p&i', 'international group', 'p&i clubs',
+    'total loss', 'constructive total loss',
+    'war risk surcharge', 'insurance surcharge',
+    'vessel seizure', 'vessel detention',
+    'shipping insurance', 'cargo insurance',
+    'reinsurance treaty', 'retrocession',
+    'underwriting capacity', 'syndicate capacity',
 ])
 
-# Pre-compile for speed
+# Pre-compile for speed.
+# Short keywords (≤4 chars like 'uae', 'uss') get word boundaries to avoid
+# false positives in longer words (e.g. 'cause' matching 'uae').
+def _kw_to_pattern(kw: str) -> str:
+    escaped = re.escape(kw)
+    if len(kw) <= 4 and kw.isalpha():
+        return rf'\b{escaped}\b'
+    return escaped
+
 _PATTERN = re.compile(
-    '|'.join(re.escape(kw) for kw in sorted(RELEVANCE_KEYWORDS, key=len, reverse=True)),
+    '|'.join(_kw_to_pattern(kw) for kw in sorted(RELEVANCE_KEYWORDS, key=len, reverse=True)),
     re.IGNORECASE,
 )
 

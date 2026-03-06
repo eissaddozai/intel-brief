@@ -1,4 +1,4 @@
-import type { WarningIndicator, BriefCycle } from '../types/brief'
+import type { WarningIndicator } from '../types/brief'
 import { DOMAIN_LABELS } from '../types/brief'
 
 interface Props {
@@ -49,6 +49,8 @@ export function WarningIndicators({ indicators, cycleRef }: Props) {
           <tbody>
             {indicators.map(wi => (
               <tr key={wi.id}>
+                <td className="wi-indicator">{wi.indicator}</td>
+                <td className="wi-domain">
                 <td className="wi-table__indicator">{wi.indicator}</td>
                 <td className="wi-table__domain">
                   {DOMAIN_LABELS[wi.domain]}

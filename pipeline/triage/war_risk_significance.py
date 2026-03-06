@@ -42,6 +42,8 @@ from pathlib import Path
 
 from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 
+from ingest.war_risk_ingest import _extract_json_text
+
 log = logging.getLogger(__name__)
 
 CACHE_DIR   = Path(__file__).parent.parent / '.cache'
@@ -84,10 +86,27 @@ async def score_items_cip(
         for idx, batch in enumerate(batches):
             tg.start_soon(score_one, idx, batch)
 
-    # Collect passing items; annotate with scores
+    # Collect passing items; annotate with scores.
+    # Use explicit index matching instead of zip() to avoid silent truncation
+    # when a CIP scoring call returns fewer results than items in the batch.
     passing: list[dict] = []
-    for batch, scored_batch in zip(batches, results_by_batch):
-        for item, scored in zip(batch, scored_batch):
+    for batch_idx, batch in enumerate(batches):
+        scored_batch = results_by_batch[batch_idx]
+        if len(scored_batch) < len(batch):
+            log.warning(
+                '[sig-batch-%d] Scored %d/%d items — %d items received no score '
+                'and will be treated as failing the threshold',
+                batch_idx, len(scored_batch), len(batch),
+                len(batch) - len(scored_batch),
+            )
+        # Build a lookup by index for O(1) access
+        scored_by_idx = {s.get('index'): s for s in scored_batch}
+        for item_idx, item in enumerate(batch):
+            scored = scored_by_idx.get(item_idx)
+            if scored is None:
+                log.debug('[MISS] Batch %d item %d (%s) — no scored result returned',
+                          batch_idx, item_idx, item.get('title', '')[:60])
+                continue
             score = scored.get('score', 0)
             if scored.get('passed'):
                 item['significance_score']     = score
@@ -148,11 +167,7 @@ async def _score_batch_cip(
             ),
         ):
             if isinstance(message, ResultMessage):
-                text = (message.result or '').strip()
-                if '```json' in text:
-                    text = text.split('```json')[1].split('```')[0].strip()
-                elif '```' in text:
-                    text = text.split('```')[1].split('```')[0].strip()
+                text = _extract_json_text((message.result or '').strip())
                 if text.startswith('['):
                     try:
                         raw_results = json.loads(text)
@@ -196,15 +211,18 @@ def _write_significance_log(
     log_path = CACHE_DIR / f'war_risk_significance_{stamp}.json'
 
     flat: list[dict] = []
-    for batch, scored_batch in zip(batches, results_by_batch):
-        for item, scored in zip(batch, scored_batch):
+    for batch_idx, batch in enumerate(batches):
+        scored_batch = results_by_batch[batch_idx]
+        scored_by_idx = {s.get('index'): s for s in scored_batch}
+        for item_idx, item in enumerate(batch):
+            scored = scored_by_idx.get(item_idx, {})
             flat.append({
                 'title':       item.get('title', ''),
                 'source_name': item.get('source_name', ''),
                 'source_id':   item.get('source_id', ''),
                 'tier':        item.get('tier', 3),
                 'score':       scored.get('score', 0),
-                'rationale':   scored.get('rationale', ''),
+                'rationale':   scored.get('rationale', 'No score returned'),
                 'passed':      scored.get('passed', False),
             })
 

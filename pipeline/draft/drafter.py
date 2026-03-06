@@ -64,10 +64,10 @@ def load_prompt(filename: str) -> str:
 
 
 def filter_by_domain(items: list[dict], domain: str) -> tuple[list[dict], list[dict]]:
-    """Split items into (tier1, tier2) for a given domain."""
+    """Split items into (tier1, tier2_and_tier3) for a given domain."""
     domain_items = [i for i in items if domain in i.get('tagged_domains', [])]
     tier1 = [i for i in domain_items if i.get('tier') == 1]
-    tier2 = [i for i in domain_items if i.get('tier') == 2]
+    tier2 = [i for i in domain_items if i.get('tier') in (2, 3)]
     return tier1, tier2
 
 
@@ -93,6 +93,14 @@ def _domain_summary(section: dict) -> str:
     return '\n'.join(summary_parts)
 
 
+SYSTEM_PROMPT = (
+    'You are a senior conflict intelligence analyst. '
+    'Write in the dispassionate, precise voice of serious foreign affairs journalism. '
+    'Always produce structured JSON output exactly as specified. '
+    'Never fabricate citations. Never use forbidden jargon: '
+    '"kinetic activity", "threat actors", "threat landscape", "robust", "leverage" (verb). '
+    'Distinguish Tier 1 confirmed facts from Tier 2 analytical interpretation.'
+)
 def call_claude(client: anthropic.Anthropic, prompt: str, max_tokens: int = 2000) -> dict | list:
     """Call Claude API and parse the JSON response."""
     response = client.messages.create(
@@ -178,13 +186,36 @@ def call_claude(client: anthropic.Anthropic, prompt: str, max_tokens: int = 2000
         messages=[{'role': 'user', 'content': prompt}],
     )
 
-    text = response.content[0].text
 
-    # Strip markdown code fences if present
+def _strip_code_fences(text: str) -> str:
+    """Strip markdown code fences from Claude response."""
     if '```json' in text:
         text = text.split('```json')[1].split('```')[0].strip()
     elif '```' in text:
         text = text.split('```')[1].split('```')[0].strip()
+    return text
+
+
+def call_claude(
+    client: anthropic.Anthropic,
+    prompt: str,
+    max_tokens: int = 2000,
+    config: dict | None = None,
+) -> dict | list:
+    """Call Claude API and parse the JSON response."""
+    cfg = config or {}
+    model = cfg.get('claude', {}).get('model', 'claude-opus-4-6')
+    temperature = cfg.get('claude', {}).get('temperature', 0.3)
+
+    response = client.messages.create(
+        model=model,
+        max_tokens=max_tokens,
+        temperature=temperature,
+        system=SYSTEM_PROMPT,
+        messages=[{'role': 'user', 'content': prompt}],
+    )
+
+    text = _strip_code_fences(response.content[0].text)
 
     try:
         return json.loads(text)
@@ -200,6 +231,7 @@ def draft_domain(
     target_date: datetime,
     prev_cycle: dict | None = None,
     context_sections: dict | None = None,  # {domain_id: drafted_section_dict}
+    config: dict | None = None,
 ) -> dict:
     """Draft a single domain section."""
     tier1, tier2 = filter_by_domain(items, domain)
@@ -234,7 +266,10 @@ def draft_domain(
         d2_context=d3_context if domain == 'd6' else d2_context,
     )
 
+    max_tok = config.get('claude', {}).get('max_tokens_per_domain', 1500) if config else 1500
     log.info('Drafting domain %s (%d T1, %d T2 items)...', domain, len(tier1), len(tier2))
+    result = call_claude(client, prompt, max_tokens=max_tok, config=config)
+    return result if isinstance(result, dict) else {}
     result = call_claude(client, prompt, max_tokens=3000)
     section = result if isinstance(result, dict) else {}
 
@@ -253,6 +288,7 @@ def draft_executive(
     client: anthropic.Anthropic,
     domain_sections: list[dict],
     prev_cycle: dict | None = None,
+    config: dict | None = None,
 ) -> dict:
     """Draft executive summary (BLUF + key judgments + KPIs)."""
     template = load_prompt('executive.md')
@@ -272,7 +308,10 @@ def draft_executive(
         prev_cycle_bluf=prev_bluf or '(no previous cycle)',
     )
 
+    max_tok = config.get('claude', {}).get('max_tokens_executive', 1200) if config else 1200
     log.info('Drafting executive summary...')
+    result = call_claude(client, prompt, max_tokens=max_tok, config=config)
+    return result if isinstance(result, dict) else {}
     result = call_claude(client, prompt, max_tokens=2000)
     executive = result if isinstance(result, dict) else {}
 
@@ -290,6 +329,7 @@ def draft_strategic_header(
     domain_sections: list[dict],
     executive: dict,
     prev_cycle: dict | None = None,
+    config: dict | None = None,
 ) -> dict:
     """Draft the strategic header (headline judgment + trajectory)."""
     template = load_prompt('strategic_header.md')
@@ -313,7 +353,10 @@ def draft_strategic_header(
         prev_cycle_header=prev_header_text,
     )
 
+    max_tok = config.get('claude', {}).get('max_tokens_strategic', 400) if config else 400
     log.info('Drafting strategic header...')
+    result = call_claude(client, prompt, max_tokens=max_tok, config=config)
+    return result if isinstance(result, dict) else {}
     result = call_claude(client, prompt, max_tokens=500)
     header = result if isinstance(result, dict) else {}
 
@@ -330,6 +373,7 @@ def draft_warning_indicators(
     client: anthropic.Anthropic,
     domain_sections: list[dict],
     prev_cycle: dict | None = None,
+    config: dict | None = None,
 ) -> list[dict]:
     """Draft / update warning indicators."""
     template = load_prompt('warning_indicators.md')
@@ -346,8 +390,9 @@ def draft_warning_indicators(
         prev_cycle_indicators=prev_wi,
     )
 
+    max_tok = config.get('claude', {}).get('max_tokens_indicators', 800) if config else 800
     log.info('Drafting warning indicators...')
-    result = call_claude(client, prompt, max_tokens=1200)
+    result = call_claude(client, prompt, max_tokens=max_tok, config=config)
     if isinstance(result, list):
         return result
     return result.get('warningIndicators', [])
@@ -357,6 +402,7 @@ def draft_collection_gaps(
     client: anthropic.Anthropic,
     tagged_items: list[dict],
     domain_sections: list[dict],
+    config: dict | None = None,
 ) -> list[dict]:
     """Identify collection gaps from triage output and domain confidence."""
     template = load_prompt('collection_gaps.md')
@@ -383,11 +429,80 @@ def draft_collection_gaps(
         all_domain_summaries=all_domain_summaries,
     )
 
+    max_tok = config.get('claude', {}).get('max_tokens_gaps', 600) if config else 600
     log.info('Drafting collection gaps...')
-    result = call_claude(client, prompt, max_tokens=900)
+    result = call_claude(client, prompt, max_tokens=max_tok, config=config)
     if isinstance(result, list):
         return result
     return result.get('collectionGaps', [])
+
+
+def draft_flash_points(
+    client: anthropic.Anthropic,
+    tagged_items: list[dict],
+    domain_sections: list[dict],
+    target_date: datetime,
+    config: dict | None = None,
+) -> list[dict]:
+    """
+    Draft flash points by selecting the 1–3 most operationally significant
+    breaking developments from the current cycle's items.
+
+    Candidates are pre-filtered: Tier 1 confirmed items or high-significance
+    items across all domains. If no items meet the threshold, returns [].
+    """
+    # Build candidates: Tier 1 confirmed items + items with high significance scores
+    candidates = []
+    for item in tagged_items:
+        is_tier1 = item.get('tier') == 1
+        is_confirmed = item.get('verification_status') == 'confirmed'
+        has_high_sig = item.get('significance_score', 0) >= 70
+        if (is_tier1 and is_confirmed) or has_high_sig:
+            candidates.append({
+                'source_name': item.get('source_name', ''),
+                'tier':        item.get('tier', 2),
+                'domain':      (item.get('tagged_domains') or item.get('domains', ['d1']))[0],
+                'title':       item.get('title', ''),
+                'text':        (item.get('text', '') or '')[:400],
+                'timestamp':   item.get('timestamp', ''),
+                'verification_status': item.get('verification_status', 'reported'),
+            })
+
+    if not candidates:
+        log.info('FlashPoints: no candidates met the threshold — returning empty')
+        return []
+
+    # Build domain context summary for the prompt
+    section_map = {s.get('id'): s for s in domain_sections}
+    domain_context = '\n\n'.join(
+        f"[{did}] {_domain_summary(section_map[did])}"
+        for did in ['d1', 'd2', 'd3', 'd4', 'd5', 'd6']
+        if did in section_map
+    )
+
+    template = load_prompt('flash_points.md')
+    prompt = _fill_template(
+        template,
+        candidate_items=json.dumps(candidates[:20], indent=2, ensure_ascii=False),
+        domain_context=domain_context,
+    )
+
+    max_tok = config.get('claude', {}).get('max_tokens_flash_points', 800) if config else 800
+    log.info('Drafting flash points from %d candidates...', len(candidates))
+
+    try:
+        result = call_claude(client, prompt, max_tokens=max_tok, config=config)
+    except Exception as exc:
+        log.warning('FlashPoints drafting failed (%s) — returning empty', exc)
+        return []
+
+    if isinstance(result, list):
+        log.info('FlashPoints: %d flash points drafted', len(result))
+        return result
+    # If Claude returned an object with a flashPoints key, extract it
+    if isinstance(result, dict) and 'flashPoints' in result:
+        return result['flashPoints']
+    return []
 
 
 def draft_cycle(
@@ -425,6 +540,7 @@ def draft_cycle(
             target_date=target_date,
             prev_cycle=prev_cycle,
             context_sections=drafted,
+            config=config,
         )
         # Ensure schema fields are present
         section.setdefault('id', domain_id)
@@ -434,10 +550,16 @@ def draft_cycle(
         drafted[domain_id] = section
         log.info('Domain %s drafted', domain_id)
 
-    executive = draft_executive(client, domain_sections, prev_cycle)
-    strategic_header = draft_strategic_header(client, domain_sections, executive, prev_cycle)
-    warning_indicators = draft_warning_indicators(client, domain_sections, prev_cycle)
-    collection_gaps = draft_collection_gaps(client, tagged_items, domain_sections)
+    # Draft flash points between domains and executive so the executive
+    # summary can reference any urgent breaking developments.
+    flash_points = draft_flash_points(
+        client, tagged_items, domain_sections, target_date, config=config,
+    )
+
+    executive = draft_executive(client, domain_sections, prev_cycle, config=config)
+    strategic_header = draft_strategic_header(client, domain_sections, executive, prev_cycle, config=config)
+    warning_indicators = draft_warning_indicators(client, domain_sections, prev_cycle, config=config)
+    collection_gaps = draft_collection_gaps(client, tagged_items, domain_sections, config=config)
 
     # Merge strategicHeader fields into meta for convenience
     threat_level = strategic_header.pop('threatLevel', 'SEVERE')
@@ -466,11 +588,11 @@ def draft_cycle(
                 {'top': '—', 'bot': 'INCIDENTS / 24H'},
                 {'top': '—', 'bot': 'BRENT CRUDE'},
                 {'top': 'ACTIVE', 'bot': 'HORMUZ STATUS'},
-                {'top': '—', 'bot': 'FLASH POINTS'},
+                {'top': str(len(flash_points)) if flash_points else '—', 'bot': 'FLASH POINTS'},
             ],
         },
         'strategicHeader': strategic_header,
-        'flashPoints': [],
+        'flashPoints': flash_points,
         'executive': executive,
         'domains': domain_sections,
         'warningIndicators': warning_indicators,
