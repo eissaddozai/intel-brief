@@ -52,6 +52,7 @@ Key indicators to assess:
 - "Available evidence suggests..." → 55–75%  (likely)
 - "Reporting indicates, though corroboration is limited..." → 45–55%  (possibly)
 - "We judge it unlikely, though we cannot exclude..." → 20–45%  (unlikely)
+- "We assess with high confidence this will not..." → 1–5%  (almost-certainly-not)
 
 **Attribution Rules:**
 - UKMTO incident bulletins → Tier 1 "confirmed"

@@ -58,6 +58,7 @@ Produce the following four elements:
 The trajectory rationale MUST explicitly state whether the trajectory has changed from the previous cycle:
 - If unchanged: "Trajectory assessment is unchanged from the prior cycle — [named factor] continues to drive the [level] assessment."
 - If changed: "Trajectory has shifted from [prior level] to [current level] since the prior cycle. The primary driver of this shift is [named development] confirmed by [named source and timestamp]."
+- **If this is the first cycle (no previous cycle header provided):** State this explicitly — "No prior cycle exists for delta comparison; this cycle constitutes the baseline assessment." Then proceed directly to the trajectory rationale based solely on current source material.
 
 ### Cross-Domain Synthesis Requirement
 The strategic header must reflect the combined signal across ALL six domains plus the warning indicators panel:

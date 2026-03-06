@@ -34,14 +34,14 @@ DOMAIN_KEYWORDS: dict[str, list[str]] = {
     'd3': [
         'oil', 'crude', 'brent', 'wti', 'barrel', 'petroleum', 'energy',
         'gas', 'lng', 'natural gas', 'pipeline', 'refin', 'hormuz',
-        'strait', 'tanker', 'ship', 'vessel', 'maritime', 'ukmto',
+        'strait', 'tanker', 'shipping', 'vessel', 'maritime', 'ukmto',
         'sanctions', 'supply chain', 'commodity', 'price', 'market',
-        'goldman', 'insurance', "lloyd's", 'kpler', 'aramco', 'opec',
+        'goldman sachs', 'insurance', "lloyd's", 'kpler', 'aramco', 'opec',
         'canadian', 'tsx', 'cad', 'wen', 'western canadian',
     ],
     'd4': [
         'diplomat', 'minister', 'foreign', 'secretary', 'state department',
-        'white house', 'president', 'prime minister', 'nato', 'eu ', 'un ',
+        'white house', 'president', 'prime minister', 'nato', 'european union',
         'united nations', 'security council', 'sanction', 'alliance',
         'qatar', 'oman', 'saudi', 'uae', 'turkey', 'erdogan', 'russia',
         'china', 'back-channel', 'negotiat', 'ambassador', 'envoy',
@@ -82,11 +82,11 @@ DOMAIN_KEYWORDS: dict[str, list[str]] = {
         # Reinsurance
         'munich re marine', 'swiss re marine', 'reinsurance war', 'retrocession',
         # High risk area designations
-        'high risk area', ' hra ', 'best management practices', 'bmp6',
+        'high risk area', ' hra', 'best management practices', 'bmp6',
         'gulf of aden hra', 'red sea insurance', 'hormuz insurance',
         # Maritime security-insurance nexus
         'ship seized insurance', 'vessel seizure claim', 'constructive total loss',
-        ' ctl ', 'war loss', 'hull war claim', 'ransom payment', 'k&fr',
+        ' ctl', 'war loss', 'hull war claim', 'ransom payment', 'k&fr',
         # Vessel operations impact
         'voyage diversion', 'route avoidance', 'ais diversion', 'blank sailing',
         'crew bonus', 'war risk bonus', 'hardship pay',

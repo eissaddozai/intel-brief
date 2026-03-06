@@ -40,19 +40,49 @@ def decode_mime_header(value: str) -> str:
 
 
 def extract_text_from_message(msg: email.message.Message) -> str:
-    """Extract plain text body from an email message."""
+    """Extract plain text body from an email message.
+
+    Falls back to stripping HTML tags from text/html parts if no text/plain
+    part is present (common for modern newsletter formats).
+    """
+    import re as _re
+    _TAG_RE = _re.compile(r'<[^>]+>')
+
+    plain: str = ''
+    html: str = ''
+
     if msg.is_multipart():
         for part in msg.walk():
             ctype = part.get_content_type()
             disposition = str(part.get('Content-Disposition', ''))
-            if ctype == 'text/plain' and 'attachment' not in disposition:
-                payload = part.get_payload(decode=True)
-                if payload:
-                    return payload.decode(part.get_content_charset() or 'utf-8', errors='replace')
+            if 'attachment' in disposition:
+                continue
+            payload = part.get_payload(decode=True)
+            if not payload:
+                continue
+            charset = part.get_content_charset() or 'utf-8'
+            decoded = payload.decode(charset, errors='replace')
+            if ctype == 'text/plain' and not plain:
+                plain = decoded
+            elif ctype == 'text/html' and not html:
+                html = decoded
     else:
         payload = msg.get_payload(decode=True)
         if payload:
-            return payload.decode(msg.get_content_charset() or 'utf-8', errors='replace')
+            charset = msg.get_content_charset() or 'utf-8'
+            decoded = payload.decode(charset, errors='replace')
+            ctype = msg.get_content_type()
+            if ctype == 'text/html':
+                html = decoded
+            else:
+                plain = decoded
+
+    if plain:
+        return plain
+    if html:
+        # Strip tags and collapse whitespace as a last-resort fallback
+        text = _TAG_RE.sub(' ', html)
+        return ' '.join(text.split())
     return ''
 
 
@@ -82,6 +112,7 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
         return []
 
     items: list[dict] = []
+    conn: imaplib.IMAP4_SSL | None = None
 
     try:
         conn = imaplib.IMAP4_SSL(host, port)
@@ -100,7 +131,6 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
 
         if not ids[0]:
             log.info('No CFR Daily Brief found for %s', target_date.date())
-            conn.logout()
             return []
 
         for msg_id in ids[0].split():
@@ -116,6 +146,9 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
 
             if not body:
                 continue
+
+            # Normalise Windows CRLF line endings before paragraph splitting
+            body = body.replace('\r\n', '\n')
 
             # Split into paragraphs for granular tagging
             paragraphs = [p.strip() for p in body.split('\n\n') if len(p.strip()) > 80]
@@ -141,10 +174,16 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
             relevant = filter_relevant(candidates)
             items.extend(relevant)
 
-        conn.logout()
         log.info('CFR Daily Brief: extracted %d paragraphs', len(items))
 
     except Exception as exc:
         log.error('Email ingestion failed: %s', exc)
+
+    finally:
+        if conn is not None:
+            try:
+                conn.logout()
+            except Exception:
+                pass
 
     return items

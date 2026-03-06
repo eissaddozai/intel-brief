@@ -15,15 +15,20 @@ from typing import Any
 
 log = logging.getLogger(__name__)
 
-# Terminal colour codes (ANSI)
-RED     = '\033[91m'
-AMBER   = '\033[93m'
-GREEN   = '\033[92m'
-BLUE    = '\033[94m'
-CYAN    = '\033[96m'
-DIM     = '\033[2m'
-BOLD    = '\033[1m'
-RESET   = '\033[0m'
+# Terminal colour codes (ANSI) — suppressed when stdout is not a TTY
+_IS_TTY = sys.stdout.isatty()
+
+def _ansi(code: str) -> str:
+    return f'\033[{code}m' if _IS_TTY else ''
+
+RED     = _ansi('91')
+AMBER   = _ansi('93')
+GREEN   = _ansi('92')
+BLUE    = _ansi('94')
+CYAN    = _ansi('96')
+DIM     = _ansi('2')
+BOLD    = _ansi('1')
+RESET   = _ansi('0')
 
 
 def print_header(text: str, colour: str = CYAN) -> None:
@@ -271,7 +276,11 @@ def review_executive(executive: dict) -> dict:
     print_section('BLUF', executive.get('bluf', '—'), colour=AMBER)
 
     for i, kj in enumerate(executive.get('keyJudgments', []), 1):
-        print(f'{DIM}{i}. [{kj.get("confidence", "?").upper()}] {kj.get("text", "")[:200]}{RESET}')
+        if isinstance(kj, dict):
+            print(f'{DIM}{i}. [{kj.get("confidence", "?").upper()}] {kj.get("text", "")[:200]}{RESET}')
+        else:
+            # Placeholder draft stores key judgments as plain strings
+            print(f'{DIM}{i}. {str(kj)[:200]}{RESET}')
     print()
 
     while True:

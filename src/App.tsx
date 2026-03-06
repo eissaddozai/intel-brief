@@ -23,7 +23,12 @@ export function App() {
         if (!r.ok) throw new Error(`HTTP ${r.status}`)
         return r.json()
       })
-      .then(data => setCycle(data as BriefCycle))
+      .then(data => {
+        if (!data || typeof data !== 'object' || !data.meta || !data.domains) {
+          throw new Error('Cycle JSON missing required fields (meta, domains)')
+        }
+        setCycle(data as BriefCycle)
+      })
       .catch(err => setError(String(err)))
   }, [])
 
@@ -46,9 +51,11 @@ export function App() {
     )
   }
 
-  const cycleRef = `CYCLE ${cycle.meta.cycleNum} · ${new Date(cycle.meta.timestamp)
-    .toLocaleDateString('en-CA', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
-    .toUpperCase()}`
+  const _ts = new Date(cycle.meta.timestamp)
+  const _dateStr = isNaN(_ts.getTime())
+    ? cycle.meta.timestamp
+    : _ts.toLocaleDateString('en-CA', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }).toUpperCase()
+  const cycleRef = `CYCLE ${cycle.meta.cycleNum} · ${_dateStr}`
 
   return (
     <div className="brief">

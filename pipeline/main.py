@@ -33,6 +33,8 @@ import logging
 import os
 import re
 import sys
+import time
+import yaml
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -71,7 +73,6 @@ def load_config() -> dict:
     if not CONFIG_PATH.exists():
         return {}
     try:
-        import yaml
         text = CONFIG_PATH.read_text(encoding='utf-8')
 
         def _sub(m: re.Match) -> str:
@@ -88,7 +89,11 @@ def load_config() -> dict:
 
 def get_target_date(date_str: str | None) -> datetime:
     if date_str:
-        return datetime.strptime(date_str, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+        try:
+            return datetime.strptime(date_str, '%Y-%m-%d').replace(tzinfo=timezone.utc)
+        except ValueError:
+            log.error('Invalid date format: %r — expected YYYY-MM-DD', date_str)
+            sys.exit(1)
     return datetime.now(timezone.utc)
 
 
@@ -313,7 +318,19 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
         'flashPoints': [],
         'executive': {
             'bluf': f'PLACEHOLDER — {total} items across 5 domains. Re-run after funding API.',
-            'keyJudgments': [d['keyJudgment']['text'] for d in domains],
+            'keyJudgments': [
+                {
+                    'id': d['keyJudgment']['id'],
+                    'domain': d['id'],
+                    'text': d['keyJudgment']['text'],
+                    'confidence': d['keyJudgment']['confidence'],
+                    'probabilityRange': '—',
+                    'language': 'possibly',
+                    'basis': 'Placeholder.',
+                    'citations': [],
+                }
+                for d in domains
+            ],
             'kpis': [],
         },
         'domains': domains,
@@ -547,14 +564,12 @@ def cmd_agent(args: argparse.Namespace, config: dict) -> None:
 
 def cmd_check_sources(args: argparse.Namespace, config: dict) -> None:
     """Test every enabled source URL and report status."""
-    import yaml
-    import time
+    import requests as req
 
     sources_file = PIPELINE_DIR / 'ingest' / 'sources.yaml'
     data = yaml.safe_load(sources_file.read_text(encoding='utf-8'))
     sources = [s for s in data.get('sources', []) if s.get('enabled', True)]
 
-    import requests as req
     TIMEOUT = 10
     HEADERS = {'User-Agent': 'CSE-Intel-Brief/1.0 check-sources'}
 

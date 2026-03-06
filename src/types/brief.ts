@@ -48,8 +48,6 @@ export type ChangeDirection = 'up' | 'down' | 'neutral'
 export type WIChange =
   | 'new-triggered'   // indicator was at watching/clear and is now triggered
   | 'newly-elevated'  // indicator was at watching/clear and is now elevated
-  | 'elevated'        // legacy alias — same as newly-elevated
-  | 'new'             // legacy alias — same as new-triggered
   | 'unchanged'       // no status change from previous cycle
   | 'downgraded'      // status reduced (triggered→elevated, elevated→watching)
   | 'cleared'         // previously triggered/elevated; now cleared
@@ -357,8 +355,6 @@ export const DOMAIN_LABELS: Record<DomainId, string> = {
 export const WI_CHANGE_LABELS: Partial<Record<WIChange, string>> = {
   'new-triggered':  '⚡ NEW — TRIGGERED',
   'newly-elevated': '↑ NEWLY ELEVATED',
-  'elevated':       '↑ ELEVATED',
-  'new':            '⚡ NEW',
   'unchanged':      '→ UNCHANGED',
   'downgraded':     '↓ DOWNGRADED',
   'cleared':        '✓ CLEARED',
