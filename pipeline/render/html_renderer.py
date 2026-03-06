@@ -877,7 +877,6 @@ class HtmlRenderer:
                 domain_label = _DOMAIN_LABELS.get(domain, domain.upper())
                 conf_badge = _conf_badge(conf)
                 items.append(f"""    <li class="exec__kj-item">
-      <span class="exec__kj-domain exec__kj-domain--{_e(domain)}">{_e(domain_label)}</span>
       <span class="exec__kj-text">{text}</span>
       <span class="exec__kj-conf {_CONF_TIER_CLASS.get(conf, 'badge--amber')}">{_e((conf or '').upper())}</span>
     </li>""")
@@ -1073,32 +1072,35 @@ class HtmlRenderer:
     def _actor_matrix(self, rows: list[dict] | None) -> str:
         if not rows:
             return ''
-        trs = []
-        for row in rows:
+        row_divs = []
+        for i, row in enumerate(rows):
             actor   = _e(row.get('actor', ''))
             posture = _e(row.get('posture', ''))
-            change  = _e(row.get('changeSincePrev', row.get('changeSincePrevCycle', '')))
+            change_raw = row.get('changeSincePrev', row.get('changeSincePrevCycle', ''))
             assess  = _e(row.get('assessment', ''))
             conf    = row.get('confidence', 'moderate')
-            trs.append(f"""      <tr>
-        <td class="actor-name">{actor}</td>
-        <td>{posture}</td>
-        <td class="actor-change">{change}</td>
-        <td>{assess}</td>
-        <td>{_conf_badge(conf)}</td>
-      </tr>""")
+
+            delta_html = ''
+            if change_raw:
+                cl = change_raw.lower()
+                arrow = '↑' if any(k in cl for k in ('escalat', 'increas', 'intensif', 'up')) else (
+                        '↓' if any(k in cl for k in ('de-escalat', 'decreas', 'reduc', 'down')) else '→')
+                slug = 'up' if arrow == '↑' else ('down' if arrow == '↓' else 'same')
+                delta_html = f'<span class="am-delta am-delta--{slug}">{arrow} {_e(change_raw)}</span>'
+
+            row_divs.append(f"""  <div class="am-row">
+    <div class="am-actor">{actor}</div>
+    <div class="am-posture"><span class="am-posture__text">{posture}</span>{delta_html}</div>
+    <div class="am-assess">{assess}</div>
+    <div class="am-conf">{_conf_badge(conf)}</div>
+  </div>""")
+
         return f"""  <div class="actor-matrix">
     <div class="actor-matrix__caption">ACTOR POSTURE MATRIX</div>
-    <table>
-      <thead>
-        <tr>
-          <th>ACTOR</th><th>POSTURE</th><th>CHANGE</th><th>ASSESSMENT</th><th>CONF</th>
-        </tr>
-      </thead>
-      <tbody>
-{''.join(trs)}
-      </tbody>
-    </table>
+    <div class="am-header">
+      <div>ACTOR</div><div>POSTURE</div><div>ASSESSMENT</div><div>CONF</div>
+    </div>
+{''.join(row_divs)}
   </div>"""
 
     def _analyst_note(self, note: dict | None) -> str:
@@ -1151,20 +1153,18 @@ class HtmlRenderer:
             status  = wi.get('status', 'watching')
             change  = wi.get('change', 'unchanged')
             indic   = _e(wi.get('indicator', ''))
-            domain  = wi.get('domain', 'd1')
             detail  = _e(wi.get('detail', ''))
-            domain_label = _DOMAIN_LABELS.get(domain, domain.upper())
-            icon = _WI_STATUS_ICON.get(status, '&#9679;')
-            rows.append(f"""      <tr>
-        <td>
-          <span class="wi-icon wi-icon--{_e(status)}">{icon}</span>
-          <span class="wi-status {_WI_STATUS_CLASS.get(status, 'wi-status--watching')}">{_e(status).upper()}</span>
-        </td>
-        <td class="wi-table__indicator">{indic}</td>
-        <td><span class="exec__kj-domain exec__kj-domain--{_e(domain)}">{_e(domain_label)}</span></td>
-        <td>{detail}</td>
-        <td><span class="wi-change {_WI_CHANGE_CLASS.get(change, 'wi-change--unchanged')}">{_e(change).upper()}</span></td>
-      </tr>""")
+            status_slug = re.sub(r'[^a-z-]', '', status.lower())
+            change_slug = re.sub(r'[^a-z-]', '', change.lower())
+            change_cls  = _WI_CHANGE_CLASS.get(change, 'wi-change--unchanged')
+            change_html = (
+                f'<span class="wi-change {change_cls}">{_e(change).upper()}</span>'
+                if change and change.lower() != 'unchanged' else ''
+            )
+            rows.append(f"""  <div class="wi-row wi-row--{status_slug}">
+    <div class="wi-row__indicator">{indic}</div>
+    <div class="wi-row__body"><span class="wi-token wi-token--{status_slug}"><span class="wi-token__dot"></span>{_e(status).upper()}</span>{detail}{change_html}</div>
+  </div>""")
 
         count_badge = f'<span class="badge badge--amber">{len(wis)}</span>'
         return f"""<section class="warning-indicators">
@@ -1173,17 +1173,8 @@ class HtmlRenderer:
     <div class="warning-indicators__title">WARNING INDICATORS {count_badge}</div>
     <div class="warning-indicators__cycle">{_e(cycle_ref)}</div>
   </div>
-  <div class="warning-indicators__table">
-    <table class="wi-table">
-      <thead>
-        <tr>
-          <th>STATUS</th><th>INDICATOR</th><th>DOMAIN</th><th>DETAIL</th><th>CHANGE</th>
-        </tr>
-      </thead>
-      <tbody>
+  <div class="warning-indicators__rows">
 {''.join(rows)}
-      </tbody>
-    </table>
   </div>
 </section>"""
 
@@ -1203,7 +1194,6 @@ class HtmlRenderer:
             domain_label = _DOMAIN_LABELS.get(domain, domain.upper())
             items_html.append(f"""  <li class="gap-item">
     <span class="gap-item__severity {_GAP_SEV_CLASS.get(sev, 'gap-item__severity--minor')}">{_e(sev).upper()}</span>
-    <span class="gap-item__domain gap-item__domain--{_e(domain)}">{_e(domain_label)}</span>
     <div class="gap-item__content">
       <div class="gap-item__gap">{gap}</div>
       <div class="gap-item__significance">{sig}</div>

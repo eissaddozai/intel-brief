@@ -1087,12 +1087,12 @@ body::after {
 
 .kpi-strip__cell:last-child { border-right: none; }
 
-.kpi-strip__cell--d1 { background-color: var(--d1-fill); border-top-color: var(--d1-bright); }
-.kpi-strip__cell--d2 { background-color: var(--d2-fill); border-top-color: var(--d2-bright); }
-.kpi-strip__cell--d3 { background-color: var(--d3-fill); border-top-color: var(--d3-bright); }
-.kpi-strip__cell--d4 { background-color: var(--d4-fill); border-top-color: var(--d4-bright); }
-.kpi-strip__cell--d5 { background-color: var(--d5-fill); border-top-color: var(--d5-bright); }
-.kpi-strip__cell--d6 { background-color: var(--d6-fill); border-top-color: var(--d6-bright); }
+.kpi-strip__cell--d1 { border-top-color: var(--d1-bright); }
+.kpi-strip__cell--d2 { border-top-color: var(--d2-bright); }
+.kpi-strip__cell--d3 { border-top-color: var(--d3-bright); }
+.kpi-strip__cell--d4 { border-top-color: var(--d4-bright); }
+.kpi-strip__cell--d5 { border-top-color: var(--d5-bright); }
+.kpi-strip__cell--d6 { border-top-color: var(--d6-bright); }
 
 .kpi-strip__number {
   font-family: var(--font-display);
@@ -1212,26 +1212,21 @@ body::after {
   flex-shrink: 0;
 }
 
-.domain--d1 .domain__header                 { background-color: var(--d1-fill); }
 .domain--d1 .domain__num                    { color: var(--d1-bright); border-right-color: var(--d1-bright); }
 .domain--d1 .domain__aq-badge-inline        { color: var(--d1-bright); }
 
-.domain--d2 .domain__header                 { background-color: var(--d2-fill); }
 .domain--d2 .domain__num                    { color: var(--d2-bright); border-right-color: var(--d2-bright); }
 .domain--d2 .domain__aq-badge-inline        { color: var(--d2-bright); }
 
-.domain--d3 .domain__header                 { background-color: var(--d3-fill); }
 .domain--d3 .domain__num                    { color: var(--d3-bright); border-right-color: var(--d3-bright); }
 .domain--d3 .domain__aq-badge-inline        { color: var(--d3-bright); }
 
-.domain--d4 .domain__header                 { background-color: var(--d4-fill); }
 .domain--d4 .domain__num                    { color: var(--d4-bright); border-right-color: var(--d4-bright); }
 .domain--d4 .domain__aq-badge-inline        { color: var(--d4-bright); }
 
-.domain--d5 .domain__header                 { background-color: var(--d5-fill); }
 .domain--d5 .domain__num                    { color: var(--d5-bright); border-right-color: var(--d5-bright); }
 .domain--d5 .domain__aq-badge-inline        { color: var(--d5-bright); }
-.domain--d6 .domain__header                 { background-color: var(--d6-fill); }
+
 .domain--d6 .domain__num                    { color: var(--d6-bright); border-right-color: var(--d6-bright); }
 .domain--d6 .domain__aq-badge-inline        { color: var(--d6-bright); }
 
@@ -1279,18 +1274,18 @@ body::after {
 
 /* Key Judgment Box */
 .kj {
-  padding: 14px 22px;
-  border-left: 14px solid transparent;
-  border-top: 2px solid transparent;
+  padding: 14px 22px 14px 18px;
+  border-left: 1px solid transparent;
+  border-top: 1px solid rgba(255,255,255,0.04);
   margin-bottom: 10px;
 }
 
-.domain--d1 .kj { background-color: var(--d1-fill); border-left-color: var(--d1-bright); }
-.domain--d2 .kj { background-color: var(--d2-fill); border-left-color: var(--d2-bright); }
-.domain--d3 .kj { background-color: var(--d3-fill); border-left-color: var(--d3-bright); }
-.domain--d4 .kj { background-color: var(--d4-fill); border-left-color: var(--d4-bright); }
-.domain--d5 .kj { background-color: var(--d5-fill); border-left-color: var(--d5-bright); }
-.domain--d6 .kj { background-color: var(--d6-fill); border-left-color: var(--d6-bright); }
+.domain--d1 .kj { border-left-color: var(--d1-bright); }
+.domain--d2 .kj { border-left-color: var(--d2-bright); }
+.domain--d3 .kj { border-left-color: var(--d3-bright); }
+.domain--d4 .kj { border-left-color: var(--d4-bright); }
+.domain--d5 .kj { border-left-color: var(--d5-bright); }
+.domain--d6 .kj { border-left-color: var(--d6-bright); }
 
 .kj__label-row {
   display: flex;
@@ -1348,16 +1343,9 @@ body::after {
 
 /* Body Wrapper */
 .body-wrap {
-  border-left: 2px solid transparent;
-  padding: 0 22px 12px;
+  border-left: 1px solid rgba(255,255,255,0.06);
+  padding: 0 22px 12px 18px;
 }
-
-.domain--d1 .body-wrap { background-color: var(--d1-body); border-left-color: var(--d1-fill); }
-.domain--d2 .body-wrap { background-color: var(--d2-body); border-left-color: var(--d2-fill); }
-.domain--d3 .body-wrap { background-color: var(--d3-body); border-left-color: var(--d3-fill); }
-.domain--d4 .body-wrap { background-color: var(--d4-body); border-left-color: var(--d4-fill); }
-.domain--d5 .body-wrap { background-color: var(--d5-body); border-left-color: var(--d5-fill); }
-.domain--d6 .body-wrap { background-color: var(--d6-body); border-left-color: var(--d6-fill); }
 
 /* Sub-label (OBSERVED ACTIVITY vs ANALYTICAL ASSESSMENT) */
 .sub-label {
@@ -1582,7 +1570,6 @@ body::after {
 
 .actor-matrix {
   margin: 8px 0 12px;
-  overflow-x: auto;
 }
 
 .actor-matrix__caption {
@@ -1590,53 +1577,88 @@ body::after {
   font-size: var(--size-badge);
   font-weight: 700;
   color: var(--color-silver);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  margin-bottom: 5px;
+  padding: 0 0 6px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  margin-bottom: 0;
 }
 
-.actor-matrix table {
-  width: 100%;
-  border-collapse: collapse;
+/* Grid-based matrix header */
+.am-header {
+  display: grid;
+  grid-template-columns: 150px 170px 1fr 68px;
+  background: var(--color-table-head);
+  padding: 6px 14px;
   font-family: var(--font-ui);
-}
-
-.actor-matrix th {
   font-size: var(--size-badge);
   font-weight: 700;
   color: var(--text-dim);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
-  padding: 7px 10px;
-  text-align: left;
-  background-color: var(--color-table-head);
+  gap: 0;
 }
 
-.actor-matrix td {
-  font-size: var(--size-body);
-  padding: 7px 10px;
-  vertical-align: top;
-  color: var(--text-md);
-  line-height: 1.45;
+.am-row {
+  display: grid;
+  grid-template-columns: 150px 170px 1fr 68px;
+  padding: 10px 14px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  align-items: start;
 }
 
-.actor-matrix tr:last-child td { border-bottom: none; }
+.am-row:last-child { border-bottom: none; }
+.am-row:nth-child(even) { background: rgba(255,255,255,0.018); }
 
-.actor-matrix td.actor-name {
+.am-actor {
   font-family: var(--font-ui);
+  font-size: var(--size-body);
   font-weight: 700;
   color: var(--text-hi);
-  white-space: nowrap;
+  line-height: 1.4;
+  padding-right: 12px;
 }
 
-.actor-matrix td.actor-change {
+.am-posture {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-right: 12px;
+}
+
+.am-posture__text {
+  font-family: var(--font-ui);
+  font-size: var(--size-body);
+  color: var(--text-md);
+  line-height: 1.4;
+}
+
+.am-delta {
   font-family: var(--font-data);
-  font-size: var(--size-badge);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.actor-matrix td.actor-change--up   { color: var(--conf-red); }
-.actor-matrix td.actor-change--down { color: var(--conf-green); }
-.actor-matrix td.actor-change--same { color: var(--text-dim); }
+.am-delta--up       { color: var(--conf-red); }
+.am-delta--down     { color: var(--conf-green); }
+.am-delta--same     { color: var(--text-dim); }
+.am-delta--new      { color: var(--conf-amber); }
+
+.am-assess {
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  color: var(--text-md);
+  line-height: 1.5;
+  padding-right: 12px;
+}
+
+.am-conf {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+}
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -1760,75 +1782,167 @@ body::after {
   color: var(--color-gold-dim);
 }
 
-.warning-indicators__table {
-  border-left: 5px solid var(--conf-amber);
-  overflow-x: auto;
+.warning-indicators__rows {
+  border-left: 4px solid var(--conf-amber);
 }
 
-.wi-table {
-  width: 100%;
-  border-collapse: collapse;
+/* Warning indicator rows — card layout */
+.wi-row {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 16px;
+  padding: 11px 20px 11px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  align-items: baseline;
+}
+
+.wi-row:last-child { border-bottom: none; }
+
+.wi-row--triggered { border-left: 2px solid var(--conf-red);    padding-left: 14px; }
+.wi-row--elevated  { border-left: 2px solid var(--conf-amber);  padding-left: 14px; }
+.wi-row--watching  { border-left: 2px solid var(--color-dim);   padding-left: 14px; }
+.wi-row--cleared   { border-left: 2px solid var(--conf-green);  padding-left: 14px; }
+.wi-row--stable    { border-left: 2px solid var(--color-dim);   padding-left: 14px; }
+
+.wi-row__indicator {
   font-family: var(--font-ui);
-}
-
-.wi-table th {
-  background-color: var(--warn-th-bg);
-  font-size: var(--size-badge);
-  font-weight: 700;
-  color: var(--conf-amber);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  padding: 7px 12px;
-  text-align: left;
-}
-
-.wi-table td {
   font-size: var(--size-body);
-  padding: 8px 12px;
-  vertical-align: top;
-  color: var(--text-md);
-  line-height: 1.5;
-}
-
-.wi-table tr:last-child td { border-bottom: none; }
-
-.wi-table__indicator {
-  color: var(--text-hi);
-  font-weight: 600;
-}
-
-.wi-table__domain {
-  font-family: var(--font-data);
-  font-size: var(--size-badge);
-  white-space: nowrap;
-  color: var(--text-md);
-}
-
-.wi-status {
-  font-family: var(--font-ui);
-  font-size: var(--size-badge);
   font-weight: 700;
-  padding: 2px 6px;
+  color: var(--text-hi);
+  line-height: 1.45;
+}
+
+.wi-row__body {
+  font-family: var(--font-body);
+  font-size: var(--size-body);
+  color: var(--text-md);
+  line-height: 1.55;
+}
+
+/* ─── 3-D Status Tokens ──────────────────────────────────────────────────── */
+.wi-token {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 9px 2px 6px;
+  border-radius: 2px;
+  font-family: var(--font-data);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   white-space: nowrap;
+  vertical-align: middle;
+  margin-right: 7px;
+  position: relative;
+  box-shadow:
+    0 1px 0 rgba(255,255,255,0.09) inset,
+    0 -1px 0 rgba(0,0,0,0.5) inset,
+    0 2px 6px rgba(0,0,0,0.45),
+    0 1px 2px rgba(0,0,0,0.3);
 }
 
-.wi-status--triggered { background-color: var(--conf-red);   color: #fff; }
-.wi-status--elevated  { background-color: var(--conf-amber); color: #000; }
-.wi-status--watching  { background-color: var(--color-dim);  color: var(--text-md); }
-.wi-status--cleared   { background-color: var(--conf-green); color: #000; }
+.wi-token__dot {
+  display: block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
 
+/* TRIGGERED — crimson */
+.wi-token--triggered {
+  background: linear-gradient(180deg, #7a1020 0%, #4a0810 100%);
+  border: 1px solid rgba(210,35,55,0.75);
+  border-bottom-color: rgba(20,0,4,0.95);
+  color: #ff8090;
+  text-shadow: 0 0 10px rgba(255,60,80,0.45);
+}
+.wi-token--triggered .wi-token__dot {
+  background: #ff3355;
+  box-shadow: 0 0 6px 2px rgba(255,40,65,0.75);
+  animation: wi-dot-pulse 1.2s ease-in-out infinite;
+}
+
+/* ELEVATED — amber */
+.wi-token--elevated {
+  background: linear-gradient(180deg, #6a3a08 0%, #401e03 100%);
+  border: 1px solid rgba(210,125,20,0.65);
+  border-bottom-color: rgba(25,10,0,0.95);
+  color: #e8a030;
+  text-shadow: 0 0 8px rgba(230,150,20,0.3);
+}
+.wi-token--elevated .wi-token__dot {
+  background: #e8a030;
+  box-shadow: 0 0 5px 2px rgba(235,155,25,0.55);
+  animation: wi-dot-pulse 1.8s ease-in-out infinite;
+}
+
+/* WATCHING — amber-dim */
+.wi-token--watching {
+  background: linear-gradient(180deg, #3a2d08 0%, #201805 100%);
+  border: 1px solid rgba(165,115,20,0.5);
+  border-bottom-color: rgba(12,8,0,0.95);
+  color: #c89830;
+}
+.wi-token--watching .wi-token__dot {
+  background: #c89830;
+  box-shadow: 0 0 3px 1px rgba(200,150,30,0.45);
+  animation: wi-dot-pulse 2.8s ease-in-out infinite;
+}
+
+/* CLEARED — green */
+.wi-token--cleared {
+  background: linear-gradient(180deg, #0a3818 0%, #061d0c 100%);
+  border: 1px solid rgba(22,148,65,0.55);
+  border-bottom-color: rgba(0,12,4,0.95);
+  color: #40c060;
+}
+.wi-token--cleared .wi-token__dot {
+  background: #40c060;
+  box-shadow: 0 0 4px 1px rgba(45,185,85,0.45);
+}
+
+/* STABLE — steel */
+.wi-token--stable {
+  background: linear-gradient(180deg, #141e3a 0%, #0a1220 100%);
+  border: 1px solid rgba(55,85,145,0.5);
+  border-bottom-color: rgba(4,7,18,0.95);
+  color: #6080b8;
+}
+.wi-token--stable .wi-token__dot {
+  background: #6080b8;
+  box-shadow: 0 0 3px 1px rgba(85,115,185,0.4);
+}
+
+@keyframes wi-dot-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* Change delta tag */
 .wi-change {
+  display: inline-flex;
+  align-items: center;
   font-family: var(--font-data);
-  font-size: var(--size-badge);
+  font-size: 8px;
   font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 2px;
+  margin-left: 8px;
+  vertical-align: middle;
   white-space: nowrap;
 }
 
-.wi-change--new      { color: var(--conf-red); }
-.wi-change--elevated { color: var(--conf-amber); }
+.wi-change--new      { color: var(--conf-red);   background: rgba(200,30,50,0.12);  border: 1px solid rgba(200,30,50,0.25); }
+.wi-change--elevated { color: var(--conf-amber);  background: rgba(200,140,20,0.12); border: 1px solid rgba(200,140,20,0.25); }
 .wi-change--unchanged{ color: var(--text-dim); }
-.wi-change--cleared  { color: var(--conf-green); }
+.wi-change--cleared  { color: var(--conf-green);  background: rgba(30,160,70,0.12);  border: 1px solid rgba(30,160,70,0.25); }
+
+/* Keep .wi-table for backwards compat in print.css — hide it */
+.wi-table { display: none; }
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -2991,27 +3105,22 @@ section.domain::after{
   </div>
   <ul class="exec__kj-list">
         <li class="exec__kj-item">
-      <span class="exec__kj-domain exec__kj-domain--d1">BATTLESPACE</span>
       <span class="exec__kj-text">We judge it highly likely that Israel will conduct retaliatory strikes against IRGC or IRGC-affiliated targets within Iranian territory within the next 72 hours, contingent on US force posture coordination.</span>
       <span class="exec__kj-conf badge--green">HIGH</span>
     </li>
     <li class="exec__kj-item">
-      <span class="exec__kj-domain exec__kj-domain--d2">ESCALATION</span>
       <span class="exec__kj-text">Available evidence suggests that Iran&#x27;s missile salvo was deliberately calibrated to avoid triggering Article 5-equivalent US commitments, indicating Tehran retains escalation management intent despite the crossing of a significant threshold.</span>
       <span class="exec__kj-conf badge--blue">MODERATE</span>
     </li>
     <li class="exec__kj-item">
-      <span class="exec__kj-domain exec__kj-domain--d3">ENERGY</span>
       <span class="exec__kj-text">We assess with high confidence that Strait of Hormuz transit disruption will drive Brent crude above $100/bbl within five trading days absent a rapid de-escalation signal, with Goldman Sachs&#x27;s four-week disruption scenario implying a $14 risk premium materialisation.</span>
       <span class="exec__kj-conf badge--green">HIGH</span>
     </li>
     <li class="exec__kj-item">
-      <span class="exec__kj-domain exec__kj-domain--d4">DIPLOMATIC</span>
       <span class="exec__kj-text">Reporting indicates, though corroboration is limited, that Qatar and Oman have opened back-channel communications to both Tehran and Washington seeking a 48-hour pause; the probability of a negotiated pause before Israeli retaliation remains roughly even.</span>
       <span class="exec__kj-conf badge--blue">MODERATE</span>
     </li>
     <li class="exec__kj-item">
-      <span class="exec__kj-domain exec__kj-domain--d5">CYBER · IO</span>
       <span class="exec__kj-text">Reporting indicates, though corroboration is limited, that coordinated cyber operations targeting Israeli financial sector infrastructure preceded the missile salvo by approximately six hours; attribution to IRGC cyber units remains unconfirmed in open sources.</span>
       <span class="exec__kj-conf badge--amber">LOW</span>
     </li>
@@ -3144,46 +3253,35 @@ section.domain::after{
   
     <div class="actor-matrix">
     <div class="actor-matrix__caption">ACTOR POSTURE MATRIX</div>
-    <table>
-      <thead>
-        <tr>
-          <th>ACTOR</th><th>POSTURE</th><th>CHANGE</th><th>ASSESSMENT</th><th>CONF</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td class="actor-name">Iran (IRGC)</td>
-        <td>Offensive — elevated readiness, missile forces on alert</td>
-        <td class="actor-change">up</td>
-        <td>Deliberate escalation with retained de-escalation off-ramp; threshold management intact</td>
-        <td><span class="badge badge--blue">MODERATE</span></td>
-      </tr>      <tr>
-        <td class="actor-name">Israel (IDF)</td>
-        <td>Defensive transition to offensive — retaliatory strike planning confirmed</td>
-        <td class="actor-change">up</td>
-        <td>Retaliation certain; question is scale and target selection</td>
-        <td><span class="badge badge--green">HIGH</span></td>
-      </tr>      <tr>
-        <td class="actor-name">Hezbollah</td>
-        <td>Elevated — forward assembly but no ground manoeuvre</td>
-        <td class="actor-change">up</td>
-        <td>Holding in reserve; likely awaiting IDF retaliation before committing</td>
-        <td><span class="badge badge--blue">MODERATE</span></td>
-      </tr>      <tr>
-        <td class="actor-name">United States</td>
-        <td>Defensive support — CSG repositioned, B-2s forward deployed</td>
-        <td class="actor-change">up</td>
-        <td>Active restraint of Israel&#x27;s retaliatory ambition while providing military backing</td>
-        <td><span class="badge badge--green">HIGH</span></td>
-      </tr>      <tr>
-        <td class="actor-name">Russia / China</td>
-        <td>Declaratory — calls for restraint; no material change</td>
-        <td class="actor-change">same</td>
-        <td>No evidence of material military support to Iran in this cycle; Deutsche Welle confirms diplomatic statements only</td>
-        <td><span class="badge badge--green">HIGH</span></td>
-      </tr>
-      </tbody>
-    </table>
+    <div class="am-header">
+      <div>ACTOR</div><div>POSTURE</div><div>ASSESSMENT</div><div>CONF</div>
+    </div>
+  <div class="am-row">
+    <div class="am-actor">Iran (IRGC)</div>
+    <div class="am-posture"><span class="am-posture__text">Offensive — elevated readiness, missile forces on alert</span><span class="am-delta am-delta--up">↑ up</span></div>
+    <div class="am-assess">Deliberate escalation with retained de-escalation off-ramp; threshold management intact</div>
+    <div class="am-conf"><span class="badge badge--blue">MODERATE</span></div>
+  </div>  <div class="am-row">
+    <div class="am-actor">Israel (IDF)</div>
+    <div class="am-posture"><span class="am-posture__text">Defensive transition to offensive — retaliatory strike planning confirmed</span><span class="am-delta am-delta--up">↑ up</span></div>
+    <div class="am-assess">Retaliation certain; question is scale and target selection</div>
+    <div class="am-conf"><span class="badge badge--green">HIGH</span></div>
+  </div>  <div class="am-row">
+    <div class="am-actor">Hezbollah</div>
+    <div class="am-posture"><span class="am-posture__text">Elevated — forward assembly but no ground manoeuvre</span><span class="am-delta am-delta--up">↑ up</span></div>
+    <div class="am-assess">Holding in reserve; likely awaiting IDF retaliation before committing</div>
+    <div class="am-conf"><span class="badge badge--blue">MODERATE</span></div>
+  </div>  <div class="am-row">
+    <div class="am-actor">United States</div>
+    <div class="am-posture"><span class="am-posture__text">Defensive support — CSG repositioned, B-2s forward deployed</span><span class="am-delta am-delta--up">↑ up</span></div>
+    <div class="am-assess">Active restraint of Israel&#x27;s retaliatory ambition while providing military backing</div>
+    <div class="am-conf"><span class="badge badge--green">HIGH</span></div>
+  </div>  <div class="am-row">
+    <div class="am-actor">Russia / China</div>
+    <div class="am-posture"><span class="am-posture__text">Declaratory — calls for restraint; no material change</span><span class="am-delta am-delta--same">→ same</span></div>
+    <div class="am-assess">No evidence of material military support to Iran in this cycle; Deutsche Welle confirms diplomatic statements only</div>
+    <div class="am-conf"><span class="badge badge--green">HIGH</span></div>
+  </div>
   </div>
   
     <aside class="dissenter-note">
@@ -3341,71 +3439,26 @@ section.domain::after{
     <div class="warning-indicators__title">WARNING INDICATORS <span class="badge badge--amber">6</span></div>
     <div class="warning-indicators__cycle">CYCLE 001 · 15 MARCH 2024</div>
   </div>
-  <div class="warning-indicators__table">
-    <table class="wi-table">
-      <thead>
-        <tr>
-          <th>STATUS</th><th>INDICATOR</th><th>DOMAIN</th><th>DETAIL</th><th>CHANGE</th>
-        </tr>
-      </thead>
-      <tbody>
-      <tr>
-        <td>
-          <span class="wi-icon wi-icon--triggered">&#9632;</span>
-          <span class="wi-status wi-status--triggered">TRIGGERED</span>
-        </td>
-        <td class="wi-table__indicator">Ballistic missile employment against Israeli territory</td>
-        <td><span class="exec__kj-domain exec__kj-domain--d1">BATTLESPACE</span></td>
-        <td>Triggered at 0342 UTC 15 Mar. 22 missiles confirmed launched; 19 intercepted, 2 impacts in Haifa port district.</td>
-        <td><span class="wi-change wi-change--new">NEW</span></td>
-      </tr>      <tr>
-        <td>
-          <span class="wi-icon wi-icon--triggered">&#9632;</span>
-          <span class="wi-status wi-status--triggered">TRIGGERED</span>
-        </td>
-        <td class="wi-table__indicator">IAEA inspector access suspension at declared enrichment facility</td>
-        <td><span class="exec__kj-domain exec__kj-domain--d2">ESCALATION</span></td>
-        <td>Natanz access suspended as of 2205 UTC 14 Mar. Revised breakout timeline assessment in progress.</td>
-        <td><span class="wi-change wi-change--new">NEW</span></td>
-      </tr>      <tr>
-        <td>
-          <span class="wi-icon wi-icon--elevated">&#9650;</span>
-          <span class="wi-status wi-status--elevated">ELEVATED</span>
-        </td>
-        <td class="wi-table__indicator">Hezbollah ground forces advancing to attack positions in southern Lebanon</td>
-        <td><span class="exec__kj-domain exec__kj-domain--d1">BATTLESPACE</span></td>
-        <td>Forward assembly observed; no ground manoeuvre yet. Elevated from &#x27;watching&#x27; to &#x27;elevated&#x27; this cycle.</td>
-        <td><span class="wi-change wi-change--elevated">ELEVATED</span></td>
-      </tr>      <tr>
-        <td>
-          <span class="wi-icon wi-icon--watching">&#9679;</span>
-          <span class="wi-status wi-status--watching">WATCHING</span>
-        </td>
-        <td class="wi-table__indicator">Iraqi PMF cross-border strikes against Israeli territory</td>
-        <td><span class="exec__kj-domain exec__kj-domain--d1">BATTLESPACE</span></td>
-        <td>PMF in Diyala province at elevated readiness. No cross-border activity confirmed this cycle.</td>
-        <td><span class="wi-change wi-change--unchanged">UNCHANGED</span></td>
-      </tr>      <tr>
-        <td>
-          <span class="wi-icon wi-icon--watching">&#9679;</span>
-          <span class="wi-status wi-status--watching">WATCHING</span>
-        </td>
-        <td class="wi-table__indicator">Third-country Arab state infrastructure struck by any party</td>
-        <td><span class="exec__kj-domain exec__kj-domain--d4">DIPLOMATIC</span></td>
-        <td>No incidents this cycle. Closest proximity event: Yemen Houthi drones within 40nm of Saudi Yanbu facility.</td>
-        <td><span class="wi-change wi-change--unchanged">UNCHANGED</span></td>
-      </tr>      <tr>
-        <td>
-          <span class="wi-icon wi-icon--elevated">&#9650;</span>
-          <span class="wi-status wi-status--elevated">ELEVATED</span>
-        </td>
-        <td class="wi-table__indicator">Hormuz Strait daily transit falls below 10 tankers</td>
-        <td><span class="exec__kj-domain exec__kj-domain--d3">ENERGY</span></td>
-        <td>Transit at approx. 14 tankers as of 0600 UTC, down from 21. Lloyd&#x27;s insurance suspension will further reduce transit. Threshold is 10 tankers/day.</td>
-        <td><span class="wi-change wi-change--elevated">ELEVATED</span></td>
-      </tr>
-      </tbody>
-    </table>
+  <div class="warning-indicators__rows">
+  <div class="wi-row wi-row--triggered">
+    <div class="wi-row__indicator">Ballistic missile employment against Israeli territory</div>
+    <div class="wi-row__body"><span class="wi-token wi-token--triggered"><span class="wi-token__dot"></span>TRIGGERED</span>Triggered at 0342 UTC 15 Mar. 22 missiles confirmed launched; 19 intercepted, 2 impacts in Haifa port district.<span class="wi-change wi-change--new">NEW</span></div>
+  </div>  <div class="wi-row wi-row--triggered">
+    <div class="wi-row__indicator">IAEA inspector access suspension at declared enrichment facility</div>
+    <div class="wi-row__body"><span class="wi-token wi-token--triggered"><span class="wi-token__dot"></span>TRIGGERED</span>Natanz access suspended as of 2205 UTC 14 Mar. Revised breakout timeline assessment in progress.<span class="wi-change wi-change--new">NEW</span></div>
+  </div>  <div class="wi-row wi-row--elevated">
+    <div class="wi-row__indicator">Hezbollah ground forces advancing to attack positions in southern Lebanon</div>
+    <div class="wi-row__body"><span class="wi-token wi-token--elevated"><span class="wi-token__dot"></span>ELEVATED</span>Forward assembly observed; no ground manoeuvre yet. Elevated from &#x27;watching&#x27; to &#x27;elevated&#x27; this cycle.<span class="wi-change wi-change--elevated">ELEVATED</span></div>
+  </div>  <div class="wi-row wi-row--watching">
+    <div class="wi-row__indicator">Iraqi PMF cross-border strikes against Israeli territory</div>
+    <div class="wi-row__body"><span class="wi-token wi-token--watching"><span class="wi-token__dot"></span>WATCHING</span>PMF in Diyala province at elevated readiness. No cross-border activity confirmed this cycle.</div>
+  </div>  <div class="wi-row wi-row--watching">
+    <div class="wi-row__indicator">Third-country Arab state infrastructure struck by any party</div>
+    <div class="wi-row__body"><span class="wi-token wi-token--watching"><span class="wi-token__dot"></span>WATCHING</span>No incidents this cycle. Closest proximity event: Yemen Houthi drones within 40nm of Saudi Yanbu facility.</div>
+  </div>  <div class="wi-row wi-row--elevated">
+    <div class="wi-row__indicator">Hormuz Strait daily transit falls below 10 tankers</div>
+    <div class="wi-row__body"><span class="wi-token wi-token--elevated"><span class="wi-token__dot"></span>ELEVATED</span>Transit at approx. 14 tankers as of 0600 UTC, down from 21. Lloyd&#x27;s insurance suspension will further reduce transit. Threshold is 10 tankers/day.<span class="wi-change wi-change--elevated">ELEVATED</span></div>
+  </div>
   </div>
 </section>
 <section class="collection-gaps">
@@ -3416,28 +3469,24 @@ section.domain::after{
   <ul class="collection-gaps__items">
   <li class="gap-item">
     <span class="gap-item__severity gap-item__severity--critical">CRITICAL</span>
-    <span class="gap-item__domain gap-item__domain--d1">BATTLESPACE</span>
     <div class="gap-item__content">
       <div class="gap-item__gap">Real-time Iranian missile inventory levels and launch site readiness status</div>
       <div class="gap-item__significance">Our estimate of Iran&#x27;s retaliatory capacity relies on pre-conflict order-of-battle data last updated in January 2024. The 22 missiles employed this cycle may have already degraded reserve stocks in specific system categories; we cannot assess the probability of a follow-on salvo without inventory update.</div>
     </div>
   </li>  <li class="gap-item">
     <span class="gap-item__severity gap-item__severity--critical">CRITICAL</span>
-    <span class="gap-item__domain gap-item__domain--d2">ESCALATION</span>
     <div class="gap-item__content">
       <div class="gap-item__gap">Iranian Supreme Leader&#x27;s office internal deliberation on escalation management</div>
       <div class="gap-item__significance">The deterrence-management assessment in the Escalation domain rests on an inference about Khamenei&#x27;s intent from observable behaviour. We have no open-source visibility into internal IRGC command-and-control deliberation, which the dissenting analyst correctly identifies as a key analytical vulnerability.</div>
     </div>
   </li>  <li class="gap-item">
     <span class="gap-item__severity gap-item__severity--significant">SIGNIFICANT</span>
-    <span class="gap-item__domain gap-item__domain--d5">CYBER · IO</span>
     <div class="gap-item__content">
       <div class="gap-item__gap">Independent technical verification of claimed cyber incidents against Israeli infrastructure</div>
       <div class="gap-item__significance">All cyber activity this cycle is attributed by either hacktivist-affiliated Telegram accounts or Tier 3 aggregators. Without independent technical verification (network telemetry, CISA advisory, or Tier 2 security vendor confirmation), the Cyber domain assessment remains structurally speculative.</div>
     </div>
   </li>  <li class="gap-item">
     <span class="gap-item__severity gap-item__severity--significant">SIGNIFICANT</span>
-    <span class="gap-item__domain gap-item__domain--d4">DIPLOMATIC</span>
     <div class="gap-item__content">
       <div class="gap-item__gap">Content and status of Qatari/Omani back-channel communications</div>
       <div class="gap-item__significance">The diplomatic pause probability assessment in the Diplomatic domain depends on the substance and progress of the back-channel. We have confirmation of contact (Reuters) but no visibility into the content or Iranian response. An Iranian rejection would reduce the pause probability from ~50% to ~15%.</div>
