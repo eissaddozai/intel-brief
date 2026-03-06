@@ -236,7 +236,7 @@ export interface BriefCycle {
     subtitle: string
     /** Single-sentence framing note below distribution bar */
     contextNote: string
-    /** 5 cells for status strip: first cell is alert level, rest are domain KPIs */
+    /** 6 cells for status strip: first cell is alert level, rest are domain KPIs */
     stripCells: { top: string; bot: string }[]
   }
 

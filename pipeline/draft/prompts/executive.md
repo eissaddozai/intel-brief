@@ -47,7 +47,7 @@ Synthesize the six domain sections into an integrated executive assessment with:
 - Order: most consequential first
 - At least one judgment must explicitly address Canadian exposure or alliance posture
 
-**KPI Cell Requirements (5 cells):**
+**KPI Cell Requirements (5 cells, D5 excluded — no stable numeric KPI for cyber):**
 - D1: A number capturing kinetic intensity (strikes, incidents, or casualties — choose most significant)
 - D2: An escalation/de-escalation probability percentage
 - D3: Brent crude price or a shipping disruption figure

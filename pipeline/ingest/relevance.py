@@ -14,7 +14,7 @@ import logging
 
 log = logging.getLogger(__name__)
 
-# Comprehensive keyword set covering all five domains.
+# Comprehensive keyword set covering all six domains.
 # Lowercase, matched against lowercased title+text.
 RELEVANCE_KEYWORDS: frozenset[str] = frozenset([
     # ── Core state actors ───────────────────────────────────────────────────
