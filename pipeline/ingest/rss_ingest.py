@@ -4,6 +4,7 @@ Uses requests + stdlib xml.etree (no feedparser dependency).
 """
 
 import logging
+import re
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
@@ -12,6 +13,9 @@ from pathlib import Path
 
 import requests
 import yaml
+
+_HTML_TAG_RE = re.compile(r'<[^>]+>')
+_HTML_ENTITY_RE = re.compile(r'&(?:amp|lt|gt|quot|apos|nbsp);')
 
 log = logging.getLogger(__name__)
 
@@ -47,16 +51,29 @@ def _parse_date(text: str | None) -> datetime | None:
         return parsedate_to_datetime(text).astimezone(timezone.utc)
     except Exception:
         pass
-    # Try ISO 8601 (Atom)
-    for fmt in ('%Y-%m-%dT%H:%M:%SZ', '%Y-%m-%dT%H:%M:%S%z', '%Y-%m-%d'):
+    # Try ISO 8601 (Atom) — try full string first, then truncated forms
+    iso_fmts = [
+        ('%Y-%m-%dT%H:%M:%SZ',  19),
+        ('%Y-%m-%dT%H:%M:%S%z', 25),
+        ('%Y-%m-%d',            10),
+    ]
+    for fmt, length in iso_fmts:
         try:
-            dt = datetime.strptime(text[:25], fmt)
+            dt = datetime.strptime(text[:length], fmt)
             if dt.tzinfo is None:
                 dt = dt.replace(tzinfo=timezone.utc)
             return dt.astimezone(timezone.utc)
         except Exception:
             continue
     return None
+
+
+def _strip_html(text: str) -> str:
+    """Strip HTML tags and decode common entities."""
+    text = _HTML_TAG_RE.sub(' ', text)
+    text = text.replace('&amp;', '&').replace('&lt;', '<').replace('&gt;', '>')
+    text = text.replace('&quot;', '"').replace('&apos;', "'").replace('&nbsp;', ' ')
+    return re.sub(r'\s+', ' ', text).strip()
 
 
 def _text(el: ET.Element | None, *tags: str) -> str:
@@ -91,26 +108,39 @@ def _parse_feed(xml_text: str, source: dict, cutoff: datetime) -> list[dict]:
             title = _text(entry, '{http://www.w3.org/2005/Atom}title')
             link_el = entry.find('{http://www.w3.org/2005/Atom}link')
             link = link_el.get('href', '') if link_el is not None else ''
-            summary = (
-                _text(entry, '{http://www.w3.org/2005/Atom}summary',
-                      '{http://www.w3.org/2005/Atom}content')
+            summary = _text(
+                entry,
+                '{http://www.w3.org/2005/Atom}summary',
+                '{http://www.w3.org/2005/Atom}content',
             )
-            date_text = _text(entry, '{http://www.w3.org/2005/Atom}updated',
-                              '{http://www.w3.org/2005/Atom}published')
+            date_text = _text(
+                entry,
+                '{http://www.w3.org/2005/Atom}updated',
+                '{http://www.w3.org/2005/Atom}published',
+            )
         else:
             title = _text(entry, 'title')
             link = _text(entry, 'link')
             summary = _text(entry, 'description', 'content:encoded')
-            date_text = (_text(entry, 'pubDate') or
-                         _text(entry, '{http://purl.org/dc/elements/1.1/}date'))
+            date_text = (
+                _text(entry, 'pubDate')
+                or _text(entry, '{http://purl.org/dc/elements/1.1/}date')
+                or _text(entry, '{http://purl.org/dc/elements/1.0/}date')
+            )
 
         ts = _parse_date(date_text)
         if ts and ts < cutoff:
             continue
 
-        # Strip HTML tags from summary
-        import re
-        summary_clean = re.sub(r'<[^>]+>', ' ', summary or '').strip()
+        # Strip HTML from title and summary
+        title = _strip_html(title)
+        summary_clean = _strip_html(summary or '')
+
+        # Default missing timestamp to cutoff boundary (keeps item eligible)
+        ts_str = ts.isoformat() if ts else cutoff.isoformat()
+
+        body = summary_clean
+        text = f'{title}. {body}' if body and not body.startswith(title[:50]) else body or title
 
         items.append({
             'source_id': source['id'],
@@ -118,10 +148,10 @@ def _parse_feed(xml_text: str, source: dict, cutoff: datetime) -> list[dict]:
             'tier': source['tier'],
             'domains': source.get('domains', []),
             'title': title,
-            'text': f"{title}. {summary_clean}".strip('. '),
-            'full_content': summary_clean,
+            'text': text,
+            'full_content': body,
             'url': link,
-            'timestamp': ts.isoformat() if ts else None,
+            'timestamp': ts_str,
             'verification_status': 'confirmed' if source['tier'] == 1 else 'reported',
             'method': 'rss',
         })
@@ -133,6 +163,7 @@ def ingest_rss(target_date: datetime, config: dict | None = None) -> list[dict]:
     sources = load_rss_sources(config)
     cutoff = target_date - timedelta(hours=MAX_ITEM_AGE_HOURS)
     all_items: list[dict] = []
+    seen_urls: set[str] = set()          # URL-based cross-source deduplication
     failed_tier1: list[str] = []
 
     for source in sources:
@@ -142,14 +173,26 @@ def ingest_rss(target_date: datetime, config: dict | None = None) -> list[dict]:
             continue
 
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
+            resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT,
+                                allow_redirects=True)
             resp.raise_for_status()
             items = _parse_feed(resp.text, source, cutoff)
-            # Apply relevance filter to general feeds (Tier 1 items pass unconditionally)
+            # Apply relevance filter (Tier 1 items pass unconditionally)
             from ingest.relevance import filter_relevant
             items = filter_relevant(items)
-            all_items.extend(items)
-            log.info('%-35s %3d items', source['name'], len(items))
+            # Deduplicate by URL across sources
+            unique: list[dict] = []
+            for item in items:
+                item_url = item.get('url', '')
+                if item_url and item_url in seen_urls:
+                    continue
+                if item_url:
+                    seen_urls.add(item_url)
+                unique.append(item)
+            dupes = len(items) - len(unique)
+            all_items.extend(unique)
+            log.info('%-35s %3d items%s', source['name'], len(unique),
+                     f'  ({dupes} dupes skipped)' if dupes else '')
         except Exception as exc:
             log.error('Failed to fetch %s: %s', source['name'], exc)
             if source['tier'] == 1:

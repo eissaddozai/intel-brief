@@ -19,6 +19,7 @@ import re
 import time
 from datetime import datetime, timezone
 from pathlib import Path
+from urllib.parse import urlparse
 
 import requests
 import yaml
@@ -50,12 +51,20 @@ def load_scrape_sources() -> list[dict]:
 
 def _fetch(url: str) -> BeautifulSoup | None:
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
+        resp = requests.get(
+            url, headers=HEADERS, timeout=REQUEST_TIMEOUT, allow_redirects=True,
+        )
         resp.raise_for_status()
         return BeautifulSoup(resp.text, 'html.parser')
+    except requests.exceptions.Timeout:
+        log.warning('Fetch timeout (%ds) %s', REQUEST_TIMEOUT, url)
+    except requests.exceptions.ConnectionError as exc:
+        log.warning('Fetch connection error %s: %s', url, exc)
+    except requests.exceptions.HTTPError as exc:
+        log.warning('Fetch HTTP %s %s', exc.response.status_code, url)
     except Exception as exc:
-        log.error('Fetch failed %s: %s', url, exc)
-        return None
+        log.error('Fetch unexpected error %s: %s', url, exc)
+    return None
 
 
 def _clean(text: str) -> str:
@@ -64,14 +73,23 @@ def _clean(text: str) -> str:
 
 def _make_item(source: dict, title: str, text: str, url: str,
                timestamp: str | None = None) -> dict:
+    title = _clean(title)[:200]
+    body = _clean(text)
+    # Avoid "Title. " when text is empty; avoid duplication when text starts with title
+    if body and not body.startswith(title[:60]):
+        combined = f'{title}. {body}'
+    elif body:
+        combined = body
+    else:
+        combined = title
     return {
         'source_id': source['id'],
         'source_name': source['name'],
         'tier': source['tier'],
         'domains': source.get('domains', []),
-        'title': title[:200],
-        'text': _clean(f'{title}. {text}')[:2000],
-        'full_content': _clean(text)[:2000],
+        'title': title,
+        'text': combined[:2000],
+        'full_content': body[:2000],
         'url': url,
         'timestamp': timestamp or datetime.now(timezone.utc).isoformat(),
         'verification_status': 'confirmed' if source['tier'] == 1 else 'reported',
@@ -108,8 +126,8 @@ def _extract_reuters(source: dict, date: datetime) -> list[dict]:
             break
 
     if not cards:
-        # Fallback: all article-level headings with links
-        cards = soup.select('article') or soup.select('li')
+        # Fallback: article elements only — avoid generic <li> which catches nav items
+        cards = soup.select('article')
 
     for card in cards[:25]:
         heading = card.find(['h1', 'h2', 'h3', 'h4', 'a'])
@@ -133,6 +151,7 @@ def _extract_reuters(source: dict, date: datetime) -> list[dict]:
 
 
 def _extract_ctpiw(source: dict, date: datetime) -> list[dict]:
+
     """
     CTP-ISW Iran War Updates category page (criticalthreats.org).
     Extracts article cards — title + excerpt + link.
@@ -153,7 +172,8 @@ def _extract_ctpiw(source: dict, date: datetime) -> list[dict]:
         link_el = card.find('a', href=True)
         link = link_el['href'] if link_el else source['url']
         if link and not link.startswith('http'):
-            link = 'https://www.criticalthreats.org' + link
+            base = urlparse(source['url'])
+            link = f'{base.scheme}://{base.netloc}{link}'
         excerpt_el = card.find('p')
         excerpt = _clean(excerpt_el.get_text()) if excerpt_el else ''
         items.append(_make_item(source, title, excerpt, link, date.isoformat()))
@@ -211,12 +231,15 @@ def _extract_ukmto(source: dict, date: datetime) -> list[dict]:
         cells = row.find_all(['td', 'th'])
         if len(cells) < 2:
             continue
-        text = ' | '.join(_clean(c.get_text()) for c in cells)
-        if len(text) > 20:
+        # First cell often has incident type/date; rest is content
+        cell_texts = [_clean(c.get_text()) for c in cells]
+        title_part = cell_texts[0] if cell_texts[0] else 'UKMTO Incident'
+        full_text = ' | '.join(t for t in cell_texts if t)
+        if len(full_text) > 20:
             items.append(_make_item(
                 source,
-                title=f'UKMTO Incident: {text[:100]}',
-                text=text,
+                title=f'UKMTO: {title_part[:100]}',
+                text=full_text,
                 url=source['url'],
                 timestamp=date.isoformat(),
             ))
@@ -310,8 +333,12 @@ def _extract_iran_intl(source: dict, date: datetime) -> list[dict]:
         link_el = el.find('a', href=True) or (el.parent.find('a', href=True) if el.parent else None)
         link = link_el['href'] if link_el else source['url']
         if link and not link.startswith('http'):
-            link = 'https://www.iranintl.com' + link
-        items.append(_make_item(source, title, '', link, date.isoformat()))
+            base = urlparse(source['url'])
+            link = f'{base.scheme}://{base.netloc}{link}'
+        # Attempt to grab a lede from the next sibling paragraph
+        lede_el = el.find_next_sibling('p')
+        lede = _clean(lede_el.get_text()) if lede_el else ''
+        items.append(_make_item(source, title, lede, link, date.isoformat()))
 
     return items[:10]
 
@@ -329,9 +356,12 @@ def _extract_bbc_persian(source: dict, date: datetime) -> list[dict]:
             continue
         link_el = el.find('a', href=True) or (el.parent.find('a', href=True) if el.parent else None)
         link = link_el['href'] if link_el else source['url']
-        if link and link.startswith('/'):
-            link = 'https://www.bbc.com' + link
-        items.append(_make_item(source, title, '', link, date.isoformat()))
+        if link and not link.startswith('http'):
+            base = urlparse(source['url'])
+            link = f'{base.scheme}://{base.netloc}{link}'
+        lede_el = el.find_next_sibling('p')
+        lede = _clean(lede_el.get_text()) if lede_el else ''
+        items.append(_make_item(source, title, lede, link, date.isoformat()))
 
     return items[:10]
 
@@ -392,7 +422,6 @@ def _extract_d6_marine(source: dict, date: datetime) -> list[dict]:
         elif link_el:
             link = link_el.get('href', '')
         if link and not link.startswith('http'):
-            from urllib.parse import urlparse
             base = urlparse(source['url'])
             link = f'{base.scheme}://{base.netloc}{link}'
         excerpt_el = card.find('p') or card.find('[class*="summary"]')
@@ -412,7 +441,6 @@ def _extract_d6_marine(source: dict, date: datetime) -> list[dict]:
         if link_el:
             link = link_el.get('href', '')
             if link and not link.startswith('http'):
-                from urllib.parse import urlparse
                 base = urlparse(source['url'])
                 link = f'{base.scheme}://{base.netloc}{link}'
         # Lede: next sibling <p>
@@ -444,7 +472,8 @@ def _extract_netblocks(source: dict, date: datetime) -> list[dict]:
         link_el = article.find('a', href=True)
         link = link_el['href'] if link_el else source['url']
         if link and not link.startswith('http'):
-            link = 'https://netblocks.org' + link
+            base = urlparse(source['url'])
+            link = f'{base.scheme}://{base.netloc}{link}'
         excerpt_el = article.find('p')
         excerpt = _clean(excerpt_el.get_text()) if excerpt_el else ''
         items.append(_make_item(source, title, excerpt, link, date.isoformat()))
@@ -494,7 +523,6 @@ def _extract_opec(source: dict, date: datetime) -> list[dict]:
             continue
         link = el.get('href', source['url'])
         if link and not link.startswith('http'):
-            from urllib.parse import urlparse
             base = urlparse(source['url'])
             link = f'{base.scheme}://{base.netloc}{link}'
         items.append(_make_item(source, title, '', link, date.isoformat()))
@@ -613,6 +641,7 @@ def ingest_scrape(target_date: datetime, config: dict | None = None) -> list[dic
             continue
 
         extractor = EXTRACTORS.get(source['id'])
+        t0 = time.time()
         if extractor is None:
             log.warning('%s: no extractor defined — using generic', source['id'])
             soup = _fetch(url)
@@ -624,8 +653,9 @@ def ingest_scrape(target_date: datetime, config: dict | None = None) -> list[dic
                 log.error('%s: extractor failed — %s', source['id'], exc)
                 items = []
 
+        elapsed = int((time.time() - t0) * 1000)
         all_items.extend(items)
-        log.info('%-35s %3d items', source['name'], len(items))
+        log.info('%-35s %3d items  (%dms)', source['name'], len(items), elapsed)
         time.sleep(REQUEST_DELAY)
 
     return all_items

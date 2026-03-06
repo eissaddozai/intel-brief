@@ -8,11 +8,18 @@ import email
 import imaplib
 import logging
 import os
+import re
 from datetime import datetime, timezone, timedelta
 from email.header import decode_header
 from pathlib import Path
 
 import yaml
+
+_HTML_TAG_RE = re.compile(r'<[^>]+>')
+# Subject fragments that indicate a CFR Daily News Brief email
+_CFR_SUBJECT_MARKERS = ('cfr', 'council on foreign relations', 'daily news brief')
+# Minimum paragraph length — discard footers, unsubscribe blurbs, etc.
+_MIN_PARA_LENGTH = 80
 
 log = logging.getLogger(__name__)
 
@@ -38,19 +45,43 @@ def decode_mime_header(value: str) -> str:
 
 
 def extract_text_from_message(msg: email.message.Message) -> str:
-    """Extract plain text body from an email message."""
+    """
+    Extract plain-text body from an email message.
+    Prefers text/plain; falls back to HTML with tags stripped.
+    """
+    plain: str = ''
+    html: str = ''
+
     if msg.is_multipart():
         for part in msg.walk():
             ctype = part.get_content_type()
             disposition = str(part.get('Content-Disposition', ''))
-            if ctype == 'text/plain' and 'attachment' not in disposition:
-                payload = part.get_payload(decode=True)
-                if payload:
-                    return payload.decode(part.get_content_charset() or 'utf-8', errors='replace')
+            if 'attachment' in disposition:
+                continue
+            payload = part.get_payload(decode=True)
+            if not payload:
+                continue
+            charset = part.get_content_charset() or 'utf-8'
+            decoded = payload.decode(charset, errors='replace')
+            if ctype == 'text/plain' and not plain:
+                plain = decoded
+            elif ctype == 'text/html' and not html:
+                html = decoded
     else:
         payload = msg.get_payload(decode=True)
         if payload:
-            return payload.decode(msg.get_content_charset() or 'utf-8', errors='replace')
+            charset = msg.get_content_charset() or 'utf-8'
+            text = payload.decode(charset, errors='replace')
+            if msg.get_content_type() == 'text/html':
+                html = text
+            else:
+                plain = text
+
+    if plain:
+        return plain
+    if html:
+        # Strip HTML tags and collapse whitespace
+        return re.sub(r'\s+', ' ', _HTML_TAG_RE.sub(' ', html)).strip()
     return ''
 
 
@@ -79,25 +110,25 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
         return []
 
     items: list[dict] = []
+    conn: imaplib.IMAP4_SSL | None = None
 
     try:
         conn = imaplib.IMAP4_SSL(host)
         conn.login(user, password)
         conn.select(folder)
 
-        # Search for emails from CFR on or near target_date
-        date_str = target_date.strftime('%d-%b-%Y')
-        status, ids = conn.search(None, f'(ON {date_str})')
+        # Normalised UTC timestamp for items
+        ts = target_date.strftime('%Y-%m-%dT06:00:00+00:00')
 
-        if status != 'OK' or not ids[0]:
-            # Try previous day (brief may arrive late)
-            prev = target_date - timedelta(days=1)
-            prev_str = prev.strftime('%d-%b-%Y')
-            status, ids = conn.search(None, f'(ON {prev_str})')
-
-        if not ids[0]:
-            log.info('No CFR Daily Brief found for %s', target_date.date())
-            conn.logout()
+        # Search on target_date; fall back to previous day if brief arrived late
+        for search_date in (target_date, target_date - timedelta(days=1)):
+            date_str = search_date.strftime('%d-%b-%Y')
+            status, ids = conn.search(None, f'(ON {date_str})')
+            if status == 'OK' and ids[0]:
+                break
+        else:
+            log.info('No emails found for %s or %s',
+                     target_date.date(), (target_date - timedelta(days=1)).date())
             return []
 
         for msg_id in ids[0].split():
@@ -109,33 +140,45 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
             msg = email.message_from_bytes(raw)
 
             subject = decode_mime_header(msg.get('Subject', ''))
-            body = extract_text_from_message(msg)
 
+            # Subject-filter: only process emails that look like CFR Daily Brief
+            subject_lower = subject.lower()
+            if not any(marker in subject_lower for marker in _CFR_SUBJECT_MARKERS):
+                log.debug('Skipping non-CFR email: %s', subject[:80])
+                continue
+
+            body = extract_text_from_message(msg)
             if not body:
                 continue
 
-            # Split into paragraphs for granular tagging
-            paragraphs = [p.strip() for p in body.split('\n\n') if len(p.strip()) > 80]
+            # Split into paragraphs; skip short footers / boilerplate
+            paragraphs = [p.strip() for p in body.split('\n\n')
+                          if len(p.strip()) >= _MIN_PARA_LENGTH]
 
             for para in paragraphs[:20]:
                 items.append({
                     'source_id': 'cfr_daily',
                     'source_name': 'CFR Daily News Brief',
                     'tier': 2,
-                    'domains': ['d4'],  # Primary: Diplomatic
+                    'domains': [],   # triage classifier assigns domains via keywords
                     'title': subject,
                     'text': para,
                     'full_content': para,
                     'url': '',
-                    'timestamp': target_date.isoformat(),
+                    'timestamp': ts,
                     'verification_status': 'reported',
                     'method': 'email',
                 })
 
-        conn.logout()
         log.info('CFR Daily Brief: extracted %d paragraphs', len(items))
 
     except Exception as exc:
         log.error('Email ingestion failed: %s', exc)
+    finally:
+        if conn is not None:
+            try:
+                conn.logout()
+            except Exception:
+                pass
 
     return items
