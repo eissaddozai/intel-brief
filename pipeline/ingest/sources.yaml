@@ -155,11 +155,12 @@ sources:
     domains: [d1, d4]
     method: rss
     url: "http://rss.cnn.com/rss/edition_middleeast.rss"
-    status: likely
-    enabled: true
+    status: removed
+    enabled: false
     notes: >
-      Real CNN RSS feed for Middle East edition. Israel embed reporters,
-      White House track. General relevance filter applied at ingest.
+      Entire rss.cnn.com domain returns 503 consistently (verified Mar 2026).
+      CNN deprecated their RSS infrastructure. No CNN-hosted replacement
+      confirmed working. Coverage handled by Al Jazeera English (al_jazeera_en).
 
   - id: cnbc_world
     name: "CNBC World News"
@@ -182,8 +183,10 @@ sources:
     status: likely
     enabled: true
     notes: >
-      Real CNBC energy RSS. Primary live input for Energy/Economic (d3).
-      Brent crude, GasBuddy US pump prices, Goldman energy desk.
+      CNBC RSS ID 19832390 is live but remapped to Asia News content (not Energy).
+      Relevance filter at ingest will discard non-energy items. A correct
+      energy-specific CNBC RSS ID was not confirmed; treat as general CNBC feed
+      until a verified energy-specific ID is found.
 
   - id: bbc_mideast
     name: "BBC Middle East"
