@@ -2433,15 +2433,28 @@ body::after {
   /* ── Masthead / footer ──────────────────────────────────────────────────── */
   .masthead {
     position: static !important;
-    overflow: visible !important;
+    overflow: visible !important;           /* override screen overflow:hidden */
+    height: auto !important;
+    max-height: none !important;
     background: rgba(3, 4, 10, 0.95) !important;
     margin-bottom: 14pt !important;
   }
+  /* Remove screen-side horizontal padding so content fills the page */
+  .brief { padding: 0 !important; max-width: 100% !important; }
   .brief-footer {
     position: static !important;
     overflow: visible !important;
     margin-top: 14pt !important;
     background: rgba(3, 4, 10, 0.95) !important;
+  }
+  /* Ensure ALL elements with possible overflow:hidden are printable */
+  .domain__content, .executive-assessment, .kj, .body-wrap,
+  .analyst-note, .dissenter-note, .flash-points, .strategic-header,
+  .warning-indicators, .collection-gaps, .caveats, .actor-matrix,
+  .timeline, .data-table-wrap {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
   }
 
   /* ── Domain gradient strips — decorative only, hide in print ────────────── */
@@ -3304,10 +3317,14 @@ section.domain::after{
 .strategic-header__judgment{font-family:"Palatino Linotype","Palatino",Georgia,serif;font-size:1.05rem;font-weight:700;color:#F0EAE0;line-height:1.5}
 
 /* ── FLASH POINTS ─────────────────────────────────────────────────────────── */
-.flash-points{background:#080204}
-.flash-points__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.52rem;color:#D82838;font-weight:800;letter-spacing:.18em}
-.flash-points__item-headline{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.86rem;font-weight:700;color:#F0EAE0}
-.flash-points__item-detail{font-family:Georgia,"Times New Roman",serif;font-size:.80rem;color:#B8B0A0;line-height:1.5}
+.flash-points{background:#080204;padding:0 32px 24px}
+.flash-points__header{padding:14px 0 12px;border-bottom:1px solid rgba(200,20,40,0.30);margin-bottom:4px}
+.flash-points__label{font-family:"Trebuchet MS",Arial,sans-serif;font-size:.62rem;color:#E82838;font-weight:800;letter-spacing:.24em}
+.flash-points__item{padding:11px 0;border-bottom:1px solid rgba(255,255,255,0.05)}
+.flash-points__item:last-child{border-bottom:none}
+.flash-points__item-headline{font-family:"Trebuchet MS",Arial,sans-serif;font-size:1.02rem;font-weight:700;color:#F2EDE4;display:flex;align-items:center;gap:9px;margin-bottom:4px}
+.flash-points__item-conf{font-size:.50rem;padding:2px 6px;flex-shrink:0}
+.flash-points__item-detail{font-family:Georgia,"Times New Roman",serif;font-size:.82rem;color:#A8A098;line-height:1.58}
 
 /* ── EXECUTIVE SECTION ────────────────────────────────────────────────────── */
 .exec__gradient{background:linear-gradient(90deg,transparent,#C4A030 30%,#C4A030 70%,transparent);height:2px}
@@ -3502,6 +3519,26 @@ section.domain::after{
 }
 .am-conf{display:flex;justify-content:flex-end;align-items:flex-start}
 
+/* ── VISUAL ENHANCEMENTS — spacing, bigger titles, cleaner contours ── */
+/* Left/right breathing room on the brief body */
+.brief{padding:0 28px}
+/* Domain section contour — subtle left border only, no noise */
+.domain{border-left:3.5px solid transparent}
+.domain--d1{border-left-color:rgba(200,40,40,0.35)}
+.domain--d2{border-left-color:rgba(210,110,0,0.35)}
+.domain--d3{border-left-color:rgba(40,130,50,0.35)}
+.domain--d4{border-left-color:rgba(140,50,200,0.35)}
+.domain--d5{border-left-color:rgba(40,100,200,0.35)}
+.domain--d6{border-left-color:rgba(0,140,130,0.35)}
+/* Domain title — bigger, brighter */
+.domain__title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:1.05rem!important;font-weight:800!important;color:#EAE4DA!important;letter-spacing:0.06em}
+/* KJ text — bigger, high-contrast */
+.kj__text{font-size:1.02rem!important;font-weight:700!important;color:#ECE6DC!important;line-height:1.56}
+/* Strategic header judgment — prominent */
+.strategic-header__judgment{font-size:1.12rem!important;font-weight:700!important;color:#F0EAE0!important}
+/* Section headers — crimson red brighter */
+.flash-points__label{font-size:.66rem!important;letter-spacing:.28em!important;color:#E82838!important}
+
 
 </style>
 </head>
@@ -3595,29 +3632,16 @@ section.domain::after{
 <section class="flash-points">
   <div class="flash-points__header">
     <span class="flash-points__label">FLASH POINTS</span>
-    <span class="flash-points__timestamp">2205 UTC 14 MAR</span>
   </div>
   <div class="flash-points__item">
-    <div class="flash-points__item-time">0342 UTC 15 MAR</div>
-    <div class="flash-points__item-content">
-      <div class="flash-points__item-headline">Iran fires ballistic missiles at Haifa and Tel Aviv</div>
-      <div class="flash-points__item-detail">IRGC Aerospace Force launched an estimated 22 Shahab-3 and Fattah-1 ballistic missiles targeting Israeli population centres. Iron Dome and Arrow-3 systems intercepted the majority; at least two impacts confirmed in the Haifa port district.</div>
-    </div>
-    <div class="flash-points__item-conf badge badge--green">HIGH</div>
+    <div class="flash-points__item-headline">Iran fires ballistic missiles at Haifa and Tel Aviv<span class="flash-points__item-conf badge badge--green">HIGH</span></div>
+    <div class="flash-points__item-detail">IRGC Aerospace Force launched an estimated 22 Shahab-3 and Fattah-1 ballistic missiles targeting Israeli population centres. Iron Dome and Arrow-3 systems intercepted the majority; at least two impacts confirmed in the Haifa port district.</div>
   </div>  <div class="flash-points__item">
-    <div class="flash-points__item-time">0118 UTC 15 MAR</div>
-    <div class="flash-points__item-content">
-      <div class="flash-points__item-headline">UKMTO issues Hormuz Strait warning; two tankers diverted</div>
-      <div class="flash-points__item-detail">UKMTO issued a Priority One bulletin following the interdiction of the MV Pollux Star and MV Gulf Venture by IRGCN fast boats. Both vessels were released after six-hour detention but sustained damage; Lloyd&#x27;s of London has suspended new Iranian Gulf insurance policies.</div>
-    </div>
-    <div class="flash-points__item-conf badge badge--green">HIGH</div>
+    <div class="flash-points__item-headline">UKMTO issues Hormuz Strait warning; two tankers diverted<span class="flash-points__item-conf badge badge--green">HIGH</span></div>
+    <div class="flash-points__item-detail">UKMTO issued a Priority One bulletin following the interdiction of the MV Pollux Star and MV Gulf Venture by IRGCN fast boats. Both vessels were released after six-hour detention but sustained damage; Lloyd&#x27;s of London has suspended new Iranian Gulf insurance policies.</div>
   </div>  <div class="flash-points__item">
-    <div class="flash-points__item-time">2205 UTC 14 MAR</div>
-    <div class="flash-points__item-content">
-      <div class="flash-points__item-headline">IAEA confirms suspension of Natanz inspector access</div>
-      <div class="flash-points__item-detail">The IAEA Director General confirmed that Iran has suspended access for agency inspectors to the Natanz fuel enrichment plant, the most significant restriction since the 2021 monitoring crisis. Enrichment at previously declared facilities continues; breakout timeline assessment is being revised.</div>
-    </div>
-    <div class="flash-points__item-conf badge badge--green">HIGH</div>
+    <div class="flash-points__item-headline">IAEA confirms suspension of Natanz inspector access<span class="flash-points__item-conf badge badge--green">HIGH</span></div>
+    <div class="flash-points__item-detail">The IAEA Director General confirmed that Iran has suspended access for agency inspectors to the Natanz fuel enrichment plant, the most significant restriction since the 2021 monitoring crisis. Enrichment at previously declared facilities continues; breakout timeline assessment is being revised.</div>
   </div>
 </section>
 <section class="executive-assessment">
@@ -4259,9 +4283,9 @@ section.domain::after{
 /* DRAG GRIP — full-height rail on right edge, prominent when editor active */
 .ep-grip{
   position:absolute;right:0;top:0;bottom:0;
-  width:18px;
+  width:24px;
   display:flex;align-items:center;justify-content:center;
-  cursor:grab;user-select:none;z-index:20;pointer-events:auto;
+  cursor:grab;user-select:none;z-index:20;pointer-events:auto;touch-action:none;
   opacity:0;
   background:rgba(5,8,18,0);
   border-left:1px solid transparent;
@@ -4288,8 +4312,20 @@ section.domain::after{
 .ed-on [data-ep-text]:hover{background:rgba(255,255,255,.028);border-radius:1px;outline:1px dashed rgba(196,160,48,.20);outline-offset:1px}
 .ed-on [data-ep-text]:focus{outline:1px solid rgba(196,160,48,.50);border-radius:1px;background:rgba(196,160,48,.025)}
 
+/* RESIZE HANDLE — bottom-right corner, appears on hover */
+.ep-resize-hdl{
+  position:absolute;right:24px;bottom:0;
+  width:18px;height:18px;
+  display:none;align-items:flex-end;justify-content:flex-end;
+  cursor:se-resize;pointer-events:auto;z-index:21;
+  color:rgba(196,160,48,0.0);font-size:9px;line-height:1;
+  user-select:none;transition:color 0.15s;
+}
+.ed-on [data-ep-drag]:hover>.ep-resize-hdl{display:flex;color:rgba(196,160,48,0.80)}
+.ep-resize-hdl:hover{color:rgba(255,200,60,1.0)!important}
+
 .ed-on .brief{margin-right:290px!important}
-.ed-on [data-ep-drag]{position:relative!important;padding-right:22px!important}
+.ed-on [data-ep-drag]{position:relative!important;padding-right:28px!important}
 </style>
 
 <script>
@@ -4301,7 +4337,8 @@ var fbUp=document.getElementById("ep-fb-up");
 var fbDown=document.getElementById("ep-fb-down");
 var fbDel=document.getElementById("ep-fb-del");
 var editorOpen=false,floatTarget=null;
-var dragEl=null,dragGhost=null,dragPH=null,dragOffX=0,dragOffY=0;
+var dragEl=null,dragGhost=null,dragPH=null,dragGripEl=null,dragOffX=0,dragOffY=0;
+var resizeEl=null,resizeHdlEl=null,resizeStartX=0,resizeStartY=0,resizeStartW=0,resizeStartH=0;
 
 function $(id){return document.getElementById(id);}
 function $$(sel,ctx){return Array.from((ctx||document).querySelectorAll(sel));}
@@ -4426,6 +4463,7 @@ function activateEditor(){
       el.insertBefore(g,el.firstChild);
     }
     attachGrip(el);
+    addResizeHandle(el);
     el.addEventListener("mouseenter",onElEnter);
     el.addEventListener("mouseleave",onElLeave);
   });
@@ -4449,6 +4487,7 @@ function deactivateEditor(){
   });
   $$("[data-ep-drag]").forEach(function(el){
     detachGrip(el);
+    removeResizeHandle(el);
     el.removeAttribute("data-ep-drag");
     var g=el.querySelector(":scope>.ep-grip"); if(g)g.remove();
     el.removeEventListener("mouseenter",onElEnter);
@@ -4458,8 +4497,8 @@ function deactivateEditor(){
   if(dragGhost){dragGhost.remove();dragGhost=null;}
   if(dragPH){dragPH.remove();dragPH=null;}
   if(dragEl){dragEl.style.opacity="";dragEl.style.pointerEvents="";dragEl=null;}
-  document.removeEventListener("pointermove",onDragMove);
-  document.removeEventListener("pointerup",onDragRelease);
+  if(dragGripEl){dragGripEl.removeEventListener("pointermove",onDragMove);dragGripEl.removeEventListener("pointerup",onDragRelease);dragGripEl.removeEventListener("pointercancel",onDragRelease);dragGripEl=null;}
+  document.body.style.userSelect="";
   hideFloatBar();
 }
 
@@ -4475,54 +4514,95 @@ function detachGrip(el){
 function onGripDown(e){
   e.preventDefault();e.stopPropagation();
   var el=e.currentTarget.closest("[data-ep-drag]");if(!el)return;
-  dragEl=el;
+  dragEl=el;dragGripEl=e.currentTarget;
   var rect=el.getBoundingClientRect();
   dragOffX=e.clientX-rect.left;dragOffY=e.clientY-rect.top;
-  /* placeholder — dashed amber slot showing where element will land */
+  /* placeholder — shows where element will land */
   dragPH=document.createElement("div");dragPH.className="ep-placeholder";
   dragPH.style.cssText="height:"+Math.max(32,rect.height)+"px;"+
-    "background:rgba(196,160,48,.07);border:2px dashed rgba(196,160,48,.5);"+
+    "background:rgba(196,160,48,.07);border:2px dashed rgba(196,160,48,.55);"+
     "border-radius:2px;margin:3px 0;box-sizing:border-box;pointer-events:none;";
   el.parentNode.insertBefore(dragPH,el.nextSibling);
-  /* ghost — semi-transparent clone that follows cursor */
+  /* ghost — clone that follows cursor; pointer-events:none so elementFromPoint sees through it */
   dragGhost=el.cloneNode(true);
-  dragGhost.querySelectorAll(".ep-grip").forEach(function(g){g.style.display="none";});
+  dragGhost.querySelectorAll(".ep-grip,.ep-resize-hdl").forEach(function(h){h.style.display="none";});
   dragGhost.style.cssText="position:fixed;z-index:99999;pointer-events:none;"+
     "width:"+rect.width+"px;left:"+rect.left+"px;top:"+rect.top+"px;"+
-    "opacity:0.85;box-shadow:0 20px 56px rgba(0,0,0,.82);"+
-    "outline:2px solid rgba(196,160,48,.70);border-radius:2px;"+
-    "overflow:hidden;max-height:240px;transition:none;";
+    "opacity:0.88;box-shadow:0 24px 64px rgba(0,0,0,.90);"+
+    "outline:2px solid rgba(196,160,48,.80);border-radius:2px;"+
+    "overflow:hidden;max-height:260px;transition:none;";
   document.body.appendChild(dragGhost);
-  /* dim original in place */
-  el.style.opacity="0.12";el.style.pointerEvents="none";
-  document.addEventListener("pointermove",onDragMove,{passive:true});
-  document.addEventListener("pointerup",onDragRelease);
+  el.style.opacity="0.10";el.style.pointerEvents="none";
+  /* Pointer capture — guarantees ALL pointer events arrive here even if cursor leaves window */
+  dragGripEl.setPointerCapture(e.pointerId);
+  dragGripEl.addEventListener("pointermove",onDragMove);
+  dragGripEl.addEventListener("pointerup",onDragRelease);
+  dragGripEl.addEventListener("pointercancel",onDragRelease);
+  document.body.style.userSelect="none";
 }
 function onDragMove(e){
   if(!dragGhost)return;
   dragGhost.style.left=(e.clientX-dragOffX)+"px";
   dragGhost.style.top=(e.clientY-dragOffY)+"px";
-  /* temporarily hide ghost so elementFromPoint hits elements beneath */
-  dragGhost.style.visibility="hidden";
+  /* ghost has pointer-events:none — elementFromPoint automatically sees through it */
   var hit=document.elementFromPoint(e.clientX,e.clientY);
-  dragGhost.style.visibility="";
   if(!hit)return;
   var dropEl=hit.closest("[data-ep-drag]");
-  if(!dropEl||dropEl===dragEl||dropEl.contains(dragEl)||dropEl===dragPH)return;
-  var midY=dropEl.getBoundingClientRect().top+dropEl.getBoundingClientRect().height*0.5;
-  if(e.clientY>midY){dropEl.parentNode.insertBefore(dragPH,dropEl.nextSibling);}
+  if(!dropEl||dropEl===dragEl||dragEl.contains(dropEl)||dropEl===dragPH)return;
+  var dr=dropEl.getBoundingClientRect();
+  if(e.clientY>dr.top+dr.height*0.5){dropEl.parentNode.insertBefore(dragPH,dropEl.nextSibling);}
   else{dropEl.parentNode.insertBefore(dragPH,dropEl);}
 }
-function onDragRelease(){
+function onDragRelease(e){
   if(!dragEl)return;
   if(dragPH&&dragPH.parentNode)dragPH.parentNode.insertBefore(dragEl,dragPH);
   dragEl.style.opacity="";dragEl.style.pointerEvents="";
   if(dragGhost){dragGhost.remove();dragGhost=null;}
   if(dragPH){dragPH.remove();dragPH=null;}
   dragEl=null;
-  document.removeEventListener("pointermove",onDragMove);
-  document.removeEventListener("pointerup",onDragRelease);
+  if(dragGripEl){
+    try{if(e&&e.pointerId!==undefined)dragGripEl.releasePointerCapture(e.pointerId);}catch(ex){}
+    dragGripEl.removeEventListener("pointermove",onDragMove);
+    dragGripEl.removeEventListener("pointerup",onDragRelease);
+    dragGripEl.removeEventListener("pointercancel",onDragRelease);
+    dragGripEl=null;
+  }
+  document.body.style.userSelect="";
   refreshMovers();
+}
+
+/* ── RESIZE HANDLE ───────────────────────────────────────────────── */
+function addResizeHandle(el){
+  if(el.querySelector(":scope>.ep-resize-hdl"))return;
+  var r=document.createElement("span");r.className="ep-resize-hdl";r.title="Drag to resize";r.textContent="◢";
+  el.appendChild(r);r.addEventListener("pointerdown",onResizeDown);
+}
+function removeResizeHandle(el){var r=el.querySelector(":scope>.ep-resize-hdl");if(r)r.remove();}
+function onResizeDown(e){
+  e.preventDefault();e.stopPropagation();
+  resizeEl=e.currentTarget.parentElement;resizeHdlEl=e.currentTarget;
+  var rect=resizeEl.getBoundingClientRect();
+  resizeStartX=e.clientX;resizeStartY=e.clientY;
+  resizeStartW=rect.width;resizeStartH=rect.height;
+  resizeHdlEl.setPointerCapture(e.pointerId);
+  resizeHdlEl.addEventListener("pointermove",onResizeMove);
+  resizeHdlEl.addEventListener("pointerup",onResizeRelease);
+  resizeHdlEl.addEventListener("pointercancel",onResizeRelease);
+  document.body.style.userSelect="none";
+}
+function onResizeMove(e){
+  if(!resizeEl)return;
+  resizeEl.style.width=Math.max(160,resizeStartW+(e.clientX-resizeStartX))+"px";
+  resizeEl.style.minHeight=Math.max(40,resizeStartH+(e.clientY-resizeStartY))+"px";
+}
+function onResizeRelease(e){
+  if(resizeHdlEl){
+    resizeHdlEl.removeEventListener("pointermove",onResizeMove);
+    resizeHdlEl.removeEventListener("pointerup",onResizeRelease);
+    resizeHdlEl.removeEventListener("pointercancel",onResizeRelease);
+    resizeHdlEl=null;
+  }
+  document.body.style.userSelect="";resizeEl=null;
 }
 
 /* ── FLOATBAR ────────────────────────────────────────────────────── */
@@ -4570,6 +4650,7 @@ fbDup.addEventListener("click",function(){
   var clone=floatTarget.cloneNode(true);
   /* strip editor state from clone — will be re-applied on hover */
   var g=clone.querySelector(".ep-grip");if(g)g.remove();
+  var rh=clone.querySelector(".ep-resize-hdl");if(rh)rh.remove();
   clone.removeAttribute("data-ep-drag");
   clone.removeAttribute("data-ep-text");
   clone.querySelectorAll("[data-ep-text]").forEach(function(el){
@@ -4588,6 +4669,7 @@ fbDup.addEventListener("click",function(){
       var g3=document.createElement("span");g3.className="ep-grip";g3.textContent="⠿⠿";g3.title="Drag to reorder";clone.insertBefore(g3,clone.firstChild);
     }
     attachGrip(clone);
+    addResizeHandle(clone);
     clone.addEventListener("mouseenter",onElEnter);clone.addEventListener("mouseleave",onElLeave);
   }
   $$(TEXT_SEL,clone).forEach(function(el){

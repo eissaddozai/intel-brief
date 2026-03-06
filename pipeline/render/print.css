@@ -72,15 +72,28 @@
   /* ── Masthead / footer ──────────────────────────────────────────────────── */
   .masthead {
     position: static !important;
-    overflow: visible !important;
+    overflow: visible !important;           /* override screen overflow:hidden */
+    height: auto !important;
+    max-height: none !important;
     background: rgba(3, 4, 10, 0.95) !important;
     margin-bottom: 14pt !important;
   }
+  /* Remove screen-side horizontal padding so content fills the page */
+  .brief { padding: 0 !important; max-width: 100% !important; }
   .brief-footer {
     position: static !important;
     overflow: visible !important;
     margin-top: 14pt !important;
     background: rgba(3, 4, 10, 0.95) !important;
+  }
+  /* Ensure ALL elements with possible overflow:hidden are printable */
+  .domain__content, .executive-assessment, .kj, .body-wrap,
+  .analyst-note, .dissenter-note, .flash-points, .strategic-header,
+  .warning-indicators, .collection-gaps, .caveats, .actor-matrix,
+  .timeline, .data-table-wrap {
+    overflow: visible !important;
+    height: auto !important;
+    max-height: none !important;
   }
 
   /* ── Domain gradient strips — decorative only, hide in print ────────────── */
