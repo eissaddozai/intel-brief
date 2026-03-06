@@ -29,7 +29,7 @@ def extract_known_facts(prev_cycle: dict) -> set[str]:
                 known.add(phrase)
 
     # Walk the cycle JSON and collect text from key fields
-    for fp in prev_cycle.get('flashPoints', []):
+    for fp in (prev_cycle.get('flashPoints') or []):
         add_text(fp.get('headline', ''))
         add_text(fp.get('detail', ''))
 
@@ -42,8 +42,8 @@ def extract_known_facts(prev_cycle: dict) -> set[str]:
         elif isinstance(kj, dict):
             add_text(kj.get('text', ''))
 
-    for domain in prev_cycle.get('domains', []):
-        for para in domain.get('bodyParagraphs', []):
+    for domain in (prev_cycle.get('domains') or []):
+        for para in (domain.get('bodyParagraphs') or []):
             add_text(para.get('text', ''))
 
     return known
@@ -54,7 +54,7 @@ def compute_novelty_score(item: dict, known_phrases: set[str]) -> float:
     Returns a score from 0.0 (fully repeated) to 1.0 (completely novel).
     Score is the fraction of the item's 3-grams NOT in known_phrases.
     """
-    text = (item.get('text', '') + ' ' + item.get('title', '')).lower()
+    text = ((item.get('text') or '') + ' ' + (item.get('title') or '')).lower()
     words = re.findall(r'\b\w+\b', text)
     if len(words) < 3:
         return 1.0

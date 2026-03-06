@@ -93,7 +93,7 @@ def classify_item(item: dict) -> dict:
     and keyword matching. Returns modified item copy.
     """
     item = dict(item)
-    text_lower = (item.get('text', '') + ' ' + item.get('title', '')).lower()
+    text_lower = ((item.get('text') or '') + ' ' + (item.get('title') or '')).lower()
 
     # Start with domains from source registry
     registry_domains: set[str] = set(item.get('domains', []))
