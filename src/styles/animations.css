@@ -23,7 +23,7 @@
 
 @keyframes flash-blink {
   0%, 100% { border-left-color: var(--conf-red); }
-  50%       { border-left-color: rgba(220, 44, 58, 0.3); }
+  50%       { border-left-color: var(--conf-red-a30); }
 }
 
 @keyframes strategic-fade-in {
@@ -57,11 +57,11 @@
   transform: translateX(2px);
 }
 
-.domain--d1:hover { box-shadow: -4px 0 28px rgba(220, 46, 60, 0.22); }
-.domain--d2:hover { box-shadow: -4px 0 28px rgba(232, 154, 40, 0.22); }
-.domain--d3:hover { box-shadow: -4px 0 28px rgba(40, 184, 88, 0.22); }
-.domain--d4:hover { box-shadow: -4px 0 28px rgba(138, 80, 204, 0.22); }
-.domain--d5:hover { box-shadow: -4px 0 28px rgba(56, 136, 216, 0.22); }
+.domain--d1:hover { box-shadow: -4px 0 28px var(--d1-glow); }
+.domain--d2:hover { box-shadow: -4px 0 28px var(--d2-glow); }
+.domain--d3:hover { box-shadow: -4px 0 28px var(--d3-glow); }
+.domain--d4:hover { box-shadow: -4px 0 28px var(--d4-glow); }
+.domain--d5:hover { box-shadow: -4px 0 28px var(--d5-glow); }
 
 /* ── KPI CELL HOVER ───────────────────────────────────────────────────────── */
 
@@ -100,7 +100,7 @@
 }
 
 .masthead__strip-cell:not(:first-child):hover {
-  background-color: #0D1020;
+  background-color: var(--color-strip-hover);
 }
 
 /* ── MASTHEAD SCROLL SHADOW ───────────────────────────────────────────────── */
@@ -111,8 +111,8 @@
 
 .masthead--scrolled {
   box-shadow:
-    0 4px 40px rgba(184, 28, 40, 0.3),
-    0 1px 0 rgba(184, 28, 40, 0.5);
+    0 4px 40px var(--color-crimson-a30),
+    0 1px 0 var(--color-crimson-a50);
 }
 
 /* ── CRITICAL BADGE PULSE ─────────────────────────────────────────────────── */
