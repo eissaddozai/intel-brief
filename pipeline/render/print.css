@@ -21,7 +21,7 @@
   /* ── Page setup ─────────────────────────────────────────────────────────── */
   @page {
     size: letter portrait;
-    margin: 0.60in 0.55in 0.60in 0.55in;
+    margin: 0.55in 0.50in 0.65in 0.50in;
     background: #020308;
   }
 
@@ -29,15 +29,29 @@
   html, body {
     width: 100%;
     height: auto;
-    overflow: visible;
+    overflow: visible !important;
     background: #020308 !important;
     color: #d4cfc8 !important;
   }
   .brief {
-    max-width: 100%;
-    box-shadow: none;
-    border: none;
+    max-width: 100% !important;
+    box-shadow: none !important;
+    border: none !important;
     background: transparent !important;
+    overflow: visible !important;
+  }
+
+  /* ── Force all content blocks visible ──────────────────────────────────── */
+  .domain, .executive-assessment, .flash-points, .strategic-header,
+  .warning-indicators, .collection-gaps, .caveats,
+  .analyst-note, .dissenter-note, .metadata-bar,
+  .kj, .body-wrap, .body-para, .sub-label,
+  .timeline, .actor-matrix, .data-table-wrap,
+  .brief-footer {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    overflow: visible !important;
   }
 
   /* ── Suppress overlays ──────────────────────────────────────────────────── */
@@ -48,36 +62,36 @@
   /* ── Masthead / footer ──────────────────────────────────────────────────── */
   .masthead {
     position: static !important;
+    overflow: visible !important;
     background: rgba(3, 4, 10, 0.95) !important;
-    margin-bottom: 18pt !important;
+    margin-bottom: 14pt !important;
   }
   .brief-footer {
     position: static !important;
-    margin-top: 18pt !important;
+    overflow: visible !important;
+    margin-top: 14pt !important;
     background: rgba(3, 4, 10, 0.95) !important;
   }
 
-  /* ── Domain gradient strips ──────────────────────────────────────────────── */
+  /* ── Domain gradient strips — decorative only, hide in print ────────────── */
   .domain__gradient, .exec__gradient, .caveats__gradient,
   .collection-gaps__gradient, .warning-indicators__gradient,
   .analyst-note__gradient, .dissenter-note__gradient { display: none !important; }
 
-  /* ── Domain sections — coloured left border replaces the wrapper accent ──── */
+  /* ── Domain sections — coloured left border ─────────────────────────────── */
   .domain {
     background: rgba(3, 4, 10, 0.90) !important;
     margin-bottom: 12pt;
+    border-left: 3.5pt solid rgba(100,100,100,0.35);
+    padding-left: 10pt;
   }
-  /* Suppress inner wrapper border — domain itself gets the border */
   .domain__content { border-left: none !important; }
-
-  /* Per-domain coloured left border on the section itself */
-  .domain                { border-left: 3.5pt solid rgba(100,100,100,0.4); padding-left: 10pt; }
-  .domain--d1            { border-left-color: #c62828 !important; }
-  .domain--d2            { border-left-color: #e65100 !important; }
-  .domain--d3            { border-left-color: #2e7d32 !important; }
-  .domain--d4            { border-left-color: #6a1b9a !important; }
-  .domain--d5            { border-left-color: #1565c0 !important; }
-  .domain--d6            { border-left-color: #00695c !important; }
+  .domain--d1 { border-left-color: #c62828 !important; }
+  .domain--d2 { border-left-color: #e65100 !important; }
+  .domain--d3 { border-left-color: #2e7d32 !important; }
+  .domain--d4 { border-left-color: #6a1b9a !important; }
+  .domain--d5 { border-left-color: #1565c0 !important; }
+  .domain--d6 { border-left-color: #00695c !important; }
 
   /* ── Section backgrounds ────────────────────────────────────────────────── */
   section { background: rgba(3, 4, 10, 0.90) !important; }
@@ -120,26 +134,26 @@
   .wi-table tr:nth-child(even) td { background: rgba(8, 9, 18, 0.90) !important; }
 
   /* ── KPI strip ──────────────────────────────────────────────────────────── */
-  .kpi-strip { grid-template-columns: repeat(6, 1fr); gap: 4pt; }
+  .kpi-strip { grid-template-columns: repeat(6, 1fr) !important; gap: 4pt; }
   .kpi-strip__cell {
     background: rgba(10, 12, 24, 0.95) !important;
     border: 0.5pt solid #2a2a3a !important;
     padding: 4pt 6pt;
   }
-  .kpi-strip__number { font-size: 15pt !important; color: #c8b870 !important; }
+  .kpi-strip__number { font-size: 14pt !important; color: #c8b870 !important; }
   .kpi-strip__label  { font-size: 6.5pt !important; color: #888 !important; }
 
   /* ── Body text ──────────────────────────────────────────────────────────── */
-  .text-hi, .domain__title, .kj__text,
+  .domain__title, .kj__text,
   .exec__bluf-text, .strategic-header__judgment { color: #e0dbd4 !important; }
-  .text-md, .body-para, .body-wrap { color: #c4bfb8 !important; }
-  .text-dim, .meta, .kj__basis     { color: #7a7480 !important; }
-  .masthead__cycle-num, .color-gold { color: #c8b870 !important; }
+  .body-para, .body-wrap { color: #c4bfb8 !important; }
+  .kj__basis { color: #7a7480 !important; }
+  .masthead__cycle-num { color: #c8b870 !important; }
 
   /* ── Type ───────────────────────────────────────────────────────────────── */
   body { font-size: 9.5pt; line-height: 1.55; }
-  .kj__text  { font-size: 10.5pt; line-height: 1.6; }
-  .body-para { font-size: 9.5pt;  line-height: 1.55; orphans: 3; widows: 3; }
+  .kj__text  { font-size: 10.5pt !important; line-height: 1.6; }
+  .body-para { font-size: 9.5pt !important;  line-height: 1.55; orphans: 3; widows: 3; }
 
   /* ── Page break control ─────────────────────────────────────────────────── */
   .masthead            { break-inside: avoid; }
@@ -162,7 +176,7 @@
   .body-para           { break-inside: avoid; orphans: 3; widows: 3; }
   .kj__label-row + .kj__text { break-before: avoid; }
 
-  /* ── Badges in print — border style rather than background fill ─────────── */
+  /* ── Badges in print — border style ────────────────────────────────────── */
   .threat-level, .trajectory-badge, .badge {
     border: 0.5pt solid currentColor !important;
     background: transparent !important;
@@ -170,12 +184,12 @@
   }
 
   /* ── Probability bars ───────────────────────────────────────────────────── */
-  .prob-bar { height: 2px; display: block; }
+  .prob-bar { height: 2px; display: block !important; }
 
   /* ── Collection gap register ────────────────────────────────────────────── */
   .collection-gaps__items { list-style: none; padding: 0; }
   .gap-item {
-    display: grid;
+    display: grid !important;
     grid-template-columns: 60pt 50pt 1fr;
     gap: 4pt;
     border-bottom: 0.5pt solid #2a2a3a !important;
@@ -183,16 +197,35 @@
     font-size: 8.5pt;
     color: #c4bfb8 !important;
   }
-  .gap-item__category { display: block; margin-top: 2pt; }
 
   /* ── Executive KJ list ──────────────────────────────────────────────────── */
   .exec__kj-list { padding: 0 0 0 12pt; }
-  .exec__kj-item { margin-bottom: 4pt; font-size: 9pt; break-inside: avoid; }
+  .exec__kj-item { margin-bottom: 4pt; font-size: 9pt; break-inside: avoid; display: list-item !important; }
   .exec__kj-domain { font-weight: 700; }
 
+  /* ── Flash points ───────────────────────────────────────────────────────── */
+  .flash-points__item { break-inside: avoid; display: flex !important; }
+
+  /* ── Timeline ───────────────────────────────────────────────────────────── */
+  .timeline__event { display: flex !important; break-inside: avoid; }
+
   /* ── Editor suppressed ──────────────────────────────────────────────────── */
-  #cse-editor-toggle, #cse-editor-panel { display: none !important; }
+  #cse-editor-toggle, #cse-editor-panel, #ep-floatbar, .ep-grip { display: none !important; }
   .section-divider { display: none !important; }
+
+  /* ── Canada GOC logo — fixed bottom-right, repeats on every printed page ── */
+  #print-footer-logo {
+    display: block !important;
+    position: fixed !important;
+    bottom: 0.35in;
+    right: 0.42in;
+    z-index: 9999;
+  }
+  #print-footer-logo img {
+    height: 28pt !important;
+    width: auto !important;
+    opacity: 0.72 !important;
+  }
 
   ::-webkit-scrollbar { display: none; }
 }
