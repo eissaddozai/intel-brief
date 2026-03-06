@@ -39,7 +39,7 @@ VALID_CONFIDENCE_LANGUAGE = {
 }
 VALID_WI_STATUS = {'watching', 'triggered', 'elevated', 'cleared'}
 VALID_WI_CHANGE = {
-    'new-triggered', 'newly-elevated', 'elevated', 'new',
+    'new-triggered', 'newly-elevated',
     'unchanged', 'downgraded', 'cleared',
 }
 VALID_GAP_SEVERITY = {'critical', 'significant', 'minor'}
@@ -109,6 +109,12 @@ def validate(cycle: dict) -> list[str]:
                 errors.append(f"Domain {did}: keyJudgment.language is missing")
             elif lang not in VALID_CONFIDENCE_LANGUAGE:
                 errors.append(f"Domain {did}: invalid confidence language {lang!r}")
+            prob = kj.get('probabilityRange', '')
+            if not prob or prob == '—':
+                errors.append(
+                    f"Domain {did}: keyJudgment.probabilityRange is missing or blank "
+                    f"(expected format: e.g. '55-75%')"
+                )
         if not d.get('bodyParagraphs'):
             errors.append(f"Domain {did} missing bodyParagraphs")
 

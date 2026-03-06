@@ -17,6 +17,7 @@ HONEST LIMITATIONS
 import logging
 import re
 import time
+from collections.abc import Callable
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -433,8 +434,6 @@ def _extract_generic(source: dict, soup: BeautifulSoup, date: datetime,
     return items
 
 
-
-
 def _extract_rudaw(source: dict, date: datetime) -> list[dict]:
     """
     Rudaw (rudaw.net/english) — Kurdistan Region's leading English-language news outlet.
@@ -612,7 +611,7 @@ def _extract_krg_gov(source: dict, date: datetime) -> list[dict]:
 
 # ─── Dispatch table ───────────────────────────────────────────────────────────
 
-EXTRACTORS: dict[str, callable] = {
+EXTRACTORS: dict[str, Callable] = {
     'reuters_mideast':   _extract_reuters,
     'ctpiw_evening':     _extract_ctpiw,
     'ctpiw_morning':     _extract_ctpiw,

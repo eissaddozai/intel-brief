@@ -27,6 +27,7 @@ EXAMPLES
 """
 
 import argparse
+import hashlib
 import json
 import logging
 import os
@@ -168,11 +169,10 @@ def stage_ingest(target_date: datetime, force: bool, config: dict) -> Path:
 
     # Deduplicate by (url, title) — D6 sources may be fetched by both rss_ingest
     # and war_risk_ingest subagents, so cross-ingestor dedup is required here.
-    import hashlib as _hashlib
     _seen: set[str] = set()
     _deduped: list[dict] = []
     for _item in raw_items:
-        _key = _hashlib.sha256(
+        _key = hashlib.sha256(
             (_item.get('url', '') + _item.get('title', '')).encode('utf-8')
         ).hexdigest()[:16]
         if _key not in _seen:
@@ -433,13 +433,18 @@ def stage_render(cycle_path: Path | None = None, out_path: Path | None = None) -
     return out_path
 
 
+def _cycle_num_from_path(p: Path) -> int:
+    m = re.match(r'cycle_?(\d+)', p.name)
+    return int(m.group(1)) if m else 0
+
+
 def _find_previous_cycle() -> dict | None:
     if not CYCLES_DIR.exists():
         return None
     cycles = [p for p in CYCLES_DIR.glob('cycle*.json') if not p.is_symlink()]
     if not cycles:
         return None
-    latest = max(cycles, key=lambda p: p.stat().st_mtime)
+    latest = max(cycles, key=_cycle_num_from_path)
     try:
         return json.loads(latest.read_text(encoding='utf-8'))
     except Exception:
@@ -733,7 +738,7 @@ def cmd_list(args: argparse.Namespace, config: dict) -> None:
 
     cycles = sorted(
         [p for p in CYCLES_DIR.glob('cycle*.json') if not p.is_symlink()],
-        key=lambda p: p.stat().st_mtime,
+        key=_cycle_num_from_path,
         reverse=True,
     )
 

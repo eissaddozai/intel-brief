@@ -79,7 +79,7 @@ Return valid JSON matching this schema exactly. Return raw JSON only — no mark
 {
   "id": "d5",
   "num": "05",
-  "title": "CYBER · IO",
+  "title": "CYBER · INFORMATION OPS",
   "assessmentQuestion": "What Iranian-affiliated cyber operations and information operations are observable in open source, and what do they indicate about target set and Canadian exposure?",
   "confidence": "low",
   "keyJudgment": {

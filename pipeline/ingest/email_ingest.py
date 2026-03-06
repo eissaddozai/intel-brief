@@ -14,6 +14,8 @@ from pathlib import Path
 
 import yaml
 
+from ingest.relevance import filter_relevant
+
 log = logging.getLogger(__name__)
 
 CONFIG_FILE = Path(__file__).parent.parent.parent / 'pipeline-config.yaml'
@@ -118,8 +120,10 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
             # Split into paragraphs for granular tagging
             paragraphs = [p.strip() for p in body.split('\n\n') if len(p.strip()) > 80]
 
-            for para in paragraphs[:20]:
-                items.append({
+            # Build candidate items then apply relevance filter to drop
+            # headers, footers, unsubscribe notices, and off-topic blurbs
+            candidates = [
+                {
                     'source_id': 'cfr_daily',
                     'source_name': 'CFR Daily News Brief',
                     'tier': 2,
@@ -131,7 +135,11 @@ def ingest_email(target_date: datetime, config: dict | None = None) -> list[dict
                     'timestamp': target_date.isoformat(),
                     'verification_status': 'reported',
                     'method': 'email',
-                })
+                }
+                for para in paragraphs[:20]
+            ]
+            relevant = filter_relevant(candidates)
+            items.extend(relevant)
 
         conn.logout()
         log.info('CFR Daily Brief: extracted %d paragraphs', len(items))

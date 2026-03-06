@@ -28,7 +28,7 @@ Theatres to cover (if reporting exists):
 ## Previous Cycle Key Judgment (for delta awareness — note what has changed)
 {prev_cycle_kj}
 
-## Battlespace Context from D2 (for cross-domain coherence)
+## Cross-Domain Context (populated in later cycles; may be empty for D1)
 {d1_context}
 
 ## Instructions
@@ -122,7 +122,7 @@ Return raw JSON only — no markdown fences, no explanatory text before or after
     {
       "subLabel": "OBSERVED ACTIVITY",
       "subLabelVariant": "observed",
-      "text": "We judge the following events occurred in the 24-hour reporting period. [Then: Tier 1-sourced facts only, time-stamped, attributed, minimum 2 sentences.]",
+      "text": "Available evidence from Tier 1 sources confirms the following events in the 24-hour reporting period: [Tier 1-sourced facts only, time-stamped, attributed, minimum 2 sentences.]",
       "timestamp": "2026-03-05T06:00:00Z",
       "citations": [
         {"source": "AP", "tier": 1, "timestamp": "2026-03-05T06:00:00Z", "verificationStatus": "confirmed"},

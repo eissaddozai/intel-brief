@@ -40,10 +40,20 @@ def _fill_template(template: str, **kwargs: str) -> str:
 
     Uses manual replacement instead of str.format() to avoid clashing with
     literal curly braces in JSON examples inside the prompt files.
+    Logs a warning for any placeholder that was not replaced (typo guard).
     """
+    import re as _re
     result = template
     for key, value in kwargs.items():
-        result = result.replace('{' + key + '}', value)
+        result = result.replace('{' + key + '}', str(value))
+
+    # Detect unreplaced placeholders (single-word identifiers, not JSON schema examples)
+    unfilled = _re.findall(r'\{([a-z][a-z0-9_]*)\}', result)
+    if unfilled:
+        log.warning(
+            '_fill_template: unreplaced placeholder(s) in prompt: %s — check kwargs',
+            unfilled,
+        )
     return result
 
 
@@ -155,7 +165,7 @@ def draft_domain(
     d1_context = _domain_summary(context_sections['d1']) if 'd1' in context_sections else '(not yet available)'
     d2_context = _domain_summary(context_sections['d2']) if 'd2' in context_sections else '(not yet available)'
 
-    # d3 context for d6 (war risk prompt uses {d2_context} slot for energy context)
+    # d3 (energy) context — needed by the d6 war_risk template as {d3_context}
     d3_context = _domain_summary(context_sections['d3']) if 'd3' in context_sections else '(not yet available)'
 
     prompt = _fill_template(
@@ -164,7 +174,8 @@ def draft_domain(
         tier2_items=json.dumps(tier2[:15], indent=2, ensure_ascii=False),
         prev_cycle_kj=prev_kj or '(no previous cycle)',
         d1_context=d1_context,
-        d2_context=d3_context if domain == 'd6' else d2_context,
+        d2_context=d2_context,
+        d3_context=d3_context,  # war_risk.md uses {d3_context}; others ignore it harmlessly
     )
 
     log.info('Drafting domain %s (%d T1, %d T2 items)...', domain, len(tier1), len(tier2))
@@ -231,7 +242,7 @@ def draft_strategic_header(
     )
 
     log.info('Drafting strategic header...')
-    result = call_claude(client, prompt, max_tokens=500, model=model)
+    result = call_claude(client, prompt, max_tokens=800, model=model)
     return result if isinstance(result, dict) else {}
 
 
@@ -257,7 +268,7 @@ def draft_warning_indicators(
     )
 
     log.info('Drafting warning indicators...')
-    result = call_claude(client, prompt, max_tokens=1200, model=model)
+    result = call_claude(client, prompt, max_tokens=2500, model=model)
     if isinstance(result, list):
         return result
     return result.get('warningIndicators', [])
@@ -295,7 +306,7 @@ def draft_collection_gaps(
     )
 
     log.info('Drafting collection gaps...')
-    result = call_claude(client, prompt, max_tokens=900, model=model)
+    result = call_claude(client, prompt, max_tokens=1500, model=model)
     if isinstance(result, list):
         return result
     return result.get('collectionGaps', [])

@@ -639,14 +639,23 @@ def run_editorial_subagent(sections: list[dict], target_date: datetime,
 # ═══════════════════════════════════════════════════════════════════════════════
 
 def _sections_summary(sections: list[dict]) -> str:
+    """Compact multi-domain summary for synthesis subagent context."""
     parts = []
     for s in sections:
         kj    = s.get('keyJudgment', {})
-        paras = ' '.join(p.get('text', '')[:200] for p in s.get('bodyParagraphs', [])[:2])
+        # Include up to 4 paragraphs at 500 chars each for richer synthesis context
+        para_texts = []
+        for p in s.get('bodyParagraphs', [])[:4]:
+            txt = p.get('text', '')
+            if len(txt) > 500:
+                txt = txt[:500] + '…'
+            para_texts.append(f"  [{p.get('subLabel','PARA')}]: {txt}")
+        paras = '\n'.join(para_texts)
         parts.append(
             f"[{s.get('id','?').upper()}] {s.get('title','')}\n"
-            f"KJ: {kj.get('text','')} [{kj.get('confidence','?')}]\n"
-            f"Summary: {paras}"
+            f"KJ: {kj.get('text','')} [{kj.get('confidence','?')}, "
+            f"{kj.get('probabilityRange','?')}, {kj.get('language','?')}]\n"
+            f"{paras}"
         )
     return '\n\n'.join(parts)
 
@@ -707,6 +716,24 @@ Return a single JSON object (raw JSON, no fences):
 }}"""
 
 
+_STANDARD_INDICATORS = """\
+ALL 12 standard indicators must appear in your output. Status one of: watching|triggered|elevated|cleared.
+Change one of: new-triggered|newly-elevated|unchanged|downgraded|cleared.
+
+wi-01  Direct Iran-Israel exchange of fire                    domain: d1
+wi-02  Hormuz Strait transit disruption                      domain: d3
+wi-03  Hezbollah full-front activation                       domain: d1
+wi-04  Iranian nuclear breakout threshold approach            domain: d2
+wi-05  US direct military engagement with Iran               domain: d1
+wi-06  Red Sea / Bab el-Mandeb commercial shipping halt      domain: d3
+wi-07  JWC full-zone war risk listing — Gulf                  domain: d6
+wi-08  Iraqi/Syrian PMF attack on US military base           domain: d1
+wi-09  Turkish ground operation into KRG territory (battalion-scale+) domain: d1
+wi-10  PKK/PJAK armed uprising in Iranian Kurdistan province  domain: d2
+wi-11  IRGC cyber operation against Canadian/Five Eyes CNI   domain: d5
+wi-12  Saudi Arabia coalition mobilisation or ceasefire collapse domain: d4"""
+
+
 def _warning_indicators_prompt(sections: list[dict], date_str: str) -> str:
     summary = _sections_summary(sections)
     return f"""You are drafting warning indicators for the CSE Daily Intelligence Brief.
@@ -715,17 +742,32 @@ Date: {date_str}
 DOMAIN SUMMARIES:
 {summary}
 
-Return a JSON array of 4-7 warning indicators (raw JSON array, no fences):
+STANDARD INDICATOR SET (ALL 12 must appear in your output):
+{_STANDARD_INDICATORS}
+
+For each indicator:
+- Assign status: "watching|triggered|elevated|cleared"
+- Assign change: "new-triggered|newly-elevated|unchanged|downgraded|cleared"
+- Write a detail line ≤100 words. Name source, include timestamp. If watching: note most recent check confirming absence.
+
+Return a JSON array of exactly 12 objects (raw JSON array, no fences):
 [
   {{
     "id": "wi-01",
-    "indicator": "Indicator name (e.g. IRGC ballistic missile readiness)",
-    "domain": "d1|d2|d3|d4|d5|d6",
+    "indicator": "Direct Iran-Israel exchange of fire",
+    "domain": "d1",
     "status": "watching|triggered|elevated|cleared",
-    "change": "new|elevated|unchanged|cleared",
-    "detail": "Current assessment of this indicator based on the source material."
+    "change": "new-triggered|newly-elevated|unchanged|downgraded|cleared",
+    "detail": "Precise detail line with source and timestamp."
   }}
-]"""
+]
+Return ONLY the JSON array. No markdown. No text outside the array."""
+
+
+_GAP_CATEGORIES = (
+    "source-outage | terrain-denial | signal-obscuration | "
+    "attribution-gap | diplomatic-opacity | kurdish-turkish-gap"
+)
 
 
 def _collection_gaps_prompt(sections: list[dict], date_str: str) -> str:
@@ -740,16 +782,23 @@ Date: {date_str}
 DOMAIN COVERAGE:
 {domain_confs}
 
+Gap categories (choose one per gap): {_GAP_CATEGORIES}
+Severity: critical|significant|minor
+
 Return a JSON array of 3-6 collection gaps (raw JSON array, no fences):
 [
   {{
     "id": "cg-01",
     "domain": "d1|d2|d3|d4|d5|d6",
+    "category": "terrain-denial",
     "gap": "What specific information we lack.",
-    "significance": "Why this gap matters for assessment quality.",
+    "significance": "Why this gap matters for assessment quality, naming the key judgment at risk.",
+    "keyJudgmentAtRisk": "kj-d1 or null",
+    "gapClosingSource": "What source would close this gap.",
     "severity": "critical|significant|minor"
   }}
-]"""
+]
+Return ONLY the JSON array. No markdown."""
 
 
 def run_synthesis_subagent(task: str, sections: list[dict],
@@ -881,6 +930,41 @@ def run_agent_brief(
     if not isinstance(collection_gaps, list):
         collection_gaps = []
 
+    # ── Derive live strip cell values ──────────────────────────────────────────
+    # Count d1-tagged sections as kinetic incident proxy
+    d1_section = next((s for s in sections_list if s.get('id') == 'd1'), {})
+    incident_count = str(len(d1_section.get('bodyParagraphs', []))) or '—'
+
+    # Brent price: scan executive KPIs for d3 number
+    brent_price = '—'
+    if isinstance(executive, dict):
+        for kpi in executive.get('kpis', []):
+            if kpi.get('domain') == 'd3':
+                brent_price = kpi.get('number', '—')
+                break
+
+    # Hormuz status from warning indicators
+    hormuz_wi = next(
+        (wi for wi in warning_indicators if 'hormuz' in wi.get('indicator', '').lower()),
+        None,
+    )
+    hormuz_status = (
+        'DISRUPTED' if hormuz_wi and hormuz_wi.get('status') in ('triggered', 'elevated')
+        else 'ACTIVE'
+    )
+
+    # Flash points: top d1/d2 triggered or elevated indicators
+    flash_points = [
+        {
+            'headline': wi.get('indicator', ''),
+            'detail':   wi.get('detail', '')[:200],
+            'domain':   wi.get('domain', 'd1'),
+            'urgency':  'critical' if wi.get('status') == 'triggered' else 'elevated',
+        }
+        for wi in warning_indicators
+        if wi.get('status') in ('triggered', 'elevated')
+    ][:3]
+
     cycle: dict = {
         'meta': {
             'cycleId':          f'cycle000_{date_str}',  # overwritten after cycle numbering below
@@ -898,18 +982,18 @@ def run_agent_brief(
                 f'{target_date.strftime("%d %B %Y")}. All times UTC unless noted.'
             ),
             'stripCells': [
-                {'top': threat_lvl, 'bot': 'THREAT LEVEL'},
-                {'top': '—',        'bot': 'INCIDENTS / 24H'},
-                {'top': '—',        'bot': 'BRENT CRUDE'},
-                {'top': 'ACTIVE',   'bot': 'HORMUZ STATUS'},
-                {'top': '—',        'bot': 'FLASH POINTS'},
+                {'top': threat_lvl,            'bot': 'THREAT LEVEL'},
+                {'top': incident_count,        'bot': 'INCIDENTS / 24H'},
+                {'top': brent_price,           'bot': 'BRENT CRUDE'},
+                {'top': hormuz_status,         'bot': 'HORMUZ STATUS'},
+                {'top': str(len(flash_points)), 'bot': 'FLASH POINTS'},
             ],
         },
         'strategicHeader': {
             'headlineJudgment':    sh.get('headlineJudgment', ''),
             'trajectoryRationale': sh.get('trajectoryRationale', ''),
         },
-        'flashPoints':       [],
+        'flashPoints': flash_points,
         'executive':         executive,
         'domains':           sections_list,
         'warningIndicators': warning_indicators,

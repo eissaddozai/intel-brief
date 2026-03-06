@@ -7,8 +7,10 @@ Target: ~10 minutes per cycle.
 import json
 import logging
 import os
+import subprocess
 import sys
 import textwrap
+import time
 from typing import Any
 
 log = logging.getLogger(__name__)
@@ -47,86 +49,139 @@ def format_citations(citations: list[dict]) -> str:
     )
 
 
+_REGEN_RETRY_DELAYS = (8, 20)  # seconds between attempts
+_REGEN_CLI_TIMEOUT  = 300       # seconds per claude CLI call
+
+
 def _regenerate_domain(domain: dict) -> dict | None:
     """
-    Re-draft a single domain section by calling the Claude API directly.
-    Returns the new section dict, or None if the API call fails.
+    Re-draft a single domain section via the Claude CLI subprocess.
+    Uses the same `claude -p` invocation pattern as agent_brief.py — no Anthropic SDK.
+    Returns the new section dict, or None on failure.
     """
     domain_id = domain.get('id', '')
     if not domain_id:
         log.warning('Cannot regenerate: domain has no id field')
         return None
 
-    api_key = os.environ.get('ANTHROPIC_API_KEY', '')
-    if not api_key:
-        log.warning('Cannot regenerate: ANTHROPIC_API_KEY not set')
-        return None
+    # Build the regeneration prompt from the existing section's structure
+    citations_json = json.dumps(
+        [c for p in domain.get('bodyParagraphs', []) for c in p.get('citations', [])],
+        indent=2,
+    )
+    body_summary = '\n'.join(
+        f"  [{p.get('subLabel', '?')}]: {p.get('text', '')[:300]}"
+        for p in domain.get('bodyParagraphs', [])
+    )
+    regen_prompt = (
+        f"You are a senior conflict intelligence analyst.\n\n"
+        f"The analyst has requested a full redraft of the "
+        f"{domain.get('title', domain_id)} domain section.\n\n"
+        f"Previous key judgment: {domain.get('keyJudgment', {}).get('text', '(none)')}\n\n"
+        f"Previous body paragraphs (for context — do NOT repeat verbatim):\n{body_summary}\n\n"
+        f"Source citations available from the previous draft:\n{citations_json}\n\n"
+        f"TASK: Re-draft this domain section from scratch. Use the same sources but produce "
+        f"a substantively different analytical framing. The lead sentence of every paragraph "
+        f"must be an assessment, not a factual description. Apply the full confidence ladder. "
+        f"Preserve the original schema exactly.\n\n"
+        f"Return ONLY a valid JSON object matching this exact structure (raw JSON, no fences):\n"
+        f'{{\n'
+        f'  "id": "{domain_id}",\n'
+        f'  "num": "{domain.get("num", "")}",\n'
+        f'  "title": "{domain.get("title", domain_id)}",\n'
+        f'  "assessmentQuestion": "{domain.get("assessmentQuestion", "")}",\n'
+        f'  "confidence": "high|moderate|low",\n'
+        f'  "keyJudgment": {{\n'
+        f'    "id": "kj-{domain_id}",\n'
+        f'    "domain": "{domain_id}",\n'
+        f'    "confidence": "high|moderate|low",\n'
+        f'    "probabilityRange": "55-75%",\n'
+        f'    "language": "almost-certainly|highly-likely|likely|possibly|unlikely|almost-certainly-not",\n'
+        f'    "text": "Assessment sentence beginning with confidence phrase.",\n'
+        f'    "basis": "Evidence basis.",\n'
+        f'    "citations": []\n'
+        f'  }},\n'
+        f'  "bodyParagraphs": [\n'
+        f'    {{\n'
+        f'      "subLabel": "OBSERVED ACTIVITY",\n'
+        f'      "subLabelVariant": "observed",\n'
+        f'      "text": "Assessment-led paragraph with source attributions. Minimum 2 sentences.",\n'
+        f'      "citations": []\n'
+        f'    }},\n'
+        f'    {{\n'
+        f'      "subLabel": "OPERATIONAL ASSESSMENT",\n'
+        f'      "subLabelVariant": "assessment",\n'
+        f'      "text": "Analytical judgment paragraph. Minimum 2 sentences.",\n'
+        f'      "citations": []\n'
+        f'    }}\n'
+        f'  ]\n'
+        f'}}'
+    )
 
-    try:
-        import anthropic
-        from pathlib import Path
+    # Strip CLAUDECODE from child environment so the CLI runs inside a Claude Code session
+    child_env = {k: v for k, v in os.environ.items() if k != 'CLAUDECODE'}
+    cmd = ['claude', '-p', regen_prompt, '--dangerously-skip-permissions']
+    max_attempts = len(_REGEN_RETRY_DELAYS) + 1
 
-        prompts_dir = Path(__file__).parent.parent / 'draft' / 'prompts'
-        domain_prompt_map = {
-            'd1': 'battlespace.md',
-            'd2': 'escalation.md',
-            'd3': 'energy.md',
-            'd4': 'diplomatic.md',
-            'd5': 'cyber.md',
-            'd6': 'war_risk.md',
-        }
-        prompt_file = prompts_dir / domain_prompt_map.get(domain_id, '')
-        if not prompt_file.exists():
-            log.warning('No prompt file for domain %s — cannot regenerate', domain_id)
+    for attempt in range(max_attempts):
+        try:
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                timeout=_REGEN_CLI_TIMEOUT,
+                env=child_env,
+            )
+        except subprocess.TimeoutExpired:
+            if attempt < max_attempts - 1:
+                wait = _REGEN_RETRY_DELAYS[attempt]
+                log.warning('Regeneration CLI timed out (attempt %d/%d) — retrying in %ds',
+                            attempt + 1, max_attempts, wait)
+                time.sleep(wait)
+                continue
+            log.error('Regeneration CLI timed out after %ds', _REGEN_CLI_TIMEOUT)
+            return None
+        except FileNotFoundError:
+            log.error('claude CLI not found — cannot regenerate. '
+                      'Ensure Claude Code CLI is installed and on PATH.')
             return None
 
-        # Build a minimal regeneration prompt from the existing section's citations
-        citations_json = json.dumps(
-            [c for p in domain.get('bodyParagraphs', []) for c in p.get('citations', [])],
-            indent=2,
-        )
-        regen_prompt = (
-            f"The analyst has requested regeneration of the {domain.get('title', domain_id)} domain section.\n"
-            f"Previous key judgment: {domain.get('keyJudgment', {}).get('text', '(none)')}\n\n"
-            f"Available source citations from the previous draft:\n{citations_json}\n\n"
-            f"Re-draft this domain section from scratch using the same source material.\n"
-            f"Produce a complete domain section JSON object with the same schema as the original.\n"
-            f"Return ONLY valid JSON — no markdown fences, no explanatory text."
-        )
+        if result.returncode != 0:
+            stderr = result.stderr.strip()
+            _transient = any(p in stderr.lower()
+                             for p in ('rate limit', 'overloaded', 'too many requests'))
+            if _transient and attempt < max_attempts - 1:
+                wait = _REGEN_RETRY_DELAYS[attempt]
+                log.warning('Regeneration transient error (attempt %d/%d) — retrying in %ds: %s',
+                            attempt + 1, max_attempts, wait, stderr[:200])
+                time.sleep(wait)
+                continue
+            log.error('Regeneration CLI exited %d: %s', result.returncode, stderr[:400])
+            return None
 
-        client = anthropic.Anthropic(api_key=api_key)
-        response = client.messages.create(
-            model='claude-opus-4-6',
-            max_tokens=3000,
-            temperature=0.4,
-            system=(
-                'You are a senior conflict intelligence analyst. '
-                'Produce structured JSON output exactly as specified. '
-                'Never fabricate citations. '
-                'Write in a dispassionate, precise intelligence voice.'
-            ),
-            messages=[{'role': 'user', 'content': regen_prompt}],
-        )
-
-        text = response.content[0].text.strip()
+        text = result.stdout.strip()
         if '```json' in text:
             text = text.split('```json')[1].split('```')[0].strip()
         elif '```' in text:
             text = text.split('```')[1].split('```')[0].strip()
 
-        result = json.loads(text)
-        if isinstance(result, dict) and result.get('keyJudgment'):
-            # Preserve structural fields
-            result.setdefault('id', domain_id)
-            result.setdefault('num', domain.get('num', ''))
-            result.setdefault('title', domain.get('title', ''))
-            return result
-        log.warning('Regeneration returned unexpected structure')
+        try:
+            parsed = json.loads(text)
+        except json.JSONDecodeError as exc:
+            log.error('Regeneration JSON parse failed: %s', exc)
+            return None
+
+        if isinstance(parsed, dict) and parsed.get('keyJudgment'):
+            parsed.setdefault('id', domain_id)
+            parsed.setdefault('num', domain.get('num', ''))
+            parsed.setdefault('title', domain.get('title', domain_id))
+            return parsed
+
+        log.warning('Regeneration returned unexpected structure: %s', str(parsed)[:200])
         return None
 
-    except Exception as exc:
-        log.error('Domain regeneration failed: %s', exc)
-        return None
+    log.error('Regeneration failed after %d attempts', max_attempts)
+    return None
 
 
 def review_domain_section(domain: dict, section_num: int) -> dict | None:
