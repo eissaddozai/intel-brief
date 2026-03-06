@@ -47,6 +47,10 @@ sources:
       Real public RSS. Strong regional bureau including Tehran, Beirut,
       Gaza, Riyadh. Factual backbone for Arab-world perspective.
 
+  # Reuters — exhaustive topic-page scrape coverage (no public RSS since 2020)
+  # All sections share the same scraper; collect from each URL and merge.
+  # Reuters static HTML renders without JS. Relevance filter drops non-Iran/Gulf.
+
   - id: reuters_mideast
     name: "Reuters Middle East"
     tier: 1
@@ -56,9 +60,217 @@ sources:
     status: likely
     enabled: true
     notes: >
-      Reuters killed their public RSS in 2020. Scraped with requests+BS4
-      from the Middle East topic page. Static HTML — no JS rendering needed.
-      Reuters is the second pillar of the factual backbone alongside AP.
+      Primary Reuters ingestion point. Top-level Middle East section covers
+      all regional conflicts, diplomacy, and humanitarian events. Reuters is
+      the second pillar of the factual backbone alongside AP. No public RSS
+      since 2020; scraped with requests+BS4. Static HTML — no JS rendering.
+
+  - id: reuters_iran
+    name: "Reuters — Iran"
+    tier: 1
+    domains: [d1, d2, d3, d4, d5]
+    method: scrape
+    url: "https://www.reuters.com/world/middle-east/iran/"
+    status: likely
+    enabled: true
+    notes: >
+      Iran-specific Reuters topic page. Deepest granularity for sanctions,
+      IRGC operations, nuclear programme, and internal political developments.
+      Supplement to reuters_mideast; catches Iran stories that do not headline
+      the regional page.
+
+  - id: reuters_israel
+    name: "Reuters — Israel"
+    tier: 1
+    domains: [d1, d2, d4]
+    method: scrape
+    url: "https://www.reuters.com/world/middle-east/israel/"
+    status: likely
+    enabled: true
+    notes: >
+      Israeli military and government reporting. IDF operations, war cabinet
+      decisions, hostage negotiations. Cross-check against IDF spokesperson
+      press releases (idf_spokesperson).
+
+  - id: reuters_yemen
+    name: "Reuters — Yemen"
+    tier: 1
+    domains: [d1, d3, d6]
+    method: scrape
+    url: "https://www.reuters.com/world/middle-east/yemen/"
+    status: likely
+    enabled: true
+    notes: >
+      Houthi (Ansar Allah) operations, Red Sea shipping attacks, coalition
+      air campaigns. Yemen-specific Reuters page captures drone/missile
+      launches and shipping disruption not always surfaced on the main
+      Middle East page. Key input for d6 war risk and d3 energy/transit.
+
+  - id: reuters_iraq
+    name: "Reuters — Iraq"
+    tier: 1
+    domains: [d1, d4]
+    method: scrape
+    url: "https://www.reuters.com/world/middle-east/iraq/"
+    status: likely
+    enabled: true
+    notes: >
+      PMF (Iran-backed militia) activity, US base attacks, and Iraqi
+      government positioning. Essential for d1 proxy-network mapping.
+
+  - id: reuters_lebanon
+    name: "Reuters — Lebanon"
+    tier: 1
+    domains: [d1, d4]
+    method: scrape
+    url: "https://www.reuters.com/world/middle-east/lebanon/"
+    status: likely
+    enabled: true
+    notes: >
+      Hezbollah northern front, ceasefire monitoring, Lebanese government
+      position. Supplements al_jazeera_en on Lebanese-Israeli border activity.
+
+  - id: reuters_saudi
+    name: "Reuters — Saudi Arabia"
+    tier: 1
+    domains: [d3, d4]
+    method: scrape
+    url: "https://www.reuters.com/world/middle-east/saudi-arabia/"
+    status: likely
+    enabled: true
+    notes: >
+      Saudi Aramco production decisions, GCC positioning, normalisation
+      diplomacy. OPEC+ quota discussions with Iran influence directly affect
+      d3 energy price signals.
+
+  - id: reuters_energy
+    name: "Reuters — Energy"
+    tier: 1
+    domains: [d3, d6]
+    method: scrape
+    url: "https://www.reuters.com/business/energy/"
+    status: likely
+    enabled: true
+    notes: >
+      Brent/WTI pricing, LNG spot, pipeline disruptions, tanker diversion.
+      Mandatory inclusion when conflict event drives >2% intraday Brent move.
+      Reuters energy desk is factual floor for d3 price claims.
+
+  - id: reuters_commodities
+    name: "Reuters — Commodities"
+    tier: 1
+    domains: [d3]
+    method: scrape
+    url: "https://www.reuters.com/markets/commodities/"
+    status: likely
+    enabled: true
+    notes: >
+      Commodity market context for energy disruption: oil, LNG, refined
+      products. Captures price-desk analysis and OPEC quota reporting
+      that may not surface on the main energy page.
+
+  - id: reuters_aerospace_defense
+    name: "Reuters — Aerospace & Defense"
+    tier: 1
+    domains: [d1, d2]
+    method: scrape
+    url: "https://www.reuters.com/business/aerospace-defense/"
+    status: likely
+    enabled: true
+    notes: >
+      US/Western defense procurement, weapons supply to Israel/GCC, and
+      industrial-base capacity reporting. Relevant when d2 escalation
+      assessment covers Western military support signals.
+
+  - id: reuters_cybersecurity
+    name: "Reuters — Cybersecurity"
+    tier: 1
+    domains: [d5]
+    method: scrape
+    url: "https://www.reuters.com/technology/cybersecurity/"
+    status: likely
+    enabled: true
+    notes: >
+      Iranian APT activity, critical infrastructure attacks, attribution
+      statements from US/UK/Israeli officials. Reuters cybersecurity desk
+      is factual floor for d5 alongside Recorded Future and CISA.
+
+  - id: reuters_us
+    name: "Reuters — United States"
+    tier: 1
+    domains: [d2, d4]
+    method: scrape
+    url: "https://www.reuters.com/world/us/"
+    status: likely
+    enabled: true
+    notes: >
+      White House, State Department, Pentagon statements on Iran policy.
+      Key for d4 diplomatic positioning (US negotiating posture, sanctions
+      designations) and d2 escalation ladder (US force posture decisions).
+
+  - id: reuters_europe
+    name: "Reuters — Europe"
+    tier: 1
+    domains: [d4]
+    method: scrape
+    url: "https://www.reuters.com/world/europe/"
+    status: likely
+    enabled: true
+    notes: >
+      EU Council, NATO, UK, French, German positioning on Iran nuclear
+      file and conflict spillover. Feeds d4 diplomatic domain alongside
+      france24_en and dw_en.
+
+  - id: reuters_china
+    name: "Reuters — China"
+    tier: 1
+    domains: [d4]
+    method: scrape
+    url: "https://www.reuters.com/world/china/"
+    status: likely
+    enabled: true
+    notes: >
+      Chinese diplomatic posture on Iran/nuclear file, PRC oil import
+      decisions, and UNSC veto positioning. Relevant for d4 multilateral
+      dynamics assessment.
+
+  - id: reuters_russia
+    name: "Reuters — Russia"
+    tier: 1
+    domains: [d1, d4]
+    method: scrape
+    url: "https://www.reuters.com/world/europe/russia/"
+    status: likely
+    enabled: true
+    notes: >
+      Russian weapons transfers to Iran, UNSC posture, and economic
+      cooperation signalling. Iran-Russia axis is a key d1/d4 variable.
+
+  - id: reuters_markets
+    name: "Reuters — Markets"
+    tier: 1
+    domains: [d3, d6]
+    method: scrape
+    url: "https://www.reuters.com/markets/"
+    status: likely
+    enabled: true
+    notes: >
+      Broader financial market reactions to conflict events: equity, FX,
+      sovereign debt. Captures risk-off moves that signal global insurance
+      and reinsurance repricing relevant to d6.
+
+  - id: reuters_legal
+    name: "Reuters — Legal"
+    tier: 1
+    domains: [d4, d6]
+    method: scrape
+    url: "https://www.reuters.com/legal/"
+    status: likely
+    enabled: true
+    notes: >
+      International sanctions enforcement actions, ICC/ICJ proceedings,
+      insurance litigation arising from conflict. Feeds d4 (legal/diplomatic
+      pressure) and d6 (war risk policy exclusion disputes).
 
   - id: ctpiw_evening
     name: "CTP-ISW Evening Report"
