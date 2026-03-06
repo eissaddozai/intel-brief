@@ -92,10 +92,28 @@ def _domain_kj_text(domain_sections: list[dict], domain_id: str) -> str:
     return section.get('keyJudgment', {}).get('text', '(no key judgment)')
 
 
+def _extract_json(text: str) -> str:
+    """
+    Extract JSON from a response that may or may not be wrapped in markdown fences.
+    Tries clean parse first; falls back to fence stripping.
+    """
+    stripped = text.strip()
+    # Fast path: already valid JSON
+    if stripped.startswith(('{', '[')):
+        return stripped
+    # Strip markdown code fences
+    if '```json' in stripped:
+        stripped = stripped.split('```json')[1].split('```')[0].strip()
+    elif '```' in stripped:
+        stripped = stripped.split('```')[1].split('```')[0].strip()
+    return stripped
+
+
 async def _call_claude(prompt: str, max_tokens: int = 3000) -> dict | list:
     """
     Call Claude via the Agent SDK CLI and parse the JSON response.
-    Returns parsed dict or list. Raises on JSON parse failure.
+    Retries up to MAX_RETRIES times on transient failures.
+    Returns parsed dict or list. Raises on persistent failure.
     """
     system_preamble = (
         'You are a senior conflict intelligence analyst. '
@@ -106,37 +124,46 @@ async def _call_claude(prompt: str, max_tokens: int = 3000) -> dict | list:
     )
 
     full_prompt = system_preamble + prompt
-    result_text = ''
+    last_exc: Exception | None = None
 
-    async for message in query(
-        prompt=full_prompt,
-        options=ClaudeAgentOptions(
-            allowed_tools=[],          # no tools needed — pure text generation
-            permission_mode='dontAsk',
-            model=MODEL,
-            max_turns=MAX_TURNS,
-        ),
-    ):
-        if isinstance(message, ResultMessage):
-            result_text = (message.result or '').strip()
+    for attempt in range(1 + MAX_RETRIES):
+        if attempt > 0:
+            log.warning('Retrying Claude call (attempt %d/%d) after: %s',
+                        attempt + 1, 1 + MAX_RETRIES, last_exc)
 
-    # Strip markdown code fences if present
-    if '```json' in result_text:
-        result_text = result_text.split('```json')[1].split('```')[0].strip()
-    elif '```' in result_text:
-        result_text = result_text.split('```')[1].split('```')[0].strip()
+        result_text = ''
+        try:
+            async for message in query(
+                prompt=full_prompt,
+                options=ClaudeAgentOptions(
+                    allowed_tools=[],          # no tools needed — pure text generation
+                    permission_mode='dontAsk',
+                    model=MODEL,
+                    max_turns=MAX_TURNS,
+                ),
+            ):
+                if isinstance(message, ResultMessage):
+                    result_text = (message.result or '').strip()
 
-    if not result_text:
-        raise ValueError('Claude returned empty response')
+            if not result_text:
+                raise ValueError('Claude returned empty response')
 
-    try:
-        return json.loads(result_text)
-    except json.JSONDecodeError as exc:
-        log.error(
-            'JSON parse failed: %s\nRaw response (first 600 chars): %s',
-            exc, result_text[:600],
-        )
-        raise
+            json_text = _extract_json(result_text)
+            return json.loads(json_text)
+
+        except json.JSONDecodeError as exc:
+            log.error(
+                'JSON parse failed (attempt %d): %s\nRaw (first 600): %s',
+                attempt + 1, exc, result_text[:600],
+            )
+            # JSON decode errors are not retryable — fail immediately
+            raise
+        except Exception as exc:
+            last_exc = exc
+            if attempt >= MAX_RETRIES:
+                raise
+
+    raise RuntimeError(f'Claude call failed after {1 + MAX_RETRIES} attempts') from last_exc
 
 
 def _run(coro):
@@ -178,13 +205,18 @@ def draft_domain(
     d2_context = _domain_summary(context_sections['d2']) if 'd2' in context_sections else '(not yet available)'
     d3_context = _domain_summary(context_sections['d3']) if 'd3' in context_sections else '(not yet available)'
 
+    # D6 (war risk) uses energy context (d3) in place of escalation context (d2)
+    # because shipping insurance is driven by energy corridor security, not nuclear trajectory.
+    prompt_d2_context = d3_context if domain == 'd6' else d2_context
+
     prompt = _fill_template(
         template,
         tier1_items=json.dumps(tier1[:15], indent=2, ensure_ascii=False),
         tier2_items=json.dumps(tier2[:15], indent=2, ensure_ascii=False),
         prev_cycle_kj=prev_kj or '(no previous cycle)',
         d1_context=d1_context,
-        d2_context=d3_context if domain == 'd6' else d2_context,
+        d2_context=prompt_d2_context,
+        d3_context=d3_context,
     )
 
     log.info('Drafting domain %s (%d T1, %d T2 items)...', domain, len(tier1), len(tier2))

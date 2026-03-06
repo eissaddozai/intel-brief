@@ -44,6 +44,8 @@ MANUAL RESEARCH WORKFLOW
 import argparse
 import json
 import logging
+import os
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -80,7 +82,6 @@ def dim(t: str) -> str:    return _c('2', t)
 # ─── Config ───────────────────────────────────────────────────────────────────
 
 def load_config() -> dict:
-    import os, re
     if not CONFIG_PATH.exists():
         return {}
     try:
@@ -164,9 +165,11 @@ def stage_ingest(target_date: datetime, force: bool, config: dict) -> Path:
 
     log.info('── Email ──')
     try:
+        from ingest.relevance import filter_relevant as _filter_relevant
         email_items = ingest_email(target_date, config=config)
+        email_items = _filter_relevant(email_items)
         raw_items.extend(email_items)
-        log.info('Email total: %d items', len(email_items))
+        log.info('Email total: %d items (after relevance filter)', len(email_items))
     except Exception as exc:
         log.warning('Email ingestion failed (non-fatal): %s', exc)
 
@@ -269,7 +272,7 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
             'keyJudgment': {
                 'text': (
                     f'{len(items)} items collected ({len(tier1)} Tier 1). '
-                    'Re-run after adding Anthropic API credits for AI synthesis.'
+                    'Re-run `--stage draft` to synthesise with Claude CLI.'
                 ),
                 'confidence': confidence,
                 'probabilityRange': 'placeholder',
@@ -295,7 +298,7 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
             'subtitle': 'Iran War File — Daily Assessment [PLACEHOLDER — NO AI SYNTHESIS]',
             'contextNote': (
                 f'Placeholder draft — {total} items collected for {date_str}. '
-                'Fund Anthropic API and re-run `brief run --stage draft` to generate analysis.'
+                'Run `python pipeline/main.py run --stage draft` to generate AI analysis.'
             ),
             'stripCells': [
                 {'top': 'SEVERE', 'bot': 'THREAT LEVEL'},
@@ -307,11 +310,11 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
         },
         'strategicHeader': {
             'headlineJudgment': f'PLACEHOLDER — {total} items ingested, no AI synthesis.',
-            'oneLineSummary': 'Fund API credits and re-run draft stage.',
+            'oneLineSummary': 'Run draft stage to synthesise.',
         },
         'flashPoints': [],
         'executive': {
-            'bluf': f'PLACEHOLDER — {total} items across 5 domains. Re-run after funding API.',
+            'bluf': f'PLACEHOLDER — {total} items across 6 domains. Re-run draft stage for AI synthesis.',
             'keyJudgments': [d['keyJudgment']['text'] for d in domains],
             'kpis': [],
         },
@@ -342,7 +345,7 @@ def stage_draft(tagged_cache: Path, target_date: datetime, config: dict) -> Path
     else:
         log.warning('No previous cycle — drafting without prior context')
 
-    log.info('Calling Claude CLI (claude_agent_sdk)...')
+    log.info('Drafting cycle via Claude CLI (claude_agent_sdk)...')
     try:
         from draft.drafter import draft_cycle
         draft = draft_cycle(
@@ -407,14 +410,21 @@ def stage_output(approved_file: Path, config: dict) -> Path:
 
 
 def _find_previous_cycle() -> dict | None:
+    """Return the most recent cycle JSON dict, selected by cycle number in filename."""
     if not CYCLES_DIR.exists():
         return None
-    cycles = [p for p in CYCLES_DIR.glob('cycle*.json') if not p.is_symlink()]
+    _num_re = re.compile(r'cycle_?(\d+)')
+    def _cycle_num(p: Path) -> int:
+        m = _num_re.search(p.name)
+        return int(m.group(1)) if m else 0
+    cycles = sorted(
+        [p for p in CYCLES_DIR.glob('cycle*.json') if not p.is_symlink()],
+        key=_cycle_num,
+    )
     if not cycles:
         return None
-    latest = max(cycles, key=lambda p: p.stat().st_mtime)
     try:
-        return json.loads(latest.read_text(encoding='utf-8'))
+        return json.loads(cycles[-1].read_text(encoding='utf-8'))
     except Exception:
         return None
 
@@ -422,8 +432,9 @@ def _find_previous_cycle() -> dict | None:
 def _resolve_cache(prefix: str, target_date: datetime) -> Path:
     f = CACHE_DIR / f'{prefix}_{target_date.strftime("%Y%m%d")}.json'
     if not f.exists():
-        log.error('No %s cache for %s — run prior stage first.', prefix, target_date.date())
-        sys.exit(1)
+        raise FileNotFoundError(
+            f'No {prefix} cache for {target_date.date()} — run prior stage first.'
+        )
     return f
 
 
@@ -433,6 +444,8 @@ def cmd_run(args: argparse.Namespace, config: dict) -> None:
     target_date = get_target_date(args.date)
     log.info('Target date: %s', target_date.strftime('%Y-%m-%d'))
 
+    if getattr(args, 'verbose', False):
+        logging.getLogger().setLevel(logging.DEBUG)
     stage = args.stage
     demo = args.demo
     auto_approve = args.auto_approve
@@ -441,6 +454,13 @@ def cmd_run(args: argparse.Namespace, config: dict) -> None:
     if from_file and not from_file.exists():
         log.error('Research file not found: %s', from_file)
         sys.exit(1)
+
+    if from_file and stage and stage != 'ingest':
+        log.warning(
+            '--from-file is only used during the ingest stage. '
+            'For --stage %s it will be ignored — ingest cache must already exist.',
+            stage,
+        )
 
     raw_cache: Path
     tagged_cache: Path
@@ -459,28 +479,44 @@ def cmd_run(args: argparse.Namespace, config: dict) -> None:
 
     if stage in ('triage', None):
         if stage == 'triage':
-            raw_cache = _resolve_cache('raw', target_date)
+            try:
+                raw_cache = _resolve_cache('raw', target_date)
+            except FileNotFoundError as exc:
+                log.error(str(exc))
+                sys.exit(1)
         tagged_cache = stage_triage(raw_cache, config)
         if stage:
             return
 
     if stage in ('draft', None):
         if stage == 'draft':
-            tagged_cache = _resolve_cache('tagged', target_date)
+            try:
+                tagged_cache = _resolve_cache('tagged', target_date)
+            except FileNotFoundError as exc:
+                log.error(str(exc))
+                sys.exit(1)
         draft_file = stage_draft(tagged_cache, target_date, config)
         if stage:
             return
 
     if stage in ('review', None):
         if stage == 'review':
-            draft_file = _resolve_cache('draft', target_date)
+            try:
+                draft_file = _resolve_cache('draft', target_date)
+            except FileNotFoundError as exc:
+                log.error(str(exc))
+                sys.exit(1)
         approved_file = stage_review(draft_file, auto_approve=auto_approve)
         if stage:
             return
 
     if stage in ('output', None):
         if stage == 'output':
-            approved_file = _resolve_cache('approved', target_date)
+            try:
+                approved_file = _resolve_cache('approved', target_date)
+            except FileNotFoundError as exc:
+                log.error(str(exc))
+                sys.exit(1)
         out = stage_output(approved_file, config)
         log.info('Pipeline complete → %s', out)
 
@@ -701,9 +737,13 @@ def cmd_list(args: argparse.Namespace, config: dict) -> None:
         print('No cycles directory found.')
         return
 
+    _num_re2 = re.compile(r'cycle_?(\d+)')
+    def _cnum(p: Path) -> int:
+        m = _num_re2.search(p.name)
+        return int(m.group(1)) if m else 0
     cycles = sorted(
         [p for p in CYCLES_DIR.glob('cycle*.json') if not p.is_symlink()],
-        key=lambda p: p.stat().st_mtime,
+        key=_cnum,
         reverse=True,
     )
 
@@ -723,7 +763,9 @@ def cmd_list(args: argparse.Namespace, config: dict) -> None:
             m = c.get('meta', {})
             date_str = m.get('timestamp', '')[:10]
             threat = m.get('threatLevel', '?')
-            total_items = sum(len(d.get('bodyParagraphs', [])) for d in c.get('domains', []))
+            # Count body paragraphs as proxy for content depth (not raw items)
+            total_paras = sum(len(d.get('bodyParagraphs', [])) for d in c.get('domains', []))
+            total_items = total_paras
             threat_col = red(f'{threat:<10}') if threat in ('CRITICAL', 'SEVERE') else yellow(f'{threat:<10}')
             marker = green(' ← latest') if p == latest else ''
             print(f'{p.name:<40} {date_str:<12} {threat_col} {total_items:>6}{marker}')
@@ -754,6 +796,8 @@ def build_parser() -> argparse.ArgumentParser:
                        help='Skip interactive review (for CI)')
     run_p.add_argument('--demo', action='store_true',
                        help='Use synthetic seed data — no internet or API required')
+    run_p.add_argument('--verbose', '-v', action='store_true',
+                       help='Enable DEBUG-level logging')
     run_p.add_argument('--from-file', metavar='PATH',
                        help=(
                            'Path to a JSON file of curated research items. '

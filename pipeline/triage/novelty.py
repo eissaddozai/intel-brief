@@ -11,40 +11,64 @@ from pathlib import Path
 log = logging.getLogger(__name__)
 
 
+_HTML_TAG_RE = re.compile(r'<[^>]+>')
+
+
+def _clean(text: str) -> str:
+    """Strip HTML and normalise whitespace before phrase extraction."""
+    return re.sub(r'\s+', ' ', _HTML_TAG_RE.sub(' ', text)).strip()
+
+
 def extract_known_facts(prev_cycle: dict) -> set[str]:
     """
     Extract a set of key phrases from the previous cycle JSON
     that represent 'known' information already reported.
+    Covers: flashPoints, strategicHeader, executive, domains, warningIndicators.
     """
     known: set[str] = set()
 
     def add_text(text: str) -> None:
         if not text:
             return
-        # Extract meaningful phrases: 3+ consecutive words
-        words = re.findall(r'\b\w+\b', text.lower())
+        clean = _clean(text)
+        words = re.findall(r'\b\w+\b', clean.lower())
         for i in range(len(words) - 2):
             phrase = ' '.join(words[i:i+3])
             if len(phrase) > 10:
                 known.add(phrase)
 
-    # Walk the cycle JSON and collect text from key fields
+    # Flash points
     for fp in prev_cycle.get('flashPoints', []):
         add_text(fp.get('headline', ''))
         add_text(fp.get('detail', ''))
 
+    # Strategic header
+    sh = prev_cycle.get('strategicHeader', {})
+    add_text(sh.get('headlineJudgment', ''))
+    add_text(sh.get('trajectoryRationale', ''))
+
+    # Executive assessment
     exec_data = prev_cycle.get('executive', {})
     add_text(exec_data.get('bluf', ''))
     for kj in exec_data.get('keyJudgments', []):
-        # keyJudgments may be a list of strings or a list of dicts
         if isinstance(kj, str):
             add_text(kj)
         elif isinstance(kj, dict):
             add_text(kj.get('text', ''))
 
+    # Domain body paragraphs and key judgments
     for domain in prev_cycle.get('domains', []):
+        kj = domain.get('keyJudgment', {})
+        if isinstance(kj, dict):
+            add_text(kj.get('text', ''))
         for para in domain.get('bodyParagraphs', []):
             add_text(para.get('text', ''))
+
+    # Warning indicators
+    for wi in prev_cycle.get('warningIndicators', []):
+        add_text(wi.get('indicator', ''))
+        add_text(wi.get('assessment', ''))
+        add_text(wi.get('detail', ''))
 
     return known
 
@@ -67,24 +91,38 @@ def compute_novelty_score(item: dict, known_phrases: set[str]) -> float:
     return novel_count / len(trigrams)
 
 
-NOVELTY_THRESHOLD = 0.35  # Items below this are considered repeats
+DEFAULT_NOVELTY_THRESHOLD = 0.35  # Items below this are considered repeats
+
+# Regex to extract cycle number from filenames like cycle001_20260305.json
+_CYCLE_NUM_RE = re.compile(r'cycle_?(\d+)')
 
 
 def filter_novel(items: list[dict], cycles_dir: Path, config: dict | None = None) -> list[dict]:
     """
     Filter out items that are largely repetitions of the previous cycle.
     Items from Tier 1 sources are never filtered (factual updates always included).
+    Config key: triage.novelty_threshold (float, default 0.35).
     """
-    # Find most recent cycle
-    # Match both cycle001_20260305.json and (legacy) cycle_001_20260305.json
+    threshold = DEFAULT_NOVELTY_THRESHOLD
+    if config:
+        threshold = float(
+            config.get('triage', {}).get('novelty_threshold', DEFAULT_NOVELTY_THRESHOLD)
+        )
+
+    # Find most recent cycle by cycle number embedded in filename (not mtime)
+    def _cycle_num(p: Path) -> int:
+        m = _CYCLE_NUM_RE.search(p.name)
+        return int(m.group(1)) if m else 0
+
     cycle_files = sorted(
-        p for p in cycles_dir.glob('cycle*.json') if not p.is_symlink()
+        (p for p in cycles_dir.glob('cycle*.json') if not p.is_symlink()),
+        key=_cycle_num,
     )
     if not cycle_files:
         log.info('No previous cycles found — treating all items as novel')
         return items
 
-    prev_file = max(cycle_files, key=lambda p: p.stat().st_mtime)
+    prev_file = cycle_files[-1]
     log.info('Comparing against previous cycle: %s', prev_file.name)
 
     try:

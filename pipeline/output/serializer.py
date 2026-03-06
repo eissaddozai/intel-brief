@@ -3,11 +3,13 @@ Cycle JSON serializer — validates and writes approved cycle dict to disk.
 Assigns cycle number, symlinks latest.json, optionally copies to src/data/.
 """
 
+import copy
 import json
 import logging
 import os
 import re
 import shutil
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -126,8 +128,8 @@ def write_cycle(approved: dict, config: dict) -> Path:
         date_str = datetime.now(timezone.utc).strftime('%Y%m%d')
     cycle_id = f'cycle{cycle_num:03d}_{date_str}'
 
-    approved = dict(approved)
-    meta = dict(approved.get('meta', {}))
+    approved = copy.deepcopy(approved)   # deep copy — prevent mutation of caller's dict
+    meta = approved.get('meta', {})
     meta['cycleId'] = cycle_id
     meta['cycleNum'] = f'{cycle_num:03d}'
     # Preserve pipeline-stamped timestamp if already set, else set now
@@ -142,11 +144,21 @@ def write_cycle(approved: dict, config: dict) -> Path:
             log.error('Validation error: %s', e)
         raise ValueError(f'Cycle failed validation with {len(errors)} error(s). See log.')
 
-    # ── Write cycle file ───────────────────────────────────────────────────
+    # ── Write cycle file (atomically via temp file + rename) ──────────────
     out_path = cycles_dir / f'{cycle_id}.json'
-    with open(out_path, 'w', encoding='utf-8') as fh:
-        json.dump(approved, fh, indent=2, ensure_ascii=False)
-    log.info('Cycle written → %s', out_path)
+    json_bytes = json.dumps(approved, indent=2, ensure_ascii=False).encode('utf-8')
+    tmp_fd, tmp_path = tempfile.mkstemp(dir=cycles_dir, suffix='.json.tmp')
+    try:
+        with os.fdopen(tmp_fd, 'wb') as fh:
+            fh.write(json_bytes)
+        os.replace(tmp_path, out_path)   # atomic on POSIX; best-effort on Windows
+    except Exception:
+        try:
+            os.unlink(tmp_path)
+        except OSError:
+            pass
+        raise
+    log.info('Cycle written → %s  (%d bytes)', out_path, len(json_bytes))
 
     # ── Symlink latest.json ────────────────────────────────────────────────
     latest = cycles_dir / 'latest.json'

@@ -68,6 +68,8 @@ def assign_confidence(items: list[dict]) -> list[dict]:
 def _extract_key_phrases(text: str) -> set[str]:
     """Extract 4-grams as key phrases for corroboration matching."""
     words = re.findall(r'\b\w+\b', text.lower())
+    if len(words) < 4:
+        return set()
     return {' '.join(words[i:i+4]) for i in range(len(words) - 3)}
 
 
@@ -83,10 +85,10 @@ def _apply_corroboration_boost(items: list[dict]) -> None:
             for phrase in _extract_key_phrases(item.get('text', '')):
                 tier1_phrases[phrase].append(idx)
 
-    # Find phrases appearing in 2+ Tier 1 items
+    # Find phrases appearing in 2+ distinct Tier 1 sources
     corroborated_phrases = {
         phrase for phrase, idxs in tier1_phrases.items()
-        if len(set(items[i]['source_id'] for i in idxs)) >= 2
+        if len({items[i].get('source_id', '') for i in idxs} - {''}) >= 2
     }
 
     for item in items:
@@ -94,4 +96,7 @@ def _apply_corroboration_boost(items: list[dict]) -> None:
         item['corroborated'] = bool(text_phrases & corroborated_phrases)
 
     corroborated_count = sum(1 for item in items if item.get('corroborated'))
-    log.info('%d items corroborated by 2+ Tier 1 sources', corroborated_count)
+    log.info('%d/%d items corroborated by 2+ distinct Tier 1 sources',
+             corroborated_count, len(items))
+    if corroborated_count == 0 and any(item.get('tier') == 1 for item in items):
+        log.debug('No corroboration found — Tier 1 sources may cover different topics')
