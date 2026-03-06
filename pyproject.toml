@@ -1,0 +1,116 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "cse-intel-brief"
+version = "1.0.0"
+description = "Automated daily conflict intelligence brief — Iran War File"
+requires-python = ">=3.11"
+readme = "README.md"
+license = { text = "Proprietary" }
+
+dependencies = [
+    "requests>=2.31.0,<3.0",
+    "beautifulsoup4>=4.12.0,<5.0",
+    "pyyaml>=6.0,<7.0",
+    "anyio>=4.3.0,<5.0",
+    "claude-agent-sdk>=0.0.1",
+]
+
+[project.optional-dependencies]
+fast = [
+    "lxml>=5.0.0,<6.0",
+]
+validate = [
+    "jsonschema>=4.21.0,<5.0",
+]
+js = [
+    "playwright>=1.44.0,<2.0",
+]
+all = [
+    "lxml>=5.0.0,<6.0",
+    "jsonschema>=4.21.0,<5.0",
+    "playwright>=1.44.0,<2.0",
+]
+dev = [
+    "pytest>=8.1.0,<9.0",
+    "pytest-asyncio>=0.23.0,<1.0",
+    "pytest-cov>=5.0.0,<6.0",
+    "responses>=0.25.0,<1.0",
+    "ruff>=0.4.0,<1.0",
+    "mypy>=1.10.0,<2.0",
+    "types-requests>=2.31.0",
+    "types-pyyaml>=6.0.0",
+    "types-beautifulsoup4>=4.12.0",
+    "rich>=13.7.0,<14.0",
+    "jsonschema>=4.21.0,<5.0",
+]
+
+[project.scripts]
+intel-brief = "pipeline.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["pipeline*"]
+
+# ── Ruff (linter + formatter) ───────────────────────────────
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "UP",  # pyupgrade
+    "B",   # flake8-bugbear
+    "C4",  # flake8-comprehensions
+    "SIM", # flake8-simplify
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # do not perform function calls in default arguments
+    "SIM108", # ternary operator — often less readable in intelligence analysis code
+]
+
+[tool.ruff.lint.per-file-ignores]
+"pipeline/ingest/demo_seed.py" = ["E501"]  # long seed strings expected
+"pipeline/draft/prompts/*.md"  = ["ALL"]   # prompt files aren't Python
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+
+# ── Mypy ────────────────────────────────────────────────────
+[tool.mypy]
+python_version = "3.11"
+strict = false
+ignore_missing_imports = true   # claude_agent_sdk stubs may not be available
+warn_return_any = true
+warn_unused_ignores = true
+exclude = ["pipeline/draft/prompts/"]
+
+# ── Pytest ──────────────────────────────────────────────────
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-v --tb=short"
+filterwarnings = [
+    "ignore::DeprecationWarning:anyio",
+]
+
+# ── Coverage ────────────────────────────────────────────────
+[tool.coverage.run]
+source = ["pipeline"]
+omit = [
+    "pipeline/ingest/demo_seed.py",
+    "pipeline/draft/prompts/*",
+    "pipeline/.cache/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 60

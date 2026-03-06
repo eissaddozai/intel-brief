@@ -1,0 +1,42 @@
+# ============================================================
+# CSE Intel Brief — Optional Dependencies
+# ============================================================
+# These packages enhance the pipeline but are NOT required
+# for core operation. Install what you need:
+#
+#   pip install -r requirements-optional.txt          # all optional
+#   pip install lxml jsonschema                        # recommended subset
+#   pip install playwright && playwright install chromium  # JS-rendered sites only
+# ============================================================
+
+# ── Faster HTML parsing (recommended) ──────────────────────
+# BS4 falls back to html.parser (stdlib) if lxml is absent.
+# lxml is ~3-5x faster and handles malformed HTML more robustly.
+lxml>=5.0.0,<6.0               # Faster BeautifulSoup4 parser — use: BeautifulSoup(html, 'lxml')
+
+# ── JSON schema validation ──────────────────────────────────
+# serializer.py performs graceful degradation when jsonschema is absent:
+# validation is skipped with a warning rather than aborting the cycle.
+# Installing this enforces strict output schema compliance.
+jsonschema>=4.21.0,<5.0        # Validate cycle JSON against pipeline/output/schema.json
+
+# ── JavaScript-rendered site scraping ──────────────────────
+# Required ONLY for sources that require a real browser:
+#   - iras_war_risk    (IRAS — heavy JS, Cloudflare)
+#   - moodys_shipping  (Moody's Analytics — JS gated)
+#   - swissre_sigma    (Swiss Re Sigma — AJAX pagination)
+#
+# After pip install, run: playwright install chromium
+# The pipeline auto-detects Playwright availability; if absent
+# these three sources fall back to _extract_d6_marine() (static HTML).
+playwright>=1.44.0,<2.0        # Headless Chromium for JS-rendered live blogs and gated pages
+
+# ── Email ingestion (IMAP) ──────────────────────────────────
+# stdlib imaplib is used; no extra packages required.
+# This entry is a reminder only — imaplib ships with Python 3.x.
+# imaplib — stdlib, no install needed
+
+# ── Development quality-of-life ─────────────────────────────
+# (also available in requirements-dev.txt)
+# python-dateutil>=2.9.0       # Richer datetime parsing if needed in future
+# certifi>=2024.1.1             # Up-to-date root certificates (bundled with requests)

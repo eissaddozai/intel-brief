@@ -117,20 +117,32 @@ pipeline-config.yaml     ← API keys, schedule, email settings (use env vars fo
 
 ## Commands
 ```bash
-# Front-end
+# ── Environment setup (run once) ────────────────────────────
+./setup.sh                     # Create .venv + install core deps (requests, bs4, pyyaml, anyio, claude-agent-sdk)
+./setup.sh --full              # + lxml (faster parsing) + jsonschema (strict validation)
+./setup.sh --dev               # + pytest, ruff, mypy, rich
+./setup.sh --js                # + Playwright + Chromium (JS-rendered sites: IRAS, Moody's, Swiss Re)
+./setup.sh --all               # everything above
+./setup.sh --check             # verify environment without installing anything
+source .venv/bin/activate      # activate before running pipeline commands
+
+# ── Front-end ────────────────────────────────────────────────
 npm run dev              # Vite dev server — loads src/data/cycle001.json by default
 npm run build            # Production build
 
-# Pipeline — run from repo root
-python pipeline/main.py                    # Full cycle: ingest → triage → draft → review → output
-python pipeline/main.py --stage ingest     # Ingestion only; saves to pipeline/.cache/
-python pipeline/main.py --stage triage     # Triage from last ingest cache
-python pipeline/main.py --stage draft      # Draft from last triage output
-python pipeline/main.py --stage review     # Open review CLI against last draft
-python pipeline/main.py --stage output     # Write approved draft to cycles/
-
-# Pipeline with specific date (for backfill)
-python pipeline/main.py --date 2024-03-15
+# ── Pipeline — run from repo root ────────────────────────────
+python pipeline/main.py run                          # Full cycle: ingest → triage → draft → review → output
+python pipeline/main.py run --demo --auto-approve    # Demo mode: no external calls, fast cycle test
+python pipeline/main.py run --stage ingest           # Ingestion only; saves to pipeline/.cache/
+python pipeline/main.py run --stage triage           # Triage from last ingest cache
+python pipeline/main.py run --stage draft            # Draft from last triage output
+python pipeline/main.py run --stage review           # Open review CLI against last draft
+python pipeline/main.py run --stage output           # Write approved draft to cycles/
+python pipeline/main.py run --date 2024-03-15        # Backfill specific date
+python pipeline/main.py run --from-file research.json --auto-approve  # Manual research workflow
+python pipeline/main.py check-sources                # Test all source URLs + extractor coverage
+python pipeline/main.py list                         # List generated cycles
+python pipeline/main.py show                         # Pretty-print latest cycle
 ```
 
 ---

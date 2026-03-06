@@ -1,0 +1,28 @@
+# ============================================================
+# CSE Intel Brief — Development & Testing Dependencies
+# ============================================================
+# Install:  pip install -r requirements-dev.txt
+# (This pulls in requirements.txt automatically via -r)
+# ============================================================
+
+-r requirements.txt
+
+# ── Testing ─────────────────────────────────────────────────
+pytest>=8.1.0,<9.0             # Test runner
+pytest-asyncio>=0.23.0,<1.0   # Async test support (anyio-backed coroutines)
+pytest-cov>=5.0.0,<6.0        # Coverage reporting
+responses>=0.25.0,<1.0         # Mock requests for scraper/rss tests
+
+# ── Linting & formatting ────────────────────────────────────
+ruff>=0.4.0,<1.0               # Fast linter + formatter (replaces flake8, isort, pyupgrade)
+mypy>=1.10.0,<2.0              # Static type checking
+types-requests>=2.31.0         # Type stubs for requests
+types-pyyaml>=6.0.0            # Type stubs for PyYAML
+types-beautifulsoup4>=4.12.0   # Type stubs for BS4
+
+# ── Debug / introspection ───────────────────────────────────
+rich>=13.7.0,<14.0             # Rich terminal output (used by review_cli.py pretty-print)
+ipython>=8.24.0                # REPL for interactive cycle JSON inspection
+
+# ── Optional schema validation (dev uses strict mode) ───────
+jsonschema>=4.21.0,<5.0        # Enforce pipeline/output/schema.json during CI

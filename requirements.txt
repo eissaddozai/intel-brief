@@ -1,5 +1,27 @@
-anthropic>=0.84.0
-requests>=2.31.0
-beautifulsoup4>=4.12.0
-pyyaml>=6.0
-playwright>=1.40.0
+# ============================================================
+# CSE Intel Brief — Pipeline Core Dependencies
+# Python >= 3.11 required
+# ============================================================
+# Install:  pip install -r requirements.txt
+# ============================================================
+
+# ── HTTP & HTML parsing ─────────────────────────────────────
+requests>=2.31.0,<3.0          # HTTP requests (scraper, rss_ingest, war_risk_ingest)
+beautifulsoup4>=4.12.0,<5.0    # HTML/XML parsing (scraper.py all extractors)
+
+# ── Configuration ───────────────────────────────────────────
+pyyaml>=6.0,<7.0               # YAML parsing (sources.yaml, pipeline-config.yaml)
+
+# ── Async runtime ───────────────────────────────────────────
+anyio>=4.3.0,<5.0              # Async bridge for claude_agent_sdk (drafter.py, war_risk_ingest.py)
+
+# ── Claude CLI SDK ──────────────────────────────────────────
+# claude_agent_sdk is installed as part of the Claude Code CLI.
+# See SETUP.md §2 for full installation instructions.
+#
+# Quick path (if Claude Code CLI is already on PATH):
+#   pip install claude-agent-sdk
+#
+# The pipeline imports:
+#   from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
+claude-agent-sdk>=0.0.1        # Claude Code Python SDK (drafting + D6 CIP subagents)
