@@ -312,6 +312,74 @@ def draft_collection_gaps(
     return result.get('collectionGaps', [])
 
 
+def draft_flash_points(
+    client: anthropic.Anthropic,
+    tagged_items: list[dict],
+    domain_sections: list[dict],
+    target_date: datetime,
+    config: dict | None = None,
+) -> list[dict]:
+    """
+    Draft flash points by selecting the 1–3 most operationally significant
+    breaking developments from the current cycle's items.
+
+    Candidates are pre-filtered: Tier 1 confirmed items or high-significance
+    items across all domains. If no items meet the threshold, returns [].
+    """
+    # Build candidates: Tier 1 confirmed items + items with high significance scores
+    candidates = []
+    for item in tagged_items:
+        is_tier1 = item.get('tier') == 1
+        is_confirmed = item.get('verification_status') == 'confirmed'
+        has_high_sig = item.get('significance_score', 0) >= 70
+        if (is_tier1 and is_confirmed) or has_high_sig:
+            candidates.append({
+                'source_name': item.get('source_name', ''),
+                'tier':        item.get('tier', 2),
+                'domain':      (item.get('tagged_domains') or item.get('domains', ['d1']))[0],
+                'title':       item.get('title', ''),
+                'text':        (item.get('text', '') or '')[:400],
+                'timestamp':   item.get('timestamp', ''),
+                'verification_status': item.get('verification_status', 'reported'),
+            })
+
+    if not candidates:
+        log.info('FlashPoints: no candidates met the threshold — returning empty')
+        return []
+
+    # Build domain context summary for the prompt
+    section_map = {s.get('id'): s for s in domain_sections}
+    domain_context = '\n\n'.join(
+        f"[{did}] {_domain_summary(section_map[did])}"
+        for did in ['d1', 'd2', 'd3', 'd4', 'd5', 'd6']
+        if did in section_map
+    )
+
+    template = load_prompt('flash_points.md')
+    prompt = _fill_template(
+        template,
+        candidate_items=json.dumps(candidates[:20], indent=2, ensure_ascii=False),
+        domain_context=domain_context,
+    )
+
+    max_tok = config.get('claude', {}).get('max_tokens_flash_points', 800) if config else 800
+    log.info('Drafting flash points from %d candidates...', len(candidates))
+
+    try:
+        result = call_claude(client, prompt, max_tokens=max_tok, config=config)
+    except Exception as exc:
+        log.warning('FlashPoints drafting failed (%s) — returning empty', exc)
+        return []
+
+    if isinstance(result, list):
+        log.info('FlashPoints: %d flash points drafted', len(result))
+        return result
+    # If Claude returned an object with a flashPoints key, extract it
+    if isinstance(result, dict) and 'flashPoints' in result:
+        return result['flashPoints']
+    return []
+
+
 def draft_cycle(
     tagged_items: list[dict],
     target_date: datetime,
@@ -357,6 +425,12 @@ def draft_cycle(
         drafted[domain_id] = section
         log.info('Domain %s drafted', domain_id)
 
+    # Draft flash points between domains and executive so the executive
+    # summary can reference any urgent breaking developments.
+    flash_points = draft_flash_points(
+        client, tagged_items, domain_sections, target_date, config=config,
+    )
+
     executive = draft_executive(client, domain_sections, prev_cycle, config=config)
     strategic_header = draft_strategic_header(client, domain_sections, executive, prev_cycle, config=config)
     warning_indicators = draft_warning_indicators(client, domain_sections, prev_cycle, config=config)
@@ -389,11 +463,11 @@ def draft_cycle(
                 {'top': '—', 'bot': 'INCIDENTS / 24H'},
                 {'top': '—', 'bot': 'BRENT CRUDE'},
                 {'top': 'ACTIVE', 'bot': 'HORMUZ STATUS'},
-                {'top': '—', 'bot': 'FLASH POINTS'},
+                {'top': str(len(flash_points)) if flash_points else '—', 'bot': 'FLASH POINTS'},
             ],
         },
         'strategicHeader': strategic_header,
-        'flashPoints': [],
+        'flashPoints': flash_points,
         'executive': executive,
         'domains': domain_sections,
         'warningIndicators': warning_indicators,

@@ -85,6 +85,24 @@ RELEVANCE_KEYWORDS: frozenset[str] = frozenset([
     'cyberattack', 'cyber attack', 'ics attack', 'ot attack',
     'scada', 'industrial control',
     'disinformation', 'influence operation',
+    # ── War risk insurance / maritime finance (d6) ────────────────────────
+    'war risk', 'war risk insurance', 'war risk premium',
+    'joint war committee', 'jwc listed', 'jwc area', 'listed area',
+    'hull war risk', 'hull premium', 'war premium',
+    'p&i club', 'p&i circular', 'protection and indemnity',
+    'lloyds', "lloyd's", 'lloyds market', "lloyd's market",
+    'lloyds list', "lloyd's list",
+    'bimco', 'bimco clause', 'conwartime', 'voywar',
+    'marine insurance', 'marine underwriter', 'marine reinsurance',
+    'war exclusion zone', 'high risk area', 'extended war risk',
+    'breach of warranty', 'additional premium',
+    'ig p&i', 'international group', 'p&i clubs',
+    'total loss', 'constructive total loss',
+    'war risk surcharge', 'insurance surcharge',
+    'vessel seizure', 'vessel detention',
+    'shipping insurance', 'cargo insurance',
+    'reinsurance treaty', 'retrocession',
+    'underwriting capacity', 'syndicate capacity',
 ])
 
 # Pre-compile for speed.
