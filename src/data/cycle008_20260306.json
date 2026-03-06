@@ -1,0 +1,311 @@
+{
+  "meta": {
+    "cycleId": "cycle008_20260306",
+    "cycleNum": "008",
+    "classification": "PROTECTED B",
+    "tlp": "AMBER",
+    "timestamp": "2026-03-06T06:00:00Z",
+    "region": "Iran · Gulf Region · Eastern Mediterranean",
+    "analystUnit": "CSE Conflict Assessment Unit",
+    "threatLevel": "SEVERE",
+    "threatTrajectory": "escalating",
+    "subtitle": "Iran War File — Daily Assessment [PLACEHOLDER — NO AI SYNTHESIS]",
+    "contextNote": "Placeholder draft — 19 items collected for 06 March 2026. Run `python pipeline/main.py run --stage draft` to generate AI analysis.",
+    "stripCells": [
+      {
+        "top": "SEVERE",
+        "bot": "THREAT LEVEL"
+      },
+      {
+        "top": "19",
+        "bot": "ITEMS INGESTED"
+      },
+      {
+        "top": "—",
+        "bot": "BRENT CRUDE"
+      },
+      {
+        "top": "ACTIVE",
+        "bot": "HORMUZ STATUS"
+      },
+      {
+        "top": "—",
+        "bot": "FLASH POINTS"
+      }
+    ]
+  },
+  "strategicHeader": {
+    "headlineJudgment": "PLACEHOLDER — 19 items ingested, no AI synthesis.",
+    "oneLineSummary": "Run draft stage to synthesise."
+  },
+  "flashPoints": [],
+  "executive": {
+    "bluf": "PLACEHOLDER — 19 items across 6 domains. Re-run draft stage for AI synthesis.",
+    "keyJudgments": [
+      "9 items collected (5 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI.",
+      "7 items collected (3 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI.",
+      "7 items collected (5 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI.",
+      "6 items collected (2 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI.",
+      "2 items collected (0 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI.",
+      "3 items collected (2 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI."
+    ],
+    "kpis": []
+  },
+  "domains": [
+    {
+      "id": "d1",
+      "num": "01",
+      "title": "BATTLESPACE · KINETIC",
+      "keyJudgment": {
+        "text": "9 items collected (5 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "[06 March 2026] CTP-ISW assessed that the IRGC launched a salvo of approximately 18 Shahab-3 variant ballistic missiles at the Haifa port district at 0218 UTC. Israeli Iron Dome and Arrow-3 batteries intercepted 14 of 18 missiles. Four missiles impacted the industrial waterfront, damaging a fuel storage facility and wounding seven dock workers.",
+          "citations": [
+            {
+              "ref": "CTP-ISW Evening Report",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "CENTCOM statement [06 March 2026]: USS Gravely (DDG-107) operating in the southern Red Sea successfully intercepted four Houthi anti-ship ballistic missiles at 2347 UTC. No casualties or damage to vessel reported. F/A-18 sorties from USS Harry S. Truman conducted follow-on strikes against Houthi launch infrastructure in Hudaydah governorate.",
+          "citations": [
+            {
+              "ref": "CENTCOM",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "UKMTO WARNO 042/2026: MV Nordic Hawk (Liberian-flagged, 74,000 DWT bulk carrier) reported being struck by armed UAV at position 12°30'N 043°20'E at 0455 UTC. Vessel remains underway. Minor superstructure damage. Master reports three crew members sustained blast injuries. Vessel proceeding to Djibouti for assessment. All shipping advised to maintain heightened vigilance in the area.",
+          "citations": [
+            {
+              "ref": "UKMTO",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d2",
+      "num": "02",
+      "title": "ESCALATION · TRAJECTORY",
+      "keyJudgment": {
+        "text": "7 items collected (3 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "IAEA Director General Grossi notified the Board of Governors [06 March 2026] that Iran has suspended IAEA inspector access to the Fordow Fuel Enrichment Plant effective 0600 UTC. The IAEA's continuous monitoring equipment at Fordow has been disconnected. Grossi stated this constitutes a \"serious breach\" of Iran's safeguards obligations under the NPT.",
+          "citations": [
+            {
+              "ref": "IAEA",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "The UN Security Council failed to pass an emergency resolution calling for an immediate ceasefire after Russia and China exercised their veto. The US-drafted text received 11 votes in favour with three abstentions. UK Foreign Secretary and French Foreign Minister issued joint statement calling on Iran to restore IAEA access within 48 hours.",
+          "citations": [
+            {
+              "ref": "Associated Press",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "The Joint War Committee [06 March 2026] amended its war risk listed areas to include the northern Persian Gulf north of 26°N, encompassing approaches to Bandar Abbas and the Strait of Hormuz transit corridor. The amendment takes immediate effect. Vessels transiting the newly listed area now require mandatory additional war risk premium (AWRP) from their hull underwriters. Lloyd's syndicates are expected to reprice AWRP within 24 hours of listing.",
+          "citations": [
+            {
+              "ref": "Joint War Committee Listed Areas",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d3",
+      "num": "03",
+      "title": "ENERGY · ECONOMIC",
+      "keyJudgment": {
+        "text": "7 items collected (5 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "UKMTO WARNO 042/2026: MV Nordic Hawk (Liberian-flagged, 74,000 DWT bulk carrier) reported being struck by armed UAV at position 12°30'N 043°20'E at 0455 UTC. Vessel remains underway. Minor superstructure damage. Master reports three crew members sustained blast injuries. Vessel proceeding to Djibouti for assessment. All shipping advised to maintain heightened vigilance in the area.",
+          "citations": [
+            {
+              "ref": "UKMTO",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "CENTCOM confirms the Strait of Hormuz transit corridor remains operational under Combined Maritime Forces escort. Commercial transits reduced to daylight hours only. Two VLCC tankers diverted to Cape of Good Hope route following insurance market guidance. Approximate daily throughput: 14 million bpd (vs. normal 21 million bpd).",
+          "citations": [
+            {
+              "ref": "CENTCOM",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "Brent crude futures surged to $147.20 per barrel at open, the highest since July 2022, as Hormuz throughput constraints and Red Sea diversions compounded supply anxiety. IEA activated emergency reserves for the third time in twelve months, releasing 60 million barrels over 30 days. Saudi Arabia pledged to maximize production within current OPEC+ quota framework.",
+          "citations": [
+            {
+              "ref": "Reuters",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d4",
+      "num": "04",
+      "title": "DIPLOMATIC · POLITICAL",
+      "keyJudgment": {
+        "text": "6 items collected (2 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "Brent crude futures surged to $147.20 per barrel at open, the highest since July 2022, as Hormuz throughput constraints and Red Sea diversions compounded supply anxiety. IEA activated emergency reserves for the third time in twelve months, releasing 60 million barrels over 30 days. Saudi Arabia pledged to maximize production within current OPEC+ quota framework.",
+          "citations": [
+            {
+              "ref": "Reuters",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "The UN Security Council failed to pass an emergency resolution calling for an immediate ceasefire after Russia and China exercised their veto. The US-drafted text received 11 votes in favour with three abstentions. UK Foreign Secretary and French Foreign Minister issued joint statement calling on Iran to restore IAEA access within 48 hours.",
+          "citations": [
+            {
+              "ref": "Associated Press",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d5",
+      "num": "05",
+      "title": "CYBER · INFORMATION OPS",
+      "keyJudgment": {
+        "text": "2 items collected (0 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI.",
+        "confidence": "moderate",
+        "probabilityRange": "placeholder",
+        "corroborated": false
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "CISA Advisory AA26-063A: Iranian state-sponsored actors (attributed to IRGC-affiliated group \"Volt Sparrow\") are actively exploiting Unitronics PLC vulnerabilities (CVE-2023-6448) in water/wastewater facilities and energy sector OT networks across North America and Europe. FBI and CISA recommend immediate patching and network segmentation.",
+          "citations": [
+            {
+              "ref": "CISA",
+              "tier": 2
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "Recorded Future Insikt Group identifies new APT35 (Charming Kitten) C2 infrastructure targeting Israeli banking and telecoms sector. Spear-phishing lures impersonate Bank Leumi correspondence. Malware family identified as updated HYPERSCRAPE variant with credential-harvesting and persistent access capabilities. High confidence attribution to MOIS.",
+          "citations": [
+            {
+              "ref": "Recorded Future",
+              "tier": 3
+            }
+          ]
+        }
+      ],
+      "confidence": "moderate"
+    },
+    {
+      "id": "d6",
+      "num": "06",
+      "title": "WAR RISK INSURANCE · MARITIME FINANCE",
+      "keyJudgment": {
+        "text": "3 items collected (2 Tier 1). Re-run `--stage draft` to synthesise with Claude CLI.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "The Joint War Committee [06 March 2026] amended its war risk listed areas to include the northern Persian Gulf north of 26°N, encompassing approaches to Bandar Abbas and the Strait of Hormuz transit corridor. The amendment takes immediate effect. Vessels transiting the newly listed area now require mandatory additional war risk premium (AWRP) from their hull underwriters. Lloyd's syndicates are expected to reprice AWRP within 24 hours of listing.",
+          "citations": [
+            {
+              "ref": "Joint War Committee Listed Areas",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "International Group of P&I Clubs issued Circular [06 March 2026] advising all entered vessels that war risk cover for transits through the Strait of Hormuz and the Red Sea / Gulf of Aden corridor is conditional on masters filing pre-transit notifications with club correspondents. Vessels failing to notify prior to transit may face coverage gaps for war-related P&I claims. The 13 principal clubs collectively cover approximately 90% of ocean-going tonnage.",
+          "citations": [
+            {
+              "ref": "International Group of P&I Clubs",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "warningIndicators": [],
+  "collectionGaps": [],
+  "caveats": {
+    "cycleRef": "CSE-BRIEF-PLACEHOLDER · 06 MARCH 2026",
+    "items": [
+      {
+        "label": "PLACEHOLDER",
+        "text": "Not an intelligence product."
+      }
+    ],
+    "confidenceAssessment": "N/A",
+    "dissenterNotes": [],
+    "sourceQuality": "See domain citations.",
+    "handling": "DRAFT — NOT FOR DISTRIBUTION"
+  },
+  "footer": {
+    "id": "CSE-BRIEF-PLACEHOLDER-20260306",
+    "classification": "PROTECTED B // TLP:AMBER",
+    "sources": "See domain citations",
+    "handling": "PLACEHOLDER — NOT FOR DISTRIBUTION"
+  }
+}
