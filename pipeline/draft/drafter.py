@@ -6,6 +6,8 @@ Drafts each domain section, then the executive summary, using structured JSON ou
 import json
 import logging
 import os
+import re
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -42,13 +44,13 @@ def _fill_template(template: str, **kwargs: str) -> str:
     literal curly braces in JSON examples inside the prompt files.
     Logs a warning for any placeholder that was not replaced (typo guard).
     """
-    import re as _re
     result = template
     for key, value in kwargs.items():
         result = result.replace('{' + key + '}', str(value))
 
-    # Detect unreplaced placeholders (single-word identifiers, not JSON schema examples)
-    unfilled = _re.findall(r'\{([a-z][a-z0-9_]*)\}', result)
+    # Detect unreplaced placeholders — only flag simple snake_case identifiers
+    # (not short domain IDs like d1/d2 which appear in JSON schema examples)
+    unfilled = re.findall(r'\{([a-z][a-z0-9_]{2,})\}', result)
     if unfilled:
         log.warning(
             '_fill_template: unreplaced placeholder(s) in prompt: %s — check kwargs',
@@ -65,11 +67,16 @@ def load_prompt(filename: str) -> str:
 
 
 def filter_by_domain(items: list[dict], domain: str) -> tuple[list[dict], list[dict]]:
-    """Split items into (tier1, tier2) for a given domain."""
+    """Split items into (tier1, tier2_plus) for a given domain.
+
+    tier2_plus includes Tier 2 and Tier 3 items — Tier 3 (PKK-affiliated,
+    Iranian state media) are included so prompts can cite them as claimed
+    sources; their verification_status distinguishes them from Tier 2.
+    """
     domain_items = [i for i in items if domain in i.get('tagged_domains', [])]
     tier1 = [i for i in domain_items if i.get('tier') == 1]
-    tier2 = [i for i in domain_items if i.get('tier') == 2]
-    return tier1, tier2
+    tier2_plus = [i for i in domain_items if i.get('tier') != 1]
+    return tier1, tier2_plus
 
 
 def _domain_kj_text(domain_sections: list[dict], domain_id: str) -> str:
@@ -99,40 +106,58 @@ def _domain_summary(section: dict) -> str:
     return '\n'.join(summary_parts)
 
 
+_CALL_RETRY_DELAYS = (5, 15, 30)  # seconds between retries for transient API errors
+
+
 def call_claude(
     client: anthropic.Anthropic,
     prompt: str,
     max_tokens: int = 2000,
     model: str = 'claude-opus-4-6',
 ) -> dict | list:
-    """Call Claude API and parse the JSON response."""
-    response = client.messages.create(
-        model=model,
-        max_tokens=max_tokens,
-        temperature=0.3,
-        system=(
-            'You are a senior conflict intelligence analyst. '
-            'Write in the dispassionate, precise voice of serious foreign affairs journalism. '
-            'Always produce structured JSON output exactly as specified. '
-            'Never fabricate citations. Never use forbidden jargon. '
-            'Distinguish Tier 1 confirmed facts from Tier 2 analytical interpretation.'
-        ),
-        messages=[{'role': 'user', 'content': prompt}],
+    """Call Claude API and parse the JSON response. Retries on transient errors."""
+    system = (
+        'You are a senior conflict intelligence analyst. '
+        'Write in the dispassionate, precise voice of serious foreign affairs journalism. '
+        'Always produce structured JSON output exactly as specified. '
+        'Never fabricate citations. Never use forbidden jargon. '
+        'Distinguish Tier 1 confirmed facts from Tier 2 analytical interpretation.'
     )
-
-    text = response.content[0].text
-
-    # Strip markdown code fences if present
-    if '```json' in text:
-        text = text.split('```json')[1].split('```')[0].strip()
-    elif '```' in text:
-        text = text.split('```')[1].split('```')[0].strip()
-
-    try:
-        return json.loads(text)
-    except json.JSONDecodeError as exc:
-        log.error('JSON parse failed: %s\nRaw response (first 600 chars): %s', exc, text[:600])
-        raise
+    last_exc: Exception | None = None
+    for attempt, delay in enumerate([0] + list(_CALL_RETRY_DELAYS)):
+        if delay:
+            time.sleep(delay)
+        try:
+            response = client.messages.create(
+                model=model,
+                max_tokens=max_tokens,
+                temperature=0.3,
+                system=system,
+                messages=[{'role': 'user', 'content': prompt}],
+            )
+        except Exception as exc:
+            err_str = str(exc).lower()
+            _transient = any(kw in err_str for kw in ('rate limit', 'overloaded', '529', '529'))
+            if _transient and attempt < len(_CALL_RETRY_DELAYS):
+                log.warning('Claude API transient error (attempt %d/%d): %s — retrying in %ds',
+                            attempt + 1, len(_CALL_RETRY_DELAYS) + 1, exc, _CALL_RETRY_DELAYS[attempt])
+                last_exc = exc
+                continue
+            raise
+        else:
+            text = response.content[0].text
+            # Strip markdown code fences if present
+            if '```json' in text:
+                text = text.split('```json')[1].split('```')[0].strip()
+            elif '```' in text:
+                text = text.split('```')[1].split('```')[0].strip()
+            try:
+                return json.loads(text)
+            except json.JSONDecodeError as exc:
+                log.error('JSON parse failed: %s\nRaw response (first 600 chars): %s',
+                          exc, text[:600])
+                raise
+    raise RuntimeError(f'Claude API failed after {len(_CALL_RETRY_DELAYS) + 1} attempts') from last_exc
 
 
 def draft_domain(
@@ -312,21 +337,22 @@ def draft_collection_gaps(
     return result.get('collectionGaps', [])
 
 
+_BRENT_PATTERN = re.compile(
+    r'\$\s*(\d{2,3}(?:\.\d{1,2})?)\s*/?\s*(?:bbl|barrel|b)?',
+    re.IGNORECASE,
+)
+
+
 def _extract_brent_price(items: list[dict]) -> str:
     """
     Attempt to extract a Brent crude price from d3 energy items.
     Returns formatted price string like '$94.20' or '—' if not found.
     """
-    import re as _re
-    brent_pattern = _re.compile(
-        r'\$\s*(\d{2,3}(?:\.\d{1,2})?)\s*/?\s*(?:bbl|barrel|b)?',
-        _re.IGNORECASE,
-    )
     for item in items:
         if 'd3' not in item.get('tagged_domains', []):
             continue
         haystack = item.get('title', '') + ' ' + item.get('text', '')
-        m = brent_pattern.search(haystack)
+        m = _BRENT_PATTERN.search(haystack)
         if m:
             return f'${m.group(1)}/bbl'
     return '—'
@@ -365,17 +391,20 @@ def _build_flash_points(
         'operational tripwires.\n\n'
         f'EXECUTIVE BLUF:\n{bluf}\n\n'
         f'DOMAIN KEY JUDGMENTS:\n{all_kjs}\n\n'
-        'Select up to 3 flash points. For each, return a JSON object with:\n'
-        '  "headline": one sharp sentence (≤15 words) — the event itself\n'
+        'Select up to 3 flash points. For each, return a JSON object with exactly these fields:\n'
+        '  "id": "fp-1" | "fp-2" | "fp-3"\n'
+        '  "timestamp": ISO 8601 UTC timestamp of the event (use cycle timestamp if unknown)\n'
+        '  "headline": one sharp sentence (≤12 words) — the event itself\n'
         '  "detail": one analytical sentence (≤25 words) — why it matters now\n'
         '  "domain": the primary domain id (d1/d2/d3/d4/d5/d6)\n'
-        '  "urgency": "critical" | "elevated" | "monitoring"\n\n'
+        '  "confidence": "high" | "moderate" | "low"\n'
+        '  "citations": [] (empty array unless you can name a specific Tier 1 source)\n\n'
         'Return ONLY a JSON array of 1–3 objects. No markdown, no commentary.\n'
         'If no events meet flash-point threshold, return [].'
     )
 
     try:
-        result = call_claude(client, prompt, max_tokens=600, model=model)
+        result = call_claude(client, prompt, max_tokens=700, model=model)
         if isinstance(result, list):
             return result[:3]
     except Exception as exc:

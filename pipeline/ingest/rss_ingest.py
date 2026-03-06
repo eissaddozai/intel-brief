@@ -49,19 +49,22 @@ def _parse_date(text: str | None) -> datetime | None:
     if not text:
         return None
     text = text.strip()
-    # Try RFC 2822 (RSS pubDate)
+    # Try RFC 2822 (RSS pubDate) — most common for RSS feeds
     try:
         return parsedate_to_datetime(text).astimezone(timezone.utc)
-    except Exception:
+    except (TypeError, ValueError, OverflowError):
         pass
-    # Try ISO 8601 (Atom)
-    for fmt in ('%Y-%m-%dT%H:%M:%SZ', '%Y-%m-%dT%H:%M:%S%z', '%Y-%m-%d'):
+    # Try ISO 8601 (Atom) — use the full string for timezone-aware formats
+    # so that offsets like +05:30 are not truncated by an [:25] slice.
+    for fmt in ('%Y-%m-%dT%H:%M:%SZ', '%Y-%m-%dT%H:%M:%S%z',
+                '%Y-%m-%dT%H:%M%z', '%Y-%m-%d'):
         try:
-            dt = datetime.strptime(text[:25], fmt)
+            sample = text[:20] if fmt == '%Y-%m-%dT%H:%M:%SZ' else text
+            dt = datetime.strptime(sample, fmt)
             if dt.tzinfo is None:
                 dt = dt.replace(tzinfo=timezone.utc)
             return dt.astimezone(timezone.utc)
-        except Exception:
+        except (ValueError, OverflowError):
             continue
     return None
 

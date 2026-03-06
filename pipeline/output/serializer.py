@@ -8,6 +8,7 @@ import logging
 import os
 import re
 import shutil
+import tempfile
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -98,6 +99,9 @@ def validate(cycle: dict) -> list[str]:
         did = d.get('id', '?')
         if d.get('id') not in VALID_DOMAIN_IDS:
             errors.append(f"Invalid domain id: {did!r}")
+        conf = d.get('confidence')
+        if conf and conf not in {'high', 'moderate', 'low'}:
+            errors.append(f"Domain {did}: invalid confidence {conf!r}")
         kj = d.get('keyJudgment') or {}
         if not kj:
             errors.append(f"Domain {did} missing keyJudgment")
@@ -125,6 +129,11 @@ def validate(cycle: dict) -> list[str]:
     if not executive.get('keyJudgments'):
         errors.append('Executive missing keyJudgments')
 
+    # flashPoints must be a list
+    flash = cycle.get('flashPoints')
+    if flash is not None and not isinstance(flash, list):
+        errors.append("flashPoints must be a list")
+
     # Warning indicators — structural + enum
     wi_list = cycle.get('warningIndicators', [])
     if len(wi_list) < 12:
@@ -136,6 +145,9 @@ def validate(cycle: dict) -> list[str]:
         wid = wi.get('id', '?')
         if not wi.get('indicator'):
             errors.append(f"warningIndicator {wid}: indicator is missing")
+        wi_domain = wi.get('domain')
+        if wi_domain and wi_domain not in VALID_DOMAIN_IDS:
+            errors.append(f"warningIndicator {wid}: invalid domain {wi_domain!r}")
         status = wi.get('status')
         if status not in VALID_WI_STATUS:
             errors.append(f"warningIndicator {wid}: invalid status {status!r}")
@@ -158,6 +170,9 @@ def validate(cycle: dict) -> list[str]:
         cat = gap.get('category')
         if cat and cat not in VALID_GAP_CATEGORY:
             errors.append(f"collectionGap {gid}: invalid category {cat!r}")
+        gap_domain = gap.get('domain')
+        if gap_domain and gap_domain not in VALID_DOMAIN_IDS:
+            errors.append(f"collectionGap {gid}: invalid domain {gap_domain!r}")
 
     return errors
 
@@ -206,10 +221,16 @@ def write_cycle(approved: dict, config: dict) -> Path:
             log.error('Validation error: %s', e)
         raise ValueError(f'Cycle failed validation with {len(errors)} error(s). See log.')
 
-    # ── Write cycle file ───────────────────────────────────────────────────
+    # ── Write cycle file (atomic: write to temp then rename) ──────────────
     out_path = cycles_dir / f'{cycle_id}.json'
-    with open(out_path, 'w', encoding='utf-8') as fh:
-        json.dump(approved, fh, indent=2, ensure_ascii=False)
+    payload = json.dumps(approved, indent=2, ensure_ascii=False)
+    with tempfile.NamedTemporaryFile(
+        mode='w', encoding='utf-8', dir=cycles_dir,
+        prefix='.tmp_', suffix='.json', delete=False,
+    ) as fh:
+        fh.write(payload)
+        tmp_path = Path(fh.name)
+    tmp_path.replace(out_path)
     log.info('Cycle written → %s', out_path)
 
     # ── Symlink latest.json ────────────────────────────────────────────────
