@@ -53,6 +53,7 @@
   --d1-bright: #DC2E3C;
   --d1-body:   #0D0909;
   --d1-grad:   linear-gradient(180deg, #100204 0%, #240406 40%, #4E0810 100%);
+  --d1-muted:  #8A2030;   /* d1 attribution muted text */
 
   /* ── DOMAIN 02 — ESCALATION · TRAJECTORY ──────────────────────────────── */
   --d2-fill:   #4A2800;
@@ -61,6 +62,7 @@
   --d2-bright: #E89A28;
   --d2-body:   #100D08;
   --d2-grad:   linear-gradient(180deg, #120A00 0%, #241400 40%, #4A2800 100%);
+  --d2-muted:  #8A6010;   /* d2 attribution muted text */
 
   /* ── DOMAIN 03 — ENERGY · ECONOMIC ────────────────────────────────────── */
   --d3-fill:   #022A14;
@@ -69,6 +71,7 @@
   --d3-bright: #28B858;
   --d3-body:   #080E09;
   --d3-grad:   linear-gradient(180deg, #000A04 0%, #011408 40%, #022A14 100%);
+  --d3-muted:  #1A7040;   /* d3 attribution muted text */
 
   /* ── DOMAIN 04 — DIPLOMATIC · POLITICAL ───────────────────────────────── */
   --d4-fill:   #1C0640;
@@ -77,6 +80,7 @@
   --d4-bright: #8A50CC;
   --d4-body:   #0A0812;
   --d4-grad:   linear-gradient(180deg, #060110 0%, #0C0220 40%, #1C0640 100%);
+  --d4-muted:  #5A30A0;   /* d4 attribution muted text */
 
   /* ── DOMAIN 05 — CYBER · INFORMATION OPS ──────────────────────────────── */
   --d5-fill:   #001830;
@@ -93,6 +97,7 @@
   --d6-bright: #2EC4B6;
   --d6-body:   #050E0E;
   --d6-grad:   linear-gradient(180deg, #000808 0%, #001414 40%, #002A28 100%);
+  --d6-muted:  #108878;   /* d6 attribution muted text */
 
   /* ── MASTHEAD CLASSIFICATION BAR ──────────────────────────────────────── */
   --color-class-bar:    #030406;   /* very dark classification bar bg */
@@ -2597,7 +2602,6 @@ body::after {
   .timeline            { break-inside: avoid; }
   .collection-gaps     { break-inside: avoid; }
   .caveats             { break-inside: avoid; }
-  .wi-table            { break-inside: avoid; }
   .wi-row              { break-inside: avoid; }
   .am-row              { break-inside: avoid; }
   .brief-footer        { break-inside: avoid; }
@@ -2632,8 +2636,6 @@ body::after {
   /* ── Executive KJ list ──────────────────────────────────────────────────── */
   .exec__kj-list { padding: 0 0 0 12pt; }
   .exec__kj-item { margin-bottom: 4pt; font-size: 9pt; break-inside: avoid; display: list-item !important; }
-  .exec__kj-domain { font-weight: 700; }
-
   /* ── Flash points ───────────────────────────────────────────────────────── */
   .flash-points__item { break-inside: avoid; display: flex !important; }
 
@@ -2642,8 +2644,6 @@ body::after {
 
   /* ── Editor suppressed ──────────────────────────────────────────────────── */
   #cse-editor-toggle, #cse-editor-panel, #ep-floatbar, .ep-grip { display: none !important; }
-  .section-divider { display: none !important; }
-
   /* ── Canada GOC logo — fixed bottom-right, repeats on every printed page ── */
   #print-footer-logo {
     display: block !important;
@@ -3051,6 +3051,38 @@ section.domain::after{
 
 
 
+/* ── KJ CONFIDENCE PHRASE ─────────────────────────────────────────────────── */
+.kj__confidence-phrase{
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:0.68rem;font-style:italic;
+  color:rgba(196,185,160,0.55);
+  padding:0 28px;margin-bottom:6px;line-height:1.5;
+}
+
+/* ── PROBABILITY BAR FILLS ─────────────────────────────────────────────────── */
+.prob-bar__fill{display:block;height:100%;border-radius:inherit}
+.prob-bar__fill--almost-certainly{width:97%;background:linear-gradient(90deg,#2a6420,#44a838)}
+.prob-bar__fill--highly-likely{width:85%;background:linear-gradient(90deg,#5a4010,#c4a030)}
+.prob-bar__fill--likely{width:65%;background:linear-gradient(90deg,#284060,#4880c8)}
+.prob-bar__fill--possibly{width:50%;background:linear-gradient(90deg,#403830,#908060)}
+.prob-bar__fill--unlikely{width:32%;background:linear-gradient(90deg,#402828,#a05040)}
+.prob-bar__fill--almost-certainly-not{width:3%;background:#883838}
+
+/* ── CITATION TIER COLOURS ─────────────────────────────────────────────────── */
+.cite--claimed{color:var(--color-gold);font-style:italic}
+.cite--disputed{color:#c87040;font-style:italic;font-weight:600}
+
+/* ── HANDLING BAR ──────────────────────────────────────────────────────────── */
+.handling-bar{
+  font-family:'IBM Plex Mono','Courier New',monospace;
+  font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(196,160,48,0.55);text-align:center;
+  padding:6px 0;
+  border-top:1px solid rgba(196,160,48,0.12);
+  margin-top:10px;
+}
+
+
 </style>
 </head>
 <body>
@@ -3168,7 +3200,7 @@ section.domain::after{
     <div class="flash-points__item-conf badge badge--green">HIGH</div>
   </div>
 </section>
-<section>
+<section class="executive-assessment">
   <div class="exec__gradient"></div>
   <div class="exec__header">
     <div class="exec__header-title">EXECUTIVE ASSESSMENT</div>

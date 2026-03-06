@@ -629,6 +629,38 @@ section.domain::after{
 
 
 
+
+/* ── KJ CONFIDENCE PHRASE ─────────────────────────────────────────────────── */
+.kj__confidence-phrase{
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:0.68rem;font-style:italic;
+  color:rgba(196,185,160,0.55);
+  padding:0 28px;margin-bottom:6px;line-height:1.5;
+}
+
+/* ── PROBABILITY BAR FILLS ─────────────────────────────────────────────────── */
+.prob-bar__fill{display:block;height:100%;border-radius:inherit}
+.prob-bar__fill--almost-certainly{width:97%;background:linear-gradient(90deg,#2a6420,#44a838)}
+.prob-bar__fill--highly-likely{width:85%;background:linear-gradient(90deg,#5a4010,#c4a030)}
+.prob-bar__fill--likely{width:65%;background:linear-gradient(90deg,#284060,#4880c8)}
+.prob-bar__fill--possibly{width:50%;background:linear-gradient(90deg,#403830,#908060)}
+.prob-bar__fill--unlikely{width:32%;background:linear-gradient(90deg,#402828,#a05040)}
+.prob-bar__fill--almost-certainly-not{width:3%;background:#883838}
+
+/* ── CITATION TIER COLOURS ─────────────────────────────────────────────────── */
+.cite--claimed{color:var(--color-gold);font-style:italic}
+.cite--disputed{color:#c87040;font-style:italic;font-weight:600}
+
+/* ── HANDLING BAR ──────────────────────────────────────────────────────────── */
+.handling-bar{
+  font-family:'IBM Plex Mono','Courier New',monospace;
+  font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:rgba(196,160,48,0.55);text-align:center;
+  padding:6px 0;
+  border-top:1px solid rgba(196,160,48,0.12);
+  margin-top:10px;
+}
+
 """)
     return '\n'.join(chunks)
 
@@ -847,7 +879,7 @@ class HtmlRenderer:
         kj_items = self._exec_kj_list(kjs)
         kpi_strip = self._kpi_strip(kpis)
 
-        return f"""<section>
+        return f"""<section class="executive-assessment">
   <div class="exec__gradient"></div>
   <div class="exec__header">
     <div class="exec__header-title">EXECUTIVE ASSESSMENT</div>

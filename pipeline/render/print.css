@@ -241,7 +241,6 @@
   .timeline            { break-inside: avoid; }
   .collection-gaps     { break-inside: avoid; }
   .caveats             { break-inside: avoid; }
-  .wi-table            { break-inside: avoid; }
   .wi-row              { break-inside: avoid; }
   .am-row              { break-inside: avoid; }
   .brief-footer        { break-inside: avoid; }
@@ -276,8 +275,6 @@
   /* ── Executive KJ list ──────────────────────────────────────────────────── */
   .exec__kj-list { padding: 0 0 0 12pt; }
   .exec__kj-item { margin-bottom: 4pt; font-size: 9pt; break-inside: avoid; display: list-item !important; }
-  .exec__kj-domain { font-weight: 700; }
-
   /* ── Flash points ───────────────────────────────────────────────────────── */
   .flash-points__item { break-inside: avoid; display: flex !important; }
 
@@ -286,8 +283,6 @@
 
   /* ── Editor suppressed ──────────────────────────────────────────────────── */
   #cse-editor-toggle, #cse-editor-panel, #ep-floatbar, .ep-grip { display: none !important; }
-  .section-divider { display: none !important; }
-
   /* ── Canada GOC logo — fixed bottom-right, repeats on every printed page ── */
   #print-footer-logo {
     display: block !important;

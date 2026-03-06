@@ -45,6 +45,7 @@
   --d1-bright: #DC2E3C;
   --d1-body:   #0D0909;
   --d1-grad:   linear-gradient(180deg, #100204 0%, #240406 40%, #4E0810 100%);
+  --d1-muted:  #8A2030;   /* d1 attribution muted text */
 
   /* ── DOMAIN 02 — ESCALATION · TRAJECTORY ──────────────────────────────── */
   --d2-fill:   #4A2800;
@@ -53,6 +54,7 @@
   --d2-bright: #E89A28;
   --d2-body:   #100D08;
   --d2-grad:   linear-gradient(180deg, #120A00 0%, #241400 40%, #4A2800 100%);
+  --d2-muted:  #8A6010;   /* d2 attribution muted text */
 
   /* ── DOMAIN 03 — ENERGY · ECONOMIC ────────────────────────────────────── */
   --d3-fill:   #022A14;
@@ -61,6 +63,7 @@
   --d3-bright: #28B858;
   --d3-body:   #080E09;
   --d3-grad:   linear-gradient(180deg, #000A04 0%, #011408 40%, #022A14 100%);
+  --d3-muted:  #1A7040;   /* d3 attribution muted text */
 
   /* ── DOMAIN 04 — DIPLOMATIC · POLITICAL ───────────────────────────────── */
   --d4-fill:   #1C0640;
@@ -69,6 +72,7 @@
   --d4-bright: #8A50CC;
   --d4-body:   #0A0812;
   --d4-grad:   linear-gradient(180deg, #060110 0%, #0C0220 40%, #1C0640 100%);
+  --d4-muted:  #5A30A0;   /* d4 attribution muted text */
 
   /* ── DOMAIN 05 — CYBER · INFORMATION OPS ──────────────────────────────── */
   --d5-fill:   #001830;
@@ -85,6 +89,7 @@
   --d6-bright: #2EC4B6;
   --d6-body:   #050E0E;
   --d6-grad:   linear-gradient(180deg, #000808 0%, #001414 40%, #002A28 100%);
+  --d6-muted:  #108878;   /* d6 attribution muted text */
 
   /* ── MASTHEAD CLASSIFICATION BAR ──────────────────────────────────────── */
   --color-class-bar:    #030406;   /* very dark classification bar bg */
