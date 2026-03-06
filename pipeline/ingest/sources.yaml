@@ -858,14 +858,17 @@ sources:
     tier: 3
     domains: [d6, d3]
     method: scrape
-    url: "https://www.signalocean.com/blog"
-    status: likely
+    url: "https://www.thesignalgroup.com/newsroom"
+    status: working
     enabled: true
     trigger: war_risk_premium_move
     notes: >
       Vessel AIS data. War risk trigger: measurable route diversion away from
       JWC-listed areas or significant drop in transits through Bab el-Mandeb
       / Hormuz. Diversion data = confirmed premium pressure signal.
+      signalocean.com 301-redirects to thesignalgroup.com (Signal Ocean
+      rebranded under The Signal Group); blog path 404. Newsroom confirmed
+      working Mar 2026 — hosts market insights including Iran/Red Sea coverage.
 
   - id: moodys_shipping
     name: "Moody's — Shipping Sector"
@@ -884,55 +887,68 @@ sources:
     name: "Swiss Re Sigma — Marine"
     tier: 3
     domains: [d6]
-    method: rss
-    url: "https://www.swissre.com/institute/research/sigma-research/rss.xml"
+    method: scrape
+    url: "https://www.swissre.com/institute/"
     status: likely
     enabled: true
     trigger: war_risk_premium_move
     notes: >
       Swiss Re annual sigma marine report and emergency research notes.
       Trigger: sigma note or media release referencing war risk losses.
+      /institute/research/sigma-research/rss.xml returns 403 (bot-blocking —
+      the institute root loads fine). /media/press-release.html also 403.
+      Switched to scrape of /institute/ root; relevance filter selects sigma
+      marine items. RSS path documented as removed — do not restore.
 
   - id: munichre_marine
     name: "Munich Re — Marine"
     tier: 3
     domains: [d6]
     method: scrape
-    url: "https://www.munichre.com/en/solutions/for-industry-clients/marine.html"
-    status: likely
+    url: "https://www.munichre.com/en/solutions/reinsurance-property-casualty/specialty-reinsurance/marine.html"
+    status: working
     enabled: true
     trigger: war_risk_premium_move
     notes: >
       Munich Re lead reinsurer commentary. Any public statement on war risk
       retrocession pricing or capacity withdrawal is high-significance for d6.
+      Old path /for-industry-clients/marine.html is 404 (site restructured).
+      Correct path confirmed working Mar 2026: specialty-reinsurance/marine.html
+      — covers hull, cargo, marine liabilities, energy, Marine Trend Radar.
 
   - id: credit_agricole_shipping
     name: "Credit Agricole CIB — Shipping Finance"
     tier: 3
     domains: [d6, d3]
     method: scrape
-    url: "https://www.ca-cib.com/our-expertise/global-investment-banking/natural-resources-infrastructure/shipping"
-    status: likely
+    url: "https://www.ca-cib.com/en/expertise/solutions-support-your-financing-strategy/offering-structured-finance-solutions/shipping"
+    status: working
     enabled: true
     trigger: war_risk_premium_move
     notes: >
       Shipping finance lender commentary on war risk costs affecting vessel
       valuations and loan covenants. Relevant when war risk premiums threaten
-      P&L viability of affected routes.
+      P&L viability of affected routes. Old URL path /our-expertise/.../shipping
+      is 404 (CIB site restructured under /en/ language prefix). Correct path
+      confirmed working Mar 2026: structured finance → shipping sub-page.
 
   - id: unctad_maritime
     name: "UNCTAD Maritime Transport"
     tier: 3
     domains: [d6, d3]
     method: scrape
-    url: "https://unctad.org/topic/transport-and-trade-logistics/maritime-transport"
-    status: likely
+    url: "https://unctad.org/topic/transport-and-trade-logistics/review-of-maritime-transport"
+    status: working
     enabled: true
     trigger: war_risk_premium_move
     notes: >
       UN agency. Annual Review of Maritime Transport and emergency reports
       on conflict impacts on shipping. Useful for systemic assessment of
-      war risk cost pass-through to global trade.
+      war risk cost pass-through to global trade. Old path /maritime-transport
+      is 404. Correct path /review-of-maritime-transport confirmed working Mar
+      2026 — hosts annual RMT series (2025: "Staying the course in turbulent
+      waters"; 2024: "Navigating maritime chokepoints") plus Red Sea disruption
+      analysis. Maritime statistics and country profiles accessible from here.
 
   - id: iras_war_risk
     name: "International Risk & Advisory Services — War Risk"
@@ -943,7 +959,11 @@ sources:
     status: likely
     enabled: true
     trigger: war_risk_premium_move
-    notes: "Specialist war risk and K&FR broker. Niche but authoritative."
+    notes: >
+      Specialist war risk and K&FR broker. Niche but authoritative.
+      Root and /news/ return 403 in headless-browser-free sandbox (Cloudflare
+      or equivalent bot protection). URL is real — enable with Playwright
+      for full render or cookie-based session.
 
 # ─────────────────────────────────────────────────────────────────────────────
 # REMOVED SOURCES — documented, do not re-add
@@ -964,6 +984,23 @@ sources:
 #
 # kpler_blog — kpler.com/blog
 #   JS-rendered, blank page without headless browser. Removed.
+#
+# signal_ocean (old) — signalocean.com/blog
+#   404. Domain 301-redirects to thesignalgroup.com. Blog path dead.
+#   Replaced by thesignalgroup.com/newsroom (signal_ocean, confirmed working).
+#
+# munichre_marine (old) — munichre.com/en/solutions/for-industry-clients/marine.html
+#   404. Site restructured. Replaced by specialty-reinsurance/marine.html.
+#
+# credit_agricole_shipping (old) — ca-cib.com/our-expertise/.../shipping
+#   404. Site restructured under /en/ language prefix. Replaced by correct path.
+#
+# unctad_maritime (old) — unctad.org/topic/transport-and-trade-logistics/maritime-transport
+#   404. Replaced by .../review-of-maritime-transport (confirmed working).
+#
+# swissre_sigma (rss) — swissre.com/institute/research/sigma-research/rss.xml
+#   403. Entire /institute/research/ subtree bot-blocked. Switched to scrape
+#   of /institute/ root. RSS path is dead — do not restore.
 
 # ─────────────────────────────────────────────────────────────────────────────
 # EXCLUDED SOURCES
