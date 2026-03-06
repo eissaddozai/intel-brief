@@ -86,6 +86,78 @@
   --d6-body:   #050E0E;
   --d6-grad:   linear-gradient(180deg, #000808 0%, #001414 40%, #002A28 100%);
 
+  /* ── CLASSIFICATION BAR ────────────────────────────────────────────────── */
+  --color-class-bg:        #030406;
+  --color-class-border:    #1A1A1A;
+  --text-class:            #A07878;
+  --text-class-dim:        #785858;
+
+  /* ── CONTRAST TEXT (for badges / status pills on coloured backgrounds) ── */
+  --text-on-dark:          #fff;
+  --text-on-light:         #000;
+
+  /* ── THREAT / SEVERITY ───────────────────────────────────────────────── */
+  --color-severe:          #C04020;
+  --color-crimson-dim:     #801420;
+
+  /* ── FLASH-POINT BORDERS ─────────────────────────────────────────────── */
+  --color-flash-border:    #2A0608;
+
+  /* ── ANALYST NOTE SURFACE ────────────────────────────────────────────── */
+  --color-note-grad-top:   #362A00;
+  --color-note-body:       #100D00;
+
+  /* ── STRATEGIC SECTION ───────────────────────────────────────────────── */
+  --color-strat-grad-top:  #000C28;
+  --color-strat-grad-bot:  #001038;
+  --color-strat-bg:        #000818;
+  --color-strat-body:      #00060E;
+  --color-strat-border:    #001830;
+  --text-strat-dim:        #2C5088;
+
+  /* ── TABLE STATUS ROW TINTS ──────────────────────────────────────────── */
+  --color-tbl-elevated:    #091610;
+  --color-tbl-rising:      #0A1208;
+  --color-tbl-critical:    #160508;
+  --color-tbl-windfall:    #091410;
+
+  /* ── WARNING INDICATORS ──────────────────────────────────────────────── */
+  --color-warn-grad-top:   #160700;
+  --color-warn-grad-bot:   #0E0400;
+  --color-warn-body:       #0A0500;
+  --color-warn-border:     #1A0800;
+  --color-warn-border-dim: #140600;
+
+  /* ── INTELLIGENCE GAPS ───────────────────────────────────────────────── */
+  --color-gap-grad-top:    #000416;
+  --color-gap-grad-bot:    #000810;
+  --color-gap-border:      #00091C;
+
+  /* ── CAVEATS SECTION ─────────────────────────────────────────────────── */
+  --color-cav-grad-top:    #160700;
+  --color-cav-grad-bot:    #0E0400;
+  --color-cav-border:      #1A0800;
+  --color-cav-body:        #120900;
+
+  /* ── SCROLLBAR ───────────────────────────────────────────────────────── */
+  --color-scrollbar:       #020407;
+
+  /* ── HOVER STATES ────────────────────────────────────────────────────── */
+  --color-strip-hover:     #0D1020;
+
+  /* ── ALPHA VARIANTS ──────────────────────────────────────────────────── */
+  --d1-glow:           rgba(220, 46, 60, 0.22);
+  --d2-glow:           rgba(232, 154, 40, 0.22);
+  --d3-glow:           rgba(40, 184, 88, 0.22);
+  --d4-glow:           rgba(138, 80, 204, 0.22);
+  --d5-glow:           rgba(56, 136, 216, 0.22);
+  --conf-red-a30:      rgba(220, 44, 58, 0.3);
+  --color-crimson-a05: rgba(184, 28, 40, 0.05);
+  --color-crimson-a14: rgba(184, 28, 40, 0.14);
+  --color-crimson-a30: rgba(184, 28, 40, 0.3);
+  --color-crimson-a32: rgba(184, 28, 40, 0.32);
+  --color-crimson-a50: rgba(184, 28, 40, 0.5);
+
   /* ── CONFIDENCE TIERS ──────────────────────────────────────────────────── */
   --conf-green:  #26A050;
   --conf-blue:   #3888D8;

@@ -62,19 +62,19 @@ body::after {
   position: relative;
   z-index: 1;
   box-shadow:
-    0 0 0 1px rgba(184, 28, 40, 0.14),
+    0 0 0 1px var(--color-crimson-a14),
     0 0 80px rgba(0, 0, 0, 0.9),
-    0 0 160px rgba(184, 28, 40, 0.05);
+    0 0 160px var(--color-crimson-a05);
 }
 
 /* ── CUSTOM SCROLLBAR ─────────────────────────────────────────────────────── */
 ::-webkit-scrollbar {
   width: 5px;
-  background: #020407;
+  background: var(--color-scrollbar);
 }
 
 ::-webkit-scrollbar-track {
-  background: #020407;
+  background: var(--color-scrollbar);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -88,7 +88,7 @@ body::after {
 
 /* ── SELECTION ────────────────────────────────────────────────────────────── */
 ::selection {
-  background: rgba(184, 28, 40, 0.32);
+  background: var(--color-crimson-a32);
   color: var(--text-hi);
 }
 
@@ -106,7 +106,7 @@ body::after {
   }
 
   body {
-    background-color: #050810;
+    background-color: var(--color-page);
   }
 
   .brief {
