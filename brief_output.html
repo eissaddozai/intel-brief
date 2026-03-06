@@ -4301,10 +4301,12 @@ section.domain::after{
 .ep-grip:active{cursor:grabbing!important}
 .ep-placeholder{transition:none!important}
 
-/* TEXT EDITABLE VISUAL CUE */
-.ed-on [data-ep-text]{cursor:text}
+/* TEXT EDITABLE VISUAL CUE + RESIZE */
+.ed-on [data-ep-text]{cursor:text;resize:both;overflow:auto;min-height:1.4em;min-width:80px;box-sizing:border-box}
 .ed-on [data-ep-text]:hover{background:rgba(255,255,255,.028);border-radius:1px;outline:1px dashed rgba(196,160,48,.20);outline-offset:1px}
 .ed-on [data-ep-text]:focus{outline:1px solid rgba(196,160,48,.50);border-radius:1px;background:rgba(196,160,48,.025)}
+/* Resize handle for structural blocks — widen hit zone */
+.ep-resize-hdl{right:20px;width:22px;height:22px;font-size:11px}
 
 /* RESIZE HANDLE — bottom-right corner, appears on hover */
 .ep-resize-hdl{
