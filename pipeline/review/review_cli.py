@@ -6,6 +6,7 @@ Target: ~10 minutes per cycle.
 
 import json
 import logging
+import os
 import sys
 import textwrap
 from typing import Any
@@ -44,6 +45,88 @@ def format_citations(citations: list[dict]) -> str:
         f"{c.get('source')} [{c.get('verificationStatus', '?').upper()}]"
         for c in citations
     )
+
+
+def _regenerate_domain(domain: dict) -> dict | None:
+    """
+    Re-draft a single domain section by calling the Claude API directly.
+    Returns the new section dict, or None if the API call fails.
+    """
+    domain_id = domain.get('id', '')
+    if not domain_id:
+        log.warning('Cannot regenerate: domain has no id field')
+        return None
+
+    api_key = os.environ.get('ANTHROPIC_API_KEY', '')
+    if not api_key:
+        log.warning('Cannot regenerate: ANTHROPIC_API_KEY not set')
+        return None
+
+    try:
+        import anthropic
+        from pathlib import Path
+
+        prompts_dir = Path(__file__).parent.parent / 'draft' / 'prompts'
+        domain_prompt_map = {
+            'd1': 'battlespace.md',
+            'd2': 'escalation.md',
+            'd3': 'energy.md',
+            'd4': 'diplomatic.md',
+            'd5': 'cyber.md',
+            'd6': 'war_risk.md',
+        }
+        prompt_file = prompts_dir / domain_prompt_map.get(domain_id, '')
+        if not prompt_file.exists():
+            log.warning('No prompt file for domain %s — cannot regenerate', domain_id)
+            return None
+
+        # Build a minimal regeneration prompt from the existing section's citations
+        citations_json = json.dumps(
+            [c for p in domain.get('bodyParagraphs', []) for c in p.get('citations', [])],
+            indent=2,
+        )
+        regen_prompt = (
+            f"The analyst has requested regeneration of the {domain.get('title', domain_id)} domain section.\n"
+            f"Previous key judgment: {domain.get('keyJudgment', {}).get('text', '(none)')}\n\n"
+            f"Available source citations from the previous draft:\n{citations_json}\n\n"
+            f"Re-draft this domain section from scratch using the same source material.\n"
+            f"Produce a complete domain section JSON object with the same schema as the original.\n"
+            f"Return ONLY valid JSON — no markdown fences, no explanatory text."
+        )
+
+        client = anthropic.Anthropic(api_key=api_key)
+        response = client.messages.create(
+            model='claude-opus-4-6',
+            max_tokens=3000,
+            temperature=0.4,
+            system=(
+                'You are a senior conflict intelligence analyst. '
+                'Produce structured JSON output exactly as specified. '
+                'Never fabricate citations. '
+                'Write in a dispassionate, precise intelligence voice.'
+            ),
+            messages=[{'role': 'user', 'content': regen_prompt}],
+        )
+
+        text = response.content[0].text.strip()
+        if '```json' in text:
+            text = text.split('```json')[1].split('```')[0].strip()
+        elif '```' in text:
+            text = text.split('```')[1].split('```')[0].strip()
+
+        result = json.loads(text)
+        if isinstance(result, dict) and result.get('keyJudgment'):
+            # Preserve structural fields
+            result.setdefault('id', domain_id)
+            result.setdefault('num', domain.get('num', ''))
+            result.setdefault('title', domain.get('title', ''))
+            return result
+        log.warning('Regeneration returned unexpected structure')
+        return None
+
+    except Exception as exc:
+        log.error('Domain regeneration failed: %s', exc)
+        return None
 
 
 def review_domain_section(domain: dict, section_num: int) -> dict | None:
@@ -103,8 +186,16 @@ def review_domain_section(domain: dict, section_num: int) -> dict | None:
             return domain
 
         elif choice == 'R':
-            print(f'{AMBER}↻ Marked for regeneration{RESET}')
-            return None  # Caller handles regeneration
+            print(f'{AMBER}↻ Regenerating section via Claude API…{RESET}')
+            regenerated = _regenerate_domain(domain)
+            if regenerated is not None:
+                domain = regenerated
+                print(f'{GREEN}✓ Regenerated — reviewing new draft{RESET}')
+                # Re-display and re-prompt with the fresh draft
+                return review_domain_section(domain, section_num)
+            else:
+                print(f'{AMBER}⚠ Regeneration failed — keeping original draft{RESET}')
+                return domain
 
         elif choice == 'S':
             print(f'{DIM}→ Skipped (using draft as-is){RESET}')

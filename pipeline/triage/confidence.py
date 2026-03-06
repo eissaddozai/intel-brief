@@ -113,7 +113,14 @@ def _apply_corroboration_boost(items: list[dict]) -> None:
 
     for item in items:
         text_phrases = _extract_key_phrases(item.get('text', ''))
-        item['corroborated'] = bool(text_phrases & corroborated_phrases)
+        is_corroborated = bool(text_phrases & corroborated_phrases)
+        item['corroborated'] = is_corroborated
+
+        # Upgrade confidence_tier for Tier 2 items that are corroborated by Tier 1 sources.
+        # Tier 1 items are already 'high'; Tier 3 items are not upgraded (source quality
+        # cannot be bootstrapped through corroboration).
+        if is_corroborated and item.get('tier') == 2:
+            item['confidence_tier'] = 'moderate-corroborated'
 
     corroborated_count = sum(1 for item in items if item.get('corroborated'))
     log.info('%d items corroborated by 2+ Tier 1 sources', corroborated_count)

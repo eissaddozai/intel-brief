@@ -154,7 +154,7 @@ sources:
     tier: 2
     domains: [d1, d4]
     method: rss
-    url: "http://rss.cnn.com/rss/edition_middleeast.rss"
+    url: "https://rss.cnn.com/rss/edition_middleeast.rss"
     status: likely
     enabled: true
     notes: >
@@ -317,8 +317,12 @@ sources:
     method: rss
     url: "https://www.rudaw.net/english/rss.xml"
     status: likely
-    enabled: true
-    notes: "Ground coverage of Kurdistan Region of Iraq. Proxy activity."
+    enabled: false
+    notes: >
+      Disabled — superseded by rudaw_extended below, which covers the same
+      URL with broader domain tagging (d1, d4, d6). Keeping this entry for
+      reference; do not re-enable alongside rudaw_extended as both use the
+      same feed URL and would produce duplicate items.
 
   - id: icg
     name: "International Crisis Group"
@@ -832,7 +836,7 @@ sources:
     name: "DNV — Maritime"
     tier: 2
     domains: [d6, d3]
-    method: rss
+    method: scrape
     url: "https://www.dnv.com/maritime/news-and-events/news/index.html"
     status: likely
     enabled: true
@@ -1008,7 +1012,7 @@ sources:
 
   - id: anf_news_en
     name: "ANF News (English)"
-    tier: 2
+    tier: 3
     domains: [d1, d5]
     method: rss
     url: "https://anfenglishmobile.com/feed/"
@@ -1023,6 +1027,8 @@ sources:
       "PKK-affiliated ANF reports/claims".
       Do NOT use for casualty figures, territorial claims, or Turkish military
       effectiveness assessments.
+      confidence.py PKK_AFFILIATED_SOURCES enforces claimed/low at runtime;
+      tier is set to 3 here to match that runtime behaviour.
 
   - id: bianet_en
     name: "Bianet (Independent Media in Turkey)"

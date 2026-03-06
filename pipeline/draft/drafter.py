@@ -76,11 +76,16 @@ def _domain_summary(section: dict) -> str:
     paras = section.get('bodyParagraphs', [])
     summary_parts = [
         f"Domain: {section.get('title', '')}",
-        f"Key Judgment: {kj.get('text', '')} [confidence: {kj.get('confidence', '?')}, {kj.get('probabilityRange', '')}]",
+        f"Key Judgment: {kj.get('text', '')} "
+        f"[confidence: {kj.get('confidence', '?')}, {kj.get('probabilityRange', '')}, "
+        f"language: {kj.get('language', '?')}]",
     ]
-    for p in paras[:2]:
+    # Include up to 4 paragraphs with up to 500 chars each for richer cross-domain context
+    for p in paras[:4]:
         text = p.get('text', '')
-        summary_parts.append(f"  [{p.get('subLabel', 'PARA')}]: {text[:300]}")
+        if len(text) > 500:
+            text = text[:500] + '…'
+        summary_parts.append(f"  [{p.get('subLabel', 'PARA')}]: {text}")
     return '\n'.join(summary_parts)
 
 
@@ -296,6 +301,77 @@ def draft_collection_gaps(
     return result.get('collectionGaps', [])
 
 
+def _extract_brent_price(items: list[dict]) -> str:
+    """
+    Attempt to extract a Brent crude price from d3 energy items.
+    Returns formatted price string like '$94.20' or '—' if not found.
+    """
+    import re as _re
+    brent_pattern = _re.compile(
+        r'\$\s*(\d{2,3}(?:\.\d{1,2})?)\s*/?\s*(?:bbl|barrel|b)?',
+        _re.IGNORECASE,
+    )
+    for item in items:
+        if 'd3' not in item.get('tagged_domains', []):
+            continue
+        haystack = item.get('title', '') + ' ' + item.get('text', '')
+        m = brent_pattern.search(haystack)
+        if m:
+            return f'${m.group(1)}/bbl'
+    return '—'
+
+
+def _count_kinetic_incidents(items: list[dict]) -> str:
+    """
+    Count d1 (battlespace/kinetic) items as a proxy for 24h incident volume.
+    Returns string like '14' or '—'.
+    """
+    count = sum(1 for i in items if 'd1' in i.get('tagged_domains', []))
+    return str(count) if count > 0 else '—'
+
+
+def _build_flash_points(
+    client: anthropic.Anthropic,
+    domain_sections: list[dict],
+    executive: dict,
+    model: str,
+) -> list[dict]:
+    """
+    Draft flash-point alerts from domain key judgments and executive summary.
+    Flash points are 1–3 items representing the most time-critical events.
+    Returns a list of flash-point dicts: {headline, detail, domain, urgency}.
+    """
+    all_kjs = '\n'.join(
+        f"[{s.get('id')}] {s.get('keyJudgment', {}).get('text', '')}"
+        for s in domain_sections
+    )
+    bluf = executive.get('bluf', '')
+
+    prompt = (
+        'You are a senior conflict intelligence analyst drafting FLASH POINTS for a daily brief.\n\n'
+        'FLASH POINTS are the 1–3 most time-critical developments from the current cycle that '
+        'require immediate analyst attention — not a summary of the brief, but the sharpest '
+        'operational tripwires.\n\n'
+        f'EXECUTIVE BLUF:\n{bluf}\n\n'
+        f'DOMAIN KEY JUDGMENTS:\n{all_kjs}\n\n'
+        'Select up to 3 flash points. For each, return a JSON object with:\n'
+        '  "headline": one sharp sentence (≤15 words) — the event itself\n'
+        '  "detail": one analytical sentence (≤25 words) — why it matters now\n'
+        '  "domain": the primary domain id (d1/d2/d3/d4/d5/d6)\n'
+        '  "urgency": "critical" | "elevated" | "monitoring"\n\n'
+        'Return ONLY a JSON array of 1–3 objects. No markdown, no commentary.\n'
+        'If no events meet flash-point threshold, return [].'
+    )
+
+    try:
+        result = call_claude(client, prompt, max_tokens=600, model=model)
+        if isinstance(result, list):
+            return result[:3]
+    except Exception as exc:
+        log.warning('Flash point drafting failed: %s', exc)
+    return []
+
+
 def draft_cycle(
     tagged_items: list[dict],
     target_date: datetime,
@@ -347,6 +423,22 @@ def draft_cycle(
     strategic_header = draft_strategic_header(client, domain_sections, executive, prev_cycle, model=model)
     warning_indicators = draft_warning_indicators(client, domain_sections, prev_cycle, model=model)
     collection_gaps = draft_collection_gaps(client, tagged_items, domain_sections, model=model)
+    flash_points = _build_flash_points(client, domain_sections, executive, model=model)
+
+    # Derive live strip cell values from collected/drafted data
+    brent_price = _extract_brent_price(tagged_items)
+    incident_count = _count_kinetic_incidents(tagged_items)
+    flash_point_count = str(len(flash_points)) if flash_points else '0'
+
+    # Hormuz status from warning indicators
+    hormuz_wi = next(
+        (wi for wi in warning_indicators if 'hormuz' in wi.get('indicator', '').lower()),
+        None,
+    )
+    hormuz_status = (
+        'DISRUPTED' if hormuz_wi and hormuz_wi.get('status') in ('triggered', 'elevated')
+        else 'ACTIVE'
+    )
 
     # Merge strategicHeader fields into meta for convenience
     threat_level = strategic_header.pop('threatLevel', 'SEVERE')
@@ -371,15 +463,15 @@ def draft_cycle(
                 f'{target_date.strftime("%d %B %Y")}. All times UTC unless noted.'
             ),
             'stripCells': [
-                {'top': threat_level, 'bot': 'THREAT LEVEL'},
-                {'top': '—', 'bot': 'INCIDENTS / 24H'},
-                {'top': '—', 'bot': 'BRENT CRUDE'},
-                {'top': 'ACTIVE', 'bot': 'HORMUZ STATUS'},
-                {'top': '—', 'bot': 'FLASH POINTS'},
+                {'top': threat_level,      'bot': 'THREAT LEVEL'},
+                {'top': incident_count,    'bot': 'INCIDENTS / 24H'},
+                {'top': brent_price,       'bot': 'BRENT CRUDE'},
+                {'top': hormuz_status,     'bot': 'HORMUZ STATUS'},
+                {'top': flash_point_count, 'bot': 'FLASH POINTS'},
             ],
         },
         'strategicHeader': strategic_header,
-        'flashPoints': [],
+        'flashPoints': flash_points,
         'executive': executive,
         'domains': domain_sections,
         'warningIndicators': warning_indicators,

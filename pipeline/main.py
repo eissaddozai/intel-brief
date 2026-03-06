@@ -166,6 +166,25 @@ def stage_ingest(target_date: datetime, force: bool, config: dict) -> Path:
         log.critical('No items collected from any source. Aborting.')
         sys.exit(1)
 
+    # Deduplicate by (url, title) — D6 sources may be fetched by both rss_ingest
+    # and war_risk_ingest subagents, so cross-ingestor dedup is required here.
+    import hashlib as _hashlib
+    _seen: set[str] = set()
+    _deduped: list[dict] = []
+    for _item in raw_items:
+        _key = _hashlib.sha256(
+            (_item.get('url', '') + _item.get('title', '')).encode('utf-8')
+        ).hexdigest()[:16]
+        if _key not in _seen:
+            _seen.add(_key)
+            _deduped.append(_item)
+    if len(_deduped) < len(raw_items):
+        log.info(
+            'Deduplication: removed %d duplicate items (%d → %d unique)',
+            len(raw_items) - len(_deduped), len(raw_items), len(_deduped),
+        )
+    raw_items = _deduped
+
     tier1 = [i for i in raw_items if i.get('tier') == 1]
     if not tier1 and config.get('triage', {}).get('halt_if_zero_tier1', True):
         log.critical('Zero Tier 1 items. Brief integrity cannot be guaranteed. Aborting.')
