@@ -2934,7 +2934,7 @@ body{background:var(--color-page)}.brief{max-width:1080px}
 /* ── DOMAIN SECTIONS ──────────────────────────────────────────────────────── */
 /* Hide the coloured section-header bar and AQ question bar entirely */
 .domain__header{display:none!important}
-.domain__aq{display:none!important}
+/* .domain__aq rendered */
 
 /* ── DOMAIN section spacing + atmospheric demarcation ──────────────────────── */
 section.domain{
@@ -3081,6 +3081,133 @@ section.domain::after{
   border-top:1px solid rgba(196,160,48,0.12);
   margin-top:10px;
 }
+
+
+/* ── DOMAIN AQ BAR ──────────────────────────────────────────────────────────*/
+.domain__aq{
+  display:flex;align-items:baseline;gap:10px;
+  padding:8px 20px 8px 20px;
+  border-left:3px solid rgba(255,255,255,0.07);
+  background:rgba(255,255,255,0.018);
+  margin-bottom:0;
+}
+.domain--d1 .domain__aq{border-left-color:var(--d1-bright)}
+.domain--d2 .domain__aq{border-left-color:var(--d2-bright)}
+.domain--d3 .domain__aq{border-left-color:var(--d3-bright)}
+.domain--d4 .domain__aq{border-left-color:var(--d4-bright)}
+.domain--d5 .domain__aq{border-left-color:var(--d5-bright)}
+.domain--d6 .domain__aq{border-left-color:var(--d6-bright)}
+.domain__aq-text{
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:0.72rem;font-style:italic;
+  color:rgba(192,182,165,0.70);
+  flex:1;line-height:1.5;
+}
+.domain__aq-conf{flex-shrink:0}
+
+/* ── WARNING INDICATORS — CARD ROW LAYOUT ────────────────────────────────── */
+.warning-indicators__rows{
+  border-left:3px solid var(--color-gold-dim);
+  margin:0 0 16px;
+}
+.wi-row{
+  display:grid;
+  grid-template-columns:160px 1fr;
+  gap:10px;
+  padding:9px 16px 9px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  align-items:baseline;
+}
+.wi-row:last-child{border-bottom:none}
+.wi-row--triggered{border-left:2px solid var(--d1-bright)}
+.wi-row--elevated{border-left:2px solid var(--d2-bright)}
+.wi-row--watching{border-left:2px solid rgba(180,170,150,0.25)}
+.wi-row--cleared{border-left:2px solid #40a050}
+.wi-row__indicator{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.66rem;font-weight:700;
+  color:rgba(220,210,190,0.90);
+  line-height:1.35;
+}
+.wi-row__body{
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:0.64rem;color:rgba(180,170,150,0.80);line-height:1.55;
+}
+.wi-token{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:1px 7px 1px 5px;border-radius:2px;
+  font-family:"IBM Plex Mono","Courier New",monospace;
+  font-size:0.52rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  margin-right:8px;vertical-align:middle;
+}
+.wi-token--triggered{background:rgba(200,40,50,0.12);color:#ff7080;border:1px solid rgba(200,40,50,0.30)}
+.wi-token--elevated{background:rgba(220,140,30,0.10);color:#e8a030;border:1px solid rgba(220,140,30,0.28)}
+.wi-token--watching{background:rgba(180,160,80,0.08);color:#b8a840;border:1px solid rgba(180,160,80,0.22)}
+.wi-token--cleared{background:rgba(50,180,80,0.08);color:#40c060;border:1px solid rgba(50,180,80,0.22)}
+.wi-token--stable{background:rgba(60,120,200,0.08);color:#6090c8;border:1px solid rgba(60,120,200,0.22)}
+.wi-token__dot{
+  width:6px;height:6px;border-radius:50%;
+  background:currentColor;flex-shrink:0;opacity:0.85;
+  animation:wi-pulse 2.2s ease-in-out infinite;
+}
+.wi-token--triggered .wi-token__dot{animation-duration:1.0s}
+.wi-token--elevated  .wi-token__dot{animation-duration:1.6s}
+.wi-token--watching  .wi-token__dot{animation:none;opacity:0.55}
+.wi-token--cleared   .wi-token__dot{animation:none;opacity:0.70}
+@keyframes wi-pulse{0%,100%{opacity:0.55;transform:scale(0.85)}50%{opacity:1;transform:scale(1.15)}}
+.wi-change{
+  display:inline-block;
+  font-family:"IBM Plex Mono","Courier New",monospace;
+  font-size:0.50rem;font-weight:700;text-transform:uppercase;letter-spacing:0.10em;
+  padding:0 4px;margin-left:6px;vertical-align:middle;
+  border:1px solid currentColor;border-radius:1px;opacity:0.65;
+}
+
+/* ── ACTOR MATRIX — GRID ROW LAYOUT ─────────────────────────────────────── */
+.actor-matrix{margin:16px 0 24px;border:1px solid rgba(255,255,255,0.06)}
+.actor-matrix__caption{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.52rem;letter-spacing:0.22em;text-transform:uppercase;
+  color:rgba(180,170,150,0.45);padding:8px 12px 4px;
+}
+.am-header{
+  display:grid;
+  grid-template-columns:130px 150px 1fr 64px;
+  background:rgba(10,12,24,0.90);
+  padding:5px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.48rem;letter-spacing:0.14em;text-transform:uppercase;
+  color:rgba(160,160,170,0.45);font-weight:700;
+}
+.am-row{
+  display:grid;
+  grid-template-columns:130px 150px 1fr 64px;
+  padding:8px 12px;
+  border-bottom:1px solid rgba(255,255,255,0.04);
+  align-items:start;gap:8px;
+}
+.am-row:last-child{border-bottom:none}
+.am-row:nth-child(even){background:rgba(255,255,255,0.014)}
+.am-actor{
+  font-family:"Trebuchet MS",Arial,sans-serif;
+  font-size:0.66rem;font-weight:700;
+  color:rgba(220,210,190,0.90);
+}
+.am-posture{font-size:0.64rem;color:rgba(180,170,150,0.75);line-height:1.4}
+.am-posture__text{display:block}
+.am-delta{
+  display:inline-block;font-size:0.54rem;font-weight:700;
+  padding:1px 4px;margin-top:3px;border-radius:1px;
+}
+.am-delta--up{color:#ff7070}
+.am-delta--down{color:#50c060}
+.am-delta--same{color:rgba(140,140,150,0.55)}
+.am-assess{
+  font-family:Georgia,'Times New Roman',serif;
+  font-size:0.63rem;color:rgba(180,170,150,0.80);line-height:1.5;
+}
+.am-conf{display:flex;justify-content:flex-end;align-items:flex-start}
 
 
 </style>
@@ -3661,7 +3788,7 @@ section.domain::after{
   </div>
 
   <div class="ep-tab-pane ep-body" id="ep-order">
-    <div class="ep-hint">Text is live-editable. Drag &#x2807; handles to reorder. Hover any element for &#x2191;&#x2193;&#x2715; controls.</div>
+    <div class="ep-hint">Text is live-editable. Drag ⠿⠿ grip rails to reorder. Hover any element for ↑↓✕ controls.</div>
     <div class="ep-section">Domain Sections</div>
     <div id="ep-movers"></div>
     <div class="ep-section" style="margin-top:14px">KPI Strip</div>
@@ -3773,7 +3900,7 @@ section.domain::after{
 .ep-tab:hover{color:#5A6878}
 .ep-tab.active{color:#C4A030;border-bottom-color:#C4A030}
 
-.ep-body{overflow-y:auto;flex:1;padding:14px;scrollbar-width:thin;scrollbar-color:#1E2838 transparent}
+.ep-tab-pane{display:block}.ep-body{overflow-y:auto;flex:1;padding:14px;scrollbar-width:thin;scrollbar-color:#1E2838 transparent}
 .ep-body::-webkit-scrollbar{width:3px}
 .ep-body::-webkit-scrollbar-thumb{background:#1E2838;border-radius:2px}
 
@@ -3871,6 +3998,7 @@ section.domain::after{
 .ed-on [data-ep-text]:hover{background:rgba(255,255,255,.028);border-radius:1px;outline:1px dashed rgba(196,160,48,.20);outline-offset:1px}
 .ed-on [data-ep-text]:focus{outline:1px solid rgba(196,160,48,.50);border-radius:1px;background:rgba(196,160,48,.025)}
 
+.ed-on .brief{margin-right:290px!important}
 .ed-on [data-ep-drag]{position:relative!important;padding-right:22px!important}
 </style>
 
@@ -4054,10 +4182,11 @@ function onElEnter(){
   clearTimeout(floatHideTimer);
   floatTarget=this;
   var rect=this.getBoundingClientRect();
-  var top=rect.top-2;
-  var left=Math.min(rect.right-100,window.innerWidth-110);
+  var top=rect.top-28;
+  var left=rect.left+4;
+  var maxRight=editorOpen?window.innerWidth-300:window.innerWidth-10;
   floatBar.style.top=Math.max(4,top)+"px";
-  floatBar.style.left=Math.max(4,left)+"px";
+  floatBar.style.left=Math.min(Math.max(4,left),maxRight)+"px";
   floatBar.style.display="flex";
 }
 function onElLeave(e){
@@ -4087,7 +4216,7 @@ fbDown.addEventListener("click",function(){
 });
 fbDel.addEventListener("click",function(){
   if(!floatTarget)return;
-  var big=floatTarget.matches(".domain,.body-wrap,.kj,.flash-points,.strategic-header,.executive-assessment");
+  var big=floatTarget.matches(".domain,.body-wrap,.kj,.flash-points,.strategic-header,.executive-assessment,.warning-indicators,.collection-gaps,.caveats");
   if(big&&!confirm("Delete this entire block?"))return;
   floatTarget.remove();
   hideFloatBar();
