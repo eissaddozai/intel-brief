@@ -18,7 +18,7 @@ TIER_TO_CONFIDENCE = {
 
 # Iranian state media source IDs — always 'claimed', never 'confirmed'
 IRANIAN_STATE_MEDIA: set[str] = {
-    'tehran_times', 'presstv', 'irna', 'mehr', 'fars',
+    'tehran_times', 'presstv', 'irna', 'mehr', 'fars', 'tasnim',
 }
 
 

@@ -60,6 +60,8 @@ jobs:
       - name: Install Claude Code CLI
         if: ${{ github.event.inputs.mode != 'staged' }}
         run: npm install -g @anthropic-ai/claude-code
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
 
       - name: Install staged-pipeline extras (staged mode only)
         if: ${{ github.event.inputs.mode == 'staged' }}

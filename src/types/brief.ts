@@ -260,7 +260,7 @@ export interface BriefCycle {
     subtitle: string
     /** Single-sentence framing note below distribution bar */
     contextNote: string
-    /** 5 cells for status strip: first cell is alert level, rest are domain KPIs */
+    /** 6 cells for status strip: first cell is alert level, rest are domain KPIs */
     stripCells: { top: string; bot: string }[]
   }
 
@@ -283,6 +283,7 @@ export interface BriefCycle {
   }
 
   /** Six domain sections in order: d1, d2, d3, d4, d5, d6 */
+  /** 6 domain sections in order: d1, d2, d3, d4, d5, d6 */
   /** Domain sections in order: d1, d2, d3, d4, d5, d6 (d6 optional) */
   domains: DomainSection[]
 

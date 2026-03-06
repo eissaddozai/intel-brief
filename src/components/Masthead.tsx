@@ -11,11 +11,6 @@ const TLP_CLASS: Record<string, string> = {
   CLEAR: 'masthead__tlp--clear',
 }
 
-function formatTimestamp(iso: string): string {
-  const d = new Date(iso)
-  return d.toUTCString().replace('GMT', 'UTC').toUpperCase()
-}
-
 export function Masthead({ meta }: Props) {
   const cycleDate = new Date(meta.timestamp)
   const dateStr = cycleDate.toLocaleDateString('en-CA', {

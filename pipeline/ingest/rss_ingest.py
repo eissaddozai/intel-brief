@@ -4,23 +4,24 @@ Uses requests + stdlib xml.etree (no feedparser dependency).
 """
 
 import logging
+import re
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
 from pathlib import Path
 
-import requests
 import yaml
+
+from ingest.http_util import build_session, HEADERS_BOT, DEFAULT_TIMEOUT
 
 log = logging.getLogger(__name__)
 
 SOURCES_FILE = Path(__file__).parent / 'sources.yaml'
 MAX_ITEM_AGE_HOURS = 30
 REQUEST_DELAY = 0.5
-REQUEST_TIMEOUT = 15
 
-HEADERS = {'User-Agent': 'CSE-Intel-Brief/1.0 (Research pipeline; contact: research@cse.ca)'}
+_HTML_TAG_RE = re.compile(r'<[^>]+>')
 
 # RSS / Atom namespace map
 NS = {
@@ -32,7 +33,7 @@ NS = {
 
 def load_rss_sources(config: dict | None = None) -> list[dict]:
     data = yaml.safe_load(SOURCES_FILE.read_text(encoding='utf-8'))
-    return [s for s in data.get('sources', []) if s.get('method') == 'rss']
+    return [s for s in data.get('sources', []) if s.get('method') == 'rss' and s.get('enabled', True)]
 
 
 def _parse_date(text: str | None) -> datetime | None:
@@ -106,8 +107,7 @@ def _parse_feed(xml_text: str, source: dict, cutoff: datetime) -> list[dict]:
             continue
 
         # Strip HTML tags from summary
-        import re
-        summary_clean = re.sub(r'<[^>]+>', ' ', summary or '').strip()
+        summary_clean = _HTML_TAG_RE.sub(' ', summary or '').strip()
 
         items.append({
             'source_id': source['id'],
@@ -127,10 +127,15 @@ def _parse_feed(xml_text: str, source: dict, cutoff: datetime) -> list[dict]:
 
 
 def ingest_rss(target_date: datetime, config: dict | None = None) -> list[dict]:
+    from ingest.relevance import filter_relevant
+
     sources = load_rss_sources(config)
     cutoff = target_date - timedelta(hours=MAX_ITEM_AGE_HOURS)
     all_items: list[dict] = []
     failed_tier1: list[str] = []
+
+    # Reuse a single session with connection pooling and retry
+    session = build_session(headers=HEADERS_BOT)
 
     for source in sources:
         url = source.get('url')
@@ -139,11 +144,9 @@ def ingest_rss(target_date: datetime, config: dict | None = None) -> list[dict]:
             continue
 
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
+            resp = session.get(url, timeout=DEFAULT_TIMEOUT)
             resp.raise_for_status()
             items = _parse_feed(resp.text, source, cutoff)
-            # Apply relevance filter to general feeds (Tier 1 items pass unconditionally)
-            from ingest.relevance import filter_relevant
             items = filter_relevant(items)
             all_items.extend(items)
             log.info('%-35s %3d items', source['name'], len(items))

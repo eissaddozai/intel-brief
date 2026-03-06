@@ -82,6 +82,70 @@ CATEGORIES: dict[str, list[str]] = {
 }
 
 
+# ── JSON extraction helpers ───────────────────────────────────────────────────
+
+def _extract_json_text(text: str) -> str:
+    """
+    Extract JSON from agent response text.
+
+    Handles:
+      - Clean JSON (no fences)
+      - Balanced ```json ... ``` fences
+      - Incomplete/malformed fences (missing closing ```)
+      - Falls back to finding the first [ or { and parsing from there
+    """
+    stripped = text.strip()
+
+    # Case 1: Properly fenced JSON — balanced opening and closing
+    if '```json' in stripped:
+        parts = stripped.split('```json', 1)
+        tail = parts[1]
+        if '```' in tail:
+            return tail.split('```', 1)[0].strip()
+        # Incomplete fence — closing ``` is missing; take everything after opening
+        log.debug('Incomplete ```json fence detected — using tail content')
+        return tail.strip()
+
+    if '```' in stripped:
+        parts = stripped.split('```', 1)
+        tail = parts[1]
+        if '```' in tail:
+            return tail.split('```', 1)[0].strip()
+        log.debug('Incomplete ``` fence detected — using tail content')
+        return tail.strip()
+
+    # Case 2: No fences — find the first JSON structure
+    for start_char, end_char in [('[', ']'), ('{', '}')]:
+        idx = stripped.find(start_char)
+        if idx >= 0:
+            # Walk forward to find the matching closing bracket
+            depth = 0
+            in_string = False
+            escape_next = False
+            for i in range(idx, len(stripped)):
+                ch = stripped[i]
+                if escape_next:
+                    escape_next = False
+                    continue
+                if ch == '\\' and in_string:
+                    escape_next = True
+                    continue
+                if ch == '"' and not escape_next:
+                    in_string = not in_string
+                    continue
+                if not in_string:
+                    if ch == start_char:
+                        depth += 1
+                    elif ch == end_char:
+                        depth -= 1
+                        if depth == 0:
+                            return stripped[idx:i+1]
+            # Could not find balanced end — return from start_char to end
+            return stripped[idx:]
+
+    return stripped
+
+
 # ── Source loading ─────────────────────────────────────────────────────────────
 
 def load_d6_sources() -> dict[str, dict]:
@@ -171,16 +235,12 @@ async def _run_collection_subagent(
         ):
             if isinstance(message, ResultMessage):
                 text = (message.result or '').strip()
-                # Strip accidental markdown fences
-                if '```json' in text:
-                    text = text.split('```json')[1].split('```')[0].strip()
-                elif '```' in text:
-                    text = text.split('```')[1].split('```')[0].strip()
+                text = _extract_json_text(text)
                 if text.startswith('['):
                     try:
                         parsed = json.loads(text)
                         if isinstance(parsed, list):
-                            items = parsed
+                            items.extend(parsed)
                     except json.JSONDecodeError as exc:
                         log.warning('[%s] JSON parse failed: %s', category, exc)
 
@@ -230,6 +290,16 @@ async def _collect_all(
     async with anyio.create_task_group() as tg:
         for idx, (category, source_ids) in enumerate(CATEGORIES.items()):
             tg.start_soon(run_category, idx, category, source_ids)
+
+    # Audit empty buckets — a silent subagent failure leaves the bucket at []
+    category_names = list(CATEGORIES.keys())
+    for idx, batch in enumerate(bucket):
+        if not batch:
+            log.warning(
+                '[%s] Category returned 0 items — collection subagent may have '
+                'failed, returned unparseable JSON, or found no relevant content',
+                category_names[idx],
+            )
 
     flat = [item for batch in bucket for item in batch]
     deduped = _dedup(flat)

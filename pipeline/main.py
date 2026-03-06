@@ -285,7 +285,7 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
         },
         'flashPoints': [],
         'executive': {
-            'bluf': f'PLACEHOLDER — {total} items across 5 domains. Re-run after funding API.',
+            'bluf': f'PLACEHOLDER — {total} items across 6 domains. Re-run after funding API.',
             'keyJudgments': [d['keyJudgment']['text'] for d in domains],
             'kpis': [],
         },

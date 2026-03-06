@@ -123,10 +123,10 @@
   border-bottom: var(--border-crimson);
 }
 
-/* Status strip — 5 cells */
+/* Status strip — 6 cells */
 .masthead__strip {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .masthead__strip-cell {
@@ -529,7 +529,7 @@
 /* KPI strip */
 .kpi-strip {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
 }
 
 .kpi-strip__cell {
@@ -1143,6 +1143,9 @@
   text-transform: uppercase;
 }
 
+.data-table-unit {
+  font-weight: 400;
+  margin-left: 6px;
 .data-table-caption__unit {
   font-weight: 400;
   margin-left: var(--sp-8);
@@ -1321,6 +1324,17 @@
 .wi-change--elevated { color: var(--conf-amber); }
 .wi-change--unchanged{ color: var(--text-dim); }
 .wi-change--cleared  { color: var(--conf-green); }
+
+.wi-indicator {
+  color: var(--text-hi);
+  font-weight: 600;
+}
+
+.wi-domain {
+  font-family: var(--font-data);
+  font-size: var(--size-badge);
+  white-space: nowrap;
+}
 
 
 /* ═══════════════════════════════════════════════════════════════════════════
@@ -1512,6 +1526,10 @@
 
 .caveats__dissenter-wrap {
   padding: 0 0 var(--sp-8);
+}
+
+.caveats__dissenters {
+  padding: 0 0 var(--gap-para);
 }
 
 

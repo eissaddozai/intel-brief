@@ -53,6 +53,15 @@ Synthesize the six domain sections into an integrated executive assessment with:
 - At least one judgment MUST explicitly address Canadian exposure or alliance posture
 - Never repeat a domain key judgment verbatim — rephrase, compress, and cross-reference
 
+**KPI Cell Requirements (5 cells, D5 excluded — no stable numeric KPI for cyber):**
+- D1: A number capturing kinetic intensity (strikes, incidents, or casualties — choose most significant)
+- D2: An escalation/de-escalation probability percentage
+- D3: Brent crude price or a shipping disruption figure
+- D4: Number of states with changed diplomatic position
+- D6: War risk premium level or change (e.g. "$X/GRT/day" or "+X% vs prior cycle")
+- Include changeDirection: "up" | "down" | "neutral" for each
+
+**Confidence Language Ladder:**
 **KPI Cell Requirements (5 cells):**
 - D1: A number capturing kinetic intensity (confirmed strikes, incidents, or casualties — choose the most significant metric)
 - D2: An escalation/de-escalation probability percentage from the confidence ladder
