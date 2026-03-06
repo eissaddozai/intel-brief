@@ -13,10 +13,32 @@ EXAMPLES
   python pipeline/main.py run --demo --auto-approve
   python pipeline/main.py run --stage ingest
   python pipeline/main.py run --date 2026-03-01 --auto-approve
+  python pipeline/main.py run --from-file my_research.json --auto-approve
   python pipeline/main.py check-sources
   python pipeline/main.py show
   python pipeline/main.py show cycles/cycle001_20260304.json
   python pipeline/main.py list
+
+MANUAL RESEARCH WORKFLOW
+  Use --from-file to skip automated ingestion and feed your own curated research
+  directly into the pipeline (triage → draft → review → output).
+
+  Your research file must be a JSON array. Each item requires "source", "title",
+  and "text". All other fields are optional:
+
+    [
+      {
+        "source": "AP",
+        "title": "Iran fires ballistic missiles at Israeli positions",
+        "text":  "Full article text here...",
+        "url":   "https://apnews.com/...",    // optional
+        "tier":  1,                            // optional; inferred from source name
+        "date":  "2026-03-06"                  // optional; defaults to today
+      }
+    ]
+
+  Tier 1 outlets (auto-detected): AP, Reuters, AFP, CTP-ISW, IAEA, CENTCOM, UKMTO.
+  All other sources default to Tier 2. Override with "tier": 1 if needed.
 """
 
 import argparse
@@ -82,6 +104,17 @@ def get_target_date(date_str: str | None) -> datetime:
 
 
 # ─── Pipeline stages ──────────────────────────────────────────────────────────
+
+def stage_ingest_from_file(research_file: Path, target_date: datetime, force: bool) -> Path:
+    """Ingest from a user-provided research file instead of automated sources."""
+    from ingest.manual_ingest import ingest_from_file
+    return ingest_from_file(
+        research_file=research_file,
+        target_date=target_date,
+        cache_dir=CACHE_DIR,
+        force=force,
+    )
+
 
 def stage_ingest_demo(target_date: datetime) -> Path:
     """Synthetic seed data — no internet required."""
@@ -397,6 +430,11 @@ def cmd_run(args: argparse.Namespace, config: dict) -> None:
     stage = args.stage
     demo = args.demo
     auto_approve = args.auto_approve
+    from_file = Path(args.from_file) if getattr(args, 'from_file', None) else None
+
+    if from_file and not from_file.exists():
+        log.error('Research file not found: %s', from_file)
+        sys.exit(1)
 
     raw_cache: Path
     tagged_cache: Path
@@ -404,7 +442,12 @@ def cmd_run(args: argparse.Namespace, config: dict) -> None:
     approved_file: Path
 
     if stage in ('ingest', None):
-        raw_cache = stage_ingest_demo(target_date) if demo else stage_ingest(target_date, args.force, config)
+        if from_file:
+            raw_cache = stage_ingest_from_file(from_file, target_date, args.force)
+        elif demo:
+            raw_cache = stage_ingest_demo(target_date)
+        else:
+            raw_cache = stage_ingest(target_date, args.force, config)
         if stage:
             return
 
@@ -682,6 +725,13 @@ def build_parser() -> argparse.ArgumentParser:
                        help='Skip interactive review (for CI)')
     run_p.add_argument('--demo', action='store_true',
                        help='Use synthetic seed data — no internet or API required')
+    run_p.add_argument('--from-file', metavar='PATH',
+                       help=(
+                           'Path to a JSON file of curated research items. '
+                           'Skips automated ingestion; runs triage → draft → review → output '
+                           'from your research. See MANUAL RESEARCH WORKFLOW in --help for '
+                           'the expected JSON format.'
+                       ))
 
     # ── check-sources ──
     sub.add_parser('check-sources', help='Test every source URL and report status')
