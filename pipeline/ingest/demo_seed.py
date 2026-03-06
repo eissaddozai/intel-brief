@@ -5,12 +5,20 @@ No internet or API required when running: python pipeline/main.py --demo
 
 from datetime import datetime, timezone
 
+def _fill_full_content(items: list[dict]) -> list[dict]:
+    """Copy text to full_content if full_content is empty."""
+    for item in items:
+        if not item.get('full_content') and item.get('text'):
+            item['full_content'] = item['text']
+    return items
+
+
 def get_seed_items(target_date: datetime) -> list[dict]:
     ts = target_date.strftime('%Y-%m-%dT06:00:00+00:00')
     ts_prev = target_date.strftime('%Y-%m-%dT03:00:00+00:00')
     date_str = target_date.strftime('%d %B %Y')
 
-    return [
+    items = [
         # ── TIER 1 · BATTLESPACE (d1) ────────────────────────────────────────
         {
             'source_id': 'ctp_isw_evening',
@@ -210,7 +218,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
         {
             'source_id': 'reuters',
             'source_name': 'Reuters',
-            'tier': 2,
+            'tier': 1,
             'domains': ['d3'],
             'title': 'Reuters: Brent crude hits $147/bbl as Hormuz throughput falls',
             'text': (
@@ -249,7 +257,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
         {
             'source_id': 'ap',
             'source_name': 'Associated Press',
-            'tier': 2,
+            'tier': 1,
             'domains': ['d4'],
             'title': 'AP: UN Security Council emergency session fails, Russia/China veto ceasefire',
             'text': (
@@ -262,7 +270,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'full_content': '',
             'url': 'https://rsshub.app/apnews/topics/iran-war',
             'timestamp': ts,
-            'verification_status': 'reported',
+            'verification_status': 'confirmed',
             'method': 'rss',
         },
         {
@@ -307,7 +315,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
         {
             'source_id': 'cisa',
             'source_name': 'CISA',
-            'tier': 3,
+            'tier': 2,
             'domains': ['d5'],
             'title': 'CISA AA26-063A: Iranian threat actors targeting critical infrastructure OT/ICS',
             'text': (
@@ -448,3 +456,4 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'method': 'scrape',
         },
     ]
+    return _fill_full_content(items)

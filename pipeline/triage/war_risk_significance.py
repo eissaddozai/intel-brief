@@ -37,6 +37,7 @@ from __future__ import annotations
 import anyio
 import json
 import logging
+import time
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -66,10 +67,11 @@ async def score_items_cip(
     if not items:
         return []
 
+    t_start = time.time()
     # Slice into batches
     batches = [items[i:i + BATCH_SIZE] for i in range(0, len(items), BATCH_SIZE)]
-    log.info('Significance scoring: %d items in %d batches (threshold=%d)',
-             len(items), len(batches), threshold)
+    log.info('Significance scoring: %d items in %d batches (threshold=%d, year=%d)',
+             len(items), len(batches), threshold, target_date.year)
 
     results_by_batch: list[list[dict]] = [[] for _ in batches]
 
@@ -78,7 +80,7 @@ async def score_items_cip(
 
     async def score_one(idx: int, batch: list[dict]) -> None:
         async with sem:
-            results_by_batch[idx] = await _score_batch_cip(batch, threshold, idx)
+            results_by_batch[idx] = await _score_batch_cip(batch, threshold, idx, target_year=target_date.year)
 
     async with anyio.create_task_group() as tg:
         for idx, batch in enumerate(batches):
@@ -106,7 +108,8 @@ async def score_items_cip(
 
     _write_significance_log(batches, results_by_batch, threshold, target_date)
 
-    log.info('Significance gate: %d/%d passed', len(passing), len(items))
+    elapsed = int((time.time() - t_start) * 1000)
+    log.info('Significance gate: %d/%d passed  (%dms)', len(passing), len(items), elapsed)
     return passing
 
 
@@ -116,6 +119,7 @@ async def _score_batch_cip(
     batch: list[dict],
     threshold: int,
     batch_idx: int,
+    target_year: int = 2026,
 ) -> list[dict]:
     """
     One CIP subagent call scores a batch of up to BATCH_SIZE items.
@@ -134,7 +138,7 @@ async def _score_batch_cip(
         for idx, item in enumerate(batch)
     ]
 
-    prompt = _build_scoring_prompt(items_payload, threshold)
+    prompt = _build_scoring_prompt(items_payload, threshold, target_year=target_year)
     raw_results: list[dict] = []
 
     try:
@@ -162,15 +166,21 @@ async def _score_batch_cip(
     except Exception as exc:
         log.error('[sig-batch-%d] CIP scoring failed: %s', batch_idx, exc)
 
-    # Map results back to input order; fall back to score=0 on missing entries
+    # Map results back to input order; fall back to score=0 on missing entries.
+    # This ensures zip in the caller never silently drops items on partial CIP failure.
     out: list[dict] = []
-    for idx, item in enumerate(batch):
+    for idx in range(len(batch)):
         result = next((r for r in raw_results if r.get('index') == idx), None)
         if result is None:
             score     = 0
-            rationale = 'No score returned by CIP scoring subagent.'
+            rationale = 'No score returned by significance subagent.'
+            log.debug('[sig-batch-%d] Item %d/%d: no result — defaulting score=0',
+                      batch_idx, idx + 1, len(batch))
         else:
-            score     = int(result.get('score', 0))
+            try:
+                score = int(result.get('score', 0))
+            except (ValueError, TypeError):
+                score = 0
             rationale = result.get('rationale', '')
 
         out.append({
@@ -260,16 +270,16 @@ Output ONLY valid JSON — no markdown, no explanation outside the JSON.\
 """
 
 
-def _build_scoring_prompt(items: list[dict], threshold: int) -> str:
+def _build_scoring_prompt(items: list[dict], threshold: int, target_year: int = 2026) -> str:
     items_json = json.dumps(items, indent=2, ensure_ascii=False)
     return f"""\
 {_SYSTEM_PROMPT}
 
 Score each of the following {len(items)} war risk insurance items.
 
-Current market context (2026): Active conflict in the Middle East / Gulf region.
+Current market context ({target_year}): Active conflict in the Middle East / Gulf region.
 Red Sea shipping disruption ongoing. JWC areas under review. Lloyd's war risk
-market hardening with premiums elevated vs. 2024 baseline.
+market hardening with premiums elevated vs. {target_year - 2} baseline.
 
 Significance threshold for inclusion in the daily brief: {threshold}/100.
 

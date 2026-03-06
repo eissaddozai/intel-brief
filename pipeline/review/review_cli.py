@@ -8,19 +8,32 @@ import json
 import logging
 import sys
 import textwrap
-from typing import Any
 
 log = logging.getLogger(__name__)
 
-# Terminal colour codes (ANSI)
-RED     = '\033[91m'
-AMBER   = '\033[93m'
-GREEN   = '\033[92m'
-BLUE    = '\033[94m'
-CYAN    = '\033[96m'
-DIM     = '\033[2m'
-BOLD    = '\033[1m'
-RESET   = '\033[0m'
+# Terminal colour codes (ANSI) — disabled when not writing to a terminal
+_USE_COLOUR = sys.stdout.isatty()
+_DOMAIN_COLOURS = ['\033[91m', '\033[93m', '\033[92m', '\033[94m', '\033[96m', '\033[1m']
+
+def _c(code: str, text: str) -> str:
+    return f'\033[{code}m{text}\033[0m' if _USE_COLOUR else text
+
+RED   = _c('91', '')[:6] if _USE_COLOUR else ''
+AMBER = _c('93', '')[:6] if _USE_COLOUR else ''
+GREEN = _c('92', '')[:6] if _USE_COLOUR else ''
+BLUE  = _c('94', '')[:6] if _USE_COLOUR else ''
+CYAN  = _c('96', '')[:6] if _USE_COLOUR else ''
+DIM   = _c('2',  '')[:5] if _USE_COLOUR else ''
+BOLD  = _c('1',  '')[:4] if _USE_COLOUR else ''
+RESET = '\033[0m' if _USE_COLOUR else ''
+
+# Convenience wrappers — these work correctly even with empty ANSI strings
+def _red(t: str) -> str:   return f'\033[91m{t}\033[0m' if _USE_COLOUR else t
+def _amber(t: str) -> str: return f'\033[93m{t}\033[0m' if _USE_COLOUR else t
+def _green(t: str) -> str: return f'\033[92m{t}\033[0m' if _USE_COLOUR else t
+def _dim(t: str) -> str:   return f'\033[2m{t}\033[0m'  if _USE_COLOUR else t
+def _bold(t: str) -> str:  return f'\033[1m{t}\033[0m'  if _USE_COLOUR else t
+def _cyan(t: str) -> str:  return f'\033[96m{t}\033[0m' if _USE_COLOUR else t
 
 
 def print_header(text: str, colour: str = CYAN) -> None:
@@ -51,7 +64,7 @@ def review_domain_section(domain: dict, section_num: int) -> dict | None:
     Display a domain section and prompt for review action.
     Returns approved section dict, or None if regeneration requested.
     """
-    colour = [RED, AMBER, GREEN, BLUE, CYAN][section_num % 5]
+    colour = _DOMAIN_COLOURS[section_num % 6] if _USE_COLOUR else ''
 
     print_header(
         f"DOMAIN {domain.get('num', '?')} — {domain.get('title', '?')}",
@@ -125,7 +138,14 @@ def review_executive(executive: dict) -> dict:
     print_section('BLUF', executive.get('bluf', '—'), colour=AMBER)
 
     for i, kj in enumerate(executive.get('keyJudgments', []), 1):
-        print(f'{DIM}{i}. [{kj.get("confidence", "?").upper()}] {kj.get("text", "")[:200]}{RESET}')
+        # keyJudgments may be strings or dicts depending on drafter output
+        if isinstance(kj, str):
+            kj_text = kj[:200]
+            kj_conf = '?'
+        else:
+            kj_text = kj.get('text', str(kj))[:200]
+            kj_conf = kj.get('confidence', '?')
+        print(f'{DIM}{i}. [{kj_conf.upper()}] {kj_text}{RESET}')
     print()
 
     while True:
@@ -157,13 +177,36 @@ def review_indicators(indicators: list[dict]) -> list[dict]:
     """Quick review of warning indicators."""
     print_header('WARNING INDICATORS', colour=AMBER)
     for wi in indicators:
-        status_colour = RED if wi.get('status') == 'triggered' else AMBER
-        print(f'  {status_colour}[{wi.get("status", "?").upper()}]{RESET} {wi.get("indicator", "?")}')
-        print(f'    {DIM}{wi.get("detail", "")[:120]}{RESET}')
+        level = wi.get('level', wi.get('status', '?'))
+        level_upper = (level or '?').upper()
+        level_colour = '\033[91m' if _USE_COLOUR and level_upper in ('RED', 'TRIGGERED') else (
+                       '\033[93m' if _USE_COLOUR and level_upper == 'AMBER' else '')
+        reset = '\033[0m' if _USE_COLOUR else ''
+        print(f'  {level_colour}[{level_upper}]{reset} {wi.get("indicator", "?")}')
+        assessment = wi.get('assessment', wi.get('detail', ''))
+        print(f'    {DIM}{assessment[:120]}{RESET}')
     print()
 
-    choice = input('[A]pprove  [S]kip › ').strip().upper()
-    return indicators
+    while True:
+        choice = input('[A]pprove  [E]dit  [S]kip › ').strip().upper()
+        if choice in ('A', 'S'):
+            return indicators
+        elif choice == 'E':
+            print('Enter index of indicator to edit (1-based) or 0 to cancel:')
+            try:
+                idx = int(input('Index: ').strip())
+                if 1 <= idx <= len(indicators):
+                    ind = dict(indicators[idx - 1])
+                    new_assessment = input('New assessment (blank to keep): ').strip()
+                    if new_assessment:
+                        ind['assessment'] = new_assessment
+                        indicators = list(indicators)
+                        indicators[idx - 1] = ind
+                        print(f'{GREEN}✓ Indicator {idx} updated{RESET}')
+            except (ValueError, IndexError):
+                print('Invalid selection.')
+        else:
+            print('Invalid choice.')
 
 
 def run_review(draft: dict) -> dict | None:
@@ -204,6 +247,7 @@ def run_review(draft: dict) -> dict | None:
     print(f'  Domains reviewed: {len(approved_domains)}')
     print(f'  Warning indicators: {len(indicators)}')
     print(f'  Collection gaps: {len(draft.get("collectionGaps", []))}')
+    print(f'  Caveats:         {len(draft.get("caveats", {}).get("items", []))}')
     print()
 
     final = input('[C]onfirm and write output  [A]bort › ').strip().upper()
