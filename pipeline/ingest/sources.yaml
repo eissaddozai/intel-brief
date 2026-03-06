@@ -392,15 +392,15 @@ sources:
   # ─────────────────────────────────────────────────────────────────────────────
 
   - id: recorded_future
-    name: "Recorded Future Research Blog"
+    name: "The Record by Recorded Future"
     tier: 3
     domains: [d5]
     method: rss
-    url: "https://www.recordedfuture.com/research/feed"
+    url: "https://therecord.media/feed/"
     trigger: cyber_activity
-    status: likely
+    status: working
     enabled: true
-    notes: "Threat intel reports. Pull on new publication."
+    notes: "Threat intel reports. recordedfuture.com/research/feed is 404 (removed). Replaced with The Record RSS (verified working Mar 2026)."
 
   - id: cisa_advisories
     name: "CISA Cybersecurity Advisories"
@@ -418,11 +418,11 @@ sources:
     tier: 3
     domains: [d5]
     method: rss
-    url: "https://www.mandiant.com/resources/blog/rss.xml"
+    url: "https://cloudblog.withgoogle.com/topics/threat-intelligence/rss/"
     trigger: cyber_activity
-    status: likely
+    status: working
     enabled: true
-    notes: "Iranian APT attribution. Treat as 'reported' not 'confirmed'."
+    notes: "Iranian APT attribution. Mandiant acquired by Google; old URL 301-redirects here (verified working Mar 2026). Treat as 'reported' not 'confirmed'."
 
   - id: netblocks
     name: "NetBlocks Internet Observatory"
@@ -448,14 +448,18 @@ sources:
     notes: "US petroleum stockpile report. Trigger if Brent moves >5% / 24h."
 
   - id: opec_statements
-    name: "OPEC Press Releases"
+    name: "OPEC via EIA Production Tracker"
     tier: 3
     domains: [d3]
     method: scrape
-    url: "https://www.opec.org/opec_web/en/press_room/4567.htm"
+    url: "https://www.eia.gov/international/data/world/petroleum-and-other-liquids/monthly-petroleum-and-other-liquids-production"
     trigger: energy_disruption
     status: likely
     enabled: true
+    notes: >
+      opec.org returns 403 across all paths (bot-blocked). OPEC production
+      data and press releases are reliably syndicated via AP/Reuters wire;
+      for structured data use EIA's OPEC production tracker (this URL).
 
   # ─────────────────────────────────────────────────────────────────────────────
   # DOMAIN D6 — WAR RISK INSURANCE · MARITIME FINANCE
