@@ -42,21 +42,27 @@
   }
 
   /* ── Force all content blocks visible ──────────────────────────────────── */
+  /* Block-level sections */
   .domain, .executive-assessment, .flash-points, .strategic-header,
   .warning-indicators, .collection-gaps, .caveats,
-  .analyst-note, .dissenter-note, .metadata-bar,
+  .analyst-note, .dissenter-note,
   .kj, .body-wrap, .body-para, .sub-label,
   .timeline, .actor-matrix, .data-table-wrap,
-  .domain__header, .domain__aq, .domain__content,
-  .warning-indicators__rows, .wi-row,
-  .am-header, .am-row,
+  .domain__content, .warning-indicators__rows,
   .brief-footer {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     overflow: visible !important;
   }
-  .am-header, .am-row { display: grid !important; }
+  /* Grid containers — must NOT be set to block */
+  .metadata-bar  { display: grid !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
+  .domain__header{ display: grid !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
+  .wi-row        { display: grid !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
+  .am-header     { display: grid !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
+  .am-row        { display: grid !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
+  /* Flex containers — must NOT be set to block */
+  .domain__aq    { display: flex !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
 
   /* ── Suppress overlays ──────────────────────────────────────────────────── */
   body::before, body::after { display: none !important; }
@@ -297,7 +303,12 @@
     opacity: 0.72 !important;
   }
 
-/* ── Masthead layout — explicit flex/grid print overrides ───────────────── */
+  /* ── Masthead layout — explicit flex/grid print overrides ───────────────── */
+  .masthead__hero        { display: grid !important; grid-template-columns: 58% 42%; align-items: start; }
+  .masthead__class-bar   { display: flex !important; align-items: center; justify-content: center; padding: 3pt; }
+  .masthead__flag        { display: flex !important; align-items: center; gap: 6pt; }
+  .masthead__title-block { display: flex !important; flex-direction: column; gap: 2pt; }
+  .masthead__cycle-block { display: flex !important; flex-direction: column; align-items: flex-end; }
   .masthead__brand-bar   { display: flex !important; justify-content: space-between; align-items: flex-end; }
   .masthead__brand-left  { display: flex !important; flex-direction: column; }
   .masthead__brand-right { display: flex !important; flex-direction: column; align-items: flex-end; }
@@ -307,6 +318,7 @@
   .masthead__cycle-pre   { font-size: 6pt !important; }
   .masthead__provenance  { display: flex !important; justify-content: space-between; padding: 2pt 14pt; }
   .masthead__ctx         { display: flex !important; align-items: center; gap: 6pt; padding: 3pt 14pt; }
+  .gap-item__meta        { display: flex !important; align-items: center; gap: 6pt; }
 
   /* ── Masthead strip ─────────────────────────────────────────────────────── */
   .masthead__strip      { display: grid !important; grid-template-columns: repeat(5, 1fr); gap: 2pt; }
@@ -315,11 +327,11 @@
                           background: rgba(10,12,24,0.95) !important; }
 
   /* ── Domain header layout ───────────────────────────────────────────────── */
-  .domain__header    { display: flex !important; align-items: stretch; }
+  .domain__header    { display: grid !important; grid-template-columns: 52pt 1fr; align-items: stretch; }
   .domain__num       { display: flex !important; align-items: center; justify-content: center;
                        min-width: 36pt; padding: 6pt; }
   .domain__title-cell{ display: flex !important; flex-direction: column; justify-content: center;
-                       padding: 6pt 8pt; flex: 1; }
+                       padding: 6pt 8pt; }
 
   /* ── KJ layout ──────────────────────────────────────────────────────────── */
   .kj__label-row     { display: flex !important; align-items: baseline; gap: 6pt; }
@@ -367,7 +379,7 @@
   .masthead__strip-bot     { font-size: 5.5pt !important; color: #666 !important; letter-spacing: 0.18em; text-transform: uppercase; }
 
   /* ── Metadata bar ────────────────────────────────────────────────────────── */
-  .metadata-bar            { display: flex !important; gap: 0 !important; flex-wrap: nowrap; border-top: 0.5pt solid #2a2a3a !important; }
+  .metadata-bar            { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 0 !important; border-top: 0.5pt solid #2a2a3a !important; }
   .metadata-bar__label     { font-size: 6pt !important; color: #556 !important; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 2pt; }
   .metadata-bar__value     { font-size: 9pt !important; color: #c4bfb8 !important; }
   .metadata-bar__value--hi { color: #e8e2d8 !important; font-weight: 600; }

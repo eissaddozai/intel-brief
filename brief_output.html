@@ -2403,21 +2403,27 @@ body::after {
   }
 
   /* ── Force all content blocks visible ──────────────────────────────────── */
+  /* Block-level sections */
   .domain, .executive-assessment, .flash-points, .strategic-header,
   .warning-indicators, .collection-gaps, .caveats,
-  .analyst-note, .dissenter-note, .metadata-bar,
+  .analyst-note, .dissenter-note,
   .kj, .body-wrap, .body-para, .sub-label,
   .timeline, .actor-matrix, .data-table-wrap,
-  .domain__header, .domain__aq, .domain__content,
-  .warning-indicators__rows, .wi-row,
-  .am-header, .am-row,
+  .domain__content, .warning-indicators__rows,
   .brief-footer {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     overflow: visible !important;
   }
-  .am-header, .am-row { display: grid !important; }
+  /* Grid containers — must NOT be set to block */
+  .metadata-bar  { display: grid !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
+  .domain__header{ display: grid !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
+  .wi-row        { display: grid !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
+  .am-header     { display: grid !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
+  .am-row        { display: grid !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
+  /* Flex containers — must NOT be set to block */
+  .domain__aq    { display: flex !important; visibility: visible !important; opacity: 1 !important; overflow: visible !important; }
 
   /* ── Suppress overlays ──────────────────────────────────────────────────── */
   body::before, body::after { display: none !important; }
@@ -2658,7 +2664,12 @@ body::after {
     opacity: 0.72 !important;
   }
 
-/* ── Masthead layout — explicit flex/grid print overrides ───────────────── */
+  /* ── Masthead layout — explicit flex/grid print overrides ───────────────── */
+  .masthead__hero        { display: grid !important; grid-template-columns: 58% 42%; align-items: start; }
+  .masthead__class-bar   { display: flex !important; align-items: center; justify-content: center; padding: 3pt; }
+  .masthead__flag        { display: flex !important; align-items: center; gap: 6pt; }
+  .masthead__title-block { display: flex !important; flex-direction: column; gap: 2pt; }
+  .masthead__cycle-block { display: flex !important; flex-direction: column; align-items: flex-end; }
   .masthead__brand-bar   { display: flex !important; justify-content: space-between; align-items: flex-end; }
   .masthead__brand-left  { display: flex !important; flex-direction: column; }
   .masthead__brand-right { display: flex !important; flex-direction: column; align-items: flex-end; }
@@ -2668,6 +2679,7 @@ body::after {
   .masthead__cycle-pre   { font-size: 6pt !important; }
   .masthead__provenance  { display: flex !important; justify-content: space-between; padding: 2pt 14pt; }
   .masthead__ctx         { display: flex !important; align-items: center; gap: 6pt; padding: 3pt 14pt; }
+  .gap-item__meta        { display: flex !important; align-items: center; gap: 6pt; }
 
   /* ── Masthead strip ─────────────────────────────────────────────────────── */
   .masthead__strip      { display: grid !important; grid-template-columns: repeat(5, 1fr); gap: 2pt; }
@@ -2676,11 +2688,11 @@ body::after {
                           background: rgba(10,12,24,0.95) !important; }
 
   /* ── Domain header layout ───────────────────────────────────────────────── */
-  .domain__header    { display: flex !important; align-items: stretch; }
+  .domain__header    { display: grid !important; grid-template-columns: 52pt 1fr; align-items: stretch; }
   .domain__num       { display: flex !important; align-items: center; justify-content: center;
                        min-width: 36pt; padding: 6pt; }
   .domain__title-cell{ display: flex !important; flex-direction: column; justify-content: center;
-                       padding: 6pt 8pt; flex: 1; }
+                       padding: 6pt 8pt; }
 
   /* ── KJ layout ──────────────────────────────────────────────────────────── */
   .kj__label-row     { display: flex !important; align-items: baseline; gap: 6pt; }
@@ -2728,7 +2740,7 @@ body::after {
   .masthead__strip-bot     { font-size: 5.5pt !important; color: #666 !important; letter-spacing: 0.18em; text-transform: uppercase; }
 
   /* ── Metadata bar ────────────────────────────────────────────────────────── */
-  .metadata-bar            { display: flex !important; gap: 0 !important; flex-wrap: nowrap; border-top: 0.5pt solid #2a2a3a !important; }
+  .metadata-bar            { display: grid !important; grid-template-columns: repeat(4, 1fr) !important; gap: 0 !important; border-top: 0.5pt solid #2a2a3a !important; }
   .metadata-bar__label     { font-size: 6pt !important; color: #556 !important; letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 2pt; }
   .metadata-bar__value     { font-size: 9pt !important; color: #c4bfb8 !important; }
   .metadata-bar__value--hi { color: #e8e2d8 !important; font-weight: 600; }
@@ -4069,7 +4081,7 @@ section.domain::after{
   </div>
 
   <div class="ep-tab-pane ep-body" id="ep-order">
-    <div class="ep-hint">Text is live-editable. Drag ⠿⠿ grip rails to reorder. Hover any element for ↑↓✕ controls.</div>
+    <div class="ep-hint">Grab ⠿⠿ grip rail to drag • Hover any element for ↑↓⊕✕ controls • Click text to edit</div>
     <div class="ep-section">Domain Sections</div>
     <div id="ep-movers"></div>
     <div class="ep-section" style="margin-top:14px">KPI Strip</div>
@@ -4268,12 +4280,8 @@ section.domain::after{
   color:rgba(196,160,48,0.92);
   box-shadow:-3px 0 12px rgba(196,160,48,0.12);
 }
-.ed-on [data-ep-drag].ep-dragging>.ep-grip{
-  cursor:grabbing;
-  color:rgba(196,160,48,0.60);
-}
-.ed-on [data-ep-drag].ep-dragging{opacity:.38}
-.ed-on [data-ep-drag].ep-drop-target{outline:1px solid rgba(196,160,48,.60);outline-offset:1px}
+.ep-grip:active{cursor:grabbing!important}
+.ep-placeholder{transition:none!important}
 
 /* TEXT EDITABLE VISUAL CUE */
 .ed-on [data-ep-text]{cursor:text}
@@ -4292,7 +4300,8 @@ var floatBar=document.getElementById("ep-floatbar");
 var fbUp=document.getElementById("ep-fb-up");
 var fbDown=document.getElementById("ep-fb-down");
 var fbDel=document.getElementById("ep-fb-del");
-var editorOpen=false,dragSrc=null,floatTarget=null;
+var editorOpen=false,floatTarget=null;
+var dragEl=null,dragGhost=null,dragPH=null,dragOffX=0,dragOffY=0;
 
 function $(id){return document.getElementById(id);}
 function $$(sel,ctx){return Array.from((ctx||document).querySelectorAll(sel));}
@@ -4414,15 +4423,9 @@ function activateEditor(){
       g.className="ep-grip";
       g.textContent="⠿⠿";
       g.title="Drag to reorder";
-      g.setAttribute("draggable","false");
       el.insertBefore(g,el.firstChild);
     }
-    el.draggable=true;
-    el.addEventListener("dragstart",onDragStart);
-    el.addEventListener("dragend",onDragEnd);
-    el.addEventListener("dragover",onDragOver);
-    el.addEventListener("dragleave",onDragLeave);
-    el.addEventListener("drop",onDrop);
+    attachGrip(el);
     el.addEventListener("mouseenter",onElEnter);
     el.addEventListener("mouseleave",onElLeave);
   });
@@ -4445,54 +4448,80 @@ function deactivateEditor(){
     el.removeEventListener("mouseleave",onElLeave);
   });
   $$("[data-ep-drag]").forEach(function(el){
-    el.draggable=false;
+    detachGrip(el);
     el.removeAttribute("data-ep-drag");
     var g=el.querySelector(":scope>.ep-grip"); if(g)g.remove();
-    el.removeEventListener("dragstart",onDragStart);
-    el.removeEventListener("dragend",onDragEnd);
-    el.removeEventListener("dragover",onDragOver);
-    el.removeEventListener("dragleave",onDragLeave);
-    el.removeEventListener("drop",onDrop);
     el.removeEventListener("mouseenter",onElEnter);
     el.removeEventListener("mouseleave",onElLeave);
   });
+  /* cancel any in-progress drag */
+  if(dragGhost){dragGhost.remove();dragGhost=null;}
+  if(dragPH){dragPH.remove();dragPH=null;}
+  if(dragEl){dragEl.style.opacity="";dragEl.style.pointerEvents="";dragEl=null;}
+  document.removeEventListener("pointermove",onDragMove);
+  document.removeEventListener("pointerup",onDragRelease);
   hideFloatBar();
-  dragSrc=null;
 }
 
-/* ── DRAG ────────────────────────────────────────────────────────── */
-function onDragStart(e){
-  if(isUI(e.target))return;
-  dragSrc=e.currentTarget;
-  e.dataTransfer.effectAllowed="move";
-  e.stopPropagation();
-  setTimeout(function(){if(dragSrc)dragSrc.classList.add("ep-dragging");},0);
+/* ── POINTER-BASED DRAG (works across all containers) ────────────── */
+function attachGrip(el){
+  var g=el.querySelector(":scope>.ep-grip");
+  if(g)g.addEventListener("pointerdown",onGripDown);
 }
-function onDragEnd(){
-  if(dragSrc)dragSrc.classList.remove("ep-dragging");
-  $$(".ep-drop-target").forEach(function(el){el.classList.remove("ep-drop-target");});
-  dragSrc=null;
+function detachGrip(el){
+  var g=el.querySelector(":scope>.ep-grip");
+  if(g)g.removeEventListener("pointerdown",onGripDown);
 }
-function onDragOver(e){
-  if(!dragSrc||dragSrc===this)return;
-  if(dragSrc.parentNode!==this.parentNode)return;
+function onGripDown(e){
   e.preventDefault();e.stopPropagation();
-  this.classList.add("ep-drop-target");
-  e.dataTransfer.dropEffect="move";
+  var el=e.currentTarget.closest("[data-ep-drag]");if(!el)return;
+  dragEl=el;
+  var rect=el.getBoundingClientRect();
+  dragOffX=e.clientX-rect.left;dragOffY=e.clientY-rect.top;
+  /* placeholder — dashed amber slot showing where element will land */
+  dragPH=document.createElement("div");dragPH.className="ep-placeholder";
+  dragPH.style.cssText="height:"+Math.max(32,rect.height)+"px;"+
+    "background:rgba(196,160,48,.07);border:2px dashed rgba(196,160,48,.5);"+
+    "border-radius:2px;margin:3px 0;box-sizing:border-box;pointer-events:none;";
+  el.parentNode.insertBefore(dragPH,el.nextSibling);
+  /* ghost — semi-transparent clone that follows cursor */
+  dragGhost=el.cloneNode(true);
+  dragGhost.querySelectorAll(".ep-grip").forEach(function(g){g.style.display="none";});
+  dragGhost.style.cssText="position:fixed;z-index:99999;pointer-events:none;"+
+    "width:"+rect.width+"px;left:"+rect.left+"px;top:"+rect.top+"px;"+
+    "opacity:0.85;box-shadow:0 20px 56px rgba(0,0,0,.82);"+
+    "outline:2px solid rgba(196,160,48,.70);border-radius:2px;"+
+    "overflow:hidden;max-height:240px;transition:none;";
+  document.body.appendChild(dragGhost);
+  /* dim original in place */
+  el.style.opacity="0.12";el.style.pointerEvents="none";
+  document.addEventListener("pointermove",onDragMove,{passive:true});
+  document.addEventListener("pointerup",onDragRelease);
 }
-function onDragLeave(e){
-  if(!this.contains(e.relatedTarget))this.classList.remove("ep-drop-target");
+function onDragMove(e){
+  if(!dragGhost)return;
+  dragGhost.style.left=(e.clientX-dragOffX)+"px";
+  dragGhost.style.top=(e.clientY-dragOffY)+"px";
+  /* temporarily hide ghost so elementFromPoint hits elements beneath */
+  dragGhost.style.visibility="hidden";
+  var hit=document.elementFromPoint(e.clientX,e.clientY);
+  dragGhost.style.visibility="";
+  if(!hit)return;
+  var dropEl=hit.closest("[data-ep-drag]");
+  if(!dropEl||dropEl===dragEl||dropEl.contains(dragEl)||dropEl===dragPH)return;
+  var midY=dropEl.getBoundingClientRect().top+dropEl.getBoundingClientRect().height*0.5;
+  if(e.clientY>midY){dropEl.parentNode.insertBefore(dragPH,dropEl.nextSibling);}
+  else{dropEl.parentNode.insertBefore(dragPH,dropEl);}
 }
-function onDrop(e){
-  e.preventDefault();e.stopPropagation();
-  this.classList.remove("ep-drop-target");
-  if(!dragSrc||dragSrc===this)return;
-  var p=this.parentNode;
-  if(dragSrc.parentNode!==p)return;
-  var all=Array.from(p.children),si=all.indexOf(dragSrc),ti=all.indexOf(this);
-  if(si<0||ti<0)return;
-  if(si<ti)p.insertBefore(dragSrc,this.nextSibling);
-  else p.insertBefore(dragSrc,this);
+function onDragRelease(){
+  if(!dragEl)return;
+  if(dragPH&&dragPH.parentNode)dragPH.parentNode.insertBefore(dragEl,dragPH);
+  dragEl.style.opacity="";dragEl.style.pointerEvents="";
+  if(dragGhost){dragGhost.remove();dragGhost=null;}
+  if(dragPH){dragPH.remove();dragPH=null;}
+  dragEl=null;
+  document.removeEventListener("pointermove",onDragMove);
+  document.removeEventListener("pointerup",onDragRelease);
   refreshMovers();
 }
 
@@ -4541,7 +4570,6 @@ fbDup.addEventListener("click",function(){
   var clone=floatTarget.cloneNode(true);
   /* strip editor state from clone — will be re-applied on hover */
   var g=clone.querySelector(".ep-grip");if(g)g.remove();
-  clone.draggable=false;
   clone.removeAttribute("data-ep-drag");
   clone.removeAttribute("data-ep-text");
   clone.querySelectorAll("[data-ep-text]").forEach(function(el){
@@ -4550,7 +4578,6 @@ fbDup.addEventListener("click",function(){
   });
   clone.querySelectorAll("[data-ep-drag]").forEach(function(el){
     el.removeAttribute("data-ep-drag");
-    el.draggable=false;
     var g2=el.querySelector(".ep-grip");if(g2)g2.remove();
   });
   floatTarget.parentNode.insertBefore(clone,floatTarget.nextSibling);
@@ -4558,12 +4585,10 @@ fbDup.addEventListener("click",function(){
   if(clone.matches(DRAG_SEL)){
     clone.setAttribute("data-ep-drag","1");
     if(!clone.querySelector(":scope>.ep-grip")){
-      var g3=document.createElement("span");g3.className="ep-grip";g3.textContent="⠿⠿";g3.title="Drag to reorder";g3.setAttribute("draggable","false");clone.insertBefore(g3,clone.firstChild);
+      var g3=document.createElement("span");g3.className="ep-grip";g3.textContent="⠿⠿";g3.title="Drag to reorder";clone.insertBefore(g3,clone.firstChild);
     }
-    clone.draggable=true;
-    clone.addEventListener("dragstart",onDragStart);clone.addEventListener("dragend",onDragEnd);
-    clone.addEventListener("dragover",onDragOver);clone.addEventListener("dragleave",onDragLeave);
-    clone.addEventListener("drop",onDrop);clone.addEventListener("mouseenter",onElEnter);clone.addEventListener("mouseleave",onElLeave);
+    attachGrip(clone);
+    clone.addEventListener("mouseenter",onElEnter);clone.addEventListener("mouseleave",onElLeave);
   }
   $$(TEXT_SEL,clone).forEach(function(el){
     el.contentEditable="true";el.setAttribute("data-ep-text","1");
