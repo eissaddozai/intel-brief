@@ -103,7 +103,7 @@
 
 .masthead__cycle-date {
   font-family: var(--font-data);
-  font-size: 13px;
+  font-size: var(--size-section);
   font-weight: 700;
   color: var(--text-hi);
   margin-bottom: 3px;
@@ -235,12 +235,12 @@
 
 .strategic-header__label::before {
   content: "■  ";
-  font-size: 7px;
+  font-size: var(--size-icon-md);
 }
 
 .strategic-header__judgment {
   font-family: var(--font-display);
-  font-size: 17px;
+  font-size: var(--size-judgment);
   font-weight: 700;
   color: var(--text-hi);
   line-height: 1.5;
@@ -310,7 +310,7 @@
 
 .flash-points__label::before {
   content: "⚡  ";
-  font-size: 8px;
+  font-size: var(--size-icon-lg);
 }
 
 .flash-points__timestamp {
@@ -434,7 +434,7 @@
   text-transform: uppercase;
 }
 
-.exec__header-title::before { content: "■  "; font-size: 9px; }
+.exec__header-title::before { content: "■  "; font-size: var(--size-icon-xl); }
 
 .exec__header-meta {
   font-family: var(--font-data);
@@ -639,7 +639,7 @@
   padding: 14px 8px;
   border-right: 5px solid transparent;
   font-family: var(--font-display);
-  font-size: 26px;
+  font-size: var(--size-domain-num);
   font-weight: 700;
 }
 
@@ -764,7 +764,7 @@
   text-transform: uppercase;
 }
 
-.kj__label::before { content: "■  "; font-size: 6px; }
+.kj__label::before { content: "■  "; font-size: var(--size-icon-sm); }
 
 .domain--d1 .kj__label { color: var(--d1-bright); }
 .domain--d2 .kj__label { color: var(--d2-bright); }
@@ -804,7 +804,7 @@
   font-weight: 700;
   color: var(--text-hi);
   line-height: 1.62;
-  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+  text-shadow: 0 1px 8px var(--color-shadow-text);
 }
 
 .kj__basis {
@@ -913,7 +913,7 @@
   text-transform: uppercase;
 }
 
-.analyst-note__title::before { content: "■  "; font-size: 8px; }
+.analyst-note__title::before { content: "■  "; font-size: var(--size-icon-lg); }
 
 .analyst-note__label {
   font-family: var(--font-data);
@@ -969,7 +969,7 @@
   text-transform: uppercase;
 }
 
-.dissenter-note__title::before { content: "◆  "; font-size: 7px; }
+.dissenter-note__title::before { content: "◆  "; font-size: var(--size-icon-md); }
 
 .dissenter-note__attribution {
   font-family: var(--font-data);
@@ -1240,7 +1240,7 @@
   text-transform: uppercase;
 }
 
-.warning-indicators__title::before { content: "⚠  "; font-size: 11px; }
+.warning-indicators__title::before { content: "⚠  "; font-size: var(--size-aq); }
 
 .warning-indicators__cycle {
   font-family: var(--font-data);
@@ -1352,7 +1352,7 @@
   text-transform: uppercase;
 }
 
-.collection-gaps__title::before { content: "◉  "; font-size: 10px; }
+.collection-gaps__title::before { content: "◉  "; font-size: var(--size-meta); }
 
 .collection-gaps__items {
   border-left: 5px solid var(--conf-blue);
@@ -1448,7 +1448,7 @@
   text-transform: uppercase;
 }
 
-.caveats__title::before { content: "⚠  "; font-size: 11px; }
+.caveats__title::before { content: "⚠  "; font-size: var(--size-aq); }
 
 .caveats__cycle {
   font-family: var(--font-data);
@@ -1497,7 +1497,7 @@
   margin-bottom: 6px;
 }
 
-.caveats__confidence-label::before { content: "■  "; font-size: 5px; }
+.caveats__confidence-label::before { content: "■  "; font-size: var(--size-icon-xs); }
 
 .caveats__confidence-text {
   font-family: var(--font-body);
