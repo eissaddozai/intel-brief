@@ -342,7 +342,7 @@ def stage_draft(tagged_cache: Path, target_date: datetime, config: dict) -> Path
     else:
         log.warning('No previous cycle — drafting without prior context')
 
-    log.info('Calling Claude API...')
+    log.info('Calling Claude CLI (claude_agent_sdk)...')
     try:
         from draft.drafter import draft_cycle
         draft = draft_cycle(
@@ -353,16 +353,20 @@ def stage_draft(tagged_cache: Path, target_date: datetime, config: dict) -> Path
         )
     except Exception as exc:
         err = str(exc)
-        _api_issue = any(kw in err.lower() for kw in [
-            'credit balance', 'quota', 'rate limit', 'billing',
-            'api_key not set', 'anthropic_api_key', 'not set',
-            # ImportError when anthropic package not installed
+        _cli_issue = any(kw in err.lower() for kw in [
+            # SDK / dependency not installed (claude_agent_sdk, anyio, etc.)
             'no module named', 'modulenotfounderror',
+            # CLI auth / credits
+            'credit balance', 'quota', 'rate limit', 'billing',
+            'unauthorized', 'authentication',
+            # SDK-level signals
+            'claude_agent_sdk', 'claude agent',
+            'api_key not set', 'anthropic_api_key',
         ])
-        if _api_issue:
+        if _cli_issue:
             log.warning(
-                'Claude API unavailable (%s). '
-                'Building placeholder draft — fund credits and re-run `--stage draft`.',
+                'Claude CLI unavailable (%s). '
+                'Building placeholder draft — install claude_agent_sdk and re-run `--stage draft`.',
                 err.split('.')[0],
             )
             draft = _build_placeholder_draft(tagged_items, target_date)

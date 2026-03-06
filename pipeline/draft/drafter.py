@@ -1,15 +1,20 @@
 """
-Claude API drafting module.
-Drafts each domain section, then the executive summary, using structured JSON output.
+Claude CLI drafting module.
+Drafts each domain section, then the executive summary, using the Claude
+Agent SDK (claude_agent_sdk) — the same CLI used by war_risk_ingest.py.
+
+Each domain section and the executive/header/indicators are drafted via
+independent query() calls so they can run with full context isolation.
 """
 
+import anyio
 import json
 import logging
 import os
 from datetime import datetime
 from pathlib import Path
 
-import anthropic
+from claude_agent_sdk import query, ClaudeAgentOptions, ResultMessage
 
 log = logging.getLogger(__name__)
 
@@ -32,6 +37,9 @@ DOMAIN_PROMPTS = {
     'd5': 'cyber.md',
     'd6': 'war_risk.md',
 }
+
+MODEL = 'claude-opus-4-6'
+MAX_TURNS = 3
 
 
 def _fill_template(template: str, **kwargs: str) -> str:
@@ -62,14 +70,6 @@ def filter_by_domain(items: list[dict], domain: str) -> tuple[list[dict], list[d
     return tier1, tier2
 
 
-def _domain_kj_text(domain_sections: list[dict], domain_id: str) -> str:
-    """Extract the key judgment text for a given domain from drafted sections."""
-    section = next((d for d in domain_sections if d.get('id') == domain_id), None)
-    if not section:
-        return '(not yet drafted)'
-    return section.get('keyJudgment', {}).get('text', '(no key judgment)')
-
-
 def _domain_summary(section: dict) -> str:
     """Produce a compact text summary of a domain section for use as context."""
     kj = section.get('keyJudgment', {})
@@ -84,44 +84,77 @@ def _domain_summary(section: dict) -> str:
     return '\n'.join(summary_parts)
 
 
-def call_claude(client: anthropic.Anthropic, prompt: str, max_tokens: int = 2000) -> dict | list:
-    """Call Claude API and parse the JSON response."""
-    response = client.messages.create(
-        model='claude-opus-4-6',
-        max_tokens=max_tokens,
-        temperature=0.3,
-        system=(
-            'You are a senior conflict intelligence analyst. '
-            'Write in the dispassionate, precise voice of serious foreign affairs journalism. '
-            'Always produce structured JSON output exactly as specified. '
-            'Never fabricate citations. Never use forbidden jargon. '
-            'Distinguish Tier 1 confirmed facts from Tier 2 analytical interpretation.'
-        ),
-        messages=[{'role': 'user', 'content': prompt}],
+def _domain_kj_text(domain_sections: list[dict], domain_id: str) -> str:
+    """Extract the key judgment text for a given domain from drafted sections."""
+    section = next((d for d in domain_sections if d.get('id') == domain_id), None)
+    if not section:
+        return '(not yet drafted)'
+    return section.get('keyJudgment', {}).get('text', '(no key judgment)')
+
+
+async def _call_claude(prompt: str, max_tokens: int = 3000) -> dict | list:
+    """
+    Call Claude via the Agent SDK CLI and parse the JSON response.
+    Returns parsed dict or list. Raises on JSON parse failure.
+    """
+    system_preamble = (
+        'You are a senior conflict intelligence analyst. '
+        'Write in the dispassionate, precise voice of serious foreign affairs journalism. '
+        'Always produce structured JSON output exactly as specified. '
+        'Never fabricate citations. Never use forbidden jargon. '
+        'Distinguish Tier 1 confirmed facts from Tier 2 analytical interpretation.\n\n'
     )
 
-    text = response.content[0].text
+    full_prompt = system_preamble + prompt
+    result_text = ''
+
+    async for message in query(
+        prompt=full_prompt,
+        options=ClaudeAgentOptions(
+            allowed_tools=[],          # no tools needed — pure text generation
+            permission_mode='dontAsk',
+            model=MODEL,
+            max_turns=MAX_TURNS,
+        ),
+    ):
+        if isinstance(message, ResultMessage):
+            result_text = (message.result or '').strip()
 
     # Strip markdown code fences if present
-    if '```json' in text:
-        text = text.split('```json')[1].split('```')[0].strip()
-    elif '```' in text:
-        text = text.split('```')[1].split('```')[0].strip()
+    if '```json' in result_text:
+        result_text = result_text.split('```json')[1].split('```')[0].strip()
+    elif '```' in result_text:
+        result_text = result_text.split('```')[1].split('```')[0].strip()
+
+    if not result_text:
+        raise ValueError('Claude returned empty response')
 
     try:
-        return json.loads(text)
+        return json.loads(result_text)
     except json.JSONDecodeError as exc:
-        log.error('JSON parse failed: %s\nRaw response (first 600 chars): %s', exc, text[:600])
+        log.error(
+            'JSON parse failed: %s\nRaw response (first 600 chars): %s',
+            exc, result_text[:600],
+        )
         raise
 
 
+def _run(coro):
+    """Run an async coroutine from synchronous context via anyio."""
+    return anyio.from_thread.run_sync(lambda: anyio.run(coro))
+
+
+def call_claude(prompt: str, max_tokens: int = 3000) -> dict | list:
+    """Synchronous wrapper around _call_claude for use in sequential drafting."""
+    return anyio.run(_call_claude, prompt)
+
+
 def draft_domain(
-    client: anthropic.Anthropic,
     domain: str,
     items: list[dict],
     target_date: datetime,
     prev_cycle: dict | None = None,
-    context_sections: dict | None = None,  # {domain_id: drafted_section_dict}
+    context_sections: dict | None = None,
 ) -> dict:
     """Draft a single domain section."""
     tier1, tier2 = filter_by_domain(items, domain)
@@ -139,12 +172,10 @@ def draft_domain(
         if prev_d:
             prev_kj = prev_d.get('keyJudgment', {}).get('text', '')
 
-    # Cross-domain context (d2/d3 get d1; d4 gets d2)
+    # Cross-domain context
     context_sections = context_sections or {}
     d1_context = _domain_summary(context_sections['d1']) if 'd1' in context_sections else '(not yet available)'
     d2_context = _domain_summary(context_sections['d2']) if 'd2' in context_sections else '(not yet available)'
-
-    # d3 context for d6 (war risk prompt uses {d2_context} slot for energy context)
     d3_context = _domain_summary(context_sections['d3']) if 'd3' in context_sections else '(not yet available)'
 
     prompt = _fill_template(
@@ -157,19 +188,17 @@ def draft_domain(
     )
 
     log.info('Drafting domain %s (%d T1, %d T2 items)...', domain, len(tier1), len(tier2))
-    result = call_claude(client, prompt, max_tokens=3000)
+    result = call_claude(prompt, max_tokens=3000)
     return result if isinstance(result, dict) else {}
 
 
 def draft_executive(
-    client: anthropic.Anthropic,
     domain_sections: list[dict],
     prev_cycle: dict | None = None,
 ) -> dict:
     """Draft executive summary (BLUF + key judgments + KPIs)."""
     template = load_prompt('executive.md')
 
-    # Build per-domain summary strings matching {d1_summary} … {d5_summary}
     section_map = {s.get('id'): s for s in domain_sections}
     prev_bluf = prev_cycle.get('executive', {}).get('bluf', '') if prev_cycle else ''
 
@@ -185,12 +214,11 @@ def draft_executive(
     )
 
     log.info('Drafting executive summary...')
-    result = call_claude(client, prompt, max_tokens=2000)
+    result = call_claude(prompt, max_tokens=2000)
     return result if isinstance(result, dict) else {}
 
 
 def draft_strategic_header(
-    client: anthropic.Anthropic,
     domain_sections: list[dict],
     executive: dict,
     prev_cycle: dict | None = None,
@@ -218,12 +246,11 @@ def draft_strategic_header(
     )
 
     log.info('Drafting strategic header...')
-    result = call_claude(client, prompt, max_tokens=500)
+    result = call_claude(prompt, max_tokens=500)
     return result if isinstance(result, dict) else {}
 
 
 def draft_warning_indicators(
-    client: anthropic.Anthropic,
     domain_sections: list[dict],
     prev_cycle: dict | None = None,
 ) -> list[dict]:
@@ -233,7 +260,7 @@ def draft_warning_indicators(
     all_domain_summaries = '\n\n'.join(_domain_summary(s) for s in domain_sections)
     prev_wi = json.dumps(
         prev_cycle.get('warningIndicators', []) if prev_cycle else [],
-        indent=2
+        indent=2,
     )
 
     prompt = _fill_template(
@@ -243,21 +270,19 @@ def draft_warning_indicators(
     )
 
     log.info('Drafting warning indicators...')
-    result = call_claude(client, prompt, max_tokens=1200)
+    result = call_claude(prompt, max_tokens=1200)
     if isinstance(result, list):
         return result
     return result.get('warningIndicators', [])
 
 
 def draft_collection_gaps(
-    client: anthropic.Anthropic,
     tagged_items: list[dict],
     domain_sections: list[dict],
 ) -> list[dict]:
     """Identify collection gaps from triage output and domain confidence."""
     template = load_prompt('collection_gaps.md')
 
-    # Triage summary: item counts per domain, failed sources
     domain_counts: dict[str, int] = {}
     for item in tagged_items:
         for d in item.get('tagged_domains', []):
@@ -280,7 +305,7 @@ def draft_collection_gaps(
     )
 
     log.info('Drafting collection gaps...')
-    result = call_claude(client, prompt, max_tokens=900)
+    result = call_claude(prompt, max_tokens=900)
     if isinstance(result, list):
         return result
     return result.get('collectionGaps', [])
@@ -293,36 +318,25 @@ def draft_cycle(
     config: dict | None = None,
 ) -> dict:
     """
-    Orchestrate full cycle draft.
+    Orchestrate full cycle draft via Claude CLI (claude_agent_sdk).
     Domain order: d1 → d2 (gets d1 context) → d3 (gets d1 context) →
                   d4 (gets d2 context) → d5 →
                   d6 (gets d1+d3 context) → executive → strategic header →
                   warning indicators → collection gaps.
     """
     config = config or {}
-    claude_cfg = config.get('claude', {})
-
-    api_key = claude_cfg.get('api_key') or os.environ.get('ANTHROPIC_API_KEY', '')
-    if not api_key:
-        raise ValueError(
-            'ANTHROPIC_API_KEY not set. Export the variable or add it to pipeline-config.yaml.'
-        )
-
-    client = anthropic.Anthropic(api_key=api_key)
 
     domain_sections: list[dict] = []
-    drafted: dict[str, dict] = {}  # domain_id → section dict
+    drafted: dict[str, dict] = {}
 
     for domain_id, domain_num, domain_title in DOMAIN_CONFIG:
         section = draft_domain(
-            client=client,
             domain=domain_id,
             items=tagged_items,
             target_date=target_date,
             prev_cycle=prev_cycle,
             context_sections=drafted,
         )
-        # Ensure schema fields are present
         section.setdefault('id', domain_id)
         section.setdefault('num', domain_num)
         section.setdefault('title', domain_title)
@@ -330,12 +344,11 @@ def draft_cycle(
         drafted[domain_id] = section
         log.info('Domain %s drafted', domain_id)
 
-    executive = draft_executive(client, domain_sections, prev_cycle)
-    strategic_header = draft_strategic_header(client, domain_sections, executive, prev_cycle)
-    warning_indicators = draft_warning_indicators(client, domain_sections, prev_cycle)
-    collection_gaps = draft_collection_gaps(client, tagged_items, domain_sections)
+    executive = draft_executive(domain_sections, prev_cycle)
+    strategic_header = draft_strategic_header(domain_sections, executive, prev_cycle)
+    warning_indicators = draft_warning_indicators(domain_sections, prev_cycle)
+    collection_gaps = draft_collection_gaps(tagged_items, domain_sections)
 
-    # Merge strategicHeader fields into meta for convenience
     threat_level = strategic_header.pop('threatLevel', 'SEVERE')
     threat_trajectory = strategic_header.pop('threatTrajectory', 'escalating')
 
@@ -344,7 +357,7 @@ def draft_cycle(
     return {
         'meta': {
             'cycleId': cycle_id,
-            'cycleNum': '000',  # Overwritten by serializer
+            'cycleNum': '000',
             'classification': 'PROTECTED B',
             'tlp': 'AMBER',
             'timestamp': target_date.strftime('%Y-%m-%dT06:00:00Z'),
@@ -376,7 +389,7 @@ def draft_cycle(
             'items': [
                 {
                     'label': 'DRAFT STATUS',
-                    'text': 'Pipeline draft — human review required before distribution.'
+                    'text': 'Pipeline draft — human review required before distribution.',
                 }
             ],
             'confidenceAssessment': 'See individual domain sections for confidence ratings.',
