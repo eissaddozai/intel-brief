@@ -314,11 +314,11 @@ sources:
     name: "Rudaw"
     tier: 2
     domains: [d1]
-    method: rss
-    url: "https://www.rudaw.net/english/rss.xml"
+    method: scrape
+    url: "https://www.rudaw.net/english"
     status: likely
     enabled: true
-    notes: "Ground coverage of Kurdistan Region of Iraq. Proxy activity."
+    notes: "Ground coverage of Kurdistan Region of Iraq. Proxy activity. RSS discontinued; scrape homepage."
 
   - id: icg
     name: "International Crisis Group"
@@ -345,7 +345,7 @@ sources:
     tier: 2
     domains: [d1, d2]
     method: scrape
-    url: "https://israel-alma.org/category/reports/"
+    url: "https://israel-alma.org/all-publications/"
     status: likely
     enabled: true
     notes: >
@@ -368,11 +368,11 @@ sources:
     name: "BBC Persian"
     tier: 2
     domains: [d1, d2]
-    method: scrape
-    url: "https://www.bbc.com/persian"
-    status: likely
+    method: rss
+    url: "https://feeds.bbci.co.uk/persian/rss.xml"
+    status: working
     enabled: true
-    notes: "Persian-language BBC. Static headline extraction."
+    notes: "Persian-language BBC. Switched from scrape to RSS feed (verified working Mar 2026)."
 
   - id: haaretz
     name: "Haaretz"
