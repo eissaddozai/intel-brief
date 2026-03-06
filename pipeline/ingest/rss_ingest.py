@@ -33,7 +33,7 @@ NS = {
 
 def load_rss_sources(config: dict | None = None) -> list[dict]:
     data = yaml.safe_load(SOURCES_FILE.read_text(encoding='utf-8'))
-    return [s for s in data.get('sources', []) if s.get('method') == 'rss']
+    return [s for s in data.get('sources', []) if s.get('method') == 'rss' and s.get('enabled', True)]
 
 
 def _parse_date(text: str | None) -> datetime | None:

@@ -551,6 +551,7 @@
 .kpi-strip__cell--d3 { background-color: var(--d3-fill); border-top-color: var(--d3-bright); }
 .kpi-strip__cell--d4 { background-color: var(--d4-fill); border-top-color: var(--d4-bright); }
 .kpi-strip__cell--d5 { background-color: var(--d5-fill); border-top-color: var(--d5-bright); }
+.kpi-strip__cell--d6 { background-color: var(--d6-fill); border-top-color: var(--d6-bright); }
 
 .kpi-strip__number {
   font-family: var(--font-display);
@@ -564,6 +565,7 @@
 .kpi-strip__cell--d3 .kpi-strip__number { color: var(--d3-bright); }
 .kpi-strip__cell--d4 .kpi-strip__number { color: var(--d4-bright); }
 .kpi-strip__cell--d5 .kpi-strip__number { color: var(--d5-bright); }
+.kpi-strip__cell--d6 .kpi-strip__number { color: var(--d6-bright); }
 
 .kpi-strip__label {
   font-family: var(--font-ui);
@@ -1030,6 +1032,7 @@
 .timeline__event--d3::before { background-color: var(--d3-bright); }
 .timeline__event--d4::before { background-color: var(--d4-bright); }
 .timeline__event--d5::before { background-color: var(--d5-bright); }
+.timeline__event--d6::before { background-color: var(--d6-bright); }
 
 .timeline__time {
   font-family: var(--font-data);
