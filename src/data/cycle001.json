@@ -5,7 +5,7 @@
     "classification": "PROTECTED B",
     "tlp": "AMBER",
     "timestamp": "2024-03-15T06:00:00Z",
-    "region": "Iran \u00b7 Gulf Region \u00b7 Eastern Mediterranean",
+    "region": "Iran · Gulf Region · Eastern Mediterranean",
     "analystUnit": "CSE Conflict Assessment Unit",
     "threatLevel": "SEVERE",
     "threatTrajectory": "escalating",
@@ -17,7 +17,7 @@
         "bot": "THREAT LEVEL"
       },
       {
-        "top": "\u2191 23",
+        "top": "↑ 23",
         "bot": "INCIDENTS / 24H"
       },
       {
@@ -101,7 +101,7 @@
         "id": "kj-exec-001",
         "domain": "d1",
         "confidence": "high",
-        "probabilityRange": "75\u201395%",
+        "probabilityRange": "75–95%",
         "language": "highly-likely",
         "text": "We judge it highly likely that Israel will conduct retaliatory strikes against IRGC or IRGC-affiliated targets within Iranian territory within the next 72 hours, contingent on US force posture coordination.",
         "basis": "(CTP-ISW Evening Report 14 Mar; Israeli cabinet emergency session reporting via Haaretz)",
@@ -124,7 +124,7 @@
         "id": "kj-exec-002",
         "domain": "d2",
         "confidence": "moderate",
-        "probabilityRange": "55\u201375%",
+        "probabilityRange": "55–75%",
         "language": "likely",
         "text": "Available evidence suggests that Iran's missile salvo was deliberately calibrated to avoid triggering Article 5-equivalent US commitments, indicating Tehran retains escalation management intent despite the crossing of a significant threshold.",
         "basis": "(ICG analysis; Quincy Institute; CENTCOM posture assessment)",
@@ -141,7 +141,7 @@
         "id": "kj-exec-003",
         "domain": "d3",
         "confidence": "high",
-        "probabilityRange": "95\u201399%",
+        "probabilityRange": "95–99%",
         "language": "almost-certainly",
         "text": "We assess with high confidence that Strait of Hormuz transit disruption will drive Brent crude above $100/bbl within five trading days absent a rapid de-escalation signal, with Goldman Sachs's four-week disruption scenario implying a $14 risk premium materialisation.",
         "basis": "(Goldman Sachs Research; UKMTO; Kpler vessel data; CNBC energy desk)",
@@ -158,7 +158,7 @@
         "id": "kj-exec-004",
         "domain": "d4",
         "confidence": "moderate",
-        "probabilityRange": "45\u201355%",
+        "probabilityRange": "45–55%",
         "language": "possibly",
         "text": "Reporting indicates, though corroboration is limited, that Qatar and Oman have opened back-channel communications to both Tehran and Washington seeking a 48-hour pause; the probability of a negotiated pause before Israeli retaliation remains roughly even.",
         "basis": "(Reuters diplomatic sourcing; CFR Daily Brief 15 Mar)",
@@ -181,7 +181,7 @@
         "id": "kj-exec-005",
         "domain": "d5",
         "confidence": "low",
-        "probabilityRange": "45\u201355%",
+        "probabilityRange": "45–55%",
         "language": "possibly",
         "text": "Reporting indicates, though corroboration is limited, that coordinated cyber operations targeting Israeli financial sector infrastructure preceded the missile salvo by approximately six hours; attribution to IRGC cyber units remains unconfirmed in open sources.",
         "basis": "(Recorded Future blog; France 24 Observers video verification; NetBlocks blackout data)",
@@ -204,7 +204,7 @@
       },
       {
         "domain": "d2",
-        "number": "\u2191 HIGH",
+        "number": "↑ HIGH",
         "label": "ESCALATION INDEX",
         "changeDirection": "up"
       },
@@ -232,14 +232,14 @@
     {
       "id": "d1",
       "num": "01",
-      "title": "BATTLESPACE \u00b7 KINETIC",
-      "assessmentQuestion": "What is the current disposition of forces, and what kinetic activity occurred across all theatres in the preceding 24 hours?",
+      "title": "BATTLESPACE · KINETIC",
+      "assessmentQuestion": "What is the current disposition of forces, and what offensive and defensive operations occurred across all theatres in the preceding 24 hours?",
       "confidence": "high",
       "keyJudgment": {
         "id": "kj-d1-001",
         "domain": "d1",
         "confidence": "high",
-        "probabilityRange": "75\u201395%",
+        "probabilityRange": "75–95%",
         "language": "highly-likely",
         "text": "We judge it highly likely that Israel is in the final planning phase for retaliatory strikes, with USAF repositioning of B-2 assets to Diego Garcia and Israeli Air Force sortie rates at levels not observed since October 2023 constituting the primary indicators.",
         "basis": "(CENTCOM; open-source flight tracking; NBC satellite imagery verification)",
@@ -260,7 +260,7 @@
       },
       "bodyParagraphs": [
         {
-          "subLabel": "OBSERVED ACTIVITY \u2014 0001\u20130600 UTC 15 MAR",
+          "subLabel": "OBSERVED ACTIVITY — 0001–0600 UTC 15 MAR",
           "subLabelVariant": "observed",
           "text": "At 0342 UTC, IRGC Aerospace Force launched an estimated 22 ballistic missiles from launch sites in Khuzestan and Isfahan provinces targeting Haifa (14 missiles) and the Tel Aviv metropolitan area (8 missiles). Iron Dome, David's Sling, and Arrow-3 interceptors engaged the salvo; official IDF statements confirmed 19 interceptions. Two impacts were confirmed in the Haifa port district, resulting in structural damage to petroleum storage facilities and an estimated 14 civilian casualties.",
           "timestamp": "As of 0600 UTC 15 Mar",
@@ -305,7 +305,7 @@
         {
           "subLabel": "ANALYTICAL ASSESSMENT",
           "subLabelVariant": "assessment",
-          "text": "We assess that the missile salvo represents a deliberate calibration exercise: the quantity and mix of systems employed \u2014 Shahab-3 variants combined with one Fattah-1 hypersonic \u2014 signals Iranian intent to demonstrate escalation capability across the velocity spectrum without exhausting reserve stocks. Iran's operational missile inventory is estimated to exceed 3,000 units; the 22 employed represents less than 1% of accessible stock. This restraint is analytically significant. Available evidence suggests the attack was designed to generate a retaliatory response from Israel that Iran calculates it can absorb and leverage domestically, rather than as a war-terminating first strike.",
+          "text": "We assess that the missile salvo represents a deliberate calibration exercise: the quantity and mix of systems employed — Shahab-3 variants combined with one Fattah-1 hypersonic — signals Iranian intent to demonstrate escalation capability across the velocity spectrum without exhausting reserve stocks. Iran's operational missile inventory is estimated to exceed 3,000 units; the 22 employed represents less than 1% of accessible stock. This restraint is analytically significant. Available evidence suggests the attack was designed to generate a retaliatory response from Israel that Iran calculates it can absorb and leverage domestically, rather than as a war-terminating first strike.",
           "citations": [
             {
               "source": "CTP-ISW Evening Report",
@@ -396,22 +396,22 @@
         }
       ],
       "analystNote": {
-        "title": "ANALYTICAL NOTE \u2014 BATTLESPACE",
-        "cycleRef": "CYCLE 001 \u00b7 15 MARCH 2024",
-        "text": "The Fattah-1 hypersonic missile's inclusion in the salvo warrants specific analytical attention. Iran has previously reserved its hypersonic inventory as a strategic deterrent against hardened targets, notably the Dimona nuclear research facility. Its operational employment against urban targets in an initial salvo suggests either (a) a political signalling decision to demonstrate the weapon's existence and operational status to a domestic audience, or (b) a deliberate attempt to saturate Israeli terminal defence systems at a velocity envelope that Arrow-3 has limited tested effectiveness against. The interception record from this cycle \u2014 no confirmed Fattah-1 kills in official statements \u2014 supports the latter interpretation. This assessment carries moderate confidence given limited open-source technical data on Arrow-3 v. Fattah-1 engagement history."
+        "title": "ANALYTICAL NOTE — BATTLESPACE",
+        "cycleRef": "CYCLE 001 · 15 MARCH 2024",
+        "text": "The Fattah-1 hypersonic missile's inclusion in the salvo warrants specific analytical attention. Iran has previously reserved its hypersonic inventory as a strategic deterrent against hardened targets, notably the Dimona nuclear research facility. Its operational employment against urban targets in an initial salvo suggests either (a) a political signalling decision to demonstrate the weapon's existence and operational status to a domestic audience, or (b) a deliberate attempt to saturate Israeli terminal defence systems at a velocity envelope that Arrow-3 has limited tested effectiveness against. The interception record from this cycle — no confirmed Fattah-1 kills in official statements — supports the latter interpretation. This assessment carries moderate confidence given limited open-source technical data on Arrow-3 v. Fattah-1 engagement history."
       }
     },
     {
       "id": "d2",
       "num": "02",
-      "title": "ESCALATION \u00b7 TRAJECTORY",
+      "title": "ESCALATION · TRAJECTORY",
       "assessmentQuestion": "Are there indicators of escalation, de-escalation, or horizontal expansion? What red lines are being approached or crossed?",
       "confidence": "moderate",
       "keyJudgment": {
         "id": "kj-d2-001",
         "domain": "d2",
         "confidence": "moderate",
-        "probabilityRange": "55\u201375%",
+        "probabilityRange": "55–75%",
         "language": "likely",
         "text": "Available evidence suggests that the conflict is tracking toward a controlled escalatory exchange rather than an uncontrolled regional war, but the margin is narrow and shrinking: three of the five tripwires identified in the previous cycle have now been triggered, and the nuclear facility inspection suspension is the most significant red line indicator observed to date.",
         "basis": "(ICG escalation framing; IAEA suspension statement; CTP-ISW trajectory assessment)",
@@ -432,9 +432,9 @@
       },
       "bodyParagraphs": [
         {
-          "subLabel": "ESCALATION INDICATORS \u2014 TRIGGERED",
+          "subLabel": "ESCALATION INDICATORS — TRIGGERED",
           "subLabelVariant": "observed",
-          "text": "Three of five pre-identified escalation tripwires have been triggered in this cycle: (1) ballistic missile employment against Israeli territory \u2014 confirmed; (2) IAEA inspector access suspension at a declared enrichment facility \u2014 confirmed; (3) Hezbollah ground forces observed moving to forward assembly areas in southern Lebanon \u2014 confirmed via Anadolu Agency ground imagery. The remaining two indicators \u2014 Iraqi PMF cross-border strikes against Israeli territory, and a third-country Arab state's infrastructure being struck \u2014 remain unactivated.",
+          "text": "Three of five pre-identified escalation tripwires have been triggered in this cycle: (1) ballistic missile employment against Israeli territory — confirmed; (2) IAEA inspector access suspension at a declared enrichment facility — confirmed; (3) Hezbollah ground forces observed moving to forward assembly areas in southern Lebanon — confirmed via Anadolu Agency ground imagery. The remaining two indicators — Iraqi PMF cross-border strikes against Israeli territory, and a third-country Arab state's infrastructure being struck — remain unactivated.",
           "timestamp": "As of 0600 UTC 15 Mar",
           "citations": [
             {
@@ -454,7 +454,7 @@
         {
           "subLabel": "DE-ESCALATION SIGNALS",
           "subLabelVariant": "assessment",
-          "text": "Reporting indicates, though corroboration is limited, that Qatar's foreign minister held a one-hour call with the Iranian foreign ministry at approximately 0430 UTC, and that Oman's back-channel \u2014 which proved functional in the 2019 tanker crisis \u2014 is now active. The ICG's Ali Vaez has assessed that Iran retains the political will to accept a face-saving pause if Israel's retaliation is calibrated to non-nuclear, non-regime-change targets. This assessment aligns with our own analytical judgment, though it carries only moderate confidence given the opacity of Iranian internal deliberation.",
+          "text": "Reporting indicates, though corroboration is limited, that Qatar's foreign minister held a one-hour call with the Iranian foreign ministry at approximately 0430 UTC, and that Oman's back-channel — which proved functional in the 2019 tanker crisis — is now active. The ICG's Ali Vaez has assessed that Iran retains the political will to accept a face-saving pause if Israel's retaliation is calibrated to non-nuclear, non-regime-change targets. This assessment aligns with our own analytical judgment, though it carries only moderate confidence given the opacity of Iranian internal deliberation.",
           "citations": [
             {
               "source": "Reuters",
@@ -475,35 +475,35 @@
       "actorMatrix": [
         {
           "actor": "Iran (IRGC)",
-          "posture": "Offensive \u2014 elevated readiness, missile forces on alert",
+          "posture": "Offensive — elevated readiness, missile forces on alert",
           "changeSincePrevCycle": "up",
           "assessment": "Deliberate escalation with retained de-escalation off-ramp; threshold management intact",
           "confidence": "moderate"
         },
         {
           "actor": "Israel (IDF)",
-          "posture": "Defensive transition to offensive \u2014 retaliatory strike planning confirmed",
+          "posture": "Defensive transition to offensive — retaliatory strike planning confirmed",
           "changeSincePrevCycle": "up",
           "assessment": "Retaliation certain; question is scale and target selection",
           "confidence": "high"
         },
         {
           "actor": "Hezbollah",
-          "posture": "Elevated \u2014 forward assembly but no ground manoeuvre",
+          "posture": "Elevated — forward assembly but no ground manoeuvre",
           "changeSincePrevCycle": "up",
           "assessment": "Holding in reserve; likely awaiting IDF retaliation before committing",
           "confidence": "moderate"
         },
         {
           "actor": "United States",
-          "posture": "Defensive support \u2014 CSG repositioned, B-2s forward deployed",
+          "posture": "Defensive support — CSG repositioned, B-2s forward deployed",
           "changeSincePrevCycle": "up",
           "assessment": "Active restraint of Israel's retaliatory ambition while providing military backing",
           "confidence": "high"
         },
         {
           "actor": "Russia / China",
-          "posture": "Declaratory \u2014 calls for restraint; no material change",
+          "posture": "Declaratory — calls for restraint; no material change",
           "changeSincePrevCycle": "same",
           "assessment": "No evidence of material military support to Iran in this cycle; Deutsche Welle confirms diplomatic statements only",
           "confidence": "high"
@@ -512,20 +512,20 @@
       "dissenterNote": {
         "analystId": "ANALYST B",
         "domain": "d2",
-        "text": "The majority assessment that Iran retains escalation management intent may underweight the autonomous decision-making authority now delegated to IRGC Aerospace Force unit commanders. The pace and scale of the missile salvo was inconsistent with the political caution Iran has historically displayed in direct engagements with Israel. ANALYST B assesses that command-and-control fragmentation within the IRGC \u2014 documented by Iran International following the October leadership changes \u2014 may mean that the next escalatory action occurs without explicit political authorisation from the Supreme Leader's office, which would invalidate the de-escalation off-ramp reasoning. This view carries low confidence given limited visibility into IRGC internal command structures."
+        "text": "The majority assessment that Iran retains escalation management intent may underweight the autonomous decision-making authority now delegated to IRGC Aerospace Force unit commanders. The pace and scale of the missile salvo was inconsistent with the political caution Iran has historically displayed in direct engagements with Israel. ANALYST B assesses that command-and-control fragmentation within the IRGC — documented by Iran International following the October leadership changes — may mean that the next escalatory action occurs without explicit political authorisation from the Supreme Leader's office, which would invalidate the de-escalation off-ramp reasoning. This view carries low confidence given limited visibility into IRGC internal command structures."
       }
     },
     {
       "id": "d3",
       "num": "03",
-      "title": "ENERGY \u00b7 ECONOMIC",
+      "title": "ENERGY · ECONOMIC",
       "assessmentQuestion": "Is the conflict disrupting energy production, transit, or global commodity markets in ways that affect Canadian economic interests?",
       "confidence": "high",
       "keyJudgment": {
         "id": "kj-d3-001",
         "domain": "d3",
         "confidence": "high",
-        "probabilityRange": "95\u201399%",
+        "probabilityRange": "95–99%",
         "language": "almost-certainly",
         "text": "We assess with high confidence that the combination of UKMTO Hormuz disruption, Lloyd's insurance suspension, and Goldman Sachs's revised $14 risk premium will drive Brent crude above $100/bbl within five trading days, with direct implications for Canadian TSX energy sector pricing and CAD/USD appreciation.",
         "basis": "(Goldman Sachs Research; UKMTO bulletin; Kpler vessel flow data; CNBC energy desk)",
@@ -546,9 +546,9 @@
       },
       "bodyParagraphs": [
         {
-          "subLabel": "MARKET INDICATORS \u2014 AS OF 0600 UTC",
+          "subLabel": "MARKET INDICATORS — AS OF 0600 UTC",
           "subLabelVariant": "observed",
-          "text": "Brent crude opened the European session at $94.20/bbl, a $6.40 (7.3%) increase from the previous close, representing the largest single-day move since the October 2023 Gaza shock. WTI tracks at $89.80/bbl. Goldman Sachs's Daan Struyven issued a revised note at 0500 UTC placing the four-week disruption probability at 65%, consistent with the Hormuz interdiction already confirmed by UKMTO. The $14 risk premium is now partially priced in; full materialisation would imply $102\u2013108/bbl.",
+          "text": "Brent crude opened the European session at $94.20/bbl, a $6.40 (7.3%) increase from the previous close, representing the largest single-day move since the October 2023 Gaza shock. WTI tracks at $89.80/bbl. Goldman Sachs's Daan Struyven issued a revised note at 0500 UTC placing the four-week disruption probability at 65%, consistent with the Hormuz interdiction already confirmed by UKMTO. The $14 risk premium is now partially priced in; full materialisation would imply $102–108/bbl.",
           "timestamp": "As of 0600 UTC 15 Mar",
           "citations": [
             {
@@ -568,7 +568,7 @@
         {
           "subLabel": "CANADIAN ECONOMIC EXPOSURE",
           "subLabelVariant": "assessment",
-          "text": "Available evidence suggests Canadian energy sector exposure is asymmetrically positive in the near term: TSX energy index futures indicate a 4\u20136% opening gain, and Western Canadian Select heavy crude \u2014 already trading at a narrowed differential to WTI \u2014 would benefit from sustained elevated benchmarks. The risk dimension is LNG export competitiveness: a prolonged Hormuz closure redirecting Qatar LNG to alternative markets would reduce the price incentive for new Canadian LNG facility investment. The British Columbia-to-Asia LNG corridor, currently in financing phase, is the most exposed long-duration Canadian interest in this scenario.",
+          "text": "Available evidence suggests Canadian energy sector exposure is asymmetrically positive in the near term: TSX energy index futures indicate a 4–6% opening gain, and Western Canadian Select heavy crude — already trading at a narrowed differential to WTI — would benefit from sustained elevated benchmarks. The risk dimension is LNG export competitiveness: a prolonged Hormuz closure redirecting Qatar LNG to alternative markets would reduce the price incentive for new Canadian LNG facility investment. The British Columbia-to-Asia LNG corridor, currently in financing phase, is the most exposed long-duration Canadian interest in this scenario.",
           "citations": [
             {
               "source": "Reuters",
@@ -582,7 +582,7 @@
       ],
       "tables": [
         {
-          "caption": "KEY ENERGY INDICATORS \u2014 0600 UTC 15 MAR",
+          "caption": "KEY ENERGY INDICATORS — 0600 UTC 15 MAR",
           "unit": "USD",
           "headers": [
             "INDICATOR",
@@ -615,7 +615,7 @@
               "label": "Hormuz Daily Transit",
               "values": [
                 "~14 tankers",
-                "\u2193 from 21",
+                "↓ from 21",
                 "DISRUPTED"
               ],
               "change": "down",
@@ -624,8 +624,8 @@
             {
               "label": "Qatar LNG (Europe TTF)",
               "values": [
-                "\u20ac38.20/MWh",
-                "+\u20ac4.10",
+                "€38.20/MWh",
+                "+€4.10",
                 "RISING"
               ],
               "change": "up",
@@ -658,14 +658,14 @@
     {
       "id": "d4",
       "num": "04",
-      "title": "DIPLOMATIC \u00b7 POLITICAL",
+      "title": "DIPLOMATIC · POLITICAL",
       "assessmentQuestion": "What are the positions of key state actors, and are there diplomatic initiatives or breakdowns that shift the conflict trajectory?",
       "confidence": "moderate",
       "keyJudgment": {
         "id": "kj-d4-001",
         "domain": "d4",
         "confidence": "moderate",
-        "probabilityRange": "45\u201355%",
+        "probabilityRange": "45–55%",
         "language": "possibly",
         "text": "Reporting indicates, though corroboration is limited, that a 48-hour diplomatic pause is achievable if the United States explicitly constrains Israeli target selection to non-nuclear, non-regime-threatening facilities; the probability is roughly even, with the decisive variable being the Netanyahu coalition's domestic political calculus rather than strategic logic.",
         "basis": "(CFR Daily Brief 15 Mar; Reuters Qatar sourcing; CBS State Department track)",
@@ -714,7 +714,7 @@
         {
           "subLabel": "MEDIATION DYNAMICS",
           "subLabelVariant": "assessment",
-          "text": "The Qatari and Omani back-channels remain the most credible de-escalation mechanisms available. Reuters diplomatic sourcing \u2014 the most reliable single feed for Gulf state positioning \u2014 confirms both are active, but the timeline pressure is acute: Israel's war cabinet is constitutionally required to vote on any major military action, and the vote is scheduled for a 0800 local time (0600 UTC) session on 16 March. The 24-hour window before that vote represents the functional diplomatic horizon. Available evidence suggests the US is prepared to offer Iran a tacit security guarantee against regime-change operations as part of a pause framework, but this offer has not been formally transmitted as of this cycle's close.",
+          "text": "The Qatari and Omani back-channels remain the most credible de-escalation mechanisms available. Reuters diplomatic sourcing — the most reliable single feed for Gulf state positioning — confirms both are active, but the timeline pressure is acute: Israel's war cabinet is constitutionally required to vote on any major military action, and the vote is scheduled for a 0800 local time (0600 UTC) session on 16 March. The 24-hour window before that vote represents the functional diplomatic horizon. Available evidence suggests the US is prepared to offer Iran a tacit security guarantee against regime-change operations as part of a pause framework, but this offer has not been formally transmitted as of this cycle's close.",
           "citations": [
             {
               "source": "Reuters",
@@ -733,25 +733,25 @@
         }
       ],
       "analystNote": {
-        "title": "ANALYTICAL NOTE \u2014 DIPLOMATIC",
-        "cycleRef": "CYCLE 001 \u00b7 15 MARCH 2024",
-        "text": "The RFI Persian-language service \u2014 the most reliable open-source window into Iranian diaspora political sentiment in France \u2014 is reporting significant dissent within the Iranian expatriate community in Paris about the missile attack, with several prominent reformist voices publicly condemning the strike as a strategic error that has isolated Iran internationally. This diaspora sentiment is a lagging but historically reliable indicator of the domestic political cost Iran's leadership is absorbing. The precedent from 2020 \u2014 when diaspora opposition to the Soleimani retaliation preceded a domestic moderation signal by approximately three weeks \u2014 suggests the Supreme Leader's office is likely already receiving unfavourable domestic opinion data that could inform a de-escalation posture."
+        "title": "ANALYTICAL NOTE — DIPLOMATIC",
+        "cycleRef": "CYCLE 001 · 15 MARCH 2024",
+        "text": "The RFI Persian-language service — the most reliable open-source window into Iranian diaspora political sentiment in France — is reporting significant dissent within the Iranian expatriate community in Paris about the missile attack, with several prominent reformist voices publicly condemning the strike as a strategic error that has isolated Iran internationally. This diaspora sentiment is a lagging but historically reliable indicator of the domestic political cost Iran's leadership is absorbing. The precedent from 2020 — when diaspora opposition to the Soleimani retaliation preceded a domestic moderation signal by approximately three weeks — suggests the Supreme Leader's office is likely already receiving unfavourable domestic opinion data that could inform a de-escalation posture."
       }
     },
     {
       "id": "d5",
       "num": "05",
-      "title": "CYBER \u00b7 INFORMATION OPS",
+      "title": "CYBER · INFORMATION OPS",
       "assessmentQuestion": "What Iranian or proxy-affiliated cyber and information operations are observable in open sources? Confidence is structurally lower in this domain.",
       "confidence": "low",
       "keyJudgment": {
         "id": "kj-d5-001",
         "domain": "d5",
         "confidence": "low",
-        "probabilityRange": "45\u201355%",
+        "probabilityRange": "45–55%",
         "language": "possibly",
         "text": "Reporting indicates, though corroboration is limited, that coordinated cyber operations preceded the missile salvo by approximately six hours, targeting Israeli financial sector clearing infrastructure; attribution to IRGC cyber units rather than hacktivist proxies remains unconfirmed and should be treated as a claimed assessment only.",
-        "basis": "(Recorded Future free tier; France 24 Observers video verification; NetBlocks blackout data \u2014 all Tier 3)",
+        "basis": "(Recorded Future free tier; France 24 Observers video verification; NetBlocks blackout data — all Tier 3)",
         "citations": [
           {
             "source": "Recorded Future Blog",
@@ -769,9 +769,9 @@
       },
       "bodyParagraphs": [
         {
-          "subLabel": "OBSERVED \u2014 WITH VERIFICATION CAVEATS",
+          "subLabel": "OBSERVED — WITH VERIFICATION CAVEATS",
           "subLabelVariant": "observed",
-          "text": "NetBlocks confirmed a significant degradation of internet connectivity in three Israeli cities beginning at approximately 2150 UTC 14 March \u2014 approximately six hours before the missile salvo. The Bank of Israel's online service portal was inaccessible for approximately 90 minutes beginning at 2200 UTC; this is a pattern consistent with DDoS activity but equally consistent with precautionary Iranian traffic filtering. Hacktivist group 'Cyber Avengers' \u2014 an IRGC-affiliated account \u2014 claimed responsibility for attacks on Israeli power grid SCADA systems via Telegram, but no confirmed outage has been independently verified. This section explicitly notes that cyber claims in open sources carry a materially higher noise-to-signal ratio than kinetic reporting. All items in this domain should be treated as indicative rather than confirmed.",
+          "text": "NetBlocks confirmed a significant degradation of internet connectivity in three Israeli cities beginning at approximately 2150 UTC 14 March — approximately six hours before the missile salvo. The Bank of Israel's online service portal was inaccessible for approximately 90 minutes beginning at 2200 UTC; this is a pattern consistent with DDoS activity but equally consistent with precautionary Iranian traffic filtering. Hacktivist group 'Cyber Avengers' — an IRGC-affiliated account — claimed responsibility for attacks on Israeli power grid SCADA systems via Telegram, but no confirmed outage has been independently verified. This section explicitly notes that cyber claims in open sources carry a materially higher noise-to-signal ratio than kinetic reporting. All items in this domain should be treated as indicative rather than confirmed.",
           "timestamp": "As of 0600 UTC 15 Mar",
           "citations": [
             {
@@ -872,11 +872,11 @@
     }
   ],
   "caveats": {
-    "cycleRef": "CSE-BRIEF-001 \u00b7 15 MARCH 2024",
+    "cycleRef": "CSE-BRIEF-001 · 15 MARCH 2024",
     "items": [
       {
         "label": "SOURCE QUALITY",
-        "text": "This cycle's Battlespace and Energy assessments are grounded in Tier 1 sources (AP, Reuters, CENTCOM, UKMTO) and carry high confidence. The Diplomatic and Escalation sections draw heavily on Tier 2 analytical sources (ICG, CFR, Haaretz) and carry moderate confidence. The Cyber/IO section is entirely Tier 2\u20133 sourced and should be treated as indicative only."
+        "text": "This cycle's Battlespace and Energy assessments are grounded in Tier 1 sources (AP, Reuters, CENTCOM, UKMTO) and carry high confidence. The Diplomatic and Escalation sections draw heavily on Tier 2 analytical sources (ICG, CFR, Haaretz) and carry moderate confidence. The Cyber/IO section is entirely Tier 2–3 sourced and should be treated as indicative only."
       },
       {
         "label": "TEMPORAL CAVEAT",
@@ -887,7 +887,7 @@
         "text": "Claims originating from PressTV, IRNA, Mehr, and Fars have not been used as factual inputs. Where Iranian government positions are referenced, they are explicitly labelled as 'Iranian government asserts' and cross-referenced against Tier 1 sources."
       }
     ],
-    "confidenceAssessment": "Overall cycle confidence: HIGH for kinetic facts (Battlespace, Energy); MODERATE for analytical assessments (Escalation, Diplomatic); LOW for cyber attributions. The two collection gaps assessed as critical \u2014 missile inventory and Supreme Leader deliberation \u2014 are the primary sources of analytical uncertainty in this cycle. Readers should weight the Escalation domain's assessment accordingly.",
+    "confidenceAssessment": "Overall cycle confidence: HIGH for kinetic facts (Battlespace, Energy); MODERATE for analytical assessments (Escalation, Diplomatic); LOW for cyber attributions. The two collection gaps assessed as critical — missile inventory and Supreme Leader deliberation — are the primary sources of analytical uncertainty in this cycle. Readers should weight the Escalation domain's assessment accordingly.",
     "dissenterNotes": [
       {
         "analystId": "ANALYST B",
@@ -896,12 +896,12 @@
       }
     ],
     "sourceQuality": "Tier 1 sources formed the factual backbone of this brief. CTP-ISW Evening Report provided the primary Battlespace synthesis. CFR Daily Brief provided the primary Diplomatic synthesis. Reuters diplomatic sourcing provided the Gulf state positioning assessment. No Iranian state media were used as factual inputs.",
-    "handling": "PROTECTED B \u00b7 TLP:AMBER. Distribute to named recipients on CSE Conflict Assessment distribution list only. Not for onward distribution without explicit authorisation."
+    "handling": "PROTECTED B · TLP:AMBER. Distribute to named recipients on CSE Conflict Assessment distribution list only. Not for onward distribution without explicit authorisation."
   },
   "footer": {
     "id": "CSE-BRIEF-001-20240315-0600UTC",
     "classification": "PROTECTED B // TLP:AMBER",
-    "sources": "AP \u00b7 Reuters \u00b7 AFP \u00b7 CTP-ISW \u00b7 IAEA \u00b7 CENTCOM \u00b7 UKMTO \u00b7 ICG \u00b7 CFR \u00b7 Haaretz \u00b7 Iran International \u00b7 Rudaw \u00b7 France 24 \u00b7 RFI \u00b7 Deutsche Welle \u00b7 Anadolu Agency \u00b7 CNBC \u00b7 Goldman Sachs Research \u00b7 Kpler \u00b7 NetBlocks \u00b7 Recorded Future",
-    "handling": "FOR OFFICIAL USE \u2014 CSE Conflict Assessment Unit \u00b7 Distribute to authorised recipients only \u00b7 Prepared 0600 UTC 15 March 2024"
+    "sources": "AP · Reuters · AFP · CTP-ISW · IAEA · CENTCOM · UKMTO · ICG · CFR · Haaretz · Iran International · Rudaw · France 24 · RFI · Deutsche Welle · Anadolu Agency · CNBC · Goldman Sachs Research · Kpler · NetBlocks · Recorded Future",
+    "handling": "FOR OFFICIAL USE — CSE Conflict Assessment Unit · Distribute to authorised recipients only · Prepared 0600 UTC 15 March 2024"
   }
 }

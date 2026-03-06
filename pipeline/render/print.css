@@ -297,5 +297,52 @@
     opacity: 0.72 !important;
   }
 
+/* ── Masthead layout — explicit flex/grid print overrides ───────────────── */
+  .masthead__brand-bar   { display: flex !important; justify-content: space-between; align-items: flex-end; }
+  .masthead__brand-left  { display: flex !important; flex-direction: column; }
+  .masthead__brand-right { display: flex !important; flex-direction: column; align-items: flex-end; }
+  .masthead__logo-zone   { display: flex !important; align-items: center; padding: 10pt 18pt 0; }
+  .masthead__logo-zone img { height: 22pt !important; }
+  .masthead__cycle-wrap  { display: flex !important; flex-direction: column; align-items: flex-end; }
+  .masthead__cycle-pre   { font-size: 6pt !important; }
+  .masthead__provenance  { display: flex !important; justify-content: space-between; padding: 2pt 14pt; }
+  .masthead__ctx         { display: flex !important; align-items: center; gap: 6pt; padding: 3pt 14pt; }
+
+  /* ── Masthead strip ─────────────────────────────────────────────────────── */
+  .masthead__strip      { display: grid !important; grid-template-columns: repeat(5, 1fr); gap: 2pt; }
+  .masthead__strip-cell { display: flex !important; flex-direction: column; align-items: center;
+                          padding: 4pt 4pt; border-right: 0.5pt solid #2a2a3a !important;
+                          background: rgba(10,12,24,0.95) !important; }
+
+  /* ── Domain header layout ───────────────────────────────────────────────── */
+  .domain__header    { display: flex !important; align-items: stretch; }
+  .domain__num       { display: flex !important; align-items: center; justify-content: center;
+                       min-width: 36pt; padding: 6pt; }
+  .domain__title-cell{ display: flex !important; flex-direction: column; justify-content: center;
+                       padding: 6pt 8pt; flex: 1; }
+
+  /* ── KJ layout ──────────────────────────────────────────────────────────── */
+  .kj__label-row     { display: flex !important; align-items: baseline; gap: 6pt; }
+  .kj__meta          { display: flex !important; align-items: center; gap: 6pt; margin-top: 4pt; }
+
+  /* ── Footer layout ──────────────────────────────────────────────────────── */
+  .brief-footer__flag { display: flex !important; align-items: center; padding: 4pt 14pt;
+                        background: rgba(10,12,24,0.95) !important; }
+  .brief-footer__main { display: flex !important; justify-content: space-between; align-items: flex-end;
+                        padding: 5pt 14pt; }
+
+  /* ── Note headers ───────────────────────────────────────────────────────── */
+  .analyst-note__header   { display: flex !important; align-items: baseline; gap: 8pt; }
+  .dissenter-note__header { display: flex !important; align-items: baseline; gap: 8pt; }
+
+  /* ── Section headers ────────────────────────────────────────────────────── */
+  .caveats__header          { display: flex !important; align-items: baseline; gap: 8pt; }
+  .collection-gaps__header  { display: flex !important; align-items: baseline; gap: 8pt; }
+  .flash-points__header     { display: flex !important; align-items: baseline; gap: 8pt; }
+  .exec__header             { display: flex !important; align-items: baseline; gap: 8pt; }
+  .warning-indicators__header { display: flex !important; align-items: baseline; justify-content: space-between; }
+  .strategic-header__meta   { display: flex !important; align-items: center; gap: 8pt; }
+  .metadata-bar__cell       { display: flex !important; flex-direction: column; }
+
   ::-webkit-scrollbar { display: none; }
 }

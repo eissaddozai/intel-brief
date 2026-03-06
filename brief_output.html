@@ -2658,9 +2658,55 @@ body::after {
     opacity: 0.72 !important;
   }
 
+/* ── Masthead layout — explicit flex/grid print overrides ───────────────── */
+  .masthead__brand-bar   { display: flex !important; justify-content: space-between; align-items: flex-end; }
+  .masthead__brand-left  { display: flex !important; flex-direction: column; }
+  .masthead__brand-right { display: flex !important; flex-direction: column; align-items: flex-end; }
+  .masthead__logo-zone   { display: flex !important; align-items: center; padding: 10pt 18pt 0; }
+  .masthead__logo-zone img { height: 22pt !important; }
+  .masthead__cycle-wrap  { display: flex !important; flex-direction: column; align-items: flex-end; }
+  .masthead__cycle-pre   { font-size: 6pt !important; }
+  .masthead__provenance  { display: flex !important; justify-content: space-between; padding: 2pt 14pt; }
+  .masthead__ctx         { display: flex !important; align-items: center; gap: 6pt; padding: 3pt 14pt; }
+
+  /* ── Masthead strip ─────────────────────────────────────────────────────── */
+  .masthead__strip      { display: grid !important; grid-template-columns: repeat(5, 1fr); gap: 2pt; }
+  .masthead__strip-cell { display: flex !important; flex-direction: column; align-items: center;
+                          padding: 4pt 4pt; border-right: 0.5pt solid #2a2a3a !important;
+                          background: rgba(10,12,24,0.95) !important; }
+
+  /* ── Domain header layout ───────────────────────────────────────────────── */
+  .domain__header    { display: flex !important; align-items: stretch; }
+  .domain__num       { display: flex !important; align-items: center; justify-content: center;
+                       min-width: 36pt; padding: 6pt; }
+  .domain__title-cell{ display: flex !important; flex-direction: column; justify-content: center;
+                       padding: 6pt 8pt; flex: 1; }
+
+  /* ── KJ layout ──────────────────────────────────────────────────────────── */
+  .kj__label-row     { display: flex !important; align-items: baseline; gap: 6pt; }
+  .kj__meta          { display: flex !important; align-items: center; gap: 6pt; margin-top: 4pt; }
+
+  /* ── Footer layout ──────────────────────────────────────────────────────── */
+  .brief-footer__flag { display: flex !important; align-items: center; padding: 4pt 14pt;
+                        background: rgba(10,12,24,0.95) !important; }
+  .brief-footer__main { display: flex !important; justify-content: space-between; align-items: flex-end;
+                        padding: 5pt 14pt; }
+
+  /* ── Note headers ───────────────────────────────────────────────────────── */
+  .analyst-note__header   { display: flex !important; align-items: baseline; gap: 8pt; }
+  .dissenter-note__header { display: flex !important; align-items: baseline; gap: 8pt; }
+
+  /* ── Section headers ────────────────────────────────────────────────────── */
+  .caveats__header          { display: flex !important; align-items: baseline; gap: 8pt; }
+  .collection-gaps__header  { display: flex !important; align-items: baseline; gap: 8pt; }
+  .flash-points__header     { display: flex !important; align-items: baseline; gap: 8pt; }
+  .exec__header             { display: flex !important; align-items: baseline; gap: 8pt; }
+  .warning-indicators__header { display: flex !important; align-items: baseline; justify-content: space-between; }
+  .strategic-header__meta   { display: flex !important; align-items: center; gap: 8pt; }
+  .metadata-bar__cell       { display: flex !important; flex-direction: column; }
+
   ::-webkit-scrollbar { display: none; }
 }
-
 
 /* === renderer extras === */
 
@@ -3390,7 +3436,7 @@ section.domain::after{
       <div class="domain__title">BATTLESPACE · KINETIC</div>
     </div>
   </div>
-  <div class="domain__aq"><div class="domain__aq-text">What is the current disposition of forces, and what kinetic activity occurred across all theatres in the preceding 24 hours?</div><div class="domain__aq-conf"><span class="badge badge--green">HIGH</span></div></div>
+  <div class="domain__aq"><div class="domain__aq-text">What is the current disposition of forces, and what offensive and defensive operations occurred across all theatres in the preceding 24 hours?</div><div class="domain__aq-conf"><span class="badge badge--green">HIGH</span></div></div>
   <div class="domain__content">
       <div class="kj">
     <div class="kj__label-row">
@@ -3781,10 +3827,10 @@ section.domain::after{
   </div>
 
   <div class="ep-tabs">
-    <button class="ep-tab active" onclick="CSETab(this,'order')">&#x2B0D; ORDER</button>
-    <button class="ep-tab" onclick="CSETab(this,'style')">&#x25CF; STYLE</button>
-    <button class="ep-tab" onclick="CSETab(this,'meta')">&#x2261; META</button>
-    <button class="ep-tab" onclick="CSETab(this,'export')">&#x2193; EXPORT</button>
+    <button class="ep-tab active" onclick="CSETab(this,'order')" title="Section Order">&#x2B0D; ORDER</button>
+    <button class="ep-tab" onclick="CSETab(this,'style')" title="Style / Colour">&#x25CF; STYLE</button>
+    <button class="ep-tab" onclick="CSETab(this,'meta')" title="Quick Fields">&#x2261; META</button>
+    <button class="ep-tab" onclick="CSETab(this,'export')" title="Export">&#x2193; EXPORT</button>
   </div>
 
   <div class="ep-tab-pane ep-body" id="ep-order">
@@ -3808,7 +3854,7 @@ section.domain::after{
     <div class="ep-row"><span class="ep-label">D4 purple</span><input class="ep-input ep-clr" type="color" value="#A050E8" oninput="setCSSVar('--d4-bright',this.value)"></div>
     <div class="ep-row"><span class="ep-label">D5 blue</span><input class="ep-input ep-clr" type="color" value="#3878C8" oninput="setCSSVar('--d5-bright',this.value)"></div>
     <div class="ep-row"><span class="ep-label">D6 teal</span><input class="ep-input ep-clr" type="color" value="#208878" oninput="setCSSVar('--d6-bright',this.value)"></div>
-    <button class="ep-btn" onclick="resetCSSVars()" style="margin-top:12px">Reset All Styles</button>
+    <button class="ep-btn" title="Reset style to defaults" onclick="resetCSSVars()" style="margin-top:12px">Reset All Styles</button>
   </div>
 
   <div class="ep-tab-pane ep-body" id="ep-meta" style="display:none">
@@ -3819,28 +3865,28 @@ section.domain::after{
     <div class="ep-row"><span class="ep-label">Context</span><input class="ep-input" id="qf-ctx"></div>
     <div class="ep-section" style="margin-top:14px">Threat Level</div>
     <div class="ep-btn-group">
-      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setThreat('CRITICAL')">CRITICAL</button>
-      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setThreat('SEVERE')">SEVERE</button>
-      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setThreat('ELEVATED')">ELEVATED</button>
-      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setThreat('GUARDED')">GUARDED</button>
-      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setThreat('LOW')">LOW</button>
+      <button class="ep-btn ep-btn--sm" title="Set threat level to CRITICAL" onclick="CSEEditor.setThreat('CRITICAL')">CRITICAL</button>
+      <button class="ep-btn ep-btn--sm" title="Set threat level to SEVERE" onclick="CSEEditor.setThreat('SEVERE')">SEVERE</button>
+      <button class="ep-btn ep-btn--sm" title="Set threat level to ELEVATED" onclick="CSEEditor.setThreat('ELEVATED')">ELEVATED</button>
+      <button class="ep-btn ep-btn--sm" title="Set threat level to GUARDED" onclick="CSEEditor.setThreat('GUARDED')">GUARDED</button>
+      <button class="ep-btn ep-btn--sm" title="Set threat level to LOW" onclick="CSEEditor.setThreat('LOW')">LOW</button>
     </div>
     <div class="ep-section" style="margin-top:10px">Trajectory</div>
     <div class="ep-btn-group">
-      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setTraj('escalating')">&#x2191; ESCALATING</button>
-      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setTraj('stable')">&#x2014; STABLE</button>
-      <button class="ep-btn ep-btn--sm" onclick="CSEEditor.setTraj('de-escalating')">&#x2193; DE-ESC</button>
+      <button class="ep-btn ep-btn--sm" title="Set trajectory to Escalating" onclick="CSEEditor.setTraj('escalating')">&#x2191; ESCALATING</button>
+      <button class="ep-btn ep-btn--sm" title="Set trajectory to Stable" onclick="CSEEditor.setTraj('stable')">&#x2014; STABLE</button>
+      <button class="ep-btn ep-btn--sm" title="Set trajectory to De-escalating" onclick="CSEEditor.setTraj('de-escalating')">&#x2193; DE-ESC</button>
     </div>
   </div>
 
   <div class="ep-tab-pane ep-body" id="ep-export" style="display:none">
     <div class="ep-section">Export &amp; Print</div>
-    <button class="ep-btn" onclick="CSEPrint()" style="width:100%">&#x1F5A8; Print / PDF</button>
-    <button class="ep-btn" onclick="CSEExportHTML()" style="width:100%;margin-top:5px">&#x2B07; Download HTML</button>
-    <button class="ep-btn" onclick="CSECopyHTML()" style="width:100%;margin-top:5px">&#x2398; Copy HTML</button>
+    <button class="ep-btn" title="Print / Save as PDF" onclick="CSEPrint()" style="width:100%">&#x1F5A8; Print / PDF</button>
+    <button class="ep-btn" title="Download as standalone HTML" onclick="CSEExportHTML()" style="width:100%;margin-top:5px">&#x2B07; Download HTML</button>
+    <button class="ep-btn" title="Copy full HTML to clipboard" onclick="CSECopyHTML()" style="width:100%;margin-top:5px">&#x2398; Copy HTML</button>
     <div class="ep-status" id="ep-copy-status" style="min-height:14px"></div>
     <div style="height:1px;background:rgba(255,255,255,0.05);margin:14px 0"></div>
-    <button class="ep-btn ep-btn--danger" onclick="CSEReset()" style="width:100%">&#x21BA; Reset All Edits</button>
+    <button class="ep-btn ep-btn--danger" title="Reset all edits and reload page" onclick="CSEReset()" style="width:100%">&#x21BA; Reset All Edits</button>
   </div>
 
 </div><!-- #cse-editor-panel -->
@@ -4031,7 +4077,7 @@ var TEXT_SEL=[
   /* Strategic header */
   ".strategic-header__judgment",".strategic-header__rationale",".strategic-header__label",
   /* Masthead */
-  ".masthead__title-main",".masthead__title-conflict",".masthead__subtitle",
+  ".masthead__title",".masthead__title-main",".masthead__title-conflict",".masthead__subtitle",
   ".masthead__cycle-num",".masthead__date",".masthead__ctx-note",
   ".masthead__strip-top",".masthead__strip-bot",
   ".masthead__provenance-left",".masthead__provenance-centre",".masthead__provenance-right",
@@ -4054,6 +4100,8 @@ var TEXT_SEL=[
   ".wi-row__indicator",".wi-row__body",".wi-change",".wi-token",
   /* Timeline */
   ".timeline__actor",".timeline__action",".timeline__time",
+  /* Actor matrix conf + footer sections */
+  ".am-conf",".brief-footer__flag",".brief-footer__main",
   /* Actor matrix */
   ".am-actor",".am-posture__text",".am-assess",".am-delta",".actor-matrix__caption",
   /* KPI strip */
