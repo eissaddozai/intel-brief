@@ -147,7 +147,7 @@ def filter_novel(items: list[dict], cycles_dir: Path, config: dict | None = None
 
         score = compute_novelty_score(item, known_phrases)
         item['novelty_score'] = round(score, 3)
-        item['is_novel'] = score >= NOVELTY_THRESHOLD
+        item['is_novel'] = score >= threshold
 
         if item['is_novel']:
             novel_items.append(item)
