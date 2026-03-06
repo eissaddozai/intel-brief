@@ -60,7 +60,7 @@ DOMAIN_KEYWORDS: dict[str, list[str]] = {
         'joint war committee', 'jwc', 'listed area', 'breach area',
         'war risk area', 'conwartime', 'voywar',
         # War risk premiums & pricing
-        'war risk premium', 'war risk rate', 'hull war', 'additional war risk',
+        'war risk premium', 'war risk rate', 'war risk insurance', 'hull war', 'additional war risk',
         'awrp', 'war risk surcharge', 'war peril', 'marine war risk',
         # Underwriter / capacity signals
         "lloyd's war", "lloyd's syndicate", 'marine syndicate', 'underwriting capacity',

@@ -1,0 +1,3 @@
+# Generated cycle files — only the sample/test data files are tracked.
+# latest.json is a symlink managed by the pipeline; do not commit it.
+latest.json

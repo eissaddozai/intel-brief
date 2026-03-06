@@ -3,7 +3,7 @@
 ## What this is
 Automated daily conflict intelligence brief for the Iran War File.
 Two components:
-1. **Pipeline** (`pipeline/`) — Python OSINT collection → Claude API drafting → human review → cycle JSON
+1. **Pipeline** (`pipeline/`) — Python OSINT collection → Claude CLI drafting (claude_agent_sdk) → human review → cycle JSON
 2. **Template** (`src/`) — React + TypeScript front-end that renders from cycle JSON
 
 The pipeline feeds the template. The template is what the analyst receives.
@@ -12,8 +12,8 @@ The pipeline feeds the template. The template is what the analyst receives.
 
 ## Design rules (NEVER violate)
 - All colours come from CSS variables in `src/styles/tokens.css` — never hardcode hex values
-- Domain accent colours follow the `d1/d2/d3/d4/d5` prefix convention
-- Domain mapping: d1=battlespace/crimson · d2=escalation/amber · d3=energy/green · d4=diplomatic/purple · d5=cyber/steel-blue
+- Domain accent colours follow the `d1/d2/d3/d4/d5/d6` prefix convention
+- Domain mapping: d1=battlespace/crimson · d2=escalation/amber · d3=energy/green · d4=diplomatic/purple · d5=cyber/steel-blue · d6=war-risk/teal
 - Font stack: Palatino (display) / Georgia (body) / Trebuchet MS (UI) / IBM Plex Mono (data/timestamps)
 - All font sizes come from CSS tokens — never hardcode px values in components
 
@@ -101,6 +101,7 @@ pipeline/
   output/
     serializer.py        ← assembles and validates final BriefCycle JSON
   main.py                ← orchestrator
+  utils.py               ← shared helpers (strip_html, resolve_relative_url, utc_now_iso)
 pipeline-config.yaml     ← API keys, schedule, email settings (use env vars for secrets)
 ```
 
@@ -124,6 +125,7 @@ pipeline-config.yaml     ← API keys, schedule, email settings (use env vars fo
 ./setup.sh --js                # + Playwright + Chromium (JS-rendered sites: IRAS, Moody's, Swiss Re)
 ./setup.sh --all               # everything above
 ./setup.sh --check             # verify environment without installing anything
+./setup.sh --clean             # remove .venv and clear pipeline/.cache (start fresh)
 source .venv/bin/activate      # activate before running pipeline commands
 
 # ── Front-end ────────────────────────────────────────────────
@@ -148,9 +150,10 @@ python pipeline/main.py show                         # Pretty-print latest cycle
 ---
 
 ## Adding a new domain
-1. Add `d6` tokens to `src/styles/tokens.css` (fill, shadow, deep, bright, body, grad)
-2. Add `.domain--d6` CSS blocks to `intel-brief.css` (header, aq, kj, body-wrap, section-end)
-3. Add `'d6'` to `DomainId` type in `src/types/brief.ts`
-4. Add source entries with `domains: [d6]` in `pipeline/ingest/sources.yaml`
-5. Add `pipeline/draft/prompts/newdomain.md`
+> D6 (War Risk Insurance) already exists. Use d7 for the next domain.
+1. Add `d7` tokens to `src/styles/tokens.css` (fill, shadow, deep, bright, body, grad)
+2. Add `.domain--d7` CSS blocks to `intel-brief.css` (header, aq, kj, body-wrap, section-end)
+3. Add `'d7'` to `DomainId` type in `src/types/brief.ts`
+4. Add source entries with `domains: [d7]` in `pipeline/ingest/sources.yaml`
+5. Add `pipeline/draft/prompts/d7_newdomain.md`
 6. Update `DomainSection.tsx` if any domain-specific rendering logic is needed

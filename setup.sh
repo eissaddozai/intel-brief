@@ -9,6 +9,7 @@
 #   ./setup.sh --js         # core + Playwright (+ chromium browser)
 #   ./setup.sh --all        # everything above
 #   ./setup.sh --check      # verify environment without installing
+#   ./setup.sh --clean      # remove .venv and .cache; does not install anything
 # ============================================================
 
 set -euo pipefail
@@ -30,6 +31,7 @@ MODE_FULL=false
 MODE_DEV=false
 MODE_JS=false
 MODE_CHECK=false
+MODE_CLEAN=false
 
 for arg in "$@"; do
     case "$arg" in
@@ -38,6 +40,7 @@ for arg in "$@"; do
         --js)    MODE_JS=true   ;;
         --all)   MODE_FULL=true; MODE_DEV=true; MODE_JS=true ;;
         --check) MODE_CHECK=true ;;
+        --clean) MODE_CLEAN=true ;;
         -h|--help)
             sed -n '/^# Usage:/,/^# ====/p' "$0" | head -12
             exit 0 ;;
