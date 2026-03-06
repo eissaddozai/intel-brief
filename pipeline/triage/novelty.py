@@ -36,7 +36,11 @@ def extract_known_facts(prev_cycle: dict) -> set[str]:
     exec_data = prev_cycle.get('executive', {})
     add_text(exec_data.get('bluf', ''))
     for kj in exec_data.get('keyJudgments', []):
-        add_text(kj.get('text', ''))
+        # keyJudgments may be a list of strings or a list of dicts
+        if isinstance(kj, str):
+            add_text(kj)
+        elif isinstance(kj, dict):
+            add_text(kj.get('text', ''))
 
     for domain in prev_cycle.get('domains', []):
         for para in domain.get('bodyParagraphs', []):
@@ -72,7 +76,10 @@ def filter_novel(items: list[dict], cycles_dir: Path, config: dict | None = None
     Items from Tier 1 sources are never filtered (factual updates always included).
     """
     # Find most recent cycle
-    cycle_files = sorted(cycles_dir.glob('cycle_*.json'))
+    # Match both cycle001_20260305.json and (legacy) cycle_001_20260305.json
+    cycle_files = sorted(
+        p for p in cycles_dir.glob('cycle*.json') if not p.is_symlink()
+    )
     if not cycle_files:
         log.info('No previous cycles found — treating all items as novel')
         return items

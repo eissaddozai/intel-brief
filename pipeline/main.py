@@ -333,7 +333,6 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
 
 
 def stage_draft(tagged_cache: Path, target_date: datetime, config: dict) -> Path:
-    from draft.drafter import draft_cycle
     draft_file = tagged_cache.parent / tagged_cache.name.replace('tagged_', 'draft_')
     tagged_items = json.loads(tagged_cache.read_text(encoding='utf-8'))
     prev_cycle = _find_previous_cycle()
@@ -345,6 +344,7 @@ def stage_draft(tagged_cache: Path, target_date: datetime, config: dict) -> Path
 
     log.info('Calling Claude API...')
     try:
+        from draft.drafter import draft_cycle
         draft = draft_cycle(
             tagged_items=tagged_items,
             target_date=target_date,
@@ -356,6 +356,8 @@ def stage_draft(tagged_cache: Path, target_date: datetime, config: dict) -> Path
         _api_issue = any(kw in err.lower() for kw in [
             'credit balance', 'quota', 'rate limit', 'billing',
             'api_key not set', 'anthropic_api_key', 'not set',
+            # ImportError when anthropic package not installed
+            'no module named', 'modulenotfounderror',
         ])
         if _api_issue:
             log.warning(
@@ -494,9 +496,17 @@ def cmd_check_sources(args: argparse.Namespace, config: dict) -> None:
     TIMEOUT = 10
     HEADERS = {'User-Agent': 'CSE-Intel-Brief/1.0 check-sources'}
 
+    # Load extractor registry for coverage column
+    try:
+        import sys as _sys
+        _sys.path.insert(0, str(PIPELINE_DIR))
+        from ingest.scraper import EXTRACTORS as _EXTRACTORS
+    except Exception:
+        _EXTRACTORS = {}
+
     print(bold('\nCHECKING SOURCES') + f'  ({len(sources)} enabled)\n')
-    print(f'{"SOURCE":<35} {"METHOD":<7} {"STATUS":<8} {"HTTP":<6} {"NOTE"}')
-    print('─' * 80)
+    print(f'{"SOURCE":<35} {"METHOD":<7} {"STATUS":<8} {"HTTP":<6} {"EXTRACTOR":<10} {"NOTE"}')
+    print('─' * 90)
 
     ok = warn = fail = 0
 
@@ -505,6 +515,15 @@ def cmd_check_sources(args: argparse.Namespace, config: dict) -> None:
         method = s.get('method', '?')
         name = s['name']
         declared_status = s.get('status', 'unknown')
+        # Extractor coverage for scrape sources
+        if method == 'scrape':
+            ext_name = _EXTRACTORS.get(s['id'], None)
+            if ext_name is None:
+                extractor_col = yellow('generic')
+            else:
+                extractor_col = green(ext_name.__name__[:10])
+        else:
+            extractor_col = dim('n/a')
 
         if method == 'email':
             print(f'{name:<35} {method:<7} {dim("email"):<8} {"—":<6} configure IMAP credentials')
@@ -520,7 +539,13 @@ def cmd_check_sources(args: argparse.Namespace, config: dict) -> None:
 
         try:
             t0 = time.time()
-            r = req.head(test_url, headers=HEADERS, timeout=TIMEOUT, allow_redirects=True)
+            # Use streaming GET rather than HEAD — many RSS servers return 405
+            # to HEAD requests even when the URL is perfectly live.
+            r = req.get(test_url, headers=HEADERS, timeout=TIMEOUT,
+                        allow_redirects=True, stream=True)
+            # Read only a small chunk to confirm content is served
+            _ = next(r.iter_content(512), None)
+            r.close()
             elapsed = int((time.time() - t0) * 1000)
             code = r.status_code
             if code < 400:
@@ -559,10 +584,10 @@ def cmd_check_sources(args: argparse.Namespace, config: dict) -> None:
             note = str(exc)[:60]
             code = '—'
 
-        print(f'{name:<35} {method:<7} {status_str} {str(code):<6} {note}')
+        print(f'{name:<35} {method:<7} {status_str} {str(code):<6} {extractor_col:<10} {note}')
         time.sleep(0.3)
 
-    print('─' * 80)
+    print('─' * 90)
     summary = f'{green(str(ok)+" OK")}  {yellow(str(warn)+" WARN")}  {red(str(fail)+" FAIL")}'
     print(f'\n{summary}\n')
 

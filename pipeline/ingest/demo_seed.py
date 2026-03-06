@@ -362,4 +362,89 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'verification_status': 'claimed',
             'method': 'scrape',
         },
+
+        # ── TIER 1 · WAR RISK INSURANCE (d6) ────────────────────────────────
+        {
+            'source_id': 'jwc_listed_areas',
+            'source_name': 'Joint War Committee Listed Areas',
+            'tier': 1,
+            'domains': ['d6', 'd3'],
+            'title': 'JWC adds northern Persian Gulf (approaches to Bandar Abbas) to war risk listed areas',
+            'text': (
+                f'The Joint War Committee [{date_str}] amended its war risk listed areas to '
+                'include the northern Persian Gulf north of 26°N, encompassing approaches to '
+                'Bandar Abbas and the Strait of Hormuz transit corridor. The amendment takes '
+                'immediate effect. Vessels transiting the newly listed area now require '
+                'mandatory additional war risk premium (AWRP) from their hull underwriters. '
+                "Lloyd's syndicates are expected to reprice AWRP within 24 hours of listing."
+            ),
+            'full_content': '',
+            'url': 'https://www.lmalloyds.com/LMA/Underwriting_Committees/Marine_Committees/LMA_JWC/JWC_war_listed_areas.aspx',
+            'timestamp': ts,
+            'verification_status': 'confirmed',
+            'method': 'scrape',
+        },
+        {
+            'source_id': 'ig_pic_circulars',
+            'source_name': 'International Group of P&I Clubs',
+            'tier': 1,
+            'domains': ['d6'],
+            'title': 'International Group P&I Circular: Enhanced war risk coverage conditions for Hormuz/Red Sea',
+            'text': (
+                f'International Group of P&I Clubs issued Circular [{date_str}] advising all '
+                'entered vessels that war risk cover for transits through the Strait of '
+                'Hormuz and the Red Sea / Gulf of Aden corridor is conditional on masters '
+                'filing pre-transit notifications with club correspondents. Vessels failing '
+                'to notify prior to transit may face coverage gaps for war-related P&I claims. '
+                'The 13 principal clubs collectively cover approximately 90% of ocean-going tonnage.'
+            ),
+            'full_content': '',
+            'url': 'https://www.igpandi.org/news/',
+            'timestamp': ts,
+            'verification_status': 'confirmed',
+            'method': 'scrape',
+        },
+        {
+            'source_id': 'reinsurance_news',
+            'source_name': 'Reinsurance News',
+            'tier': 2,
+            'domains': ['d6'],
+            'title': 'Munich Re and Swiss Re withdraw reinsurance capacity for Gulf war risk; rates surge 180%',
+            'text': (
+                'Munich Re and Swiss Re have materially reduced their war risk reinsurance '
+                'capacity for vessels transiting the Persian Gulf, Red Sea, and Gulf of Aden, '
+                'market sources report. Additional war risk premiums (AWRP) for Hormuz '
+                'transits have surged approximately 180% week-on-week to 1.2% of hull value. '
+                "Lloyd's syndicates Atrium, Chaucer, and Hiscox are reported to have issued "
+                'cancellation notices to ceding insurers within 48 hours of the JWC '
+                'listed-area amendment. Available evidence suggests primary market capacity '
+                'is contracting sharply across all three sea areas.'
+            ),
+            'full_content': '',
+            'url': 'https://www.reinsurancene.ws/feed/',
+            'timestamp': ts,
+            'verification_status': 'reported',
+            'method': 'rss',
+        },
+        {
+            'source_id': 'signal_ocean',
+            'source_name': 'Signal Ocean',
+            'tier': 3,
+            'domains': ['d6', 'd3'],
+            'title': 'Signal Ocean: 47% of VLCC fleet now routing via Cape of Good Hope, Hormuz avoidance spike',
+            'text': (
+                'Signal Ocean AIS analytics show 47% of the tracked VLCC fleet has rerouted '
+                'via the Cape of Good Hope in the past 72 hours, up from a 12% baseline. '
+                'Hormuz transits by oil tankers >100,000 DWT dropped 34% from prior-week '
+                'average. Voyage length increase of approximately 14 days per round trip is '
+                'generating an estimated $2.1M additional fuel cost per vessel. Route '
+                'avoidance data constitutes a confirmed premium pressure signal independent '
+                'of insurer declarations.'
+            ),
+            'full_content': '',
+            'url': 'https://www.thesignalgroup.com/newsroom',
+            'timestamp': ts,
+            'verification_status': 'claimed',
+            'method': 'scrape',
+        },
     ]

@@ -76,6 +76,23 @@ RELEVANCE_KEYWORDS: frozenset[str] = frozenset([
     'state department', 'white house', 'pentagon',
     'secretary of state', 'national security advisor',
     'congress iran', 'senate iran',
+    # ── D6 — War risk insurance / maritime finance ───────────────────────────
+    # These terms have clear conflict-relevance and should never be dropped even
+    # when the article does not explicitly name Iran or the Gulf.
+    'war risk', 'war risk premium', 'war risk rate', 'hull war',
+    'joint war committee', 'jwc', 'listed area', 'breach area',
+    'additional war risk', 'awrp', 'war risk surcharge',
+    'p&i club', 'p&i circular', 'protection and indemnity',
+    'marine war', 'war exclusion', 'war risk exclusion',
+    'reinsurance capacity', 'underwriting capacity', 'capacity withdrawal',
+    'marine market hardening', 'war peril', 'high risk area', 'hra ',
+    'red sea insurance', 'hormuz insurance', 'hull war claim',
+    'constructive total loss', ' ctl ', 'voyage diversion', 'blank sailing',
+    'bab el-mandeb', 'shipping disruption', 'vessel seizure',
+    'ship seizure insurance', 'k&fr', 'kidnap and ransom',
+    'bimco war', 'conwartime', 'voywar', 'intertanko', 'intercargo',
+    'lloyd\'s syndicate', 'lloyd\'s war', 'marine syndicate',
+    'swiss re marine', 'munich re marine', 'retrocession',
     # ── Cyber / information ops ─────────────────────────────────────────────
     'apt33', 'apt34', 'apt35', 'apt39', 'apt42',
     'charming kitten', 'phosphorus', 'muddy water', 'muddywater',

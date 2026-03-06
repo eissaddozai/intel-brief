@@ -336,6 +336,97 @@ def _extract_bbc_persian(source: dict, date: datetime) -> list[dict]:
     return items[:10]
 
 
+def _extract_d6_marine(source: dict, date: datetime) -> list[dict]:
+    """
+    Generic extractor for D6 war risk / maritime finance sources.
+    Targets industry trade press, regulatory bodies, and broker sites.
+
+    Strategy:
+      1. Try structured article/press-release card selectors first.
+      2. Fall back to heading + lede extraction.
+      3. Final fallback: generic paragraph extraction.
+
+    Used by: lloyds_mkt_bulletins, jwc_listed_areas, imo_circular,
+    ig_pic_circulars, nato_shipping_centre, usmto, dryad_global,
+    ambrey_analytics, eos_risk, icc_imb, iumi_news, marsh_marine,
+    willis_marine, aon_marine, gallagher_marine, clarksons_research,
+    intercargo_news, intertanko_news, swissre_sigma, munichre_marine,
+    credit_agricole_shipping, unctad_maritime, iras_war_risk,
+    moodys_shipping, signal_ocean.
+    """
+    soup = _fetch(source['url'])
+    if not soup:
+        return []
+
+    items = []
+
+    # ── Strategy 1: structured card selectors common in trade press ──
+    card_selectors = [
+        'article',
+        '.news-item', '.press-release', '.bulletin-item', '.update-item',
+        '.card', '.entry', '.post', '.alert-item', '.advisory',
+        'li.media', 'li.news', '.media-object',
+        '[class*="bulletin"]', '[class*="advisory"]', '[class*="article"]',
+    ]
+    cards = []
+    for sel in card_selectors:
+        candidates = soup.select(sel)
+        if candidates:
+            cards = candidates
+            break
+
+    for card in cards[:20]:
+        heading = card.find(['h1', 'h2', 'h3', 'h4', 'a'])
+        if not heading:
+            continue
+        title = _clean(heading.get_text())
+        if len(title) < 20:
+            continue
+        link_el = (
+            heading.find('a', href=True)
+            or card.find('a', href=True)
+        )
+        link = ''
+        if link_el and isinstance(link_el, dict):
+            link = link_el.get('href', '')
+        elif link_el:
+            link = link_el.get('href', '')
+        if link and not link.startswith('http'):
+            from urllib.parse import urlparse
+            base = urlparse(source['url'])
+            link = f'{base.scheme}://{base.netloc}{link}'
+        excerpt_el = card.find('p') or card.find('[class*="summary"]')
+        excerpt = _clean(excerpt_el.get_text()) if excerpt_el else ''
+        items.append(_make_item(source, title, excerpt, link or source['url'], date.isoformat()))
+
+    if items:
+        return items[:15]
+
+    # ── Strategy 2: heading + following lede paragraph ──
+    for heading in soup.find_all(['h1', 'h2', 'h3', 'h4'])[:20]:
+        title = _clean(heading.get_text())
+        if len(title) < 20:
+            continue
+        link_el = heading.find('a', href=True)
+        link = ''
+        if link_el:
+            link = link_el.get('href', '')
+            if link and not link.startswith('http'):
+                from urllib.parse import urlparse
+                base = urlparse(source['url'])
+                link = f'{base.scheme}://{base.netloc}{link}'
+        # Lede: next sibling <p>
+        sibling = heading.find_next_sibling('p')
+        excerpt = _clean(sibling.get_text()) if sibling else ''
+        items.append(_make_item(source, title, excerpt, link or source['url'], date.isoformat()))
+
+    if items:
+        return items[:10]
+
+    # ── Strategy 3: paragraph fallback ──
+    return _extract_generic(source, soup, date, max_items=8)
+
+
 def _extract_netblocks(source: dict, date: datetime) -> list[dict]:
     """NetBlocks.org — report headlines. Static site."""
     soup = _fetch(source['url'])
@@ -403,7 +494,9 @@ def _extract_opec(source: dict, date: datetime) -> list[dict]:
             continue
         link = el.get('href', source['url'])
         if link and not link.startswith('http'):
-            link = 'https://www.opec.org' + link
+            from urllib.parse import urlparse
+            base = urlparse(source['url'])
+            link = f'{base.scheme}://{base.netloc}{link}'
         items.append(_make_item(source, title, '', link, date.isoformat()))
 
     return items[:8]
@@ -434,20 +527,74 @@ def _extract_generic(source: dict, soup: BeautifulSoup, date: datetime,
 
 
 # ─── Dispatch table ───────────────────────────────────────────────────────────
+# All reuters_* sources use _extract_reuters — the extractor reads source['url']
+# dynamically, so the same function handles every Reuters topic page correctly.
 
 EXTRACTORS: dict[str, callable] = {
-    'reuters_mideast': _extract_reuters,
-    'ctpiw_evening':   _extract_ctpiw,
-    'ctpiw_morning':   _extract_ctpiw,
-    'centcom':         _extract_centcom,
-    'ukmto':           _extract_ukmto,
-    'idf_spokesperson': _extract_idf,
-    'alma_research':   _extract_alma,
-    'iran_intl':       _extract_iran_intl,
-    'bbc_persian':     _extract_bbc_persian,
-    'netblocks':       _extract_netblocks,
-    'eia_weekly':      _extract_eia,
-    'opec_statements': _extract_opec,
+    # ── Reuters topic pages (all 16 sources → same URL-driven extractor) ──
+    'reuters_mideast':           _extract_reuters,
+    'reuters_iran':              _extract_reuters,
+    'reuters_israel':            _extract_reuters,
+    'reuters_yemen':             _extract_reuters,
+    'reuters_iraq':              _extract_reuters,
+    'reuters_lebanon':           _extract_reuters,
+    'reuters_saudi':             _extract_reuters,
+    'reuters_energy':            _extract_reuters,
+    'reuters_commodities':       _extract_reuters,
+    'reuters_aerospace_defense': _extract_reuters,
+    'reuters_cybersecurity':     _extract_reuters,
+    'reuters_us':                _extract_reuters,
+    'reuters_europe':            _extract_reuters,
+    'reuters_china':             _extract_reuters,
+    'reuters_russia':            _extract_reuters,
+    'reuters_markets':           _extract_reuters,
+    'reuters_legal':             _extract_reuters,
+    # ── Other Tier 1 scrape sources ──
+    'ctpiw_evening':             _extract_ctpiw,
+    'ctpiw_morning':             _extract_ctpiw,
+    'centcom':                   _extract_centcom,
+    'ukmto':                     _extract_ukmto,
+    'idf_spokesperson':          _extract_idf,
+    # ── Tier 2 scrape sources ──
+    'alma_research':             _extract_alma,
+    'iran_intl':                 _extract_iran_intl,
+    'rudaw':                     _extract_generic,
+    'netblocks':                 _extract_netblocks,
+    # bbc_persian primary method is rss but extractor is kept live for
+    # manual/fallback scrape calls (e.g. when RSS is rate-limited)
+    'bbc_persian':               _extract_bbc_persian,
+    # ── Energy / economic ──
+    'eia_weekly':                _extract_eia,
+    'opec_statements':           _extract_opec,
+    # ── D6 — Tier 1 authoritative bodies ──
+    'lloyds_mkt_bulletins':      _extract_d6_marine,
+    'jwc_listed_areas':          _extract_d6_marine,
+    'imo_circular':              _extract_d6_marine,
+    'ig_pic_circulars':          _extract_d6_marine,
+    'nato_shipping_centre':      _extract_d6_marine,
+    'usmto':                     _extract_d6_marine,
+    # ── D6 — Tier 2 maritime intelligence firms ──
+    'dryad_global':              _extract_d6_marine,
+    'ambrey_analytics':          _extract_d6_marine,
+    'eos_risk':                  _extract_d6_marine,
+    'icc_imb':                   _extract_d6_marine,
+    'iumi_news':                 _extract_d6_marine,
+    # ── D6 — Tier 2 brokers / associations ──
+    'marsh_marine':              _extract_d6_marine,
+    'willis_marine':             _extract_d6_marine,
+    'aon_marine':                _extract_d6_marine,
+    'gallagher_marine':          _extract_d6_marine,
+    'intercargo_news':           _extract_d6_marine,
+    'intertanko_news':           _extract_d6_marine,
+    'clarksons_research':        _extract_d6_marine,
+    # ── D6 — Tier 3 specialist triggers ──
+    'swissre_sigma':             _extract_d6_marine,
+    'munichre_marine':           _extract_d6_marine,
+    'credit_agricole_shipping':  _extract_d6_marine,
+    'unctad_maritime':           _extract_d6_marine,
+    'iras_war_risk':             _extract_d6_marine,
+    'moodys_shipping':           _extract_d6_marine,
+    'signal_ocean':              _extract_d6_marine,
 }
 
 
