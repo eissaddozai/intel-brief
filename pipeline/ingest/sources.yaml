@@ -563,13 +563,14 @@ sources:
     tier: 2
     domains: [d6, d3]
     method: scrape
-    url: "https://www.lloydslist.com/ll/sector/insurance-and-legal/"
-    status: likely
-    enabled: true
+    url: "https://www.lloydslist.com/sectors/insurance"
+    status: paywall
+    enabled: false
     notes: >
-      Premier maritime trade publication. War risk premium data, underwriter
-      capacity changes, and P&I club commentary. Paywall for full articles;
-      headlines and abstracts are available. Relevance filter essential.
+      Premier maritime trade publication. Site fully restructured behind hard
+      paywall (all paths return 403 to unauthenticated requests). Old path
+      /ll/sector/insurance-and-legal/ is dead. Correct path /sectors/insurance
+      also paywalled. Disable until cookie auth implemented.
 
   - id: tradewinds_insurance
     name: "TradeWinds — Insurance"
@@ -577,11 +578,12 @@ sources:
     domains: [d6]
     method: scrape
     url: "https://www.tradewindsnews.com/insurance"
-    status: likely
-    enabled: true
+    status: paywall
+    enabled: false
     notes: >
-      Shipping industry news with strong insurance desk. War risk premium
-      movements, broker commentary, and shipowner responses to HRA changes.
+      Shipping industry news with strong insurance desk. Hard paywall —
+      immediately redirects through Zephr SSO (NHST subscription required).
+      No content accessible without credentials. Disable until cookie auth.
 
   - id: reinsurance_news
     name: "Reinsurance News"
@@ -589,7 +591,7 @@ sources:
     domains: [d6]
     method: rss
     url: "https://www.reinsurancene.ws/feed/"
-    status: likely
+    status: working
     enabled: true
     notes: >
       Specialist reinsurance trade press. Munich Re, Swiss Re, and Lloyd's
@@ -600,32 +602,34 @@ sources:
     tier: 2
     domains: [d6]
     method: rss
-    url: "https://www.insurancejournal.com/rss/topics/marine/"
-    status: likely
+    url: "https://www.insurancejournal.com/rss/news"
+    status: working
     enabled: true
     notes: >
-      Real Insurance Journal RSS. Marine insurance news including war risk.
-      Good for US market perspective on Lloyd's pricing movements.
+      Insurance Journal general news RSS (verified working Mar 2026). Old
+      /rss/topics/marine/ was abandoned after CMS restructure (last item 2015).
+      Replaced with active /rss/news feed; relevance filter selects marine items.
 
   - id: insurance_insider
     name: "Insurance Insider"
     tier: 2
     domains: [d6]
     method: scrape
-    url: "https://www.insuranceinsider.com/marine"
-    status: likely
-    enabled: true
+    url: "https://www.insuranceinsider.com/lines-of-business/specialty-lines/marine"
+    status: paywall
+    enabled: false
     notes: >
-      Specialist Lloyd's market intelligence. Syndicate capacity, line-size
-      changes, and market-hardening signals. Partial paywall.
+      Specialist Lloyd's market intelligence. Old /marine path is 404; correct
+      path is /lines-of-business/specialty-lines/marine. Full Zephr paywall
+      (insidergroup.auth). Disable until cookie auth implemented.
 
   - id: marine_link
     name: "MarineLink — Insurance"
     tier: 2
     domains: [d6, d3]
     method: rss
-    url: "https://www.marinelink.com/rss/news"
-    status: likely
+    url: "https://www.marinelink.com/news/rss"
+    status: working
     enabled: true
     notes: "Broad maritime news; relevance filter for insurance/war risk items."
 
@@ -635,7 +639,7 @@ sources:
     domains: [d6, d3]
     method: rss
     url: "https://splash247.com/feed/"
-    status: likely
+    status: working
     enabled: true
     notes: >
       Independent shipping media. War risk commentary, shipowner reactions,
@@ -654,14 +658,14 @@ sources:
       circulars. Useful for rapid premium move coverage. Real RSS confirmed.
 
   - id: bunkerspot
-    name: "Bunkerspot / Maritime Intelligence"
+    name: "Ship.Energy (formerly Bunkerspot)"
     tier: 2
     domains: [d6, d3]
     method: rss
-    url: "https://www.bunkerspot.com/rss"
+    url: "https://ship.energy/rss"
     status: likely
     enabled: true
-    notes: "Bunkering and fuel market; war risk surcharge implications."
+    notes: "Bunkering and fuel market; war risk surcharge implications. Bunkerspot rebranded to ship.energy; old URL 301-redirects here."
 
   - id: dryad_global
     name: "Dryad Global Maritime Security"
