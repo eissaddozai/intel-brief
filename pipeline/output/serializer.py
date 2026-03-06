@@ -5,12 +5,10 @@ Assigns cycle number, symlinks latest.json, optionally copies to src/data/.
 
 import json
 import logging
-import os
 import re
 import shutil
 from datetime import datetime, timezone
 from pathlib import Path
-from typing import Any
 
 try:
     import jsonschema  # optional — graceful degradation if not installed
@@ -28,7 +26,7 @@ REQUIRED_TOP_LEVEL = {'meta', 'strategicHeader', 'flashPoints', 'executive',
                       'domains', 'warningIndicators', 'collectionGaps', 'caveats', 'footer'}
 REQUIRED_META = {'cycleId', 'cycleNum', 'classification', 'tlp', 'timestamp',
                  'region', 'analystUnit', 'threatLevel', 'threatTrajectory'}
-VALID_DOMAIN_IDS = {'d1', 'd2', 'd3', 'd4', 'd5'}
+VALID_DOMAIN_IDS = {'d1', 'd2', 'd3', 'd4', 'd5', 'd6'}
 VALID_TLP = {'RED', 'AMBER', 'GREEN', 'CLEAR'}
 VALID_THREAT = {'CRITICAL', 'SEVERE', 'ELEVATED', 'GUARDED', 'LOW'}
 

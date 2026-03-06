@@ -4,11 +4,9 @@ Presents each domain section with source citations and allows approval, editing,
 Target: ~10 minutes per cycle.
 """
 
-import json
 import logging
 import sys
 import textwrap
-from typing import Any
 
 log = logging.getLogger(__name__)
 
@@ -51,7 +49,9 @@ def review_domain_section(domain: dict, section_num: int) -> dict | None:
     Display a domain section and prompt for review action.
     Returns approved section dict, or None if regeneration requested.
     """
-    colour = [RED, AMBER, GREEN, BLUE, CYAN][section_num % 5]
+    # 6 domain colours: d1=red, d2=amber, d3=green, d4=blue, d5=cyan, d6=cyan
+    DOMAIN_COLOURS = [RED, AMBER, GREEN, BLUE, CYAN, CYAN]
+    colour = DOMAIN_COLOURS[section_num % len(DOMAIN_COLOURS)]
 
     print_header(
         f"DOMAIN {domain.get('num', '?')} — {domain.get('title', '?')}",

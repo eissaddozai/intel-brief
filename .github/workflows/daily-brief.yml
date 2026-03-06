@@ -34,9 +34,7 @@ jobs:
           cache: 'pip'
 
       - name: Install Python dependencies
-        run: |
-          pip install anthropic feedparser --no-deps
-          pip install anthropic pyyaml requests beautifulsoup4
+        run: pip install -r requirements.txt
 
       - name: Install Playwright (for scraping)
         run: |
@@ -58,7 +56,7 @@ jobs:
           if [ "${{ github.event.inputs.force }}" = "true" ]; then
             FORCE_ARG="--force"
           fi
-          python pipeline/main.py --auto-approve $DATE_ARG $FORCE_ARG
+          python pipeline/main.py run --auto-approve $DATE_ARG $FORCE_ARG
 
       - name: Commit and push new cycle
         run: |

@@ -174,7 +174,7 @@ export interface DissenterNote {
 
 export interface DomainSection {
   id: DomainId
-  /** "01" through "05" */
+  /** "01" through "06" */
   num: string
   /** e.g. "BATTLESPACE · KINETIC" */
   title: string
@@ -258,7 +258,7 @@ export interface BriefCycle {
     kpis: KpiCell[]
   }
 
-  /** Exactly 5 domain sections in order: d1, d2, d3, d4, d5 */
+  /** 6 domain sections in order: d1, d2, d3, d4, d5, d6 */
   domains: DomainSection[]
 
   warningIndicators: WarningIndicator[]
