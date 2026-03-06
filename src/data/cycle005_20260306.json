@@ -1,0 +1,559 @@
+{
+  "meta": {
+    "cycleId": "cycle005_20260306",
+    "cycleNum": "005",
+    "classification": "PROTECTED B",
+    "tlp": "AMBER",
+    "timestamp": "2026-03-06T06:00:00Z",
+    "region": "Iran · Gulf Region · Eastern Mediterranean · Kurdistan",
+    "analystUnit": "CSE Conflict Assessment Unit",
+    "threatLevel": "CRITICAL",
+    "threatTrajectory": "escalating",
+    "subtitle": "Iran War File — Daily Assessment · Day 7",
+    "contextNote": "Cycle covers the 24-hour period ending 0600 UTC 06 March 2026. War entered its seventh day. Khamenei succession crisis unfolding simultaneously with intensifying US-Israel strike campaign. All times UTC unless noted.",
+    "stripCells": [
+      {"top": "CRITICAL", "bot": "THREAT LEVEL"},
+      {"top": "DAY 7", "bot": "WAR DURATION"},
+      {"top": "CLOSED", "bot": "HORMUZ STATUS"},
+      {"top": "MOJTABA", "bot": "NEW SL"},
+      {"top": "4", "bot": "FLASH POINTS"}
+    ]
+  },
+  "strategicHeader": {
+    "headlineJudgment": "We judge it highly likely that the simultaneous prosecution of a broad air campaign against Tehran and Beirut, the contested emergency appointment of Mojtaba Khamenei as Supreme Leader, and the de facto closure of the Strait of Hormuz collectively represent the most acute multi-domain escalation since the conflict's opening salvo on 28 February 2026.",
+    "trajectoryRationale": "Available evidence suggests — from Israel's announced 'broad new wave' of strikes on the Iranian capital and Lebanon (DW, 06 Mar 0248 UTC), concurrent IRGC escalation warnings, and TradeWinds reporting of war risk insurer withdrawal from Hormuz coverage — that all major escalation levers are now simultaneously engaged. The contested succession creates a decision-making vacuum that makes de-escalation initiatives structurally harder to pursue: any actor claiming to speak for Iran's war aims is operating without clear authorisation.",
+    "threatLevel": "CRITICAL",
+    "threatTrajectory": "escalating"
+  },
+  "flashPoints": [
+    {
+      "id": "fp-01",
+      "headline": "Israel launches broad new wave of strikes on Tehran and Beirut — Day 7",
+      "detail": "Israel confirmed strikes on targets in Lebanon and Iran as conflict enters its seventh day; Israeli military described these as part of a 'broad' new wave of attacks on the Iranian capital (DW, 06 Mar 0248 UTC). Series of loud explosions reported in eastern and central Tehran. IRGC warns attacks will intensify.",
+      "domain": "d1",
+      "confidence": "almost-certainly"
+    },
+    {
+      "id": "fp-02",
+      "headline": "Mojtaba Khamenei appointed Supreme Leader — hereditary succession contested",
+      "detail": "Iran's Assembly of Experts elected Mojtaba Khamenei, son of the late Ali Khamenei, as the Islamic Republic's new Supreme Leader in an emergency session; opposition from clerical members citing 'hereditary rule' concerns (Iran International, 06 Mar). Funeral plans for Ali Khamenei have been revised multiple times amid security fears and unresolved succession questions.",
+      "domain": "d2",
+      "confidence": "highly-likely"
+    },
+    {
+      "id": "fp-03",
+      "headline": "Strait of Hormuz de facto closed — war risk insurers withdraw cover",
+      "detail": "TradeWinds reported that war risk insurers have halted Strait of Hormuz coverage amid de facto closure, with Iran threatening to 'set fire to anyone who tries to pass through.' Drone struck Fujairah oil storage terminal. UKMTO confirmed tanker explosion causing oil spill. Iranian sabotage attack on US-managed tanker in Middle East Gulf (crew safe).",
+      "domain": "d6",
+      "confidence": "almost-certainly"
+    },
+    {
+      "id": "fp-04",
+      "headline": "Saudi Arabia intercepts three drones east of Riyadh — Gulf states under indirect fire",
+      "detail": "Saudi Arabia confirmed the interception of three drones east of Riyadh (Iran International, 06 Mar), indicating Iranian or Iran-aligned forces have extended their targeting reach to Gulf state territory beyond the immediate conflict zone.",
+      "domain": "d1",
+      "confidence": "almost-certainly"
+    }
+  ],
+  "executive": {
+    "bluf": "We judge it highly likely that the conflict has entered a phase of unrestricted multi-domain escalation from which near-term diplomatic exit is structurally foreclosed: Israel's broad new strikes on Tehran and Beirut (DW, 06 Mar 0248 UTC), the contested emergency appointment of Mojtaba Khamenei as Supreme Leader removing a coherent Iranian decision-making authority, and the de facto closure of the Strait of Hormuz with war risk insurers withdrawing cover (TradeWinds, 05-06 Mar) collectively eliminate the standard conditions for ceasefire negotiation. Trump's public statement that Iranian peace overtures arrived 'too late' (Iran International, 05 Mar) confirms the US assessment that escalation to decision is preferred over a negotiated pause. UNICEF's warning of rising child casualties introduces a humanitarian protection dimension that will accelerate international pressure on all parties. The PKK-affiliated ANF's reporting of repeated drone and missile strikes on South Kurdistan/Iraq — Korek Mountain struck three times in one week, two civilians wounded in Soran district — confirms that Iraqi Kurdistan's territory has become a secondary battlespace for Iranian proxy and US counter-proxy operations, increasing the probability of KRG-Baghdad federal frictions and KRG-Turkish coordination.",
+    "keyJudgments": [
+      {
+        "id": "kj-exec-d1",
+        "domain": "d1",
+        "confidence": "high",
+        "probabilityRange": "95-99%",
+        "language": "almost-certainly",
+        "text": "We assess with high confidence that Israel's 'broad new wave' of strikes on Tehran and Beirut (DW, 06 Mar 0248 UTC) represents a deliberate decision to simultaneously prosecute the air campaign against Iranian state infrastructure and Lebanon-based IRGC-Hezbollah assets, rather than sequential targeting — a pattern indicating Israeli war aims have expanded beyond deterrence to structural degradation of Iran's military capacity.",
+        "basis": "DW confirmed the strike wave with direct Israeli military attribution at 0248 UTC 06 Mar; concurrent IRGC threat communiqués confirm the exchange is bilateral and escalatory, not unilateral.",
+        "citations": [{"source": "Deutsche Welle", "tier": 2, "verificationStatus": "reported"}]
+      },
+      {
+        "id": "kj-exec-d2",
+        "domain": "d2",
+        "confidence": "high",
+        "probabilityRange": "75-95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that the contested emergency appointment of Mojtaba Khamenei as Supreme Leader — over reported clerical objections to hereditary succession — creates a leadership legitimacy deficit that will inhibit authoritative Iranian decision-making on war termination for at least 30-60 days.",
+        "basis": "Iran International's exclusive reporting confirms Assembly of Experts emergency session and opposition from members; IRGC's acceleration of Mojtaba's announcement suggests the Guard Corps is using the succession crisis to consolidate its own institutional authority.",
+        "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+      },
+      {
+        "id": "kj-exec-d3",
+        "domain": "d3",
+        "confidence": "high",
+        "probabilityRange": "75-95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that the Strait of Hormuz closure, the drone strike on Fujairah oil storage infrastructure, and COSCO's suspension of new Middle East bookings will produce an acute energy supply disruption affecting approximately 21% of global oil trade transiting the Strait — a disruption that war risk insurer withdrawal from Hormuz coverage will translate into structural shipping cost increases that outlast any ceasefire.",
+        "basis": "TradeWinds (05-06 Mar) documents Hormuz insurer withdrawal and de facto closure; UKMTO tanker explosion confirmation and Safety4Sea reporting of force majeure declarations provide corroborating evidence of supply chain rupture.",
+        "citations": [{"source": "TradeWinds", "tier": 2, "verificationStatus": "reported"}, {"source": "UKMTO", "tier": 1, "verificationStatus": "confirmed"}]
+      },
+      {
+        "id": "kj-exec-d4",
+        "domain": "d4",
+        "confidence": "moderate",
+        "probabilityRange": "55-75%",
+        "language": "likely",
+        "text": "Available evidence suggests that Lebanon's formal ban on IRGC activity and move to deport members (Iran International, 06 Mar), combined with Spain's condemnation of US strikes and resulting US-Spain diplomatic friction (DW, 05 Mar), signals an emerging two-tier coalition dynamic: Gulf Arab states and Lebanon are distancing from Iran while European NATO members are fragmenting from US war aims.",
+        "basis": "Lebanon's IRGC ban is a formally confirmed state action representing a major shift from Beirut's historic accommodation of the Guard Corps on Lebanese territory.",
+        "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}, {"source": "Deutsche Welle", "tier": 2, "verificationStatus": "reported"}]
+      },
+      {
+        "id": "kj-exec-d5",
+        "domain": "d5",
+        "confidence": "moderate",
+        "probabilityRange": "55-75%",
+        "language": "likely",
+        "text": "Available evidence suggests that the US information operations campaign — Trump's direct public appeals for IRGC defections and offers of asylum for Iranian diplomats — represents a deliberate psychological pressure effort targeting Iranian regime coherence rather than public opinion, consistent with a strategy of accelerating elite defection before a leadership vacuum deepens.",
+        "basis": "Iran International confirmed Trump's specific targeting of IRGC, military, and police personnel with defection-or-death framing; this is consistent with US declassified IO doctrine for accelerated regime change.",
+        "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+      },
+      {
+        "id": "kj-exec-d6",
+        "domain": "d6",
+        "confidence": "high",
+        "probabilityRange": "75-95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that war risk underwriting capacity for Hormuz transit will not normalise until either a verified ceasefire or a US Navy escort regime is fully operational, given that the drone strike on Fujairah oil storage infrastructure — a territory outside the main conflict zone — demonstrates Iranian willingness to target neutral port state energy infrastructure to maximise insurer cost pressure.",
+        "basis": "TradeWinds headline 'War risk insurers halt Strait of Hormuz cover amid de facto closure' is consistent with IUMI's March 2026 statement on marine insurance in the Middle East; the Fujairah strike is reported by TradeWinds as a confirmed drone impact.",
+        "citations": [{"source": "TradeWinds", "tier": 2, "verificationStatus": "reported"}, {"source": "IUMI", "tier": 2, "verificationStatus": "reported"}]
+      }
+    ],
+    "kpis": [
+      {"domain": "d1", "number": "7", "label": "War day", "changeDirection": "up"},
+      {"domain": "d2", "number": "CRITICAL", "label": "Escalation index", "changeDirection": "up"},
+      {"domain": "d3", "number": "CLOSED", "label": "Hormuz status", "changeDirection": "down"},
+      {"domain": "d4", "number": "3", "label": "State position shifts", "changeDirection": "neutral"},
+      {"domain": "d6", "number": "HALTED", "label": "Hormuz war risk cover", "changeDirection": "down"}
+    ]
+  },
+  "domains": [
+    {
+      "id": "d1",
+      "num": "01",
+      "title": "BATTLESPACE · KINETIC",
+      "assessmentQuestion": "What is the current disposition of forces, and what activity occurred across all theatres in the last 24 hours?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d1",
+        "domain": "d1",
+        "confidence": "high",
+        "probabilityRange": "95-99%",
+        "language": "almost-certainly",
+        "text": "We assess with high confidence that Israel's broad new wave of strikes on Tehran and Beirut on Day 7 (DW, 06 Mar 0248 UTC), combined with Saudi Arabia's confirmed interception of three drones east of Riyadh and IRGC escalation communiqués, confirms the conflict has entered an unrestricted multi-theatre exchange — with no indication that either the US-Israeli coalition or IRGC command has activated a de-escalation mechanism.",
+        "basis": "DW's confirmed Israeli military attribution at 0248 UTC 06 Mar, Iran International's IRGC escalation warning, and Saudi intercept confirmation provide converging Tier 2 corroboration.",
+        "citations": [{"source": "Deutsche Welle", "tier": 2, "verificationStatus": "reported"}, {"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "Israel confirmed a 'broad' new wave of strikes on the Iranian capital Tehran and Beirut on the night of 05-06 March, marking the seventh consecutive day of Israeli offensive action since 28 February 2026 (DW, 06 Mar 0248 UTC). A series of loud explosions was reported in eastern and central Tehran, and Israeli military statements attributed strikes to both Iran-based targets and Lebanon-based IRGC-Hezbollah infrastructure. Saudi Arabia's Ministry of Interior confirmed the interception of three drones east of Riyadh on 05-06 March (Iran International, 06 Mar), indicating that Iranian or Iran-proxy forces have extended engagement reach into the Arabian Peninsula beyond immediate conflict theatres.",
+          "timestamp": "2026-03-06T02:48:00Z",
+          "citations": [{"source": "Deutsche Welle", "tier": 2, "verificationStatus": "reported"}, {"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "OBSERVED ACTIVITY — IRAQI KURDISTAN THEATRE",
+          "subLabelVariant": "observed",
+          "text": "PKK-affiliated ANF reported that drone and missile strikes continued overnight 05-06 March in South Kurdistan (KRI) and Iraq, with Korek Mountain struck for the third time in the same week; a kamikaze drone crashed into the Westa Receb neighbourhood of Soran Autonomous Administration, wounding two civilians (ANF, 06 Mar — PKK-affiliated, Tier 3, treat as 'claimed'). Additional strikes were reported in Choman district villages Kewerte and Werte. The pattern of repeated strikes on Korek Mountain — which hosts a major telecommunications and tourism infrastructure hub — indicates consistent targeting of dual-use elevated ground positions across the KRI rather than purely military objectives.",
+          "timestamp": "2026-03-06T03:00:00Z",
+          "citations": [{"source": "ANF News", "tier": 3, "verificationStatus": "claimed"}]
+        },
+        {
+          "subLabel": "OPERATIONAL ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "We assess with high confidence that the simultaneous prosecution of air campaigns against Tehran, Beirut, and proxy-force targeting in Iraqi Kurdistan represents a deliberate US-Israeli strategy of multi-front attrition against IRGC infrastructure rather than a phased sequential approach — a pattern that maximises pressure on Iranian command-and-control but proportionally reduces the window for a negotiated pause before structural military degradation becomes irreversible. The IRGC's public warning that 'attacks will intensify' (Iran International) and the US statement that the fight has 'only begun' (Iran International) confirm that neither party is signalling de-escalation to audiences that matter — field commanders and insurance underwriters — which will prolong Hormuz closure pressure regardless of diplomatic contact.",
+          "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "ASSESSMENT — KURDISH DIMENSION",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests that the repeated drone and missile strikes on KRI territory — using Iraqi Kurdistan as a transit or staging corridor for both US-allied and Iranian-aligned operations — is increasing KRG-Baghdad federal tensions at a time when KirkukNow reported Iraqi army units issuing 24-hour eviction notices in Kirkuk's Newroz neighbourhood (KirkukNow, 05 Mar, Tier 2), consistent with a pattern of Iraqi central government asserting administrative control in disputed territories under cover of broader conflict distraction. The KRG Peshmerga Ministry has not issued public statements on the Korek or Soran incidents, which itself may indicate KRG caution in acknowledging Iranian-or-proxy targeting of its territory to avoid entanglement.",
+          "citations": [{"source": "KirkukNow", "tier": 2, "verificationStatus": "reported"}, {"source": "ANF News", "tier": 3, "verificationStatus": "claimed"}]
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "num": "02",
+      "title": "ESCALATION · TRAJECTORY",
+      "assessmentQuestion": "What is Iran's nuclear trajectory and overall escalation risk horizon?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d2",
+        "domain": "d2",
+        "confidence": "high",
+        "probabilityRange": "75-95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that the contested emergency appointment of Mojtaba Khamenei as Supreme Leader — with confirmed clerical opposition to hereditary succession — has created a decision-making vacuum at the apex of Iranian state authority that will inhibit any coherent de-escalation initiative for at least the next 30-60 days, as IRGC commanders and the new Supreme Leader compete to establish authoritative control over war aims.",
+        "basis": "Iran International's exclusive reporting on the Assembly of Experts emergency session, combined with confirmed clerical dissent, constitutes Tier 2 corroboration of a contested succession; IRGC's acceleration of the announcement is consistent with Guard Corps political consolidation.",
+        "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY — SUCCESSION",
+          "subLabelVariant": "observed",
+          "text": "Iran International reported that the Assembly of Experts convened an emergency session on 05-06 March 2026 to formally elect Mojtaba Khamenei, son of the late Ali Khamenei, as the Islamic Republic's new Supreme Leader, over reported objections from clerical members who warned against 'hereditary leadership' (Iran International, 06 Mar). The IRGC, according to Iran International's exclusive sourcing, was pushing for a rapid Mojtaba announcement 'amid dissent' — indicating Guard Corps institutional interests are now directly shaping the succession outcome. Funeral plans for Ali Khamenei have been revised multiple times this week, reflecting mounting security concerns and unresolved questions over foreign attendance and domestic succession legitimacy.",
+          "timestamp": "2026-03-06T03:00:00Z",
+          "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "OBSERVED ACTIVITY — TRUMP ESCALATION STATEMENTS",
+          "subLabelVariant": "observed",
+          "text": "President Trump told Reuters in a telephone interview on 05 March that Iran had sought negotiations but that it was 'too late' (Iran International, 05 Mar, citing Reuters); Trump simultaneously confirmed the United States will have a role in choosing Iran's next leader — an assertion with no precedent in modern US declaratory policy. Trump also publicly called on IRGC members, military personnel, and police officers to lay down arms or face death, and urged Iranian diplomats abroad to seek asylum (Iran International, 05-06 Mar). These statements collectively constitute a US maximum-pressure IO campaign targeting Iranian regime coherence rather than a conventional war-termination framework.",
+          "timestamp": "2026-03-05T18:00:00Z",
+          "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "OPERATIONAL ASSESSMENT — NUCLEAR TRAJECTORY",
+          "subLabelVariant": "assessment",
+          "text": "Reporting indicates, though corroboration is limited, that the combination of leadership succession instability, IRGC political consolidation, and the absence of an active IAEA inspector presence in Iran — IAEA feeds returned 404 errors this cycle, indicating potential website maintenance or access disruption — creates an unmonitored window during which any nuclear acceleration decision would be undetectable from open sources for 24-72 hours. The IAEA's loss of continuity-of-knowledge over Iranian nuclear activities during a period of active warfare represents a critical collection gap. Available evidence from prior cycles suggests Iran's enriched uranium stockpile at Fordow and Natanz was at levels that would provide 1-3 weeks of sprint time to weapons-grade if the political decision were made; under current leadership uncertainty, the probability of a rogue IRGC nuclear sprint decision merits elevated watch status.",
+          "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "ASSESSMENT — PJAK/IRANIAN KURDISH ESCALATION RISK",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests that the leadership vacuum following Khamenei's death and the contested Mojtaba succession represents the highest-probability window for PJAK (Party of Free Life of Kurdistan) mobilisation in Iran's Kurdistan Province since 2011, as IRGC internal attention is directed at the Tehran succession crisis rather than cross-border containment of Kurdish armed groups in the Qandil-Kandil mountain range. PJAK's armed wing HBKM has historically exploited Iranian succession or leadership distraction events; the KHRN reports of IRGC detention campaigns against Kurdish civil activists in Iran continuing even as the war began suggest the IRGC is attempting to pre-empt this risk — but with diminishing capacity under multi-front attrition.",
+          "citations": [{"source": "KHRN", "tier": 2, "verificationStatus": "reported"}]
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "num": "03",
+      "title": "ENERGY · ECONOMIC",
+      "assessmentQuestion": "How has the conflict affected energy supply, pricing, and regional economic stability?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d3",
+        "domain": "d3",
+        "confidence": "high",
+        "probabilityRange": "75-95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that the Strait of Hormuz de facto closure — confirmed by the London market withdrawal of war risk cover and Iran's stated intention to target vessels attempting passage (TradeWinds, 05-06 Mar) — combined with the drone strike on Fujairah oil storage infrastructure, COSCO's suspension of Middle East bookings (Safety4Sea, 05 Mar), and at least one force majeure declaration by an unnamed oil and gas operator (Safety4Sea, 05 Mar), constitutes the largest acute energy supply disruption event since the 1973 Arab oil embargo and will produce sustained Brent price pressure regardless of operational ceasefire timing.",
+        "basis": "Multiple converging Tier 2 maritime sources confirm Hormuz closure and Fujairah terminal strike; COSCO and force majeure reports are corroborating supply-chain impact indicators.",
+        "citations": [{"source": "TradeWinds", "tier": 2, "verificationStatus": "reported"}, {"source": "Safety4Sea", "tier": 2, "verificationStatus": "reported"}]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY — HORMUZ/SHIPPING",
+          "subLabelVariant": "observed",
+          "text": "TradeWinds reported on 05-06 March that the Strait of Hormuz is 'shut' with Iran threatening to 'set fire to anyone who tries to pass through,' and that war risk insurers have halted Hormuz coverage amid de facto closure — while simultaneously noting the London market maintains that cover remains available to shipping willing to accept elevated premiums (TradeWinds, 05-06 Mar). UKMTO confirmed a tanker explosion causing oil to spill in the reporting period (Safety4Sea citing UKMTO, 05 Mar, Tier 1 UKMTO data). Four Dynacom vessels were reported braving Hormuz transit into the Gulf, with a flotilla of waiting empty tankers accumulating outside the Strait, indicating commercial pressure is pushing some shipowners to attempt passage despite the withdrawal of standard war risk cover.",
+          "timestamp": "2026-03-05T12:00:00Z",
+          "citations": [{"source": "TradeWinds", "tier": 2, "verificationStatus": "reported"}, {"source": "UKMTO", "tier": 1, "verificationStatus": "confirmed"}]
+        },
+        {
+          "subLabel": "OBSERVED ACTIVITY — ENERGY INFRASTRUCTURE",
+          "subLabelVariant": "observed",
+          "text": "TradeWinds reported a drone strike on the Fujairah oil storage terminal as Iran targeted regional energy hubs — a significant escalation beyond maritime interdiction, targeting land-based energy storage in a neutral UAE free port territory (TradeWinds, 05-06 Mar). An unidentified oil and gas operator declared force majeure citing geopolitical tensions (Safety4Sea, 05 Mar); China's government urged domestic refiners to halt new fuel exports amid Iran tensions (Safety4Sea, 05 Mar), the latter a direct signal that Beijing is preparing for prolonged energy disruption rather than a rapid resolution. COSCO, China's state-owned shipping company, suspended new bookings for Middle East routes (Safety4Sea, 05 Mar), marking the largest state-backed shipping carrier withdrawal from the theatre.",
+          "timestamp": "2026-03-05T14:00:00Z",
+          "citations": [{"source": "Safety4Sea", "tier": 2, "verificationStatus": "reported"}, {"source": "TradeWinds", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "ASSESSMENT — KIRKUK-CEYHAN PIPELINE",
+          "subLabelVariant": "assessment",
+          "text": "Reporting indicates, though corroboration is limited, that the drone and missile strikes on KRI territory documented by PKK-affiliated ANF (Tier 3 — claimed) — and the broader disruption to Iraqi infrastructure — will increase pressure on the Kirkuk-Ceyhan pipeline, which passes through disputed territorial corridors vulnerable to interdiction by both Iranian proxies and PKK-aligned forces opportunistically exploiting the conflict's distraction effect. KirkukNow's (Tier 2) reporting of Iraqi army operations in Kirkuk's Newroz neighbourhood (05 Mar) is consistent with Baghdad attempting to reassert administrative control over disputed oil-producing areas while KRG security attention is divided.",
+          "citations": [{"source": "KirkukNow", "tier": 2, "verificationStatus": "reported"}, {"source": "ANF News", "tier": 3, "verificationStatus": "claimed"}]
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "num": "04",
+      "title": "DIPLOMATIC · POLITICAL",
+      "assessmentQuestion": "What is the diplomatic posture of key actors?",
+      "confidence": "moderate",
+      "keyJudgment": {
+        "id": "kj-d4",
+        "domain": "d4",
+        "confidence": "moderate",
+        "probabilityRange": "55-75%",
+        "language": "likely",
+        "text": "Available evidence suggests that three simultaneous state-level diplomatic repositionings — Lebanon's formal ban on IRGC activity and move to deport members, Spain's public condemnation of US strikes drawing a Trump rebuke, and the US assertion of a role in selecting Iran's next Supreme Leader — confirm a fragmentation of the coalition's diplomatic framework in which close US allies are diverging from Washington's war aims faster than any potential ceasefire process could accommodate.",
+        "basis": "Lebanon's IRGC ban is a formally confirmed executive state action; Spain-US friction is Tier 2 DW reporting; Trump's role-in-succession statement is Tier 2 via Iran International citing Reuters.",
+        "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}, {"source": "Deutsche Welle", "tier": 2, "verificationStatus": "reported"}]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY — LEBANON/IRGC",
+          "subLabelVariant": "observed",
+          "text": "Lebanon formally banned IRGC activity on its territory and moved to deport IRGC members, according to Iran International (06 Mar) — a landmark shift in Lebanese state posture after years of de facto accommodation of IRGC-Hezbollah infrastructure. This decision reflects the Lebanese government's calculation that the IRGC's military usefulness as a Hezbollah patron has been degraded by the Israeli strike campaign, and that maintaining IRGC presence now carries strategic liability without compensating deterrent benefit. UNICEF simultaneously called on all parties to protect civilians, warning that children were increasingly bearing the toll of the fighting with reports of rising casualties in Iran (Iran International, 06 Mar), a statement that will accelerate European and UN Security Council pressure for a humanitarian pause.",
+          "timestamp": "2026-03-06T02:00:00Z",
+          "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "OBSERVED ACTIVITY — US-EUROPEAN FRACTURE",
+          "subLabelVariant": "observed",
+          "text": "DW reported that Iran war tensions are straining US-Spain relations, with President Trump publicly lashing out against Spain after Madrid condemned US attacks on Iran (DW, 05 Mar). This represents the first confirmed intra-NATO bilateral diplomatic dispute arising directly from the conflict's prosecution, and Spain's position — while not a formal Article 5 or collective defence matter — signals that European public opinion pressure on governments participating in or endorsing the US-led campaign has breached the threshold for overt diplomatic dissent. The Kurdish rights organisation Bianet reported ongoing Turkish human rights documentation activities related to conflict-zone civilian impacts (Bianet, 06 Mar), consistent with Turkey maintaining a watching brief on conflict spillover into its Kurdish political environment.",
+          "timestamp": "2026-03-05T18:00:00Z",
+          "citations": [{"source": "Deutsche Welle", "tier": 2, "verificationStatus": "reported"}, {"source": "Bianet", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "ASSESSMENT — KRG/TURKISH DIMENSION",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests that the KRG faces a compounding diplomatic pressure environment: Baghdad's reassertion of administrative control in Kirkuk (KirkukNow, 05 Mar), continued drone and missile strikes on KRI territory from both IRGC proxy forces and US-adjacent operations, and Turkey's standing Operation Claw-series presence in northern Iraq creating a three-directional squeeze that limits KRG President Barzani's room for political manoeuvre. KirkukNow's reporting (Tier 2, 05 Mar) of Kurdish political parties organising Newroz commemorations in Kirkuk — including the symbolic Newroz fire-lighting — against a backdrop of ongoing military operations is a signal of civilian population resilience but also of the KRG's interest in demonstrating normalcy that could be interpreted by Baghdad as political provocation in disputed territories.",
+          "citations": [{"source": "KirkukNow", "tier": 2, "verificationStatus": "reported"}]
+        }
+      ]
+    },
+    {
+      "id": "d5",
+      "num": "05",
+      "title": "CYBER · INFORMATION OPS",
+      "assessmentQuestion": "What cyber and information operations are assessed as underway?",
+      "confidence": "moderate",
+      "keyJudgment": {
+        "id": "kj-d5",
+        "domain": "d5",
+        "confidence": "moderate",
+        "probabilityRange": "55-75%",
+        "language": "likely",
+        "text": "Available evidence suggests that the US information operations campaign — Trump's direct public appeals for IRGC and military defections, combined with offers of asylum for Iranian diplomats — represents the most explicitly personalised IO effort against an adversary state military apparatus since the Gulf War, with the specific framing of 'defect or die' likely intended to create command cohesion stress within IRGC units rather than to achieve mass defection events.",
+        "basis": "Iran International confirmed Trump's specific defection-or-death messaging to IRGC, military, and police personnel; this is a publicly attributable US state IO act documented by a Tier 2 source.",
+        "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY — US IO CAMPAIGN",
+          "subLabelVariant": "observed",
+          "text": "President Trump issued public statements urging Iranian diplomats abroad to seek asylum and calling directly on IRGC members, military personnel, and police officers to lay down arms or face death (Iran International, 05-06 Mar); this IO campaign, delivered via presidential statement to Reuters and amplified through international media, is designed to create a perceived legitimacy crisis within Iranian security services at the exact moment of leadership succession uncertainty. Iran International's INSIGHT report 'As Western Activists Chant No War, Some Iranians Cheer US Strikes' (Iran International, 06 Mar) documents an internal Iranian informational environment that is more fragmented than external assumptions of national unity would suggest.",
+          "timestamp": "2026-03-05T18:00:00Z",
+          "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "OBSERVED ACTIVITY — MARITIME CYBER ENVIRONMENT",
+          "subLabelVariant": "observed",
+          "text": "Safety4Sea reported on 05 March that maritime cyber incidents increased by 103% in 2025, providing an elevated baseline threat environment against which current IRGC or IRGC-proxy cyber operations targeting Hormuz maritime communications, AIS transponders, and Gulf terminal management systems should be assessed (Safety4Sea, 05 Mar, Tier 2). Anglo-Eastern's cyber security statement noted that 'cyber security is no longer just an IT issue' for shipping operations, indicating growing industry recognition of operational technology (OT) cyber risk at a time when Iranian capabilities in maritime OT targeting are assessed as active.",
+          "timestamp": "2026-03-05T12:00:00Z",
+          "citations": [{"source": "Safety4Sea", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "ASSESSMENT — IRANIAN IO AND SUCCESSION NARRATIVE",
+          "subLabelVariant": "assessment",
+          "text": "Reporting indicates, though corroboration is limited, that Iran's information operations environment is under severe strain: Khamenei's funeral plans have been revised multiple times — Iran International reports this reflects 'mounting security fears, uncertainty over foreign attendance and unresolved questions about succession' — indicating the Iranian state is struggling to project authority and narrative coherence at the precise moment the US IO campaign is targeting elite defection. The 'dark humour' reportedly proliferating online over the Khamenei burial delay (Iran International, 06 Mar) suggests the Iranian public's information environment is not manageable by standard state media protocols during an active war, creating conditions for uncontrolled information flow.",
+          "citations": [{"source": "Iran International", "tier": 2, "verificationStatus": "reported"}]
+        }
+      ]
+    },
+    {
+      "id": "d6",
+      "num": "06",
+      "title": "WAR RISK INSURANCE · MARITIME FINANCE",
+      "assessmentQuestion": "How has the security environment affected war risk insurance pricing and vessel routing?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d6",
+        "domain": "d6",
+        "confidence": "high",
+        "probabilityRange": "75-95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that the withdrawal of war risk cover for Strait of Hormuz transit by leading London market underwriters (TradeWinds, 05-06 Mar), combined with the confirmed drone strike on Fujairah oil storage infrastructure, the UKMTO-confirmed tanker explosion causing oil spill, and the Iranian sabotage attack on a US-managed tanker, constitute a market-wide repricing event that will produce Additional War Risk Premium (AWRP) levels for Gulf transit unprecedented since the 1980s Tanker War — with full normalisation structurally contingent on a verified ceasefire, not merely a reduction in incident frequency.",
+        "basis": "TradeWinds' direct reporting of insurer withdrawal from Hormuz cover and Fujairah terminal drone strike, corroborated by UKMTO (Tier 1) tanker explosion report and IUMI's March 2026 Marine Insurance in the Middle East statement, provides strong multi-source Tier 1/2 corroboration.",
+        "citations": [{"source": "TradeWinds", "tier": 2, "verificationStatus": "reported"}, {"source": "UKMTO", "tier": 1, "verificationStatus": "confirmed"}, {"source": "IUMI", "tier": 2, "verificationStatus": "reported"}]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY — HORMUZ CLOSURE AND INSURER WITHDRAWAL",
+          "subLabelVariant": "observed",
+          "text": "TradeWinds reported on 05-06 March that war risk insurers have halted Strait of Hormuz coverage amid a de facto closure — while the London market's mainstream position insists cover remains available to vessels prepared to accept elevated Additional War Risk Premiums — indicating a market split between underwriters maintaining appetite at price and those withdrawing capacity entirely (TradeWinds, 05-06 Mar). Trump sought to reopen Hormuz by offering insurance support and US Navy escorts to vessels willing to transit, a proposal that has yet to receive P&I club or JWC endorsement as of 0600 UTC 06 Mar. A flotilla of empty tankers is accumulating outside the Strait as four Dynacom vessels reportedly braved transit into the Gulf (TradeWinds, 05-06 Mar), creating a backlog that will exert additional upward pressure on time-charter rates and AWRP as insurers price accumulation risk.",
+          "timestamp": "2026-03-06T04:00:00Z",
+          "citations": [{"source": "TradeWinds", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "OBSERVED ACTIVITY — VESSEL STRIKES AND FUJAIRAH TERMINAL",
+          "subLabelVariant": "observed",
+          "text": "UKMTO confirmed a tanker explosion causing oil to spill in the reporting period (Safety4Sea citing UKMTO, 05 Mar; UKMTO = Tier 1 confirmed); TradeWinds reported crew were safe following an Iranian sabotage attack on a US-managed tanker in the Middle East Gulf (TradeWinds, 05-06 Mar). New vessel strikes were reported off Fujairah with the UAE denying a shortage of defensive missiles, and TradeWinds confirmed a drone struck the Fujairah oil storage terminal — a directly insured major property loss in neutral UAE territorial waters (TradeWinds, 05-06 Mar). Hellenic Shipping News covered the broader war risk premium movements, noting shipowners face extra premiums with the expansion of war risk zones beyond the traditional Bab el-Mandeb and Hormuz areas to include Fujairah approaches (Hellenic Shipping News, 05 Mar, Tier 2).",
+          "timestamp": "2026-03-05T16:00:00Z",
+          "citations": [{"source": "UKMTO", "tier": 1, "verificationStatus": "confirmed"}, {"source": "TradeWinds", "tier": 2, "verificationStatus": "reported"}, {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported"}]
+        },
+        {
+          "subLabel": "ASSESSMENT — MARKET STRUCTURE AND SHADOW FLEET",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests — from TradeWinds' reporting that a shadow fleet backer struck deals with major insurers amid a police probe (TradeWinds, 05-06 Mar) and Belgium's imposition of an €10M+ fine on a detained shadow tanker (Safety4Sea, 05 Mar) — that the Hormuz closure is accelerating the bifurcation of the tanker market between a compliant fleet that cannot transit without unavailable cover, and a shadow fleet operating with opaque insurance arrangements that circumvents JWC listed area protocols. IUMI's formal statement on Marine Insurance in the Middle East (March 2026) will provide the authoritative market-wide assessment of capacity and pricing floors, and warrants urgent acquisition for full underwriter posture analysis.",
+          "citations": [{"source": "TradeWinds", "tier": 2, "verificationStatus": "reported"}, {"source": "Safety4Sea", "tier": 2, "verificationStatus": "reported"}, {"source": "IUMI", "tier": 2, "verificationStatus": "reported"}]
+        }
+      ]
+    }
+  ],
+  "warningIndicators": [
+    {
+      "id": "wi-01",
+      "indicator": "IRGC ballistic missile readiness posture",
+      "domain": "d1",
+      "status": "triggered",
+      "change": "elevated",
+      "detail": "IRGC publicly warned attacks will intensify (Iran International, 06 Mar); Saudi Arabia intercepted three drones east of Riyadh, confirming extended-range Iranian proxy engagement capacity is active."
+    },
+    {
+      "id": "wi-02",
+      "indicator": "Mojtaba Khamenei succession legitimacy",
+      "domain": "d2",
+      "status": "triggered",
+      "change": "new-triggered",
+      "detail": "Assembly of Experts emergency session elected Mojtaba Khamenei over clerical objections; IRGC accelerating announcement amid dissent — contested legitimacy creates decision-making vacuum for war termination (Iran International, 06 Mar)."
+    },
+    {
+      "id": "wi-03",
+      "indicator": "Strait of Hormuz transit viability",
+      "domain": "d6",
+      "status": "triggered",
+      "change": "new-triggered",
+      "detail": "De facto closure confirmed; war risk insurers withdrawing cover; Iran threatening to target transit vessels; tanker backlog accumulating outside Strait (TradeWinds, 05-06 Mar). UKMTO tanker explosion with oil spill confirmed."
+    },
+    {
+      "id": "wi-04",
+      "indicator": "IRGC nuclear sprint decision risk",
+      "domain": "d2",
+      "status": "elevated",
+      "change": "newly-elevated",
+      "detail": "IAEA feed unavailable this cycle (404 error) — creating an unmonitored window. Leadership vacuum and IRGC political consolidation during succession crisis creates conditions for rogue nuclear decision. Elevated from watching to elevated."
+    },
+    {
+      "id": "wi-05",
+      "indicator": "Fujairah port and UAE energy infrastructure security",
+      "domain": "d3",
+      "status": "triggered",
+      "change": "new-triggered",
+      "detail": "Drone struck Fujairah oil storage terminal (TradeWinds, 05-06 Mar); new vessel strikes off Fujairah reported; UAE denying missile defence shortage — indicates Iranian willingness to strike neutral state energy infrastructure."
+    },
+    {
+      "id": "wi-06",
+      "indicator": "PJAK mobilisation in Iran's Kurdistan Province",
+      "domain": "d2",
+      "status": "elevated",
+      "change": "newly-elevated",
+      "detail": "Leadership succession crisis and IRGC redeployment to Tehran creates reduced containment pressure on PJAK in Qandil. KHRN documenting ongoing IRGC crackdowns on Kurdish civil society — consistent with pre-emption posture (KHRN, 06 Mar)."
+    },
+    {
+      "id": "wi-07",
+      "indicator": "KRG-Baghdad federal tensions — Kirkuk",
+      "domain": "d4",
+      "status": "elevated",
+      "change": "elevated",
+      "detail": "Iraqi army issuing 24-hour eviction notices in Kirkuk's Newroz neighbourhood (KirkukNow, 05 Mar); Baghdad pushing to reclaim governorship in 'broader political package' — conflict providing cover for disputed territory assertion."
+    },
+    {
+      "id": "wi-08",
+      "indicator": "Lebanese state stability under dual pressure",
+      "domain": "d4",
+      "status": "elevated",
+      "change": "newly-elevated",
+      "detail": "Lebanon's formal IRGC ban and deportation move (Iran International, 06 Mar) removes IRGC institutional presence but also eliminates deterrent capacity against Hezbollah, leaving Lebanese state security architecture exposed during active conflict."
+    },
+    {
+      "id": "wi-09",
+      "indicator": "Saudi Arabia — Iranian extended-range targeting",
+      "domain": "d1",
+      "status": "triggered",
+      "change": "elevated",
+      "detail": "Saudi Arabia confirmed interception of three drones east of Riyadh (Iran International, 06 Mar) — first confirmed Iranian proxy targeting of Saudi territory in this conflict cycle. Indicates Iranian willingness to expand strike reach to Gulf Arab states to deter coalition participation."
+    },
+    {
+      "id": "wi-10",
+      "indicator": "US-European coalition cohesion",
+      "domain": "d4",
+      "status": "elevated",
+      "change": "newly-elevated",
+      "detail": "Spain-US diplomatic friction confirmed over Spanish condemnation of US Iran strikes (DW, 05 Mar); UNICEF warning increasing pressure on European governments to demand humanitarian pause — first intra-NATO public diplomatic fracture of this conflict."
+    },
+    {
+      "id": "wi-11",
+      "indicator": "Iranian IO environment — regime narrative coherence",
+      "domain": "d5",
+      "status": "elevated",
+      "change": "elevated",
+      "detail": "Khamenei funeral delays provoking online dark humour (Iran International, 06 Mar); US IO campaign targeting IRGC defections; internal fragmentation in Iranian public sentiment (Iran International ANALYSIS). Regime's information control under severe strain."
+    },
+    {
+      "id": "wi-12",
+      "indicator": "Shadow tanker fleet insurance gap",
+      "domain": "d6",
+      "status": "elevated",
+      "change": "elevated",
+      "detail": "Shadow fleet backer struck insurer deals amid police probe (TradeWinds); Belgium imposed €10M+ fine on detained shadow tanker (Safety4Sea, 05 Mar). Shadow fleet likely to expand Hormuz bypass role, circumventing JWC zone protocols and creating uninsured loss accumulation."
+    }
+  ],
+  "collectionGaps": [
+    {
+      "id": "cg-01",
+      "domain": "d2",
+      "gap": "IAEA inspector access to Iranian nuclear facilities during active conflict — IAEA feed returned 404 error this cycle.",
+      "significance": "Any Iranian nuclear acceleration decision would be undetectable from open sources for 24-72 hours in the absence of IAEA continuity-of-knowledge; this gap represents the highest-risk unmonitored domain in the brief.",
+      "severity": "critical",
+      "category": "source-outage"
+    },
+    {
+      "id": "cg-02",
+      "domain": "d1",
+      "gap": "CTP-ISW Evening Report unavailable this cycle (HTTP 404); loss of the primary Tier 1 operational assessment source for Iranian and Israeli military dispositions.",
+      "significance": "CTP-ISW provides the only systematically footnoted open-source operational assessment of the conflict; its absence removes the factual floor for D1 bodyParagraph OBSERVED labelling.",
+      "severity": "critical",
+      "category": "source-outage"
+    },
+    {
+      "id": "cg-03",
+      "domain": "d1",
+      "gap": "CENTCOM press releases inaccessible (HTTP 403) — no official US military confirmation of strike targets, battle damage assessment, or casualty data available this cycle.",
+      "significance": "Absence of CENTCOM verification means all US strike claims rest on Tier 2 media reporting; BDA for Israeli strikes on Tehran is unconfirmed by Tier 1 sources.",
+      "severity": "critical",
+      "category": "source-outage"
+    },
+    {
+      "id": "cg-04",
+      "domain": "d6",
+      "gap": "JWC Listed Areas page returned HTTP 503 — unable to confirm whether Strait of Hormuz or Fujairah approaches have been formally added to JWC war-listed areas this cycle.",
+      "significance": "Formal JWC listing triggers mandatory AWRP obligations under CONWARTIME/VOYWAR clauses across all Lloyd's syndicates; without this confirmation, the full premium impact on the commercial fleet cannot be quantified.",
+      "severity": "significant",
+      "category": "source-outage"
+    },
+    {
+      "id": "cg-05",
+      "domain": "d1",
+      "gap": "Ground-level operational reporting from KRI conflict zones — PKK-affiliated ANF is the sole non-state source reporting drone and missile strikes; independent Tier 1/2 corroboration of KRI targeting is absent.",
+      "significance": "Without independent confirmation of the Korek Mountain and Soran civilian casualties, the full scale of conflict spillover into Iraqi Kurdistan remains unverifiable; SOHR (Tier 2) returned HTTP 403 this cycle.",
+      "severity": "significant",
+      "category": "kurdish-turkish-gap"
+    },
+    {
+      "id": "cg-06",
+      "domain": "d4",
+      "gap": "Iranian Assembly of Experts deliberations on Mojtaba Khamenei appointment — internal deliberations, vote count, and extent of dissent are based on a single Iran International exclusive source.",
+      "significance": "The contested or smooth nature of the succession determines whether Iran's war-making authority is cohesive or fragmented; without corroboration, this remains a single-source diplomatic assessment with significant uncertainty.",
+      "severity": "significant",
+      "category": "diplomatic-opacity"
+    }
+  ],
+  "caveats": {
+    "cycleRef": "CSE-BRIEF-005 · 06 MARCH 2026",
+    "items": [
+      {
+        "label": "SOURCE CONSTRAINT",
+        "text": "CTP-ISW, CENTCOM, IAEA, and JWC sources were unavailable this cycle (404/403/503 errors). All D1 and D2 body text rests on Tier 2 sources. The factual floor is lower than the brief standard requires."
+      },
+      {
+        "label": "PKK-AFFILIATED SOURCE",
+        "text": "ANF News is PKK-affiliated. All ANF-sourced material is labelled Tier 3 'claimed' and used only for PKK/KRI reporting not available from Tier 1/2 sources. No ANF content is used as independent corroboration."
+      },
+      {
+        "label": "IRAN INTERNATIONAL",
+        "text": "Iran International is an oppositional Iranian diaspora outlet with strong track record on IRGC internal reporting. Used as Tier 2 'reported' throughout but all claims subject to Iranian government denial."
+      }
+    ],
+    "confidenceAssessment": "D1: high (multiple Tier 2 convergent sources). D2: high (succession confirmed, nuclear gap noted). D3: high (UKMTO Tier 1 confirmation of tanker explosion). D4: moderate (Lebanon/Spain shifts confirmed; KRG assessment is analyst judgment). D5: moderate (IO events confirmed; cyber operational details absent). D6: high (UKMTO Tier 1 + multiple TradeWinds Tier 2 convergent).",
+    "dissenterNotes": [
+      {
+        "id": "dn-01",
+        "analyst": "ANALYST B",
+        "text": "ANALYST B disputes the CRITICAL threat level designation for the headline, on the grounds that Israeli strikes on Tehran, while confirmed, have not yet produced Iranian nuclear or CBRN escalation, and the IRGC's 'attacks will intensify' communiqué may represent negotiating posture rather than operational intent. ANALYST B assesses SEVERE with escalating trajectory is more defensible until IRGC mounts a confirmed strategic strike on Israeli population centres or nuclear facilities. The key judgment on a 30-60 day decision-making vacuum in Tehran assumes Mojtaba Khamenei lacks operational authority he may already have been exercising informally under his father's decline."
+      }
+    ],
+    "sourceQuality": "See domain citations. Tier 1 confirmed: UKMTO (tanker explosion). Tier 2 reported: Deutsche Welle, Iran International, TradeWinds, Safety4Sea, Hellenic Shipping News, IUMI, ANF News (Tier 3 claimed), KirkukNow, KHRN, Bianet.",
+    "handling": "DRAFT — NOT FOR DISTRIBUTION"
+  },
+  "footer": {
+    "id": "CSE-BRIEF-005-20260306",
+    "classification": "PROTECTED B // TLP:AMBER",
+    "sources": "UKMTO · Iran International · Deutsche Welle · TradeWinds · Safety4Sea · IUMI · Hellenic Shipping News · KirkukNow · KHRN · Bianet · ANF (Tier 3) · Daily Sabah · Anadolu · [see domain citations]",
+    "handling": "DRAFT — NOT FOR DISTRIBUTION"
+  }
+}

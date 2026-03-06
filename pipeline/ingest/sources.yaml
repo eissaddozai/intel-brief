@@ -955,33 +955,7 @@ sources:
 #   JS-rendered, blank page without headless browser. Removed.
 
 # ─────────────────────────────────────────────────────────────────────────────
-# EXCLUDED SOURCES
-# ─────────────────────────────────────────────────────────────────────────────
 
-excluded:
-  state_media_iranian:
-    names:
-      - "Tehran Times"
-      - "PressTV"
-      - "IRNA (Islamic Republic News Agency)"
-      - "Mehr News Agency"
-      - "Fars News Agency"
-      - "Tasnim News Agency"
-    policy: "Label as 'Iranian government asserts...' — never use as independent corroboration."
-
-  raw_osint:
-    names:
-      - "Raw Twitter/X OSINT accounts (unvetted)"
-      - "Telegram channels without editorial accountability"
-    policy: "Do not ingest raw social media."
-
-  policy_advocacy:
-    names:
-      - "Foundation for Defense of Democracies (FDD)"
-      - "Long War Journal"
-    policy: "Event tracking usable as Tier 3 with hedging. Not policy recommendations."
-
-  # ─────────────────────────────────────────────────────────────────────────────
   # KURDISH · TURKISH DIMENSION — cross-domain (d1, d2, d4, d5)
   # Essential for: PKK/PJAK operations, KRG oil exports, Turkish cross-border
   # ops, Kurdish civil society signals, SDF posture in northeast Syria.
@@ -1264,3 +1238,30 @@ excluded:
       Bianet. Use for: official AKP/government framing of PKK operations,
       Turkey-US security consultations, and Gulf diplomatic positions from
       Turkish perspective.
+# EXCLUDED SOURCES
+# ─────────────────────────────────────────────────────────────────────────────
+
+excluded:
+  state_media_iranian:
+    names:
+      - "Tehran Times"
+      - "PressTV"
+      - "IRNA (Islamic Republic News Agency)"
+      - "Mehr News Agency"
+      - "Fars News Agency"
+      - "Tasnim News Agency"
+    policy: "Label as 'Iranian government asserts...' — never use as independent corroboration."
+
+  raw_osint:
+    names:
+      - "Raw Twitter/X OSINT accounts (unvetted)"
+      - "Telegram channels without editorial accountability"
+    policy: "Do not ingest raw social media."
+
+  policy_advocacy:
+    names:
+      - "Foundation for Defense of Democracies (FDD)"
+      - "Long War Journal"
+    policy: "Event tracking usable as Tier 3 with hedging. Not policy recommendations."
+
+  # ─────────────────────────────────────────────────────────────────────────────

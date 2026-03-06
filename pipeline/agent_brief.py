@@ -309,6 +309,9 @@ def _call_claude(prompt: str, model: str, label: str = '') -> str:
     log.info('CLI subagent %-20s starting...', label or '?')
     t0 = time.time()
 
+    # Strip CLAUDECODE from child env so claude CLI can run inside a Claude Code session
+    child_env = {k: v for k, v in os.environ.items() if k != 'CLAUDECODE'}
+
     for attempt in range(max_attempts):
         try:
             result = subprocess.run(
@@ -316,6 +319,7 @@ def _call_claude(prompt: str, model: str, label: str = '') -> str:
                 capture_output=True,
                 text=True,
                 timeout=CLI_TIMEOUT,
+                env=child_env,
             )
         except subprocess.TimeoutExpired:
             if attempt < max_attempts - 1:
