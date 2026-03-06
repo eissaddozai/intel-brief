@@ -795,14 +795,8 @@ section.domain::after{
 /* ── VISUAL ENHANCEMENTS — spacing, bigger titles, cleaner contours ── */
 /* Left/right breathing room on the brief body */
 .brief{padding:0 28px}
-/* Domain section contour — subtle left border only, no noise */
-.domain{border-left:3.5px solid transparent}
-.domain--d1{border-left-color:rgba(200,40,40,0.35)}
-.domain--d2{border-left-color:rgba(210,110,0,0.35)}
-.domain--d3{border-left-color:rgba(40,130,50,0.35)}
-.domain--d4{border-left-color:rgba(140,50,200,0.35)}
-.domain--d5{border-left-color:rgba(40,100,200,0.35)}
-.domain--d6{border-left-color:rgba(0,140,130,0.35)}
+/* Kill the double hairline separators — permanently gone */
+.section-end,.section-end--thick,.section-end--thin{display:none!important}
 /* Domain title — bigger, brighter */
 .domain__title{font-family:"Trebuchet MS",Arial,sans-serif;font-size:1.05rem!important;font-weight:800!important;color:#EAE4DA!important;letter-spacing:0.06em}
 /* KJ text — bigger, high-contrast */
