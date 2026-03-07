@@ -13,6 +13,7 @@ import random
 import time
 from functools import lru_cache
 
+import certifi
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
@@ -57,6 +58,7 @@ def build_session(
     """
     session = requests.Session()
     session.headers.update(headers or HEADERS_BOT)
+    session.verify = certifi.where()  # Use certifi CA bundle for SSL
 
     retry_strategy = Retry(
         total=retries,
