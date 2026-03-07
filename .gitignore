@@ -8,3 +8,4 @@ pipeline/**/__pycache__/
 .env
 *.log
 logs/
+scratch/
