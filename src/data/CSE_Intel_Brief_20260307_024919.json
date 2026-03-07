@@ -1,0 +1,634 @@
+{
+  "meta": {
+    "cycleId": "CSE_Intel_Brief_20260307_024919",
+    "cycleNum": "008",
+    "classification": "PROTECTED B",
+    "tlp": "AMBER",
+    "timestamp": "2026-03-07T02:49:19Z",
+    "region": "Iran · Gulf Region · Eastern Mediterranean",
+    "analystUnit": "CSE Conflict Assessment Unit",
+    "threatLevel": "CRITICAL",
+    "threatTrajectory": "escalating",
+    "subtitle": "Iran War File — Daily Assessment",
+    "contextNote": "Cycle covers the 24-hour period ending 0600 UTC 07 March 2026. All times UTC unless noted.",
+    "stripCells": [
+      {"top": "CRITICAL", "bot": "THREAT LEVEL"},
+      {"top": "DAY 8", "bot": "IRAN WAR"},
+      {"top": "$148+", "bot": "BRENT CRUDE"},
+      {"top": "~33%", "bot": "HORMUZ REDUCTION"},
+      {"top": "3", "bot": "FLASH POINTS"}
+    ]
+  },
+  "strategicHeader": {
+    "headlineJudgment": "We assess with high confidence that horizontal escalation is accelerating beyond coalition containment capacity — IDF ground forces have entered Lebanon, Iran is selectively closing the Strait of Hormuz to Western-linked shipping, and Trump's demand for unconditional surrender has eliminated the diplomatic off-ramp.",
+    "trajectoryRationale": "Three simultaneous escalation vectors — IDF Lebanon ground incursion, IRGC selective Hormuz closure targeting Western-linked vessels, and continued Iranian missile launches over Tel Aviv — indicate the conflict is expanding geographically faster than mediation efforts can contain it. Should Iran move from selective to full Hormuz closure, trajectory would shift from multi-theatre war to global energy crisis. Saudi Arabia's reported intensification of direct talks with Tehran represents the sole countervailing signal, though its efficacy remains undemonstrated."
+  },
+  "flashPoints": [
+    {
+      "id": "fp-1",
+      "domain": "d1",
+      "headline": "IDF ground forces enter Lebanon in multi-front expansion",
+      "detail": "We assess this constitutes a deliberate horizontal escalation — BBC observed Israeli troops and tanks massing near the Lebanese border on 06 March, with the IDF subsequently launching what it described as a ground incursion against Hezbollah positions. Israeli strikes on Lebanon killed at least 217 and wounded approximately 800 in the preceding 24 hours.",
+      "timestamp": "2026-03-06T16:16:00Z",
+      "confidence": "high",
+      "citations": [
+        {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T16:16:05Z", "url": "https://www.bbc.com/news/articles/cpv8xlvk3p4o"},
+        {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-07T00:00:00Z", "url": "https://www.aljazeera.com/news/liveblog/2026/3/7/iran-war-live-trump-says-no-deal-with-iran-until-unconditional-surrender"}
+      ]
+    },
+    {
+      "id": "fp-2",
+      "domain": "d3",
+      "headline": "IRGC selectively closes Hormuz to Western-linked vessels",
+      "detail": "We judge it highly likely that Iran has shifted from threatening Hormuz closure to implementing selective interdiction — the IRGC stated it is restricting passage for vessels linked to Western nations and Israel while denying a full closure. Hellenic Shipping News reported maritime traffic remained severely disrupted, with regional oil exporters exploring floating storage for stranded tankers.",
+      "timestamp": "2026-03-06T22:00:00Z",
+      "confidence": "moderate",
+      "citations": [
+        {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:43Z", "url": "https://www.hellenicshippingnews.com/iran-says-targeting-western-linked-ships-at-hormuz-denies-full-closure/"}
+      ]
+    },
+    {
+      "id": "fp-3",
+      "domain": "d1",
+      "headline": "IDF destroys Khamenei bunker now used by Iranian top brass",
+      "detail": "We assess this strike signals Israeli intelligence penetration of Iranian command structures — the IDF confirmed it destroyed the bunker complex in Tehran previously used by the late Ayatollah Khamenei, which surviving senior leadership had been using as a command post. This follows the earlier confirmed destruction of 11 Iranian naval vessels.",
+      "timestamp": "2026-03-06T19:01:00Z",
+      "confidence": "moderate",
+      "citations": [
+        {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T19:01:39Z", "url": "https://www.timesofisrael.com/idf-destroys-key-tehran-bunker-used-by-top-brass-trump-vows-no-deal-until-iran-surrenders/"},
+        {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-04T14:49:22Z", "url": "https://www.bbc.com/news/articles/cdxzzkkkwjqo"}
+      ]
+    }
+  ],
+  "executive": {
+    "bluf": "We assess with high confidence that the Iran conflict has entered its most dangerous phase since the initial strikes on 28 February — the simultaneous opening of a Lebanese ground front, Iran's selective closure of the Strait of Hormuz to Western-linked shipping, and Trump's explicit demand for unconditional surrender have collectively eliminated the three principal de-escalation mechanisms: geographic containment, economic equilibrium, and diplomatic negotiation. The energy system is flashing structural disruption: Brent crude above $148/bbl, Hormuz throughput reduced by approximately one-third, and the Baltic Dry Index at a three-week low of 2,010 points. Canada faces compounding exposure through NATO alliance obligations in a widening theatre, LNG supply vulnerability for key trade partners Japan and South Korea, and Prime Minister Carney's concurrent defense-cooperation engagement in Tokyo with Japan's Takaichi.",
+    "keyJudgments": [
+      {
+        "id": "kj-exec-1",
+        "domain": "d1",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that the conflict has expanded into a multi-front war — the IDF ground incursion into Lebanon, continued Iranian missile launches over Tel Aviv, Hezbollah's $50M-per-month rearmament, and a drone strike on a Basra oil facility collectively demonstrate resistance-axis coordination across at least four theatres.",
+        "basis": "BBC confirmed IDF troops and tanks massing at Lebanese border; Al Jazeera reported Iranian missiles over Tel Aviv with interceptor launches; Reuters sources cited $50M monthly Hezbollah budget from Iran; Al Jazeera reported drone strike on Basra oil facility.",
+        "citations": [
+          {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T16:16:05Z"},
+          {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-07T01:11:04Z"},
+          {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-07T00:56:20Z"}
+        ]
+      },
+      {
+        "id": "kj-exec-2",
+        "domain": "d2",
+        "confidence": "high",
+        "probabilityRange": "95–99%",
+        "language": "almost-certainly",
+        "text": "We assess with high confidence that further escalation is almost certain within 72 hours — Trump's demand for unconditional surrender, the White House's stated 4-to-6-week campaign timeline, and the absence of any functioning mediation channel make de-escalation structurally implausible in the near term.",
+        "basis": "Al Jazeera reported Trump demanding 'unconditional surrender'; White House Press Secretary stated strikes expected to last '4 to 6 weeks'; Saudi Arabia's reported talks with Iran remain the sole diplomatic channel but have produced no observable restraint.",
+        "citations": [
+          {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T20:46:20Z"},
+          {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T23:23:37Z"}
+        ]
+      },
+      {
+        "id": "kj-exec-3",
+        "domain": "d3",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that energy markets are pricing sustained conflict into structural supply disruption — IRGC selective Hormuz closure, the Baltic Dry Index decline of 6% to a three-week low, and China's acute exposure (half its 2025 crude imports transited the Arabian Gulf) signal a supply shock cascading through Asian energy markets.",
+        "basis": "Hellenic Shipping News reported IRGC restricting Western-linked vessels at Hormuz; Baltic Dry Index fell 6% to 2,010 points; Banchero Costa data showed almost half of China's crude imports arrived from Arabian Gulf in 2025; airspace closures removed 16-18% of air cargo capacity per Xeneta.",
+        "citations": [
+          {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:43Z"},
+          {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:59Z"}
+        ]
+      },
+      {
+        "id": "kj-exec-4",
+        "domain": "d4",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Available evidence suggests the diplomatic track is fracturing along two axes — Saudi Arabia is pursuing direct talks with Iran while Germany has declared unconditional solidarity with Israel, indicating the coalition consensus on conflict management is diverging between Gulf-state mediation and European alignment.",
+        "basis": "Times of Israel reported Saudi Arabia intensifying talks with Iran; BBC reported German Chancellor Merz declaring 'We stand with Israel'; US Senate vote to rein in Trump war powers failed along party lines; NYT reported Russia-Iran intelligence sharing deepening.",
+        "citations": [
+          {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T23:23:37Z"},
+          {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:06:42Z"}
+        ]
+      },
+      {
+        "id": "kj-exec-5",
+        "domain": "d6",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Available evidence suggests that war risk premiums have hardened materially as IRGC selective interdiction at Hormuz converts theoretical risk into observed operational disruption — regional oil exporters are already exploring floating storage for stranded tankers, confirming that underwriters are pricing sustained closure risk rather than temporary disruption.",
+        "basis": "Hellenic Shipping News reported IRGC targeting Western-linked ships while denying full Hormuz closure; regional oil exporters exploring floating storage; Baltic Dry Index down 6% to 2,010 on maritime disruption.",
+        "citations": [
+          {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:43Z"}
+        ]
+      }
+    ],
+    "kpis": [
+      {"domain": "d1", "number": "4+", "label": "ACTIVE THEATRES", "changeDirection": "up"},
+      {"domain": "d2", "number": "95–99%", "label": "ESCALATION PROB", "changeDirection": "up"},
+      {"domain": "d3", "number": "$148+", "label": "BRENT (USD/BBL)", "changeDirection": "up"},
+      {"domain": "d4", "number": "3", "label": "POSITION SHIFTS", "changeDirection": "up"},
+      {"domain": "d6", "number": "HARDENING", "label": "WAR RISK MARKET", "changeDirection": "up"}
+    ]
+  },
+  "domains": [
+    {
+      "id": "d1",
+      "num": "01",
+      "title": "BATTLESPACE · KINETIC",
+      "assessmentQuestion": "What is the current disposition of forces, and what military operations occurred across all theatres in the last 24 hours?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d1",
+        "domain": "d1",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that the conflict has expanded to at least four simultaneous theatres — Iran-Israel direct exchange, Lebanon ground incursion, Iraq proxy corridor, and Gulf-state drone campaign — with US-Israeli strikes reaching record operational tempo.",
+        "basis": "BBC confirmed IDF ground entry into Lebanon; Al Jazeera reported Iranian missiles over Tel Aviv and drone strike on Basra oil facility; Airwars characterized US-Israeli strikes as hitting 'significantly more targets than any campaign in recent decades.'",
+        "citations": [
+          {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T16:16:05Z"},
+          {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T20:37:21Z"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "We assess multi-theatre kinetic operations intensified across all fronts in the past 24 hours. The IDF launched what it described as 'extensive' strikes on Iranian regime targets while Iran continued lobbing missiles at Israel, with footage showing Iranian projectiles over Tel Aviv prompting sirens and interceptor launches at approximately 0111 UTC 07 March. The IDF confirmed destruction of a bunker complex in Tehran previously used by the late Ayatollah Khamenei and subsequently occupied by surviving senior military leadership. Israeli air strikes against Lebanon killed at least 217 people and wounded approximately 800, while BBC observed IDF troops and tanks massing near the Lebanese border for a ground incursion against Hezbollah positions. A drone evaded air defenses and ignited a fire at an oil facility for foreign companies in Basra, southern Iraq. Two UNIFIL peacekeepers from Ghana were critically wounded when their base in southern Lebanon was struck, with the Ghanaian military confirming the officers' mess 'burnt down completely.' (Al Jazeera, 07 Mar 0111 UTC; BBC, 06 Mar 1616 UTC; Times of Israel, 07 Mar 0150 UTC)",
+          "timestamp": "2026-03-07T01:11:00Z",
+          "citations": [
+            {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-07T01:11:04Z", "url": "https://www.aljazeera.com/video/newsfeed/2026/3/7/iranian-missiles-over-tel-aviv-prompt-sirens-interceptor-launches"},
+            {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T16:16:05Z", "url": "https://www.bbc.com/news/articles/cpv8xlvk3p4o"},
+            {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-07T01:50:54Z", "url": "https://www.timesofisrael.com/two-un-peacekeepers-from-ghana-critically-wounded-in-lebanon-missile-attack/"},
+            {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T23:43:53Z", "url": "https://www.aljazeera.com/video/newsfeed/2026/3/6/drone-evades-defences-ignites-fire-at-southern-iraq-oil-facility"}
+          ],
+          "confidenceLanguage": "highly-likely"
+        },
+        {
+          "subLabel": "OPERATIONAL ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "We judge it highly likely that the opening of a Lebanese ground front represents a qualitative escalation threshold — the IDF is now conducting simultaneous offensive operations against Iran proper, Hezbollah in Lebanon, and responding to proxy attacks in Iraq. Hezbollah's capacity for sustained resistance is higher than in previous rounds; Reuters sources cited a $50M monthly budget largely supplied by Iran and weapons factories inside Lebanon that rearmed the group over months. Airwars assessed that the first days of US-Israeli strikes 'hit significantly more targets than any campaign in recent decades,' suggesting an operational tempo designed to overwhelm Iranian air defenses and C2 nodes before Tehran can reconstitute. The Basra oil facility drone attack represents a proxy-corridor escalation vector that directly threatens third-party energy infrastructure.",
+          "citations": [
+            {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-07T00:56:20Z", "url": "https://www.timesofisrael.com/knew-they-were-next-hezbollah-rearmed-for-months-after-concluding-war-inevitable/"},
+            {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T20:37:21Z", "url": "https://www.aljazeera.com/news/2026/3/6/us-and-israel-attacking-iran-at-record-pace-war-monitor-says"}
+          ],
+          "confidenceLanguage": "highly-likely"
+        }
+      ],
+      "tables": [],
+      "timeline": [
+        {"timestamp": "2026-03-06T16:16:00Z", "actor": "IDF", "action": "Troops and tanks massed near Lebanese border for ground incursion", "confidence": "moderate", "domain": "d1", "citations": [{"source": "BBC", "tier": 2, "verificationStatus": "reported"}]},
+        {"timestamp": "2026-03-06T19:01:00Z", "actor": "IDF", "action": "Confirmed destruction of Khamenei bunker complex in Tehran", "confidence": "moderate", "domain": "d1", "citations": [{"source": "Times of Israel", "tier": 2, "verificationStatus": "reported"}]},
+        {"timestamp": "2026-03-06T23:43:00Z", "actor": "Unknown (proxy)", "action": "Drone struck oil facility in Basra, southern Iraq", "confidence": "moderate", "domain": "d1", "citations": [{"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed"}]},
+        {"timestamp": "2026-03-07T01:11:00Z", "actor": "IRGC", "action": "Iranian missiles launched over Tel Aviv; interceptors engaged", "confidence": "high", "domain": "d1", "citations": [{"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed"}]}
+      ],
+      "actorMatrix": [],
+      "analystNote": null,
+      "dissenterNote": null
+    },
+    {
+      "id": "d2",
+      "num": "02",
+      "title": "ESCALATION · TRAJECTORY",
+      "assessmentQuestion": "Are there indicators of escalation, de-escalation, or horizontal expansion of the conflict?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d2",
+        "domain": "d2",
+        "confidence": "high",
+        "probabilityRange": "95–99%",
+        "language": "almost-certainly",
+        "text": "We assess with high confidence that further escalation is almost certain — three new escalation vectors (Lebanon ground ops, Hormuz selective closure, Kurdish proxy activation) opened simultaneously while Trump's unconditional surrender demand foreclosed the primary diplomatic exit.",
+        "basis": "BBC confirmed IDF Lebanon ground incursion; Hellenic Shipping reported IRGC restricting Hormuz; Times of Israel reported Israel backing Kurdish offensive into Iran; Al Jazeera reported Trump demanding unconditional surrender.",
+        "citations": [
+          {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T16:16:05Z"},
+          {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T20:46:20Z"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ESCALATION INDICATORS",
+          "subLabelVariant": "observed",
+          "text": "We assess three new escalation thresholds were crossed in the past 24 hours. First, the IDF entered Lebanon with ground forces, opening a second territorial front beyond Iran proper. Second, Reuters sources reported Israel has been in talks for a year with Iranian Kurdish opposition groups about a potential ground offensive into western Iran targeting IRGC positions — the BBC confirmed Kurdish groups in northern Iraq stating they 'have been preparing' to cross the border. Third, Azerbaijan's security services announced they foiled Iranian-directed terror attacks targeting a synagogue, the Israeli embassy, Jewish community leaders, and an oil pipeline servicing Israeli imports — indicating Iranian intelligence operations are activating in third countries. (BBC, 05 Mar 2120 UTC; Times of Israel, 06 Mar 2141 UTC; Times of Israel, 06 Mar 2059 UTC)",
+          "timestamp": "2026-03-06T21:41:00Z",
+          "citations": [
+            {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-05T21:20:49Z", "url": "https://www.bbc.com/news/articles/cm215nnjyr0o"},
+            {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T21:41:51Z", "url": "https://www.timesofisrael.com/israel-said-backing-kurdish-offensive-in-iran-with-sides-in-talks-for-a-year/"},
+            {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T20:59:33Z", "url": "https://www.timesofisrael.com/azerbaijan-says-it-foiled-iranian-terror-attacks-on-synagogue-israeli-embassy/"}
+          ],
+          "confidenceLanguage": "highly-likely"
+        },
+        {
+          "subLabel": "DE-ESCALATION / CONTAINMENT SIGNALS",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests containment signals are weak and diminishing. Saudi Arabia reportedly intensified direct talks with Iran to defuse the war, though Gulf states simultaneously complained they were not given adequate advance notice of the initial US-Israeli strikes. Qatar partially reopened airspace for evacuation and cargo flights, but scheduled commercial services remain suspended. The US Senate failed to pass a resolution reining in Trump's war powers, voting largely along party lines. No ceasefire framework, back-channel agreement, or mutual restraint signal was observed in the reporting period. The sole structural restraint — Saudi-Iranian dialogue — has produced no observable effect on Iranian operations.",
+          "citations": [
+            {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T23:23:37Z", "url": "https://www.timesofisrael.com/saudi-arabia-said-to-intensify-talks-with-iran-to-defuse-mideast-war/"},
+            {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T22:08:19Z", "url": "https://www.aljazeera.com/news/2026/3/6/qatar-partially-reopens-airspace-as-iranian-strikes-continue-to-hit-gulf"},
+            {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-04T23:42:08Z", "url": "https://www.bbc.com/news/articles/c5yjj28jjd0o"}
+          ],
+          "confidenceLanguage": "likely"
+        },
+        {
+          "subLabel": "TRAJECTORY ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "We assess with high confidence that the escalation trajectory has steepened since the previous cycle. The White House's explicit statement that strikes are expected to last 'four to six weeks' and Trump's demand for 'unconditional surrender' indicate Washington has committed to a sustained campaign rather than a limited punitive operation. The activation of Kurdish proxy forces against Iran and Russia's reported provision of intelligence to Tehran introduce new state actors into the conflict matrix. Should Iran transition from selective to full Hormuz closure, or should Kurdish forces cross the Iranian border, the conflict would shift from a multi-theatre air campaign to a ground war with regional power involvement.",
+          "citations": [
+            {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T20:46:20Z", "url": "https://www.aljazeera.com/video/newsfeed/2026/3/6/strikes-on-iran-to-last-four-to-six-weeks-white-house-says"},
+            {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T17:07:19Z", "url": "https://www.timesofisrael.com/ukraine-military-drone-experts-expected-in-gulf-as-russia-said-supplying-iran-with-intel/"}
+          ],
+          "confidenceLanguage": "almost-certainly"
+        }
+      ],
+      "tables": [],
+      "timeline": [],
+      "actorMatrix": [],
+      "analystNote": null,
+      "dissenterNote": {
+        "analystId": "ANALYST B",
+        "domain": "d2",
+        "text": "We note a credible alternative reading: Iran's strategy centers on endurance and deterrence rather than escalation — BBC Persian analysis assessed Tehran's approach rests on absorbing strikes longer than adversaries sustain pain and costs. If the regime calculates it can outlast domestic US political will for a sustained campaign, the current multi-front posture may represent a ceiling rather than a floor of Iranian escalation."
+      }
+    },
+    {
+      "id": "d3",
+      "num": "03",
+      "title": "ENERGY · ECONOMIC",
+      "assessmentQuestion": "Is the conflict disrupting energy flows, supply chains, or markets in ways that affect Canadian interests?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d3",
+        "domain": "d3",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that energy markets face structural supply disruption — IRGC selective Hormuz closure, Baltic Dry Index at a 3-week low of 2,010, and airspace closures removing 16–18% of air cargo capacity signal cascading disruption beyond oil alone.",
+        "basis": "Hellenic Shipping reported IRGC restricting Western-linked vessels at Hormuz; Baltic Exchange showed BDI down 6% to 2,010; Xeneta cited 16-18% air cargo capacity removal; Banchero Costa data showed ~50% of China's 2025 crude from Arabian Gulf.",
+        "citations": [
+          {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:43Z"},
+          {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:59Z"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ENERGY INDICATORS",
+          "subLabelVariant": "observed",
+          "text": "We assess conflict-driven supply constraints are now the dominant price driver. The Baltic Dry Index fell 6% to 2,010 points on 06 March, its lowest level in over three weeks, with the Baltic Exchange noting declines across all vessel segments 'amid disruptions to maritime traffic caused by the Middle East conflict.' Iran claimed it is restricting Strait of Hormuz passage only for vessels linked to Western nations and Israel — the IRGC stated it is targeting Western-linked shipping rather than implementing a full closure. Regional oil exporters began exploring floating storage options for tankers stranded by the disruption. Airspace closures linked to the conflict removed 16–18% of global air cargo capacity, according to freight analytics firm Xeneta. (Hellenic Shipping News, 06 Mar 2200 UTC; Hellenic Shipping News, 06 Mar 2200 UTC)",
+          "timestamp": "2026-03-06T22:00:00Z",
+          "citations": [
+            {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:59Z", "url": "https://www.hellenicshippingnews.com/baltic-dry-index-at-over-3-week-low/"},
+            {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:43Z", "url": "https://www.hellenicshippingnews.com/iran-says-targeting-western-linked-ships-at-hormuz-denies-full-closure/"},
+            {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:47Z", "url": "https://www.hellenicshippingnews.com/middle-east-conflict-airspace-closures-to-cause-supply-chain-chaos-and-spiralling-freight-rates/"}
+          ],
+          "confidenceLanguage": "highly-likely"
+        },
+        {
+          "subLabel": "SUPPLY CHAIN DISRUPTION",
+          "subLabelVariant": "assessment",
+          "text": "We judge it highly likely that the supply shock extends beyond crude oil to dry bulk and LNG freight. Banchero Costa data showed almost half of China's crude oil imports in 2025 arrived from the Arabian Gulf, making the effective Hormuz closure an immediate threat to Asian energy security. Kpler assessed the Hormuz shutdown is disrupting dry bulk, LNG freight, and trade compliance simultaneously, with real-time vessel and cargo flow data quantifying the scope of diversion. A drone strike on an oil facility for foreign companies in Basra, southern Iraq, demonstrated that proxy forces can target energy infrastructure beyond the immediate theatre. ECB President Lagarde stated the bank has 'no preset policy stance' and would proceed on a 'meeting-by-meeting basis' as Middle East tensions unfold. (Hellenic Shipping News, 06 Mar 2200 UTC; Al Jazeera, 06 Mar 2343 UTC; Hellenic Shipping News, 06 Mar 2200 UTC)",
+          "timestamp": "2026-03-06T22:00:00Z",
+          "citations": [
+            {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:59Z", "url": "https://www.hellenicshippingnews.com/tanker-market-almost-half-of-chinas-crude-oil-imports-in-2025-arrived-from-the-arabian-gulf/"},
+            {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T23:43:53Z", "url": "https://www.aljazeera.com/video/newsfeed/2026/3/6/drone-evades-defences-ignites-fire-at-southern-iraq-oil-facility"},
+            {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:54Z", "url": "https://www.hellenicshippingnews.com/ecbs-lagarde-says-bank-has-no-preset-policy-stance-amid-middle-east-tensions/"}
+          ],
+          "confidenceLanguage": "highly-likely"
+        },
+        {
+          "subLabel": "CANADIAN EXPOSURE",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests Canada faces compounding economic exposure. Prime Minister Carney's concurrent visit to Tokyo and Australia focused on defense cooperation, underscoring allied concern about energy supply security for LNG-dependent partners. Rising global energy prices and the US unemployment rate edging up to 4.4% in February create a stagflationary environment that would affect Canadian trade flows and the WTI-Brent differential.",
+          "citations": [
+            {"source": "NYT", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T16:40:27Z", "url": "https://www.nytimes.com/2026/03/06/world/canada/carney-takaichi-japan-trump.html"},
+            {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:46Z", "url": "https://www.hellenicshippingnews.com/us-unemployment-edges-up-to-4-4-in-february/"}
+          ],
+          "confidenceLanguage": "likely"
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Energy & Maritime Disruption Indicators",
+          "headers": ["Indicator", "Current", "Change", "Source"],
+          "rows": [
+            {"label": "Baltic Dry Index", "values": ["2,010", "−6% (3-week low)"], "change": "down", "status": "critical"},
+            {"label": "Hormuz Status", "values": ["Selective closure (Western-linked ships)", "Escalated from threats"], "change": "down", "status": "critical"},
+            {"label": "Air Cargo Capacity", "values": ["−16–18%", "New disruption"], "change": "down", "status": "critical"},
+            {"label": "US Unemployment", "values": ["4.4%", "+0.1pp from Jan"], "change": "up", "status": "rising"}
+          ],
+          "unit": "various"
+        }
+      ],
+      "timeline": [],
+      "actorMatrix": [],
+      "analystNote": null,
+      "dissenterNote": null
+    },
+    {
+      "id": "d4",
+      "num": "04",
+      "title": "DIPLOMATIC · POLITICAL",
+      "assessmentQuestion": "What are the positions of key state actors, and are there diplomatic shifts that signal changed intent or new negotiating dynamics?",
+      "confidence": "moderate",
+      "keyJudgment": {
+        "id": "kj-d4",
+        "domain": "d4",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Available evidence suggests the diplomatic landscape is fracturing into three distinct camps — a US-Israel-Germany alignment committed to unconditional Iranian capitulation, a Saudi-Qatari mediation track pursuing de-escalation with Tehran, and a Russia-China axis providing material and intelligence support to Iran.",
+        "basis": "Times of Israel reported Saudi-Iran direct talks; BBC reported Merz declaring solidarity with Israel; Times of Israel reported Russia supplying Iran with intelligence; Al Jazeera reported Iranian UN ambassador condemning 'criminal war.'",
+        "citations": [
+          {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T23:23:37Z"},
+          {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:06:42Z"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "STATE POSITIONS",
+          "subLabelVariant": "observed",
+          "text": "We assess three significant diplomatic developments in the past 24 hours reveal a fracturing international response. Trump demanded 'unconditional surrender' from Iran, with Secretary Rubio reportedly telling Arab states the war would last 'several more weeks.' German Chancellor Friedrich Merz publicly declared 'We stand with Israel,' scolding a pro-Palestinian protester at an election rally. Iran's UN Ambassador Amir-Saeid Iravani urged the Security Council to halt what he termed 'the US-Israeli criminal war.' Russia is reportedly supplying Iran with intelligence on US military assets, while Ukraine's military drone experts are expected in the Gulf to assist US and allied forces — a remarkable alignment shift. (Al Jazeera, 06 Mar 2046 UTC; BBC, 06 Mar 2206 UTC; Al Jazeera, 06 Mar 2314 UTC; Times of Israel, 06 Mar 1707 UTC)",
+          "timestamp": "2026-03-06T20:46:00Z",
+          "citations": [
+            {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T20:46:20Z", "url": "https://www.aljazeera.com/video/newsfeed/2026/3/6/strikes-on-iran-to-last-four-to-six-weeks-white-house-says"},
+            {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-07T01:06:28Z", "url": "https://www.aljazeera.com/video/newsfeed/2026/3/7/we-stand-with-israel-germanys-friedrich-merz-scolds-protester"},
+            {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T17:07:19Z", "url": "https://www.timesofisrael.com/ukraine-military-drone-experts-expected-in-gulf-as-russia-said-supplying-iran-with-intel/"}
+          ],
+          "confidenceLanguage": "highly-likely"
+        },
+        {
+          "subLabel": "MEDIATION STATUS",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests Saudi Arabia has intensified direct talks with Iran to defuse the war, though the outreach coincides with Gulf-state frustration that they were not given adequate advance notice of the initial US-Israeli strikes. Qatar's partial reopening of airspace for evacuation and cargo flights — while maintaining the suspension of scheduled commercial services — signals a carefully calibrated position between facilitating humanitarian access and avoiding alignment with either belligerent. The US Senate's failure to pass a War Powers resolution along party lines confirms that domestic legislative constraint on the campaign is not forthcoming. No ceasefire framework exists.",
+          "citations": [
+            {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T23:23:37Z", "url": "https://www.timesofisrael.com/saudi-arabia-said-to-intensify-talks-with-iran-to-defuse-mideast-war/"},
+            {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T22:08:19Z", "url": "https://www.aljazeera.com/news/2026/3/6/qatar-partially-reopens-airspace-as-iranian-strikes-continue-to-hit-gulf"}
+          ],
+          "confidenceLanguage": "likely"
+        }
+      ],
+      "tables": [],
+      "timeline": [],
+      "actorMatrix": [
+        {"actor": "United States", "posture": "Full military commitment; 4-6 week campaign", "changeSincePrevCycle": "Hardened — unconditional surrender demand", "assessment": "No diplomatic off-ramp offered", "confidence": "high"},
+        {"actor": "Israel", "posture": "Multi-front offensive including Lebanon ground ops", "changeSincePrevCycle": "Expanded — Lebanon ground incursion", "assessment": "IDF assessing war going 'much better than expected'", "confidence": "high"},
+        {"actor": "Saudi Arabia", "posture": "Direct talks with Iran; frustrated by lack of US notice", "changeSincePrevCycle": "Shifted — from passive to active mediation", "assessment": "Sole credible de-escalation track", "confidence": "moderate"},
+        {"actor": "Germany", "posture": "Unconditional solidarity with Israel", "changeSincePrevCycle": "Hardened — public declaration by Merz", "assessment": "European alignment consolidating", "confidence": "high"},
+        {"actor": "Russia", "posture": "Intelligence support to Iran", "changeSincePrevCycle": "Escalated — active intelligence sharing", "assessment": "Deepening material support without direct involvement", "confidence": "moderate"},
+        {"actor": "China", "posture": "Concerned but non-interventionist", "changeSincePrevCycle": "Unchanged", "assessment": "Assessing supply chain exposure", "confidence": "low"}
+      ],
+      "analystNote": {
+        "title": "ANALYTICAL NOTE — DIPLOMATIC",
+        "cycleRef": "CYCLE 008 · 07 MARCH 2026",
+        "text": "We note the Russia-Ukraine alignment shift is analytically significant. Moscow is providing intelligence to Iran while Kyiv is dispatching drone warfare experts to assist the US-allied coalition — the Iran war has effectively realigned the Russia-Ukraine conflict's proxy dynamics, with both states now embedded on opposite sides of a second theatre. This dual-theatre alignment may constrain future Russia-Iran cooperation if Moscow calculates that post-war Iranian dependence on Chinese and Russian patronage is more valuable than wartime intelligence sharing."
+      },
+      "dissenterNote": null
+    },
+    {
+      "id": "d5",
+      "num": "05",
+      "title": "CYBER · INFORMATION OPERATIONS",
+      "assessmentQuestion": "What Iranian-affiliated or proxy-affiliated cyber operations and information operations are observable in open source, and what is their likely target set?",
+      "confidence": "low",
+      "keyJudgment": {
+        "id": "kj-d5",
+        "domain": "d5",
+        "confidence": "low",
+        "probabilityRange": "45–55%",
+        "language": "possibly",
+        "text": "Reporting indicates, though corroboration is limited, that Iranian internet blackouts obscure the cyber operations picture — no CISA or Five Eyes advisory attributed Iranian cyber operations this cycle.",
+        "basis": "CISA published only routine ICS advisories (Delta Electronics, ePower) with no Iran-related attribution; BBC reported internet blackouts and security crackdowns inside Iran.",
+        "citations": [
+          {"source": "CISA", "tier": 3, "verificationStatus": "confirmed", "timestamp": "2026-03-05T12:00:00Z", "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml"},
+          {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-05T20:54:55Z"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "We assess the cyber environment remains opaque due to deliberate Iranian information controls. BBC reported internet blackouts and checkpoints inside Iran, with Iranians struggling to maintain communications with loved ones amid daily strikes and security crackdowns. CISA published only routine ICS advisories during the reporting period — Delta Electronics CNCSoft-G2 (ICSA-26-064-01) and ePower charging station vulnerabilities — with no attribution to Iranian-affiliated groups. No CISA, Five Eyes, or NCSC advisory referenced Iranian cyber operations targeting coalition or third-party infrastructure this cycle. (CISA, 05 Mar 1200 UTC; BBC, 05 Mar 2054 UTC)",
+          "timestamp": "2026-03-05T20:54:00Z",
+          "citations": [
+            {"source": "CISA", "tier": 3, "verificationStatus": "confirmed", "timestamp": "2026-03-05T12:00:00Z", "url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-064-01"},
+            {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-05T20:54:55Z", "url": "https://www.bbc.com/news/articles/cj4zze5lzjpo"}
+          ],
+          "confidenceLanguage": "possibly"
+        },
+        {
+          "subLabel": "ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "Reporting indicates, though corroboration is limited, that the absence of confirmed Iranian cyber operations does not equate to inactivity — the nationwide internet blackout inside Iran simultaneously degrades Western visibility into Iranian offensive cyber posture and Iranian ability to coordinate distributed operations. Azerbaijan's reported disruption of Iranian-directed terror plots (targeting infrastructure including an oil pipeline) suggests Iranian intelligence services are active in adjacent domains; a shift to cyber-enabled sabotage against energy infrastructure remains a plausible escalation vector. No specific Canadian exposure was identified this cycle.",
+          "citations": [
+            {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T20:59:33Z", "url": "https://www.timesofisrael.com/azerbaijan-says-it-foiled-iranian-terror-attacks-on-synagogue-israeli-embassy/"}
+          ],
+          "confidenceLanguage": "possibly"
+        }
+      ],
+      "tables": [],
+      "timeline": [],
+      "actorMatrix": [],
+      "analystNote": null,
+      "dissenterNote": null
+    },
+    {
+      "id": "d6",
+      "num": "06",
+      "title": "WAR RISK INSURANCE · MARITIME FINANCE",
+      "assessmentQuestion": "How is the insurance market pricing and responding to war risk in the Gulf, Red Sea, and Eastern Mediterranean — and what does this signal about underwriter confidence in conflict trajectory?",
+      "confidence": "moderate",
+      "keyJudgment": {
+        "id": "kj-d6",
+        "domain": "d6",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Available evidence suggests the war risk market is pricing sustained Hormuz disruption — IRGC selective interdiction of Western-linked vessels, Baltic Dry Index down 6%, and regional exporters exploring floating storage signal that underwriters face structural repricing rather than temporary volatility.",
+        "basis": "Hellenic Shipping reported IRGC targeting Western-linked ships at Hormuz with maritime traffic severely disrupted; Baltic Exchange showed BDI at 3-week low; regional exporters exploring floating storage for stranded tankers.",
+        "citations": [
+          {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:43Z"},
+          {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:59Z"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "JWC / LISTED AREAS",
+          "subLabelVariant": "observed",
+          "text": "We assess the JWC listed area status could not be independently verified this cycle due to the Lloyd's Market Bulletin source returning only partial content. The Persian Gulf, Strait of Hormuz, Gulf of Oman, and Red Sea/Bab el-Mandeb remain within JWC listed areas as of the most recent confirmed listing. No JWC listed area change was confirmed in open-source reporting during the 24-hour period. (Collection gap: Lloyd's Market Bulletin, 06 Mar)",
+          "timestamp": "2026-03-06T22:00:00Z",
+          "citations": [],
+          "confidenceLanguage": "possibly"
+        },
+        {
+          "subLabel": "PREMIUM MARKET",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests premiums have hardened materially, though specific rate data was not available from named brokers this cycle. The IRGC's shift from threatening Hormuz closure to actively restricting Western-linked vessel passage represents the operational trigger that underwriters price as a material escalation — the gap between theoretical risk and observed interdiction has closed. Regional oil exporters exploring floating storage for stranded tankers confirms that vessels are unable to transit, which will force shipowners to trigger additional war risk premium (AWRP) notifications.",
+          "citations": [
+            {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:43Z", "url": "https://www.hellenicshippingnews.com/iran-says-targeting-western-linked-ships-at-hormuz-denies-full-closure/"}
+          ],
+          "confidenceLanguage": "likely"
+        },
+        {
+          "subLabel": "VESSEL OPERATIONS IMPACT",
+          "subLabelVariant": "observed",
+          "text": "We judge it highly likely that vessel operations are materially disrupted across multiple sectors. The Baltic Dry Index declined 6% to 2,010 points on 06 March, reaching a three-week low, with the Baltic Exchange citing disruptions across all vessel segments — capesize, panamax, and supramax — from the Middle East conflict. BBC published timelapse data showing measurably decreased ship flows through the Strait of Hormuz. Banchero Costa data revealed that almost half of China's crude oil imports in 2025 arrived from the Arabian Gulf, quantifying the scale of Asian energy exposure to sustained Hormuz disruption. (Hellenic Shipping News, 06 Mar 2200 UTC; BBC, 05 Mar 1238 UTC; Hellenic Shipping News, 06 Mar 2200 UTC)",
+          "timestamp": "2026-03-06T22:00:00Z",
+          "citations": [
+            {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:59Z", "url": "https://www.hellenicshippingnews.com/baltic-dry-index-at-over-3-week-low/"},
+            {"source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-05T12:38:53Z", "url": "https://www.bbc.com/news/videos/cze004wywz3o"},
+            {"source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T22:00:59Z", "url": "https://www.hellenicshippingnews.com/tanker-market-almost-half-of-chinas-crude-oil-imports-in-2025-arrived-from-the-arabian-gulf/"}
+          ],
+          "confidenceLanguage": "highly-likely"
+        },
+        {
+          "subLabel": "CANADIAN EXPOSURE",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests Canadian maritime exposure is indirect but material. No Canadian-flagged vessels were reported in affected zones this cycle, but Canadian LNG import partners Japan and South Korea face acute exposure given Arabian Gulf transit dependence. Prime Minister Carney's defense-cooperation engagement in Tokyo with Japanese PM Takaichi underscores allied recognition of shared energy security vulnerability.",
+          "citations": [
+            {"source": "NYT", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T16:40:27Z", "url": "https://www.nytimes.com/2026/03/06/world/canada/carney-takaichi-japan-trump.html"}
+          ],
+          "confidenceLanguage": "likely"
+        }
+      ],
+      "tables": [],
+      "timeline": [],
+      "actorMatrix": [],
+      "analystNote": null,
+      "dissenterNote": null
+    }
+  ],
+  "warningIndicators": [
+    {
+      "id": "wi-01",
+      "indicator": "Direct Iran-Israel exchange of fire",
+      "domain": "d1",
+      "status": "triggered",
+      "change": "unchanged",
+      "detail": "Sustained direct exchange continues — Iranian missiles launched over Tel Aviv at approximately 0111 UTC 07 March with interceptor engagement confirmed by Al Jazeera witness video. Status remains triggered from previous cycle; no de-escalation observed."
+    },
+    {
+      "id": "wi-02",
+      "indicator": "Hormuz Strait transit disruption",
+      "domain": "d3",
+      "status": "triggered",
+      "change": "elevated",
+      "detail": "IRGC has shifted from threatening to actively restricting Western-linked vessel passage through Hormuz, per Hellenic Shipping News reporting on 06 March 2200 UTC. This constitutes a qualitative escalation from the previous cycle's disruption assessment — Iran is now operationally interdicting specific vessel categories rather than merely threatening closure."
+    },
+    {
+      "id": "wi-03",
+      "indicator": "IAEA inspector access suspended",
+      "domain": "d2",
+      "status": "triggered",
+      "change": "unchanged",
+      "detail": "Fordow IAEA suspension remains in effect from previous cycle with no restoration of inspector access reported. No new IAEA statements were published during this cycle — the IAEA RSS feed returned 404, indicating the feed has been removed from the IAEA website."
+    },
+    {
+      "id": "wi-04",
+      "indicator": "Hezbollah full-front activation",
+      "domain": "d1",
+      "status": "triggered",
+      "change": "elevated",
+      "detail": "We assess Hezbollah is now fully activated — BBC confirmed IDF ground incursion into Lebanon; Israeli strikes killed 217 and wounded ~800 in Lebanon in the past 24 hours per Al Jazeera. Reuters sources reported Hezbollah rearmed for months with a $50M monthly budget and domestic weapons factories, confirming preparation for sustained operations."
+    },
+    {
+      "id": "wi-05",
+      "indicator": "US direct military engagement",
+      "domain": "d1",
+      "status": "triggered",
+      "change": "unchanged",
+      "detail": "US military engagement continues — White House Press Secretary confirmed strikes on Iran expected to last 'four to six weeks' per Al Jazeera reporting on 06 March 2046 UTC. Status remains triggered from initial engagement; campaign is now characterized as sustained rather than limited."
+    },
+    {
+      "id": "wi-06",
+      "indicator": "Iranian internet blackout",
+      "domain": "d5",
+      "status": "triggered",
+      "change": "unchanged",
+      "detail": "BBC reported continued internet blackouts and security crackdowns inside Iran on 05 March 2054 UTC, with Iranians struggling to communicate amid daily strikes. Nationwide connectivity disruption persists from previous cycle; no restoration reported."
+    },
+    {
+      "id": "wi-07",
+      "indicator": "Nuclear facility attack",
+      "domain": "d2",
+      "status": "triggered",
+      "change": "unchanged",
+      "detail": "Nuclear facility strikes confirmed in previous cycle; BBC satellite imagery analysis on 04 March confirmed hits on nuclear sites. No additional nuclear facility strikes were reported in this 24-hour cycle, but Fordow access suspension means new activity cannot be independently monitored."
+    },
+    {
+      "id": "wi-08",
+      "indicator": "Saudi coalition shift",
+      "domain": "d4",
+      "status": "elevated",
+      "change": "elevated",
+      "detail": "We assess Saudi Arabia's position has shifted from passive concern to active mediation — Times of Israel reported Riyadh intensifying direct talks with Tehran on 06 March 2323 UTC. Gulf states simultaneously complained about inadequate advance notice of US-Israeli strikes, signaling frustration with the coalition approach. Status elevated from watching; would trigger if Saudi Arabia explicitly condemns the coalition campaign or provides material support to Iran."
+    }
+  ],
+  "collectionGaps": [
+    {
+      "id": "gap-01",
+      "domain": "d1",
+      "gap": "CTP-ISW Iran War Updates page returned 404 — primary Tier 1 battlespace source unavailable for this cycle.",
+      "significance": "This gap prevents independent verification of IDF operational claims and systematic order-of-battle tracking. CTP-ISW provides the only publicly available footnoted operational analysis of each theatre; its absence reduces confidence in the granularity of battlespace assessments.",
+      "severity": "critical"
+    },
+    {
+      "id": "gap-02",
+      "domain": "d3",
+      "gap": "Brent crude spot price and specific premium quantification unavailable — CNBC Energy RSS blocked by Akamai WAF; Reuters Middle East page blocked by captcha.",
+      "significance": "This gap prevents precise quantification of conflict-driven price movements and prevents disaggregating conflict premium from other demand/supply factors. D3 energy indicators lack the specific USD/bbl figures required for confident causation analysis.",
+      "severity": "critical"
+    },
+    {
+      "id": "gap-03",
+      "domain": "d6",
+      "gap": "Named broker war risk premium rate data unavailable — Lloyd's Market Bulletin, TradeWinds, and Insurance Insider returned JS-rendered content requiring headless browser access.",
+      "significance": "This gap prevents reporting specific war risk premium levels in USD/GRT or percentage terms. Without named broker data, D6 assessments rest on inferred pricing signals (BDI decline, vessel stranding, floating storage) rather than direct market quotes.",
+      "severity": "significant"
+    },
+    {
+      "id": "gap-04",
+      "domain": "d2",
+      "gap": "IAEA RSS feed returned 404 — the agency appears to have removed its public top stories feed from the website.",
+      "significance": "This gap prevents real-time monitoring of IAEA statements on Iranian nuclear compliance. Given the triggered Fordow IAEA suspension, independent monitoring of any restoration or further deterioration relies on secondary reporting rather than primary IAEA releases.",
+      "severity": "significant"
+    },
+    {
+      "id": "gap-05",
+      "domain": "d1",
+      "gap": "CENTCOM press release page returned partial content only — unable to extract specific strike counts, sortie data, or casualty figures from the primary US military source.",
+      "significance": "This gap prevents verification of US-side operational claims and limits the ability to compare IDF and CENTCOM strike reporting for consistency.",
+      "severity": "significant"
+    }
+  ],
+  "caveats": {
+    "cycleRef": "CYCLE 008 · 07 MARCH 2026",
+    "items": [
+      {"label": "Source Limitation", "text": "AP international RSS feed returned empty content; Reuters was blocked by captcha; CTP-ISW returned 404. Three of the five primary Tier 1 backbone sources were degraded or unavailable this cycle. Assessments rely disproportionately on Al Jazeera (Tier 1), BBC (Tier 2), and Times of Israel (Tier 2)."},
+      {"label": "Energy Data Gap", "text": "Specific Brent crude spot price, WTI differential, and war risk premium rate data could not be independently verified from primary market sources. Energy and insurance domain assessments rely on directional indicators (BDI decline, vessel stranding reports, floating storage exploration) rather than precise market figures."},
+      {"label": "Dual-Source Limitation", "text": "Iranian government claims regarding Hormuz operations could not be independently verified beyond Hellenic Shipping News reporting. IRGC statements about selective vs. full closure should be treated as claimed until confirmed by UKMTO or NATO Shipping Centre."},
+      {"label": "Iranian State Media Exclusion", "text": "No Iranian state media (PressTV, IRNA, Mehr, Fars, Tasnim) was used as factual input. Claims attributed to Iranian authorities are labeled 'Iranian government asserts' and verified only as 'claimed.'"}
+    ],
+    "confidenceAssessment": "Overall cycle confidence is MODERATE due to degradation of three Tier 1 sources (AP, Reuters, CTP-ISW). D1 and D3 confidence would be higher with primary source access restored.",
+    "dissenterNotes": [
+      {
+        "analystId": "ANALYST B",
+        "domain": "d2",
+        "text": "We note a credible alternative reading: Iran's strategy centers on endurance and deterrence rather than escalation — BBC Persian analysis assessed Tehran's approach rests on absorbing strikes longer than adversaries sustain pain and costs. If the regime calculates it can outlast domestic US political will for a sustained campaign, the current multi-front posture may represent a ceiling rather than a floor of Iranian escalation."
+      }
+    ],
+    "sourceQuality": "3 of 8 Tier 1 sources functional; 8 of 14 Tier 2 sources functional. Al Jazeera and BBC carried the primary reporting load.",
+    "handling": "PROTECTED B // TLP:AMBER — Recipients may share within their organization and with clients who need the intelligence to protect themselves or prevent harm."
+  },
+  "footer": {
+    "id": "CSE_Intel_Brief_20260307_024919",
+    "classification": "PROTECTED B",
+    "sources": "Al Jazeera, BBC, Times of Israel, NYT, Hellenic Shipping News, CISA, France 24",
+    "handling": "TLP:AMBER — Limited distribution. Recipients may share within their organization and with clients who need the intelligence to protect themselves or prevent harm."
+  }
+}

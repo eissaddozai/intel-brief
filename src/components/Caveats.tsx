@@ -27,10 +27,11 @@ export function Caveats({ caveats }: Props) {
       </div>
       {caveats.dissenterNotes.length > 0 && (
         <div className="caveats__dissenters">
-        <div className="caveats__dissenter-wrap">
-          {caveats.dissenterNotes.map((note, i) => (
-            <DissenterNote key={i} note={note} />
-          ))}
+          <div className="caveats__dissenter-wrap">
+            {caveats.dissenterNotes.map((note, i) => (
+              <DissenterNote key={i} note={note} />
+            ))}
+          </div>
         </div>
       )}
     </section>
