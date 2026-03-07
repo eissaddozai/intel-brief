@@ -13,13 +13,21 @@ const THREAT_COLORS: Record<string, string> = {
 const THREAT_LEVELS = ['ALL', 'CRITICAL', 'SEVERE', 'ELEVATED', 'GUARDED', 'LOW']
 const PAGE_SIZE = 10
 
-function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString('en-CA', {
-    year: 'numeric',
-    month: 'long',
+function formatDateTime(iso: string): string {
+  const d = new Date(iso)
+  const date = d.toLocaleDateString('en-CA', {
     day: 'numeric',
+    month: 'short',
+    year: 'numeric',
     timeZone: 'UTC',
   })
+  const time = d.toLocaleTimeString('en-CA', {
+    hour: '2-digit',
+    minute: '2-digit',
+    timeZone: 'UTC',
+    hour12: false,
+  })
+  return `${date} · ${time} UTC`
 }
 
 export function BriefList() {
@@ -38,7 +46,7 @@ export function BriefList() {
         const searchLower = search.toLowerCase()
         const matchesBluf = data.executive.bluf.toLowerCase().includes(searchLower)
         const matchesId = data.meta.cycleId.toLowerCase().includes(searchLower)
-        const matchesDate = formatDate(data.meta.timestamp).toLowerCase().includes(searchLower)
+        const matchesDate = formatDateTime(data.meta.timestamp).toLowerCase().includes(searchLower)
         return matchesBluf || matchesId || matchesDate
       }
       return true
@@ -119,7 +127,7 @@ export function BriefList() {
                 {data.meta.threatTrajectory === 'escalating' ? '↑ Escalating' :
                  data.meta.threatTrajectory === 'de-escalating' ? '↓ De-escalating' : '→ Stable'}
               </span>
-              <span className="brief-card__date">{formatDate(data.meta.timestamp)}</span>
+              <span className="brief-card__date">{formatDateTime(data.meta.timestamp)}</span>
               <span className="brief-card__id">{data.meta.cycleId}</span>
             </div>
 
