@@ -1,0 +1,10 @@
+{
+  "id": "intertanko_news",
+  "tier": 2,
+  "method": "scrape",
+  "url": "https://www.intertanko.com/news/",
+  "http_code": 404,
+  "size_bytes": 28694,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:39Z"
+}

@@ -1,0 +1,10 @@
+{
+  "id": "insurance_insider",
+  "tier": 2,
+  "method": "scrape",
+  "url": "https://www.insuranceinsider.com/marine",
+  "http_code": 404,
+  "size_bytes": 46418,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:38Z"
+}

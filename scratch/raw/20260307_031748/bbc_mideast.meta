@@ -1,0 +1,10 @@
+{
+  "id": "bbc_mideast",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml",
+  "http_code": 200,
+  "size_bytes": 27594,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:17:49Z"
+}

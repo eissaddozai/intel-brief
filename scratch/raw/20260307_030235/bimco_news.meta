@@ -1,0 +1,10 @@
+{
+  "id": "bimco_news",
+  "tier": 1,
+  "method": "rss",
+  "url": "https://www.bimco.org/rss/news",
+  "http_code": 404,
+  "size_bytes": 47263,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:38Z"
+}

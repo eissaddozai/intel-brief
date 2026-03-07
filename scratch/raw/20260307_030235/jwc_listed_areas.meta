@@ -1,0 +1,10 @@
+{
+  "id": "jwc_listed_areas",
+  "tier": 1,
+  "method": "scrape",
+  "url": "https://www.lmalloyds.com/LMA/Underwriting_Committees/Marine_Committees/LMA_JWC/JWC_war_listed_areas.aspx",
+  "http_code": 404,
+  "size_bytes": 76202,
+  "fetch_duration_s": 2,
+  "timestamp": "2026-03-07T03:02:38Z"
+}

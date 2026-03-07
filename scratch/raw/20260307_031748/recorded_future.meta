@@ -1,0 +1,10 @@
+{
+  "id": "recorded_future",
+  "tier": 3,
+  "method": "rss",
+  "url": "https://www.recordedfuture.com/feed",
+  "http_code": 200,
+  "size_bytes": 923026,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:17:50Z"
+}

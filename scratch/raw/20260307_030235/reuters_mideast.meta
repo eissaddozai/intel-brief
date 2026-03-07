@@ -1,0 +1,10 @@
+{
+  "id": "reuters_mideast",
+  "tier": 1,
+  "method": "scrape",
+  "url": "https://www.reuters.com/world/middle-east/",
+  "http_code": 200,
+  "size_bytes": 498066,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:36Z"
+}

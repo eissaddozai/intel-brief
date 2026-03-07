@@ -1,0 +1,10 @@
+{
+  "id": "middle_east_eye",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://www.middleeasteye.net/rss",
+  "http_code": 200,
+  "size_bytes": 129805,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:17:49Z"
+}

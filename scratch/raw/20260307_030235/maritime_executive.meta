@@ -1,0 +1,10 @@
+{
+  "id": "maritime_executive",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://maritime-executive.com/rss/articles",
+  "http_code": 404,
+  "size_bytes": 70157,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:02:39Z"
+}

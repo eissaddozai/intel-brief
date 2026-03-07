@@ -1,0 +1,3558 @@
+<!DOCTYPE html>
+<html class="no-js" dir="ltr" itemscope xml:lang="en" lang="en">
+<head>
+
+
+<meta itemprop="searchData_source" content="Swiss Re Institute">
+<meta itemprop="searchData_contentType" content="">
+<meta itemprop="searchData_blogType" content="nonRisk">
+<meta itemprop="searchData_researchSeries" content="">
+<meta itemprop="searchData_sriTopic" content="">
+<meta itemprop="searchData_date" content="2026_02_18">
+<meta itemprop="searchData_dateUTC" content="2026-02-18T13:30:45Z">
+<meta itemprop="searchData_image" content="/dam/jcr:f832cb21-287a-4b87-8e7d-c43273fe6666/Simga%20new%20landing%20image%20GettyImages-594485281bearbeitet.jpg">
+<meta itemprop="searchData_teaserTitle" content="sigma research">
+<meta itemprop="searchData_path" content="/institute/research/sigma-research">
+<meta itemprop="searchData_id" content="84350bc8-b278-49e3-b37e-2419de1e9ae6">
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "contentCategory":"not-specified",
+    "name": "sigma research | Swiss Re",
+    "url": "https://www.swissre.com/institute/research/sigma-research.html",
+    "headline": "sigma research",
+    "description": "Our data driven research publications, including the industry leading sigma, enable risk focussed decision making and identify strategic opportunities in the re/insurance industry.",
+    "image": ["https://www.swissre.com/dam/jcr:f832cb21-287a-4b87-8e7d-c43273fe6666/Simga%20new%20landing%20image%20GettyImages-594485281bearbeitet.jpg"],
+    "datePublished": "2018-11-13T17:12:43+01:00",
+    "dateModified": "2026-02-18T14:30:45+01:00",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Swiss Re Institute",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.swissre.com/.resources/swissre-web/webresources/img/logos/SR_Logo_Institute.png"
+        }
+    },
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.swissre.com/search-page.html?searchterm={search_term_string}",
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Swiss Re Institute",
+              "item": "https://www.swissre.com/institute/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Research",
+              "item": "https://www.swissre.com/institute/research.html"
+            }
+      ]
+    }
+    </script>
+
+
+
+
+    <link rel="preconnect" href="https://cc.cdn.civiccomputing.com">
+
+
+    <link rel="preconnect" href="https://apikeys.civiccomputing.com">
+
+
+    <link rel="preconnect" href="https://swissreextranet.piwik.pro">
+
+
+    <link rel="preconnect" href="https://swissreextranet.containers.piwik.pro">
+
+
+    <link rel="canonical"  href="https://www.swissre.com/institute/research/sigma-research.html" />
+
+<meta charset="utf-8" />
+<!--[if !HTML5]>
+<meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+<![endif]-->
+<meta content="width=device-width,initial-scale=1" name="viewport">
+<script nonce="MDN0dXBoczNkdjV1eTlyMHQxNnR2a2M="></script> 
+<script nonce="MDN0dXBoczNkdjV1eTlyMHQxNnR2a2M=">
+//<![CDATA[
+window.app_config={language:document.querySelector("html").getAttribute("lang"),locale:{autocomplete:{},date:{"date-picker-instruction":"use arrow keys to select date",firstDayOfWeek:1,dateFormat:null,today:"Today",disabled:"Not available","prev-month":"previous month","next-month":"next month",months:["January","February","March","April","May","June","July","August","September","October","November","December"],monthsShort:["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],weekdays:["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],weekdaysShort:["Sun","Mon","Tue","Wed","Thu","Fri","Sat"]}}}
+//]]>
+</script>
+
+<link rel="stylesheet" href="/.resources/swissre-web/webresources/css/ui.css?161734" media="all">
+<link href="/.resources/swissre-web/webresources/img/graphics/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+<link href="/.resources/swissre-web/webresources/img/graphics/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+<link href="/.resources/swissre-web/webresources/img/graphics/favicon-194x194.png" rel="icon" sizes="194x194" type="image/png">
+<link href="/.resources/swissre-web/webresources/img/graphics/android-chrome-192x192.png" rel="icon" sizes="192x192" type="image/png">
+<link href="/.resources/swissre-web/webresources/img/graphics/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+<link color="#627d77" href="/.resources/swissre-web/webresources/img/graphics/safari-pinned-tab.svg" rel="mask-icon">
+<link href="/.resources/swissre-web/webresources/meta/site.webmanifest" rel="manifest">
+<link as="font" crossorigin="" href="/.resources/swissre-web/webresources/fonts/180618_swissresansot-regular-webfont.woff2" rel="preload" type="font/woff2">
+<link as="font" crossorigin="" href="/.resources/swissre-web/webresources/fonts/180618_swissresansot-light-webfont.woff2" rel="preload" type="font/woff2">
+<link as="font" crossorigin="" href="/.resources/swissre-web/webresources/fonts/180618_swissresansot-bold-webfont.woff2" rel="preload" type="font/woff2"><meta content="/.resources/swissre-web/webresources/meta/browserconfig.xml" name="msapplication-config">
+<meta content="#627d77" name="msapplication-TileColor">
+<meta content="ccdbd8" name="theme-color">
+
+<meta content="Our data driven research publications, including the industry leading sigma, enable risk focussed decision making and identify strategic opportunities in the re/insurance industry." name="description">
+<meta content="data driven, research publications, sigma, risk, decision making, strategic opportunities, insurance industry, reinsurance, economic insights, economic outlook, financial risk insights, jerome hägeli,  sigma explorer, insurance monitoring" name="keywords">
+<meta name="robots" content="index,follow" />
+<title>sigma research | Swiss Re</title>
+<meta itemprop="searchData_titleLC" content="sigma research">
+  
+
+
+  <meta property="og:title" content="sigma research | Swiss Re" />
+  <meta property="og:description" content="Our data driven research publications, including the industry leading sigma, enable risk focussed decision making and identify strategic opportunities in the re/insurance industry." />
+  <meta property="og:url" content="https://www.swissre.com/institute/research/sigma-research.html" />
+
+  <meta name="twitter:title" content="sigma research | Swiss Re" />
+  <meta name="twitter:description" content="Our data driven research publications, including the industry leading sigma, enable risk focussed decision making and identify strategic opportunities in the re/insurance industry." />
+  <meta property="twitter:site" content="https://www.swissre.com/institute/research/sigma-research.html" />
+
+    <meta property="og:image" content="https://www.swissre.com/dam/jcr:f832cb21-287a-4b87-8e7d-c43273fe6666/Simga%20new%20landing%20image%20GettyImages-594485281bearbeitet.jpg?07032026040902">
+    <meta name="twitter:image" content="https://www.swissre.com/dam/jcr:f832cb21-287a-4b87-8e7d-c43273fe6666/Simga%20new%20landing%20image%20GettyImages-594485281bearbeitet.jpg?07032026040902"/>
+
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image"/>
+
+
+
+
+
+
+      <meta name="facebook-domain-verification" content="mqi2h0bmfrl07bdtikhjj7osp1n71k" />
+
+</head>
+<body class="">
+
+<script id="svgicons-script" nonce="MDN0dXBoczNkdjV1eTlyMHQxNnR2a2M=">
+    //<![CDATA[
+    !function(e,s){function n(e){var s=document.getElementById("svgicons-sprite");s&&s.parentNode.removeChild(s);var n=c.svgicons.replace("<svg ",'<svg id="svgicons-sprite" style="display: none"');document.body.insertAdjacentHTML("beforeend",n)}var o,t,i,c=window.localStorage||{};c.svgicons&&c.svgicons_revision==s||(o="/.resources/swissre-web/webresources/img/svg-sprite.svg?161734",t=function(e){c.svgicons=e,c.svgicons_revision=s,n()},(i=new XMLHttpRequest).onreadystatechange=function(){4===i.readyState&&200===i.status&&t&&t(i.responseText)},i.open("GET",o),i.send()),c.svgicons&&n()}(0,"161734")
+    //]]>
+</script>
+
+
+      <script nonce="MDN0dXBoczNkdjV1eTlyMHQxNnR2a2M=" type="text/javascript">
+(function(window, document, dataLayerName, id) { window[dataLayerName]=window[dataLayerName]||[],window[dataLayerName].push({start:(new Date).getTime(),event:"stg.start"});var scripts=document.getElementsByTagName('script')[0],tags=document.createElement('script'); function stgCreateCookie(a,b,c){var d="";if(c){var e=new Date;e.setTime(e.getTime()+24*c*60*60*1e3),d="; expires="+e.toUTCString()}document.cookie=a+"="+b+d+"; path=/; Secure"} var isStgDebug=(window.location.href.match("stg_debug")||document.cookie.match("stg_debug"))&&!window.location.href.match("stg_disable_debug");stgCreateCookie("stg_debug",isStgDebug?1:"",isStgDebug?14:-1); var qP=[];dataLayerName!=="dataLayer"&&qP.push("data_layer_name="+dataLayerName),qP.push("use_secure_cookies"),isStgDebug&&qP.push("stg_debug");var qPString=qP.length>0?("?"+qP.join("&")):""; tags.async=!0,tags.src="//swissreextranet.containers.piwik.pro/"+id+".js"+qPString,scripts.parentNode.insertBefore(tags,scripts); !function(a,n,i){a[n]=a[n]||{};for(var c=0;c<i.length;c++)!function(i){a[n][i]=a[n][i]||{},a[n][i].api=a[n][i].api||function(){var a=[].slice.call(arguments,0);"string"==typeof a[0]&&window[dataLayerName].push({event:n+"."+i+":"+a[0],parameters:[].slice.call(arguments,1)})}}(i[c])}(window,"ppms",["tm","cm"]); })(window, document, 'dataLayer', '3306a3f4-88f6-4fc9-bd41-304dad969333');
+</script><noscript><iframe src="//swissreextranet.containers.piwik.pro/3306a3f4-88f6-4fc9-bd41-304dad969333/noscript.html" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+        <div id="body">
+
+
+<header class="Header" data-js-nav id="Header" role="banner">
+    <p aria-level="1" class="visuallyhidden" role="heading">Navigation on swissre.com</p>
+    <nav aria-describedby="Skiplinks--h2" class="Skiplinks" data-js-skiplinks id="Skiplinks">
+        <h2 class="visuallyhidden" id="Skiplinks--h2">Quick navigation</h2>
+        <ul>
+            <li><a accesskey="1" href="#main-content" title="[ALT + 1]">Content</a></li>
+            <li><a accesskey="2" href="/institute/" title="[ALT + 2]">Homepage</a></li>
+            <li><a accesskey="3" href="#UniveralNavWrapper" title="[ALT + 3]">Business Unit Navigation</a></li>
+            <li><a accesskey="4" href="#GlobalNav" title="[ALT + 4]">Navigation</a></li>
+            <li><a accesskey="5" aria-expanded="false" data-flyout='{"focusInside":"input"}' data-js-flyout href="#headersearch" title="[ALT + 5]">Search</a></li>
+        </ul>
+    </nav>
+    <div class="Header--inner" data-js-autobreak="small" data-nav-el="wrapper">
+        <div class="Header--universalNav">
+            <nav class="UniversalNav" id="UniveralNavWrapper">
+                <h2 class="visuallyhidden">Company Unit Navigation</h2>
+                <button aria-controls="universalnav" aria-expanded="false" class="UniversalNav--toggle" type="button">
+                    <span class="UniversalNav--toggle--open">Swiss Re Institute<span class="visuallyhidden">(Click to open Universal Navigation)</span></span>
+                    <span class="UniversalNav--toggle--close">Close <span class="visuallyhidden">Universal Navigation</span></span>
+                </button>
+                <div class="UniversalNav--nav" data-hidden="true" data-js-collapsible="universalnav" id="universalnav">
+                    <ul class="UniversalNav--list">
+                        <li><a class="UniversalNav--link " href="/">Swiss Re Group</a></li>
+                        <li><a class="UniversalNav--link active" href="/institute/">Swiss Re Institute</a></li>
+                        <li><a class="UniversalNav--link " href="/reinsurance/">Reinsurance</a></li>
+                        <li><a class="UniversalNav--link " href="/corporate-solutions/">Corporate Solutions</a></li>
+                        <li><a class="UniversalNav--link " href="/foundation/">Swiss Re Foundation</a></li>
+                    </ul>
+                    <button aria-controls="universalnav" class="FocusOnly" type="button">Close Universal Navigation</button>
+                </div>
+            </nav>
+        </div>
+    <div class="Header--nav">
+      <div class="Header--navBar">
+          <div class="Header--logo ">
+
+            <a
+                class="Logo"
+                href="/institute/"
+                
+            >
+                    <img alt="To home page, Swiss Re Institute Logo" src="/.resources/swissre-web/webresources/img/logos/SR_Logo_Institute.png">
+                <span class="visuallyhidden">, to Homepage</span>
+            </a>
+          </div>
+      <div class="Header--mainNav" data-hidden="true" data-js-collapsible='{"group":"MainNav","scrollTo":false,"focusInside":"[data-nav-el=\"wrapper\"]","syncstate":{"#Header":"is-mobilenav-open"}}' id="MainNav">
+
+          <nav class="GlobalNav" id="GlobalNav">
+            <h2 class="visuallyhidden">Main Navigation</h2>
+                <ul class="GlobalNav--list">
+                
+
+                            <li>
+                                <button aria-controls="research-subnav" aria-expanded="false" class="GlobalNav--link" data-collapsible-el="toggle" data-nav-el="trigger" type="button">Research</button>
+                            </li>
+
+                            <li>
+                                <button aria-controls="partnerships-subnav" aria-expanded="false" class="GlobalNav--link" data-collapsible-el="toggle" data-nav-el="trigger" type="button">Partnerships</button>
+                            </li>
+
+                            <li>
+                                <button aria-controls="about-us-subnav" aria-expanded="false" class="GlobalNav--link" data-collapsible-el="toggle" data-nav-el="trigger" type="button">About us</button>
+                            </li>
+
+                </ul>
+          </nav>
+
+          <nav class="ServiceNav">
+            <h2 class="visuallyhidden">Service Navigation</h2>
+            
+
+            <ul class="ServiceNav--list">
+
+
+                    <li>
+                        <button aria-controls="HeaderLocations" aria-expanded="false" class="ServiceNav--link HeaderLocations--trigger" data-collapsible-el="toggle" data-nav-el="trigger" type="button">
+                            <span class="Icon inline" data-picto="world">
+                                <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-world"></use></svg>
+                            </span>
+                            <span class="ServiceNav--link--text">Regional sites</span>
+                        </button>
+<div class="Flyout HeaderLocationsMobile ServiceNav--dropdown bottom">
+    <a href="#u4" class="Flyout--trigger ServiceNav--link" data-js-flyout="true" aria-controls="u4" aria-expanded="false">
+        <span class="Icon inline" data-picto="world">
+            <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-world"></use></svg>
+        </span>
+        <span class="ServiceNav--link--text">Regional sites</span>
+        <span class="visuallyhidden">(click to show list of locations and regional sites)</span>
+    </a>
+    <div class="Flyout--content is-collapsed" id="u4">
+        <div class="Flyout--content--inner" data-js-selfalign>
+
+
+                    <div class="HeaderLocationsMobile--linkList Listing">
+                        <ul class="Listing--list">
+                            <li class="Listing--item">
+                                <a aria-controls="mobilelocations-Americas-content" aria-expanded="false" class="HeaderLocationsMobile--linkList--link" href="#mobilelocations-Americas-content">Americas</a>
+
+                                    <div class="HeaderLocationsMobile--listing" data-hidden="true" data-js-collapsible="mobilelocationsu" id="mobilelocations-Americas-content">
+                                        <ul class="Listing--list">
+
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link external" href="/brasil/" target="_blank" rel='noopener'>
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:4651150f-8ea4-4320-95ce-fd044dd16fa3/BR@2x.png) center left/contain no-repeat;"></span>
+                                                    Brazil
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                    </a>
+                                                </li>
+
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link external" href="/canada/" target="_blank" rel='noopener'>
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:f86ea0df-f982-42d4-a653-09a97e2266a2/CA@2x.png) center left/contain no-repeat;"></span>
+                                                    Canada
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link external" href="https://www.swissre.com/colombia/" target="_blank" rel='noopener'>
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:5704c4d8-7244-416d-978d-b96f2ec7fdd0/CO@2x.png) center left/contain no-repeat;"></span>
+                                                    Colombia
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link external" href="https://www.swissre.com/mexico/" target="_blank" rel='noopener'>
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:600ea845-49a7-4db2-9367-5cefd19f8b56/MX@2x.png) center left/contain no-repeat;"></span>
+                                                    Mexico
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=United-States-of-America-content#Americas">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:fd8d3217-5f9b-4d43-804d-3339582d7272/US@2x.png) center left/contain no-repeat;"></span>
+                                                    United States of America
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                    </div>
+                            </li>
+                            <li class="Listing--item">
+                                <a aria-controls="mobilelocations-Asia-Pacific-content" aria-expanded="false" class="HeaderLocationsMobile--linkList--link" href="#mobilelocations-Asia-Pacific-content">Asia Pacific</a>
+
+                                    <div class="HeaderLocationsMobile--listing" data-hidden="true" data-js-collapsible="mobilelocationsu" id="mobilelocations-Asia-Pacific-content">
+                                        <ul class="Listing--list">
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link external" href="https://www.swissre.com/australia_newzealand/" target="_blank" rel='noopener'>
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:c1a8e459-eb20-423a-989f-3035c0c66ab5/AU@2x.png) center left/contain no-repeat;"></span>
+                                                    Australia
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link external" href="https://www.swissre.com/china/" target="_blank" rel='noopener'>
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:60596286-32ce-44b5-b207-0e2508adaceb/CN@2x.png) center left/contain no-repeat;"></span>
+                                                    China
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Hong-Kong-SAR-content#Asia-Pacific">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:d07b524e-b2b6-41b1-afb8-2b2917392460/HK@2x.png) center left/contain no-repeat;"></span>
+                                                    Hong Kong SAR
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=India-content#Asia-Pacific">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:247677fc-b1c0-4ddb-8a46-f95b9d1426ee/IN@2x.png) center left/contain no-repeat;"></span>
+                                                    India
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link external" href="https://www.swissre.com/japan/" target="_blank" rel='noopener'>
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:5582a123-b3bd-497f-b35a-01d2783d61dc/JP@2x.png) center left/contain no-repeat;"></span>
+                                                    Japan
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link external" href="https://www.swissre.com/korea/" target="_blank" rel='noopener'>
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:7fd9d574-0930-4511-aae2-34adead6fc87/KR@2x.png) center left/contain no-repeat;"></span>
+                                                    Republic of Korea
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Malaysia-content#Asia-Pacific">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:2c8bd0e3-29d0-4023-b649-71348d159a61/MY@2x.png) center left/contain no-repeat;"></span>
+                                                    Malaysia
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Singapore-content#Asia-Pacific">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:b0109584-1af8-4415-8240-a70ef3dbcee6/SG@2x.png) center left/contain no-repeat;"></span>
+                                                    Singapore
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link external" href="https://www.swissre.com/australia_newzealand/" target="_blank" rel='noopener'>
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:0ece71ba-ace6-40fd-a6e6-31aa09de9a58/NZ@2x.png) center left/contain no-repeat;"></span>
+                                                    New Zealand
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                    </div>
+                            </li>
+                            <li class="Listing--item">
+                                <a aria-controls="mobilelocations-Europe--Middle-East----Africa-content" aria-expanded="false" class="HeaderLocationsMobile--linkList--link" href="#mobilelocations-Europe--Middle-East----Africa-content">Europe, Middle East, &amp; Africa</a>
+
+                                    <div class="HeaderLocationsMobile--listing" data-hidden="true" data-js-collapsible="mobilelocationsu" id="mobilelocations-Europe--Middle-East----Africa-content">
+                                        <ul class="Listing--list">
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Denmark-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:9e07aeaa-63f9-43e0-bafb-0bee08cee92a/DK@2x.png) center left/contain no-repeat;"></span>
+                                                    Denmark
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=France-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:53d27fb8-8b11-41e4-877a-4b253b27792e/FR@2x.png) center left/contain no-repeat;"></span>
+                                                    France
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Germany-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:933d0f2b-83fb-4786-a013-0328c9a55a74/DE@2x.png) center left/contain no-repeat;"></span>
+                                                    Germany
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Israel-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:6c47a970-6b62-4dde-8a92-ec62782bf962/IL@2x.png) center left/contain no-repeat;"></span>
+                                                    Israel
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Italy-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:eac99a13-3c97-4e35-b10f-dd023c378602/IT@2x.png) center left/contain no-repeat;"></span>
+                                                    Italy
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Ivory-Coast-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:f9dc230d-8564-474e-8acb-fccb87766216/IV@2x.png) center left/contain no-repeat;"></span>
+                                                    Ivory Coast
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Luxembourg-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:0c200eab-57d5-4456-ac7a-e25c45ef4c32/LU@2x.png) center left/contain no-repeat;"></span>
+                                                    Luxembourg
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Slovak-Republic-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:efd08450-0778-4e02-ba4b-a28de64cf3dc/SK@2x.png) center left/contain no-repeat;"></span>
+                                                    Slovak Republic
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Spain-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:a466dd4d-c4a6-40f9-92fb-4f94b39a5035/ES@2x.png) center left/contain no-repeat;"></span>
+                                                    Spain
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Switzerland-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:056fdd18-e6e4-42e8-9109-f6c06fe5fb47/CH@2x.png) center left/contain no-repeat;"></span>
+                                                    Switzerland
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=United-Kingdom-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:b20cfe37-23f7-4ca3-b809-b90fb39a2149/GB@2x.png) center left/contain no-repeat;"></span>
+                                                    United Kingdom
+                                                    </a>
+                                                </li>
+
+
+                                                <li class="Listing--item">
+                                                        <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=South-Africa-content#Europe--Middle-East----Africa">
+
+                                                            <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:c5e4830f-4a8c-497f-9428-782f89f76928/SA@2x.png) center left/contain no-repeat;"></span>
+                                                    South Africa
+                                                    </a>
+                                                </li>
+                                        </ul>
+                                    </div>
+                            </li>
+                            
+
+                                <li class="Listing--item">
+                                    <a class="HeaderLocations--footer--link" href="/about-us/office-locations.html">Discover all locations</a>
+                                </li>
+                                <li class="Listing--item">
+                                    <a class="HeaderLocations--footer--link" href="http://corporatesolutions.swissre.com/offices-and-contacts.html" target="_blank" rel='noopener'>
+                                    Discover all Corporate Solutions locations
+                                    <span class="Icon" data-picto="external">
+                                        <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-external"></use></svg>
+                                    </span>
+                                    </a>
+                                </li>
+                        </ul>
+                    </div>
+            <button class="FocusOnly" data-flyout-el="close" type="button">Close Worldwide</button>
+        </div>
+    </div>
+</div>
+                    </li>
+
+
+            </ul>
+        </nav>
+
+      </div>
+
+        <div class="Header--search">
+          <button aria-controls="headersearch" aria-expanded="false" class="Search--open" data-js-flyout type="button">
+            <span class="visuallyhidden">Open Search</span>
+            <span class="Icon" data-icon="search"></span>
+          </button>
+          <div
+            class="Search"
+            data-flyout='{"syncstate":{"#Header":"is-search-open"},"focusInside":"#u20","arrowElements":false}'
+              data-js-search
+            id="headersearch"
+          >
+            <h2 class="visuallyhidden">Search</h2>
+            <div class="Search--panel">
+              <div class="Search--panel--inner">
+
+
+                <form action="/institute/search-page.html" class="Search--form" data-search-el="form" method="get" role="search">
+
+
+                    <span class="Icon Search--form--icon" data-icon="search"></span>
+                    <label class="visuallyhidden" for="u20">Enter search term</label>
+                    <span aria-hidden="true" class="Search--form--placeholderPolyfill" data-search-el="placeholder">Type to search entire website</span>
+                    <input
+                        
+                        autocomplete="off"
+                        class="Search--form--input"
+                        data-label='item.replace(this.el.value, "&lt;strong class=t-bold&gt;" + this.el.value + "&lt;/strong&gt;")'
+                        data-search-el="autocomplete"
+                        data-async-values="/institute/search-page.json"
+                        data-values="null"
+                        id="u20"
+                        name="searchterm"
+                        placeholder="Type to search entire website"
+                        type="text"
+                    >
+                    <button class="Search--submit" data-search-el="submit" type="submit">
+                    <span class="visuallyhidden">submit</span>
+                        search
+                    </button>
+                    <button class="Search--close" data-flyout-el="close" type="reset">
+                        <span class="visuallyhidden">Close Search</span>
+                        <span class="Icon" data-icon="close"></span>
+                    </button>
+                </form>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <button aria-controls="MainNav" aria-expanded="false" class="Header--toggle" data-nav-el="mobileNavToggle" type="button">
+          <span class="Header--toggle--open visuallyhidden">Open Main Navigation</span>
+          <span class="Header--toggle--close visuallyhidden">Close</span>
+          <span class="Icon" data-icon="burger"></span>
+        </button>
+      </div>
+      <div class="Header--flyout is-collapsed" data-expanded="false" data-flyout='{"syncstate":{"#Header":"is-nav-open"},"autoscroll":false,"openAnimated":true,"closeAnimated":true}' data-nav-el="flyout" id="HeaderFlyout">
+
+
+
+
+
+                <div class="HeaderFlyout" data-hidden="false" data-js-collapsible='{"group":"headersubnav","animateSizeDuration":0}' id="research-subnav">
+                  <button class="HeaderFlyout--close" data-flyout-el="close" type="button">
+                    <span class="visuallyhidden">Close Navigation</span>
+                  </button>
+                  <div class="HeaderFlyout--inner">
+                    <div class="HeaderFlyout--content"  role="list">
+                      <div class="HeaderFlyout--section info" role="presentation">
+                        <button aria-controls="HeaderFlyout" class="HeaderFlyout--back" data-nav-el="mobileSubnavBack" type="button">back</button>
+                            <p class="HeaderFlyout--title" data-nav-el="subNavTitle" role="listitem">
+                                <a href="/institute/research.html">
+                                    Research
+                                </a>
+                            </p>
+                            <p class="HeaderFlyout--description is-hidden-mobile" role="presentation">Our applied research covers emerging risks, industry trends and topical deep dives.<br/></p>
+                        <p role="listitem">
+                            <a class="HeaderFlyout--cta" href="/institute/research.html" >Discover</a>
+                        </p>
+                      </div>
+
+                      <div class="HeaderFlyout--section" role="presentation">
+
+                      </div>
+
+
+                    </div>
+
+                  </div>
+                </div>
+
+
+
+
+                <div class="HeaderFlyout" data-hidden="false" data-js-collapsible='{"group":"headersubnav","animateSizeDuration":0}' id="partnerships-subnav">
+                  <button class="HeaderFlyout--close" data-flyout-el="close" type="button">
+                    <span class="visuallyhidden">Close Navigation</span>
+                  </button>
+                  <div class="HeaderFlyout--inner">
+                    <div class="HeaderFlyout--content"  role="list">
+                      <div class="HeaderFlyout--section info" role="presentation">
+                        <button aria-controls="HeaderFlyout" class="HeaderFlyout--back" data-nav-el="mobileSubnavBack" type="button">back</button>
+                            <p class="HeaderFlyout--title" data-nav-el="subNavTitle" role="listitem">
+                                <a href="/institute/partnerships.html">
+                                    Partnerships
+                                </a>
+                            </p>
+                            <p class="HeaderFlyout--description is-hidden-mobile" role="presentation">With selected partners, we explore the future of risk coverage, assess changes in the risk landscape and act as a catalyst for industry change. </p>
+                        <p role="listitem">
+                            <a class="HeaderFlyout--cta" href="/institute/partnerships.html" >Discover</a>
+                        </p>
+                      </div>
+
+                      <div class="HeaderFlyout--section" role="presentation">
+
+                      </div>
+
+
+                            <div class="HeaderFlyout--section highlight" role="presentation">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="HeaderFlyoutTeaser">
+
+
+
+            <div class="HeaderFlyoutTeaser--image">
+
+
+
+                    <div class="Media image" style="background-image:url('/.imaging/focalarea/6x4/dam/jcr:7cfa0995-f638-4521-9898-229cec166112/Hero%20image%20biodiversity.jpg?20230217073153AM&nowebp');padding-top:60.71%">
+                      <img alt="Biodiversity challenge hero image" data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:7cfa0995-f638-4521-9898-229cec166112/Hero%20image%20biodiversity.jpg?20230217073153AM 560x340" src="/.imaging/focalarea/6x4/dam/jcr:7cfa0995-f638-4521-9898-229cec166112/Hero%20image%20biodiversity.jpg?20230217073153AM">
+                    </div>
+
+            </div>
+
+
+    <h5 class="HeaderFlyoutTeaser--title">
+            <span class="HeaderFlyoutTeaser--category">Collaboration</span>
+        Open research challenge: Modelling biodiversity and ecosystem services loss to advance resilience
+    </h5>
+
+
+        <a class="HeaderFlyoutTeaser--link" href="/institute/partnerships/modelling-biodiversity-ecosystem-boost-resilience.html" title="Read More about: Open research challenge: Modelling biodiversity and ecosystem services loss to advance resilience" >
+          <span class="visuallyhidden">Read More about: Open research challenge: Modelling biodiversity and ecosystem services loss to advance resilience</span>
+        </a>
+</article>
+                            </div>
+                    </div>
+
+                  </div>
+                </div>
+
+
+
+
+                <div class="HeaderFlyout" data-hidden="false" data-js-collapsible='{"group":"headersubnav","animateSizeDuration":0}' id="about-us-subnav">
+                  <button class="HeaderFlyout--close" data-flyout-el="close" type="button">
+                    <span class="visuallyhidden">Close Navigation</span>
+                  </button>
+                  <div class="HeaderFlyout--inner">
+                    <div class="HeaderFlyout--content"  role="list">
+                      <div class="HeaderFlyout--section info" role="presentation">
+                        <button aria-controls="HeaderFlyout" class="HeaderFlyout--back" data-nav-el="mobileSubnavBack" type="button">back</button>
+                            <p class="HeaderFlyout--title" data-nav-el="subNavTitle" role="listitem">
+                                <a href="/institute/about-us.html">
+                                    About us
+                                </a>
+                            </p>
+                            <p class="HeaderFlyout--description is-hidden-mobile" role="presentation">Focused on insights, driven by impact.</p>
+                        <p role="listitem">
+                            <a class="HeaderFlyout--cta" href="/institute/about-us.html" >Discover</a>
+                        </p>
+                      </div>
+
+                      <div class="HeaderFlyout--section" role="presentation">
+
+                      </div>
+
+
+                            <div class="HeaderFlyout--section highlight" role="presentation">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<article class="HeaderFlyoutTeaser">
+
+
+
+            <div class="HeaderFlyoutTeaser--image">
+
+
+
+                    <div class="Media image" style="background-image:url('/.imaging/focalarea/6x4/dam/jcr:2019f9de-18d3-4d73-b486-c7de2758e250/11_SRI_symposium_emea_istock_637213452.jpg?20200928061949AM&nowebp');padding-top:60.71%">
+                      <img alt="Man with child on his shoulder looking at an orange wall with a globe." data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:2019f9de-18d3-4d73-b486-c7de2758e250/11_SRI_symposium_emea_istock_637213452.jpg?20200928061949AM 560x340" src="/.imaging/focalarea/6x4/dam/jcr:2019f9de-18d3-4d73-b486-c7de2758e250/11_SRI_symposium_emea_istock_637213452.jpg?20200928061949AM">
+                    </div>
+
+            </div>
+
+
+    <h5 class="HeaderFlyoutTeaser--title">
+        Contact us
+    </h5>
+
+
+        <a class="HeaderFlyoutTeaser--link" href="/institute/about-us/Contact-us.html" title="Read More about: Contact us" >
+          <span class="visuallyhidden">Read More about: Contact us</span>
+        </a>
+</article>
+                            </div>
+                    </div>
+
+                  </div>
+                </div>
+
+
+<div class="HeaderLocations" data-hidden="false" data-js-collapsible='{"group":"headersubnav","animateSizeDuration":0}' id="HeaderLocations">
+    <button class="HeaderLocations--close" data-flyout-el="close" type="button">
+        <span class="visuallyhidden">Close Navigation</span>
+    </button>
+    <h3 class="visuallyhidden" id="headerLocationsTitle">Locations and regional sites</h3>
+        <div class="HeaderLocations--inner">
+          <div class="HeaderLocations--content" data-js-tabs="root" data-tabs='{"history":false}'>
+
+
+                    <ul aria-labelledby="headerLocationsTitle" class="HeaderLocations--controls is-hidden-tablet-portrait" role="tablist">
+                            <li role="presentation">
+                                <a aria-controls="Americas-HeaderLocations--countries" aria-selected="true" class="HeaderLocations--controls--link" data-js-tabs="tab" href="#Americas-HeaderLocations--countries" id="Americas-HeaderLocations--controls--link" role="tab">
+                                    <h4>Americas</h4>
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a aria-controls="Asia-Pacific-HeaderLocations--countries" aria-selected="true" class="HeaderLocations--controls--link" data-js-tabs="tab" href="#Asia-Pacific-HeaderLocations--countries" id="Asia-Pacific-HeaderLocations--controls--link" role="tab">
+                                    <h4>Asia Pacific</h4>
+                                </a>
+                            </li>
+                            <li role="presentation">
+                                <a aria-controls="Europe--Middle-East----Africa-HeaderLocations--countries" aria-selected="true" class="HeaderLocations--controls--link" data-js-tabs="tab" href="#Europe--Middle-East----Africa-HeaderLocations--countries" id="Europe--Middle-East----Africa-HeaderLocations--controls--link" role="tab">
+                                    <h4>Europe, Middle East, &amp; Africa</h4>
+                                </a>
+                            </li>
+                    </ul>
+
+                    <div class="HeaderLocations--panel">
+                            <div aria-hidden="true" class="HeaderLocations--countries" id="Americas-HeaderLocations--countries">
+
+                                    <ul class="HeaderLocations--countries--inner">
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link external" href="/brasil/" target="_blank" rel='noopener'>
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:4651150f-8ea4-4320-95ce-fd044dd16fa3/BR@2x.png) center left/contain no-repeat;"></span>
+                                                        Brazil
+                                                    </span>
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link external" href="/canada/" target="_blank" rel='noopener'>
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:f86ea0df-f982-42d4-a653-09a97e2266a2/CA@2x.png) center left/contain no-repeat;"></span>
+                                                        Canada
+                                                    </span>
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link external" href="https://www.swissre.com/colombia/" target="_blank" rel='noopener'>
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:5704c4d8-7244-416d-978d-b96f2ec7fdd0/CO@2x.png) center left/contain no-repeat;"></span>
+                                                        Colombia
+                                                    </span>
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link external" href="https://www.swissre.com/mexico/" target="_blank" rel='noopener'>
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:600ea845-49a7-4db2-9367-5cefd19f8b56/MX@2x.png) center left/contain no-repeat;"></span>
+                                                        Mexico
+                                                    </span>
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=United-States-of-America-content#Americas">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:fd8d3217-5f9b-4d43-804d-3339582d7272/US@2x.png) center left/contain no-repeat;"></span>
+                                                        United States of America
+                                                    </span>
+                                                </a>
+                                            </li>
+                                    </ul>
+                            </div>
+                            <div aria-hidden="true" class="HeaderLocations--countries" id="Asia-Pacific-HeaderLocations--countries">
+
+                                    <ul class="HeaderLocations--countries--inner">
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link external" href="https://www.swissre.com/australia_newzealand/" target="_blank" rel='noopener'>
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:c1a8e459-eb20-423a-989f-3035c0c66ab5/AU@2x.png) center left/contain no-repeat;"></span>
+                                                        Australia
+                                                    </span>
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link external" href="https://www.swissre.com/china/" target="_blank" rel='noopener'>
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:60596286-32ce-44b5-b207-0e2508adaceb/CN@2x.png) center left/contain no-repeat;"></span>
+                                                        China
+                                                    </span>
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Hong-Kong-SAR-content#Asia-Pacific">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:d07b524e-b2b6-41b1-afb8-2b2917392460/HK@2x.png) center left/contain no-repeat;"></span>
+                                                        Hong Kong SAR
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=India-content#Asia-Pacific">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:247677fc-b1c0-4ddb-8a46-f95b9d1426ee/IN@2x.png) center left/contain no-repeat;"></span>
+                                                        India
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link external" href="https://www.swissre.com/japan/" target="_blank" rel='noopener'>
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:5582a123-b3bd-497f-b35a-01d2783d61dc/JP@2x.png) center left/contain no-repeat;"></span>
+                                                        Japan
+                                                    </span>
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link external" href="https://www.swissre.com/korea/" target="_blank" rel='noopener'>
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:7fd9d574-0930-4511-aae2-34adead6fc87/KR@2x.png) center left/contain no-repeat;"></span>
+                                                        Republic of Korea
+                                                    </span>
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Malaysia-content#Asia-Pacific">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:2c8bd0e3-29d0-4023-b649-71348d159a61/MY@2x.png) center left/contain no-repeat;"></span>
+                                                        Malaysia
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Singapore-content#Asia-Pacific">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:b0109584-1af8-4415-8240-a70ef3dbcee6/SG@2x.png) center left/contain no-repeat;"></span>
+                                                        Singapore
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link external" href="https://www.swissre.com/australia_newzealand/" target="_blank" rel='noopener'>
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:0ece71ba-ace6-40fd-a6e6-31aa09de9a58/NZ@2x.png) center left/contain no-repeat;"></span>
+                                                        New Zealand
+                                                    </span>
+                                                        <span class="HeaderLocations--siteMarker">Country Website</span>
+                                                </a>
+                                            </li>
+                                    </ul>
+                            </div>
+                            <div aria-hidden="true" class="HeaderLocations--countries" id="Europe--Middle-East----Africa-HeaderLocations--countries">
+
+                                    <ul class="HeaderLocations--countries--inner">
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Denmark-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:9e07aeaa-63f9-43e0-bafb-0bee08cee92a/DK@2x.png) center left/contain no-repeat;"></span>
+                                                        Denmark
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=France-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:53d27fb8-8b11-41e4-877a-4b253b27792e/FR@2x.png) center left/contain no-repeat;"></span>
+                                                        France
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Germany-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:933d0f2b-83fb-4786-a013-0328c9a55a74/DE@2x.png) center left/contain no-repeat;"></span>
+                                                        Germany
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Israel-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:6c47a970-6b62-4dde-8a92-ec62782bf962/IL@2x.png) center left/contain no-repeat;"></span>
+                                                        Israel
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Italy-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:eac99a13-3c97-4e35-b10f-dd023c378602/IT@2x.png) center left/contain no-repeat;"></span>
+                                                        Italy
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Ivory-Coast-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:f9dc230d-8564-474e-8acb-fccb87766216/IV@2x.png) center left/contain no-repeat;"></span>
+                                                        Ivory Coast
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Luxembourg-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:0c200eab-57d5-4456-ac7a-e25c45ef4c32/LU@2x.png) center left/contain no-repeat;"></span>
+                                                        Luxembourg
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Slovak-Republic-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:efd08450-0778-4e02-ba4b-a28de64cf3dc/SK@2x.png) center left/contain no-repeat;"></span>
+                                                        Slovak Republic
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Spain-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:a466dd4d-c4a6-40f9-92fb-4f94b39a5035/ES@2x.png) center left/contain no-repeat;"></span>
+                                                        Spain
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=Switzerland-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:056fdd18-e6e4-42e8-9109-f6c06fe5fb47/CH@2x.png) center left/contain no-repeat;"></span>
+                                                        Switzerland
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=United-Kingdom-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:b20cfe37-23f7-4ca3-b809-b90fb39a2149/GB@2x.png) center left/contain no-repeat;"></span>
+                                                        United Kingdom
+                                                    </span>
+                                                </a>
+                                            </li>
+
+
+                                            <li>
+                                                    <a class="HeaderLocations--link" href="/about-us/office-locations.html?expand=South-Africa-content#Europe--Middle-East----Africa">
+                                                    <span class="HeaderLocations--link--text">
+
+                                                                <span class="Icon inline" style="width: 28px; height: 20px; background: url(/dam/jcr:c5e4830f-4a8c-497f-9428-782f89f76928/SA@2x.png) center left/contain no-repeat;"></span>
+                                                        South Africa
+                                                    </span>
+                                                </a>
+                                            </li>
+                                    </ul>
+                            </div>
+                    </div>
+        </div>
+    </div>
+    <div class="HeaderLocations--footer">
+
+            <a class="HeaderLocations--footer--link" href="http://corporatesolutions.swissre.com/offices-and-contacts.html" target="_blank" rel='noopener'>
+                Discover all Corporate Solutions locations
+                <span class="Icon" data-picto="external">
+                    <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-external"></use></svg>
+                </span>
+            </a>
+            <a class="Button secondary" href="/about-us/office-locations.html">
+                <span class="Button--content">Discover all locations</span>
+            </a>
+    </div>
+    <div class="HeaderLocations--background">
+
+        <div class="Media image" style="background-image:url('/.resources/swissre-web/webresources/img/graphics/world-flyout.jpg')">
+            <div data-sizes="/.resources/swissre-web/webresources/img/graphics/world-flyout.jpg 3200x1550" style="background-image:url('/.resources/swissre-web/webresources/img/graphics/world-flyout.jpg')"></div>
+        </div>
+    </div>
+    <button class="FocusOnly" data-flyout-el="close" type="button">Close Navigation</button>
+</div>        <button class="FocusOnly" data-flyout-el="close" data-nav-el="mobileSubnavBack" type="button">Close Navigation</button>
+      </div>
+    </div>
+    <div class="Header--background" data-nav-el="background"></div>
+  </div>
+</header>
+
+            <div class="site-content" id="main-content" role="main">
+
+
+
+
+
+
+
+
+<div class="PageHeader background large">
+<nav class="Breadcrumbs ">
+<ol aria-label="Breadcrumb" class="Breadcrumbs--list">
+<li class="Breadcrumbs--item">
+<a class="Breadcrumbs--link" href="/institute/">
+Swiss Re Institute
+</a>
+</li>
+<li class="Breadcrumbs--item">
+<a class="Breadcrumbs--link" href="/institute/research.html">
+Research
+</a>
+</li>
+</ol>
+</nav>
+<div class="PageHeader--inner">
+<div class="PageHeader--content">
+<div class="SectionTitle large white">
+<h1 class="SectionTitle--wrapper">
+<span class="SectionTitle--headline">
+sigma research
+</span>
+</h1>
+<div class="SectionTitle--content">
+<p>
+Our data-driven research publications, including the industry leading sigma, enable risk focussed decision making and identify strategic opportunities in the re/insurance industry.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div class="PageHeader--background">
+<div class="Media image" data-js-parallax='{"progressParentSelector":".PageHeader--background","propertyOptions":[{"property":"transform","function":"translateY","from":-50,"to":50,"unity":"px","progressStart":0.667,"lerpEasing":false}]}' style="background-image:url('/.imaging/focalarea/7x3/dam/jcr:4b7f8133-d976-40c9-9546-686d40ead39a/Simga%20new%20landing%20image%20bearbeitet003.jpg?20230105113423AM&nowebp')">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:4b7f8133-d976-40c9-9546-686d40ead39a/Simga%20new%20landing%20image%20bearbeitet003.jpg?20230105113423AM 3200x1550" style="background-image:url('/.imaging/focalarea/7x3/dam/jcr:4b7f8133-d976-40c9-9546-686d40ead39a/Simga%20new%20landing%20image%20bearbeitet003.jpg?20230105113423AM&nowebp')">
+</div>
+</div>
+</div>
+</div>
+
+                    <div class="l-Page left">
+                    </div>
+
+<section class="TeaserSliderArea">
+<h2 class="visuallyhidden">components.articleTeaserArea</h2>
+<div class="SectionContainer gradient ">
+<div class="SectionTitle">
+<h3 class="SectionTitle--wrapper">
+<span class="SectionTitle--headline">sigma</span>
+</h3>
+<div class="SectionTitle--content richtext" data-js-headingchange="1">
+<p>The global re/insurance industry&#39;s flagship research publication series on insurance economics, based on proprietary data-driven analysis.</p>
+</div>
+</div>
+<div class="TeaserSlider" data-js-appear>
+<div class="TeaserSlider--inner">
+<div class="TeaserSlider--slider" data-js-slider='{"visibilityCoverage":0.5,"cellAlign":"center" }'>
+<div class="js-slider--viewport">
+<ul class="TeaserSlider--wrapper in-slide-bottom-group js-slider--slider">
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma 5/2025: Shifting sands: global economic and insurance market outlook
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-11-19" data-datetime="2025-11-19">19 Nov 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-2025-05-global-economic-insurance-outlook-shifting-sands.html" title="Read More about: sigma 5/2025: Shifting sands: global economic and insurance market outlook" >
+<span class="visuallyhidden">Read More about: sigma 5/2025: Shifting sands: global economic and insurance market outlook</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:4f3b39af-8700-40bf-a2ca-3c538e933822/2025-sr-11-desert-highway-sandstorm.jpg?20251118053749PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:4f3b39af-8700-40bf-a2ca-3c538e933822/2025-sr-11-desert-highway-sandstorm.jpg?20251118053749PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:4f3b39af-8700-40bf-a2ca-3c538e933822/2025-sr-11-desert-highway-sandstorm.jpg?20251118053749PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma 04/2025: Life (span) insurance: accumulation, decumulation and longevity solutions
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-10-22" data-datetime="2025-10-22">22 Oct 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-2025-04-life-span-insurance.html" title="Read More about: sigma 04/2025: Life (span) insurance: accumulation, decumulation and longevity solutions" >
+<span class="visuallyhidden">Read More about: sigma 04/2025: Life (span) insurance: accumulation, decumulation and longevity solutions</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:e2c02b0c-9404-4e65-9a3a-2a704c864849/2025-10-sr-grandfather-grandchild-playing-chess.jpg?20251017020137PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:e2c02b0c-9404-4e65-9a3a-2a704c864849/2025-10-sr-grandfather-grandchild-playing-chess.jpg?20251017020137PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:e2c02b0c-9404-4e65-9a3a-2a704c864849/2025-10-sr-grandfather-grandchild-playing-chess.jpg?20251017020137PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma 03/2025: Growing stronger: Property &amp; Casualty market adapts to riskier world
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-09-06" data-datetime="2025-09-06">06 Sep 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-2025-03-property-casualty-growing-stronger-riskier-world.html" title="Read More about: sigma 03/2025: Growing stronger: Property &amp; Casualty market adapts to riskier world" >
+<span class="visuallyhidden">Read More about: sigma 03/2025: Growing stronger: Property &amp; Casualty market adapts to riskier world</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:61f017c2-5402-4040-bcaa-6a4b856a21ce/swissre-institute-sigma-3-2025-monte-carlo-growing-stronger.jpg?20250901015740PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:61f017c2-5402-4040-bcaa-6a4b856a21ce/swissre-institute-sigma-3-2025-monte-carlo-growing-stronger.jpg?20250901015740PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:61f017c2-5402-4040-bcaa-6a4b856a21ce/swissre-institute-sigma-3-2025-monte-carlo-growing-stronger.jpg?20250901015740PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma 2/2025: World insurance in 2025: a riskier, more fragmented world order
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-07-09" data-datetime="2025-07-09">09 Jul 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-2025-02-world-insurance-riskier-fragmented-world.html" title="Read More about: sigma 2/2025: World insurance in 2025: a riskier, more fragmented world order" >
+<span class="visuallyhidden">Read More about: sigma 2/2025: World insurance in 2025: a riskier, more fragmented world order</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:c4aed740-3623-4298-b5a9-07cc088d0542/2025-07-sr-container-ship-at-sea.jpg?20250708100235AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:c4aed740-3623-4298-b5a9-07cc088d0542/2025-07-sr-container-ship-at-sea.jpg?20250708100235AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:c4aed740-3623-4298-b5a9-07cc088d0542/2025-07-sr-container-ship-at-sea.jpg?20250708100235AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma 1/2025: Natural catastrophes: insured losses on trend to USD 145 billion in 2025
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-04-29" data-datetime="2025-04-29">29 Apr 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-2025-01-natural-catastrophes-trend.html" title="Read More about: sigma 1/2025: Natural catastrophes: insured losses on trend to USD 145 billion in 2025" >
+<span class="visuallyhidden">Read More about: sigma 1/2025: Natural catastrophes: insured losses on trend to USD 145 billion in 2025</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:adad5002-9086-4a32-bbc8-f327934b5b01/sr-city-skyliny-mountains-sunset.jpg?20250428090310AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:adad5002-9086-4a32-bbc8-f327934b5b01/sr-city-skyliny-mountains-sunset.jpg?20250428090310AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:adad5002-9086-4a32-bbc8-f327934b5b01/sr-city-skyliny-mountains-sunset.jpg?20250428090310AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma 5/2024: Global economic and insurance market outlook 2025-26
+</h3>
+<time class="ArticleTeaser--date" datetime="2024-11-19" data-datetime="2024-11-19">19 Nov 2024</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-2024-05-global-economic-insurance-outlook-growth-geopolitics.html" title="Read More about: sigma 5/2024: Global economic and insurance market outlook 2025-26" >
+<span class="visuallyhidden">Read More about: sigma 5/2024: Global economic and insurance market outlook 2025-26</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:fff03056-c514-480c-8ad6-783881d6c97d/sr-ship-sailing-sea.jpg?20241118110057AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:fff03056-c514-480c-8ad6-783881d6c97d/sr-ship-sailing-sea.jpg?20241118110057AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:fff03056-c514-480c-8ad6-783881d6c97d/sr-ship-sailing-sea.jpg?20241118110057AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma 04/2024: litigation costs drive claims inflation
+</h3>
+<time class="ArticleTeaser--date" datetime="2024-09-07" data-datetime="2024-09-07">07 Sep 2024</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-2024-04-social-inflation.html" title="Read More about: sigma 04/2024: litigation costs drive claims inflation" >
+<span class="visuallyhidden">Read More about: sigma 04/2024: litigation costs drive claims inflation</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:2f49ec77-4e3e-4740-9d03-db56eb35fd8a/sigma-social-inflation-index-monte-carlo-2024.jpg?20240902040747PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:2f49ec77-4e3e-4740-9d03-db56eb35fd8a/sigma-social-inflation-index-monte-carlo-2024.jpg?20240902040747PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:2f49ec77-4e3e-4740-9d03-db56eb35fd8a/sigma-social-inflation-index-monte-carlo-2024.jpg?20240902040747PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma Resilience Index 2024: Encouraging resilience gains, but more is needed
+</h3>
+<time class="ArticleTeaser--date" datetime="2024-07-24" data-datetime="2024-07-24">24 Jul 2024</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/natural-catastrophe-insurance-global-resilience-index-2024.html" title="Read More about: sigma Resilience Index 2024: Encouraging resilience gains, but more is needed" >
+<span class="visuallyhidden">Read More about: sigma Resilience Index 2024: Encouraging resilience gains, but more is needed</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:ea1ef260-ca8d-4305-a6c2-25e9415991b3/sri-crop-fields-protection.jpg?20240723120255PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:ea1ef260-ca8d-4305-a6c2-25e9415991b3/sri-crop-fields-protection.jpg?20240723120255PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:ea1ef260-ca8d-4305-a6c2-25e9415991b3/sri-crop-fields-protection.jpg?20240723120255PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma 3/2024: World insurance: strengthening global resilience with a new lease of life
+</h3>
+<time class="ArticleTeaser--date" datetime="2024-07-16" data-datetime="2024-07-16">16 Jul 2024</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-2024-03-world-insurance-global-resilience.html" title="Read More about: sigma 3/2024: World insurance: strengthening global resilience with a new lease of life" >
+<span class="visuallyhidden">Read More about: sigma 3/2024: World insurance: strengthening global resilience with a new lease of life</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:a0976ef9-15da-456c-8450-3dbae19b9101/2024-07-swiss-re-institute-sigma03-world-insurance-header-image.jpg?20250820085935AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:a0976ef9-15da-456c-8450-3dbae19b9101/2024-07-swiss-re-institute-sigma03-world-insurance-header-image.jpg?20250820085935AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:a0976ef9-15da-456c-8450-3dbae19b9101/2024-07-swiss-re-institute-sigma03-world-insurance-header-image.jpg?20250820085935AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma 2/2024: Life insurance in the higher interest rate era
+</h3>
+<time class="ArticleTeaser--date" datetime="2024-05-27" data-datetime="2024-05-27">27 May 2024</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-2024-02-life-annuity-insurance.html" title="Read More about: sigma 2/2024: Life insurance in the higher interest rate era" >
+<span class="visuallyhidden">Read More about: sigma 2/2024: Life insurance in the higher interest rate era</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:6283eaea-42a4-47fb-9d3a-8306f6015aa1/2024-05-landscape-mountain-balloon.jpg?20240527034522PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:6283eaea-42a4-47fb-9d3a-8306f6015aa1/2024-05-landscape-mountain-balloon.jpg?20240527034522PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:6283eaea-42a4-47fb-9d3a-8306f6015aa1/2024-05-landscape-mountain-balloon.jpg?20240527034522PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma 1/2024: Natural catastrophes in 2023
+</h3>
+<time class="ArticleTeaser--date" datetime="2024-03-26" data-datetime="2024-03-26">26 Mar 2024</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-2024-01.html" title="Read More about: sigma 1/2024: Natural catastrophes in 2023" >
+<span class="visuallyhidden">Read More about: sigma 1/2024: Natural catastrophes in 2023</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:c2cbd753-62a8-4677-ac33-c7910128eda6/2024-03-sri-sigma01-2024-natcat.jpg?20240318022357PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:c2cbd753-62a8-4677-ac33-c7910128eda6/2024-03-sri-sigma01-2024-natcat.jpg?20240318022357PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:c2cbd753-62a8-4677-ac33-c7910128eda6/2024-03-sri-sigma01-2024-natcat.jpg?20240318022357PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+</ul>
+</div>
+<div aria-hidden="true" class="TeaserSlider--slider--controls">
+<button class="RoundIconButton js-slider--prev" type="button" tabindex="-1"><span class="visuallyhidden">Show previous slide</span>
+<span class="Icon" data-icon="left"></span>
+</button>
+<button class="RoundIconButton js-slider--next" type="button" tabindex="-1"><span class="visuallyhidden">Show next slide</span>
+<span class="Icon" data-icon="right"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+
+
+
+
+<section class="BasicContentTeaserArea medium ">
+    <div class="SectionContainer  ">
+
+        <div class="SectionContainer--footer">
+            <a class="Button primary" href="https://sigma.swissre.com/" target="_blank" rel="noopener">
+               <span class="Button--content"> Find all sigma data and publications on sigma explorer platform</span>
+            </a>
+        </div>
+
+    </div>
+</section>
+
+
+
+    <div class="SectionTitle">
+            <h2 class="SectionTitle--wrapper">
+                 <span class="SectionTitle--headline">
+                    Research publications
+                 </span>
+            </h2>
+    </div>
+
+
+
+
+<section class="Tabs left" data-js-tabs="root">
+    <h2 class="visuallyhidden" id="tab-navigationu1">Tab navigation</h2>
+
+    <div class="Tabs--state">
+
+
+    <div class="Tabs--navigation">
+        <ul aria-labelledby="tab-navigationu1" class="Tabs--navigation--inner" role="tablist">
+            
+                <li class="Tabs--navigation--entry" role="presentation">
+ <a aria-controls="sigmashortinsights" aria-selected="true" class="Tabs--navigation--link" data-js-tabs="tab" href="#sigmashortinsights" id="tab-navigationu1-sigmashortinsights" role="tab">
+  Sigma Short Insights
+ </a>
+                </li>
+
+                <li class="Tabs--navigation--entry" role="presentation">
+ <a aria-controls="economicoutlook" aria-selected="false" class="Tabs--navigation--link" data-js-tabs="tab" href="#economicoutlook" id="tab-navigationu1-economicoutlook" role="tab">
+  Economic Outlook
+ </a>
+                </li>
+
+                <li class="Tabs--navigation--entry" role="presentation">
+ <a aria-controls="expertisepublications" aria-selected="false" class="Tabs--navigation--link" data-js-tabs="tab" href="#expertisepublications" id="tab-navigationu1-expertisepublications" role="tab">
+  Expertise Publications
+ </a>
+                </li>
+
+                <li class="Tabs--navigation--entry" role="presentation">
+ <a aria-controls="insurancemonitoring" aria-selected="false" class="Tabs--navigation--link" data-js-tabs="tab" href="#insurancemonitoring" id="tab-navigationu1-insurancemonitoring" role="tab">
+  Insurance Monitoring
+ </a>
+                </li>
+
+                <li class="Tabs--navigation--entry" role="presentation">
+ <a aria-controls="emergingrisks" aria-selected="false" class="Tabs--navigation--link" data-js-tabs="tab" href="#emergingrisks" id="tab-navigationu1-emergingrisks" role="tab">
+  Emerging Risks
+ </a>
+                </li>
+        </ul>
+    </div>
+
+
+
+        <div aria-hidden="false" class="Tabs--content" id="sigmashortinsights">
+            <h2 class="visuallyhidden">Sigma Short Insights</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="TeaserSliderArea">
+<h2 class="visuallyhidden">components.articleTeaserArea</h2>
+<div class="SectionContainer gradient ">
+<div class="SectionTitle">
+<div class="SectionTitle--content richtext" data-js-headingchange="1">
+<p>Timely analysis of macro and market developments and the re/insurance industry implications.</p>
+</div>
+</div>
+<div class="TeaserSlider" data-js-appear>
+<div class="TeaserSlider--inner">
+<div class="TeaserSlider--slider" data-js-slider='{"visibilityCoverage":0.5,"cellAlign":"center" }'>
+<div class="js-slider--viewport">
+<ul class="TeaserSlider--wrapper in-slide-bottom-group js-slider--slider">
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma insights 04/2026: Preparing for a fiscal policy-driven cycle in Japan
+</h3>
+<time class="ArticleTeaser--date" datetime="2026-02-18" data-datetime="2026-02-18">18 Feb 2026</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-insights-04-2026-preparing-fiscal-policy-driven-cycle-japan.html" title="Read More about: sigma insights 04/2026: Preparing for a fiscal policy-driven cycle in Japan" >
+<span class="visuallyhidden">Read More about: sigma insights 04/2026: Preparing for a fiscal policy-driven cycle in Japan</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:a300092c-c62c-415d-a7d0-4113a927dcc3/2026-02-sr-trading-candles.jpg?20260217063023PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:a300092c-c62c-415d-a7d0-4113a927dcc3/2026-02-sr-trading-candles.jpg?20260217063023PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:a300092c-c62c-415d-a7d0-4113a927dcc3/2026-02-sr-trading-candles.jpg?20260217063023PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma insights 03/2026: Inclusive insurance in China
+</h3>
+<time class="ArticleTeaser--date" datetime="2026-02-06" data-datetime="2026-02-06">06 Feb 2026</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/topics-and-risk-dialogues/china/inclusive-insurance-in-china.html" title="Read More about: sigma insights 03/2026: Inclusive insurance in China" >
+<span class="visuallyhidden">Read More about: sigma insights 03/2026: Inclusive insurance in China</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:d0d11373-b1ff-4286-9231-362f3e4ebfd7/night-lantern-pagoda-hero.jpg?20260121012403PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:d0d11373-b1ff-4286-9231-362f3e4ebfd7/night-lantern-pagoda-hero.jpg?20260121012403PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:d0d11373-b1ff-4286-9231-362f3e4ebfd7/night-lantern-pagoda-hero.jpg?20260121012403PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma insights 02/2026: A new phase for the US surplus lines insurance market
+</h3>
+<time class="ArticleTeaser--date" datetime="2026-01-29" data-datetime="2026-01-29">29 Jan 2026</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-insights-02-2026-a-new-phase-for-the-us-surplus-lines-market.html" title="Read More about: sigma insights 02/2026: A new phase for the US surplus lines insurance market" >
+<span class="visuallyhidden">Read More about: sigma insights 02/2026: A new phase for the US surplus lines insurance market</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:d4181ac9-8abf-4346-89d2-0d2059bb315f/2026-01-sr-hurricane%20sandy-2.jpg?20260128055618PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:d4181ac9-8abf-4346-89d2-0d2059bb315f/2026-01-sr-hurricane%20sandy-2.jpg?20260128055618PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:d4181ac9-8abf-4346-89d2-0d2059bb315f/2026-01-sr-hurricane%20sandy-2.jpg?20260128055618PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+sigma
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+sigma insights 01/2026: AI adoption is reshaping the risk landscape
+</h3>
+<time class="ArticleTeaser--date" datetime="2026-01-13" data-datetime="2026-01-13">13 Jan 2026</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/sigma-insights-01-2026-AI-adoption-is-reshaping-the-risk-landscape.html" title="Read More about: sigma insights 01/2026: AI adoption is reshaping the risk landscape" >
+<span class="visuallyhidden">Read More about: sigma insights 01/2026: AI adoption is reshaping the risk landscape</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:4a7c90a7-cabf-465e-abe3-986e15ad64fa/SR_AI_adoption_landscape_hero_image-1368668984.jpg?20260112122646PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:4a7c90a7-cabf-465e-abe3-986e15ad64fa/SR_AI_adoption_landscape_hero_image-1368668984.jpg?20260112122646PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:4a7c90a7-cabf-465e-abe3-986e15ad64fa/SR_AI_adoption_landscape_hero_image-1368668984.jpg?20260112122646PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+</ul>
+</div>
+<div aria-hidden="true" class="TeaserSlider--slider--controls">
+<button class="RoundIconButton js-slider--prev" type="button" tabindex="-1"><span class="visuallyhidden">Show previous slide</span>
+<span class="Icon" data-icon="left"></span>
+</button>
+<button class="RoundIconButton js-slider--next" type="button" tabindex="-1"><span class="visuallyhidden">Show next slide</span>
+<span class="Icon" data-icon="right"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+        </div>
+
+        <div aria-hidden="true" class="Tabs--content" id="economicoutlook">
+            <h2 class="visuallyhidden">Economic Outlook</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="TeaserSliderArea">
+<h2 class="visuallyhidden">components.articleTeaserArea</h2>
+<div class="SectionContainer ">
+<div class="SectionTitle">
+<div class="SectionTitle--content richtext" data-js-headingchange="1">
+<p>Forward-looking risk analysis of developments in the global economy.</p>
+</div>
+</div>
+<div class="TeaserSlider" data-js-appear>
+<div class="TeaserSlider--inner">
+<div class="TeaserSlider--slider" data-js-slider='{"visibilityCoverage":0.5,"cellAlign":"center" }'>
+<div class="js-slider--viewport">
+<ul class="TeaserSlider--wrapper in-slide-bottom-group js-slider--slider">
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Economic Outlook
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Economic and financial risk insights: Stronger growth in US and China amid lingering US inflation and policy uncertainty
+</h3>
+<time class="ArticleTeaser--date" datetime="2026-02-12" data-datetime="2026-02-12">12 Feb 2026</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Economic-Outlook/economic-financial-risk-insights-february-2026.html" title="Read More about: Economic and financial risk insights: Stronger growth in US and China amid lingering US inflation and policy uncertainty" >
+<span class="visuallyhidden">Read More about: Economic and financial risk insights: Stronger growth in US and China amid lingering US inflation and policy uncertainty</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Economic Outlook
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Economic and financial risk insights: Strong growth momentum and high geopolitical tensions
+</h3>
+<time class="ArticleTeaser--date" datetime="2026-01-15" data-datetime="2026-01-15">15 Jan 2026</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Economic-Outlook/economic-financial-risk-insights-january-2026.html" title="Read More about: Economic and financial risk insights: Strong growth momentum and high geopolitical tensions" >
+<span class="visuallyhidden">Read More about: Economic and financial risk insights: Strong growth momentum and high geopolitical tensions</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Economic Outlook
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Economic and financial risk insights: Global economy turns the page on a volatile year with fiscal tailwinds set to strengthen
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-12-12" data-datetime="2025-12-12">12 Dec 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Economic-Outlook/economic-financial-risk-insights-december-2025.html" title="Read More about: Economic and financial risk insights: Global economy turns the page on a volatile year with fiscal tailwinds set to strengthen" >
+<span class="visuallyhidden">Read More about: Economic and financial risk insights: Global economy turns the page on a volatile year with fiscal tailwinds set to strengthen</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Economic Outlook
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Economic and financial risk insights: Steady growth and inflation sidestep record US government shutdown
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-11-13" data-datetime="2025-11-13">13 Nov 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Economic-Outlook/economic-financial-risk-insights-november-2025.html" title="Read More about: Economic and financial risk insights: Steady growth and inflation sidestep record US government shutdown" >
+<span class="visuallyhidden">Read More about: Economic and financial risk insights: Steady growth and inflation sidestep record US government shutdown</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Economic Outlook
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Economic and financial risk insights: Growth: improving momentum across regions
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-10-17" data-datetime="2025-10-17">17 Oct 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Economic-Outlook/economic-financial-risk-insights-october-2025.html" title="Read More about: Economic and financial risk insights: Growth: improving momentum across regions" >
+<span class="visuallyhidden">Read More about: Economic and financial risk insights: Growth: improving momentum across regions</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Economic Outlook
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Economic and financial risk insights: global bond yield curves steepen
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-09-10" data-datetime="2025-09-10">10 Sep 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Economic-Outlook/economic-financial-risk-insights-september-2025.html" title="Read More about: Economic and financial risk insights: global bond yield curves steepen" >
+<span class="visuallyhidden">Read More about: Economic and financial risk insights: global bond yield curves steepen</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Economic Outlook
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Economic and financial risk insights: Global growth is cooling as tariff impacts heat up
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-08-13" data-datetime="2025-08-13">13 Aug 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Economic-Outlook/economic-financial-risk-insights-august-2025.html" title="Read More about: Economic and financial risk insights: Global growth is cooling as tariff impacts heat up" >
+<span class="visuallyhidden">Read More about: Economic and financial risk insights: Global growth is cooling as tariff impacts heat up</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Economic Outlook
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Economic and financial risk insights: Summer lull takes hold as global growth momentum slows
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-07-10" data-datetime="2025-07-10">10 Jul 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Economic-Outlook/economic-financial-risk-insights-july-2025.html" title="Read More about: Economic and financial risk insights: Summer lull takes hold as global growth momentum slows" >
+<span class="visuallyhidden">Read More about: Economic and financial risk insights: Summer lull takes hold as global growth momentum slows</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Economic Outlook
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Economic and financial risk insights: global economy remains in limbo pending clarity on US trade policy
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-06-12" data-datetime="2025-06-12">12 Jun 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Economic-Outlook/economic-financial-risk-insights-june-2025.html" title="Read More about: Economic and financial risk insights: global economy remains in limbo pending clarity on US trade policy" >
+<span class="visuallyhidden">Read More about: Economic and financial risk insights: global economy remains in limbo pending clarity on US trade policy</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Economic Outlook
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Economic and financial risk insights: ongoing tariff negotiations precede a global growth slowdown later this year
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-05-21" data-datetime="2025-05-21">21 May 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Economic-Outlook/economic-financial-risk-insights-may-2025.html" title="Read More about: Economic and financial risk insights: ongoing tariff negotiations precede a global growth slowdown later this year " >
+<span class="visuallyhidden">Read More about: Economic and financial risk insights: ongoing tariff negotiations precede a global growth slowdown later this year </span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+</ul>
+</div>
+<div aria-hidden="true" class="TeaserSlider--slider--controls">
+<button class="RoundIconButton js-slider--prev" type="button" tabindex="-1"><span class="visuallyhidden">Show previous slide</span>
+<span class="Icon" data-icon="left"></span>
+</button>
+<button class="RoundIconButton js-slider--next" type="button" tabindex="-1"><span class="visuallyhidden">Show next slide</span>
+<span class="Icon" data-icon="right"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+        </div>
+
+        <div aria-hidden="true" class="Tabs--content" id="expertisepublications">
+            <h2 class="visuallyhidden">Expertise Publications</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="TeaserSliderArea">
+<h2 class="visuallyhidden">components.articleTeaserArea</h2>
+<div class="SectionContainer ">
+<div class="SectionTitle">
+<div class="SectionTitle--content richtext" data-js-headingchange="1">
+<p>Expert analysis of risk topics in regional markets and global re/insurance. Detailed focus on specific topics and their impact in specific countries or regions.</p>
+</div>
+</div>
+<div class="TeaserSlider" data-js-appear>
+<div class="TeaserSlider--inner">
+<div class="TeaserSlider--slider" data-js-slider='{"visibilityCoverage":0.5,"cellAlign":"center" }'>
+<div class="js-slider--viewport">
+<ul class="TeaserSlider--wrapper in-slide-bottom-group js-slider--slider">
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Expertise Publications
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+India’s economic and insurance market outlook 2026‒2030
+</h3>
+<time class="ArticleTeaser--date" datetime="2026-01-19" data-datetime="2026-01-19">19 Jan 2026</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/topics-and-risk-dialogues/economy-and-insurance-outlook/india-economic-insurance-market-growth-resilience.html" title="Read More about: India’s economic and insurance market outlook 2026‒2030" >
+<span class="visuallyhidden">Read More about: India’s economic and insurance market outlook 2026‒2030</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:39ad924a-71c6-453e-8dc5-78b9af090688/2026-01-sr-india-manufacturing-facility.jpg?20260116075219PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:39ad924a-71c6-453e-8dc5-78b9af090688/2026-01-sr-india-manufacturing-facility.jpg?20260116075219PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:39ad924a-71c6-453e-8dc5-78b9af090688/2026-01-sr-india-manufacturing-facility.jpg?20260116075219PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/6x4/dam/jcr:efd6813a-451f-4462-996a-b836c64b47f5/2023-01-sr-field-crop.jpg?20230105022057PM&nowebp');padding-top:64.1%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:efd6813a-451f-4462-996a-b836c64b47f5/2023-01-sr-field-crop.jpg?20230105022057PM 780x500" style="background-image:url('/.imaging/focalarea/6x4/dam/jcr:efd6813a-451f-4462-996a-b836c64b47f5/2023-01-sr-field-crop.jpg?20230105022057PM&nowebp')">
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+Growing exposure
+</h3>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/topics-and-risk-dialogues/climate-and-natural-catastrophe-risk/growing-exposure.html" title="Read More about: Growing exposure" >
+<span class="visuallyhidden">Read More about: Growing exposure</span>
+</a>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Expertise Publications
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Latin America market report 2025
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-11-06" data-datetime="2025-11-06">06 Nov 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/topics-and-risk-dialogues/economy-and-insurance-outlook/latin-america-market-report-2025.html" title="Read More about: Latin America market report 2025" >
+<span class="visuallyhidden">Read More about: Latin America market report 2025</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:c325e508-27f6-49c6-aa67-6213bc7cf709/container-ship-supply-chain-transport.jpg?20251106124503PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:c325e508-27f6-49c6-aa67-6213bc7cf709/container-ship-supply-chain-transport.jpg?20251106124503PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:c325e508-27f6-49c6-aa67-6213bc7cf709/container-ship-supply-chain-transport.jpg?20251106124503PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Expertise Publications
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+South Africa Outlook
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-10-14" data-datetime="2025-10-14">14 Oct 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/topics-and-risk-dialogues/economy-and-insurance-outlook/south-africa-outlook.html" title="Read More about: South Africa Outlook" >
+<span class="visuallyhidden">Read More about: South Africa Outlook</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:e866518b-ebb0-4f0f-8273-4a5c7d48c933/johannesburg-4322256%201%20(1).jpg?20240903021216PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:e866518b-ebb0-4f0f-8273-4a5c7d48c933/johannesburg-4322256%201%20(1).jpg?20240903021216PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:e866518b-ebb0-4f0f-8273-4a5c7d48c933/johannesburg-4322256%201%20(1).jpg?20240903021216PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Expertise Publications
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Risk analysis and insurance solutions for sustainable marine ranching in China
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-09-29" data-datetime="2025-09-29">29 Sep 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/topics-and-risk-dialogues/china/marine-ranching-china.html" title="Read More about: Risk analysis and insurance solutions for sustainable marine ranching in China" >
+<span class="visuallyhidden">Read More about: Risk analysis and insurance solutions for sustainable marine ranching in China</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:9414d488-91db-4415-993c-b34b3bea6287/sri-expertise-publication-marine-ranching-china-headerimage.jpg?20250929103935AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:9414d488-91db-4415-993c-b34b3bea6287/sri-expertise-publication-marine-ranching-china-headerimage.jpg?20250929103935AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:9414d488-91db-4415-993c-b34b3bea6287/sri-expertise-publication-marine-ranching-china-headerimage.jpg?20250929103935AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Expertise Publications
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Unseasonal fires trigger above-trend catastrophe losses in first half 2025
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-08-06" data-datetime="2025-08-06">06 Aug 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/topics-and-risk-dialogues/climate-and-natural-catastrophe-risk/unseasonal-fires-above-trend-catastrophe-losses.html" title="Read More about: Unseasonal fires trigger above-trend catastrophe losses in first half 2025" >
+<span class="visuallyhidden">Read More about: Unseasonal fires trigger above-trend catastrophe losses in first half 2025</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:2901da03-4fd4-4c4b-a6b2-74a3ad885ebc/2025-08-sr-unseasonal-fire-damage-burnt-city.jpg?20250801054920PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:2901da03-4fd4-4c4b-a6b2-74a3ad885ebc/2025-08-sr-unseasonal-fire-damage-burnt-city.jpg?20250801054920PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:2901da03-4fd4-4c4b-a6b2-74a3ad885ebc/2025-08-sr-unseasonal-fire-damage-burnt-city.jpg?20250801054920PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Expertise Publications
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Asia Life &amp; Health consumer survey 2025
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-07-29" data-datetime="2025-07-29">29 Jul 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/reinsurance/insights/asia-protection-gap-consumer-survey.html" title="Read More about: Asia Life &amp; Health consumer survey 2025" >
+<span class="visuallyhidden">Read More about: Asia Life &amp; Health consumer survey 2025</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:efeef013-5d94-419f-883c-b0463c2c2bda/elder-lady-medical-check-digital.jpg?20250722044653PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:efeef013-5d94-419f-883c-b0463c2c2bda/elder-lady-medical-check-digital.jpg?20250722044653PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:efeef013-5d94-419f-883c-b0463c2c2bda/elder-lady-medical-check-digital.jpg?20250722044653PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Expertise Publications
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+The growing role of commercial health insurance in China
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-07-21" data-datetime="2025-07-21">21 Jul 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/topics-and-risk-dialogues/china/commercial-health-insurance-china.html" title="Read More about: The growing role of commercial health insurance in China" >
+<span class="visuallyhidden">Read More about: The growing role of commercial health insurance in China</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:02f537ba-57d8-46d4-97d1-01e1dfae7dc8/sri-expertise-publication-commercial-health-insurance-china.jpg?20250707111517AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:02f537ba-57d8-46d4-97d1-01e1dfae7dc8/sri-expertise-publication-commercial-health-insurance-china.jpg?20250707111517AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:02f537ba-57d8-46d4-97d1-01e1dfae7dc8/sri-expertise-publication-commercial-health-insurance-china.jpg?20250707111517AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Expertise Publications
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+Hurricane Katrina: a watershed event for insurance
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-06-23" data-datetime="2025-06-23">23 Jun 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/topics-and-risk-dialogues/climate-and-natural-catastrophe-risk/hurricane-katrina-watershed-event-for-insurance.html" title="Read More about: Hurricane Katrina: a watershed event for insurance" >
+<span class="visuallyhidden">Read More about: Hurricane Katrina: a watershed event for insurance</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:a12ff8ee-6bb8-4f14-9cb8-d0b06ed39320/Katrina-new-orleans-flooding3-2005.jpg?20250617113551AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:a12ff8ee-6bb8-4f14-9cb8-d0b06ed39320/Katrina-new-orleans-flooding3-2005.jpg?20250617113551AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:a12ff8ee-6bb8-4f14-9cb8-d0b06ed39320/Katrina-new-orleans-flooding3-2005.jpg?20250617113551AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+</ul>
+</div>
+<div aria-hidden="true" class="TeaserSlider--slider--controls">
+<button class="RoundIconButton js-slider--prev" type="button" tabindex="-1"><span class="visuallyhidden">Show previous slide</span>
+<span class="Icon" data-icon="left"></span>
+</button>
+<button class="RoundIconButton js-slider--next" type="button" tabindex="-1"><span class="visuallyhidden">Show next slide</span>
+<span class="Icon" data-icon="right"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+        </div>
+
+        <div aria-hidden="true" class="Tabs--content" id="insurancemonitoring">
+            <h2 class="visuallyhidden">Insurance Monitoring</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="TeaserSliderArea">
+<h2 class="visuallyhidden">components.articleTeaserArea</h2>
+<div class="SectionContainer ">
+<div class="SectionTitle">
+<div class="SectionTitle--content richtext" data-js-headingchange="1">
+<p>Quarterly updates on the Property &amp; Casualty insurance market in the US.</p>
+</div>
+</div>
+<div class="TeaserSlider" data-js-appear>
+<div class="TeaserSlider--inner">
+<div class="TeaserSlider--slider" data-js-slider='{"visibilityCoverage":0.5,"cellAlign":"center" }'>
+<div class="js-slider--viewport">
+<ul class="TeaserSlider--wrapper in-slide-bottom-group js-slider--slider">
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Insurance Monitoring
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+US Property &amp; Casualty outlook: after midnight
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-10-10" data-datetime="2025-10-10">10 Oct 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Insurance-Monitoring/us-property-casualty-outlook-october-2025.html" title="Read More about: US Property &amp; Casualty outlook: after midnight" >
+<span class="visuallyhidden">Read More about: US Property &amp; Casualty outlook: after midnight</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:3020430c-b999-4880-babd-db9d7c0ea721/economic-outlook.jpg?20200928061955AM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Insurance Monitoring
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+US Property &amp; Casualty outlook: sunny skies, but pack an umbrella
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-07-16" data-datetime="2025-07-16">16 Jul 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Insurance-Monitoring/us-property-casualty-outlook-july-2025.html" title="Read More about: US Property &amp; Casualty outlook: sunny skies, but pack an umbrella" >
+<span class="visuallyhidden">Read More about: US Property &amp; Casualty outlook: sunny skies, but pack an umbrella</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:ee0ec3c5-9753-459c-9138-7a67b441703d/swissre-institute-economic-outlook-city-modern-night.jpg?20210901013105PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:ee0ec3c5-9753-459c-9138-7a67b441703d/swissre-institute-economic-outlook-city-modern-night.jpg?20210901013105PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:ee0ec3c5-9753-459c-9138-7a67b441703d/swissre-institute-economic-outlook-city-modern-night.jpg?20210901013105PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Insurance Monitoring
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+US property &amp; casualty outlook: The past weighs on the present
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-04-22" data-datetime="2025-04-22">22 Apr 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Insurance-Monitoring/us-property-casualty-outlook-april-2025.html" title="Read More about: US property &amp; casualty outlook: The past weighs on the present" >
+<span class="visuallyhidden">Read More about: US property &amp; casualty outlook: The past weighs on the present</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:ee0ec3c5-9753-459c-9138-7a67b441703d/swissre-institute-economic-outlook-city-modern-night.jpg?20210901013105PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:ee0ec3c5-9753-459c-9138-7a67b441703d/swissre-institute-economic-outlook-city-modern-night.jpg?20210901013105PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:ee0ec3c5-9753-459c-9138-7a67b441703d/swissre-institute-economic-outlook-city-modern-night.jpg?20210901013105PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser publication notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="ArticleTeaser--publication--header">
+<div class="ArticleTeaser--publication">
+Insurance Monitoring
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+<span class="ArticleTeaser--category">Publication</span>
+US property &amp; casualty outlook: results stabilize as competition heats up
+</h3>
+<time class="ArticleTeaser--date" datetime="2025-01-07" data-datetime="2025-01-07">07 Jan 2025</time>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sigma-research/Insurance-Monitoring/us-property-casualty-outlook-january-2025.html" title="Read More about: US property &amp; casualty outlook: results stabilize as competition heats up" >
+<span class="visuallyhidden">Read More about: US property &amp; casualty outlook: results stabilize as competition heats up</span>
+</a>
+</div>
+<div class="ArticleTeaser--behind">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:ee0ec3c5-9753-459c-9138-7a67b441703d/swissre-institute-economic-outlook-city-modern-night.jpg?20210901013105PM&nowebp');padding-top:900%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:ee0ec3c5-9753-459c-9138-7a67b441703d/swissre-institute-economic-outlook-city-modern-night.jpg?20210901013105PM 100x900" style="background-image:url('/.imaging/focalarea/2x15/dam/jcr:ee0ec3c5-9753-459c-9138-7a67b441703d/swissre-institute-economic-outlook-city-modern-night.jpg?20210901013105PM&nowebp')">
+</div>
+</div>
+</div>
+</article>
+</li>
+</ul>
+</div>
+<div aria-hidden="true" class="TeaserSlider--slider--controls">
+<button class="RoundIconButton js-slider--prev" type="button" tabindex="-1"><span class="visuallyhidden">Show previous slide</span>
+<span class="Icon" data-icon="left"></span>
+</button>
+<button class="RoundIconButton js-slider--next" type="button" tabindex="-1"><span class="visuallyhidden">Show next slide</span>
+<span class="Icon" data-icon="right"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+        </div>
+
+        <div aria-hidden="true" class="Tabs--content" id="emergingrisks">
+            <h2 class="visuallyhidden">Emerging Risks</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="TeaserSliderArea">
+<h2 class="visuallyhidden">components.articleTeaserArea</h2>
+<div class="SectionContainer ">
+<div class="SectionTitle">
+<div class="SectionTitle--content richtext" data-js-headingchange="1">
+<p>New emerging risk insights: Our emerging risks reports aim to get us talking about what tomorrow&#39;s risk landscape could look like.</p>
+</div>
+</div>
+<div class="TeaserSlider" data-js-appear>
+<div class="TeaserSlider--inner">
+<div class="TeaserSlider--slider" data-js-slider='{"visibilityCoverage":0.5,"cellAlign":"center" }'>
+<div class="js-slider--viewport">
+<ul class="TeaserSlider--wrapper in-slide-bottom-group js-slider--slider">
+<li class="TeaserSlider--slide js-slider--slide">
+<article class="ArticleTeaser notActivated ">
+<div class="ArticleTeaser--inner">
+<div class="ArticleTeaser--header">
+<div class="Media image" style="background-image:url('/.imaging/focalarea/6x4/dam/jcr:c90c3a37-afb8-4366-88ee-85af81b1405b/2025-08-sr-fungi-emerging-risk-impact.jpg?20250805035551PM&nowebp');padding-top:64.1%">
+<div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:c90c3a37-afb8-4366-88ee-85af81b1405b/2025-08-sr-fungi-emerging-risk-impact.jpg?20250805035551PM 780x500" style="background-image:url('/.imaging/focalarea/6x4/dam/jcr:c90c3a37-afb8-4366-88ee-85af81b1405b/2025-08-sr-fungi-emerging-risk-impact.jpg?20250805035551PM&nowebp')">
+</div>
+</div>
+</div>
+<div class="ArticleTeaser--content">
+<h3 class="ArticleTeaser--title">
+SONAR 2025: New emerging risk insights
+</h3>
+</div>
+<a class="ArticleTeaser--link" href="/institute/research/sonar/sonar2025.html" title="Read More about: SONAR 2025: New emerging risk insights" >
+<span class="visuallyhidden">Read More about: SONAR 2025: New emerging risk insights</span>
+</a>
+</div>
+</article>
+</li>
+</ul>
+</div>
+<div aria-hidden="true" class="TeaserSlider--slider--controls">
+<button class="RoundIconButton js-slider--prev" type="button" tabindex="-1"><span class="visuallyhidden">Show previous slide</span>
+<span class="Icon" data-icon="left"></span>
+</button>
+<button class="RoundIconButton js-slider--next" type="button" tabindex="-1"><span class="visuallyhidden">Show next slide</span>
+<span class="Icon" data-icon="right"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+
+
+        </div>
+
+
+    </div>
+</section>
+
+
+
+                     <div class="l-Page medium">
+
+
+
+                     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="ImageTextTeaser " data-js-appear>
+    <div class="SectionContainer  gradient"><div class="ImageTextTeaser--inner">
+        <div class="ImageTextTeaser--content">
+            <div class="ImageTextTeaser--teaser">
+                <div class="ImageTextTeaser--teaser--inner">
+                    <div class="SectionTitle inline">
+                        <h2 class="SectionTitle--wrapper">
+                                <span class="SectionTitle--title">
+                                    sigma insights 02/2026:
+                                </span>
+                                <span class="SectionTitle--headline">
+                                    A new phase for the US surplus lines insurance market
+                                </span>
+                        </h2>
+                    </div>
+
+                            <div class="richtext ImageTextTeaser--text">
+                                    <p>After nearly a decade of rapid growth, the excess &amp; surplus lines (E&amp;S) segment of the US commercial insurance market is slowing materially and admitted markets are reasserting capacity.</p>
+
+                            </div>
+
+                        <div class="ImageTextTeaser--buttons">
+
+                                
+
+
+
+
+
+
+
+
+
+
+                                    <a class="Button primary notActivated" href="/institute/research/sigma-research/sigma-insights-02-2026-a-new-phase-for-the-us-surplus-lines-market.html" >
+                                        <span class="Button--content">Read more</span>
+                                            <span class="visuallyhidden">about sigma insights 02/2026: A new phase for the US surplus lines insurance market</span>
+                                    </a>
+                            
+
+                        </div>    
+
+
+                </div>
+            </div>
+
+
+
+
+                    <div class="ImageTextTeaser--image in-slide-bottom">
+                        <div class="ImageTextTeaser--image--inner">
+
+
+
+                            <div class="Media image" style="background-image:url('/.imaging/focalarea/6x4/dam/jcr:d4181ac9-8abf-4346-89d2-0d2059bb315f/2026-01-sr-hurricane%20sandy-2.jpg?20260128055618PM&nowebp');padding-top:71.67%">
+                                <div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:d4181ac9-8abf-4346-89d2-0d2059bb315f/2026-01-sr-hurricane%20sandy-2.jpg?20260128055618PM 1200x860" style="background-image:url('/.imaging/focalarea/6x4/dam/jcr:d4181ac9-8abf-4346-89d2-0d2059bb315f/2026-01-sr-hurricane%20sandy-2.jpg?20260128055618PM&nowebp')">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section class="PeopleArea white blue" data-js-appear>
+    <div class="SectionContainer white">
+            <div class="SectionTitle">
+                <h2 class="SectionTitle--wrapper">
+                    <span class="SectionTitle--title">
+                        Get in contact with us!
+                    </span>
+                </h2>
+            </div>
+        <div class="PeopleArea--inner">
+            <div class="PeopleArea--grid in-slide-bottom-group large">
+
+                    
+
+                        <div class='PeopleArea--grid--item'>
+         <article class='PeopleCard large white blue'>
+          <div class='PeopleCard--inner'>
+            <header>
+              <div class='PeopleCard--portrait'>
+                                    <div class='Media image' style='background-image:url(/.imaging/focalarea/5x5/dam/jcr:4b7f8133-d976-40c9-9546-686d40ead39a/Simga%20new%20landing%20image%20bearbeitet003.jpg?20230105123423PM&nowebp);padding-top:100%'>
+                                      <img alt='The colorful human eye zoomed in.' data-sizes='/.imaging/focalarea/{w}x{h}/dam/jcr:4b7f8133-d976-40c9-9546-686d40ead39a/Simga%20new%20landing%20image%20bearbeitet003.jpg?20230105123423PM 240x240' src='/.imaging/focalarea/5x5/dam/jcr:4b7f8133-d976-40c9-9546-686d40ead39a/Simga%20new%20landing%20image%20bearbeitet003.jpg?20230105123423PM'>
+                                    </div>
+                                 </div>
+              <h3 class='PeopleCard--name'>sigma research</h3>
+              <div class='PeopleCard--meta'>
+                        <p class='PeopleCard--position'>
+                          
+                        </p>
+                        <p class='PeopleCard--department'>
+                          
+                        </p>
+                      </div>
+            </header>
+            <section>
+              <div class='PeopleCard--text richtext'>Our data driven research publications, including the industry leading sigma, enable risk focussed decision making and identify strategic opportunities in the re/insurance industry.</div>
+              <div class='PeopleCard--actions'>
+                <a class='Button secondary' href='/profile/sigma_research/ip_1d184e'><span class='Button--content'>View profile</span><span class='visuallyhidden'> of sigma research</span></a>
+                
+            <a
+                class="Button"
+                href="/contact-form~ifr~.html?id=internalProfiles.1d184e37-899d-42c5-9af9-e9e0be7975ba#ContactFormWrapper"
+                data-flyout-target="ContactOverlay_1d184e37"
+                data-flyout-variant="no-scroll"
+                target="lightbox"
+            >
+                <span class="Button--content">Contact</span>
+                <span class="visuallyhidden"> sigma research</span>
+            </a>
+        
+              </div>
+            </section>
+          </div>
+        </article>
+    </div>
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+<section class="BackgroundImageTeaser"  >
+    <div class="SectionContainer ">
+        <div class="SectionTitle">
+            <h2 class="SectionTitle--wrapper">
+                    <span class="SectionTitle--headline">
+                        sigma explorer: insurance data and research reimagined
+                    </span>
+            </h2>
+        </div>
+        <p class="BackgroundImageTeaser--content">
+            sigma explorer is the new client portal housing Swiss Re Institute&#039;s macroeconomic and insurance market data, forecasts and full, downloadable archive of research publications. 
+        </p>
+
+        <div class="SectionContainer--footer">
+            <a class="Button transparent " href="https://sigma.swissre.com/" target="_blank" rel="noopener">
+                <span class="Button--content">Discover and register now</span>
+                    <span class="visuallyhidden">sigma explorer: insurance data and research reimagined</span>
+            </a>
+        </div>
+
+    </div>
+
+
+
+
+
+
+                <div class="BackgroundImageTeaser--background video">
+                    <div    class="Media video"
+                            data-autoplay
+                            data-videos-options='{"attachInitial":false}'
+                            data-videos="
+                                    600x400:/dam/jcr:cf6950da-5c98-449d-92ec-756173342fdb/sigma-background-teaser-earth.mp4 1600x1067:/dam/jcr:cf6950da-5c98-449d-92ec-756173342fdb/sigma-background-teaser-earth.mp4"
+                                style="background-image: url('/.imaging/focalarea/8x3/dam/jcr:43d4dc48-8b36-459e-a56d-3f9d816ae68a/swiss-re-institute-sigma-explorer-client-portal-brand-image-earth.jpg?20250814094030AM&nowebp');">
+                            <div data-sizes="/.imaging/focalarea/{w}x{h}/dam/jcr:43d4dc48-8b36-459e-a56d-3f9d816ae68a/swiss-re-institute-sigma-explorer-client-portal-brand-image-earth.jpg?20250814094030AM 3840x2160"
+                                 style="background-image:url('/.imaging/focalarea/8x3/dam/jcr:43d4dc48-8b36-459e-a56d-3f9d816ae68a/swiss-re-institute-sigma-explorer-client-portal-brand-image-earth.jpg?20250814094030AM&nowebp');">
+                            </div>
+                    </div>
+                </div>
+</section>
+
+
+
+                </div>
+
+
+                                                              
+
+
+<footer class="Footer">
+    <p aria-level="1" class="visuallyhidden" role="heading">Footer</p>
+
+
+
+
+    <div class="Footer--main">
+        <div class="Footer--row">
+                <div class="Footer--column">
+                    <div class="Footer--column--inner">
+    <h2 class="Footer--column--title">Share Price</h2>
+<div class="Footer--column--content">
+    <div class="SharePrice is-loading" data-js-shareprice>
+        <p class="SharePrice--value">
+            <span class="SharePrice--currency">CHF</span>
+            <span class="SharePrice--price">00.0</span>
+        </p>
+        <p class="SharePrice--change">&minus; 0.0%</p>
+        <p class="SharePrice--datetime">
+            <span class="SharePrice--date"></span>
+            <span class="SharePrice--time"></span>
+            <span class="SharePrice--timeZone">CET</span>
+        </p>
+    </div>
+</div>                    </div>
+                </div>
+                <div class="Footer--column">
+                    <div class="Footer--column--inner">
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h2 class="Footer--column--title">Newsletter</h2>
+
+<div class="Footer--column--content">
+    <a class="Button secondary" href="/join-our-newsletter.html"  >
+        <span class="Button--content">Subscribe</span>
+            <span class="visuallyhidden">about Subscribe to our newsletter</span>
+    </a>
+</div>                    </div>
+                </div>
+                <div class="Footer--column">
+                    <div class="Footer--column--inner">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h2 class="Footer--column--title">Contact us</h2>
+
+<div class="Footer--column--content">
+    <a class="Button secondary" href="/contact-form-with-dependencies~ifr~.html#ContactForm" data-flyout-target="ContactFormOverlay" data-flyout-variant="no-scroll" target="lightbox" aria-expanded="false" >
+        <span class="Button--content">Contact</span>
+            <span class="visuallyhidden">about Contact us</span>
+    </a>
+</div>                    </div>
+                </div>
+        </div>
+    </div>
+
+
+            <div class="Footer--sub">
+                <div class="Footer--row">
+
+
+    <div class="Footer--column">
+        <ul class="Footer--legal--list">
+
+
+
+
+
+
+
+
+
+
+
+     <li class="Footer--sub--link">
+         <a href="/privacy-policy.html" target="_blank" rel="noopener">About Privacy</a>
+     </li>
+
+
+
+
+
+
+
+
+
+
+
+     <li class="Footer--sub--link">
+         <a href="/terms-of-use.html" target="_blank" rel="noopener">Terms of Use</a>
+     </li>
+
+
+
+
+
+
+
+
+
+
+
+     <li class="Footer--sub--link">
+         <a href="/about-cookies.html" target="_blank" rel="noopener">About Cookies</a>
+     </li>
+
+
+    <li class="Footer--sub--link">
+        <a href="#" onclick='event.preventDefault(); CookieControl.open()'>
+            Cookie Settings
+        </a>
+    </li>
+
+
+
+
+
+
+
+
+
+
+
+     <li class="Footer--sub--link">
+         <a href="/about-us/modern-slavery-statement.html" target="_blank" rel="noopener">UK Slavery statement</a>
+     </li>
+        </ul>
+    </div>
+
+<div class="Footer--column Footer--social">
+    <div class="Footer--social--links">
+
+        
+        <a
+            class="RoundIconButton"
+            href="https://www.linkedin.com/company/swiss-re/"
+            target="_blank"
+            rel="noopener"
+        >
+            <span class="visuallyhidden">Follow us on LinkedIn</span>
+            <span class="Icon" data-picto="linkedin">
+            <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-linkedin"></use></svg>
+          </span>
+        </a>
+        <a
+            class="RoundIconButton"
+            href="https://twitter.com/SwissRe"
+            target="_blank"
+            rel="noopener"
+        >
+            <span class="visuallyhidden">Follow us on X</span>
+            <span class="Icon" data-picto="twitter">
+            <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-twitter"></use></svg>
+          </span>
+        </a>
+        <a
+            class="RoundIconButton"
+            href="https://www.youtube.com/user/swissretv?sub_confirmation=1"
+            target="_blank"
+            rel="noopener"
+        >
+            <span class="visuallyhidden">Follow us on YouTube</span>
+            <span class="Icon" data-picto="youtube">
+            <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-youtube"></use></svg>
+          </span>
+        </a>
+        <a
+            class="RoundIconButton"
+            href="https://www.facebook.com/SwissReGroup"
+            target="_blank"
+            rel="noopener"
+        >
+            <span class="visuallyhidden">area.footer.socials.facebook</span>
+            <span class="Icon" data-picto="facebook">
+            <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-facebook"></use></svg>
+          </span>
+        </a>
+        <a
+            class="RoundIconButton"
+            href="https://www.instagram.com/swiss_re_group/"
+            target="_blank"
+            rel="noopener"
+        >
+            <span class="visuallyhidden">Follow us on Instagram</span>
+            <span class="Icon" data-picto="instagram">
+            <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-instagram"></use></svg>
+          </span>
+        </a>
+
+
+
+
+
+    </div>
+</div>
+
+
+
+
+                </div>
+            </div>
+
+
+
+    <div class="Footer--sub copyright" >
+        <span class="Footer--sub--link">&copy; 2026 Swiss Re</span>
+        <span class="Footer--sub--link">All rights reserved.</span>
+    </div>
+</footer>
+
+<a class="RoundIconButton responsive ScrollToTop" data-js-headroom href="#Header">
+    <span class="visuallyhidden">Scroll to top</span>
+    <span class="Icon" data-icon="up"></span>
+</a>
+<div id="PageOverlay">
+    <script id="u57" nonce="MDN0dXBoczNkdjV1eTlyMHQxNnR2a2M=">
+      //<![CDATA[
+      document.getElementById("u57").fn=function(obj){var p=[],print=function(){p.push.apply(p,arguments)};with(obj)p.push('<div class="Overlay is-collapsed" data-flyout=\'{"syncstate":{"html, body":"is-overlaid"},"openAnimated":true,"closeAnimated":true,"arrowElements":false,"restoreScroll":true,"history":"',id,'"}\' id="',id,'">   <div class="Overlay--header">     <button class="Overlay--close" data-flyout-el="close" type="button">       <span class="visuallyhidden">Close Overlay</span>     </button>   </div>   <div class="Overlay--content">     <div class="LazyContent" data-lazycontent="',url,'">            </div>   </div>   <button class="FocusOnly" data-flyout-el="close" type="button">Close Overlay</button> </div> ');return p.join("")}
+      //]]>
+    </script>
+</div>
+<div id="LoadingAnimation">
+    <script id="u48" nonce="MDN0dXBoczNkdjV1eTlyMHQxNnR2a2M=">document.getElementById("u48").fn=function(obj){var p=[],print=function(){p.push.apply(p,arguments)};with(obj)p.push('<div class="LoadingAnimation">   <div class="LoadingAnimation--inner" role="alert">     <p class="LoadingAnimation--title">Sending</p>     <span class="visuallyhidden">form, please wait.</span>   </div> </div> ');return p.join("")}</script>
+</div>
+<div class="PageShare">
+    <div class="Overlay PageShare--overlay dark-transparent is-collapsed" data-flyout='{"syncstate":{"html, body":"is-overlaid"},"openAnimated":true,"closeAnimated":true,"arrowElements":false,"restoreScroll":true}' id="PageShareOverlay">
+        <div class="Overlay--header">
+            <button class="Overlay--close" data-flyout-el="close" type="button">
+                <span class="visuallyhidden">Close Overlay</span>
+            </button>
+        </div>
+        <div class="Overlay--content">
+            <div class="PageShare--content">
+                <h2 class="visuallyhidden">Overlay with sharing options</h2>
+                <div class="PageShare--linkList">
+
+
+
+
+                    <div class="PageShare--linkList--item">
+                        <a class="RoundIconButton transparent large" href="http://twitter.com/share?text=sigma%20research&url=https%3A%2F%2Fwww.swissre.com%2Finstitute%2Fresearch%2Fsigma-research.html" target="_blank" rel="noopener">
+                            <span class="RoundIconButton--text">Share this on X</span>
+                            <span class="Icon white" data-picto="twitter">
+                                <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-twitter"></use></svg>
+                            </span>
+                        </a>
+                    </div>
+                    <div class="PageShare--linkList--item">
+                        <a class="RoundIconButton transparent large" href="https://www.linkedin.com/shareArticle?mini=true&url=https%3A%2F%2Fwww.swissre.com%2Finstitute%2Fresearch%2Fsigma-research.html&title=sigma%20research" target="_blank" rel="noopener">
+                            <span class="RoundIconButton--text">Share this on LinkedIn</span>
+                            <span class="Icon white" data-picto="linkedin">
+                                <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-linkedin"></use></svg>
+                            </span>
+                        </a>
+                    </div>
+
+                    <div class="PageShare--linkList--item">
+                        <a class="RoundIconButton transparent large" href="/cdn-cgi/l/email-protection#dfe0acaabdb5babcabe2acb6b8b2befaedefadbaacbabeadbcb7f9beb2afe4bdb0bba6e290aaadfaedefbbbeabbefaedefbbadb6a9bab1faedefadbaacbabeadbcb7faedefafaabdb3b6bcbeabb6b0b1acfaed9cfaedefb6b1bcb3aabbb6b1b8faedefabb7bafaedefb6b1bbaaacabada6faedefb3babebbb6b1b8faedefacb6b8b2befaed9cfaedefbab1bebdb3bafaedefadb6acb4faedefb9b0bcaaacacbabbfaedefbbbabcb6acb6b0b1faedefb2beb4b6b1b8faedefbeb1bbfaedefb6bbbab1abb6b9a6faedefacabadbeabbab8b6bcfaedefb0afafb0adabaab1b6abb6baacfaedefb6b1faedefabb7bafaedefadbafaed99b6b1acaaadbeb1bcbafaedefb6b1bbaaacabada6f1faef9bfaef9efaef9bfaef9eb7ababafacfaec9efaed99faed99a8a8a8f1aca8b6acacadbaf1bcb0b2faed99b6b1acabb6abaaabbafaed99adbaacbabeadbcb7faed99acb6b8b2bef2adbaacbabeadbcb7f1b7abb2b3" target="_blank" rel="noopener">
+                            <span class="RoundIconButton--text">Share this via e-mail</span>
+                            <span class="Icon white" data-picto="message">
+                                <svg aria-hidden="true"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#picto-message"></use></svg>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="FocusOnly" data-flyout-el="close" type="button">Close Overlay</button>
+    </div>
+</div>
+
+        </div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script nonce="MDN0dXBoczNkdjV1eTlyMHQxNnR2a2M=">var swissrePreloadImmediateImages=function(){if(void 0===window.webpSupported)try{var e=document.createElement("canvas");window.webpSupported=0==e.toDataURL("image/webp").indexOf("data:image/webp")}catch(e){}return function(o){(requestAnimationFrame||setTimeout)(function(){var e=o.getAttribute("data-immediate-image"),a=1.5<=window.devicePixelRatio?2:1,t=o.getBoundingClientRect(),i=t.width*a,r=t.height*a,d=100;i=Math.ceil(i/d)*d,r=Math.ceil(r/d)*d;var m=e.replace("{w}",i).replace("{h}",r);window.webpSupported||(m=m+(-1<m.indexOf("?")?"&":"?")+"nowebp"),o.style.backgroundImage='url("'+m+'")'},0)}}(),immediateImages=document.querySelectorAll("[data-immediate-image]");Array.prototype.forEach.call(immediateImages,swissrePreloadImmediateImages)</script><script defer src="/.resources/swissre-web/webresources/js/ui.min.js?161734" nonce="MDN0dXBoczNkdjV1eTlyMHQxNnR2a2M="></script>
+<script defer src="/.resources/swissre-web/webresources/js/mgnl.js?161734" nonce="MDN0dXBoczNkdjV1eTlyMHQxNnR2a2M="></script>
+
+
+
+
+
+
+
+
+
+<script src="https://cc.cdn.civiccomputing.com/9/cookieControl-swissre-1.0.min.js" defer integrity="sha384-T/I8s0uBgZGLtPg0RhebtiQ94tl/RIO30+bp7ppu8W5VSuHGr9xN6Ui/cxJmMZT/" crossorigin="anonymous"></script>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+    (function($) {
+        var cccLang = document.documentElement.lang;
+        var cccFontFamily;
+
+        if (cccLang === 'ja') {
+            cccFontFamily = '"Swiss Re Sans", "Meiryo", "Yu Gothic", "Hiragino Sans", "Hiragino Kaku Gothic Pro", "ヒラギノ角ゴ Pro", "游ゴシック体", "メイリオ", "Noto Sans JP", sans-serif';
+        } else if (cccLang === 'ko') {
+            cccFontFamily = '"Swiss Re Sans", "Gulim", "Malgun Gothic", "Apple Gothic Neo", "Noto Sans KR", sans-serif';
+        } else if (['zh', 'zh-Hant', 'zh-Hans', 'zh-CN'].indexOf(cccLang) > -1) {
+            cccFontFamily = '"Swiss Re Sans", "Microsoft YaHei UI", "Microsoft JhengHei", "PingFang SC", "PingFang TC", "微軟正黑體", "Noto Sans SC", sans-serif';
+        } else {
+            cccFontFamily = '"Swiss Re Sans", "Univers LT", "Univers", "Helvetica Neue", "Helvetica", "Gulim", "Malgun Gothic", "Apple Gothic Neo", "Noto Sans KR", "Microsoft YaHei UI", "Microsoft JhengHei", "PingFang SC", "PingFang TC", "Yu Gothic", "Meiryo", "Hiragino Sans", sans-serif';
+        }
+
+        var config = {
+
+            /* SITE SPECIFIC - REQUIRED CHANGE */
+            apiKey: 'fc6a97ef48d7a97172060e42a39cb100cb0b13e1',
+            product: 'PRO_MULTISITE',
+
+            necessaryCookies: ["SWRSESSIONID","SRSESSIONID","JSESSIONID", "AWSALB", "AWSALBCORS", "DISC_CHECK", "event_*", "ppms_privacy_*"],
+
+            sameSiteValue: 'Lax',
+
+            /* May be customised if you'd like language or choices to be site specific */
+            text: {
+                notifyTitle: "<strong>Your choice regarding usage of cookies on our website.</strong>",
+                notifyDescription: "We use necessary cookies to optimise site functionality and give you the best possible experience. We'd also like to set analytics cookies and/or marketing cookies, however, these will be set only if you accept. You can set your preferences using the Settings button. For more information, please see our<a href='https://www.swissre.com/about-cookies.html'> privacy policy</a> about cookies.",
+                necessaryTitle: "Necessary Cookies",
+                necessaryDescription: "Necessary cookies enable core functionality such as page navigation and access to secure areas. The website cannot function properly without these cookies and can only be disabled by changing your browser preferences. These cookies do not store any personally identifiable information.",
+
+                accept: "Accept all",
+                reject: "Decline all",
+                settings: "Settings",
+                stickyHeader: "Privacy Preferences",
+                title: "This site uses cookies to store information on your computer.",
+                intro: "Some of these cookies are essential, while others help us to improve your experience by providing insights into how the site is being used.",
+                stickyFooter: "Save and Close",
+
+                /* please be mindful of the following, visually hidden text for screen readers */
+                closeLabel: "Save and close privacy preferences",
+                dropDown: "Show content for",
+                landmark: "Cookie preferences",
+                necessaryCheck: "Necessary cookies can not be deactivated",
+                allow: "allow",
+                notifyAcceptContext: "the use of cookies",
+                notifySettingsContext: "Change privacy"
+            },
+            optionalCookies: [
+                {
+                    name: 'analytics',
+                    label: 'Analytical Cookies',
+                    description: "Analytical cookies are used to determine usage of our website. They are used to allow a smooth user journey through the site. They are not used for targeting adverts (Marketing Cookies).",
+                    cookies: [
+                        "_gid",
+                        "nc-previous-guid",
+                        "_gd*",
+                        "nmstat",
+                        "siteimproveses",
+                        "AWSELB",
+                        "_pk_ses*",
+                        "_pk_id*",
+                        "_pk_cvar",
+                        "app_id",
+                        "piwik_auth",
+                        "PIWIK_SESSID" ,
+                        "_stg_debug",
+                        "stg_debug",
+                        "stg_traffic_source_priority",
+                        "stg_last_interaction",
+                        "stg_returning_visitor",
+                        "stg_fired__*",
+                        "stg_utm_campaign",
+                        "stg_pk_campaign",
+                        "stg_externalReferrer",
+                        "_stg_opt_out_simulate",
+                        "_stg_optout",
+                        "stg_global_opt_out",
+                        "csrftoken",
+                        "sessionid",
+                        "ppms_webstorage",
+                        "ppms_data_store",
+                        "_vwo*",
+                        "_vis*"
+                    ], // please populate this array with the list of analytics cookies that was provided to you in the report
+                    // onAccept: function () {
+                    //     console.log('onAccept analytics');
+                    //
+                    //     // Trigger a GTM event so that GTM knows consent for analytics cookies was provided and can fire your corresponding analytics scripts
+                    //     // dataLayer.push({'event' : 'analyanalytics_consent_giventics_consent_given'});
+                    // },
+                    // onRevoke: function () {
+                    //     console.log('onRevoke analytics');
+                    //
+                    //     // Trigger a GTM event so that GTM knows consent for analytics cookies was revoked and can fire your corresponding analytics scripts
+                    //     // dataLayer.push({'event' : 'analytics_consent_revoked'});
+                    // }
+                },
+                {
+                    name: 'marketing',
+                    label: 'Marketing Cookies',
+                    description: 'We use marketing cookies to help us improve the relevancy of advertising campaigns you receive.',
+                    cookies: [
+                        "_gcl_au",
+                        "__ncuid",
+                        "IDE",
+                        "test_cookie",
+                        "lidc",
+                        "bcookie",
+                        "bscookie",
+                        "lissc",
+                        "UserMatchHistory",
+                        "lang",
+                        "bkdc",
+                        "bkpa",
+                        "bku",
+                        "YSC",
+                        "VISITOR_INFO1_LIVE",
+                        "COMP",
+                        "COMP_RANGE_NOT"
+
+                    ], // please populate this array with the list of marketing cookies that was provided to you in the report
+                    // onAccept: function (e) {
+                    //
+                    //
+                    //     Trigger a GTM event so that GTM knows consent for marketing cookies was provided and can fire your corresponding analytics scripts
+                    //     dataLayer.push({'event': 'marketing_consent_given'});
+                    // },
+                    // onRevoke: function (e) {
+                    //     console.log('onRevoke marketing');
+                    //
+                    //     Trigger a GTM event so that GTM knows consent for marketing cookies was revoked and can fire your corresponding analytics scripts
+                    //     dataLayer.push({'event': 'marketing_consent_revoked'});
+                    // },
+                        thirdPartyCookies: [{"name": "X", "optOutLink": "https://help.x.com/en/safety-and-security/privacy-controls-for-tailored-ads"}]
+                }
+            ],
+            statement : {
+                name: '',
+                description: "For more information, please see our <a href='https://www.swissre.com/about-cookies.html'> Privacy Policy</a>",
+                url: '',
+                updated: '01/09/2020'
+            },
+
+            /* Below are appearance configurations so can be consistent across sites */
+            initialState: 'notify',
+            notifyDismissButton: false,
+            acceptButton: false,
+            rejectButton: true,
+            settingsStyle: 'button',
+
+            layout: 'screen',
+            theme: 'light',
+            branding: {
+                removeAbout: true,
+                removeIcon: true,
+                fontFamily: cccFontFamily,
+
+                closeIcon: '#3c4150',
+                necessaryCheck: '#006E73',
+                toggleText: '#3c4150',
+                toggleColor: '#006E73',
+                toggleBackground: '#ffffff',
+
+                backgroundColor: '#fff',
+                alertBackground: '#fff',
+                linkColor: '#006E73',
+                dividerColor: '#CDCDCD',
+
+                notifyPadding: '30px',
+                customCss: '#ccc{z-index: 200 !important;} #ccc a {color: #006E73; transition: border-color 0.2s cubic-bezier(0.39, 0.575, 0.565, 1); text-decoration: none; border-bottom: 1px solid;} #ccc a:hover {border-color: #CCE2E3; text-decoration: none;} #ccc .third-party-cookie-link {display: inline-flex; margin: 0 !important;} #ccc .third-party-cookie-icon {margin-left: 8px;} #ccc-statement {margin: 40px 0 60px;} #ccc-statement * {font-weight: 200 !important;} #ccc .ccc-alert {padding: 0} #flying-focus {z-index: 400;} #ccc .ccc-title, #ccc .ccc-subtitle, #ccc .ccc-subtitle *, #ccc .ccc-dropdown-heading  {font-weight: 700 !important;} .ccc-panel{padding: 16px 24px;}#ccc .checkbox-toggle--switch input:checked ~ .checkbox-toggle-toggle, #ccc .checkbox-toggle--switch input:checked ~ .checkbox-toggle-toggle:after {border: 1px solid #006E73;} #cc-panel #ccc-button-holder {display: none;} #ccc-notify-accept {color: #fff;} #ccc-notify-accept:before {border-color: #006E73; background-color: #006E73;} #ccc-notify-accept:hover {color: #006E73;} #ccc-notify-accept:hover:before{background-color: #ffffff; border-color: #CCE2E3;} #ccc-notify {box-shadow: 0px 10px 60px 0px rgb(0 0 0 / 20%);} .ccc-notify-buttons button {margin: 8px 8px 8px 0 !important;} #ccc .checkbox-toggle--switch .checkbox-toggle-toggle:after, #ccc .checkbox-toggle--switch .checkbox-toggle-toggle:before {box-sizing: border-box;}',
+            },
+
+            ui: {
+                classLibrary: {
+                    stickyTitle: 'StickyHeader--headline t-xl t-black',
+                    accordionTitle: 'Accordion--title t-black t-m',
+                    button: 'Button secondary',
+                    buttonContent: 'Button--content',
+                    closeButton: 'Button',
+                    closeButtonContent: 'Button--content',
+                    notifyTitle: 't-ms t-black',
+                    notifyBody: 't-s t-black',
+                    panelTitle: 't-l t-black',
+                    categoryTitle: 't-m t-black',
+                    paragraph: 't-base t-black',
+                    alertTitle: 'Accordion--title t-m t-black',
+                },
+                iconsLibrary: {
+                    upArrow: '<svg width="18px" height="18px" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><path d="M4.46966991,6.46966991 C4.73593648,6.20340335 5.15260016,6.1791973 5.44621165,6.39705176 L5.53033009,6.46966991 L9.143,10.082 L12.7553842,6.46966991 C13.0216508,6.20340335 13.4383144,6.1791973 13.7319259,6.39705176 L13.8160444,6.46966991 C14.0823109,6.73593648 14.106517,7.15260016 13.8886625,7.44621165 L13.8160444,7.53033009 L9.14285714,12.2035173 L4.46966991,7.53033009 C4.1767767,7.23743687 4.1767767,6.76256313 4.46966991,6.46966991 Z" fill="#282828" fill-rule="nonzero" transform="translate(9.142857, 9.226759) scale(1, -1) translate(-9.142857, -9.226759) "></path></g></svg>',
+                    downArrow: '<svg width="18px" height="18px" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><path d="M4.46966991,6.46966991 C4.73593648,6.20340335 5.15260016,6.1791973 5.44621165,6.39705176 L5.53033009,6.46966991 L9.143,10.082 L12.7553842,6.46966991 C13.0216508,6.20340335 13.4383144,6.1791973 13.7319259,6.39705176 L13.8160444,6.46966991 C14.0823109,6.73593648 14.106517,7.15260016 13.8886625,7.44621165 L13.8160444,7.53033009 L9.14285714,12.2035173 L4.46966991,7.53033009 C4.1767767,7.23743687 4.1767767,6.76256313 4.46966991,6.46966991 Z" fill="#282828" fill-rule="nonzero"></path></g></svg>',
+                    warning: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(1.000000, 1.000000)" fill="#3c4150" fill-rule="nonzero"><path d="M11,-0.75 C4.51065419,-0.75 -0.75,4.51065419 -0.75,11 C-0.75,17.4893458 4.51065419,22.75 11,22.75 C17.4893458,22.75 22.75,17.4893458 22.75,11 C22.75,4.51065419 17.4893458,-0.75 11,-0.75 Z M11,0.75 C16.6609187,0.75 21.25,5.33908131 21.25,11 C21.25,16.6609187 16.6609187,21.25 11,21.25 C5.33908131,21.25 0.75,16.6609187 0.75,11 C0.75,5.33908131 5.33908131,0.75 11,0.75 Z"></path><path d="M11,5 C11.5128358,5 11.9355072,5.38604019 11.9932723,5.88337887 L12,6 L12,12 C12,12.5522847 11.5522847,13 11,13 C10.4871642,13 10.0644928,12.6139598 10.0067277,12.1166211 L10,12 L10,6 C10,5.44771525 10.4477153,5 11,5 Z"></path><circle cx="11" cy="16" r="1"></circle></g></g></svg>',
+                    check: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><g stroke-width="1"><path d="M17.4778906,7.4615747 C17.7752547,7.17322166 18.2500722,7.18052654 18.5384253,7.47789062 C18.8005644,7.7482216 18.8183582,8.16520834 18.5960129,8.45543389 L18.5221094,8.5384253 L9.74999944,17.0447132 L5.47789062,12.9020617 C5.18052654,12.6137086 5.17322166,12.1388911 5.4615747,11.841527 C5.72371384,11.571196 6.13995586,11.5405834 6.43688383,11.7538955 L6.52210938,11.8252111 L9.749,14.954 L17.4778906,7.4615747 Z"></path></g></svg>',
+                    close: '<svg width="24px" height="24px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M5.96394924,5.60401752 C6.25684246,5.3111243 6.7317162,5.3111243 7.02460942,5.60401752 L7.02460942,5.60401752 L11.9992793,10.5783476 L16.9753906,5.60401752 C17.2682838,5.3111243 17.7431575,5.3111243 18.0360508,5.60401752 C18.328944,5.89691074 18.328944,6.37178447 18.0360508,6.66467769 L13.0602793,11.6393476 L17.9967532,16.5761613 C18.2630197,16.8424278 18.2872258,17.2590915 18.0693713,17.552703 L17.9967532,17.6368214 C17.7038599,17.9297147 17.2289862,17.9297147 16.936093,17.6368214 L16.936093,17.6368214 L11.9992793,12.7003476 L7.063907,17.6368214 C6.77101379,17.9297147 6.29614005,17.9297147 6.00324683,17.6368214 C5.71035361,17.3439282 5.71035361,16.8690545 6.00324683,16.5761613 L10.9382793,11.6393476 L5.96394924,6.66467769 C5.69768268,6.39841113 5.67347663,5.98174745 5.89133109,5.68813595 Z"></path></svg>'
+                },
+                markup: {
+                    notifyTitle: 'p',
+                    panelTitle: 'p'
+                },
+                styling: {
+                    notifyTitle: 'display: none;',
+                    notifyBody: 'font-weight: 200 !important; margin: 0; line-height: 24px;',
+                    stickyHeader: 'font-weight: 200 !important;',
+                    panelTitle: 'font-weight: 200 !important;',
+                    panelBody: 'font-weight: 200 !important; margin: 16px 0;',
+                    categoryTitle: 'font-weight: bold !important;',
+                    categoryBody: 'font-weight: 200 !important; margin: 30px 0;',
+                    alertTitle: 'font-weight: bold !important;',
+                }
+            },
+
+            stickyHeader: true,
+            stickyFooter: true,
+            stickyFooterAlign: 'right',
+
+            dropDowns: true,
+            showNecessaryCheck: true,
+            toggleType: 'switch',
+            setInnerHTML: true,
+        };
+
+        CookieControl.load(config);
+
+        function handleMutation(mutationsList) {
+            const acceptAllEl = document.getElementById("ccc-notify-accept");
+            const rejectAllEl = document.getElementById("ccc-notify-reject");
+            const saveCloseBtn = document.querySelector("#ccc-footer button");
+            let ccc_module = false;
+            let notify_module = false;
+            for (const mutation of mutationsList) {
+                if (mutation.type === 'childList') {
+                    const addedNodes = mutation.addedNodes;
+                    for (const node of addedNodes) {
+                        // console.log(node)
+                        if (node.id === "ccc-module") {
+                            ccc_module = true
+                        }
+                         if(node.id === "ccc-notify") {
+                            // observer.disconnect();
+                            // setupObserver();
+                             notify_module = true
+                        }
+                    }
+                }
+            }
+
+            if(ccc_module) {
+                saveCloseBtn && saveCloseBtn.addEventListener("click", () => {
+                    sendEvent("generic")
+                });
+                // setupObserver();
+            }
+
+            if(notify_module) {
+                acceptAllEl && acceptAllEl.addEventListener("click", () => {
+                    sendEvent("acceptAll")
+                });
+
+                rejectAllEl && rejectAllEl.addEventListener("click", () => {
+                    sendEvent("rejectAll")
+                });
+            }
+        }
+
+        const observerConfig = { childList: true, subtree: true };
+
+        function setupObserver() {
+            const targetNode = document.body;
+            const observer = new MutationObserver(handleMutation);
+            observer.observe(targetNode, observerConfig);
+        }
+
+        setupObserver();
+
+        let eventFired = false;
+        function sendEvent(type){
+            let analyticsProp = CookieControl.getCategoryConsent(0) || false
+            let marketingProp = CookieControl.getCategoryConsent(1) || false
+
+            if(type && type === "acceptAll") {
+                analyticsProp = true
+                marketingProp = true
+            } else if(type && type === "rejectAll") {
+                analyticsProp = false
+                marketingProp = false
+            }
+
+            if (eventFired === false){
+                console.log("event fired")
+                // stop duplicate events in quick succession
+                // important for accept all / subsequent page loads where analytics and marketing callbacks execute sequentially
+                eventFired = true;
+                // getCategoryConsent reads the cookie value, so give slight delay before executing
+                // setTimeout(function () {
+                const consent = {
+                    'event': 'consent_status',
+                    'analytics': analyticsProp,
+                    'marketing': marketingProp
+                }
+                console.log(consent);
+                // }, 200)
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push(consent);
+
+                // reset global variable in case user changes their mind
+                // setTimeout(function(){
+                    eventFired = false
+                // }, 0)
+            }
+
+        }
+
+        function checkCookie(cookieName) {
+            const allCookies = document.cookie;
+
+            const cookiesArray = allCookies.split(';');
+
+            for (let i = 0; i < cookiesArray.length; i++) {
+                const cookie = cookiesArray[i].trim();
+
+                if (cookie.indexOf(cookieName + '=') === 0) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        const cookieExists = checkCookie('CookieControl');
+
+        setTimeout(function() {
+            if (cookieExists && (CookieControl.getCategoryConsent(0) || CookieControl.getCategoryConsent(1)) ) {
+                sendEvent();
+            }
+
+        }, 1000);
+
+
+        !cookieExists ? (async () => {
+            const consent = {
+                'event': 'consent_status',
+            }
+            console.log(consent);
+            // }, 200)
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push(consent);
+        })() : null
+
+    })(jQuery);
+});
+
+</script>
+
+    </body>
+</html>

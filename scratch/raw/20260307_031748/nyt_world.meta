@@ -1,0 +1,10 @@
+{
+  "id": "nyt_world",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://rss.nytimes.com/services/xml/rss/nyt/World.xml",
+  "http_code": 200,
+  "size_bytes": 111166,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:17:49Z"
+}

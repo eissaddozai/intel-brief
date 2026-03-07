@@ -1,0 +1,10 @@
+{
+  "id": "bimco_news",
+  "tier": 1,
+  "method": "scrape",
+  "url": "https://www.bimco.org/news-and-trends",
+  "http_code": 200,
+  "size_bytes": 69229,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:17:49Z"
+}

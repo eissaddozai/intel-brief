@@ -1,0 +1,10 @@
+{
+  "id": "france24_mideast",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://www.france24.com/en/middle-east/rss",
+  "http_code": 200,
+  "size_bytes": 35186,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:17:49Z"
+}

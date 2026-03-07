@@ -1,0 +1,10 @@
+{
+  "id": "ambrey_analytics",
+  "tier": 2,
+  "method": "scrape",
+  "url": "https://www.ambrey.com/",
+  "http_code": 200,
+  "size_bytes": 171149,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:17:51Z"
+}

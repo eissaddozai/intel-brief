@@ -1,0 +1,10 @@
+{
+  "id": "marsh_marine",
+  "tier": 2,
+  "method": "scrape",
+  "url": "https://www.marsh.com/us/industries/marine/insights.html",
+  "http_code": 200,
+  "size_bytes": 247515,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:39Z"
+}

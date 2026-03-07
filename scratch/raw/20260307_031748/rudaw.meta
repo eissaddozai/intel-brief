@@ -1,0 +1,10 @@
+{
+  "id": "rudaw",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://www.rudaw.net/english/rss.xml",
+  "http_code": 200,
+  "size_bytes": 2740,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:17:50Z"
+}

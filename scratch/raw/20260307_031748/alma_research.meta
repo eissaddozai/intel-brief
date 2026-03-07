@@ -1,0 +1,10 @@
+{
+  "id": "alma_research",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://israel-alma.org/feed/",
+  "http_code": 200,
+  "size_bytes": 45565,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:17:50Z"
+}

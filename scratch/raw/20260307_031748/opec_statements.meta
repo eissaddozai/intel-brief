@@ -1,0 +1,10 @@
+{
+  "id": "opec_statements",
+  "tier": 3,
+  "method": "scrape",
+  "url": "https://www.opec.org/opec_web/en/press_room/4567.htm",
+  "http_code": 200,
+  "size_bytes": 220594,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:17:52Z"
+}

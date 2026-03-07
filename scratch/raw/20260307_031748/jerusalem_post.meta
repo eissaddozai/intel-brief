@@ -1,0 +1,10 @@
+{
+  "id": "jerusalem_post",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://www.jpost.com/rss/rssfeedsfrontpage.aspx",
+  "http_code": 200,
+  "size_bytes": 40492,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:17:49Z"
+}

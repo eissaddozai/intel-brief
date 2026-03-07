@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# article: http://ogp.me/ns/article#">
+        
+    <!-- Google Tag Manager - Optimized for main thread -->
+    <script type="7fcb54937cae6f41d5d1018b-text/javascript">
+        (function(w, d, s, l, i) {
+            w[l] = w[l] || [];
+            w[l].push({
+                'gtm.start': new Date().getTime(),
+                event: 'gtm.js'
+            });
+
+            // Use requestIdleCallback to defer GTM loading
+            function loadGTM() {
+                var f = d.getElementsByTagName(s)[0],
+                    j = d.createElement(s),
+                    dl = l != 'dataLayer' ? '&l=' + l : '';
+                j.async = true;
+                j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+                f.parentNode.insertBefore(j, f);
+            }
+
+            if (window.requestIdleCallback) {
+                requestIdleCallback(loadGTM, {
+                    timeout: 2000
+                });
+            } else {
+                setTimeout(loadGTM, 100);
+            }
+        })(window, document, 'script', 'dataLayer', 'GTM-N9MJPNMR');
+    </script>
+    <!-- End Google Tag Manager -->
+    <meta name="google-site-verification" content="NOL7f9CLFIk51dhDYz5lI8Tpnh_Y_GKQ5MPPdG7u1A4" />
+    <!-- CSRF Token for AJAX requests - only include when session is already active -->
+        <!-- Canonical URL - Always points to production domain -->
+    <link rel="canonical" href="https://maritime-executive.com/rss/articles">
+    <meta charset="utf-8">
+<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="/js/ie_support/html5shiv.js"></script>
+<script src="/js/ie_support/respond.min.js"></script>
+<![endif]-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- CSRF Token for AJAX requests - only include when session is already active -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" href="/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon-16x16.png">
+    <!-- DNS prefetch for secondary external domains -->
+    <link rel="dns-prefetch" href="//partner.googleadservices.com">
+    <link rel="dns-prefetch" href="//securepubads.g.doubleclick.net">
+    <link rel="dns-prefetch" href="//tpc.googlesyndication.com">
+
+    <!-- Preconnect ONLY to the 4 most critical origins (Lighthouse recommendation) -->
+    <!-- Priority 1: Ads (major revenue source) -->
+    <link rel="preconnect" href="https://www.googletagservices.com">
+    <!-- Priority 2: Font files (actual WOFF2 downloads - most time-consuming) -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Priority 3: Analytics (performance tracking) -->
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <!-- Priority 4: Google services (ReCaptcha, Tag Manager) -->
+    <link rel="preconnect" href="https://www.gstatic.com" crossorigin>
+
+    <!-- Preload critical assets for faster loading -->
+    <link rel="preload" href="https://maritime-executive.com/css/custom.css?v=v2026.01.01.102012" as="style">
+<link rel="preload" href="https://maritime-executive.com/css/fontawesome/css/all.min.css?v=v2025.10.03.113724" as="style">
+
+
+    <!-- Preload Font Awesome font file (most commonly used) -->
+    <link rel="preload" href="https://maritime-executive.com/css/fontawesome/webfonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+
+    <!-- Preload large scripts as low priority to cache them -->
+    <link rel="preload" href="https://maritime-executive.com/js/site.js?v=v2025.09.29.185945" as="script" fetchpriority="low">
+    <link rel="preload" href="https://maritime-executive.com/js/script-optimizer.js?v=v2025.10.06.213137" as="script" fetchpriority="low">
+    <link rel="preload" href="https://maritime-executive.com/js/worker-loader.js?v=v2025.09.29.011646" as="script" fetchpriority="low">
+
+    
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+        /* Critical styles for LCP and initial paint */
+        .home-page .main-content {
+            display: block;
+        }
+        
+        /* Additional critical styles for faster rendering */
+        body { font-family: 'Fira Sans', sans-serif; line-height: 1.4; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+        .header { background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .feature-item .title { font-size: 18px; font-weight: 700; margin: 10px 0; }
+        .btn { display: inline-block; padding: 8px 16px; text-decoration: none; border-radius: 4px; }
+
+        .header-top-buttons {
+            min-height: 41px;
+        }
+
+        @media (min-width: 320px) and (max-width: 767px) {
+            .header-top-buttons {
+                height: 30px;
+            }
+        }    
+
+        .feature-item {
+            position: relative;
+        }
+
+        .feature-item .image {
+            display: block;
+        }
+
+        .feature-item .image img {
+            width: 100%;
+            height: auto;
+            max-width: 585px;
+            display: block;
+        }
+
+        .img-responsive {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Banner ad positioning fix - preserve centering */
+        .l1-ads-wrapper {
+            position: relative !important;
+            transform: none !important;
+        }
+
+        .l1-ads-wrapper.container {
+            margin-left: auto !important;
+            margin-right: auto !important;
+        }
+
+        .l1-ads-wrapper .ad-wrapper {
+            position: relative !important;
+            margin: 0 auto !important;
+            transform: none !important;
+            top: 0 !important;
+            text-align: center;
+        }
+
+        .l1-ads-wrapper .col-md-12 {
+            text-align: center;
+        }
+
+        #990x90_1,
+        #990x90_2 {
+            position: relative !important;
+            transform: none !important;
+            text-align: center;
+        }
+
+        .add_adstop {
+            position: relative !important;
+            transform: none !important;
+        }
+
+        /* Ensure banner ads are centered */
+        .middle-add,
+        .top-add {
+            text-align: center;
+        }
+
+        .middle-add .ad-wrapper,
+        .top-add .ad-wrapper {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Set responsive ad slot heights to limit layout shifts */        
+        .top-add, .middle-add { display:block; width:100%; }
+        @media (min-width:1020px){ .middle-add, .top-add { min-height:90px; } }  /* 990x90 */
+        @media (min-width:800px) and (max-width:1019px){ .middle-add, .top-add { min-height:90px; } }  /* 728/750x~68–90 */
+        @media (min-width:600px) and (max-width:799px){ .middle-add, .top-add { min-height:72px; } }  /* 579x53/71/72 */
+        @media (min-width:480px) and (max-width:599px){ .middle-add, .top-add { min-height:58px; } }
+        @media (max-width:479px){ .middle-add, .top-add { min-height:50px; } }   /* 320x50 */
+
+        /* Prevent layout shifts during image loading - exclude logo and magazine images */
+        .home_page_top_article {
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+
+        /* Magazine images should display full without cropping */
+        .magazine-section-one .blog-item .image img {
+            aspect-ratio: unset !important;
+            object-fit: contain !important;
+        }
+
+        .custom_social_setting {
+            min-height: 66px;
+        }
+
+        /* Exclude UI elements from aspect ratio styling */
+        .logo img,
+        .mobile-menu img,
+        nav img,
+        img[src*="logo"],
+        img[src*="icon"],
+        img[src*="menu"],
+        img[src*="marexlogo"] {
+            aspect-ratio: unset !important;
+            object-fit: unset !important;
+            width: auto !important;
+            max-width: 100% !important;
+            height: auto !important;
+        }
+
+        /* Specific fix for Maritime Executive logo */
+        .logo-wrapper img,
+        .logo-wrapper .img-responsive {
+            aspect-ratio: unset !important;
+            object-fit: unset !important;
+            width: auto !important;
+            height: auto !important;
+        }
+
+        /* Loading states to prevent layout shift */
+        .js-loading {
+            opacity: 0.7;
+        }
+
+        .js-loaded {
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+
+        /* Immediate logo fix - highest priority */
+        body .logo img[src*="marexlogo"],
+        body .logo-wrapper img[src*="marexlogo"] {
+            aspect-ratio: unset !important;
+            object-fit: unset !important;
+            width: auto !important;
+            max-width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+    <!-- Critical JavaScript - Load immediately without dependencies -->
+    <script src="https://maritime-executive.com/js/critical.js?v=v2025.10.06.213142" fetchpriority="high" type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+    
+    <!-- Immediate logo fix script -->
+    <script type="7fcb54937cae6f41d5d1018b-text/javascript">
+        (function() {
+            function fixLogo() {
+                var logos = document.querySelectorAll('.logo img, .logo-wrapper img, img[src*="marexlogo"]');
+                logos.forEach(function(logo) {
+                    logo.style.aspectRatio = 'unset';
+                    logo.style.objectFit = 'unset';
+                    logo.style.width = 'auto';
+                    logo.style.height = 'auto';
+                    logo.style.maxWidth = '100%';
+                });
+            }
+
+            // Fix immediately
+            fixLogo();
+
+            // Fix on DOM ready
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', fixLogo);
+            } else {
+                fixLogo();
+            }
+        })();
+    </script>
+
+    <!-- Priority 1: Error handlers (must load first to catch errors from other scripts) -->
+    <script src="https://maritime-executive.com/js/google-ad-server-error-handler.js?v=v2025.10.06.213139" type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+
+    <!-- Priority 2: Critical JavaScript moved to top of head for immediate loading -->
+    
+    <!-- Priority 2.5: Ad Performance Optimizer (load early to intercept ad scripts) -->
+    <!-- commenting out for now as this is causing problems -->
+    <!--<script src="https://maritime-executive.com/js/ad-performance-optimizer.js?v=v2025.10.03.192827"></script>-->
+    
+    <!-- Priority 3: jQuery for compatibility (used by many scripts) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous" defer type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+
+    <!-- Priority 4: Logo fix (visual, but can defer slightly) -->
+    <script src="https://maritime-executive.com/js/logo-fix.js?v=v2025.09.29.011646" defer type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+    
+    <!-- Priority 5: AdSense fixes (important but not critical for initial render) -->
+    <script src="https://maritime-executive.com/js/adsense-immediate-fix.js?v=v2025.09.29.011646" defer type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+
+    
+    <!-- Optimized font loading - defer to avoid blocking critical path -->
+    <!-- Only load essential font weights (reduced from 18 to 5 variants) -->
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7fcb54937cae6f41d5d1018b-|49"></script><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&family=Roboto:wght@400;700&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    </noscript>
+    <!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="/media/images/site/logo/favicon.ico" /><![endif]-->
+    <!-- Debug CSS loading -->
+    <!-- Load Font Awesome first to avoid conflicts -->
+    <link rel="stylesheet" href="https://maritime-executive.com/css/fontawesome/css/all.min.css?v=v2025.10.03.113724">
+    <!-- Fallback to CDN if local Font Awesome fails to load -->
+    <script type="7fcb54937cae6f41d5d1018b-text/javascript">
+        (function() {
+            var faLink = document.querySelector('link[href*="fontawesome"]');
+            if (faLink) {
+                var fallbackLink = document.createElement('link');
+                fallbackLink.rel = 'stylesheet';
+                fallbackLink.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css';
+                fallbackLink.integrity = 'sha512-aBXHkgcKJmPUJmPjdWEyJ0FLB0cXW4nM1TmO7nZrRZqYCqRbKZN+Hs80lrqLNHGvBSKNJ0JKNKmBkJOQnAkdw==';
+                fallbackLink.crossOrigin = 'anonymous';
+                fallbackLink.referrerPolicy = 'no-referrer';
+
+                faLink.addEventListener('error', function() {
+                    document.head.appendChild(fallbackLink);
+                    console.log('Local Font Awesome failed to load, using CDN fallback');
+                });
+            }
+        })();
+    </script>
+
+    <!-- Critical CSS inlined for faster rendering -->
+    <style>
+        /* Critical above-the-fold styles only */
+        body { 
+            font-family: 'Fira Sans', sans-serif; 
+            line-height: 1.4; 
+            margin: 0; 
+            padding: 0;
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 15px; 
+        }
+        .header { 
+            background: #fff; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+        }
+        .feature-item .title { 
+            font-size: 18px; 
+            font-weight: 700; 
+            margin: 10px 0; 
+        }
+        .btn { 
+            display: inline-block; 
+            padding: 8px 16px; 
+            text-decoration: none; 
+            border-radius: 4px; 
+        }
+        .header-top-buttons {
+            min-height: 41px;
+        }
+        @media (min-width: 320px) and (max-width: 767px) {
+            .header-top-buttons {
+                height: 30px;
+            }
+        }
+        .feature-item {
+            position: relative;
+        }
+        .feature-item .image {
+            display: block;
+        }
+        .feature-item .image img {
+            width: 100%;
+            height: auto;
+            max-width: 585px;
+            display: block;
+        }
+        .img-responsive {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        /* Prevent layout shifts during image loading */
+        .home_page_top_article {
+            aspect-ratio: 16/9;
+            object-fit: cover;
+        }
+        .magazine-section-one .blog-item .image img {
+            aspect-ratio: unset !important;
+            object-fit: contain !important;
+        }
+        .custom_social_setting {
+            min-height: 66px;
+        }
+        /* Exclude UI elements from aspect ratio styling */
+        .logo img,
+        .mobile-menu img,
+        nav img,
+        img[src*="logo"],
+        img[src*="icon"],
+        img[src*="menu"],
+        img[src*="marexlogo"] {
+            aspect-ratio: unset !important;
+            object-fit: unset !important;
+            width: auto !important;
+            max-width: 100% !important;
+            height: auto !important;
+        }
+        .logo-wrapper img,
+        .logo-wrapper .img-responsive {
+            aspect-ratio: unset !important;
+            object-fit: unset !important;
+            width: auto !important;
+            height: auto !important;
+        }
+        .js-loading {
+            opacity: 0.7;
+        }
+        .js-loaded {
+            opacity: 1;
+            transition: opacity 0.3s ease;
+        }
+        /* Immediate logo fix - highest priority */
+        body .logo img[src*="marexlogo"],
+        body .logo-wrapper img[src*="marexlogo"] {
+            aspect-ratio: unset !important;
+            object-fit: unset !important;
+            width: auto !important;
+            max-width: 100% !important;
+            height: auto !important;
+        }
+    </style>
+
+    <!-- Load only essential CSS immediately -->
+    <link rel="stylesheet" href="https://maritime-executive.com/css/custom.css?v=v2026.01.01.102012">
+    
+    <!-- Load CDN libraries asynchronously to avoid main thread blocking -->
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7fcb54937cae6f41d5d1018b-|49"></script><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7fcb54937cae6f41d5d1018b-|49"></script><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7fcb54937cae6f41d5d1018b-|49"></script><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7fcb54937cae6f41d5d1018b-|49"></script><link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Load non-critical CSS asynchronously -->
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7fcb54937cae6f41d5d1018b-|49"></script><link rel="preload" href="https://maritime-executive.com/css/site.css?v=v2026.02.02.165601" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7fcb54937cae6f41d5d1018b-|49"></script><link rel="preload" href="https://maritime-executive.com/css/ad-performance.css?v=v2025.10.03.192912" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7fcb54937cae6f41d5d1018b-|49"></script><link rel="preload" href="https://maritime-executive.com/css/social-icons-fix.css?v=v2025.09.29.185945" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7fcb54937cae6f41d5d1018b-|49"></script><link rel="preload" href="https://maritime-executive.com/css/sidebar-ads.css?v=v2025.09.29.011646" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7fcb54937cae6f41d5d1018b-|49"></script><link rel="preload" href="https://maritime-executive.com/css/top-stories-fix.css?v=v2025.10.06.213135" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- Fallback for users with JavaScript disabled -->
+    <noscript>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+        <link rel="stylesheet" href="https://maritime-executive.com/css/site.css?v=v2026.02.02.165601">
+        <link rel="stylesheet" href="https://maritime-executive.com/css/ad-performance.css?v=v2025.10.03.192912">
+        <link rel="stylesheet" href="https://maritime-executive.com/css/social-icons-fix.css?v=v2025.09.29.185945">
+        <link rel="stylesheet" href="https://maritime-executive.com/css/sidebar-ads.css?v=v2025.09.29.011646">
+        <link rel="stylesheet" href="https://maritime-executive.com/css/top-stories-fix.css?v=v2025.10.06.213135">
+    </noscript>
+    <style media="screen">
+        object,
+        figure,
+        iframe {
+            max-width: 100%;
+        }
+    </style>
+    <!-- Load secondary Google error handlers asynchronously -->
+    <script src="https://maritime-executive.com/js/google-reach-error-handler.js?v=v2025.09.29.011646" async type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+
+    <!-- Google services (Analytics, Ads, ReCaptcha) -->
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QEHC198B76" type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+<script type="7fcb54937cae6f41d5d1018b-text/javascript">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-QEHC198B76');
+</script>
+    <script async src="https://www.googletagservices.com/tag/js/gpt.js" type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+<script type="7fcb54937cae6f41d5d1018b-text/javascript">
+"use strict";
+var geturlh = "";
+
+var googletag = googletag || {};
+googletag.cmd = googletag.cmd || [];
+
+if( /Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && geturlh=='App\Http\Controllers\HomeController@index' ) {
+  
+  googletag.cmd.push(function () {
+
+      var mapping_675x50  = googletag.sizeMapping()
+                                     .addSize([1020, 0], [675, 50])
+                                     .addSize([895, 0], [600, 44], [675, 50])
+                                     .addSize([834, 0], [550, 40], [675, 50])
+                                     .addSize([505, 0], [500, 44], [320, 50], [675, 50])
+                                     .addSize([425, 0], [400, 29], [320, 50], [675, 50])
+                                     .addSize([0, 0], [300, 22], [320, 50], [675, 50]).build();
+      var mapping_300x250 = googletag.sizeMapping()
+                                     .addSize([1020, 0], [300, 250])
+                                     .addSize([900, 0], [277, 230], [300, 250])
+                                     .addSize([0, 0], [300, 250]).build();
+      var mapping_990x90  = googletag.sizeMapping()
+                                     .addSize([1020, 0], [[990, 90]])
+                                     .addSize([800, 0], [[781, 71], [728, 90]])
+                                     .addSize([768, 0], [[738, 67],[750, 68], [728, 90]])
+                                     .addSize([745, 0], [[579, 53], [728, 90]])
+                                     .addSize([600, 0], [[579, 53], [579, 71], [579, 72], [320, 50]])
+                                     .addSize([533, 0], [[516, 47], [516, 63], [516, 64], [320, 50]])
+                                     .addSize([480, 0], [[466, 42], [466, 57], [466, 58], [320, 50]])
+                                     .addSize([425, 0], [[404, 37], [404, 49], [320, 50]])
+                                     .addSize([384, 0], [[376, 34], [376, 46], [320, 50]])
+                                     .addSize([376, 0], [[368, 33], [368, 45], [320, 50]])
+                                     .addSize([361, 0], [[353, 32], [353, 43], [353, 44], [320, 50]])
+                                     .addSize([316, 0], [[316, 29], [316, 39], [320, 50]])
+                                     .addSize([0, 0], [[301, 27], [301, 37], [320, 50]]).build();
+
+      // Use base size for responsive ads (will be overridden by size mapping)
+      googletag.defineSlot('/3523030/990x90_1', [990, 90], 'div-gpt-ad-1485538453696-0').defineSizeMapping(mapping_990x90).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/990x90_2', [990, 90], 'div-gpt-ad-1485538555341-0').defineSizeMapping(mapping_990x90).addService(googletag.pubads());
+     
+      googletag.defineSlot('/3523030/675x50_1', [675, 50], 'div-gpt-ad-1485538593117-0').defineSizeMapping(mapping_675x50).addService(googletag.pubads());
+      // Only define mobile ad slots that are actually visible on homepage
+      // Slots 1 and 2 are hidden with display:none !important, so skip them
+      googletag.defineSlot('/3523030/300x250_3', [300, 250], 'div-gpt-ad-300x250_mobi_3-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/300x250_4', [300, 250], 'div-gpt-ad-300x250_mobi_4-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads()); 
+      googletag.defineSlot('/3523030/300x250_5', [300, 250], 'div-gpt-ad-300x250_mobi_5-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.pubads().enableSingleRequest();
+      googletag.pubads().collapseEmptyDivs();
+      googletag.pubads().enableLazyLoad({ fetchMarginPercent: 200, renderMarginPercent: 50, mobileScaling: 2.0 });
+      googletag.enableServices();
+  });
+
+}else if(/Android|webOS|iPhone|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) && geturlh=='App\Http\Controllers\FeaturesController@index'){
+
+  googletag.cmd.push(function () {
+
+      var mapping_675x50  = googletag.sizeMapping()
+                                     .addSize([1020, 0], [675, 50])
+                                     .addSize([895, 0], [600, 44])
+                                     .addSize([834, 0], [550, 40])
+                                     .addSize([505, 0], [320, 50], [500, 44])
+                                     .addSize([405, 0], [320, 50], [400, 29])
+                                     .addSize([0, 0], [300, 22], [320, 50]).build();
+      var mapping_300x250 = googletag.sizeMapping()
+                                     .addSize([1028, 0], [300, 250])
+                                     .addSize([900, 0], [277, 230], [300, 250])
+                                     .addSize([0, 0], [300, 250]).build();
+      var mapping_990x90  = googletag.sizeMapping()
+                                     .addSize([1028, 0], [[990, 90]])
+                                     .addSize([800, 0], [[781, 71], [728, 90]])
+                                     .addSize([768, 0], [[738, 67],[750, 68], [728, 90]])
+                                     .addSize([745, 0], [[579, 53], [728, 90]])
+                                     .addSize([600, 0], [[579, 53], [579, 71], [579, 72]])
+                                     .addSize([533, 0], [[516, 47], [516, 63], [516, 64]])
+                                     .addSize([480, 0], [[466, 42], [466, 57], [466, 58]])
+                                     .addSize([415, 0], [[404, 37], [404, 49], [404, 50]])
+                                     .addSize([384, 0], [[376, 34], [376, 46]])
+                                     .addSize([376, 0], [[368, 33], [368, 45]])
+                                     .addSize([361, 0], [[353, 32], [353, 43], [353, 44]])
+                                     .addSize([316, 0], [[316, 29], [316, 39]])
+                                     .addSize([0, 0], [[301, 27], [301, 37], [320, 50]]).build();
+
+      // Use base size for responsive ads (will be overridden by size mapping)
+      googletag.defineSlot('/3523030/990x90_1', [990, 90], 'div-gpt-ad-1485538453696-0').defineSizeMapping(mapping_990x90).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/990x90_2', [990, 90], 'div-gpt-ad-1485538555341-0').defineSizeMapping(mapping_990x90).addService(googletag.pubads());
+     
+      googletag.defineSlot('/3523030/675x50_1', [675, 50], 'div-gpt-ad-1485538593mob-0').defineSizeMapping(mapping_675x50).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/300x250_1', [300, 250], 'div-gpt-ad-1485533899423-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/300x250_2', [300, 250], 'div-gpt-ad-1485533968943-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/300x250_3', [300, 250], 'div-gpt-ad-1485534066838-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/300x250_4', [300, 250], 'div-gpt-ad-1485534179535-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/300x250_5', [300, 250], 'div-gpt-ad-1485533899426-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.pubads().enableSingleRequest();
+      googletag.pubads().collapseEmptyDivs();
+      googletag.pubads().enableLazyLoad({ fetchMarginPercent: 200, renderMarginPercent: 50, mobileScaling: 2.0 });
+      googletag.enableServices();
+  });
+
+}else{
+
+  googletag.cmd.push(function () {
+
+      var mapping_675x50  = googletag.sizeMapping()
+                                     .addSize([1020, 0], [675, 50])
+                                     .addSize([895, 0], [600, 44])
+                                     .addSize([834, 0], [550, 40])
+                                     .addSize([505, 0], [500, 44])
+                                     .addSize([405, 0], [400, 29])
+                                     .addSize([0, 0], [300, 22]).build();
+      var mapping_300x250 = googletag.sizeMapping()
+                                     .addSize([1028, 0], [300, 250])
+                                     .addSize([900, 0], [277, 230], [300, 250])
+                                     .addSize([0, 0], [300, 250]).build();
+      var mapping_990x90  = googletag.sizeMapping()
+                                     .addSize([1028, 0], [[990, 90]])
+                                     .addSize([800, 0], [[781, 71], [728, 90]])
+                                     .addSize([768, 0], [[738, 67],[750, 68], [728, 90]])
+                                     .addSize([745, 0], [[579, 53], [728, 90]])
+                                     .addSize([600, 0], [[579, 53], [579, 71], [579, 72], [320, 50]])
+                                     .addSize([533, 0], [[516, 47], [516, 63], [516, 64], [320, 50]])
+                                     .addSize([480, 0], [[466, 42], [466, 57], [466, 58], [320, 50]])
+                                     .addSize([415, 0], [[404, 37], [404, 49], [404, 50], [320, 50]])
+                                     .addSize([384, 0], [[376, 34], [376, 46], [320, 50]])
+                                     .addSize([376, 0], [[368, 33], [368, 45], [320, 50]])
+                                     .addSize([361, 0], [[353, 32], [353, 43], [353, 44], [320, 50]])
+                                     .addSize([316, 0], [[316, 29], [316, 39], [320, 50]])
+                                     .addSize([0, 0], [[301, 27], [301, 37], [320, 50]]).build();
+
+      // Use base size for responsive ads (will be overridden by size mapping)
+      googletag.defineSlot('/3523030/990x90_1', [990, 90], 'div-gpt-ad-1485538453696-0').defineSizeMapping(mapping_990x90).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/990x90_2', [990, 90], 'div-gpt-ad-1485538555341-0').defineSizeMapping(mapping_990x90).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/300x250_1', [300, 250], 'div-gpt-ad-1485533899423-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/300x250_2', [300, 250], 'div-gpt-ad-1485533968943-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/300x250_3', [300, 250], 'div-gpt-ad-1485534066838-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/300x250_4', [300, 250], 'div-gpt-ad-1485534179535-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/300x250_5', [300, 250], 'div-gpt-ad-1485533899426-0').defineSizeMapping(mapping_300x250).addService(googletag.pubads());
+      googletag.defineSlot('/3523030/675x50_1', [675, 50], 'div-gpt-ad-1485538593117-0').defineSizeMapping(mapping_675x50).addService(googletag.pubads());
+       
+      googletag.pubads().enableSingleRequest();
+      googletag.pubads().collapseEmptyDivs();
+      //googletag.pubads().enableLazyLoad({ fetchMarginPercent: 200, renderMarginPercent: 50, mobileScaling: 2.0 });
+      googletag.enableServices();
+  });
+}
+
+</script>
+        
+    <!-- Conditional reCAPTCHA loader - only loads when needed -->
+    <script src="https://maritime-executive.com/js/recaptcha-loader.js?v=v2025.10.21.115952" async type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+            <!-- Defer social media widgets to reduce main thread blocking -->
+    <script type="7fcb54937cae6f41d5d1018b-text/javascript">
+        // Load Twitter widgets during idle time
+        if (window.requestIdleCallback) {
+            requestIdleCallback(function() {
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://platform.twitter.com/widgets.js';
+                script.charset = 'utf-8';
+                document.head.appendChild(script);
+            }, {
+                timeout: 3000
+            });
+        } else {
+            setTimeout(function() {
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = 'https://platform.twitter.com/widgets.js';
+                script.charset = 'utf-8';
+                document.head.appendChild(script);
+            }, 1000);
+        }
+
+        // Load Instagram embeds during idle time
+        if (window.requestIdleCallback) {
+            requestIdleCallback(function() {
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = '//www.instagram.com/embed.js';
+                document.head.appendChild(script);
+            }, {
+                timeout: 4000
+            });
+        } else {
+            setTimeout(function() {
+                var script = document.createElement('script');
+                script.async = true;
+                script.src = '//www.instagram.com/embed.js';
+                document.head.appendChild(script);
+            }, 1500);
+        }
+    </script>
+
+    <!-- Debug script to check CSS loading -->
+    <script type="7fcb54937cae6f41d5d1018b-text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Document loaded');
+            // Check if CSS files are loaded
+            var styles = document.styleSheets;
+            for (var i = 0; i < styles.length; i++) {
+                try {
+                    console.log('CSS loaded: ' + styles[i].href);
+                } catch (e) {
+                    console.log('Error checking CSS: ' + e);
+                }
+            }
+
+            // Debug Font Awesome icons
+            console.log('Checking Font Awesome...');
+            var testIcon = document.createElement('i');
+            testIcon.className = 'fas fa-check';
+            testIcon.style.visibility = 'hidden';
+            document.body.appendChild(testIcon);
+
+            var computedStyle = window.getComputedStyle(testIcon);
+            var fontFamily = computedStyle.getPropertyValue('font-family');
+            console.log('Font Awesome test icon font-family:', fontFamily);
+
+            // Check social icons
+            setTimeout(function() {
+                var socialIcons = document.querySelectorAll('.social-icons-wrapper .icon-wrapper i');
+                console.log('Social icons found:', socialIcons.length);
+                socialIcons.forEach(function(icon, index) {
+                    var style = window.getComputedStyle(icon);
+                    console.log('Social icon ' + index + ' font-family:', style.getPropertyValue('font-family'));
+                    console.log('Social icon ' + index + ' content:', style.getPropertyValue('content'));
+                });
+            }, 1000);
+        });
+    </script>
+</head>
+
+	<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N9MJPNMR"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+		<div class="l1-ads-wrapper " >
+        <div id="990x90_1" class="top-add clearfix">
+    <div class="col-md-12 text-center">
+        <div class="ad-wrapper">
+
+            <!-- /3523030/990x90_1 -->
+            <div id='div-gpt-ad-1485538453696-0'>
+                <script type="7fcb54937cae6f41d5d1018b-text/javascript">
+                    googletag.cmd.push(function() {
+                        googletag.display('div-gpt-ad-1485538453696-0');
+                    });
+                </script>
+                <script type="7fcb54937cae6f41d5d1018b-text/javascript">
+                    // Additional safeguard: wait for GPT and slot readiness before display
+                    (function() {
+                        var maxAttempts = 50; // 5 seconds max wait
+                        var attempt = 0;
+                        var checkInterval = 100;
+
+                        function tryDisplay() {
+                            attempt++;
+                            if (attempt > maxAttempts) {
+                                console.warn('Google Ads: Max attempts reached for div-gpt-ad-1485538453696-0');
+                                return;
+                            }
+
+                            try {
+                                if (window.googletag && googletag.pubads && googletag.pubads().getSlots) {
+                                    var slots = googletag.pubads().getSlots();
+                                    var slotExists = slots.some(function(slot) {
+                                        return slot.getSlotElementId() === 'div-gpt-ad-1485538453696-0';
+                                    });
+
+                                    if (slotExists) {
+                                        googletag.display('div-gpt-ad-1485538453696-0');
+                                    } else {
+                                        setTimeout(tryDisplay, checkInterval);
+                                    }
+                                } else {
+                                    setTimeout(tryDisplay, checkInterval);
+                                }
+                            } catch (e) {
+                                console.warn('Google Ads: Error in display attempt for div-gpt-ad-1485538453696-0:', e);
+                                setTimeout(tryDisplay, checkInterval);
+                            }
+                        }
+
+                        setTimeout(tryDisplay, checkInterval);
+                    })();
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+     <header>
+    <div class="container">
+        <div class="row header-top">
+            <div class="col-sm-6 col-xs-7 left">
+                <div class="pull-left hidden-md hidden-sm hidden-lg">
+                    <a class="mobile-menu pull-left" href="">
+                        <svg viewBox="0 0 448 512" width="16" height="16" style="fill: currentColor;">
+                            <!-- Bars/Hamburger icon -->
+                            <path d="M16 132h416c8.837 0 16-7.163 16-16V76c0-8.837-7.163-16-16-16H16C7.163 60 0 67.163 0 76v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16zm0 160h416c8.837 0 16-7.163 16-16v-40c0-8.837-7.163-16-16-16H16c-8.837 0-16 7.163-16 16v40c0 8.837 7.163 16 16 16z"></path>
+                        </svg>
+                    </a>
+                </div>
+                <div class="wrap-search pull-left" align="left">
+									<style>
+.search-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+</style>
+
+<div class="input-group">
+    <span class="input-group-btn">
+        <button type="button" id="custom_search" class="btn search-btn" aria-label="Search">
+            <svg viewBox="0 0 512 512">
+                <!-- Search icon SVG path -->
+                <path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"></path>
+            </svg>
+        </button>
+    </span>
+	<div class="search_section">
+	<form action="/search" method="GET">
+    <input type="text" name="key" class="form-control" id="header_search_content" placeholder="Search for...">
+	<button type="submit" id="header_search">Go</button>
+	</form>
+	</div>
+</div>				                </div>
+            </div>
+            <div class="col-sm-6 col-xs-5 right">
+                <div class="header-top-buttons">
+                    <!--a class="btn btn-danger login-btn bg-3 font-firasans" href="/login">Log In</a-->
+                    <a class="btn btn-danger subscribe-btn bg-2 font-firasans" href="/subscribe">SUBSCRIBE NOW</a>
+                </div>
+            </div>
+        </div>
+        <div class="header-bottom">
+            <div class="row">
+                <div class="col-sm-3 hidden-xs">
+
+                </div>
+                <div class="col-sm-6 col-xs-12 logo-wrapper" align="right" style="padding-top: 15px;">
+                    <a href="/" class="logo">
+                        <img src="https://maritime-executive.com/img/marexlogo2019.jpg" class="img-responsive hidden-xs" alt="Maritime Executive Logo">
+                        <img src="https://maritime-executive.com/img/marexlogo2019.jpg" class="img-responsive hidden-sm hidden-md hidden-lg" alt="Maritime Executive Logo">
+                    </a>
+                </div>
+                <div class="col-sm-3 hidden-xs">
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6 col-xs-8">
+                                    </div>
+                
+                <div class="col-sm-6 col-xs-4">
+                    <div class="media-kit-link header-bottom-text-section text-right font-roboto bold">
+                        <a href="https://mediakit.maritime-executive.com/2025/wp-content/uploads/2025/tme-2026-mediakit-20251107.2.pdf" target="_blank" >Media Kit</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ribbon ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <nav class="main-navigation">
+                        <ul>
+                            <li>
+                                <a href="/">news</a>
+                            </li>
+                            <li >
+                                <a href="/features" class="">Features</a>
+                            </li>
+                            <li>
+                                <a href="/podcast" class="" >Podcasts</a>
+                            </li>
+                            <li>
+                                <a href="/magazine" class="" >Magazine</a>
+                            </li>
+                            <li>
+                                <a href="/newsletter" class="" >Newsletter</a>
+                            </li>
+                            <!-- <li>
+                                <a href="https://jobs.maritime-executive.com" >Jobs</a>
+                            </li> -->
+                            <li>
+                                <a href="https://mediakit.maritime-executive.com/2025/wp-content/uploads/2025/tme-2026-mediakit-20251107.2.pdf" >Advertise</a>
+                            </li>
+                            <li>
+                            <a href="/directory" class="">Directory</a>
+                            </li>                            
+                            <li>
+                                <a href="/subscribe" class="" >Subscribe</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="custom_sidebar">
+ <div class="main-navigation">
+                        <ul>
+                            <li>
+                                <a href="/">news</a>
+                            </li>
+                            <li >
+                                <a href="/features" class="">features</a>
+                            </li>
+                            <li>
+                                <a href="/podcast" class="" >Podcasts</a>
+                            </li>
+                            <li>
+                                <a href="/magazine" class="" >magazine</a>
+                            </li>
+                            <li>
+                                <a href="/newsletter" class="" >newsletter</a>
+                            </li>
+                            <li>
+                                <a href="/jobs" class="" >Jobs</a>
+                            </li>
+                            <li>
+                                <a href="https://mediakit.maritime-executive.com/2025/wp-content/uploads/2025/tme-2026-mediakit-20251107.2.pdf" >advertise</a>
+                            </li>
+                            <li>
+                                <a href="/subscribe" class="" >subscribe</a>
+                            </li>
+                        </ul>
+                    </div>
+</div>
+
+    <div class="l1-ads-wrapper container ">
+        <div class="middle-add">
+    <div class="col-md-12 text-center">
+        <div class="ad-wrapper clearfix">
+		
+            <!-- /3523030/990x90_2 -->
+            <div id='div-gpt-ad-1485538555341-0'>
+                <script type="7fcb54937cae6f41d5d1018b-text/javascript">
+                    googletag.cmd.push(function() {
+                        googletag.display('div-gpt-ad-1485538555341-0');
+                    });
+                </script>
+                <script type="7fcb54937cae6f41d5d1018b-text/javascript">
+                    // Additional safeguard: wait for GPT and slot readiness before display
+                    (function() {
+                        var maxAttempts = 50; // 5 seconds max wait
+                        var attempt = 0;
+                        var checkInterval = 100;
+
+                        function tryDisplay() {
+                            attempt++;
+                            if (attempt > maxAttempts) {
+                                console.warn('Google Ads: Max attempts reached for div-gpt-ad-1485538555341-0');
+                                return;
+                            }
+
+                            try {
+                                if (window.googletag && googletag.pubads && googletag.pubads().getSlots) {
+                                    var slots = googletag.pubads().getSlots();
+                                    var slotExists = slots.some(function(slot) {
+                                        return slot.getSlotElementId() === 'div-gpt-ad-1485538555341-0';
+                                    });
+
+                                    if (slotExists) {
+                                        googletag.display('div-gpt-ad-1485538555341-0');
+                                    } else {
+                                        setTimeout(tryDisplay, checkInterval);
+                                    }
+                                } else {
+                                    setTimeout(tryDisplay, checkInterval);
+                                }
+                            } catch (e) {
+                                console.warn('Google Ads: Error in display attempt for div-gpt-ad-1485538555341-0:', e);
+                                setTimeout(tryDisplay, checkInterval);
+                            }
+                        }
+
+                        setTimeout(tryDisplay, checkInterval);
+                    })();
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+    </div>
+
+    
+        <section class="wrap-content">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <img src="/media/images/site/404/404.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer">
+    <div class="container content-wrapper">
+        <div class="row footer-top">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <ul class="footer-main-menu">
+                    <li>
+                        <a class="font-firasans" href="/aboutus" target="_blank">About Us</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="https://mediakit.maritime-executive.com/2025/wp-content/uploads/2025/tme-2026-mediakit-20251107.2.pdf" target="_blank">Advertise</a>
+                    </li>
+                   
+                    <li>
+                        <a class="font-firasans" href="/newsletter" target="_blank">Newsletter</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/contact" target="_blank">Contact Us</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/privacy-policy" target="_blank">Privacy Policy</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/site-map" target="_blank">Site Map</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row footer-middle">
+            <div class="col-lg-3 col-md-2 col-sm-2 col-xs-6">
+                <ul class="categories-menu">
+                    <li>
+                        <a class="font-firasans" href="/">News</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/features" target="_blank">Features</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/podcast" target="_blank">Podcasts</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/magazine" target="_blank">Magazine</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/newsletter" target="_blank">Newsletter</a>
+                    </li>
+                    <!-- <li>
+                        <a class="font-firasans" href="/jobs" target="_blank">Jobs</a>
+                    </li> -->
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-6">
+                <ul class="news-menu">
+                    <li>
+                        <a class="font-firasans" href="/piracy-news" target="_blank">Piracy News</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/shipbuilding-news" target="_blank">Shipbuilding News</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/cruiseshipping-news" target="_blank">Cruise Ship News</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/port-news" target="_blank">Ports News</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/tugsalvage-news" target="_blank">Salvage News</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/training-news" target="_blank">Training News</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/government-news" target="_blank">Government News</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/environmental-news" target="_blank">Environment News</a>
+                    </li>
+                    <li>
+                        <a class="font-firasans" href="/pressrelease" target="_blank">Corporate News</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="subscribe-wrapper">
+                    <a href="/subscribe" target="_blank"><button class="btn subscribe-btn btn-lg bg-1 font-firasans subscribe-blue">Subscribe</button></a>
+                </div>
+                <div class="sitename-wrapper">
+                    <img class="hidden-xs" src="https://maritime-executive.com/img/maritime-executive-tall-blue-logo-200px.png" />
+                    <img class="hidden-lg hidden-md hidden-sm" src="https://maritime-executive.com/img/maritime-executive-tall-blue-logo-200px.png" />
+                </div>
+                <div class="social-links-wrapper">
+                <p><div class="social-section" style="text-align: center;">
+        
+    <style>
+    .social-icons-new {
+        display: flex;
+        align-items: center;
+        margin: 10px 0;
+        justify-content: center;
+    }
+    .social-icons-new a {
+        display: inline-block;
+        margin-right: 15px;
+        text-decoration: none;
+    }
+    .social-icons-new .icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+    }
+    .social-icons-new .facebook { background-color: #3b5998; }
+    .social-icons-new .linkedin { background-color: #0077b5; }
+    .social-icons-new .twitter { background-color: #1da1f2; }
+    .social-icons-new .rss { background-color: #ff6600; }
+    .social-icons-new .instagram { background-color: #c13584; }
+    .social-icons-new svg {
+        width: 16px;
+        height: 16px;
+        fill: white;
+    }
+    </style>
+    
+    <div class="social-icons-new">
+        <a href="https://www.facebook.com/MarExMag/" target="_blank" title="Facebook">
+            <div class="icon facebook">
+                <svg viewBox="0 0 320 512">
+                    <!-- Facebook icon -->
+                    <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"></path>
+                </svg>
+            </div>
+        </a>
+        <a href="https://www.linkedin.com/groups/47685" target="_blank" title="LinkedIn">
+            <div class="icon linkedin">
+                <svg viewBox="0 0 448 512">
+                    <!-- LinkedIn icon -->
+                    <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path>
+                </svg>
+            </div>
+        </a>
+        <a href="https://twitter.com/Mar_Ex" target="_blank" title="Twitter">
+            <div class="icon twitter">
+                <svg viewBox="0 0 512 512">
+                    <!-- Twitter icon -->
+                    <path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+                </svg>
+            </div>
+        </a>
+        <a href="/articles.rss" target="_blank" title="RSS Feed">
+            <div class="icon rss">
+                <svg viewBox="0 0 448 512">
+                    <!-- RSS icon -->
+                    <path d="M128.081 415.959c0 35.369-28.672 64.041-64.041 64.041S0 451.328 0 415.959s28.672-64.041 64.041-64.041 64.04 28.673 64.04 64.041zm175.66 47.25c-8.354-154.6-132.185-278.587-286.95-286.95C7.656 175.765 0 183.105 0 192.253v48.069c0 8.415 6.49 15.472 14.887 16.018 111.832 7.284 201.473 96.702 208.772 208.772.547 8.397 7.604 14.887 16.018 14.887h48.069c9.149.001 16.489-7.655 15.995-16.79zm144.249.288C439.596 229.677 251.465 40.445 16.503 32.01 7.473 31.686 0 38.981 0 48.016v48.068c0 8.625 6.835 15.645 15.453 15.999 191.179 7.839 344.627 161.316 352.465 352.465.353 8.618 7.373 15.453 15.999 15.453h48.068c9.034-.001 16.329-7.474 16.005-16.504z"></path>
+                </svg>
+            </div>
+        </a>
+        <a href="https://www.instagram.com/maritime_executive/" target="_blank" title="Instagram">
+            <div class="icon instagram">
+                <svg viewBox="0 0 448 512">
+                    <!-- Instagram icon -->
+                    <path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"></path>
+                </svg>
+            </div>
+        </a>
+    </div>
+    
+    <!-- Original social icons (hidden) for reference -->
+    <div class="social-icons-wrapper" style="display: none;">
+       <a href="https://www.facebook.com/MarExMag/" target="_blank" title="Facebook"> 
+           <span class="facebook icon-wrapper">
+               <i class="fab fa-facebook-f" aria-hidden="true"></i>
+               <span class="sr-only">Facebook</span>
+           </span>
+       </a>
+       <a href="https://www.linkedin.com/groups/47685" target="_blank" title="LinkedIn"> 
+           <span class="linkedin icon-wrapper">
+               <i class="fab fa-linkedin-in" aria-hidden="true"></i>
+               <span class="sr-only">LinkedIn</span>
+           </span>
+       </a>
+       <a href="https://twitter.com/Mar_Ex" target="_blank" title="Twitter"> 
+           <span class="twitter icon-wrapper">
+               <i class="fab fa-twitter" aria-hidden="true"></i>
+               <span class="sr-only">Twitter</span>
+           </span>
+       </a>
+       <a href="/articles.rss" target="_blank" title="RSS Feed">  
+           <span class="newsletter icon-wrapper">
+               <i class="fas fa-rss" aria-hidden="true"></i>
+               <span class="sr-only">RSS Feed</span>
+           </span>
+       </a>
+       <a href="https://www.instagram.com/maritime_executive/" target="_blank" title="Instagram"> 
+           <span class="instagram icon-wrapper">
+               <i class="fab fa-instagram" aria-hidden="true"></i>
+               <span class="sr-only">Instagram</span>
+           </span>
+       </a>
+    </div>
+</div></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="row footer-bottom">
+            <p class="font-roboto font-size-14">© Copyright 2026 The Maritime Executive, LLC. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+    <!-- Optimized JavaScript loading with intelligent deferring -->
+    
+    <!-- Optimized script loading to reduce main thread blocking -->
+    <script type="7fcb54937cae6f41d5d1018b-text/javascript">
+        (function() {
+            'use strict';
+            
+            // Script loading queue with priorities
+            const scriptQueue = {
+                critical: [],
+                high: [],
+                normal: [],
+                low: []
+            };
+            
+            // Function to load scripts with proper timing
+            function loadScript(src, priority = 'normal') {
+                return new Promise((resolve, reject) => {
+                    const script = document.createElement('script');
+                    script.src = src;
+                    script.async = true;
+                    script.onload = resolve;
+                    script.onerror = reject;
+                    
+                    if (priority === 'high') {
+                        script.setAttribute('fetchpriority', 'high');
+                    }
+                    
+                    document.head.appendChild(script);
+                });
+            }
+            
+            // Load critical scripts immediately
+            function loadCriticalScripts() {
+                const criticalScripts = [
+                    { src: "https://maritime-executive.com/js/critical-minimal.js?v=v2025.10.21.115952", priority: 'high' }
+                ];
+                
+                Promise.all(criticalScripts.map(script => loadScript(script.src, script.priority)))
+                    .then(() => {
+                        console.log('Critical scripts loaded');
+                        loadHighPriorityScripts();
+                    })
+                    .catch(err => console.error('Critical script loading failed:', err));
+            }
+            
+            // Load high priority scripts after critical ones
+            function loadHighPriorityScripts() {
+                const highPriorityScripts = [
+                    { src: "https://maritime-executive.com/js/lcp-optimization.js?v=v2025.09.29.011646", priority: 'high' },
+                    { src: "https://maritime-executive.com/js/lazy-load.js?v=v2025.09.29.011646", priority: 'high' }
+                ];
+                
+                highPriorityScripts.forEach(script => loadScript(script.src, script.priority));
+                
+                // Load normal priority scripts after a short delay
+                setTimeout(loadNormalPriorityScripts, 100);
+            }
+            
+            // Load normal priority scripts
+            function loadNormalPriorityScripts() {
+                const normalScripts = [
+                    { src: "https://maritime-executive.com/js/logo-fix.js?v=v2025.09.29.011646", priority: 'normal' },
+                    { src: "https://maritime-executive.com/js/adsense-immediate-fix.js?v=v2025.09.29.011646", priority: 'normal' }
+                ];
+                
+                normalScripts.forEach(script => loadScript(script.src, script.priority));
+                
+                // Load low priority scripts after user interaction or timeout
+                setupLowPriorityLoading();
+            }
+            
+            // Setup low priority script loading
+            function setupLowPriorityLoading() {
+                const lowPriorityScripts = [
+                    { src: "https://maritime-executive.com/js/main-thread-optimizer.js?v=v2025.11.25.001845", priority: 'low' },
+                    { src: "https://maritime-executive.com/js/worker-loader.js?v=v2025.09.29.011646", priority: 'low' },
+                    { src: "https://maritime-executive.com/js/script-optimizer.js?v=v2025.10.06.213137", priority: 'low' },
+                    { src: "https://maritime-executive.com/js/google-ads-fix.js?v=v2025.10.06.213136", priority: 'low' },
+                    { src: "https://maritime-executive.com/js/adsense-width-fix.js?v=v2025.09.29.011646", priority: 'low' },
+                    { src: "https://maritime-executive.com/js/ad-debug-helper.js?v=v2025.09.29.011646", priority: 'low' },
+                    { src: "https://maritime-executive.com/js/social.js?v=v2025.10.06.213136", priority: 'low' }
+                ];
+                
+                let userInteracted = false;
+                const interactionEvents = ['click', 'scroll', 'keydown', 'touchstart'];
+                
+                function handleUserInteraction() {
+                    if (!userInteracted) {
+                        userInteracted = true;
+                        loadLowPriorityScripts();
+                        
+                        // Remove event listeners after first interaction
+                        interactionEvents.forEach(event => {
+                            document.removeEventListener(event, handleUserInteraction);
+                        });
+                    }
+                }
+                
+                // Add interaction listeners
+                interactionEvents.forEach(event => {
+                    document.addEventListener(event, handleUserInteraction, { passive: true });
+                });
+                
+                // Fallback: load low priority scripts after 3 seconds
+                setTimeout(() => {
+                    if (!userInteracted) {
+                        loadLowPriorityScripts();
+                    }
+                }, 3000);
+                
+                function loadLowPriorityScripts() {
+                    // Use requestIdleCallback for low priority scripts
+                    if (window.requestIdleCallback) {
+                        requestIdleCallback(() => {
+                            lowPriorityScripts.forEach(script => loadScript(script.src, script.priority));
+                        }, { timeout: 2000 });
+                    } else {
+                        setTimeout(() => {
+                            lowPriorityScripts.forEach(script => loadScript(script.src, script.priority));
+                        }, 1000);
+                    }
+                }
+            }
+            
+            // Load the minimal site.js file with defer to not block parsing
+            const siteScript = document.createElement('script');
+            siteScript.src = "https://maritime-executive.com/js/site-minimal.js?v=v2025.10.21.115952";
+            siteScript.defer = true;
+            document.head.appendChild(siteScript);
+            
+            // Initialize script loading
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', loadCriticalScripts);
+            } else {
+                loadCriticalScripts();
+            }
+            
+        })();
+    </script>
+
+    <!-- Load JavaScript libraries from CDN asynchronously -->
+    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js" type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+    <script async defer src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" type="7fcb54937cae6f41d5d1018b-text/javascript"></script>
+
+    <script type="7fcb54937cae6f41d5d1018b-text/javascript">
+    // Wait for jQuery to be available before executing jQuery-dependent code
+    function waitForJQuery(callback) {
+        if (typeof jQuery !== 'undefined' && jQuery) {
+            callback();
+        } else {
+            setTimeout(function() {
+                waitForJQuery(callback);
+            }, 10);
+        }
+    }
+
+    waitForJQuery(function() {
+        $(function() {
+            /* $('#header_search_content').keyup(function() {
+                $('#header_search').attr('href', '/search?key=' + $(this).val());
+            })
+            $('#header_search_content').keypress(function(e) {
+                if (e.which == 13) {
+                    window.location.href = $('#header_search').attr('href');
+                }
+            });  */
+            $('#header_search_contentnew').keyup(function() {
+                $('#header_searchnew').attr('href', '/searchnew?key=' + $(this).val());
+            })
+            $('#header_search_contentnew').keypress(function(e) {
+                if (e.which == 13) {
+                    window.location.href = $('#header_searchnew').attr('href');
+                }
+            });
+        });
+        $(document).ready(function(){
+          $("#custom_search").click(function(){
+            $(".search_section").toggle();
+            $(".header-bottom").toggleClass("custom_setting");
+          });
+        });
+    });
+</script>
+
+    
+<script src="/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="7fcb54937cae6f41d5d1018b-|49" defer></script></body>
+
+</html>

@@ -1,0 +1,10 @@
+{
+  "id": "cnbc_world",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://www.cnbc.com/id/100727362/device/rss/rss.html",
+  "http_code": 200,
+  "size_bytes": 21426,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:36Z"
+}

@@ -1,0 +1,1 @@
+../../../../pipeline/draft/prompts/flash_points.md

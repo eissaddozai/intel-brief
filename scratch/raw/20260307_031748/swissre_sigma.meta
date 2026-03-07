@@ -1,0 +1,10 @@
+{
+  "id": "swissre_sigma",
+  "tier": 3,
+  "method": "scrape",
+  "url": "https://www.swissre.com/institute/research/sigma-research.html",
+  "http_code": 200,
+  "size_bytes": 188524,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:17:53Z"
+}

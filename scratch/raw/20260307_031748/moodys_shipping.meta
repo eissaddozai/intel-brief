@@ -1,0 +1,10 @@
+{
+  "id": "moodys_shipping",
+  "tier": 3,
+  "method": "scrape",
+  "url": "https://www.moodys.com/researchandratings/market-segment/transportation/shipping/-/0015",
+  "http_code": 200,
+  "size_bytes": 2752,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:17:52Z"
+}

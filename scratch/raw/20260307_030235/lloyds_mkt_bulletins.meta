@@ -1,0 +1,10 @@
+{
+  "id": "lloyds_mkt_bulletins",
+  "tier": 1,
+  "method": "scrape",
+  "url": "https://www.lloyds.com/news-and-insights/market-bulletins",
+  "http_code": 404,
+  "size_bytes": 98880,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:38Z"
+}

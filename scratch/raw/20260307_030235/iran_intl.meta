@@ -1,0 +1,10 @@
+{
+  "id": "iran_intl",
+  "tier": 2,
+  "method": "scrape",
+  "url": "https://www.iranintl.com/en",
+  "http_code": 200,
+  "size_bytes": 428745,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:02:36Z"
+}

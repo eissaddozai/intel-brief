@@ -1,0 +1,10 @@
+{
+  "id": "ap_wire",
+  "tier": 1,
+  "method": "rss",
+  "url": "https://feeds.apnews.com/rss/apf-intlnews",
+  "http_code": 000000,
+  "size_bytes": ,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:02:35Z"
+}

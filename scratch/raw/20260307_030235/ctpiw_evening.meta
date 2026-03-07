@@ -1,0 +1,10 @@
+{
+  "id": "ctpiw_evening",
+  "tier": 1,
+  "method": "scrape",
+  "url": "https://www.criticalthreats.org/analysis/iran-war-updates",
+  "http_code": 404,
+  "size_bytes": 38225,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:36Z"
+}

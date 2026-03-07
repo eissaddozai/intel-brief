@@ -1,0 +1,426 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Page not Found | Swiss Re</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="noindex,nofollow" />
+    <link
+      href="/.resources/swissre-web/webresources/img/graphics/favicon-32x32.png"
+      rel="icon"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      href="/.resources/swissre-web/webresources/img/graphics/favicon-194x194.png"
+      rel="icon"
+      sizes="194x194"
+      type="image/png"
+    />
+    <link
+      as="font"
+      crossorigin=""
+      href="/.resources/swissre-web/webresources/fonts/180618_swissresansot-regular-webfont.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin=""
+      href="/.resources/swissre-web/webresources/fonts/180618_swissresansot-light-webfont.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      as="font"
+      crossorigin=""
+      href="/.resources/swissre-web/webresources/fonts/180618_swissresansot-bold-webfont.woff2"
+      rel="preload"
+      type="font/woff2"
+    />
+    <link
+      rel="stylesheet"
+      href="https://www.swissre.com/.resources/swissre-web/webresources/css/ui.css"
+      media="all"
+    />
+  </head>
+  <body>
+    <header class="Header" data-js-nav="" id="Header-fallback" role="banner">
+      <div
+        class="Header--inner"
+        data-js-autobreak="small"
+        data-nav-el="wrapper"
+      >
+        <div class="Header--nav">
+          <div class="Header--navBar">
+            <div class="Header--logo">
+              <a class="Logo" href="/">
+                <img
+                  alt="To home page, Swiss Re Group Logo"
+                  src="/.resources/swissre-web/webresources/img/logos/SR_Logo_Group.png"
+                />
+                <span class="visuallyhidden">, to Homepage</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <div id="body">
+      <div class="site-content" id="main-content" role="main">
+        <h1 class="visuallyhidden">Error</h1>
+        <section class="ErrorMessage">
+          <div class="ErrorMessage--inner">
+            <div class="SectionContainer">
+              <div class="SectionTitle">
+                <h2 class="SectionTitle--title">404 error</h2>
+                <p class="SectionTitle--headline">Page not found</p>
+              </div>
+              <p class="ErrorMessage--content">
+                Oops! Looks like you got lost in space.
+              </p>
+
+              <div class="SectionContainer--footer">
+                <a class="Button transparent" href="/">
+                  <span class="Button--content"> Go to homepage </span>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="ErrorMessage--background">
+            <div
+              class="Media image"
+              style="
+                background-image: url(&quot;/.resources/swissre-web/webresources/img/404/404_resized.jpg&quot;);
+              "
+            >
+              <div
+                data-sizes="/.resources/swissre-web/webresources/img/404/404_resized.jpg 3200x1200"
+                style="
+                  background-image: url(&quot;/.resources/swissre-web/webresources/img/404/404_resized.jpg&quot;);
+                "
+              ></div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+    <script
+      defer
+      src="https://www.swissre.com/.resources/swissre-web/webresources/js/ui.min.js"
+      nonce
+    ></script>
+  </body>
+  <script>
+    const currentURL = location.href;
+    const resourceURL = getUrlForHeader(currentURL);
+
+    loadNavigation(currentURL, resourceURL);
+
+    // Loads current live version of site, extracts #Header and append instead of fallback Header
+    async function loadNavigation(currentURL, resourceURL) {
+      try {
+        // Fetch Site
+        const response = await fetch(resourceURL);
+        if (!response.ok) throw new Error("Network response was not ok");
+
+        const htmlText = await response.text();
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(htmlText, "text/html");
+
+        // Extract the header
+        const header = doc.querySelector("#Header");
+        if (!header) throw new Error("Navigation element not found");
+
+        // iptiQ's exceptions
+        if (isSiteByPaths([".iptiq.com", "iptiq.swre.com"])) {
+          appendCss("/.resources/swissre-iptiq/webresources/css/ui.css");
+          updateFavIcon(
+            "/.resources/swissre-iptiq/webresources/img/graphics/favicon-32x32.png"
+          );
+        }
+
+        // Append the header to the body
+        document.body.appendChild(header);
+
+        // Remove plain fallback header
+        const fallbackHeader = document.querySelector("#Header-fallback");
+        fallbackHeader.remove();
+
+        const title = doc.querySelector("title");
+        if (!title) throw new Error("Title element not found");
+        updatePageTitle(title);
+
+        // Handle texts
+        handleI18n(currentURL);
+      } catch (error) {
+        console.error("Error loading navigation:", error);
+      }
+    }
+
+    // Updates texts based on region and language
+    function handleI18n(currentURL) {
+      const region = getRegion(currentURL);
+      const isEnglish = currentURL.includes("/en/");
+      const isFrench = currentURL.includes("/fr/");
+
+      const useFrench = region === "canada" && isFrench;
+      const usePortuguese = region === "brasil" || region === "brasil-seguros";
+      const useSpanish =
+        region === "mexico" ||
+        region === "mexico-seguros" ||
+        region === "colombia";
+      const useChinese = region === "china" && !isEnglish;
+      const useJapanese = region === "japan" && !isEnglish;
+      const useKorean = region === "korea";
+
+      const TITLE_EN = "404 error";
+      const TITLE_DE = "404 Fehler";
+      const TITLE_FR = "Erreur 404";
+      const TITLE_PT = "Erro 404";
+      const TITLE_ES = "Error 404";
+      const TITLE_ZH = "404错误";
+      const TITLE_JP = "404エラー";
+      const TITLE_KO = "404 에러";
+
+      const HEADLINE_EN = "Page not found";
+      const HEADLINE_DE = "Seite nicht gefunden";
+      const HEADLINE_FR = "Page introuvable";
+      const HEADLINE_PT = "Página não encontrada";
+      const HEADLINE_ES = "Página no encontrada";
+      const HEADLINE_ZH = "网页未找到";
+      const HEADLINE_JP = "ページが見つかりません";
+      const HEADLINE_KO = "페이지를 찾을 수 없습니다.";
+
+      const ERROR_EN = "Oops! Looks like you got lost in space.";
+      const ERROR_DE = "Oops! Es scheint Sie haben sich im Universum verloren.";
+      const ERROR_FR =
+        "Oups ! Il semble que vous vous soyez perdu dans l'espace.";
+      const ERROR_PT = "Oops! Parece que se você se perdeu!";
+      const ERROR_ES = "Oops! Parece que se perdió";
+      const ERROR_ZH = "哎呀！看来你迷路了";
+      const ERROR_JP = "お探しのページは削除された可能性があります。";
+      const ERROR_KO = "Oops! Looks like you got lost in space."; // For consistency. This one is missing in the i18n wiki
+
+      const HOME_LABEL_EN = "Go to Homepage";
+      const HOME_LABEL_DE = "Zur Homepage gehen";
+      const HOME_LABEL_FR = "Aller à la page d'accueil";
+      const HOME_LABEL_PT = "Ir para a página de início";
+      const HOME_LABEL_ES = "Ir a la página de inicio";
+      const HOME_LABEL_ZH = "返回主页";
+      const HOME_LABEL_JP = "ホームページへ";
+      const HOME_LABEL_KO = "홈페이지 바로가기";
+
+      let title = TITLE_EN;
+      let headline = HEADLINE_EN;
+      let errorMessage = ERROR_EN;
+      let downloadButtonLabel = HOME_LABEL_EN;
+
+      if (useFrench) {
+        title = TITLE_FR;
+        headline = HEADLINE_FR;
+        errorMessage = ERROR_FR;
+        downloadButtonLabel = HOME_LABEL_FR;
+      } else if (usePortuguese) {
+        title = TITLE_PT;
+        headline = HEADLINE_PT;
+        errorMessage = ERROR_PT;
+        downloadButtonLabel = HOME_LABEL_PT;
+      } else if (useSpanish) {
+        title = TITLE_ES;
+        headline = HEADLINE_ES;
+        errorMessage = ERROR_ES;
+        downloadButtonLabel = HOME_LABEL_ES;
+      } else if (useChinese) {
+        title = TITLE_ZH;
+        headline = HEADLINE_ZH;
+        errorMessage = ERROR_ZH;
+        downloadButtonLabel = HOME_LABEL_ZH;
+      } else if (useJapanese) {
+        title = TITLE_JP;
+        headline = HEADLINE_JP;
+        errorMessage = ERROR_JP;
+        downloadButtonLabel = HOME_LABEL_JP;
+      } else if (useKorean) {
+        title = TITLE_KO;
+        headline = HEADLINE_KO;
+        errorMessage = ERROR_KO;
+        downloadButtonLabel = HOME_LABEL_KO;
+      } else {
+        if (
+          isSiteByPaths([
+            "https://www.pensionskasse-swissre.ch",
+            "pk-swre.com"
+          ]) &&
+          !isEnglish
+        ) {
+          title = TITLE_DE;
+          headline = HEADLINE_DE;
+          errorMessage = ERROR_DE;
+          downloadButtonLabel = HOME_LABEL_DE;
+        }
+      }
+
+      // Set Section Title
+      const sectionTitle = document.querySelector(".SectionTitle--title");
+      if (sectionTitle) {
+        sectionTitle.textContent = title;
+      }
+
+      // Set Headline
+      const sectionHeadline = document.querySelector(".SectionTitle--headline");
+      if (sectionHeadline) {
+        sectionHeadline.textContent = headline;
+      }
+
+      // Set Error message
+      const errorMessageContent = document.querySelector(
+        ".ErrorMessage--content"
+      );
+      if (errorMessageContent) {
+        errorMessageContent.textContent = errorMessage;
+      }
+
+      // Set Homepage button label
+      const homePageLabel = document.querySelector(
+        ".SectionContainer--footer .Button--content"
+      );
+      if (homePageLabel) {
+        homePageLabel.textContent = downloadButtonLabel;
+      }
+    }
+
+    // Load css for iptiq due to its different navigation
+    function appendCss(path) {
+      var linkElement = document.createElement("link");
+      linkElement.rel = "stylesheet";
+      linkElement.href = path;
+      document.head.appendChild(linkElement);
+    }
+
+    // Changes the second part of the title with the title provided by extracted title element from the source page
+    function updatePageTitle(titleElement) {
+      const parts = titleElement.textContent.split("|");
+      const suffix = parts[parts.length - 1];
+      const title = "Page Not Found | " + suffix;
+      const pageTitle = document.querySelector("title");
+      if (pageTitle) {
+        pageTitle.textContent = title;
+      }
+    }
+
+    function updateFavIcon(path) {
+      var linkElement = document.createElement("link");
+      linkElement.type = "image/png";
+      linkElement.rel = "icon";
+      linkElement.sizes = "32x32";
+      linkElement.href = path;
+      document.head.appendChild(linkElement);
+    }
+
+    // Checks site and returns the base path for the fetch call
+    function getUrlForHeader(url) {
+      const region = getRegion(url);
+      const isEnglish = currentURL.includes("/en/");
+      const isFrench = currentURL.includes("/fr/");
+
+      if (isSiteByPaths(["corporatesolutions.swissre.com", "cs-swre.com"])) {
+        const link = "https://corporatesolutions.swissre.com";
+        if (region && isEnglish) {
+          return link + "/en/" + region;
+        } else if (region) {
+          return link + "/" + region;
+        } else {
+          return link;
+        }
+      } else if (isSiteByPaths([".pensionskasse-swissre.ch", "pk-swre.com"])) {
+        const link = "https://www.pensionskasse-swissre.ch";
+        if (isEnglish) {
+          return link + "/en/";
+        } else {
+          return link;
+        }
+      } else if (
+        isSiteByPaths([".swissrefoundation.org", "foundation.swre.com"])
+      ) {
+        return "https://www.swissrefoundation.org";
+      } else if (isSiteByPaths([".srilim.com", "srilim.swre.com"])) {
+        return "https://www.srilim.com";
+      } else if (isSiteByPaths([".iptiq.com", "iptiq.swre.com"])) {
+        return "https://www.iptiq.com";
+      } else {
+        const link = "https://www.swissre.com";
+        if (region && isEnglish) {
+          return link + "/en/" + region;
+        } else if (region && isFrench) {
+          return link + "/fr/" + region;
+        } else if (region) {
+          return link + "/" + region;
+        } else {
+          return link;
+        }
+      }
+    }
+
+    // Checks for known region, returns stripped region from slashed. If not found empty string is returned
+    function getRegion(url) {
+      const regions = [
+        "/australia_newzealand/",
+        "/brasil/",
+        "/china/",
+        "/colombia/",
+        "/japan/",
+        "/korea/",
+        "/mexico/",
+        "/australia-newzealand/",
+        "/brasil-seguros/",
+        "/mexico-seguros/",
+        "/canada/"
+      ];
+      const region = regions.find((reg) => url.includes(reg));
+      return region ? region.replace(/\//g, "") : "";
+    }
+
+    function isCountrySite(url) {
+      return !!getRegion(url);
+    }
+
+    // Checks if the current url contains any string provided by "paths" array parameter
+    function isSiteByPaths(paths) {
+      if (!paths || (paths && paths.length < 1)) return false;
+      const url = location.href;
+      return paths.some((path) => url.includes(path));
+    }
+  </script>
+
+  <script id="svgicons-script">
+    //<![CDATA[
+    !(function (e, s) {
+      function n(e) {
+        var s = document.getElementById("svgicons-sprite");
+        s && s.parentNode.removeChild(s);
+        var n = c.svgicons.replace(
+          "<svg ",
+          '<svg id="svgicons-sprite" style="display: none"'
+        );
+        document.body.insertAdjacentHTML("beforeend", n);
+      }
+      var o,
+        t,
+        i,
+        c = window.localStorage || {};
+      ((c.svgicons && c.svgicons_revision == s) ||
+        ((o = "/.resources/swissre-web/webresources/img/svg-sprite.svg"),
+        (t = function (e) {
+          ((c.svgicons = e), (c.svgicons_revision = s), n());
+        }),
+        ((i = new XMLHttpRequest()).onreadystatechange = function () {
+          4 === i.readyState && 200 === i.status && t && t(i.responseText);
+        }),
+        i.open("GET", o),
+        i.send()),
+        c.svgicons && n());
+    })(0, "");
+    //]]>
+  </script>
+</html>

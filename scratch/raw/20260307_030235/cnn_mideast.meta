@@ -1,0 +1,10 @@
+{
+  "id": "cnn_mideast",
+  "tier": 2,
+  "method": "rss",
+  "url": "http://rss.cnn.com/rss/edition_middleeast.rss",
+  "http_code": 404,
+  "size_bytes": 1652,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:36Z"
+}

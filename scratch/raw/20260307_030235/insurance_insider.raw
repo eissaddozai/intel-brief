@@ -1,0 +1,683 @@
+<!doctype html><html lang="en"><head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="shortcut icon" href="https://www.insuranceinsider.com/hubfs/Favicons.png">
+    <meta name="description" content="">
+
+      
+      
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    
+    <meta property="og:description" content="">
+    <meta property="og:title" content="">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="">
+
+    
+
+    
+    <style>
+a.cta_button{-moz-box-sizing:content-box !important;-webkit-box-sizing:content-box !important;box-sizing:content-box !important;vertical-align:middle}.hs-breadcrumb-menu{list-style-type:none;margin:0px 0px 0px 0px;padding:0px 0px 0px 0px}.hs-breadcrumb-menu-item{float:left;padding:10px 0px 10px 10px}.hs-breadcrumb-menu-divider:before{content:'›';padding-left:10px}.hs-featured-image-link{border:0}.hs-featured-image{float:right;margin:0 0 20px 20px;max-width:50%}@media (max-width: 568px){.hs-featured-image{float:none;margin:0;width:100%;max-width:100%}}.hs-screen-reader-text{clip:rect(1px, 1px, 1px, 1px);height:1px;overflow:hidden;position:absolute !important;width:1px}
+</style>
+
+<link rel="stylesheet" href="https://www.insuranceinsider.com/hubfs/hub_generated/template_assets/1/203013597617/1772785110288/template_styles.min.css">
+<link rel="stylesheet" href="https://www.insuranceinsider.com/hubfs/hub_generated/template_assets/1/207741049707/1772785110290/template_blog.min.css">
+<link class="hs-async-css" rel="preload" href="https://www.insuranceinsider.com/hubfs/hub_generated/module_assets/1/203013597542/1772546434109/module_u4m-header.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://www.insuranceinsider.com/hubfs/hub_generated/module_assets/1/203013597542/1772546434109/module_u4m-header.min.css"></noscript>
+<link class="hs-async-css" rel="preload" href="https://www.insuranceinsider.com/hubfs/hub_generated/module_assets/1/203014316153/1770650081974/module_u4m-footer.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://www.insuranceinsider.com/hubfs/hub_generated/module_assets/1/203014316153/1770650081974/module_u4m-footer.min.css"></noscript>
+    
+
+    
+<!--  Added by GoogleAnalytics4 integration -->
+<script>
+var _hsp = window._hsp = window._hsp || [];
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+var useGoogleConsentModeV2 = true;
+var waitForUpdateMillis = 1000;
+
+
+if (!window._hsGoogleConsentRunOnce) {
+  window._hsGoogleConsentRunOnce = true;
+
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'wait_for_update': waitForUpdateMillis
+  });
+
+  if (useGoogleConsentModeV2) {
+    _hsp.push(['useGoogleConsentModeV2'])
+  } else {
+    _hsp.push(['addPrivacyConsentListener', function(consent){
+      var hasAnalyticsConsent = consent && (consent.allowed || (consent.categories && consent.categories.analytics));
+      var hasAdsConsent = consent && (consent.allowed || (consent.categories && consent.categories.advertisement));
+
+      gtag('consent', 'update', {
+        'ad_storage': hasAdsConsent ? 'granted' : 'denied',
+        'analytics_storage': hasAnalyticsConsent ? 'granted' : 'denied',
+        'ad_user_data': hasAdsConsent ? 'granted' : 'denied',
+        'ad_personalization': hasAdsConsent ? 'granted' : 'denied'
+      });
+    }]);
+  }
+}
+
+gtag('js', new Date());
+gtag('set', 'developer_id.dZTQ1Zm', true);
+gtag('config', 'G-BTDH1276D4');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BTDH1276D4"></script>
+
+<!-- /Added by GoogleAnalytics4 integration -->
+
+<!--  Added by GoogleTagManager integration -->
+<script>
+var _hsp = window._hsp = window._hsp || [];
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+
+var useGoogleConsentModeV2 = true;
+var waitForUpdateMillis = 1000;
+
+
+
+var hsLoadGtm = function loadGtm() {
+    if(window._hsGtmLoadOnce) {
+      return;
+    }
+
+    if (useGoogleConsentModeV2) {
+
+      gtag('set','developer_id.dZTQ1Zm',true);
+
+      gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'ad_user_data': 'denied',
+      'ad_personalization': 'denied',
+      'wait_for_update': waitForUpdateMillis
+      });
+
+      _hsp.push(['useGoogleConsentModeV2'])
+    }
+
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-TNSR6VPQ');
+
+    window._hsGtmLoadOnce = true;
+};
+
+_hsp.push(['addPrivacyConsentListener', function(consent){
+  if(consent.allowed || (consent.categories && consent.categories.analytics)){
+    hsLoadGtm();
+  }
+}]);
+
+</script>
+
+<!-- /Added by GoogleTagManager integration -->
+
+    <link rel="canonical" href="https://www.insuranceinsider.com/404">
+
+<script src="https://t.contentsquare.net/uxa/a7eed7fb33672.js"></script>
+<meta property="og:url" content="https://www.insuranceinsider.com/404">
+<meta name="twitter:card" content="summary">
+<meta http-equiv="content-language" content="en">
+
+
+
+
+
+
+    
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+
+<meta name="generator" content="HubSpot"></head>
+<body class="  hs-content-id-0 hs-site-page page  ">
+<!--  Added by GoogleTagManager integration -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TNSR6VPQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<!-- /Added by GoogleTagManager integration -->
+
+    
+        <div id="hs_cos_wrapper_u4m-header" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><header class="u4m-header">
+  <a class="skip-to-content-link" href="#main-content">Skip to content</a>
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-bar-left">
+        
+      </div>
+      <div class="top-bar-right">
+        <div class="login-dropdown-wrapper">
+          <button class="login-toggle" type="button" aria-expanded="false" aria-haspopup="true">
+            <span>Login</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="8" height="5" viewbox="0 0 8 5" fill="none">
+            <path d="M3.71667 4.36667C3.62778 4.36667 3.54444 4.35278 3.46667 4.325C3.38889 4.29722 3.31667 4.25 3.25 4.18333L0.183333 1.11667C0.0611111 0.994444 0 0.838889 0 0.65C0 0.461111 0.0611111 0.305555 0.183333 0.183333C0.305556 0.0611111 0.461111 0 0.65 0C0.838889 0 0.994444 0.0611111 1.11667 0.183333L3.71667 2.78333L6.31667 0.183333C6.43889 0.0611111 6.59444 0 6.78333 0C6.97222 0 7.12778 0.0611111 7.25 0.183333C7.37222 0.305555 7.43333 0.461111 7.43333 0.65C7.43333 0.838889 7.37222 0.994444 7.25 1.11667L4.18333 4.18333C4.11667 4.25 4.04444 4.29722 3.96667 4.325C3.88889 4.35278 3.80556 4.36667 3.71667 4.36667Z" fill="white" />
+          </svg>
+          </button>
+          <div class="login-dropdown" role="menu">
+            
+              <a href="https://www.insuranceinsider.com/login?hsLang=en" class="login-dropdown-item login-item-red" role="menuitem">
+                <div class="login-item-logo">
+                  <img src="https://www.insuranceinsider.com/hubfs/Group%2034.svg" alt="Group 34" width="20" height="20">
+                </div>
+                <div class="login-item-content">
+                  <span class="login-item-text">Insurance Insider</span>
+                </div>
+              </a>
+            
+            
+              <a href="https://www.insuranceinsiderus.com/login" class="login-dropdown-item login-item-light_blue" role="menuitem">
+                <div class="login-item-logo">
+                  <img src="https://www.insuranceinsider.com/hubfs/Group%2035.svg" alt="Group 35" width="20" height="20">
+                </div>
+                <div class="login-item-content">
+                  <span class="login-item-text">Insurance Insider US</span>
+                </div>
+              </a>
+            
+            
+              <a href="https://www.insuranceinsiderils.com/login" class="login-dropdown-item login-item-dark_blue" role="menuitem">
+                <div class="login-item-logo">
+                  <img src="https://www.insuranceinsider.com/hubfs/Group%2036.svg" alt="Group 36" width="20" height="20">
+                </div>
+                <div class="login-item-content">
+                  <span class="login-item-text">Insurance Insider ILS</span>
+                </div>
+              </a>
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="inner">
+    <div class="logo">
+      <a href="https://www.insuranceinsider.com/?hsLang=en">
+        <img src="https://www.insuranceinsider.com/hubfs/30th%20Anniversary_Full%20Lockup_colour.svg" width="300" height="144" alt="30th Anniversary_Full Lockup_colour">
+      </a>
+    </div>
+    <div class="menu">
+      <span id="hs_cos_wrapper_u4m-header_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="menu"><div id="hs_menu_wrapper_u4m-header_" class="hs-menu-wrapper active-branch flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="default" data-menu-id="203026074549" aria-label="Navigation Menu">
+ <ul role="menu">
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Products</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/products-overview" role="menuitem">Subscription service</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/marketing-services" role="menuitem">Events &amp; marketing services</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Solutions</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/solutions-overview" role="menuitem">Solutions overview</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-carriers" role="menuitem">Carriers, (re)insurers and InsurTechs</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-brokers" role="menuitem">Brokers, distributors and MGAs</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-investors" role="menuitem">Finance &amp; investors</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-service-providers" role="menuitem">Service providers</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Resources</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/sample-content" role="menuitem">Sample content</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/resources" role="menuitem">Resource centre</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.portal.insuranceinsider.com/podcasts/behind-the-headlines" role="menuitem" target="_blank" rel="noopener">Podcast</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/products-overview#FAQs" role="menuitem">FAQs</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">About</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/about-us" role="menuitem">About us</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/contact-us" role="menuitem">Contact us</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Multimedia</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.portal.insuranceinsider.com/insider-on-air/" role="menuitem" target="_blank" rel="noopener">Insider on Air</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.portal.insuranceinsider.com/insider-on-air/video-interviews" role="menuitem" target="_blank" rel="noopener">Videos</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.portal.insuranceinsider.com/insider-on-air/webinars" role="menuitem" target="_blank" rel="noopener">Webinars</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.portal.insuranceinsider.com/insider-on-air/podcasts" role="menuitem" target="_blank" rel="noopener">Podcasts</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Events</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/events" role="menuitem">All events</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/executive-business-club" role="menuitem">Executive Business Club</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/events/insider-progress" role="menuitem">Insider Progress</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.events.insuranceinsider.com/NYC26" role="menuitem" target="_blank" rel="noopener">New York Conference 2026</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.events.insuranceinsider.com/ilsconnect/10461286" role="menuitem" target="_blank" rel="noopener">ILS Connect 2026</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.events.insuranceinsider.com/ils-awards-2026/10461117" role="menuitem" target="_blank" rel="noopener">ILS Awards 2026</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.events.insuranceinsider.com/insiderhonours" role="menuitem" target="_blank" rel="noopener">Honours 2026</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/events#Industry-events" role="menuitem">Industry events</a></li>
+   </ul></li>
+ </ul>
+</div></span>
+    </div>
+    
+    <div class="cta-wrapper">
+      
+      <div class="cta cta-stroked">
+        
+          <a href="https://www.insuranceinsider.com/get-pricing?hsLang=en">Pricing</a>
+        
+      </div>
+      
+      
+      <div class="cta cta-filled">
+        
+          <a href="https://www.insuranceinsider.com/free-trial?hsLang=en">Free trial</a>
+        
+      </div>
+      
+    </div>
+    
+
+    <button class="hamburger-toggle x2"><span class="lines"></span></button>
+    <div class="offscreen-menu">
+      <div class="content">
+        <div class="mobile-menu">
+        <span id="hs_cos_wrapper_u4m-header_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_menu" style="" data-hs-cos-general-type="widget" data-hs-cos-type="menu"><div id="hs_menu_wrapper_u4m-header_" class="hs-menu-wrapper active-branch no-flyouts hs-menu-flow-vertical" role="navigation" data-sitemap-name="default" data-menu-id="203026074549" aria-label="Navigation Menu">
+ <ul role="menu">
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Products</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/products-overview" role="menuitem">Subscription service</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/marketing-services" role="menuitem">Events &amp; marketing services</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Solutions</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/solutions-overview" role="menuitem">Solutions overview</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-carriers" role="menuitem">Carriers, (re)insurers and InsurTechs</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-brokers" role="menuitem">Brokers, distributors and MGAs</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-investors" role="menuitem">Finance &amp; investors</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-service-providers" role="menuitem">Service providers</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Resources</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/sample-content" role="menuitem">Sample content</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/resources" role="menuitem">Resource centre</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.portal.insuranceinsider.com/podcasts/behind-the-headlines" role="menuitem" target="_blank" rel="noopener">Podcast</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/products-overview#FAQs" role="menuitem">FAQs</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">About</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/about-us" role="menuitem">About us</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/contact-us" role="menuitem">Contact us</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Multimedia</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.portal.insuranceinsider.com/insider-on-air/" role="menuitem" target="_blank" rel="noopener">Insider on Air</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.portal.insuranceinsider.com/insider-on-air/video-interviews" role="menuitem" target="_blank" rel="noopener">Videos</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.portal.insuranceinsider.com/insider-on-air/webinars" role="menuitem" target="_blank" rel="noopener">Webinars</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.portal.insuranceinsider.com/insider-on-air/podcasts" role="menuitem" target="_blank" rel="noopener">Podcasts</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Events</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/events" role="menuitem">All events</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/executive-business-club" role="menuitem">Executive Business Club</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/events/insider-progress" role="menuitem">Insider Progress</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.events.insuranceinsider.com/NYC26" role="menuitem" target="_blank" rel="noopener">New York Conference 2026</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.events.insuranceinsider.com/ilsconnect/10461286" role="menuitem" target="_blank" rel="noopener">ILS Connect 2026</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.events.insuranceinsider.com/ils-awards-2026/10461117" role="menuitem" target="_blank" rel="noopener">ILS Awards 2026</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.events.insuranceinsider.com/insiderhonours" role="menuitem" target="_blank" rel="noopener">Honours 2026</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/events#Industry-events" role="menuitem">Industry events</a></li>
+   </ul></li>
+ </ul>
+</div></span>
+          </div>
+        
+        <div class="mobile-cta-wrapper">
+          
+          <div class="mobile-cta mobile-cta-stroked">
+            
+              <a href="https://www.insuranceinsider.com/get-pricing?hsLang=en">Pricing</a>
+            
+          </div>
+          
+          
+          <div class="mobile-cta mobile-cta-filled">
+            
+              <a href="https://www.insuranceinsider.com/free-trial?hsLang=en">Free trial</a>
+            
+          </div>
+          
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</header></div>
+    
+
+    
+  <main id="main-content" class="body-container-wrapper">
+  <section class="u4m-404-error">
+    <h1 class="heading">404 Error - We're sorry the page you're looking for isn't available.</h1>
+    <p>Please use the main menu to find what you're looking for.</p>
+  </section>
+  </main>
+
+    
+    
+        <div id="hs_cos_wrapper_u4m-footer" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" style="" data-hs-cos-general-type="widget" data-hs-cos-type="module"><footer class="u4m-footer">
+  <div class="inner">
+    <div class="logo-and-menu">
+      <div class="logos">
+        
+        <div class="logo">
+          
+          
+          <a href="https://www.portal.insuranceinsider.com/login?hsLang=en" target="_blank" rel="noopener">
+            <img loading="lazy" src="https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle.png?width=240&amp;height=114&amp;name=Rectangle.png" width="240" height="114" alt="Rectangle" srcset="https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle.png?width=120&amp;height=57&amp;name=Rectangle.png 120w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle.png?width=240&amp;height=114&amp;name=Rectangle.png 240w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle.png?width=360&amp;height=171&amp;name=Rectangle.png 360w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle.png?width=480&amp;height=228&amp;name=Rectangle.png 480w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle.png?width=600&amp;height=285&amp;name=Rectangle.png 600w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle.png?width=720&amp;height=342&amp;name=Rectangle.png 720w" sizes="(max-width: 240px) 100vw, 240px">
+          </a>
+        </div>
+        
+        
+        <div class="logo">
+          
+          
+          <a href="https://www.insuranceinsiderus.com/login" target="_blank" rel="noopener">
+            <img loading="lazy" src="https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-1.png?width=240&amp;height=111&amp;name=Rectangle-1.png" width="240" height="111" alt="Rectangle-1" srcset="https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-1.png?width=120&amp;height=56&amp;name=Rectangle-1.png 120w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-1.png?width=240&amp;height=111&amp;name=Rectangle-1.png 240w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-1.png?width=360&amp;height=167&amp;name=Rectangle-1.png 360w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-1.png?width=480&amp;height=222&amp;name=Rectangle-1.png 480w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-1.png?width=600&amp;height=278&amp;name=Rectangle-1.png 600w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-1.png?width=720&amp;height=333&amp;name=Rectangle-1.png 720w" sizes="(max-width: 240px) 100vw, 240px">
+          </a>
+        </div>
+        
+        
+        <div class="logo">
+          
+          
+          <a href="https://www.insuranceinsiderils.com/login" target="_blank" rel="noopener">
+            <img loading="lazy" src="https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-2.png?width=240&amp;height=110&amp;name=Rectangle-2.png" width="240" height="110" alt="Rectangle-2" srcset="https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-2.png?width=120&amp;height=55&amp;name=Rectangle-2.png 120w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-2.png?width=240&amp;height=110&amp;name=Rectangle-2.png 240w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-2.png?width=360&amp;height=165&amp;name=Rectangle-2.png 360w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-2.png?width=480&amp;height=220&amp;name=Rectangle-2.png 480w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-2.png?width=600&amp;height=275&amp;name=Rectangle-2.png 600w, https://www.insuranceinsider.com/hs-fs/hubfs/Rectangle-2.png?width=720&amp;height=330&amp;name=Rectangle-2.png 720w" sizes="(max-width: 240px) 100vw, 240px">
+          </a>
+        </div>
+        
+      </div>
+      <div class="menu">
+        <div id="hs_menu_wrapper_u4m-footer_" class="hs-menu-wrapper active-branch no-flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="default" data-menu-id="203032162723" aria-label="Navigation Menu">
+ <ul role="menu">
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Products</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/products-overview" role="menuitem">Subscription service</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/marketing-services" role="menuitem">Events &amp; marketing services</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Solutions</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/solutions-overview" role="menuitem">Solutions overview</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-carriers" role="menuitem">Carriers, (re)insurers and InsurTechs</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-brokers" role="menuitem">Brokers, distributors and MGAs</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-investors" role="menuitem">Finance and investors</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/who-we-serve-service-providers" role="menuitem">Service providers</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Insights &amp; events</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/resources" role="menuitem">Resources</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/events" role="menuitem">Events</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/marketing-services" role="menuitem">Marketing services</a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/products-overview#FAQs" role="menuitem">Subscription FAQs</a></li>
+   </ul></li>
+  <li class="hs-menu-item hs-menu-depth-1 hs-item-has-children" role="none"><a href="javascript:;" aria-haspopup="true" aria-expanded="false" role="menuitem">Company</a>
+   <ul role="menu" class="hs-menu-children-wrapper">
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/about-us" role="menuitem">About us </a></li>
+    <li class="hs-menu-item hs-menu-depth-2" role="none"><a href="https://www.insuranceinsider.com/contact-us" role="menuitem">Contact us</a></li>
+   </ul></li>
+ </ul>
+</div>
+      </div>
+    </div>
+
+    <div class="subscribe-and-addresses">
+      <div class="subscribe-section">
+        <h3>Subscribe to our newsletter</h3>
+        <div class="subscribe-form">
+          
+
+          
+          
+          
+
+        
+          
+
+
+          <span id="hs_cos_wrapper_u4m-footer_" class="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_form" style="" data-hs-cos-general-type="widget" data-hs-cos-type="form"><h3 id="hs_cos_wrapper_u4m-footer__title" class="hs_cos_wrapper form-title" data-hs-cos-general-type="widget_field" data-hs-cos-type="text"></h3>
+
+<div id="hs_form_target_u4m-footer_"></div>
+
+
+
+
+
+
+
+
+
+</span>
+
+          
+        </div>
+      </div>
+
+      <div class="addresses-section">
+        <div class="address-box">
+          <div class="address-header">
+            
+            <div class="flag"><img src="https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/great-britian.png?width=42&amp;height=42&amp;name=great-britian.png" alt="great-britian" width="42" height="42" loading="lazy" srcset="https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/great-britian.png?width=21&amp;height=21&amp;name=great-britian.png 21w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/great-britian.png?width=42&amp;height=42&amp;name=great-britian.png 42w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/great-britian.png?width=63&amp;height=63&amp;name=great-britian.png 63w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/great-britian.png?width=84&amp;height=84&amp;name=great-britian.png 84w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/great-britian.png?width=105&amp;height=105&amp;name=great-britian.png 105w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/great-britian.png?width=126&amp;height=126&amp;name=great-britian.png 126w" sizes="(max-width: 42px) 100vw, 42px"></div>
+            
+            <h4>London office</h4>
+          </div>
+          <p>16-18 Middlesex Street
+E1 7EX
+United Kingdom</p>
+        </div>
+        <div class="address-box">
+          <div class="address-header">
+            
+            <div class="flag"><img src="https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/usa.png?width=42&amp;height=42&amp;name=usa.png" alt="usa" width="42" height="42" loading="lazy" srcset="https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/usa.png?width=21&amp;height=21&amp;name=usa.png 21w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/usa.png?width=42&amp;height=42&amp;name=usa.png 42w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/usa.png?width=63&amp;height=63&amp;name=usa.png 63w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/usa.png?width=84&amp;height=84&amp;name=usa.png 84w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/usa.png?width=105&amp;height=105&amp;name=usa.png 105w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/usa.png?width=126&amp;height=126&amp;name=usa.png 126w" sizes="(max-width: 42px) 100vw, 42px"></div>
+            
+            <h4>US office</h4>
+          </div>
+          <p>230 Park Avenue
+3rd Floor
+New York, NY 10169
+United States</p>
+        </div>
+        <div class="address-box">
+          <div class="address-header">
+            
+            <div class="flag"><img src="https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/bulgaria.png?width=42&amp;height=42&amp;name=bulgaria.png" alt="bulgaria" width="42" height="42" loading="lazy" srcset="https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/bulgaria.png?width=21&amp;height=21&amp;name=bulgaria.png 21w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/bulgaria.png?width=42&amp;height=42&amp;name=bulgaria.png 42w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/bulgaria.png?width=63&amp;height=63&amp;name=bulgaria.png 63w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/bulgaria.png?width=84&amp;height=84&amp;name=bulgaria.png 84w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/bulgaria.png?width=105&amp;height=105&amp;name=bulgaria.png 105w, https://www.insuranceinsider.com/hs-fs/hubfs/footer%20icons/bulgaria.png?width=126&amp;height=126&amp;name=bulgaria.png 126w" sizes="(max-width: 42px) 100vw, 42px"></div>
+            
+            <h4>Bulgaria office</h4>
+          </div>
+          <p>31 Alexander Malinov Blvd
+1729 Sofia
+Bulgaria</p>
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="description-text">
+      <p><i>Insurance Insider</i> is the premier intelligence source for the London market, global (re)insurance, the US domestic sector and the ILS space.</p>
+    </div>
+    
+
+    <div class="colophon-and-social">
+      <div class="colophon">
+        <div class="links">
+          <div class="copyright">© 2026 Insider International Limited, company number 15236286. All rights reserved.</div>
+          <div id="hs_menu_wrapper_u4m-footer_" class="hs-menu-wrapper active-branch no-flyouts hs-menu-flow-horizontal" role="navigation" data-sitemap-name="default" data-menu-id="203032162730" aria-label="Navigation Menu">
+ <ul role="menu">
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.insuranceinsider.com/accessibility" role="menuitem">Accessibility</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.insuranceinsider.com/terms-and-conditions" role="menuitem">Terms of use</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.insuranceinsider.com/privacy-policy" role="menuitem">Privacy policy</a></li>
+  <li class="hs-menu-item hs-menu-depth-1" role="none"><a href="https://www.insuranceinsider.com/cookies-policy" role="menuitem">Cookie policy</a></li>
+ </ul>
+</div>
+        </div>
+      </div>
+      <div class="social">
+        <ul>
+          <li><a href="https://x.com/InsuranceInside" target="_blank" aria-label="Twitter" rel="noopener" class="x-social"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewbox="0 0 21 20" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M19.6577 0L2.24528 20H0.173706L17.5861 0H19.6577Z" fill="#818180" /><path fill-rule="evenodd" clip-rule="evenodd" d="M5.48687 1.66667L17.0205 18.3333H14.725L3.19134 1.66667H5.48687ZM6.38269 0H0L13.8292 20H20.2118L6.38269 0Z" fill="#818180" /></svg></a></li>
+          <li><a href="https://www.slipcase.com/company/insurance-insider" target="_blank" aria-label="Slipcase" rel="noopener" class="slipcase-social"><svg xmlns="http://www.w3.org/2000/svg" width="19" height="20" viewbox="0 0 19 20" fill="none"><path d="M17.7834 7.71559C17.7271 7.68433 17.6688 7.65718 17.6087 7.63399C17.5486 7.61094 17.4872 7.59214 17.4246 7.57771C17.362 7.56315 17.2987 7.55311 17.2347 7.54745C17.1707 7.5418 17.1067 7.54067 17.0424 7.54392C16.9783 7.54731 16.9147 7.55495 16.8516 7.56725C16.7885 7.57941 16.7265 7.59596 16.6657 7.61688C16.6049 7.63767 16.5456 7.6627 16.4882 7.69197C16.4307 7.7211 16.3755 7.75405 16.3225 7.79096L9.60321 12.3707L6.12499 9.99888L9.65358 7.5968L9.68335 7.57602C10.1414 7.26478 10.1568 6.72729 9.93921 6.36232C9.73455 6.01559 9.29365 5.77379 8.8092 6.04416C8.76538 6.06777 8.72294 6.09379 8.68204 6.12222L4.55143 8.92914L1.83828 7.0801L9.58874 1.80352L14.7361 5.22499L14.7659 5.24578C14.8375 5.29626 14.9147 5.33472 14.9978 5.36145C15.0807 5.38817 15.1659 5.40203 15.253 5.40274C15.3232 5.40118 15.3925 5.39143 15.4607 5.37361C15.5287 5.35579 15.594 5.3302 15.6563 5.29697C15.7186 5.26374 15.7764 5.22372 15.8295 5.17677C15.8827 5.12997 15.9298 5.0775 15.971 5.01953C16.2048 4.69712 16.2601 4.18905 15.8304 3.83624C15.792 3.80527 15.7522 3.77642 15.711 3.74955L10.4928 0.280426C10.4337 0.242529 10.3722 0.209015 10.3086 0.179744C10.2534 0.150614 10.1966 0.124878 10.1384 0.102536C10.0801 0.0801938 10.0209 0.0615281 9.96036 0.0463977C9.89998 0.0312672 9.8389 0.0198132 9.77712 0.0120359C9.71535 0.00425849 9.65344 0.0001577 9.59111 1.6302e-05C9.52892 -0.000266529 9.46687 0.00312725 9.40509 0.0104804C9.34318 0.0176921 9.2821 0.0285804 9.22144 0.0432867C9.16092 0.0578516 9.10151 0.0760931 9.04308 0.0978697C8.98464 0.119788 8.92774 0.144958 8.87223 0.173805C8.80712 0.203642 8.74423 0.238004 8.68371 0.27689L0.725245 5.69573C0.577768 5.79868 0.450465 5.92297 0.343197 6.06848L0.334571 6.08149C0.183894 6.28144 0.0834427 6.50486 0.0334953 6.75162C-0.00893904 6.97094 -0.00893904 7.19026 0.0334953 7.40958C0.0582603 7.53204 0.0961034 7.65011 0.147164 7.7638C0.198363 7.8775 0.261389 7.98397 0.336379 8.0831L0.344866 8.09696H0.343197C0.449909 8.24077 0.576099 8.36379 0.721906 8.46631L2.97872 9.99888L0.725245 11.5297C0.578047 11.6327 0.450744 11.7567 0.343197 11.9016L0.334571 11.9155C0.259719 12.0146 0.196694 12.1211 0.145494 12.2348C0.0944339 12.3485 0.0564516 12.4666 0.0318258 12.5892C-0.0106086 12.8083 -0.0106086 13.0277 0.0318258 13.247C0.0564516 13.3697 0.0942947 13.4879 0.145355 13.6018C0.196555 13.7156 0.25958 13.8222 0.334571 13.9215L0.343197 13.9345C0.450744 14.0787 0.578047 14.2019 0.725245 14.3037L8.67953 19.7192C8.8131 19.8105 8.95696 19.8802 9.11097 19.928C9.26499 19.976 9.42248 19.9999 9.5836 20H9.6245C9.78575 20 9.94338 19.9761 10.0977 19.9282C10.2518 19.8804 10.3957 19.8107 10.5295 19.7192L17.9046 14.6974C17.953 14.6644 17.9994 14.6287 18.0435 14.5901C18.0877 14.5513 18.1293 14.51 18.1684 14.4662C18.2077 14.4224 18.244 14.3763 18.2775 14.3278C18.3112 14.2794 18.3416 14.2291 18.369 14.1767C18.3966 14.1246 18.4208 14.0708 18.4417 14.0155C18.4627 13.9602 18.4802 13.9038 18.4943 13.8464C18.5085 13.789 18.519 13.7307 18.5261 13.6721C18.5332 13.6132 18.5367 13.5543 18.5366 13.495V8.98726C18.537 8.92207 18.5331 8.85716 18.5247 8.79254C18.5164 8.72806 18.5037 8.66428 18.4867 8.6015C18.4698 8.53857 18.4486 8.4772 18.4234 8.41739C18.3981 8.35743 18.369 8.29959 18.3359 8.24374C18.3028 8.18802 18.2662 8.13471 18.226 8.08395C18.1857 8.03333 18.1423 7.98553 18.0955 7.94099C18.0489 7.8963 17.9994 7.85515 17.9471 7.8174C17.8949 7.77964 17.8404 7.7457 17.7834 7.71559ZM8.67953 13.8799C8.81296 13.9716 8.95682 14.0413 9.11084 14.0891C9.26499 14.137 9.42248 14.1609 9.5836 14.1608H9.60572C9.77003 14.1629 9.931 14.1401 10.0885 14.0926C10.246 14.0449 10.393 13.9747 10.5295 13.8816L16.9221 9.52898V13.2245L9.60405 18.2047L1.84259 12.9168L4.55575 11.0686L8.67953 13.8799Z" fill="#818180" /></svg></a></li>
+          <li><a href="https://www.linkedin.com/company/theinsuranceinsider/" target="_blank" aria-label="LinkedIn" rel="noopener" class="linkedin-social"><svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewbox="0 0 21 20" fill="none"><path d="M0.336335 6.6313H4.52931V19.9829H0.336335V6.6313ZM2.42161 0C3.76695 0 4.84322 1.06813 4.84322 2.40329C4.84322 3.73845 3.76695 4.80658 2.42161 4.80658C1.07627 4.80658 0 3.73845 0 2.40329C0 1.06813 1.07627 0 2.42161 0Z" fill="#818180" /><path d="M7.12689 6.62578H11.1412V8.4505H11.2084C11.7691 7.40463 13.1371 6.29199 15.1554 6.29199C19.394 6.29199 20.1789 9.05132 20.1789 12.6563V19.9774H16.0076V13.5019C16.0076 11.9442 15.9852 9.96368 13.8323 9.96368C11.657 9.96368 11.3206 11.6549 11.3206 13.3906V19.9996H7.12689V6.62578Z" fill="#818180" /></svg></a></li>
+
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer></div>
+    
+
+
+<!-- HubSpot performance collection script -->
+<script defer src="/hs/hsstatic/content-cwv-embed/static-1.1293/embed.js"></script>
+<script src="https://www.insuranceinsider.com/hubfs/hub_generated/template_assets/1/203016127817/1772785110295/template_main.min.js"></script>
+<script>
+var hsVars = hsVars || {}; hsVars['language'] = 'en';
+</script>
+
+<script src="/hs/hsstatic/cos-i18n/static-1.53/bundles/project.js"></script>
+<script src="https://302335.fs1.hubspotusercontent-na1.net/hubfs/302335/scripts/jquery-3.7.1.min.js"></script>
+<script src="https://cdn2.hubspot.net/hubfs/302335/unified3/libraries/jquery.nb.offscreenMenuToggle.min.js"></script>
+<script src="https://cdn2.hubspot.net/hubfs/302335/unified3/libraries/aos3.min.js"></script>
+<script src="https://302335.fs1.hubspotusercontent-na1.net/hubfs/302335/unified-assets/lazyload.min.js"></script>
+<script src="https://cdn2.hubspot.net/hubfs/302335/unified3/libraries/js.cookie.min.js"></script>
+<script src="https://302335.fs1.hubspotusercontent-na1.net/hubfs/302335/hc-sticky.js"></script>
+<script src="https://www.insuranceinsider.com/hubfs/hub_generated/module_assets/1/203013597542/1772546434109/module_u4m-header.min.js"></script>
+<script src="/hs/hsstatic/keyboard-accessible-menu-flyouts/static-1.17/bundles/project.js"></script>
+
+    <!--[if lte IE 8]>
+    <script charset="utf-8" src="https://js.hsforms.net/forms/v2-legacy.js"></script>
+    <![endif]-->
+
+<script data-hs-allowed="true" src="/_hcms/forms/v2.js"></script>
+
+    <script data-hs-allowed="true">
+        var options = {
+            portalId: '49587602',
+            formId: '9eecaf5a-1687-4027-97b1-1de136993c32',
+            formInstanceId: '1313',
+            
+            pageId: 'null',
+            
+            region: 'na1',
+            
+            
+            
+            
+            
+            
+            inlineMessage: "<p>Thanks for subscribing!<\/p>",
+            
+            
+            rawInlineMessage: "<p>Thanks for subscribing!<\/p>",
+            
+            
+            hsFormKey: "e79e27c9ff695e291a25d816a6d7a7c5",
+            
+            
+            css: '',
+            target: '#hs_form_target_u4m-footer_',
+            
+            
+            
+            
+            
+            
+            
+            contentType: "standard-page",
+            
+            
+            
+            formsBaseUrl: '/_hcms/forms/',
+            
+            
+            
+            formData: {
+                cssClass: 'hs-form stacked hs-custom-form'
+            }
+        };
+
+        options.getExtraMetaDataBeforeSubmit = function() {
+            var metadata = {};
+            
+
+            if (hbspt.targetedContentMetadata) {
+                var count = hbspt.targetedContentMetadata.length;
+                var targetedContentData = [];
+                for (var i = 0; i < count; i++) {
+                    var tc = hbspt.targetedContentMetadata[i];
+                     if ( tc.length !== 3) {
+                        continue;
+                     }
+                     targetedContentData.push({
+                        definitionId: tc[0],
+                        criterionId: tc[1],
+                        smartTypeId: tc[2]
+                     });
+                }
+                metadata["targetedContentMetadata"] = JSON.stringify(targetedContentData);
+            }
+
+            return metadata;
+        };
+
+        hbspt.forms.create(options);
+    </script>
+
+
+<!-- Start of HubSpot Analytics Code -->
+<script type="text/javascript">
+var _hsq = _hsq || [];
+_hsq.push(["setContentType", "standard-page"]);
+_hsq.push(["setCanonicalUrl", "https:\/\/www.insuranceinsider.com\/404"]);
+_hsq.push(["setPageId", ""]);
+_hsq.push(["setContentMetadata", {
+    "contentPageId": null,
+    "legacyPageId": null,
+    "contentFolderId": null,
+    "contentGroupId": null,
+    "abTestId": null,
+    "languageVariantId": null,
+    "languageCode": "en",
+    
+    
+}]);
+</script>
+
+<script type="text/javascript" id="hs-script-loader" async defer src="/hs/scriptloader/49587602.js"></script>
+<!-- End of HubSpot Analytics Code -->
+
+
+<script type="text/javascript">
+var hsVars = {
+    render_id: "400ba343-eb24-4361-92d3-f97de6b1065a",
+    ticks: 1772852558820,
+    page_id: 0,
+    
+    content_group_id: 0,
+    portal_id: 49587602,
+    app_hs_base_url: "https://app.hubspot.com",
+    cp_hs_base_url: "https://cp.hubspot.com",
+    language: "en",
+    analytics_page_type: "standard-page",
+    scp_content_type: "",
+    
+    analytics_page_id: "null",
+    category_id: 1,
+    folder_id: 0,
+    is_hubspot_user: false
+}
+</script>
+
+
+<script defer src="/hs/hsstatic/HubspotToolsMenu/static-1.640/js/index.js"></script>
+
+
+
+
+
+</body></html>

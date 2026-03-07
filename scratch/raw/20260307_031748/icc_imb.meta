@@ -1,0 +1,10 @@
+{
+  "id": "icc_imb",
+  "tier": 2,
+  "method": "scrape",
+  "url": "https://www.icc-ccs.org/icc/imb",
+  "http_code": 200,
+  "size_bytes": 140563,
+  "fetch_duration_s": 3,
+  "timestamp": "2026-03-07T03:17:53Z"
+}

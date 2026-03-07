@@ -1,0 +1,10 @@
+{
+  "id": "france24_observers",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://observers.france24.com/en/rss",
+  "http_code": 200,
+  "size_bytes": 22892,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:02:36Z"
+}

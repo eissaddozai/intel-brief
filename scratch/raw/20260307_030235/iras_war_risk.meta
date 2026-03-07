@@ -1,0 +1,10 @@
+{
+  "id": "iras_war_risk",
+  "tier": 3,
+  "method": "scrape",
+  "url": "https://www.iras.co.uk/news/",
+  "http_code": 200,
+  "size_bytes": 11633,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:02:40Z"
+}

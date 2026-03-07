@@ -1,0 +1,10 @@
+{
+  "id": "bbc_persian",
+  "tier": 2,
+  "method": "scrape",
+  "url": "https://www.bbc.com/persian",
+  "http_code": 200,
+  "size_bytes": 470534,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:37Z"
+}

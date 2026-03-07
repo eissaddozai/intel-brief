@@ -1,0 +1,10 @@
+{
+  "id": "insurance_journal",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://www.insurancejournal.com/rss/topics/marine/",
+  "http_code": 200,
+  "size_bytes": 2214,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:38Z"
+}

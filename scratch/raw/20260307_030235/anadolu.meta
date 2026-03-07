@@ -1,0 +1,10 @@
+{
+  "id": "anadolu",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://www.aa.com.tr/en/rss/default?cat=world",
+  "http_code": 200,
+  "size_bytes": 19590,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:37Z"
+}

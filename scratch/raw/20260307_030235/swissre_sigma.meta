@@ -1,0 +1,10 @@
+{
+  "id": "swissre_sigma",
+  "tier": 3,
+  "method": "rss",
+  "url": "https://www.swissre.com/institute/research/sigma-research/rss.xml",
+  "http_code": 404,
+  "size_bytes": 14393,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:40Z"
+}

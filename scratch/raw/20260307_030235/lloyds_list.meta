@@ -1,0 +1,10 @@
+{
+  "id": "lloyds_list",
+  "tier": 2,
+  "method": "scrape",
+  "url": "https://www.lloydslist.com/ll/sector/insurance-and-legal/",
+  "http_code": 404,
+  "size_bytes": 93609,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:02:37Z"
+}

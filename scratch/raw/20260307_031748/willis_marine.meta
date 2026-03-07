@@ -1,0 +1,10 @@
+{
+  "id": "willis_marine",
+  "tier": 2,
+  "method": "scrape",
+  "url": "https://www.wtwco.com/en-us/insights",
+  "http_code": 200,
+  "size_bytes": 296218,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:17:51Z"
+}

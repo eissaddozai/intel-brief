@@ -1,0 +1,10 @@
+{
+  "id": "rfi_persian",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://www.rfi.fr/fa/rss",
+  "http_code": 200,
+  "size_bytes": 35550,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:17:49Z"
+}

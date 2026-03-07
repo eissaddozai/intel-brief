@@ -1,0 +1,10 @@
+{
+  "id": "ap_wire",
+  "tier": 1,
+  "method": "scrape",
+  "url": "https://apnews.com/hub/middle-east",
+  "http_code": 200,
+  "size_bytes": 1938982,
+  "fetch_duration_s": 0,
+  "timestamp": "2026-03-07T03:17:48Z"
+}

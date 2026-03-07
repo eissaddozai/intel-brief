@@ -1,0 +1,10 @@
+{
+  "id": "dnv_maritime",
+  "tier": 2,
+  "method": "rss",
+  "url": "https://www.dnv.com/maritime/news-and-events/news/index.html",
+  "http_code": 404,
+  "size_bytes": 418439,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:40Z"
+}

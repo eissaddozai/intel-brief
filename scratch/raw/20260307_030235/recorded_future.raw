@@ -1,0 +1,166 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Error Page</title>
+    <script nonce="e8oALcZ9Tv+z/KEPBYOrRH3y" type="text/javascript">
+      window.isErrorPage = true;
+      window.errorCode = '404';
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:title" content="Error Page" />
+    <script nonce="e8oALcZ9Tv+z/KEPBYOrRH3y" src="/scripts/scripts.js" type="module" crossorigin="use-credentials"></script>
+    <script nonce="e8oALcZ9Tv+z/KEPBYOrRH3y" type="module">
+      import { loadAdobeLaunch } from '/scripts/adobe-dtm.js';
+      loadAdobeLaunch();
+    </script>
+    <script nonce="e8oALcZ9Tv+z/KEPBYOrRH3y" type="module">
+      window.addEventListener('load', () => {
+        if (document.referrer) {
+          const { origin, pathname } = new URL(document.referrer);
+          if (origin === window.location.origin) {
+            const backBtn = document.createElement('a');
+            backBtn.classList.add('button', 'error-button-back');
+            backBtn.href = pathname;
+            backBtn.textContent = 'Go back';
+            backBtn.title = 'Go back';
+            const btnContainer = document.querySelector('.button-container');
+            btnContainer.append(backBtn);
+          }
+        }
+      });
+    </script>
+    <script nonce="e8oALcZ9Tv+z/KEPBYOrRH3y" type="module">
+      import { sampleRUM } from '/scripts/aem.js';
+      sampleRUM('404', { source: document.referrer });
+    </script>
+    <link rel="stylesheet" href="/styles/styles.css" />
+    <style>
+      main.error {
+        flex: 1 1 auto;
+        overflow-x: clip;
+        font-family: Inter, system-ui, sans-serif;
+      }
+
+      main.error h1,
+      main.error h2,
+      main.error p {
+        font-family: inherit;
+      }
+
+      main.error a:hover {
+        text-decoration: none;
+      }
+
+      main.error .error-layout {
+        padding: 0;
+      }
+
+      main.error .error-page-wrapper {
+        padding: 0;
+      }
+
+      main.error .error-page {
+        padding: var(--space-19);
+      }
+
+      main.error section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 2.5rem 0 0;
+
+        img {
+          margin-bottom: var(--space-11);
+        }
+      }
+
+      main.error .error-heading {
+        display: flex;
+        position: relative;
+        flex-direction: column;
+      }
+
+      main.error h1 {
+        color: #01004c;
+        font-style: normal;
+        font-weight: var(--font-weight-regular);
+        font-size: var(--heading-font-size-l);
+        line-height: var(--line-height-100);
+        letter-spacing: var(--letter-spacing-md);
+        text-align: center;
+      }
+
+      main.error .error-message {
+        opacity: 1;
+        padding-top: var(--space-5);
+        color: #475467;
+        font-style: normal;
+        font-weight: var(--font-weight-regular);
+        font-size: var(--title-font-size-l);
+        line-height: var(--line-height-140);
+        letter-spacing: var(--letter-spacing-sm);
+
+        p {
+          margin: 0;
+        }
+      }
+
+      main.error .error-button button {
+        margin: var(--space-10) 0 0;
+      }
+
+      @media (max-width: 600px) {
+        main.error .error-page {
+          padding: var(--space-13) var(--space-5);
+        }
+
+        main.error h1 {
+          font-weight: var(--font-weight-regular);
+          font-size: var(--heading-font-size-m);
+          line-height: var(--line-height-120);
+          letter-spacing: var(--letter-spacing-sm);
+        }
+
+        main.error .error-message {
+          font-weight: var(--font-weight-regular);
+          font-size: var(--title-font-size-l);
+          line-height: var(--line-height-140);
+          letter-spacing: var(--letter-spacing-sm);
+        }
+
+        main.error .error-button {
+          width: 100%;
+
+          button {
+            margin: var(--space-9) 0 0;
+            width: 100%;
+          }
+        }
+      }
+    </style>
+    <link rel="stylesheet" href="/styles/lazy-styles.css" />
+  </head>
+
+  <body>
+    <header></header>
+    <main class="error">
+      <div class="error-layout">
+        <div class="error-page">
+          <section>
+            <img src="/images/404.png" alt="404 Error" />
+            <div class="error-heading">
+              <h1>Oops! Looks like you're lost.</h1>
+            </div>
+            <div class="error-message">
+              <p>The link you selected may be broken or the page may no longer exist.</p>
+            </div>
+            <a href="/" class="error-button">
+              <button class="primary" aria-label="Go to Recorded Future Home">Go to Recorded Future Home</button>
+            </a>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>

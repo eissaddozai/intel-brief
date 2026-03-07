@@ -1,0 +1,10 @@
+{
+  "id": "credit_agricole_shipping",
+  "tier": 3,
+  "method": "scrape",
+  "url": "https://www.ca-cib.com/our-expertise/global-investment-banking/natural-resources-infrastructure/shipping",
+  "http_code": 404,
+  "size_bytes": 12189,
+  "fetch_duration_s": 1,
+  "timestamp": "2026-03-07T03:02:40Z"
+}
