@@ -725,15 +725,90 @@ git push origin main || (git pull origin main --rebase &amp;&amp; git push origi
 <hr class="sep">
 
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- MULTI-PASS AUTOMATION                                                  -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2>MULTI-PASS AUTOMATED EXECUTION (RECOMMENDED)</h2>
+
+<div class="instruction critical">
+  <strong>For the best product, run 2–3 passes automatically.</strong>
+  Each pass uses a separate Claude Code session via the CLI, so the full context
+  window is available for each pass. No manual intervention required.
+</div>
+
+<div class="phase">
+  <div class="phase-num">A</div>
+  <div class="phase-title">THREE-PASS ARCHITECTURE</div>
+  <div class="phase-desc">Draft → Review + Fix → Polish + Publish</div>
+</div>
+
+<table>
+  <tr><th>PASS</th><th>PURPOSE</th><th>FOCUS</th></tr>
+  <tr>
+    <td><span class="badge badge-red">1</span></td>
+    <td><strong>Full Pipeline</strong></td>
+    <td>Ingest → Triage → Draft → Publish. Gets the brief written with all data.</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-gold">2</span></td>
+    <td><strong>Quality Review + Redraft</strong></td>
+    <td>
+      Reads the brief as an editor. Checks 14 quality criteria:<br>
+      &bull; Forbidden phrase scan &bull; Assessment-first leads &bull; Because-clauses on hedging<br>
+      &bull; Confidence enum compliance &bull; Sentence discipline &bull; Structural completeness<br>
+      &bull; Citation integrity &bull; Iranian source treatment &bull; Cross-domain coherence<br>
+      Fixes every issue directly in the JSON.
+    </td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-green">3</span></td>
+    <td><strong>Final Polish + Commit</strong></td>
+    <td>
+      Sentence-level copyedit: cut stretchers, fix nominalizations, enforce temporal precision,
+      verify source attribution, check cross-domain coherence. Then export, build, commit, push.
+    </td>
+  </tr>
+</table>
+
+<h3>RUN IT</h3>
+<pre># 3 passes (default — best quality)
+bash scripts/auto_cycle.sh
+
+# 2 passes (faster — skip the polish pass)
+bash scripts/auto_cycle.sh 2
+
+# 3 passes for a specific date
+bash scripts/auto_cycle.sh 3 2026-03-15</pre>
+
+<h3>HOW IT WORKS</h3>
+<div class="instruction info">
+  The script spawns <strong>separate <code>claude -p</code> sessions</strong> for each pass.
+  Each session gets the full context window — no degradation from prior passes.
+  <ul>
+    <li>Pass 1 runs <code>/workflow</code> end-to-end (ingest → triage → draft → publish)</li>
+    <li>Pass 2 reads the output brief + CLAUDE.md + all prompt templates, audits 14 quality criteria, fixes issues in-place</li>
+    <li>Pass 3 does sentence-level copyediting, re-exports HTML/DOCX, commits and pushes to main</li>
+  </ul>
+  Logs are saved to <code>scratch/auto_cycle_logs/</code> for audit.
+  <strong>The script never stops on errors</strong> — degraded output always beats no output.
+</div>
+
+<h3>SCHEDULE IT (CRON)</h3>
+<pre># Run every day at 06:00 UTC
+0 6 * * * cd /home/user/intel-brief &amp;&amp; bash scripts/auto_cycle.sh 3 >> /var/log/intel-brief.log 2>&amp;1</pre>
+
+<hr class="sep">
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
 <!-- FOOTER                                                                 -->
 <!-- ═══════════════════════════════════════════════════════════════════════ -->
 <div class="footer">
   CSE INTELLIGENCE BRIEF — AUTONOMOUS EXECUTION PROMPT<br>
   NO PULL REQUESTS · NO MANUAL GATES · DIRECT-TO-MAIN<br>
-  PIPELINE: INGEST → TRIAGE → DRAFT → EXPORT → PUBLISH → COMMIT → PUSH
+  PIPELINE: INGEST → TRIAGE → DRAFT → EXPORT → PUBLISH → COMMIT → PUSH<br>
+  MULTI-PASS: DRAFT → REVIEW → POLISH (2–3 AUTOMATED PASSES)
 </div>
 
 </body>
-</html></pre>
+</html>
 </content>
 </invoke>
