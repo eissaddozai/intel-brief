@@ -455,22 +455,38 @@ def cmd_check_sources(args: argparse.Namespace, config: dict) -> None:
     sources = [s for s in data.get('sources', []) if s.get('enabled', True)]
 
     import requests as req
+    import random as _rnd
     TIMEOUT = 15
-    # Use realistic browser headers — many Tier 1 sources bot-block generic UAs
-    HEADERS = {
-        'User-Agent': (
-            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
-            '(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
-        ),
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
-        'Accept-Language': 'en-US,en;q=0.9',
-        'Accept-Encoding': 'gzip, deflate',
-        'Sec-Fetch-Dest': 'document',
-        'Sec-Fetch-Mode': 'navigate',
-        'Sec-Fetch-Site': 'none',
-        'Sec-Fetch-User': '?1',
-        'Upgrade-Insecure-Requests': '1',
-    }
+
+    _CHECK_UAS = [
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 14_3_1) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.3 Safari/605.1.15',
+        'Mozilla/5.0 (X11; Linux x86_64; rv:123.0) Gecko/20100101 Firefox/123.0',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:123.0) Gecko/20100101 Firefox/123.0',
+    ]
+
+    def _check_headers(url: str) -> dict:
+        ua = _rnd.choice(_CHECK_UAS)
+        h = {
+            'User-Agent': ua,
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
+            'Accept-Language': 'en-US,en;q=0.9',
+            'Accept-Encoding': 'gzip, deflate, br, zstd',
+            'Cache-Control': 'max-age=0',
+            'DNT': '1',
+            'Connection': 'keep-alive',
+            'Upgrade-Insecure-Requests': '1',
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'none',
+            'Sec-Fetch-User': '?1',
+        }
+        if 'Chrome' in ua:
+            h['Sec-Ch-Ua'] = '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"'
+            h['Sec-Ch-Ua-Mobile'] = '?0'
+            h['Sec-Ch-Ua-Platform'] = '"Linux"'
+        return h
 
     print(bold('\nCHECKING SOURCES') + f'  ({len(sources)} enabled)\n')
     print(f'{"SOURCE":<35} {"METHOD":<7} {"STATUS":<8} {"HTTP":<6} {"NOTE"}')
@@ -498,8 +514,9 @@ def cmd_check_sources(args: argparse.Namespace, config: dict) -> None:
 
         try:
             t0 = time.time()
+            headers = _check_headers(test_url)
             # Use GET with stream=True (HEAD often returns 405/403 on many servers)
-            r = req.get(test_url, headers=HEADERS, timeout=TIMEOUT, allow_redirects=True, stream=True)
+            r = req.get(test_url, headers=headers, timeout=TIMEOUT, allow_redirects=True, stream=True)
             elapsed = int((time.time() - t0) * 1000)
             r.close()
             code = r.status_code

@@ -1,0 +1,331 @@
+{
+  "meta": {
+    "cycleId": "cycle010_20260308",
+    "cycleNum": "010",
+    "classification": "PROTECTED B",
+    "tlp": "AMBER",
+    "timestamp": "2026-03-08T06:00:00Z",
+    "region": "Iran · Gulf Region · Eastern Mediterranean",
+    "analystUnit": "CSE Conflict Assessment Unit",
+    "threatLevel": "SEVERE",
+    "threatTrajectory": "escalating",
+    "subtitle": "Iran War File — Daily Assessment [PLACEHOLDER — NO AI SYNTHESIS]",
+    "contextNote": "Placeholder draft — 24 items collected for 08 March 2026. Fund Anthropic API and re-run `brief run --stage draft` to generate analysis.",
+    "stripCells": [
+      {
+        "top": "SEVERE",
+        "bot": "THREAT LEVEL"
+      },
+      {
+        "top": "24",
+        "bot": "ITEMS INGESTED"
+      },
+      {
+        "top": "—",
+        "bot": "BRENT CRUDE"
+      },
+      {
+        "top": "ACTIVE",
+        "bot": "HORMUZ STATUS"
+      },
+      {
+        "top": "—",
+        "bot": "FLASH POINTS"
+      }
+    ]
+  },
+  "strategicHeader": {
+    "headlineJudgment": "PLACEHOLDER — 24 items ingested, no AI synthesis.",
+    "oneLineSummary": "Fund API credits and re-run draft stage."
+  },
+  "flashPoints": [],
+  "executive": {
+    "bluf": "PLACEHOLDER — 24 items across 5 domains. Re-run after funding API.",
+    "keyJudgments": [
+      "13 items collected (8 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+      "11 items collected (6 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+      "15 items collected (8 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+      "10 items collected (4 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+      "3 items collected (0 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+      "4 items collected (2 Tier 1). Re-run after adding Anthropic API credits for AI synthesis."
+    ],
+    "kpis": []
+  },
+  "domains": [
+    {
+      "id": "d1",
+      "num": "01",
+      "title": "BATTLESPACE · KINETIC",
+      "keyJudgment": {
+        "text": "13 items collected (8 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "[08 March 2026] CTP-ISW assessed that the IRGC launched a salvo of approximately 18 Shahab-3 variant ballistic missiles at the Haifa port district at 0218 UTC. Israeli Iron Dome and Arrow-3 batteries intercepted 14 of 18 missiles. Four missiles impacted the industrial waterfront, damaging a fuel storage facility and wounding seven dock workers.",
+          "citations": [
+            {
+              "ref": "CTP-ISW Evening Report",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "CENTCOM statement [08 March 2026]: USS Gravely (DDG-107) operating in the southern Red Sea successfully intercepted four Houthi anti-ship ballistic missiles at 2347 UTC. No casualties or damage to vessel reported. F/A-18 sorties from USS Harry S. Truman conducted follow-on strikes against Houthi launch infrastructure in Hudaydah governorate.",
+          "citations": [
+            {
+              "ref": "CENTCOM Press Releases",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "UKMTO WARNO 042/2026: MV Nordic Hawk (Liberian-flagged, 74,000 DWT bulk carrier) reported being struck by armed UAV at position 12°30'N 043°20'E at 0455 UTC. Vessel remains underway. Minor superstructure damage. Master reports three crew members sustained blast injuries. Vessel proceeding to Djibouti for assessment. All shipping advised to maintain heightened vigilance in the area.",
+          "citations": [
+            {
+              "ref": "UKMTO Maritime Bulletins",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d2",
+      "num": "02",
+      "title": "ESCALATION · TRAJECTORY",
+      "keyJudgment": {
+        "text": "11 items collected (6 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "IAEA Director General Grossi notified the Board of Governors [08 March 2026] that Iran has suspended IAEA inspector access to the Fordow Fuel Enrichment Plant effective 0600 UTC. The IAEA's continuous monitoring equipment at Fordow has been disconnected. Grossi stated this constitutes a \"serious breach\" of Iran's safeguards obligations under the NPT.",
+          "citations": [
+            {
+              "ref": "IAEA Statements",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "The UN Security Council failed to pass an emergency resolution calling for an immediate ceasefire after Russia and China exercised their veto. The US-drafted text received 11 votes in favour with three abstentions. UK Foreign Secretary and French Foreign Minister issued joint statement calling on Iran to restore IAEA access within 48 hours.",
+          "citations": [
+            {
+              "ref": "Associated Press",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "[08 March 2026] UAE officials accused Iran of launching a coordinated drone and missile barrage against infrastructure targets in the northern emirates. In Bahrain, a cruise missile struck a desalination facility in Hidd, disrupting water supply to approximately 200,000 residents. GCC joint command confirmed activation of integrated air defense protocols. US CENTCOM stated it provided targeting data to coalition partners.",
+          "citations": [
+            {
+              "ref": "Associated Press — Iran Hub",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d3",
+      "num": "03",
+      "title": "ENERGY · ECONOMIC",
+      "keyJudgment": {
+        "text": "15 items collected (8 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "CENTCOM statement [08 March 2026]: USS Gravely (DDG-107) operating in the southern Red Sea successfully intercepted four Houthi anti-ship ballistic missiles at 2347 UTC. No casualties or damage to vessel reported. F/A-18 sorties from USS Harry S. Truman conducted follow-on strikes against Houthi launch infrastructure in Hudaydah governorate.",
+          "citations": [
+            {
+              "ref": "CENTCOM Press Releases",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "UKMTO WARNO 042/2026: MV Nordic Hawk (Liberian-flagged, 74,000 DWT bulk carrier) reported being struck by armed UAV at position 12°30'N 043°20'E at 0455 UTC. Vessel remains underway. Minor superstructure damage. Master reports three crew members sustained blast injuries. Vessel proceeding to Djibouti for assessment. All shipping advised to maintain heightened vigilance in the area.",
+          "citations": [
+            {
+              "ref": "UKMTO Maritime Bulletins",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "CTP-ISW [08 March 2026 morning]: Hezbollah anti-tank guided missile teams engaged two IDF Merkava IV tanks near Metula at 0530 local time, destroying one vehicle and wounding its crew. IDF artillery and Hermes-450 strikes responded within 20 minutes. Fighting remains confined to the border strip. CTP-ISW assesses Hezbollah is probing IDF response cadence rather than initiating a major ground offensive.",
+          "citations": [
+            {
+              "ref": "CTP-ISW Morning Report",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d4",
+      "num": "04",
+      "title": "DIPLOMATIC · POLITICAL",
+      "keyJudgment": {
+        "text": "10 items collected (4 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "The UN Security Council failed to pass an emergency resolution calling for an immediate ceasefire after Russia and China exercised their veto. The US-drafted text received 11 votes in favour with three abstentions. UK Foreign Secretary and French Foreign Minister issued joint statement calling on Iran to restore IAEA access within 48 hours.",
+          "citations": [
+            {
+              "ref": "Associated Press",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "[08 March 2026] UAE officials accused Iran of launching a coordinated drone and missile barrage against infrastructure targets in the northern emirates. In Bahrain, a cruise missile struck a desalination facility in Hidd, disrupting water supply to approximately 200,000 residents. GCC joint command confirmed activation of integrated air defense protocols. US CENTCOM stated it provided targeting data to coalition partners.",
+          "citations": [
+            {
+              "ref": "Associated Press — Iran Hub",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "Saudi Aramco has temporarily halted crude oil loadings from the Ras Tanura terminal complex following drone strikes that damaged loading arm infrastructure. Ras Tanura handles approximately 6.5 million barrels per day. Aramco stated repairs are underway and expects partial resumption within 72 hours. Brent crude surged $8/bbl on the news to $155.40.",
+          "citations": [
+            {
+              "ref": "Reuters — Energy",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d5",
+      "num": "05",
+      "title": "CYBER · INFORMATION OPS",
+      "keyJudgment": {
+        "text": "3 items collected (0 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "moderate",
+        "probabilityRange": "placeholder",
+        "corroborated": false
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "IRGC Aerospace Force stated in a Telegram release that the overnight strike on Haifa constituted a \"calibrated response to Zionist aggression\" and claimed all 18 missiles reached their designated targets — a claim at variance with Israeli military statements. Iran International assesses the IRGC statement is likely exaggerated for domestic morale purposes.",
+          "citations": [
+            {
+              "ref": "Iran International",
+              "tier": 2
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "CISA Advisory AA26-063A: Iranian state-sponsored actors (attributed to IRGC-affiliated group \"Volt Sparrow\") are actively exploiting Unitronics PLC vulnerabilities (CVE-2023-6448) in water/wastewater facilities and energy sector OT networks across North America and Europe. FBI and CISA recommend immediate patching and network segmentation.",
+          "citations": [
+            {
+              "ref": "CISA Cybersecurity Advisories",
+              "tier": 3
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "Recorded Future Insikt Group identifies new APT35 (Charming Kitten) C2 infrastructure targeting Israeli banking and telecoms sector. Spear-phishing lures impersonate Bank Leumi correspondence. Malware family identified as updated HYPERSCRAPE variant with credential-harvesting and persistent access capabilities. High confidence attribution to MOIS.",
+          "citations": [
+            {
+              "ref": "Recorded Future Research Blog",
+              "tier": 3
+            }
+          ]
+        }
+      ],
+      "confidence": "moderate"
+    },
+    {
+      "id": "d6",
+      "num": "06",
+      "title": "WAR RISK INSURANCE · MARITIME FINANCE",
+      "keyJudgment": {
+        "text": "4 items collected (2 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "Joint War Committee [08 March 2026]: Following overnight missile exchanges, the JWC has expanded the listed area to encompass the entire Persian Gulf basin including all waters north of 24°N latitude. Previous listed area covered only the Strait of Hormuz transit corridor. All vessels transiting the expanded zone now require additional war risk premium notification to lead underwriters. Effective immediately.",
+          "citations": [
+            {
+              "ref": "Joint War Committee Listed Areas",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "The International Group of P&I Clubs has issued Circular 17/2026 advising all member clubs that additional war risk premiums for Persian Gulf transits have been revised upward by 0.15% of vessel value (from 0.05% prior). Circular notes that underwriters are requiring 72-hour advance notification for all Hormuz transits. Retroactive cover is no longer available.",
+          "citations": [
+            {
+              "ref": "International Group of P&I Clubs",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "warningIndicators": [],
+  "collectionGaps": [],
+  "caveats": {
+    "cycleRef": "CSE-BRIEF-PLACEHOLDER · 08 MARCH 2026",
+    "items": [
+      {
+        "label": "PLACEHOLDER",
+        "text": "Not an intelligence product."
+      }
+    ],
+    "confidenceAssessment": "N/A",
+    "dissenterNotes": [],
+    "sourceQuality": "See domain citations.",
+    "handling": "DRAFT — NOT FOR DISTRIBUTION"
+  },
+  "footer": {
+    "id": "CSE-BRIEF-PLACEHOLDER-20260308",
+    "classification": "PROTECTED B // TLP:AMBER",
+    "sources": "See domain citations",
+    "handling": "PLACEHOLDER — NOT FOR DISTRIBUTION"
+  }
+}

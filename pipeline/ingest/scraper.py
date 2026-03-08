@@ -60,21 +60,22 @@ def _browser_headers(url: str) -> dict:
 
     headers = {
         'User-Agent': ua,
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.9',
-        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Encoding': 'gzip, deflate, br, zstd',
+        'Cache-Control': 'max-age=0',
         'DNT': '1',
         'Connection': 'keep-alive',
         'Upgrade-Insecure-Requests': '1',
-        'Referer': origin + '/',
     }
 
     # Chrome-style Sec-Fetch headers (bot detectors check these)
+    # Sec-Fetch-Site: none = typed URL / bookmark (first navigation)
     if is_chrome:
         headers.update({
             'Sec-Fetch-Dest': 'document',
             'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-Site': 'none',
             'Sec-Fetch-User': '?1',
             'Sec-Ch-Ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
             'Sec-Ch-Ua-Mobile': '?0',
@@ -84,7 +85,7 @@ def _browser_headers(url: str) -> dict:
         headers.update({
             'Sec-Fetch-Dest': 'document',
             'Sec-Fetch-Mode': 'navigate',
-            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-Site': 'none',
             'Sec-Fetch-User': '?1',
         })
 
