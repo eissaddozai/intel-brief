@@ -455,8 +455,22 @@ def cmd_check_sources(args: argparse.Namespace, config: dict) -> None:
     sources = [s for s in data.get('sources', []) if s.get('enabled', True)]
 
     import requests as req
-    TIMEOUT = 10
-    HEADERS = {'User-Agent': 'CSE-Intel-Brief/1.0 check-sources'}
+    TIMEOUT = 15
+    # Use realistic browser headers — many Tier 1 sources bot-block generic UAs
+    HEADERS = {
+        'User-Agent': (
+            'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 '
+            '(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36'
+        ),
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
+        'Accept-Encoding': 'gzip, deflate',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'none',
+        'Sec-Fetch-User': '?1',
+        'Upgrade-Insecure-Requests': '1',
+    }
 
     print(bold('\nCHECKING SOURCES') + f'  ({len(sources)} enabled)\n')
     print(f'{"SOURCE":<35} {"METHOD":<7} {"STATUS":<8} {"HTTP":<6} {"NOTE"}')

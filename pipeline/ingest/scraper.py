@@ -44,18 +44,56 @@ _USER_AGENTS = [
 ]
 
 
-def _build_session() -> requests.Session:
-    """Build a requests session with retry logic and connection pooling."""
-    session = requests.Session()
-    session.headers.update({
-        'User-Agent': random.choice(_USER_AGENTS),
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+def _browser_headers(url: str) -> dict:
+    """
+    Generate realistic browser headers for a given URL.
+    Bot-blocking sites (Reuters, AP, CENTCOM, IDF, NATO Shipping Centre)
+    check User-Agent, Sec-Fetch-*, Referer, and Accept headers.
+    """
+    from urllib.parse import urlparse
+    parsed = urlparse(url)
+    origin = f'{parsed.scheme}://{parsed.netloc}'
+
+    ua = random.choice(_USER_AGENTS)
+    is_chrome = 'Chrome' in ua
+    is_firefox = 'Firefox' in ua
+
+    headers = {
+        'User-Agent': ua,
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
         'Accept-Language': 'en-US,en;q=0.9',
         'Accept-Encoding': 'gzip, deflate, br',
         'DNT': '1',
         'Connection': 'keep-alive',
         'Upgrade-Insecure-Requests': '1',
-    })
+        'Referer': origin + '/',
+    }
+
+    # Chrome-style Sec-Fetch headers (bot detectors check these)
+    if is_chrome:
+        headers.update({
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+            'Sec-Ch-Ua': '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
+            'Sec-Ch-Ua-Mobile': '?0',
+            'Sec-Ch-Ua-Platform': '"Linux"',
+        })
+    elif is_firefox:
+        headers.update({
+            'Sec-Fetch-Dest': 'document',
+            'Sec-Fetch-Mode': 'navigate',
+            'Sec-Fetch-Site': 'same-origin',
+            'Sec-Fetch-User': '?1',
+        })
+
+    return headers
+
+
+def _build_session() -> requests.Session:
+    """Build a requests session with retry logic and connection pooling."""
+    session = requests.Session()
     retry = Retry(
         total=3,
         backoff_factor=1.5,
@@ -88,24 +126,39 @@ def load_scrape_sources() -> list[dict]:
 
 
 def _fetch(url: str) -> BeautifulSoup | None:
-    try:
-        session = _get_session()
-        resp = session.get(url, timeout=REQUEST_TIMEOUT)
-        resp.raise_for_status()
-        return BeautifulSoup(resp.text, 'html.parser')
-    except requests.exceptions.HTTPError as exc:
-        log.error('Fetch HTTP error %s: %s (status %s)', url, exc,
-                  exc.response.status_code if exc.response else '?')
-        return None
-    except requests.exceptions.ConnectionError as exc:
-        log.error('Fetch connection error %s: %s', url, exc)
-        return None
-    except requests.exceptions.Timeout:
-        log.error('Fetch timeout %s (>%ds)', url, REQUEST_TIMEOUT)
-        return None
-    except Exception as exc:
-        log.error('Fetch failed %s: %s', url, exc)
-        return None
+    """
+    Fetch a URL with anti-bot-detection headers. On 401/403, retries
+    once with a different User-Agent (many bot-blockers are UA-sensitive).
+    """
+    session = _get_session()
+
+    for attempt in range(2):
+        headers = _browser_headers(url)
+        try:
+            resp = session.get(url, headers=headers, timeout=REQUEST_TIMEOUT)
+            if resp.status_code in (401, 403) and attempt == 0:
+                log.warning('Fetch %d on %s — retrying with different UA', resp.status_code, url)
+                time.sleep(1.0 + random.random())
+                continue
+            resp.raise_for_status()
+            return BeautifulSoup(resp.text, 'html.parser')
+        except requests.exceptions.HTTPError as exc:
+            status = exc.response.status_code if exc.response else '?'
+            log.error('Fetch HTTP %s on %s (attempt %d)', status, url, attempt + 1)
+            if attempt == 0 and status in (401, 403):
+                time.sleep(1.0 + random.random())
+                continue
+            return None
+        except requests.exceptions.ConnectionError as exc:
+            log.error('Fetch connection error %s: %s', url, exc)
+            return None
+        except requests.exceptions.Timeout:
+            log.error('Fetch timeout %s (>%ds)', url, REQUEST_TIMEOUT)
+            return None
+        except Exception as exc:
+            log.error('Fetch failed %s: %s', url, exc)
+            return None
+    return None
 
 
 def _clean(text: str) -> str:
