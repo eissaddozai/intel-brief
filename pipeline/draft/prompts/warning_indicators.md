@@ -92,7 +92,7 @@ Return valid JSON. Return raw JSON only — no markdown fences.
     "domain": "d2",
     "status": "triggered",
     "change": "new",
-    "detail": "IAEA confirmed suspension of inspector access at Fordow enrichment facility as of 0400 UTC 15 Mar (IAEA Statement, 15 Mar 0400 UTC). Access at Natanz and Isfahan remains unaffected; we assess the suspension is targeted rather than comprehensive."
+    "detail": "IAEA confirmed suspension of inspector access at Fordow enrichment facility as of 0400 UTC 15 Mar (IAEA Statement, 15 Mar 0400 UTC). Access at Natanz and Isfahan remains unaffected; the suspension is assessed as targeted rather than comprehensive."
   }
 ]
 ```
