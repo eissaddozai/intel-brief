@@ -34,11 +34,19 @@ The pipeline feeds the template. The template is what the analyst receives.
   - "The balance of reporting points to…", "This likely reflects…", "The pattern is consistent with…"
   - Direct declarative statements where confidence is high: "The air campaign has entered a new phase."
 - Use confidence language from the `ConfidenceLanguage` enum — no ad-hoc hedging phrases
+- **Every hedged judgment requires a "because" clause or evidence citation.** The confidence phrase alone is insufficient. BAD: "Escalation is likely." GOOD: "Escalation is likely, given the simultaneous IRGC repositioning and IAEA access suspension (Reuters, 15 Mar)."
+- **Sentence discipline (from CIA/Mercyhurst style guides):**
+  - Noun + verb within the first six words of every sentence
+  - Target 12–20 words per sentence, averaging ~15
+  - Paragraphs: max 6 typed lines
+  - Cut "it is", "there is", "there are" — these are sentence stretchers
+  - Never nominalize verbs: "conduct an inspection" → "inspect"; "make a decision" → "decide"
+  - Limit words of 3+ syllables to ~15% of total
 - Temporal precision on all claims: "As of 0600 UTC 15 Mar"
 - Source attribution in parenthetical italic at sentence end: "(AP, 15 Mar 0620 UTC)"
 - Distinguish OBSERVED (Tier 1 facts) from ASSESSMENT (analytical judgment) with explicit sub-labels
 - Dissenting views go in `DissenterNote` blocks, attributed "ANALYST B" — never anonymously
-- Forbidden jargon: "kinetic activity", "threat actors", "threat landscape", "robust", "leverage" (verb), "we assess", "we judge", "we evaluate"
+- Forbidden jargon: "kinetic activity", "threat actors", "threat landscape", "robust", "leverage" (verb), "we assess", "we judge", "we evaluate", "due to the fact that", "duties and responsibilities", "importance and significance"
 
 ---
 
