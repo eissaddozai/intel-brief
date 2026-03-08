@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSE Intel Brief — Autonomous Execution Prompt</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+  :root {
+    --bg: #0a0a12;
+    --surface: #12121e;
+    --text: #d4d4d4;
+    --dim: #8a8a9a;
+    --red: #c0392b;
+    --gold: #d4a017;
+    --green: #27ae60;
+    --blue: #4682b4;
+    --rule: #2a2a3a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  /* ── Cover ── */
+  .cover {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--red);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .cover h1 {
+    font-family: Palatino, Georgia, serif;
+    font-size: 1.6rem;
+    color: #e8e8e8;
+    letter-spacing: 0.15em;
+  }
+  .cover .subtitle {
+    font-size: 0.95rem;
+    color: var(--red);
+    margin: 0.5rem 0;
+    font-weight: 600;
+  }
+  .cover .meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    margin-top: 0.5rem;
+  }
+
+  /* ── Section headers ── */
+  h2 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--red);
+    letter-spacing: 0.15em;
+    margin: 2rem 0 1rem 0;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.3rem;
+  }
+  h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+    margin: 1.2rem 0 0.6rem 0;
+  }
+
+  /* ── Instruction blocks ── */
+  .instruction {
+    background: var(--surface);
+    border-left: 4px solid var(--red);
+    padding: 1rem 1.2rem;
+    margin: 1rem 0;
+    font-size: 0.85rem;
+  }
+  .instruction.critical {
+    border-left-color: var(--red);
+    background: #1a0a0a;
+  }
+  .instruction.gate {
+    border-left-color: var(--gold);
+    background: #1a1a0a;
+  }
+  .instruction.action {
+    border-left-color: var(--green);
+    background: #0a1a0a;
+  }
+  .instruction.info {
+    border-left-color: var(--blue);
+    background: #0a0a1a;
+  }
+
+  /* ── Code blocks ── */
+  pre {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    background: #080810;
+    border: 1px solid var(--rule);
+    padding: 0.8rem 1rem;
+    margin: 0.8rem 0;
+    overflow-x: auto;
+    line-height: 1.5;
+    color: var(--green);
+  }
+  code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--gold);
+    background: rgba(255,255,255,0.04);
+    padding: 0.1rem 0.3rem;
+  }
+
+  /* ── Phase blocks ── */
+  .phase {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+  .phase-num {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 2rem;
+    color: var(--red);
+    opacity: 0.3;
+    float: left;
+    margin-right: 1rem;
+    line-height: 1;
+  }
+  .phase-title {
+    font-family: Palatino, Georgia, serif;
+    font-size: 1.1rem;
+    color: #e8e8e8;
+    letter-spacing: 0.08em;
+  }
+  .phase-desc {
+    font-size: 0.85rem;
+    color: var(--dim);
+    margin-top: 0.3rem;
+  }
+
+  /* ── Checklist ── */
+  .check {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin: 0.4rem 0;
+    font-size: 0.8rem;
+  }
+  .check::before {
+    content: "▸";
+    color: var(--gold);
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  /* ── Table ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+    font-size: 0.8rem;
+  }
+  th {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-align: left;
+    padding: 0.4rem 0.6rem;
+    border-bottom: 2px solid var(--rule);
+  }
+  td {
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* ── Badges ── */
+  .badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.6rem;
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+  .badge-red { background: var(--red); color: #fff; }
+  .badge-gold { background: var(--gold); color: #1a1a2e; }
+  .badge-green { background: var(--green); color: #fff; }
+
+  /* ── Footer ── */
+  .footer {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--dim);
+    text-align: center;
+    border-top: 2px solid var(--rule);
+    padding-top: 1rem;
+    margin-top: 3rem;
+    letter-spacing: 0.1em;
+  }
+
+  /* ── Utility ── */
+  .sep { border: none; border-top: 1px solid var(--rule); margin: 1.5rem 0; }
+  strong { color: #e8e8e8; }
+  em { color: var(--dim); }
+  p { margin: 0.5rem 0; }
+  ul { padding-left: 1.2rem; margin: 0.5rem 0; }
+  li { margin: 0.3rem 0; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- COVER                                                                  -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="cover">
+  <h1>AUTONOMOUS EXECUTION PROMPT</h1>
+  <div class="subtitle">CSE Intelligence Brief — Full Pipeline</div>
+  <div class="meta">INGEST → TRIAGE → DRAFT → EXPORT → PUBLISH → COMMIT → PUSH</div>
+  <div class="meta" style="margin-top:0.3rem;">NO MANUAL GATES · NO PULL REQUESTS · ONE-SHOT EXECUTION</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- DIRECTIVE                                                              -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2>EXECUTION DIRECTIVE</h2>
+
+<div class="instruction critical">
+  <strong>Execute the complete intelligence brief pipeline end-to-end.</strong>
+  Do not pause for confirmation between phases. Do not create pull requests.
+  Commit directly to <code>main</code> and push when finished.
+  If a phase fails, attempt recovery once, then continue with degraded output.
+  The only acceptable terminal state is: <strong>brief published, committed, and pushed.</strong>
+</div>
+
+<div class="instruction info">
+  <strong>Date handling:</strong> Use today's date (UTC) unless a specific date is provided as an argument.
+  All timestamps in the brief must use UTC. Format: <code>YYYYMMDD_HHMMSS</code> for filenames,
+  ISO 8601 for JSON fields.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PHASE 1: INGEST                                                        -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="phase">
+  <div class="phase-num">01</div>
+  <div class="phase-title">SOURCE COLLECTION</div>
+  <div class="phase-desc">Parallel fetch of all sources from sources.yaml</div>
+</div>
+
+<h3>EXECUTE</h3>
+<pre>bash .claude/skills/intel-ingest/scripts/fetch_all_sources.sh</pre>
+
+<h3>GATE CHECK (SOFT — DO NOT BLOCK)</h3>
+<div class="instruction gate">
+  Read <code>scratch/raw/&lt;latest&gt;/_manifest.json</code>. If it exists, verify:
+  <ul>
+    <li><code>successful &ge; 50</code> — if below 50, log warning but <strong>continue</strong></li>
+    <li>Count Tier 1 failures — if &gt; 3, retry each failed Tier 1 source once with alternate User-Agent</li>
+    <li>If manifest does not exist, scan <code>scratch/raw/&lt;latest&gt;/</code> for <code>.raw</code> file count instead</li>
+  </ul>
+  <strong>NEVER stop the pipeline over fetch failures.</strong> Missing sources become collection gaps in the brief.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PHASE 2: TRIAGE                                                        -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="phase">
+  <div class="phase-num">02</div>
+  <div class="phase-title">PARSE + CLASSIFY + NOVELTY + CONFIDENCE</div>
+  <div class="phase-desc">Structure raw content into triaged intelligence items</div>
+</div>
+
+<h3>STEP 2A — PARSE</h3>
+<pre>python scripts/parse_raw_sources.py</pre>
+
+<div class="instruction gate">
+  Verify <code>pipeline/.cache/raw_YYYYMMDD.json</code> exists and contains &gt; 10 items.
+  If parsing produced fewer than 10 items, check if raw sources are empty or malformed.
+  <strong>Continue regardless</strong> — a thin-data brief is better than no brief.
+</div>
+
+<h3>STEP 2B — CLASSIFY + TRIAGE</h3>
+<pre>cd /home/user/intel-brief &amp;&amp; python -c "
+import json, sys, logging
+from pathlib import Path
+sys.path.insert(0, 'pipeline')
+logging.basicConfig(level=logging.INFO)
+from main import stage_triage, CACHE_DIR, load_config
+from datetime import datetime, timezone
+
+target = datetime.now(timezone.utc)
+raw_cache = CACHE_DIR / f'raw_{target.strftime(\"%Y%m%d\")}.json'
+config = load_config()
+tagged = stage_triage(raw_cache, config)
+print(f'Triage complete: {tagged}')
+"</pre>
+
+<div class="instruction gate">
+  Read <code>pipeline/.cache/tagged_YYYYMMDD.json</code>. Count items per domain.
+  Any domain with 0 items is flagged as a collection gap — <strong>do not stop.</strong>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PHASE 3: DRAFT                                                         -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="phase">
+  <div class="phase-num">03</div>
+  <div class="phase-title">ANALYTICAL DRAFTING</div>
+  <div class="phase-desc">Draft the full BriefCycle JSON using Claude's native analytical capability</div>
+</div>
+
+<div class="instruction critical">
+  <strong>This is the core analytical phase.</strong> Read the tagged items, read all 11 prompt templates
+  in <code>pipeline/draft/prompts/</code>, read the previous brief from <code>briefs/</code> for delta context,
+  then draft the complete brief. Follow every rule in CLAUDE.md — especially:
+</div>
+
+<h3>VOICE RULES (NON-NEGOTIABLE)</h3>
+<table>
+  <tr><th>RULE</th><th>CORRECT</th><th>VIOLATION</th></tr>
+  <tr>
+    <td>Assessment-first leads</td>
+    <td><em>"Offensive preparations appear underway; three BTGs have repositioned."</em></td>
+    <td><em>"Three BTGs were observed near Kherson."</em></td>
+  </tr>
+  <tr>
+    <td>No first-person plural</td>
+    <td><em>"Reporting suggests…", "Evidence indicates…"</em></td>
+    <td><em>"We assess…", "We judge…", "We evaluate…"</em></td>
+  </tr>
+  <tr>
+    <td>Because-clause for hedging</td>
+    <td><em>"Escalation is likely, given simultaneous IRGC repositioning (Reuters, 15 Mar)."</em></td>
+    <td><em>"Escalation is likely."</em></td>
+  </tr>
+  <tr>
+    <td>Sentence discipline</td>
+    <td><em>Noun + verb in first 6 words. Target 12–20 words/sentence.</em></td>
+    <td><em>"It is important to note that the situation is evolving."</em></td>
+  </tr>
+  <tr>
+    <td>Iranian state media</td>
+    <td><em>"Iranian government asserts…" — verification: "claimed"</em></td>
+    <td><em>Citing IRNA/PressTV as confirmed fact</em></td>
+  </tr>
+</table>
+
+<h3>CONFIDENCE LANGUAGE (ONLY THESE 6 — NO AD-HOC HEDGING)</h3>
+<table>
+  <tr><th>ENUM</th><th>RENDERED PHRASE</th><th>PROBABILITY</th></tr>
+  <tr><td><code>almost-certainly</code></td><td>Direct declarative / "Evidence strongly indicates…"</td><td>95–99%</td></tr>
+  <tr><td><code>highly-likely</code></td><td>"Multiple sources confirm…" / "Balance of reporting points to…"</td><td>75–95%</td></tr>
+  <tr><td><code>likely</code></td><td>"Reporting suggests…" / "Available evidence points to…"</td><td>55–75%</td></tr>
+  <tr><td><code>possibly</code></td><td>"Reporting indicates, though corroboration is limited…"</td><td>45–55%</td></tr>
+  <tr><td><code>unlikely</code></td><td>"This remains unlikely, though it cannot be excluded…"</td><td>20–45%</td></tr>
+  <tr><td><code>almost-certainly-not</code></td><td>"Nothing in the reporting supports…"</td><td>1–5%</td></tr>
+</table>
+
+<h3>DRAFTING ORDER (EXACT)</h3>
+<div class="instruction action">
+  <ol>
+    <li>Read all 11 prompt templates from <code>pipeline/draft/prompts/</code></li>
+    <li>Read previous brief from <code>briefs/</code> (latest JSON) for delta context</li>
+    <li>Read <code>pipeline/.cache/tagged_YYYYMMDD.json</code> — group items by <code>tagged_domains</code></li>
+    <li>Draft domains in order: <strong>d1 → d2 → d3 → d4 → d5 → d6</strong></li>
+    <li>Draft <strong>flash points</strong> (Tier 1 only or high-significance multi-corroborated)</li>
+    <li>Draft <strong>executive summary</strong> (BLUF + key judgments + KPIs — synthesize across domains)</li>
+    <li>Draft <strong>strategic header</strong> (headline judgment + trajectory + threat level)</li>
+    <li>Draft <strong>warning indicators</strong> (8 pre-defined tripwires)</li>
+    <li>Draft <strong>collection gaps</strong> (genuine intelligence limits — no padding)</li>
+    <li>Assemble <strong>meta</strong>, <strong>caveats</strong>, <strong>footer</strong></li>
+  </ol>
+</div>
+
+<h3>DOMAIN SECTION STRUCTURE (EACH d1–d6)</h3>
+<div class="instruction info">
+  Each domain section must contain:
+  <ul>
+    <li><code>id</code>: d1–d6</li>
+    <li><code>num</code>: "01"–"06"</li>
+    <li><code>title</code>: domain name in CAPS</li>
+    <li><code>assessmentQuestion</code>: analytical question from the prompt template</li>
+    <li><code>confidence</code>: one of the 6 enum values</li>
+    <li><code>keyJudgment</code>: { id, domain, confidence, probabilityRange, language, text, basis, citations }</li>
+    <li><code>bodyParagraphs[]</code>: each with subLabel, subLabelVariant (observed|assessment), text, timestamp, citations, confidenceLanguage</li>
+    <li>Optional: <code>dissenterNote</code>, <code>analystNote</code>, <code>tables</code>, <code>timeline</code>, <code>actorMatrix</code></li>
+  </ul>
+  <strong>Every claim must trace to a triaged item.</strong> No fabrication. If a domain has zero items, write a thin-data placeholder and flag the collection gap.
+</div>
+
+<h3>FORBIDDEN PHRASES (INSTANT FAIL)</h3>
+<div class="instruction critical">
+  kinetic activity · threat actors · threat landscape · robust · leverage (verb) ·
+  we assess · we judge · we evaluate · our assessment · diplomatic efforts ·
+  international community · stakeholders · going forward · ongoing situation ·
+  fluid situation · escalatory dynamics · economic headwinds · market volatility ·
+  risk environment · uncertain times · significant development · notable development ·
+  rapidly evolving · dynamic situation · heightened tensions · broader conflict ·
+  it should be noted · importantly · significantly · notably · at this juncture ·
+  complex situation · holistic approach · paradigm shift · game changer ·
+  due to the fact that · duties and responsibilities · importance and significance
+</div>
+
+<h3>OUTPUT</h3>
+<pre>briefs/CSE_Intel_Brief_YYYYMMDD_HHMMSS.json</pre>
+
+<div class="instruction gate">
+  Validate the JSON has all required top-level keys:
+  <code>meta</code>, <code>strategicHeader</code>, <code>flashPoints</code>, <code>executive</code>,
+  <code>domains</code> (array of 6), <code>warningIndicators</code>, <code>collectionGaps</code>,
+  <code>caveats</code>, <code>footer</code>.
+  <strong>If validation fails, fix the JSON and re-save.</strong> Do not stop.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PHASE 4: EXPORT                                                        -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="phase">
+  <div class="phase-num">04</div>
+  <div class="phase-title">EXPORT HTML + DOCX</div>
+  <div class="phase-desc">Generate distributable outputs from the brief JSON</div>
+</div>
+
+<pre>python scripts/export_brief.py briefs/CSE_Intel_Brief_YYYYMMDD_HHMMSS.json</pre>
+
+<div class="instruction gate">
+  Verify both files exist:
+  <ul>
+    <li><code>briefs/CSE_Intel_Brief_YYYYMMDD_HHMMSS.html</code></li>
+    <li><code>briefs/CSE_Intel_Brief_YYYYMMDD_HHMMSS.docx</code></li>
+  </ul>
+  If <code>python-docx</code> is not installed, install it (<code>pip install python-docx</code>) and retry.
+  If docx export fails, <strong>continue</strong> — HTML is the primary deliverable.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PHASE 5: PUBLISH                                                       -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="phase">
+  <div class="phase-num">05</div>
+  <div class="phase-title">PUBLISH TO FRONTEND</div>
+  <div class="phase-desc">Sync briefs to src/data, build Vite app</div>
+</div>
+
+<pre># Sync brief JSON to frontend data directory
+python scripts/sync_briefs.py
+
+# Build production assets
+npm run build</pre>
+
+<div class="instruction gate">
+  Verify <code>src/data/CSE_Intel_Brief_YYYYMMDD_HHMMSS.json</code> exists.
+  Verify <code>npm run build</code> exits 0. If TypeScript errors occur, fix the JSON and rebuild.
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- PHASE 6: COMMIT + PUSH                                                 -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="phase">
+  <div class="phase-num">06</div>
+  <div class="phase-title">COMMIT + PUSH TO MAIN</div>
+  <div class="phase-desc">No branches, no PRs — direct to main</div>
+</div>
+
+<div class="instruction critical">
+  <strong>This is the automation step that replaces pull requests.</strong>
+  Commit all new/changed files and push directly to <code>main</code>.
+  If push is rejected (remote has new commits), pull with rebase and retry.
+</div>
+
+<pre># Stage all brief artifacts and any pipeline changes
+git add briefs/CSE_Intel_Brief_YYYYMMDD_HHMMSS.json \
+       briefs/CSE_Intel_Brief_YYYYMMDD_HHMMSS.html \
+       briefs/CSE_Intel_Brief_YYYYMMDD_HHMMSS.docx \
+       src/data/CSE_Intel_Brief_YYYYMMDD_HHMMSS.json \
+       src/data/index.ts
+
+# Commit with standardized message
+git commit -m "cycle: YYYY-MM-DD — automated brief"
+
+# Push directly to main (retry with rebase if rejected)
+git push origin main || (git pull origin main --rebase &amp;&amp; git push origin main)</pre>
+
+<h3>RETRY LOGIC</h3>
+<table>
+  <tr><th>FAILURE</th><th>ACTION</th><th>MAX RETRIES</th></tr>
+  <tr><td>Push rejected (non-fast-forward)</td><td><code>git pull --rebase</code> then push</td><td>3</td></tr>
+  <tr><td>Network error</td><td>Exponential backoff: 2s, 4s, 8s, 16s</td><td>4</td></tr>
+  <tr><td>Merge conflict on rebase</td><td>Accept <em>ours</em> for brief files (they're unique filenames)</td><td>1</td></tr>
+</table>
+
+<hr class="sep">
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- ERROR RECOVERY MATRIX                                                  -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2>ERROR RECOVERY MATRIX</h2>
+
+<div class="instruction info">
+  <strong>Philosophy:</strong> A degraded brief is always better than no brief.
+  The pipeline should produce output under all conditions. Flag problems as collection gaps
+  or caveats inside the brief itself — never halt the pipeline for a recoverable error.
+</div>
+
+<table>
+  <tr><th>ERROR</th><th>RECOVERY</th><th>BRIEF IMPACT</th></tr>
+  <tr>
+    <td>Tier 1 source fetch failure (&gt;3)</td>
+    <td>Retry once with alt User-Agent, then continue</td>
+    <td>Add to <code>collectionGaps</code> with severity "critical"</td>
+  </tr>
+  <tr>
+    <td>Parser produces &lt;10 items</td>
+    <td>Check raw content, attempt manual extraction</td>
+    <td>Thin-data templates for affected domains</td>
+  </tr>
+  <tr>
+    <td>Domain has 0 triaged items</td>
+    <td>Write placeholder paragraph noting data absence</td>
+    <td>Add to <code>collectionGaps</code>; lower domain confidence to "unlikely"</td>
+  </tr>
+  <tr>
+    <td>JSON validation fails</td>
+    <td>Fix missing fields and re-save</td>
+    <td>None — corrected before publish</td>
+  </tr>
+  <tr>
+    <td>npm build fails</td>
+    <td>Fix TypeScript errors in JSON, rebuild</td>
+    <td>None — corrected before publish</td>
+  </tr>
+  <tr>
+    <td>export_brief.py fails (docx)</td>
+    <td>Install python-docx and retry; skip if still fails</td>
+    <td>HTML only — note in commit message</td>
+  </tr>
+  <tr>
+    <td>git push rejected</td>
+    <td>Pull with rebase, retry up to 3 times</td>
+    <td>None</td>
+  </tr>
+</table>
+
+<hr class="sep">
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- SOURCE HIERARCHY                                                       -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2>SOURCE HIERARCHY (EMBEDDED REFERENCE)</h2>
+
+<table>
+  <tr><th>TIER</th><th>SOURCES</th><th>VERIFICATION STATUS</th><th>CITATION TREATMENT</th></tr>
+  <tr>
+    <td><span class="badge badge-green">TIER 1</span></td>
+    <td>AP, Reuters, AFP, CTP-ISW, IAEA, CENTCOM, UKMTO</td>
+    <td><code>"confirmed"</code></td>
+    <td>Cite directly as fact</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-gold">TIER 2</span></td>
+    <td>NGOs, broker reports, analytical outlets</td>
+    <td><code>"reported"</code></td>
+    <td>"X reported…" — not "confirmed"</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-red">TIER 3</span></td>
+    <td>Hacktivists, unverified social media, Iranian state media</td>
+    <td><code>"claimed"</code></td>
+    <td>"Iranian government asserts…" — never factual</td>
+  </tr>
+</table>
+
+<hr class="sep">
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- SCHEMA QUICK REFERENCE                                                 -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2>BRIEFCYCLE JSON SCHEMA (QUICK REFERENCE)</h2>
+
+<pre>{
+  "meta": {
+    "cycleId": "CSE_Intel_Brief_YYYYMMDD_HHMMSS",
+    "cycleNum": "NNN",
+    "timestamp": "ISO 8601",
+    "classification": "UNCLASSIFIED // FOUO",
+    "tlp": "AMBER",
+    "subtitle": "Iran War File — Day N",
+    "region": "CENTCOM AOR · Middle East · Gulf",
+    "analystUnit": "CSE Open-Source Intelligence Desk",
+    "contextNote": "...",
+    "stripCells": [{ "top": "VALUE", "bot": "LABEL" }, ...]
+  },
+  "strategicHeader": {
+    "headlineJudgment": "One-sentence strategic assessment.",
+    "trajectoryRationale": "2–3 sentences naming evidence + tripwire.",
+    "threatLevel": "CRITICAL|SEVERE|ELEVATED|GUARDED|LOW",
+    "trajectory": "escalating|stable|de-escalating"
+  },
+  "flashPoints": [{
+    "id": "fp-NNN",
+    "timestamp": "ISO 8601",
+    "domain": "d1–d6",
+    "headline": "≤12 words, assessment-first",
+    "detail": "1–2 sentences",
+    "confidence": "enum value",
+    "citations": [{ "source": "outlet", "tier": 1, "verificationStatus": "confirmed", "timestamp": "ISO 8601" }]
+  }],
+  "executive": {
+    "bluf": "2–4 sentences, judgment-first",
+    "keyJudgments": [{ "id": "kj-NNN", "domain": "d1–d6", "confidence": "enum", "probabilityRange": "XX–YY%", "language": "rendered phrase", "text": "...", "basis": "...", "citations": [...] }],
+    "kpis": [{ "domain": "d1–d6", "number": "value", "label": "METRIC NAME", "changeDirection": "up|down|neutral" }]
+  },
+  "domains": [
+    {
+      "id": "d1", "num": "01", "title": "BATTLESPACE · KINETIC",
+      "assessmentQuestion": "...",
+      "confidence": "enum value",
+      "keyJudgment": { ... },
+      "bodyParagraphs": [{
+        "subLabel": "OBSERVED ACTIVITY | ASSESSMENT | etc.",
+        "subLabelVariant": "observed|assessment",
+        "text": "...",
+        "timestamp": "ISO 8601",
+        "citations": [...],
+        "confidenceLanguage": "enum value"
+      }]
+    }
+    // ... d2 through d6
+  ],
+  "warningIndicators": [{
+    "id": "wi-NNN",
+    "indicator": "Pre-defined tripwire name",
+    "domain": "d1–d6",
+    "status": "triggered|elevated|watching|cleared",
+    "level": "RED|AMBER|GREEN",
+    "change": "description of change from previous cycle",
+    "assessment": "1–2 sentences"
+  }],
+  "collectionGaps": [{
+    "id": "gap-NNN",
+    "domain": "d1–d6",
+    "gap": "What we don't know",
+    "significance": "Why it matters",
+    "severity": "critical|significant|minor"
+  }],
+  "caveats": {
+    "cycleRef": "Cycle NNN — YYYY-MM-DD",
+    "items": [{ "label": "Label", "text": "..." }],
+    "confidenceAssessment": "...",
+    "sourceQuality": "...",
+    "handling": "..."
+  },
+  "footer": {
+    "classification": "...",
+    "id": "CSE_Intel_Brief_YYYYMMDD_HHMMSS",
+    "sources": "count of sources",
+    "handling": "..."
+  }
+}</pre>
+
+<hr class="sep">
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- EXECUTION SUMMARY                                                      -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<h2>EXECUTION SEQUENCE (COPY-PASTE READY)</h2>
+
+<div class="instruction action">
+  <strong>Run /workflow</strong> — this single command triggers the full pipeline.
+  <br><br>
+  If running manually, execute these in order. Do not wait for user confirmation between steps.
+  Replace <code>YYYYMMDD</code> and <code>HHMMSS</code> with the actual UTC date and time.
+</div>
+
+<pre># ── PHASE 1: INGEST ──
+bash .claude/skills/intel-ingest/scripts/fetch_all_sources.sh
+
+# ── PHASE 2A: PARSE ──
+python scripts/parse_raw_sources.py
+
+# ── PHASE 2B: TRIAGE ──
+cd /home/user/intel-brief &amp;&amp; python -c "
+import sys, logging
+from pathlib import Path
+sys.path.insert(0, 'pipeline')
+logging.basicConfig(level=logging.INFO)
+from main import stage_triage, CACHE_DIR, load_config
+from datetime import datetime, timezone
+target = datetime.now(timezone.utc)
+raw_cache = CACHE_DIR / f'raw_{target.strftime(\"%Y%m%d\")}.json'
+config = load_config()
+tagged = stage_triage(raw_cache, config)
+print(f'Triage complete: {tagged}')
+"
+
+# ── PHASE 3: DRAFT ──
+# (Performed by Claude — read tagged items, draft BriefCycle JSON)
+# Output: briefs/CSE_Intel_Brief_YYYYMMDD_HHMMSS.json
+
+# ── PHASE 4: EXPORT ──
+python scripts/export_brief.py
+
+# ── PHASE 5: PUBLISH ──
+python scripts/sync_briefs.py
+npm run build
+
+# ── PHASE 6: COMMIT + PUSH ──
+git add briefs/ src/data/
+git commit -m "cycle: $(date -u +%Y-%m-%d) — automated brief"
+git push origin main || (git pull origin main --rebase &amp;&amp; git push origin main)</pre>
+
+<hr class="sep">
+
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<!-- FOOTER                                                                 -->
+<!-- ═══════════════════════════════════════════════════════════════════════ -->
+<div class="footer">
+  CSE INTELLIGENCE BRIEF — AUTONOMOUS EXECUTION PROMPT<br>
+  NO PULL REQUESTS · NO MANUAL GATES · DIRECT-TO-MAIN<br>
+  PIPELINE: INGEST → TRIAGE → DRAFT → EXPORT → PUBLISH → COMMIT → PUSH
+</div>
+
+</body>
+</html></pre>
+</content>
+</invoke>
