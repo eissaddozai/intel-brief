@@ -268,6 +268,64 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'method': 'scrape',
         },
         {
+            'source_id': 'ap_iran',
+            'source_name': 'Associated Press — Iran Hub',
+            'tier': 1,
+            'domains': ['d1', 'd2'],
+            'title': 'AP Live Updates: UAE accuses Iran of new drone and missile attacks, Bahrain desalination plant also hit',
+            'text': (
+                f'[{date_str}] UAE officials accused Iran of launching a coordinated '
+                'drone and missile barrage against infrastructure targets in the northern '
+                'emirates. In Bahrain, a cruise missile struck a desalination facility in '
+                'Hidd, disrupting water supply to approximately 200,000 residents. GCC '
+                'joint command confirmed activation of integrated air defense protocols. '
+                'US CENTCOM stated it provided targeting data to coalition partners.'
+            ),
+            'full_content': '',
+            'url': 'https://apnews.com/hub/iran',
+            'timestamp': ts,
+            'verification_status': 'confirmed',
+            'method': 'scrape',
+        },
+        {
+            'source_id': 'reuters_energy',
+            'source_name': 'Reuters — Energy',
+            'tier': 1,
+            'domains': ['d3'],
+            'title': 'Reuters: Saudi Aramco halts eastbound loadings as Ras Tanura terminal sustains drone damage',
+            'text': (
+                'Saudi Aramco has temporarily halted crude oil loadings from the Ras Tanura '
+                'terminal complex following drone strikes that damaged loading arm infrastructure. '
+                'Ras Tanura handles approximately 6.5 million barrels per day. Aramco stated '
+                'repairs are underway and expects partial resumption within 72 hours. Brent '
+                'crude surged $8/bbl on the news to $155.40.'
+            ),
+            'full_content': '',
+            'url': 'https://www.reuters.com/business/energy/',
+            'timestamp': ts,
+            'verification_status': 'confirmed',
+            'method': 'scrape',
+        },
+        {
+            'source_id': 'reuters_world',
+            'source_name': 'Reuters — World News',
+            'tier': 1,
+            'domains': ['d4'],
+            'title': 'Reuters: China calls emergency UNSC session, proposes Iran ceasefire framework',
+            'text': (
+                'China has called for an emergency UN Security Council session and circulated '
+                'a draft ceasefire framework that includes immediate cessation of hostilities, '
+                'IAEA inspector reinstatement at Fordow, and phased sanctions relief. Western '
+                'diplomats described the proposal as "a serious opening position" while noting '
+                'it does not address Iranian proxy forces.'
+            ),
+            'full_content': '',
+            'url': 'https://www.reuters.com/world/',
+            'timestamp': ts,
+            'verification_status': 'confirmed',
+            'method': 'scrape',
+        },
+        {
             'source_id': 'cfr_daily',
             'source_name': 'CFR Daily News Brief',
             'tier': 2,

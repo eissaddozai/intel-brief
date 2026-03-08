@@ -811,11 +811,25 @@ def _extract_generic(source: dict, soup: BeautifulSoup, date: datetime,
 # resolution and tailored CSS selectors.
 
 EXTRACTORS: dict[str, Callable] = {
-    # ── Tier 1 core ──
+    # ── AP — every entry point ──
     'ap_wire':            _extract_ap,
+    'ap_iran':            _extract_ap,
+    'ap_iran_nuclear':    _extract_ap,
+    'ap_israel_war':      _extract_ap,
+    'ap_top_news':        _extract_ap,
+    # ── Reuters — full network ──
     'reuters_mideast':    _extract_reuters,
+    'reuters_world':      _extract_reuters,
+    'reuters_energy':     _extract_reuters,
+    'reuters_markets':    _extract_reuters,
+    'reuters_commodities': _extract_reuters,
+    'reuters_sustainability': _extract_reuters,
+    # ── CTP-ISW — everything ──
     'ctpiw_evening':      _extract_ctpiw,
     'ctpiw_morning':      _extract_ctpiw,
+    'ctpiw_iran_location': _extract_ctpiw,
+    'ctpiw_analysis':     _extract_ctpiw,
+    # ── Other Tier 1 ──
     'centcom':            _extract_centcom,
     'ukmto':              _extract_ukmto,
     'idf_spokesperson':   _extract_idf,

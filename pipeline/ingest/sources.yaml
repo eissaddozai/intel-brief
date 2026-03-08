@@ -23,8 +23,12 @@ sources:
   # These are the evidentiary floor. AP + AJ + Reuters not reporting = unconfirmed.
   # ─────────────────────────────────────────────────────────────────────────────
 
+  # ── AP NEWS — MAXIMUM COVERAGE ──
+  # AP is the single most important wire. We hit every possible entry point.
+  # The scraper tries each in order; deduplication happens at triage.
+
   - id: ap_wire
-    name: "Associated Press"
+    name: "Associated Press — Middle East Hub"
     tier: 1
     domains: [d1, d2, d3, d4, d5]
     method: scrape
@@ -32,11 +36,85 @@ sources:
     status: likely
     enabled: true
     notes: >
-      AP deprecated feeds.apnews.com. New RSS may be at
-      apnews.com/world-news.rss but reliability is uncertain. We scrape
-      the Middle East hub page instead. AP not reporting = unconfirmed.
-      Fallbacks: rsshub.app/apnews/topics/world-news (third-party proxy),
-      or associated-press.s3-website-us-east-1.amazonaws.com (community).
+      Primary AP Middle East hub. All entries below are mandatory — every
+      one is scraped independently every cycle. AP not reporting = unconfirmed.
+
+  - id: ap_iran
+    name: "Associated Press — Iran Hub"
+    tier: 1
+    domains: [d1, d2, d3, d4]
+    method: scrape
+    url: "https://apnews.com/hub/iran"
+    status: likely
+    enabled: true
+    notes: >
+      All Iran-tagged AP content including live update pages. This is where
+      "Live updates: UAE accuses Iran of new drone and missile attacks..."
+      type stories aggregate. MANDATORY — do not disable.
+
+  - id: ap_iran_nuclear
+    name: "Associated Press — Iran Nuclear"
+    tier: 1
+    domains: [d2, d4]
+    method: scrape
+    url: "https://apnews.com/hub/iran-nuclear"
+    status: likely
+    enabled: true
+    notes: >
+      AP Iran nuclear-specific hub. Captures IAEA coverage, enrichment
+      updates, P5+1 diplomatic track. Separate from general Iran hub.
+
+  - id: ap_israel_war
+    name: "Associated Press — Israel War"
+    tier: 1
+    domains: [d1, d2, d4]
+    method: scrape
+    url: "https://apnews.com/hub/israel-hamas-war"
+    status: likely
+    enabled: true
+    notes: >
+      AP Israel war coverage hub. Captures northern front (Hezbollah),
+      regional escalation, and Israeli military operations that feed
+      directly into d1/d2.
+
+  - id: ap_top_news
+    name: "Associated Press — Top International"
+    tier: 1
+    domains: [d1, d2, d3, d4, d5]
+    method: scrape
+    url: "https://apnews.com/world-news"
+    status: likely
+    enabled: true
+    notes: >
+      Broadest AP catch-all — relevance filter drops non-Iran/Gulf items.
+      Ensures we catch stories AP files under world-news but not under
+      the Middle East hub specifically.
+
+  - id: ap_rss
+    name: "Associated Press — World News RSS"
+    tier: 1
+    domains: [d1, d2, d3, d4, d5]
+    method: rss
+    url: "https://apnews.com/world-news.rss"
+    status: likely
+    enabled: true
+    notes: >
+      New-format AP RSS endpoint. May or may not serve valid XML — kept
+      as mandatory entry regardless. If it works, it catches stories
+      faster than scraping hub pages.
+
+  - id: ap_rsshub
+    name: "Associated Press — RSSHub Proxy"
+    tier: 1
+    domains: [d1, d2, d3, d4, d5]
+    method: rss
+    url: "https://rsshub.app/apnews/topics/world-news"
+    status: likely
+    enabled: true
+    notes: >
+      Third-party RSSHub proxy for AP News. Community-maintained, updated
+      frequently. Redundancy layer — if AP's own RSS is down, this
+      usually still works.
 
   - id: al_jazeera_en
     name: "Al Jazeera English"
@@ -50,8 +128,12 @@ sources:
       Real public RSS. Strong regional bureau including Tehran, Beirut,
       Gaza, Riyadh. Factual backbone for Arab-world perspective.
 
+  # ── REUTERS — FULL NETWORK ──
+  # Reuters is the second pillar. We scrape every relevant section.
+  # Reuters killed public RSS in 2020; all entries are scrape-method.
+
   - id: reuters_mideast
-    name: "Reuters Middle East"
+    name: "Reuters — Middle East"
     tier: 1
     domains: [d1, d2, d3, d4]
     method: scrape
@@ -59,14 +141,77 @@ sources:
     status: likely
     enabled: true
     notes: >
-      Reuters /world/middle-east/ is the correct URL — the 401 seen in
-      check-sources is Reuters bot-blocking automated requests, not a
-      wrong URL. Reuters killed their public RSS in 2020. Scraped with
-      requests+BS4. May need User-Agent rotation or cookie auth to
-      avoid 401. Reuters is the second pillar alongside AP.
+      Primary Reuters Middle East section. The 401 in check-sources is
+      bot-blocking — User-Agent rotation in scraper handles this.
+
+  - id: reuters_world
+    name: "Reuters — World News"
+    tier: 1
+    domains: [d1, d2, d4]
+    method: scrape
+    url: "https://www.reuters.com/world/"
+    status: likely
+    enabled: true
+    notes: >
+      Broader Reuters world desk. Catches stories filed under /world/
+      that don't appear in /world/middle-east/ — e.g. UN votes, NATO
+      responses, G7 statements about the conflict.
+
+  - id: reuters_energy
+    name: "Reuters — Energy"
+    tier: 1
+    domains: [d3, d6]
+    method: scrape
+    url: "https://www.reuters.com/business/energy/"
+    status: likely
+    enabled: true
+    notes: >
+      Reuters energy desk — Brent crude, Hormuz throughput, LNG diversion,
+      OPEC+ emergency meetings. Tier 1 for Energy (d3). Relevance filter
+      drops non-conflict items.
+
+  - id: reuters_markets
+    name: "Reuters — Markets"
+    tier: 2
+    domains: [d3, d6]
+    method: scrape
+    url: "https://www.reuters.com/markets/"
+    status: likely
+    enabled: true
+    notes: >
+      Reuters markets desk — sanctions impact, insurance market moves,
+      shipping rate spikes. Relevance filter for Iran/Gulf/war-risk items.
+
+  - id: reuters_commodities
+    name: "Reuters — Commodities"
+    tier: 1
+    domains: [d3]
+    method: scrape
+    url: "https://www.reuters.com/markets/commodities/"
+    status: likely
+    enabled: true
+    notes: >
+      Reuters commodities desk — oil/gas prices, supply disruptions,
+      sanctions impact on crude flows. Critical for Energy (d3).
+
+  - id: reuters_sustainability
+    name: "Reuters — Sustainability/ESG"
+    tier: 2
+    domains: [d3, d6]
+    method: scrape
+    url: "https://www.reuters.com/sustainability/"
+    status: likely
+    enabled: true
+    notes: >
+      Reuters sustainability section covers energy transition and supply
+      chain disruptions. Catches war-impact stories filed here.
+
+  # ── CTP-ISW — EVERYTHING ──
+  # CTP-ISW is the primary analytical backbone. We scrape every entry point
+  # to ensure no report is missed.
 
   - id: ctpiw_evening
-    name: "CTP-ISW Evening Report"
+    name: "CTP-ISW — Iran Updates (Briefs)"
     tier: 1
     domains: [d1, d2]
     method: scrape
@@ -75,12 +220,36 @@ sources:
     enabled: true
     notes: >
       Primary backbone for Battlespace (d1). Every claim is footnoted.
-      Evening report covers the full 24h operational picture.
       /briefs/iran-updates is the curated Iran strike briefs listing.
-      Alternative URLs: /locations/iran (broader), /analysis (all topics).
+      All CTP-ISW entry points are scraped independently every cycle.
       Individual reports use dated slugs like
       /analysis/iran-update-evening-special-report-march-7-2026.
-      The old /analysis/iran-war-updates path 404s.
+
+  - id: ctpiw_iran_location
+    name: "CTP-ISW — Iran (All Content)"
+    tier: 1
+    domains: [d1, d2, d4]
+    method: scrape
+    url: "https://www.criticalthreats.org/locations/iran"
+    status: likely
+    enabled: true
+    notes: >
+      Broader CTP-ISW Iran view — captures analysis, briefs, maps, and
+      indicators of regime instability that may not appear on /briefs/.
+      Ensures we catch non-brief-format analysis pieces.
+
+  - id: ctpiw_analysis
+    name: "CTP-ISW — Full Analysis Feed"
+    tier: 1
+    domains: [d1, d2, d4]
+    method: scrape
+    url: "https://www.criticalthreats.org/analysis"
+    status: likely
+    enabled: true
+    notes: >
+      Full analysis listing (all topics). Catches any CTP-ISW analysis
+      that touches Iran/Gulf but is filed under a different category
+      (e.g. Lebanon, Syria, Yemen, Iraq). Relevance filter applies.
 
   - id: iaea
     name: "IAEA Statements"
@@ -148,16 +317,17 @@ sources:
 
   - id: ctpiw_morning
     name: "CTP-ISW Morning Report"
-    tier: 2
+    tier: 1
     domains: [d1, d2]
     method: scrape
     url: "https://www.criticalthreats.org/briefs/iran-updates"
     status: likely
     enabled: true
     notes: >
-      Same /briefs/iran-updates listing as evening report — scraper
-      extracts most recent article. Individual morning reports use slugs
-      like /analysis/iran-update-morning-special-report-march-3-2026.
+      Same /briefs/iran-updates listing as evening — both are Tier 1.
+      The scraper extracts all visible articles; dedup at triage prevents
+      double-counting. Individual morning reports use slugs like
+      /analysis/iran-update-morning-special-report-march-3-2026.
 
   - id: cnn_mideast
     name: "CNN Middle East"
