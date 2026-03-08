@@ -1,4 +1,4 @@
-import type { WarningIndicator, BriefCycle } from '../types/brief'
+import type { WarningIndicator } from '../types/brief'
 import { DOMAIN_LABELS } from '../types/brief'
 
 interface Props {
