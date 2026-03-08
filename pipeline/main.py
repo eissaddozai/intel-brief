@@ -300,7 +300,6 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
 
 
 def stage_draft(tagged_cache: Path, target_date: datetime, config: dict) -> Path:
-    from draft.drafter import draft_cycle
     draft_file = tagged_cache.parent / tagged_cache.name.replace('tagged_', 'draft_')
     tagged_items = json.loads(tagged_cache.read_text(encoding='utf-8'))
     prev_cycle = _find_previous_cycle()
@@ -312,12 +311,20 @@ def stage_draft(tagged_cache: Path, target_date: datetime, config: dict) -> Path
 
     log.info('Calling Claude API...')
     try:
+        from draft.drafter import draft_cycle
         draft = draft_cycle(
             tagged_items=tagged_items,
             target_date=target_date,
             prev_cycle=prev_cycle,
             config=config,
         )
+    except (ImportError, ModuleNotFoundError) as exc:
+        log.warning(
+            'Claude API module not installed (%s). '
+            'Building placeholder draft — install anthropic package and retry.',
+            exc,
+        )
+        draft = _build_placeholder_draft(tagged_items, target_date)
     except Exception as exc:
         err = str(exc)
         _api_issue = any(kw in err.lower() for kw in [
@@ -477,8 +484,10 @@ def cmd_check_sources(args: argparse.Namespace, config: dict) -> None:
 
         try:
             t0 = time.time()
-            r = req.head(test_url, headers=HEADERS, timeout=TIMEOUT, allow_redirects=True)
+            # Use GET with stream=True (HEAD often returns 405/403 on many servers)
+            r = req.get(test_url, headers=HEADERS, timeout=TIMEOUT, allow_redirects=True, stream=True)
             elapsed = int((time.time() - t0) * 1000)
+            r.close()
             code = r.status_code
             if code < 400:
                 status_str = green(f'{"OK":<8}')

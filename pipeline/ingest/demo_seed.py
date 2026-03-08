@@ -1,6 +1,8 @@
 """
 Demo seed data — realistic synthetic items for local testing.
 No internet or API required when running: python pipeline/main.py --demo
+
+NOTE: source_id values MUST match sources.yaml exactly.
 """
 
 from datetime import datetime, timezone
@@ -13,7 +15,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
     return [
         # ── TIER 1 · BATTLESPACE (d1) ────────────────────────────────────────
         {
-            'source_id': 'ctp_isw_evening',
+            'source_id': 'ctpiw_evening',
             'source_name': 'CTP-ISW Evening Report',
             'tier': 1,
             'domains': ['d1'],
@@ -33,7 +35,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
         },
         {
             'source_id': 'centcom',
-            'source_name': 'CENTCOM',
+            'source_name': 'CENTCOM Press Releases',
             'tier': 1,
             'domains': ['d1'],
             'title': 'CENTCOM: USS Gravely intercepts four Houthi anti-ship ballistic missiles',
@@ -45,14 +47,14 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'Houthi launch infrastructure in Hudaydah governorate.'
             ),
             'full_content': '',
-            'url': 'https://www.centcom.mil/MEDIA/PRESS-RELEASES/',
+            'url': 'https://www.centcom.mil/MEDIA/NEWS-ARTICLES/',
             'timestamp': ts,
             'verification_status': 'confirmed',
-            'method': 'rss',
+            'method': 'scrape',
         },
         {
             'source_id': 'ukmto',
-            'source_name': 'UKMTO',
+            'source_name': 'UKMTO Maritime Bulletins',
             'tier': 1,
             'domains': ['d1', 'd3'],
             'title': 'UKMTO: Armed drone attack on MV Nordic Hawk, Bab el-Mandeb',
@@ -65,13 +67,13 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'to maintain heightened vigilance in the area.'
             ),
             'full_content': '',
-            'url': 'https://www.ukmto.org/red-sea',
+            'url': 'https://www.ukmto.org/indian-ocean/recent-incidents',
             'timestamp': ts,
             'verification_status': 'confirmed',
             'method': 'scrape',
         },
         {
-            'source_id': 'ctp_isw_morning',
+            'source_id': 'ctpiw_morning',
             'source_name': 'CTP-ISW Morning Report',
             'tier': 1,
             'domains': ['d1'],
@@ -92,7 +94,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
         },
         # ── TIER 2 · BATTLESPACE (d1) ────────────────────────────────────────
         {
-            'source_id': 'bbc_me',
+            'source_id': 'bbc_mideast',
             'source_name': 'BBC Middle East',
             'tier': 2,
             'domains': ['d1'],
@@ -131,7 +133,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
         # ── TIER 1 · ESCALATION (d2) ────────────────────────────────────────
         {
             'source_id': 'iaea',
-            'source_name': 'IAEA',
+            'source_name': 'IAEA Statements',
             'tier': 1,
             'domains': ['d2'],
             'title': 'IAEA Board of Governors: Iran bars inspectors from Fordow',
@@ -189,7 +191,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
         # ── TIER 1 · ENERGY (d3) ────────────────────────────────────────────
         {
             'source_id': 'centcom',
-            'source_name': 'CENTCOM',
+            'source_name': 'CENTCOM Press Releases',
             'tier': 1,
             'domains': ['d3'],
             'title': 'CENTCOM: Strait of Hormuz transit corridor operating with escort',
@@ -201,15 +203,15 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 '14 million bpd (vs. normal 21 million bpd).'
             ),
             'full_content': '',
-            'url': 'https://www.centcom.mil/MEDIA/PRESS-RELEASES/',
+            'url': 'https://www.centcom.mil/MEDIA/NEWS-ARTICLES/',
             'timestamp': ts,
             'verification_status': 'confirmed',
-            'method': 'rss',
+            'method': 'scrape',
         },
         # ── TIER 2 · ENERGY (d3) ────────────────────────────────────────────
         {
-            'source_id': 'reuters',
-            'source_name': 'Reuters',
+            'source_id': 'reuters_mideast',
+            'source_name': 'Reuters Middle East',
             'tier': 2,
             'domains': ['d3'],
             'title': 'Reuters: Brent crude hits $147/bbl as Hormuz throughput falls',
@@ -222,10 +224,10 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'framework.'
             ),
             'full_content': '',
-            'url': 'https://feeds.reuters.com/reuters/worldNews',
+            'url': 'https://www.reuters.com/world/middle-east/',
             'timestamp': ts,
             'verification_status': 'reported',
-            'method': 'rss',
+            'method': 'scrape',
         },
         {
             'source_id': 'cnbc_energy',
@@ -240,16 +242,16 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'European storage at 48% capacity heading into the shoulder season.'
             ),
             'full_content': '',
-            'url': '',
+            'url': 'https://www.cnbc.com/id/19832390/device/rss/rss.html',
             'timestamp': ts,
             'verification_status': 'reported',
-            'method': 'scrape',
+            'method': 'rss',
         },
         # ── TIER 2 · DIPLOMATIC (d4) ────────────────────────────────────────
         {
-            'source_id': 'ap',
+            'source_id': 'ap_wire',
             'source_name': 'Associated Press',
-            'tier': 2,
+            'tier': 1,
             'domains': ['d4'],
             'title': 'AP: UN Security Council emergency session fails, Russia/China veto ceasefire',
             'text': (
@@ -260,14 +262,14 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'calling on Iran to restore IAEA access within 48 hours.'
             ),
             'full_content': '',
-            'url': 'https://rsshub.app/apnews/topics/iran-war',
+            'url': 'https://feeds.apnews.com/rss/apf-intlnews',
             'timestamp': ts,
-            'verification_status': 'reported',
+            'verification_status': 'confirmed',
             'method': 'rss',
         },
         {
             'source_id': 'cfr_daily',
-            'source_name': 'CFR Daily',
+            'source_name': 'CFR Daily News Brief',
             'tier': 2,
             'domains': ['d4'],
             'title': 'CFR: Omani back-channel to Iran described as "active but not productive"',
@@ -286,7 +288,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
         },
         {
             'source_id': 'icg',
-            'source_name': 'ICG',
+            'source_name': 'International Crisis Group',
             'tier': 2,
             'domains': ['d4'],
             'title': 'ICG: GCC states divide on Iran policy as UAE-Iran trade links persist',
@@ -305,8 +307,8 @@ def get_seed_items(target_date: datetime) -> list[dict]:
         },
         # ── TIER 2/3 · CYBER (d5) ────────────────────────────────────────────
         {
-            'source_id': 'cisa',
-            'source_name': 'CISA',
+            'source_id': 'cisa_advisories',
+            'source_name': 'CISA Cybersecurity Advisories',
             'tier': 3,
             'domains': ['d5'],
             'title': 'CISA AA26-063A: Iranian threat actors targeting critical infrastructure OT/ICS',
@@ -318,14 +320,14 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'FBI and CISA recommend immediate patching and network segmentation.'
             ),
             'full_content': '',
-            'url': 'https://www.cisa.gov/cybersecurity-advisories/rss.xml',
+            'url': 'https://www.cisa.gov/cybersecurity-advisories/all.xml',
             'timestamp': ts,
-            'verification_status': 'reported',
+            'verification_status': 'claimed',
             'method': 'rss',
         },
         {
             'source_id': 'recorded_future',
-            'source_name': 'Recorded Future',
+            'source_name': 'Recorded Future Research Blog',
             'tier': 3,
             'domains': ['d5'],
             'title': 'Recorded Future: APT35 infrastructure expansion targets Israeli financial sector',
@@ -345,7 +347,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
         },
         {
             'source_id': 'netblocks',
-            'source_name': 'NetBlocks',
+            'source_name': 'NetBlocks Internet Observatory',
             'tier': 3,
             'domains': ['d5'],
             'title': 'NetBlocks: Major internet disruption detected across Iran, 60% connectivity loss',
@@ -360,6 +362,86 @@ def get_seed_items(target_date: datetime) -> list[dict]:
             'url': 'https://netblocks.org',
             'timestamp': ts,
             'verification_status': 'claimed',
+            'method': 'scrape',
+        },
+        # ── TIER 1 · WAR RISK INSURANCE (d6) ─────────────────────────────────
+        {
+            'source_id': 'jwc_listed_areas',
+            'source_name': 'Joint War Committee Listed Areas',
+            'tier': 1,
+            'domains': ['d6', 'd3'],
+            'title': 'JWC: Listed areas expanded to include full Persian Gulf basin',
+            'text': (
+                f'Joint War Committee [{date_str}]: Following overnight missile exchanges, '
+                'the JWC has expanded the listed area to encompass the entire Persian Gulf '
+                'basin including all waters north of 24°N latitude. Previous listed area '
+                'covered only the Strait of Hormuz transit corridor. All vessels transiting '
+                'the expanded zone now require additional war risk premium notification to '
+                'lead underwriters. Effective immediately.'
+            ),
+            'full_content': '',
+            'url': 'https://www.lmalloyds.com/LMA/Underwriting_Committees/Marine_Committees/LMA_JWC/JWC_war_listed_areas.aspx',
+            'timestamp': ts,
+            'verification_status': 'confirmed',
+            'method': 'scrape',
+        },
+        {
+            'source_id': 'ig_pic_circulars',
+            'source_name': 'International Group of P&I Clubs',
+            'tier': 1,
+            'domains': ['d6'],
+            'title': 'IG P&I Circular 17/2026: War Risk Additional Premium for Persian Gulf transits',
+            'text': (
+                'The International Group of P&I Clubs has issued Circular 17/2026 advising '
+                'all member clubs that additional war risk premiums for Persian Gulf transits '
+                'have been revised upward by 0.15% of vessel value (from 0.05% prior). '
+                'Circular notes that underwriters are requiring 72-hour advance notification '
+                'for all Hormuz transits. Retroactive cover is no longer available.'
+            ),
+            'full_content': '',
+            'url': 'https://www.igpandi.org/news/',
+            'timestamp': ts,
+            'verification_status': 'confirmed',
+            'method': 'scrape',
+        },
+        # ── TIER 2 · WAR RISK INSURANCE (d6) ─────────────────────────────────
+        {
+            'source_id': 'hellenicshipping',
+            'source_name': 'Hellenic Shipping News',
+            'tier': 2,
+            'domains': ['d6', 'd3'],
+            'title': 'Hellenic Shipping: War risk premiums triple for Gulf-bound tankers',
+            'text': (
+                'London market war risk premiums for Gulf-bound tankers have tripled in the '
+                'past 48 hours following the JWC listed area expansion. Lloyd\'s syndicates '
+                'are quoting 0.15-0.20% of hull value for single Hormuz transits, up from '
+                '0.05% last week. Several smaller syndicates have withdrawn capacity entirely. '
+                'Marsh estimates daily war risk cost for a laden VLCC at $150,000-200,000.'
+            ),
+            'full_content': '',
+            'url': 'https://www.hellenicshippingnews.com/feed/',
+            'timestamp': ts,
+            'verification_status': 'reported',
+            'method': 'rss',
+        },
+        {
+            'source_id': 'dryad_global',
+            'source_name': 'Dryad Global Maritime Security',
+            'tier': 2,
+            'domains': ['d6', 'd1', 'd3'],
+            'title': 'Dryad: Threat level raised to CRITICAL for Persian Gulf and Southern Red Sea',
+            'text': (
+                'Dryad Global has raised its maritime threat assessment for the Persian Gulf '
+                'and Southern Red Sea to CRITICAL (highest level). Assessment notes multiple '
+                'concurrent threats: IRGC fast-attack craft activity in the Strait, continued '
+                'Houthi ASBM launches in the Bab el-Mandeb, and unattributed mine-laying '
+                'reports near Fujairah anchorage. Recommends all non-essential transits be '
+                'postponed pending threat re-evaluation.'
+            ),
+            'full_content': '',
+            'url': 'https://www.dryadglobal.com/news',
+            'timestamp': ts,
+            'verification_status': 'reported',
             'method': 'scrape',
         },
     ]

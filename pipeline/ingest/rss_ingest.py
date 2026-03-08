@@ -4,6 +4,7 @@ Uses requests + stdlib xml.etree (no feedparser dependency).
 """
 
 import logging
+import re
 import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone, timedelta
@@ -11,6 +12,8 @@ from email.utils import parsedate_to_datetime
 from pathlib import Path
 
 import requests
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 import yaml
 
 log = logging.getLogger(__name__)
@@ -20,19 +23,46 @@ MAX_ITEM_AGE_HOURS = 30
 REQUEST_DELAY = 0.5
 REQUEST_TIMEOUT = 15
 
-HEADERS = {'User-Agent': 'CSE-Intel-Brief/1.0 (Research pipeline; contact: research@cse.ca)'}
+HEADERS = {
+    'User-Agent': 'CSE-Intel-Brief/1.0 (Research pipeline; contact: research@cse.ca)',
+    'Accept': 'application/rss+xml, application/xml, application/atom+xml, text/xml;q=0.9, */*;q=0.8',
+    'Accept-Encoding': 'gzip, deflate',
+}
 
 # RSS / Atom namespace map
 NS = {
     'atom': 'http://www.w3.org/2005/Atom',
     'media': 'http://search.yahoo.com/mrss/',
     'dc': 'http://purl.org/dc/elements/1.1/',
+    'content': 'http://purl.org/rss/1.0/modules/content/',
 }
+
+# HTML tag stripping pattern (compiled once, not per-item)
+_HTML_TAG_RE = re.compile(r'<[^>]+>')
+
+
+def _build_session() -> requests.Session:
+    """Build a requests session with retry logic and connection pooling."""
+    session = requests.Session()
+    session.headers.update(HEADERS)
+    retry = Retry(
+        total=3,
+        backoff_factor=1.0,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=['GET', 'HEAD'],
+    )
+    adapter = HTTPAdapter(max_retries=retry, pool_connections=10, pool_maxsize=10)
+    session.mount('https://', adapter)
+    session.mount('http://', adapter)
+    return session
 
 
 def load_rss_sources(config: dict | None = None) -> list[dict]:
     data = yaml.safe_load(SOURCES_FILE.read_text(encoding='utf-8'))
-    return [s for s in data.get('sources', []) if s.get('method') == 'rss']
+    return [
+        s for s in data.get('sources', [])
+        if s.get('method') == 'rss' and s.get('enabled', True)
+    ]
 
 
 def _parse_date(text: str | None) -> datetime | None:
@@ -61,7 +91,7 @@ def _text(el: ET.Element | None, *tags: str) -> str:
     if el is None:
         return ''
     for tag in tags:
-        child = el.find(tag) or el.find(f'atom:{tag}', NS)
+        child = el.find(tag, NS) or el.find(tag) or el.find(f'atom:{tag}', NS)
         if child is not None and child.text:
             return child.text.strip()
     return ''
@@ -97,7 +127,11 @@ def _parse_feed(xml_text: str, source: dict, cutoff: datetime) -> list[dict]:
         else:
             title = _text(entry, 'title')
             link = _text(entry, 'link')
-            summary = _text(entry, 'description', 'content:encoded')
+            summary = (
+                _text(entry, 'description')
+                or _text(entry, '{http://purl.org/rss/1.0/modules/content/}encoded')
+                or _text(entry, 'content:encoded')
+            )
             date_text = (_text(entry, 'pubDate') or
                          _text(entry, '{http://purl.org/dc/elements/1.1/}date'))
 
@@ -106,8 +140,7 @@ def _parse_feed(xml_text: str, source: dict, cutoff: datetime) -> list[dict]:
             continue
 
         # Strip HTML tags from summary
-        import re
-        summary_clean = re.sub(r'<[^>]+>', ' ', summary or '').strip()
+        summary_clean = _HTML_TAG_RE.sub(' ', summary or '').strip()
 
         items.append({
             'source_id': source['id'],
@@ -131,6 +164,10 @@ def ingest_rss(target_date: datetime, config: dict | None = None) -> list[dict]:
     cutoff = target_date - timedelta(hours=MAX_ITEM_AGE_HOURS)
     all_items: list[dict] = []
     failed_tier1: list[str] = []
+    session = _build_session()
+
+    # Import relevance filter once, not per-source
+    from ingest.relevance import filter_relevant
 
     for source in sources:
         url = source.get('url')
@@ -139,20 +176,20 @@ def ingest_rss(target_date: datetime, config: dict | None = None) -> list[dict]:
             continue
 
         try:
-            resp = requests.get(url, headers=HEADERS, timeout=REQUEST_TIMEOUT)
+            resp = session.get(url, timeout=REQUEST_TIMEOUT)
             resp.raise_for_status()
             items = _parse_feed(resp.text, source, cutoff)
-            # Apply relevance filter to general feeds (Tier 1 items pass unconditionally)
-            from ingest.relevance import filter_relevant
             items = filter_relevant(items)
             all_items.extend(items)
             log.info('%-35s %3d items', source['name'], len(items))
         except Exception as exc:
-            log.error('Failed to fetch %s: %s', source['name'], exc)
+            log.error('Failed to fetch %s (%s): %s', source['name'], url, exc)
             if source['tier'] == 1:
                 failed_tier1.append(source['name'])
 
         time.sleep(REQUEST_DELAY)
+
+    session.close()
 
     if failed_tier1:
         log.error('TIER 1 RSS FAILURES: %s', ', '.join(failed_tier1))

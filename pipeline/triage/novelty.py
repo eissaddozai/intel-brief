@@ -36,7 +36,10 @@ def extract_known_facts(prev_cycle: dict) -> set[str]:
     exec_data = prev_cycle.get('executive', {})
     add_text(exec_data.get('bluf', ''))
     for kj in exec_data.get('keyJudgments', []):
-        add_text(kj.get('text', ''))
+        if isinstance(kj, str):
+            add_text(kj)
+        elif isinstance(kj, dict):
+            add_text(kj.get('text', ''))
 
     for domain in prev_cycle.get('domains', []):
         for para in domain.get('bodyParagraphs', []):
@@ -72,7 +75,11 @@ def filter_novel(items: list[dict], cycles_dir: Path, config: dict | None = None
     Items from Tier 1 sources are never filtered (factual updates always included).
     """
     # Find most recent cycle
-    cycle_files = sorted(cycles_dir.glob('cycle_*.json'))
+    # Match both cycle001_20240315.json and cycle_001_20240315.json patterns
+    cycle_files = sorted(
+        f for f in cycles_dir.glob('cycle*.json')
+        if not f.is_symlink()
+    )
     if not cycle_files:
         log.info('No previous cycles found — treating all items as novel')
         return items
@@ -89,6 +96,9 @@ def filter_novel(items: list[dict], cycles_dir: Path, config: dict | None = None
     known_phrases = extract_known_facts(prev_cycle)
     log.info('Previous cycle yielded %d known phrases', len(known_phrases))
 
+    # Use configured threshold, falling back to module default
+    threshold = (config or {}).get('triage', {}).get('novelty_threshold', NOVELTY_THRESHOLD)
+
     novel_items: list[dict] = []
     filtered_count = 0
 
@@ -102,7 +112,7 @@ def filter_novel(items: list[dict], cycles_dir: Path, config: dict | None = None
 
         score = compute_novelty_score(item, known_phrases)
         item['novelty_score'] = round(score, 3)
-        item['is_novel'] = score >= NOVELTY_THRESHOLD
+        item['is_novel'] = score >= threshold
 
         if item['is_novel']:
             novel_items.append(item)

@@ -28,7 +28,7 @@ REQUIRED_TOP_LEVEL = {'meta', 'strategicHeader', 'flashPoints', 'executive',
                       'domains', 'warningIndicators', 'collectionGaps', 'caveats', 'footer'}
 REQUIRED_META = {'cycleId', 'cycleNum', 'classification', 'tlp', 'timestamp',
                  'region', 'analystUnit', 'threatLevel', 'threatTrajectory'}
-VALID_DOMAIN_IDS = {'d1', 'd2', 'd3', 'd4', 'd5'}
+VALID_DOMAIN_IDS = {'d1', 'd2', 'd3', 'd4', 'd5', 'd6'}
 VALID_TLP = {'RED', 'AMBER', 'GREEN', 'CLEAR'}
 VALID_THREAT = {'CRITICAL', 'SEVERE', 'ELEVATED', 'GUARDED', 'LOW'}
 
