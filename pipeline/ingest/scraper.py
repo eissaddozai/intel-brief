@@ -250,8 +250,54 @@ def _extract_reuters(source: dict, date: datetime) -> list[dict]:
     return items[:20]
 
 
+def _extract_ap(source: dict, date: datetime) -> list[dict]:
+    """AP News Middle East hub page. Headline + excerpt extraction."""
+    soup = _fetch(source['url'])
+    if not soup:
+        return []
+
+    items = []
+    # AP uses various card patterns across redesigns
+    selectors = [
+        '[data-key="feed-card"]',
+        '[class*="FeedCard"]',
+        'article', '.PageList-items-item',
+        'div[class*="CardHeadline"]',
+        '.hub-peek-card',
+    ]
+    cards = []
+    for sel in selectors:
+        cards = soup.select(sel)
+        if cards:
+            break
+
+    if not cards:
+        cards = soup.select('a[href*="/article/"]')
+
+    for card in cards[:25]:
+        heading = card.find(['h1', 'h2', 'h3', 'h4', 'span'])
+        if not heading:
+            # The card itself might be an anchor with text
+            title = _clean(card.get_text()) if card.name == 'a' else ''
+        else:
+            title = _clean(heading.get_text())
+        if len(title) < 20:
+            continue
+        link_el = card.find('a', href=True) or (card if card.name == 'a' and card.get('href') else None)
+        link = link_el['href'] if link_el else ''
+        link = _resolve_link(link, 'https://apnews.com')
+        excerpt_el = card.find('p')
+        excerpt = _clean(excerpt_el.get_text()) if excerpt_el else ''
+        items.append(_make_item(source, title, excerpt, link or source['url'], date.isoformat()))
+
+    if not items:
+        items = _extract_generic(source, soup, date, max_items=15)
+
+    return items[:20]
+
+
 def _extract_ctpiw(source: dict, date: datetime) -> list[dict]:
-    """CTP-ISW Iran War Updates category page."""
+    """CTP-ISW analysis listing page (criticalthreats.org/analysis)."""
     return _extract_article_list(
         source, date,
         base_domain='https://www.criticalthreats.org',
@@ -766,6 +812,7 @@ def _extract_generic(source: dict, soup: BeautifulSoup, date: datetime,
 
 EXTRACTORS: dict[str, Callable] = {
     # ── Tier 1 core ──
+    'ap_wire':            _extract_ap,
     'reuters_mideast':    _extract_reuters,
     'ctpiw_evening':      _extract_ctpiw,
     'ctpiw_morning':      _extract_ctpiw,

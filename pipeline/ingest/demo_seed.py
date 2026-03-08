@@ -28,7 +28,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'damaging a fuel storage facility and wounding seven dock workers.'
             ),
             'full_content': '',
-            'url': 'https://www.criticalthreats.org/analysis/iran-war-updates',
+            'url': 'https://www.criticalthreats.org/analysis',
             'timestamp': ts,
             'verification_status': 'confirmed',
             'method': 'scrape',
@@ -87,7 +87,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'initiating a major ground offensive.'
             ),
             'full_content': '',
-            'url': 'https://www.criticalthreats.org/analysis/iran-war-updates',
+            'url': 'https://www.criticalthreats.org/analysis',
             'timestamp': ts_prev,
             'verification_status': 'confirmed',
             'method': 'scrape',
@@ -224,7 +224,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'framework.'
             ),
             'full_content': '',
-            'url': 'https://www.reuters.com/world/middle-east/',
+            'url': 'https://www.reuters.com/middle-east/',
             'timestamp': ts,
             'verification_status': 'reported',
             'method': 'scrape',
@@ -262,10 +262,10 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'calling on Iran to restore IAEA access within 48 hours.'
             ),
             'full_content': '',
-            'url': 'https://feeds.apnews.com/rss/apf-intlnews',
+            'url': 'https://apnews.com/hub/middle-east',
             'timestamp': ts,
             'verification_status': 'confirmed',
-            'method': 'rss',
+            'method': 'scrape',
         },
         {
             'source_id': 'cfr_daily',
