@@ -22,7 +22,7 @@
   },
 
   "strategicHeader": {
-    "headlineJudgment": "We assess with high confidence that the assassination of Ayatollah Ali Khamenei and forced succession to his son Mojtaba has created a dual crisis of military attrition and political legitimacy within Iran, while the breach of $100/bbl oil and near-total Hormuz transit halt signal the conflict's global economic impact is accelerating beyond regional containment.",
+    "headlineJudgment": "Evidence strongly indicates that the assassination of Ayatollah Ali Khamenei and forced succession to his son Mojtaba has created a dual crisis of military attrition and political legitimacy within Iran, while the breach of $100/bbl oil and near-total Hormuz transit halt signal the conflict's global economic impact is accelerating beyond regional containment.",
     "trajectoryRationale": "The Israeli Air Force struck over 400 targets in Iran during the 6-7 Mar weekend, dropping approximately 1,465 munitions on regime military sites (Alma Research, 8 Mar). Simultaneously, Iran's Assembly of Experts named Mojtaba Khamenei as supreme leader under IRGC pressure, while Gulf Arab oil producers cut output as Hormuz exports stall (CNBC, 8 Mar). The primary tripwire is whether the new supreme leader consolidates command over IRGC operations or factional splits fragment Iran's war strategy. Countervailing signal: Iranian President Pezeshkian's apology to Gulf neighbours suggests a faction within Tehran favours diplomatic off-ramps, though continued Iranian strikes on five Gulf states undercut this (France24, 8 Mar)."
   },
 
@@ -32,7 +32,7 @@
       "timestamp": "2026-03-08T18:00:00Z",
       "domain": "d4",
       "headline": "Mojtaba Khamenei named supreme leader after father's assassination",
-      "detail": "We assess Iran's leadership transition under wartime conditions introduces severe command-and-control uncertainty; the Assembly of Experts named Mojtaba Khamenei as supreme leader under IRGC pressure, days after his father was killed in US-Israeli strikes (Al Jazeera, 8 Mar). Israel has warned it will 'pursue every successor' (France24, 8 Mar).",
+      "detail": "Iran's leadership transition under wartime conditions introduces severe command-and-control uncertainty; the Assembly of Experts named Mojtaba Khamenei as supreme leader under IRGC pressure, days after his father was killed in US-Israeli strikes (Al Jazeera, 8 Mar). Israel has warned it will 'pursue every successor' (France24, 8 Mar).",
       "confidence": "high",
       "citations": [
         { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-08T18:00:00Z", "verificationStatus": "confirmed" },
@@ -45,7 +45,7 @@
       "timestamp": "2026-03-08T10:00:00Z",
       "domain": "d3",
       "headline": "Oil breaches $100/bbl as Gulf producers cut output; Hormuz near-halted",
-      "detail": "We assess conflict-driven supply destruction has crossed a critical threshold; Brent crude topped $100/bbl as Gulf Arab producers cut production due to inability to export through the Strait of Hormuz, where traffic has nearly come to a standstill following an explosion aboard a UAE-flagged tugboat (CNBC, 8 Mar; France24, 8 Mar).",
+      "detail": "Conflict-driven supply destruction has crossed a critical threshold; Brent crude topped $100/bbl as Gulf Arab producers cut production due to inability to export through the Strait of Hormuz, where traffic has nearly come to a standstill following an explosion aboard a UAE-flagged tugboat (CNBC, 8 Mar; France24, 8 Mar).",
       "confidence": "high",
       "citations": [
         { "source": "CNBC", "tier": 2, "timestamp": "2026-03-08T10:00:00Z", "verificationStatus": "reported" },
@@ -58,7 +58,7 @@
       "timestamp": "2026-03-08T06:00:00Z",
       "domain": "d1",
       "headline": "IAF drops 1,465 munitions on 400+ Iranian targets over weekend",
-      "detail": "We assess the Israeli air campaign has shifted to systematic destruction of Iran's ballistic missile production capacity; the IAF attacked over 400 targets including ballistic missile launchers and weapons production facilities across Iran during 6-7 Mar, with over 80 Israeli Air Force strikes confirmed in Tehran alone (Alma Research, 8 Mar 1800 UTC).",
+      "detail": "The Israeli air campaign has shifted to systematic destruction of Iran's ballistic missile production capacity; the IAF attacked over 400 targets including ballistic missile launchers and weapons production facilities across Iran during 6-7 Mar, with over 80 Israeli Air Force strikes confirmed in Tehran alone (Alma Research, 8 Mar 1800 UTC).",
       "confidence": "high",
       "citations": [
         { "source": "Alma Research", "tier": 2, "timestamp": "2026-03-08T18:00:00Z", "verificationStatus": "reported" },
@@ -68,7 +68,7 @@
   ],
 
   "executive": {
-    "bluf": "We assess with high confidence that the US-Israeli campaign has achieved a strategic inflection on Day 8: the confirmed assassination of Ayatollah Ali Khamenei and forced succession of his son Mojtaba under IRGC pressure has created a legitimacy crisis layered atop sustained military attrition. The Israeli Air Force struck over 400 targets during the 6-7 Mar weekend, dropping 1,465 munitions on regime military and oil infrastructure. Iran's retaliatory posture has expanded to five Gulf Arab states despite President Pezeshkian's public apology, a contradiction that suggests factional splits within Tehran's war council. Energy markets have crossed a critical threshold with Brent breaching $100/bbl and Hormuz transit at near-standstill, prompting the Trump administration to announce a $20 billion reinsurance programme for oil tankers.",
+    "bluf": "Evidence strongly indicates that the US-Israeli campaign has achieved a strategic inflection on Day 8: the confirmed assassination of Ayatollah Ali Khamenei and forced succession of his son Mojtaba under IRGC pressure has created a legitimacy crisis layered atop sustained military attrition. The Israeli Air Force struck over 400 targets during the 6-7 Mar weekend, dropping 1,465 munitions on regime military and oil infrastructure. Iran's retaliatory posture has expanded to five Gulf Arab states despite President Pezeshkian's public apology, a contradiction that suggests factional splits within Tehran's war council. Energy markets have crossed a critical threshold with Brent breaching $100/bbl and Hormuz transit at near-standstill, prompting the Trump administration to announce a $20 billion reinsurance programme for oil tankers.",
     "keyJudgments": [
       {
         "id": "kj-exec-1",
@@ -76,7 +76,7 @@
         "confidence": "high",
         "probabilityRange": "75-95%",
         "language": "highly-likely",
-        "text": "We judge it highly likely that Mojtaba Khamenei's succession will intensify rather than moderate Iran's war posture; the IRGC engineered his appointment and Israel's threat to 'pursue every successor' eliminates incentive for conciliation.",
+        "text": "The balance of reporting points to Mojtaba Khamenei's succession will intensify rather than moderate Iran's war posture; the IRGC engineered his appointment and Israel's threat to 'pursue every successor' eliminates incentive for conciliation.",
         "basis": "Iran's Assembly of Experts confirmed Mojtaba Khamenei under IRGC pressure (Al Jazeera, 8 Mar). Israel's stated policy of targeting successors removes de-escalation incentives for new leadership (France24, 8 Mar).",
         "citations": [
           { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-08T18:00:00Z", "verificationStatus": "confirmed" },
@@ -89,7 +89,7 @@
         "confidence": "high",
         "probabilityRange": "95-99%",
         "language": "almost-certainly",
-        "text": "We assess with high confidence that the coalition is now targeting Iran's war-sustaining infrastructure, not just military assets; strikes on five oil sites in Tehran and the resulting disruption to fuel distribution confirm a shift to economic attrition.",
+        "text": "Evidence strongly indicates that the coalition is now targeting Iran's war-sustaining infrastructure, not just military assets; strikes on five oil sites in Tehran and the resulting disruption to fuel distribution confirm a shift to economic attrition.",
         "basis": "France24 confirmed US-Israeli strikes on five oil sites; Tehran Governor confirmed fuel distribution 'temporarily interrupted'; IRGC claims Iran can sustain 'intense war' for six months (France24, 8 Mar).",
         "citations": [
           { "source": "France24", "tier": 2, "timestamp": "2026-03-08T12:00:00Z", "verificationStatus": "reported" },
@@ -102,7 +102,7 @@
         "confidence": "high",
         "probabilityRange": "75-95%",
         "language": "highly-likely",
-        "text": "We judge it highly likely that $100/bbl oil represents the new floor rather than a ceiling; Gulf Arab production cuts due to Hormuz export inability compound direct strike damage to Iranian refining capacity, creating dual supply destruction.",
+        "text": "The balance of reporting points to $100/bbl oil represents the new floor rather than a ceiling; Gulf Arab production cuts due to Hormuz export inability compound direct strike damage to Iranian refining capacity, creating dual supply destruction.",
         "basis": "CNBC confirmed Gulf producers cutting output as export through Hormuz stalls; oil analysts warn of further rises amid Hormuz disruption (Hellenic Shipping News, 8 Mar); Trump administration's $20 billion tanker reinsurance programme signals expectation of protracted maritime disruption (CNBC, 8 Mar).",
         "citations": [
           { "source": "CNBC", "tier": 2, "timestamp": "2026-03-08T10:00:00Z", "verificationStatus": "reported" },
@@ -115,7 +115,7 @@
         "confidence": "high",
         "probabilityRange": "75-95%",
         "language": "highly-likely",
-        "text": "We judge it highly likely that the conflict is poised for further horizontal expansion; Iran has struck five Gulf Arab states while its president simultaneously apologises, and the Arab League has convened an emergency session in response.",
+        "text": "The balance of reporting points to the conflict is poised for further horizontal expansion; Iran has struck five Gulf Arab states while its president simultaneously apologises, and the Arab League has convened an emergency session in response.",
         "basis": "France24 confirmed Iranian strikes on five Gulf states with simultaneous presidential apology; Arab League emergency session convened (France24, 8 Mar); Trump-Starmer military cooperation discussions indicate UK alignment (Anadolu, 8 Mar).",
         "citations": [
           { "source": "France24", "tier": 2, "timestamp": "2026-03-08T14:00:00Z", "verificationStatus": "reported" },
@@ -159,7 +159,7 @@
         "confidence": "high",
         "probabilityRange": "95-99%",
         "language": "almost-certainly",
-        "text": "We assess with high confidence that the Israeli Air Force has shifted from degradation strikes to systematic destruction of Iran's ballistic missile production and oil refining capacity, with 1,465 munitions dropped on 400+ targets over the 6-7 Mar weekend.",
+        "text": "Evidence strongly indicates that the Israeli Air Force has shifted from degradation strikes to systematic destruction of Iran's ballistic missile production and oil refining capacity, with 1,465 munitions dropped on 400+ targets over the 6-7 Mar weekend.",
         "basis": "Alma Research daily report confirmed 400+ targets including ballistic missile launchers and weapons production facilities; Israeli Air Force struck more than 80 targets in Tehran alone during the weekend; France24 confirmed strikes on five oil sites with fuel distribution interrupted.",
         "citations": [
           { "source": "Alma Research", "tier": 2, "timestamp": "2026-03-08T18:00:00Z", "verificationStatus": "reported" },
@@ -184,7 +184,7 @@
         {
           "subLabel": "OPERATIONAL ASSESSMENT",
           "subLabelVariant": "assessment",
-          "text": "We assess the coalition campaign has entered a war-sustaining infrastructure destruction phase; the targeting of oil sites in addition to military facilities signals intent to degrade Iran's capacity to fund and fuel protracted operations. The IRGC's public claim that Iran can sustain 'intense war' for six months (France24, 8 Mar) should be read as a morale-sustaining assertion rather than an operational assessment, given the confirmed disruption to fuel distribution in the capital. CTP-ISW assessment flags Houthi and Iranian potential to target Emirati, Israeli, or US positions in the Horn of Africa, indicating the battlespace may extend to the Red Sea and East Africa (CTP-ISW, 5 Mar).",
+          "text": "The coalition campaign has entered a war-sustaining infrastructure destruction phase; the targeting of oil sites in addition to military facilities signals intent to degrade Iran's capacity to fund and fuel protracted operations. The IRGC's public claim that Iran can sustain 'intense war' for six months (France24, 8 Mar) should be read as a morale-sustaining assertion rather than an operational assessment, given the confirmed disruption to fuel distribution in the capital. CTP-ISW assessment flags Houthi and Iranian potential to target Emirati, Israeli, or US positions in the Horn of Africa, indicating the battlespace may extend to the Red Sea and East Africa (CTP-ISW, 5 Mar).",
           "citations": [
             { "source": "France24", "tier": 2, "timestamp": "2026-03-08T12:00:00Z", "verificationStatus": "reported" },
             { "source": "CTP-ISW", "tier": 1, "timestamp": "2026-03-05T12:00:00Z", "verificationStatus": "confirmed" }
@@ -205,7 +205,7 @@
         "confidence": "high",
         "probabilityRange": "95-99%",
         "language": "almost-certainly",
-        "text": "We assess with high confidence that the conflict has entered sustained horizontal expansion; Iran has struck five Gulf Arab states, the Arab League has convened in emergency session, and the Khamenei succession creates unpredictable factional dynamics within Iranian command.",
+        "text": "Evidence strongly indicates that the conflict has entered sustained horizontal expansion; Iran has struck five Gulf Arab states, the Arab League has convened in emergency session, and the Khamenei succession creates unpredictable factional dynamics within Iranian command.",
         "basis": "France24 confirmed Iranian strikes on five Gulf states with simultaneous apology from President Pezeshkian; Arab League emergency session (France24, 8 Mar); leadership transition under wartime conditions increases risk of miscalculated escalation.",
         "citations": [
           { "source": "France24", "tier": 2, "timestamp": "2026-03-08T14:00:00Z", "verificationStatus": "reported" },
@@ -229,7 +229,7 @@
         {
           "subLabel": "TRAJECTORY ASSESSMENT",
           "subLabelVariant": "assessment",
-          "text": "We judge it unlikely that meaningful de-escalation will materialise in the next 72 hours. The Khamenei succession introduces a period of maximum uncertainty: Mojtaba Khamenei must establish authority over both the IRGC and civilian government while under sustained military assault. Israel's stated intent to 'pursue every successor' (France24, 8 Mar) removes any incentive for the new leadership to signal willingness to negotiate. The sole de-escalation signal—Pezeshkian's apology to Gulf neighbours—was immediately contradicted by continued Iranian strikes, suggesting the president lacks authority over military operations. Trump's engagement of Kurdish opposition groups to launch attacks inside Iran (Responsible Statecraft, 8 Mar) opens an additional internal front that further reduces prospects for stabilisation.",
+          "text": "It remains unlikely that meaningful de-escalation will materialise in the next 72 hours. The Khamenei succession introduces a period of maximum uncertainty: Mojtaba Khamenei must establish authority over both the IRGC and civilian government while under sustained military assault. Israel's stated intent to 'pursue every successor' (France24, 8 Mar) removes any incentive for the new leadership to signal willingness to negotiate. The sole de-escalation signal—Pezeshkian's apology to Gulf neighbours—was immediately contradicted by continued Iranian strikes, suggesting the president lacks authority over military operations. Trump's engagement of Kurdish opposition groups to launch attacks inside Iran (Responsible Statecraft, 8 Mar) opens an additional internal front that further reduces prospects for stabilisation.",
           "citations": [
             { "source": "France24", "tier": 2, "timestamp": "2026-03-08T14:00:00Z", "verificationStatus": "reported" },
             { "source": "Responsible Statecraft", "tier": 2, "timestamp": "2026-03-08T08:00:00Z", "verificationStatus": "reported" }
@@ -254,7 +254,7 @@
         "confidence": "high",
         "probabilityRange": "75-95%",
         "language": "highly-likely",
-        "text": "We judge it highly likely that energy markets have crossed a structural break; Brent crude has breached $100/bbl, Gulf Arab producers are cutting output due to Hormuz export inability, and US-Israeli strikes on five Iranian oil sites have disrupted fuel distribution in Tehran.",
+        "text": "The balance of reporting points to energy markets have crossed a structural break; Brent crude has breached $100/bbl, Gulf Arab producers are cutting output due to Hormuz export inability, and US-Israeli strikes on five Iranian oil sites have disrupted fuel distribution in Tehran.",
         "basis": "CNBC confirmed oil above $100/bbl with Gulf production cuts; France24 confirmed strikes on five oil sites and fuel distribution interruption; France24 confirmed Hormuz traffic near-standstill following tugboat explosion.",
         "citations": [
           { "source": "CNBC", "tier": 2, "timestamp": "2026-03-08T10:00:00Z", "verificationStatus": "reported" },
@@ -277,7 +277,7 @@
         {
           "subLabel": "SUPPLY CHAIN DISRUPTION",
           "subLabelVariant": "assessment",
-          "text": "We assess the conflict has created a dual supply-destruction dynamic: direct strikes on Iranian refining capacity remove production, while Hormuz closure prevents Gulf Arab states from exporting existing reserves. The Trump administration's announcement of a $20 billion reinsurance programme for oil tankers (CNBC, 8 Mar) confirms that private insurance markets have effectively ceased underwriting Hormuz transit, forcing government backstop. Breakbulk shipping in the Gulf faces growing uncertainty, with approximately 5% of global breakbulk cargo at risk alongside the dominant oil and gas flows (Hellenic Shipping News, 8 Mar). Arabian Gulf tanker trips are described as 'extremely profitable for those willing to take the risk' (Hellenic Shipping News, 8 Mar), indicating a risk-premium bifurcation between willing and unwilling operators.",
+          "text": "The conflict has created a dual supply-destruction dynamic: direct strikes on Iranian refining capacity remove production, while Hormuz closure prevents Gulf Arab states from exporting existing reserves. The Trump administration's announcement of a $20 billion reinsurance programme for oil tankers (CNBC, 8 Mar) confirms that private insurance markets have effectively ceased underwriting Hormuz transit, forcing government backstop. Breakbulk shipping in the Gulf faces growing uncertainty, with approximately 5% of global breakbulk cargo at risk alongside the dominant oil and gas flows (Hellenic Shipping News, 8 Mar). Arabian Gulf tanker trips are described as 'extremely profitable for those willing to take the risk' (Hellenic Shipping News, 8 Mar), indicating a risk-premium bifurcation between willing and unwilling operators.",
           "citations": [
             { "source": "CNBC", "tier": 2, "timestamp": "2026-03-08T10:00:00Z", "verificationStatus": "reported" },
             { "source": "Hellenic Shipping News", "tier": 2, "timestamp": "2026-03-08T06:00:00Z", "verificationStatus": "reported" }
@@ -298,7 +298,7 @@
         "confidence": "high",
         "probabilityRange": "75-95%",
         "language": "highly-likely",
-        "text": "We judge it highly likely that the Khamenei assassination and forced succession have eliminated near-term prospects for negotiated de-escalation; Iran's new leadership lacks both the authority and the incentive to engage diplomatically while Israel threatens to target any successor.",
+        "text": "The balance of reporting points to the Khamenei assassination and forced succession have eliminated near-term prospects for negotiated de-escalation; Iran's new leadership lacks both the authority and the incentive to engage diplomatically while Israel threatens to target any successor.",
         "basis": "Al Jazeera confirmed Mojtaba Khamenei's appointment as supreme leader; France24 confirmed Israel's threat to pursue successors; Arab League emergency session convened over Gulf strikes; Trump engaged Kurdish opposition to open internal front.",
         "citations": [
           { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-08T18:00:00Z", "verificationStatus": "confirmed" },
@@ -323,7 +323,7 @@
         {
           "subLabel": "MEDIATION STATUS",
           "subLabelVariant": "assessment",
-          "text": "We assess all mediation pathways remain closed. Gulf Arab states—previously the only actors positioned to broker de-escalation—are now themselves targets of Iranian strikes and have elevated the matter to the Arab League. The contradiction between Pezeshkian's apology and continued IRGC strikes suggests the civilian government lacks control over military operations, making diplomatic engagement with Tehran structurally unreliable. Washington's engagement of Kurdish separatist groups as a second front indicates the US strategy is regime fragmentation rather than negotiated settlement. Iran International reports internal factional tension between IRGC hardliners who engineered the succession and voices around Pezeshkian who favour diplomatic resolution (Iran International, 8 Mar).",
+          "text": "All mediation pathways remain closed. Gulf Arab states—previously the only actors positioned to broker de-escalation—are now themselves targets of Iranian strikes and have elevated the matter to the Arab League. The contradiction between Pezeshkian's apology and continued IRGC strikes suggests the civilian government lacks control over military operations, making diplomatic engagement with Tehran structurally unreliable. Washington's engagement of Kurdish separatist groups as a second front indicates the US strategy is regime fragmentation rather than negotiated settlement. Iran International reports internal factional tension between IRGC hardliners who engineered the succession and voices around Pezeshkian who favour diplomatic resolution (Iran International, 8 Mar).",
           "citations": [
             { "source": "France24", "tier": 2, "timestamp": "2026-03-08T14:00:00Z", "verificationStatus": "reported" },
             { "source": "Iran International", "tier": 2, "timestamp": "2026-03-08T12:00:00Z", "verificationStatus": "reported" },
@@ -366,7 +366,7 @@
         {
           "subLabel": "ASSESSMENT",
           "subLabelVariant": "assessment",
-          "text": "We assess the prolonged internet blackout serves dual purposes: preventing domestic population from accessing real-time strike damage assessment, and degrading OSINT collection on Iranian military disposition. The blackout itself represents the most significant information operation of the conflict, affecting an estimated 85 million Iranians. Offensive cyber operations by Iranian-affiliated groups against coalition targets likely continue but are below our collection threshold. The absence of major reported cyber incidents against Western infrastructure may indicate Iranian cyber capacity is being redirected to defensive measures or internal communications security.",
+          "text": "The prolonged internet blackout serves dual purposes: preventing domestic population from accessing real-time strike damage assessment, and degrading OSINT collection on Iranian military disposition. The blackout itself represents the most significant information operation of the conflict, affecting an estimated 85 million Iranians. Offensive cyber operations by Iranian-affiliated groups against coalition targets likely continue but are below our collection threshold. The absence of major reported cyber incidents against Western infrastructure may indicate Iranian cyber capacity is being redirected to defensive measures or internal communications security.",
           "citations": [
             { "source": "CNBC", "tier": 2, "timestamp": "2026-03-08T10:00:00Z", "verificationStatus": "reported" }
           ],
@@ -411,7 +411,7 @@
         {
           "subLabel": "PREMIUM MARKET",
           "subLabelVariant": "assessment",
-          "text": "We assess the $20 billion US government reinsurance programme for oil tankers (CNBC, 8 Mar) represents a de facto admission that private war risk markets have ceased functioning for Hormuz transit. This is the most significant government intervention in marine war risk since the World War II War Risk Insurance Programme. Arabian Gulf tanker trips are described as 'extremely profitable for those willing to take the risk' (Hellenic Shipping News, 8 Mar), indicating a binary risk environment where operators either accept catastrophic exposure or avoid the region entirely. Dry bulk shipping rates show volatility as the war intensifies (Hellenic Shipping News, 8 Mar), and Hapag-Lloyd's proposed acquisition of an Israeli shipping company has collided with national-security concerns at a particularly volatile moment (Hellenic Shipping News, 8 Mar).",
+          "text": "The $20 billion US government reinsurance programme for oil tankers (CNBC, 8 Mar) represents a de facto admission that private war risk markets have ceased functioning for Hormuz transit. This is the most significant government intervention in marine war risk since the World War II War Risk Insurance Programme. Arabian Gulf tanker trips are described as 'extremely profitable for those willing to take the risk' (Hellenic Shipping News, 8 Mar), indicating a binary risk environment where operators either accept catastrophic exposure or avoid the region entirely. Dry bulk shipping rates show volatility as the war intensifies (Hellenic Shipping News, 8 Mar), and Hapag-Lloyd's proposed acquisition of an Israeli shipping company has collided with national-security concerns at a particularly volatile moment (Hellenic Shipping News, 8 Mar).",
           "citations": [
             { "source": "CNBC", "tier": 2, "timestamp": "2026-03-08T10:00:00Z", "verificationStatus": "reported" },
             { "source": "Hellenic Shipping News", "tier": 2, "timestamp": "2026-03-08T06:00:00Z", "verificationStatus": "reported" }

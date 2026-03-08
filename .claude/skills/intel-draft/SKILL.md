@@ -45,7 +45,7 @@ Draft in this order:
 ### 4. ABSOLUTE RULES (from CLAUDE.md — violations cause rejection)
 
 - **Every fact must trace to a specific triaged item.** No fabrication. No hallucination.
-- **Lead sentences are assessments, not descriptions.** "We assess..." not "Three BTGs were observed..."
+- **Lead sentences are assessments, not descriptions.** "Reporting suggests..." not "Three BTGs were observed..."
 - **Use ONLY the 6 confidence phrases** from the confidence ladder. No ad-hoc hedging.
 - **Temporal precision** on all kinetic claims: "As of 0600 UTC 15 Mar"
 - **Source attribution** in parenthetical italic: "(AP, 15 Mar 0620 UTC)"

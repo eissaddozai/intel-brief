@@ -139,7 +139,7 @@ The `cycleId` in the JSON meta block must match the filename stem.
 ## ABSOLUTE RULES (from CLAUDE.md)
 
 - **Every fact must come from a live-fetched source.** No fabrication. No hallucination.
-- **Lead sentences are assessments.** "We assess..." not "Three BTGs were observed..."
+- **Lead sentences are assessments.** "Reporting suggests..." not "Three BTGs were observed..."
 - **Confidence language from the ladder only.** No ad-hoc hedging.
 - **Iranian state media** = "Iranian government asserts" — never confirmed.
 - **Forbidden phrases:** "kinetic activity", "threat actors", "threat landscape", "robust", "leverage" (verb)
