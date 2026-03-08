@@ -32,10 +32,11 @@ sources:
     status: likely
     enabled: true
     notes: >
-      AP killed their public RSS feeds. We scrape the Middle East hub page
-      instead. AP not reporting = unconfirmed in this brief.
-      Alternative: use third-party RSS proxy (rsshub.app/apnews/topics/middle-east)
-      if direct scrape fails.
+      AP deprecated feeds.apnews.com. New RSS may be at
+      apnews.com/world-news.rss but reliability is uncertain. We scrape
+      the Middle East hub page instead. AP not reporting = unconfirmed.
+      Fallbacks: rsshub.app/apnews/topics/world-news (third-party proxy),
+      or associated-press.s3-website-us-east-1.amazonaws.com (community).
 
   - id: al_jazeera_en
     name: "Al Jazeera English"
@@ -54,29 +55,31 @@ sources:
     tier: 1
     domains: [d1, d2, d3, d4]
     method: scrape
-    url: "https://www.reuters.com/middle-east/"
+    url: "https://www.reuters.com/world/middle-east/"
     status: likely
     enabled: true
     notes: >
-      Reuters restructured their URL scheme — /middle-east/ is the current
-      top-level section (not /world/middle-east/). Reuters killed their
-      public RSS in 2020. Scraped with requests+BS4. Static HTML — no JS
-      rendering needed. Reuters is the second pillar of the factual
-      backbone alongside AP.
+      Reuters /world/middle-east/ is the correct URL — the 401 seen in
+      check-sources is Reuters bot-blocking automated requests, not a
+      wrong URL. Reuters killed their public RSS in 2020. Scraped with
+      requests+BS4. May need User-Agent rotation or cookie auth to
+      avoid 401. Reuters is the second pillar alongside AP.
 
   - id: ctpiw_evening
     name: "CTP-ISW Evening Report"
     tier: 1
     domains: [d1, d2]
     method: scrape
-    url: "https://www.criticalthreats.org/analysis"
+    url: "https://www.criticalthreats.org/briefs/iran-updates"
     status: likely
     enabled: true
     notes: >
       Primary backbone for Battlespace (d1). Every claim is footnoted.
       Evening report covers the full 24h operational picture.
-      URL is the /analysis listing page — individual reports use dated slugs
-      like /analysis/iran-update-evening-special-report-march-7-2026.
+      /briefs/iran-updates is the curated Iran strike briefs listing.
+      Alternative URLs: /locations/iran (broader), /analysis (all topics).
+      Individual reports use dated slugs like
+      /analysis/iran-update-evening-special-report-march-7-2026.
       The old /analysis/iran-war-updates path 404s.
 
   - id: iaea
@@ -148,13 +151,13 @@ sources:
     tier: 2
     domains: [d1, d2]
     method: scrape
-    url: "https://www.criticalthreats.org/analysis"
+    url: "https://www.criticalthreats.org/briefs/iran-updates"
     status: likely
     enabled: true
     notes: >
-      Same /analysis listing page as evening report — scraper extracts most
-      recent article. Individual morning reports use slugs like
-      /analysis/iran-update-morning-special-report-march-3-2026.
+      Same /briefs/iran-updates listing as evening report — scraper
+      extracts most recent article. Individual morning reports use slugs
+      like /analysis/iran-update-morning-special-report-march-3-2026.
 
   - id: cnn_mideast
     name: "CNN Middle East"

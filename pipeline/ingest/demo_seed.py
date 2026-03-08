@@ -28,7 +28,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'damaging a fuel storage facility and wounding seven dock workers.'
             ),
             'full_content': '',
-            'url': 'https://www.criticalthreats.org/analysis',
+            'url': 'https://www.criticalthreats.org/briefs/iran-updates',
             'timestamp': ts,
             'verification_status': 'confirmed',
             'method': 'scrape',
@@ -87,7 +87,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'initiating a major ground offensive.'
             ),
             'full_content': '',
-            'url': 'https://www.criticalthreats.org/analysis',
+            'url': 'https://www.criticalthreats.org/briefs/iran-updates',
             'timestamp': ts_prev,
             'verification_status': 'confirmed',
             'method': 'scrape',
@@ -224,7 +224,7 @@ def get_seed_items(target_date: datetime) -> list[dict]:
                 'framework.'
             ),
             'full_content': '',
-            'url': 'https://www.reuters.com/middle-east/',
+            'url': 'https://www.reuters.com/world/middle-east/',
             'timestamp': ts,
             'verification_status': 'reported',
             'method': 'scrape',
