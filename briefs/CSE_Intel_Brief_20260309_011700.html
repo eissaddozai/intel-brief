@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSE Intelligence Brief — CSE_Intel_Brief_20260309_011700</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&display=swap');
+
+  :root {
+    --bg: #0a0a12;
+    --surface: #12121e;
+    --text: #d4d4d4;
+    --text-dim: #8a8a9a;
+    --accent-red: #c0392b;
+    --accent-gold: #d4a017;
+    --rule: #2a2a3a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: Georgia, 'Times New Roman', serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+  }
+
+  .cover {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-top: 4px solid var(--accent-red);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .cover h1 { font-family: Palatino, Georgia, serif; font-size: 1.8rem; color: #e8e8e8; letter-spacing: 0.15em; }
+  .cover .subtitle { font-size: 0.95rem; color: var(--accent-red); margin: 0.5rem 0; font-weight: 600; }
+  .cover .meta-line { font-size: 0.75rem; color: var(--text-dim); font-style: italic; }
+  .cover .context { font-size: 0.8rem; color: var(--text-dim); margin-top: 1rem; text-align: left; }
+
+  .strip { display: flex; gap: 0.5rem; margin: 1.5rem 0; flex-wrap: wrap; justify-content: center; }
+  .strip-cell { background: var(--surface); border: 1px solid var(--rule); padding: 0.6rem 1rem; text-align: center; min-width: 120px; }
+  .strip-top { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 1rem; color: #e8e8e8; }
+  .strip-bot { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; }
+
+  .classification {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent-gold);
+    text-align: center;
+    letter-spacing: 0.15em;
+    margin: 1rem 0;
+    border: 1px solid var(--accent-gold);
+    padding: 0.3rem;
+  }
+
+  .strategic { background: var(--surface); border-left: 4px solid var(--accent-red); padding: 1.2rem 1.5rem; margin: 1.5rem 0; }
+  .strategic h2 { font-family: Palatino, Georgia, serif; font-size: 0.75rem; color: var(--accent-red); letter-spacing: 0.15em; margin-bottom: 0.5rem; }
+  .strategic .headline { font-size: 1rem; color: #e8e8e8; font-weight: 600; }
+  .strategic .trajectory { font-size: 0.85rem; color: var(--text); margin-top: 0.8rem; }
+
+  .flash-section h2 { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--accent-red); letter-spacing: 0.15em; margin-bottom: 1rem; }
+  .flash-point { background: var(--surface); padding: 1rem 1.2rem; margin-bottom: 0.8rem; }
+  .fp-headline { font-weight: 600; color: #e8e8e8; font-size: 0.95rem; margin-bottom: 0.4rem; }
+  .fp-detail { font-size: 0.85rem; color: var(--text); }
+
+  .executive { margin: 2rem 0; }
+  .executive h2 { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--accent-gold); letter-spacing: 0.15em; margin-bottom: 0.8rem; }
+  .bluf { font-size: 0.9rem; color: var(--text); margin-bottom: 1.5rem; line-height: 1.7; }
+  .kj-item { padding: 0.6rem 1rem; margin-bottom: 0.5rem; background: var(--surface); }
+  .kj-domain { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--text-dim); }
+  .kj-conf { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--accent-gold); }
+  .kj-text { font-size: 0.85rem; }
+  .kpi-strip { display: flex; gap: 0.5rem; margin: 1.5rem 0; flex-wrap: wrap; }
+  .kpi { background: var(--surface); border: 1px solid var(--rule); padding: 0.6rem 1rem; text-align: center; min-width: 140px; flex: 1; }
+  .kpi-num { font-family: 'IBM Plex Mono', monospace; font-weight: 600; font-size: 1.1rem; color: #e8e8e8; }
+  .kpi-label { font-size: 0.6rem; color: var(--text-dim); letter-spacing: 0.1em; }
+  .kpi-arrow { font-size: 0.7rem; color: var(--accent-red); }
+
+  .domain { margin: 2rem 0; }
+  .domain-header { padding: 0.8rem 1.2rem; display: flex; align-items: baseline; gap: 0.8rem; }
+  .domain-num { font-family: 'IBM Plex Mono', monospace; font-size: 1.5rem; font-weight: 600; color: #e8e8e8; opacity: 0.5; }
+  .domain-title { font-family: Palatino, Georgia, serif; font-size: 1.1rem; color: #e8e8e8; letter-spacing: 0.1em; }
+  .domain-conf { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--accent-gold); }
+  .domain-aq { font-size: 0.8rem; color: var(--text-dim); font-style: italic; padding: 0.5rem 1.2rem; background: rgba(255,255,255,0.02); }
+  .domain-kj { background: var(--surface); padding: 1rem 1.2rem; margin: 0.8rem 0; font-size: 0.9rem; }
+  .body-para { padding: 0.8rem 1.2rem; margin-bottom: 0.5rem; }
+  .body-para p { font-size: 0.85rem; line-height: 1.7; }
+  .sublabel-observed { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.12em; margin-bottom: 0.3rem; }
+  .sublabel-assessment { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--accent-gold); letter-spacing: 0.12em; margin-bottom: 0.3rem; opacity: 0.7; }
+  .citations { font-size: 0.7rem; color: var(--text-dim); font-style: italic; margin-top: 0.3rem; }
+  .dissenter-note { background: #1a1a2e; border: 1px dashed var(--accent-gold); padding: 0.8rem 1rem; margin: 0.8rem 0; font-size: 0.8rem; }
+  .dissenter-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--accent-gold); margin-bottom: 0.3rem; }
+  .analyst-note { background: #1a1a2e; border: 1px solid var(--rule); padding: 0.8rem 1rem; margin: 0.8rem 0; font-size: 0.8rem; }
+  .analyst-note-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; margin-bottom: 0.3rem; }
+  .section-end { border: none; border-top: 2px solid; margin: 1rem 0; }
+
+  .wi-section h2 { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--accent-red); letter-spacing: 0.15em; margin-bottom: 1rem; }
+  .wi-item { padding: 0.6rem 0; border-bottom: 1px solid var(--rule); }
+  .wi-level { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: #fff; padding: 0.15rem 0.5rem; border-radius: 2px; margin-right: 0.5rem; }
+  .wi-indicator { font-weight: 600; font-size: 0.85rem; }
+  .wi-assessment { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.2rem; padding-left: 1rem; }
+
+  .gaps-section h2 { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.15em; margin-bottom: 1rem; }
+  .gap-item { padding: 0.5rem 0; border-bottom: 1px solid var(--rule); font-size: 0.85rem; }
+  .gap-severity { font-family: 'IBM Plex Mono', monospace; font-size: 0.6rem; padding: 0.1rem 0.4rem; border-radius: 2px; margin-right: 0.3rem; }
+  .gap-critical { background: var(--accent-red); color: #fff; }
+  .gap-significant { background: var(--accent-gold); color: #1a1a2e; }
+  .gap-minor { background: var(--rule); color: var(--text-dim); }
+  .gap-domain { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--text-dim); }
+  .gap-sig { font-size: 0.8rem; color: var(--text-dim); padding-left: 1rem; }
+
+  .caveats { background: var(--surface); border: 1px solid var(--rule); padding: 1.5rem; margin: 2rem 0; }
+  .caveats h2 { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.15em; margin-bottom: 1rem; }
+  .caveat { font-size: 0.8rem; margin-bottom: 0.5rem; }
+  .conf-assessment { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.8rem; font-style: italic; }
+
+  .actor-matrix { margin: 1rem 0; border-collapse: collapse; width: 100%; font-size: 0.8rem; }
+  .actor-matrix th { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; text-align: left; padding: 0.4rem 0.6rem; border-bottom: 2px solid var(--rule); }
+  .actor-matrix td { padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .actor-matrix .actor-name { font-weight: 600; color: #e8e8e8; white-space: nowrap; }
+
+  .data-table { margin: 1rem 0; border-collapse: collapse; width: 100%; font-size: 0.8rem; }
+  .data-table th { font-family: 'IBM Plex Mono', monospace; font-size: 0.65rem; color: var(--text-dim); letter-spacing: 0.1em; text-align: left; padding: 0.4rem 0.6rem; border-bottom: 2px solid var(--rule); }
+  .data-table td { padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--rule); vertical-align: top; font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; }
+
+  .footer {
+    text-align: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    border-top: 2px solid var(--rule);
+    padding-top: 1rem;
+    margin-top: 2rem;
+    letter-spacing: 0.1em;
+  }
+
+  @media print {
+    body { background: #fff; color: #1a1a1a; max-width: 100%; }
+    .cover { border-color: #1a1a1a; }
+    .strip-cell, .kpi, .domain-kj, .flash-point, .kj-item { border-color: #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<div class="classification">PROTECTED B // AMBER</div>
+
+<div class="cover">
+    <h1>CSE INTELLIGENCE BRIEF</h1>
+    <div class="subtitle">Day 9 of US-Israeli Campaign Against Iran — Mojtaba Succession Formalised, LR2 Freight Doubles, Beirut Hotel Strike Expands Lebanon Front</div>
+    <div class="meta-line">2026-03-09 &middot; Cycle 009 &middot; Iran / Gulf Region / Eastern Mediterranean / Horn of Africa</div>
+    <div class="meta-line">CSE Conflict Assessment Unit</div>
+    <div class="context">Active multi-theatre conflict entering second week. Mojtaba Khamenei formalised as supreme leader; IRGC and military commanders pledge allegiance. IAF struck hotel in central Beirut targeting IRGC commanders, killing 4. LR2 tanker freight on MEG/Japan route doubled to WS446 ($120,000/day TCE). Oil above $100/bbl. China suspended oil product export certificates. Five Gulf states under Iranian missile fire. Internet blackout Week 2.</div>
+</div>
+
+<div class="strip">
+<div class="strip-cell"><div class="strip-top">CRITICAL</div><div class="strip-bot">THREAT LEVEL</div></div>
+<div class="strip-cell"><div class="strip-top">WS446</div><div class="strip-bot">LR2 MEG/JAPAN</div></div>
+<div class="strip-cell"><div class="strip-top">$100+</div><div class="strip-bot">BRENT CRUDE</div></div>
+<div class="strip-cell"><div class="strip-top">5 STATES</div><div class="strip-bot">IRAN TARGETS</div></div>
+<div class="strip-cell"><div class="strip-top">MOJTABA</div><div class="strip-bot">NEW SUPREME LDR</div></div>
+<div class="strip-cell"><div class="strip-top">WEEK 2</div><div class="strip-bot">INTERNET BLACKOUT</div></div>
+</div>
+
+<div class="strategic">
+    <h2>HEADLINE JUDGMENT</h2>
+    <div class="headline">Evidence strongly indicates that Mojtaba Khamenei's formalisation as supreme leader has consolidated IRGC control over Iran's war strategy, while the insurance market's repricing — LR2 MEG/Japan freight doubling to WS446 in a single week — confirms that commercial actors are pricing sustained conflict rather than a negotiated resolution. The Israeli strike on a central Beirut hotel targeting IRGC commanders signals the campaign has expanded beyond Iranian territory into active decapitation operations across the region.</div>
+    <div class="trajectory">Three independent escalation signals converged in the past 24 hours. First, Iran's Assembly of Experts formalised Mojtaba Khamenei as supreme leader with IRGC and military pledges of allegiance, completing the wartime succession (Al Jazeera, 9 Mar 0000 UTC). Second, Israel struck a Ramada hotel in central Beirut targeting Iranian Revolutionary Guards commanders, killing at least four and expanding the campaign's geographic scope into civilian infrastructure in a third country (France24, 8 Mar 0440 UTC). Third, China suspended oil product export certificates effective 4 Mar to ensure domestic supply, indicating Beijing assesses the Hormuz disruption as protracted (Hellenic Shipping News, 8 Mar). The primary tripwire is whether Mojtaba Khamenei's IRGC-backed authority translates into escalated retaliatory operations or whether the factional split with President Pezeshkian's conciliatory posture creates operational paralysis. Countervailing signal: the IRGC claims Iran can sustain 'intense war' for six months (RFI, 8 Mar), but this assertion is contradicted by confirmed fuel distribution interruptions in Tehran and China's emergency export suspension.</div>
+</div>
+
+<div class="flash-section">
+    <h2>FLASH POINTS</h2>
+    <div class="flash-point" style="border-left: 4px solid #8e44ad;">
+        <div class="fp-headline">Mojtaba Khamenei formalised as supreme leader; IRGC pledges allegiance</div>
+        <div class="fp-detail">Iran's Assembly of Experts announced Mojtaba Khamenei as supreme leader, with military and political leaders pledging allegiance as US-Israeli attacks continued (Al Jazeera, 9 Mar 0000 UTC). Trump declared the new leader will 'not last long' without US approval (Al Jazeera, 8 Mar 1856 UTC). Israel's IDF stated it would 'pursue every successor' (Jerusalem Post, 8 Mar 1109 UTC).</div>
+    </div>
+    <div class="flash-point" style="border-left: 4px solid #c0392b;">
+        <div class="fp-headline">Israel strikes Ramada hotel in central Beirut, targeting IRGC commanders</div>
+        <div class="fp-detail">The IAF struck a hotel in central Beirut early 8 Mar, killing at least four; Israel confirmed targeting Iranian Revolutionary Guards commanders (France24, 8 Mar 0440 UTC). Lebanon's death toll surpassed 400 since fighting began 28 Feb (France24, 8 Mar 0203 UTC). The strike on a central Beirut civilian structure represents a geographic and target-set expansion of the campaign.</div>
+    </div>
+    <div class="flash-point" style="border-left: 4px solid #2c8c99;">
+        <div class="fp-headline">LR2 tanker freight MEG/Japan doubles to WS446 in one week</div>
+        <div class="fp-detail">Clean LR2 MEG/Japan freight moved from WS222 to WS446, with corresponding TCE climbing to $120,000/day (Hellenic Shipping News, 8 Mar). Arabian Gulf trips described as 'extremely profitable for those willing to take the risk,' indicating a binary market where operators accept catastrophic exposure or avoid the region entirely (Hellenic Shipping News, 8 Mar).</div>
+    </div>
+</div>
+
+<div class="executive">
+    <h2>EXECUTIVE SUMMARY</h2>
+    <div class="bluf">The conflict has entered a self-reinforcing escalation cycle on Day 9: Mojtaba Khamenei's IRGC-backed succession has consolidated hardline control over Iran's war strategy, the Israeli campaign has expanded to IRGC decapitation strikes in central Beirut, and the tanker freight market has repriced violently — LR2 MEG/Japan rates doubling to WS446 ($120,000/day TCE) in a single week. China's suspension of oil product export certificates on 4 Mar signals Beijing assesses the Hormuz disruption as protracted rather than transient, a judgment corroborated by the $20 billion US government reinsurance programme and the continued near-standstill of Strait traffic. Canadian exposure is rising: war risk cargo premiums on Gulf-transiting Canadian commodity exports face sustained elevation while the diplomatic space for mediation has contracted further with all Gulf Arab states now themselves under Iranian fire.</div>
+    <h2>KEY JUDGMENTS</h2>
+    <div class="kj-item" style="border-left: 3px solid #d4a017;">
+        <span class="kj-domain">D2</span>
+        <span class="kj-conf">[high]</span>
+        <span class="kj-text">The balance of reporting points to Mojtaba Khamenei's succession intensifying rather than moderating Iran's war posture; the IRGC engineered his appointment, military commanders have pledged allegiance, and Israel's threat to 'pursue every successor' removes any incentive for de-escalation.</span>
+    </div>
+    <div class="kj-item" style="border-left: 3px solid #c0392b;">
+        <span class="kj-domain">D1</span>
+        <span class="kj-conf">[high]</span>
+        <span class="kj-text">The Israeli campaign has expanded to multi-country decapitation operations; the Beirut Ramada hotel strike targeting IRGC commanders, combined with the elimination of a senior Iranian official in Tehran (Jerusalem Post, 8 Mar) and continued strikes on oil infrastructure, confirms a systematic target-set beyond Iran's borders.</span>
+    </div>
+    <div class="kj-item" style="border-left: 3px solid #27ae60;">
+        <span class="kj-domain">D3</span>
+        <span class="kj-conf">[high]</span>
+        <span class="kj-text">Multiple sources confirm that energy markets have entered a structural disruption phase; oil above $100/bbl, LR2 tanker freight doubling in one week, and China suspending oil export certificates collectively signal that major economies are preparing for sustained Hormuz closure rather than a transient disruption.</span>
+    </div>
+    <div class="kj-item" style="border-left: 3px solid #8e44ad;">
+        <span class="kj-domain">D4</span>
+        <span class="kj-conf">[high]</span>
+        <span class="kj-text">The balance of reporting points to all mediation pathways being closed; Gulf Arab states — the only potential intermediaries — are now targets of Iranian strikes, the Arab League has convened in emergency session as an aggrieved party rather than a mediator, and Washington's Kurdish proxy strategy signals regime fragmentation rather than negotiated settlement.</span>
+    </div>
+    <div class="kj-item" style="border-left: 3px solid #2c8c99;">
+        <span class="kj-domain">D6</span>
+        <span class="kj-conf">[moderate]</span>
+        <span class="kj-text">Available evidence suggests the maritime insurance market has transitioned from crisis pricing to effective market failure for Hormuz transit; the doubling of LR2 freight rates, confirmed tanker strikes, and the US government's $20 billion reinsurance backstop indicate that private underwriting capacity for the Persian Gulf has been functionally exhausted.</span>
+    </div>
+    <div class="kpi-strip">
+<div class="kpi"><div class="kpi-num">400+</div><div class="kpi-label">TARGETS STRUCK (W/E)</div><div class="kpi-arrow">&#9650;</div></div>
+<div class="kpi"><div class="kpi-num">75-95%</div><div class="kpi-label">ESCALATION PROB</div><div class="kpi-arrow">&#9650;</div></div>
+<div class="kpi"><div class="kpi-num">$100+</div><div class="kpi-label">BRENT (USD/BBL)</div><div class="kpi-arrow">&#9650;</div></div>
+<div class="kpi"><div class="kpi-num">0</div><div class="kpi-label">MEDIATION TRACKS</div><div class="kpi-arrow">&#9660;</div></div>
+<div class="kpi"><div class="kpi-num">WS446</div><div class="kpi-label">LR2 MEG/JAPAN</div><div class="kpi-arrow">&#9650;</div></div>
+    </div>
+</div>
+
+
+        <section class="domain domain--d1">
+            <div class="domain-header" style="background: #4a1a1a; border-bottom: 3px solid #c0392b;">
+                <span class="domain-num">01</span>
+                <span class="domain-title">BATTLESPACE — KINETIC</span>
+                <span class="domain-conf">[high]</span>
+            </div>
+            <div class="domain-aq">What is the current disposition of forces, and what military operations occurred across all theatres in the last 24 hours?</div>
+            <div class="domain-kj" style="border-left: 4px solid #c0392b;">
+                <strong>KEY JUDGMENT:</strong> The coalition campaign has expanded to multi-country decapitation operations; the Beirut hotel strike targeting IRGC commanders, strikes on Iranian jets at Isfahan, and elimination of a senior Iranian official in Tehran confirm systematic leadership targeting across three countries.
+            </div>
+            <div class="body-para">
+                <div class="sublabel-observed">IRAN THEATRE</div>
+                <p>US-Israeli forces continued striking Iranian military and economic infrastructure through 8 Mar. The IAF struck an oil depot in Tehran, cloaking the capital in black smoke; the Iranian Red Crescent warned residents to avoid noxious fumes from fires at struck facilities (France24, 8 Mar 0638 UTC). Strikes on five oil storage depots disrupted fuel distribution in Tehran; Governor Motamedian confirmed the interruption to state media (France24, 8 Mar 1012 UTC). The IAF also struck Iranian jets at Isfahan, destroyed 50 ammunition bunkers, and eliminated a senior Iranian official linked to anti-Israel operations alongside a command building for the Khayyam surveillance satellite (Jerusalem Post, 8 Mar 1009 UTC). Blasts were heard in Jerusalem as air raid sirens sounded across Israel and the occupied West Bank following Iranian missile launches (France24, 7 Mar 1951 UTC).</p>
+                <div class="citations">France24 (T2), France24 (T2), Jerusalem Post (T2), France24 (T2)</div>
+            </div>
+            <div class="body-para">
+                <div class="sublabel-observed">LEBANON THEATRE</div>
+                <p>Israel struck a Ramada hotel in central Beirut early 8 Mar, killing at least four; the IDF confirmed targeting Iranian Revolutionary Guards commanders at the location (France24, 8 Mar 0440 UTC). Twelve additional people were killed in three separate overnight Israeli strikes in Lebanon, pushing the country's death toll past 400 since 28 Feb (France24, 8 Mar 1116 UTC). Israeli tanks pushed into southern Lebanon; Christian villagers in Marjayoun defied evacuation orders (France24, 8 Mar 1026 UTC). More than 517,000 people have been registered as displaced since the conflict began, with 454,000 sleeping in overwhelmed shelters, cars, and on streets (Al Jazeera, 8 Mar 1631 UTC; France24, 8 Mar 1020 UTC).</p>
+                <div class="citations">France24 (T2), France24 (T2), Al Jazeera (T1)</div>
+            </div>
+            <div class="body-para">
+                <div class="sublabel-assessment">HEZBOLLAH / PROXY ASSESSMENT</div>
+                <p>Hezbollah claimed rocket attacks on Israeli forces and border towns (France24, 8 Mar 1016 UTC). Alma Research assessed that the Radwan Unit received instructions to deploy south of the Litani River upon Hezbollah's entry into the fighting on 2 Mar, establishing a defensive strip (Alma Research, 8 Mar 1319 UTC). Thousands of anti-tank missiles remain operational, with the Almas precision missile the most advanced threat to IDF ground forces (Alma Research, 8 Mar 0900 UTC). CTP-ISW assessed that Houthis and Iran could target Emirati, Israeli, or US positions in the Horn of Africa, indicating potential battlespace expansion to East Africa (CTP-ISW, 8 Mar).</p>
+                <div class="citations">France24 (T2), Alma Research (T2), CTP-ISW (T1)</div>
+            </div>
+            <hr class="section-end" style="border-color: #c0392b;">
+        </section>
+
+        <section class="domain domain--d2">
+            <div class="domain-header" style="background: #4a3a1a; border-bottom: 3px solid #d4a017;">
+                <span class="domain-num">02</span>
+                <span class="domain-title">ESCALATION — TRAJECTORY</span>
+                <span class="domain-conf">[high]</span>
+            </div>
+            <div class="domain-aq">What is the probability and direction of conflict escalation or de-escalation in the next 24-72 hours?</div>
+            <div class="domain-kj" style="border-left: 4px solid #d4a017;">
+                <strong>KEY JUDGMENT:</strong> The balance of reporting points to continued escalation in the next 72 hours; Mojtaba Khamenei's IRGC-backed succession, Israel's cross-border decapitation campaign, and five Gulf states under fire have created a self-reinforcing cycle with no off-ramp currently visible.
+            </div>
+            <div class="body-para">
+                <div class="sublabel-observed">ESCALATION INDICATORS</div>
+                <p>Five distinct escalation vectors advanced in the past 24 hours. First, the Beirut hotel strike expanded the campaign from Iranian territory to IRGC decapitation in a third country's civilian infrastructure (France24, 8 Mar 0440 UTC). Second, the Israeli army stated it expects the current campaign phase to last another two weeks, indicating no near-term operational pause (France24, 8 Mar 0910 UTC). Third, Iran struck five Gulf Arab states while President Pezeshkian simultaneously apologised, confirming the civilian government does not control military operations (France24, 8 Mar 1253 UTC). Fourth, the UAE publicly denied responsibility for a desalination facility strike in Iran and criticised Israeli conduct, signalling coalition strain between Israel and Gulf partners (Jerusalem Post, 8 Mar 1252 UTC). Fifth, Trump demanded 'unconditional surrender' from Iran while calling on Tehran to choose leaders 'acceptable' to Washington (BBC, 7 Mar 0204 UTC).</p>
+                <div class="citations">France24 (T2), France24 (T2), France24 (T2), Jerusalem Post (T2), BBC (T2)</div>
+            </div>
+            <div class="body-para">
+                <div class="sublabel-assessment">TRAJECTORY ASSESSMENT</div>
+                <p>It remains unlikely that meaningful de-escalation will materialise in the next 72 hours, given the elimination of all plausible off-ramps. The sole de-escalation signal — Pezeshkian's apology — was immediately contradicted by continued IRGC strikes on Gulf neighbours, confirming the president lacks authority over military operations (Al Jazeera, 8 Mar 2210 UTC). Analysts warn that the assassination of Khamenei could lead to 'dismembering of the Iranian state' through fragmentation of central authority, which would deepen rather than resolve the conflict (Responsible Statecraft, 7 Mar 1248 UTC). Trump's engagement of Kurdish opposition groups to launch attacks inside Iran opens an internal front that further reduces stabilisation prospects (Responsible Statecraft, 8 Mar 0505 UTC). The Alma Research assessment of Turkish strategic interest in maintaining the Islamic Republic, not out of sympathy but to avoid succession uncertainty, introduces a potential constraint on NATO-level escalation (Alma Research, 8 Mar 0933 UTC).</p>
+                <div class="citations">Responsible Statecraft (T2), Responsible Statecraft (T2), Alma Research (T2)</div>
+            </div>
+            <div class="dissenter-note">
+                <div class="dissenter-label">ANALYST B — DISSENTING VIEW</div>
+                <p>ANALYST B assesses a 15-25% probability that the Pezeshkian faction could exploit the succession transition to propose a unilateral ceasefire within 7-10 days. BBC Persian analysis suggests the presidential apology 'may hint at political repositioning inside Iran' (BBC, 7 Mar 1651 UTC). If the IRGC's claim of six-month war sustainability proves hollow — as Tehran fuel disruptions suggest — internal pressure for negotiation could accelerate. This view is not shared by the primary assessment.</p>
+            </div>
+            <hr class="section-end" style="border-color: #d4a017;">
+        </section>
+
+        <section class="domain domain--d3">
+            <div class="domain-header" style="background: #1a3a2a; border-bottom: 3px solid #27ae60;">
+                <span class="domain-num">03</span>
+                <span class="domain-title">ENERGY — ECONOMIC</span>
+                <span class="domain-conf">[high]</span>
+            </div>
+            <div class="domain-aq">What is the impact on energy markets, shipping routes, and regional economic stability?</div>
+            <div class="domain-kj" style="border-left: 4px solid #27ae60;">
+                <strong>KEY JUDGMENT:</strong> Multiple sources confirm energy markets have entered structural disruption; oil above $100/bbl with a 20% weekly rise, LR2 tanker freight doubling to $120,000/day TCE, and China's emergency suspension of oil export certificates collectively signal that major economies are pricing protracted Hormuz closure.
+            </div>
+            <div class="body-para">
+                <div class="sublabel-observed">CRUDE / PRICING</div>
+                <p>Brent crude has surged past $100/bbl, rising as much as 20% over the past week as the conflict threatens global energy supplies (Al Jazeera, 9 Mar 0052 UTC). Oil analysts warned the ongoing Hormuz disruption could sustain prices above the $100/bbl threshold; nearly every country in the Middle East has sustained damage from missiles or drone strikes (Hellenic Shipping News, 8 Mar). The conflict has disrupted approximately 2.9 million barrels per day of refined products — naphtha and diesel — that transit the Strait of Hormuz, altering product tanker trade patterns globally (Hellenic Shipping News, 8 Mar). China suspended issuance of oil product export certificates effective 4 Mar, directing refiners and traders to focus on domestic supply (Hellenic Shipping News, 8 Mar).</p>
+                <div class="citations">Al Jazeera (T1), Hellenic Shipping News (T2)</div>
+            </div>
+            <div class="body-para">
+                <div class="sublabel-observed">INFRASTRUCTURE DAMAGE</div>
+                <p>US-Israeli strikes hit five oil storage depots and refining facilities in and around Tehran; satellite imagery confirmed extensive devastation (France24, 8 Mar 0638 UTC). Black smoke from burning depots blocked sunlight over the capital; the Iranian Red Crescent issued health warnings (France24, 8 Mar 1245 UTC). Tehran Governor Motamedian confirmed fuel distribution was 'temporarily interrupted' — the first acknowledged domestic supply disruption from coalition strikes (France24, 8 Mar 1012 UTC). Hormuz traffic remains at near-standstill following the UAE-flagged tugboat explosion that left three Indonesian crew missing (France24, 8 Mar 1029 UTC).</p>
+                <div class="citations">France24 (T2), France24 (T2), France24 (T2)</div>
+            </div>
+            <div class="body-para">
+                <div class="sublabel-assessment">CANADIAN EXPOSURE</div>
+                <p>Canadian energy commodity exports face indirect exposure through sustained war risk cargo premiums on Gulf-transiting routes. Breakbulk shipping in the Gulf — approximately 5% of global breakbulk cargo — faces growing uncertainty, with implications for Canadian potash and grain exports routed through Suez and the Indian Ocean (Hellenic Shipping News, 8 Mar). The G7 finance ministers' meeting scheduled this week will address economic spillover from the Iran conflict (CNBC, 8 Mar 1112 UTC).</p>
+                <div class="citations">Hellenic Shipping News (T2), CNBC (T2)</div>
+            </div>
+            <table class="data-table">
+            <caption style="font-family: IBM Plex Mono, monospace; font-size: 0.7rem; color: var(--text-dim); text-align: left; padding: 0.4rem 0.6rem; letter-spacing: 0.1em;">Tanker Freight Rate Movements (Week Ending 8 Mar)</caption>
+            <thead><tr><th>Route / Segment</th><th>Current Rate</th><th>Change (1 Week)</th><th>Source</th></tr></thead>
+            <tbody>
+            <tr><td>LR2 MEG/Japan (TC1 75kt)</td><td>WS446 ($120,000/day TCE)</td><td>+101% (from WS222)</td><td>Hellenic Shipping News, 8 Mar</td></tr>
+            <tr><td>Brent Crude</td><td>>$100/bbl</td><td>+20% weekly</td><td>Al Jazeera, 9 Mar</td></tr>
+            <tr><td>Gulf Breakbulk</td><td>Rates elevated; partial suspension</td><td>~5% global breakbulk at risk</td><td>Hellenic Shipping News, 8 Mar</td></tr>
+            <tr><td>Capesize Dry Bulk</td><td>Volatile; bunker-driven</td><td>Macro-driven; demand flat</td><td>Hellenic Shipping News, 8 Mar</td></tr>
+            </tbody></table>
+            <hr class="section-end" style="border-color: #27ae60;">
+        </section>
+
+        <section class="domain domain--d4">
+            <div class="domain-header" style="background: #2a1a3a; border-bottom: 3px solid #8e44ad;">
+                <span class="domain-num">04</span>
+                <span class="domain-title">DIPLOMATIC — POLITICAL</span>
+                <span class="domain-conf">[high]</span>
+            </div>
+            <div class="domain-aq">What are the positions of key state actors, and are there diplomatic shifts that signal changed intent or new negotiating dynamics?</div>
+            <div class="domain-kj" style="border-left: 4px solid #8e44ad;">
+                <strong>KEY JUDGMENT:</strong> The balance of reporting points to all mediation pathways remaining closed; Gulf states are now Iranian targets rather than mediators, the US demands unconditional surrender, and European allies are joining military operations while their publics oppose intervention.
+            </div>
+            <div class="body-para">
+                <div class="sublabel-observed">STATE POSITIONS</div>
+                <p>Trump demanded 'unconditional surrender' from Iran and called on Tehran to choose new leaders 'acceptable' to Washington (BBC, 7 Mar 0204 UTC). Hours before Mojtaba Khamenei's formal appointment, Trump declared the new supreme leader would 'not last long' without US approval (Al Jazeera, 8 Mar 1856 UTC). The US began using British bases for 'defensive' operations against Iran; the UK government characterised the arrangement as defensive rather than offensive (RFI, 7 Mar 1450 UTC). France deployed fighter jets and warships to defend Gulf partners while also confronting Iranian intelligence networks on French soil (RFI, 7 Mar 1732 UTC). London Mayor Sadiq Khan publicly stated UK Premier Starmer was 'right to resist Trump pressure to join Iran strikes,' exposing a domestic political fault line (Anadolu, 7 Mar 1933 UTC). Polls in Spain, Italy, Germany, and the UK showed majority public opposition to US-Israeli military intervention (Anadolu, 7 Mar 1231 UTC).</p>
+                <div class="citations">BBC (T2), Al Jazeera (T1), RFI (T2), RFI (T2), Anadolu (T2), Anadolu (T2)</div>
+            </div>
+            <div class="body-para">
+                <div class="sublabel-assessment">MEDIATION STATUS</div>
+                <p>All mediation pathways remain closed. Gulf Arab states are now direct targets of Iranian strikes, converting potential intermediaries into belligerents; the Arab League convened in emergency session as aggrieved parties rather than mediators (France24, 8 Mar 1253 UTC). The UAE denied striking a desalination facility in Iran and publicly criticised Israeli conduct, signalling friction between Israel and Gulf partners that complicates rather than enables mediation (Jerusalem Post, 8 Mar 1252 UTC). China's Wang Yi signalled preparations for a Trump-Xi meeting but linked it to 'thorough preparations' amid the Iran conflict (CNBC, 8 Mar 0717 UTC). Putin spoke with Pezeshkian (BBC, 7 Mar), but no Russian mediation framework has materialised.</p>
+                <div class="citations">France24 (T2), Jerusalem Post (T2), CNBC (T2), BBC (T2)</div>
+            </div>
+            <table class="actor-matrix">
+            <caption style="font-family: IBM Plex Mono, monospace; font-size: 0.7rem; color: var(--text-dim); text-align: left; padding: 0.4rem 0.6rem; letter-spacing: 0.1em;">ACTOR MATRIX</caption>
+            <thead><tr><th>ACTOR</th><th>POSTURE</th><th>CHANGE</th><th>ASSESSMENT</th></tr></thead>
+            <tbody>
+            <tr><td class="actor-name">United States</td><td>Offensive — unconditional surrender demanded; using UK bases; $20B tanker reinsurance</td><td>Escalated: explicit demand for leadership acceptable to Washington</td><td>Regime change posture now explicit</td></tr>
+            <tr><td class="actor-name">Israel</td><td>Offensive — multi-country strikes (Iran, Lebanon, Gulf); targeting IRGC commanders in Beirut</td><td>Expanded: Beirut hotel strike on IRGC; campaign expected 2 more weeks</td><td>Campaign expanding geographically</td></tr>
+            <tr><td class="actor-name">Iran</td><td>Retaliatory — strikes on 5 Gulf states; claims 6-month war capability; factional split visible</td><td>Succession complete: Mojtaba formalised; Pezeshkian apology contradicted by strikes</td><td>IRGC controls military; civilian govt marginalised</td></tr>
+            <tr><td class="actor-name">United Kingdom</td><td>Supporting — bases for US 'defensive' operations; PM resisting pressure to join strikes directly</td><td>Elevated: UK bases now active in operations</td><td>Domestic opposition constrains escalation</td></tr>
+            <tr><td class="actor-name">France</td><td>Defensive deployment — jets and warships to Gulf; confronting Iranian intel on own soil</td><td>New: active military deployment to Gulf</td><td>Dual-front: protecting Gulf partners and domestic security</td></tr>
+            <tr><td class="actor-name">China</td><td>Economic hedging — suspended oil export certificates; Wang Yi signalling Trump-Xi meeting prep</td><td>New: emergency export suspension indicates protracted disruption assessment</td><td>Prioritising domestic energy security over diplomatic engagement</td></tr>
+            <tr><td class="actor-name">Turkey</td><td>Strategic hedging — prefers Islamic Republic survival to avoid succession uncertainty</td><td>No change; analysis only</td><td>Potential constraint on NATO-level escalation</td></tr>
+            <tr><td class="actor-name">Gulf Arab States</td><td>Under fire — 5 states struck; Arab League emergency session; Saudi residential building hit</td><td>Escalated: direct casualties (2 killed in Saudi Arabia); shifted from bystander to target</td><td>No longer viable mediators</td></tr>
+            </tbody></table>
+            <div class="analyst-note">
+                <div class="analyst-note-label">ANALYST NOTE</div>
+                <p>The gap between Western government actions and European public opinion is historically significant. Polls across four major European states show majority opposition to the intervention (Anadolu, 7 Mar). The UK government's characterisation of base-sharing as 'defensive' while the US conducts offensive strikes from those facilities mirrors the rhetorical framework used during Operation Iraqi Freedom — a pattern that historically produces domestic political backlash within 2-4 weeks of sustained operations.</p>
+            </div>
+            <hr class="section-end" style="border-color: #8e44ad;">
+        </section>
+
+        <section class="domain domain--d5">
+            <div class="domain-header" style="background: #1a2a3a; border-bottom: 3px solid #4682b4;">
+                <span class="domain-num">05</span>
+                <span class="domain-title">CYBER — IO</span>
+                <span class="domain-conf">[low]</span>
+            </div>
+            <div class="domain-aq">What Iranian-affiliated cyber operations and information operations are observable in open source?</div>
+            <div class="domain-kj" style="border-left: 4px solid #4682b4;">
+                <strong>KEY JUDGMENT:</strong> Reporting indicates, though corroboration is limited, that Iran's internet blackout entering Week 2 remains the dominant IO measure; no CISA advisories or confirmed offensive cyber operations were identified this cycle.
+            </div>
+            <div class="body-para">
+                <div class="sublabel-observed">OBSERVED ACTIVITY</div>
+                <p>Iran's government-imposed internet blackout has entered its second week since the initial cutoff on 28 Feb (CNBC, 7 Mar 1305 UTC). The blackout prevents approximately 85 million Iranians from accessing real-time strike damage assessment and degrades OSINT collection on Iranian military disposition. No CISA advisory, Five Eyes advisory, or confirmed multi-source cyber attribution was published during this collection period. No specific Canadian critical infrastructure exposure was identified this cycle.</p>
+                <div class="citations">CNBC (T2)</div>
+            </div>
+            <div class="body-para">
+                <div class="sublabel-assessment">ASSESSMENT</div>
+                <p>The prolonged internet blackout serves dual purposes: denying domestic access to strike damage reporting and constraining external collection on Iranian internal dynamics. Offensive cyber operations by Iranian-affiliated groups against coalition targets may continue but remain below the collection threshold. This section is flagged as a collection gap; the absence of confirmable cyber activity is itself analytically relevant rather than indicative of Iranian inactivity.</p>
+                <div class="citations"></div>
+            </div>
+            <hr class="section-end" style="border-color: #4682b4;">
+        </section>
+
+        <section class="domain domain--d6">
+            <div class="domain-header" style="background: #1a2a2a; border-bottom: 3px solid #2c8c99;">
+                <span class="domain-num">06</span>
+                <span class="domain-title">WAR RISK INSURANCE — MARITIME FINANCE</span>
+                <span class="domain-conf">[moderate]</span>
+            </div>
+            <div class="domain-aq">How is the insurance market pricing and responding to war risk in the Gulf, Red Sea, and Eastern Mediterranean — and what does this signal about underwriter confidence in conflict trajectory?</div>
+            <div class="domain-kj" style="border-left: 4px solid #2c8c99;">
+                <strong>KEY JUDGMENT:</strong> Available evidence suggests the maritime war risk market has transitioned from crisis pricing to effective market failure for Hormuz transit; LR2 freight doubling, the US $20 billion reinsurance backstop, and BIMCO's war risks clause review collectively confirm private underwriting capacity exhaustion.
+            </div>
+            <div class="body-para">
+                <div class="sublabel-observed">JWC / LISTED AREAS</div>
+                <p>No JWC listed area changes were confirmed in open-source collection this cycle; the Persian Gulf, Gulf of Oman, and southern Red Sea remain listed under existing designations. NATO Shipping Centre alerts were not collected (HTTP 403), which limits verification of any JWC updates that may have occurred. BIMCO issued guidance urging operators to undertake 'careful review' of existing and future charter parties against war risk clauses for the Persian Gulf, Gulf of Oman, Indian Ocean, Gulf of Aden, and southern Red Sea (Hellenic Shipping News, 8 Mar). The scope of BIMCO's review guidance — spanning five maritime zones — indicates the war risk footprint now extends well beyond the immediate conflict zone.</p>
+                <div class="citations">Hellenic Shipping News (T2)</div>
+            </div>
+            <div class="body-para">
+                <div class="sublabel-observed">PREMIUM MARKET / FREIGHT</div>
+                <p>Clean LR2 MEG/Japan (TC1 75kt) freight doubled from WS222 to WS446 in one week, with the corresponding TCE climbing to $120,000/day (Hellenic Shipping News, 8 Mar). Supertanker charter costs hit all-time highs as Iran threatened full Hormuz closure (MarineLink, 8 Mar). Arabian Gulf trips are described as 'extremely profitable for those willing to take the risk' (Hellenic Shipping News, 8 Mar), indicating a binary pricing regime where operators accept catastrophic exposure or avoid the Gulf entirely. The US government's $20 billion reinsurance programme for oil tankers (CNBC, 7 Mar 1533 UTC) confirms private war risk markets have effectively ceased functioning for Hormuz transit. Specific named-broker war risk premium quotes (in USD/GRT) were not available this cycle due to Ambrey Analytics collection failure (503 error).</p>
+                <div class="citations">Hellenic Shipping News (T2), MarineLink (T2), CNBC (T2)</div>
+            </div>
+            <div class="body-para">
+                <div class="sublabel-assessment">CAPACITY & UNDERWRITER POSTURE</div>
+                <p>The IG P&I finalised the Pooling and Group Excess of Loss Reinsurance contract structure for the 2026/27 policy year (IG P&I, 8 Mar), locking reinsurance terms amid the most severe maritime conflict since the 1980s Tanker War. Rolf Thore Roppestad was appointed Group Chair of the International Group of P&I Clubs during this period (IG P&I, 8 Mar). Hapag-Lloyd's proposed acquisition of a major Israeli shipping company has collided with Israeli national-security concerns; critics warn the purchase could expose critical infrastructure (Hellenic Shipping News, 8 Mar). The Xeneta container shipping index reported port congestion building as Gulf conflict disrupts container routing (Hellenic Shipping News, 8 Mar).</p>
+                <div class="citations">IG P&I (T1), Hellenic Shipping News (T2)</div>
+            </div>
+            <div class="body-para">
+                <div class="sublabel-observed">VESSEL OPERATIONS IMPACT</div>
+                <p>Hormuz traffic remains at near-standstill following the UAE-flagged tugboat explosion (France24, 8 Mar 1029 UTC). At least three tankers have been struck in the Gulf (MarineLink, 8 Mar). The conflict is expected to alter product tanker trade patterns, with 2.9 million barrels per day of refined products disrupted through Hormuz (Hellenic Shipping News, 8 Mar). Dry bulk shipping rates showed bunker-price-driven volatility rather than demand improvement (Hellenic Shipping News, 8 Mar). Fearful African migrants in Gulf states continued working through missile strikes, with a drone crashing close to Dubai Airport (BBC, 7 Mar 1031 UTC; RFI, 7 Mar 1027 UTC).</p>
+                <div class="citations">France24 (T2), MarineLink (T2), Hellenic Shipping News (T2)</div>
+            </div>
+            <div class="body-para">
+                <div class="sublabel-assessment">CANADIAN EXPOSURE</div>
+                <p>Canadian-flagged vessels are not confirmed to be transiting JWC-listed zones this cycle. War risk cargo premiums on Canadian grain and potash exports routed via Suez face sustained elevation as Gulf conflict disrupts Indian Ocean trade patterns, with approximately 5% of global breakbulk cargo at risk (Hellenic Shipping News, 8 Mar).</p>
+                <div class="citations">Hellenic Shipping News (T2)</div>
+            </div>
+            <table class="data-table">
+            <caption style="font-family: IBM Plex Mono, monospace; font-size: 0.7rem; color: var(--text-dim); text-align: left; padding: 0.4rem 0.6rem; letter-spacing: 0.1em;">War Risk Market Indicators (8 Mar 2026)</caption>
+            <thead><tr><th>Indicator</th><th>Current Level</th><th>Change vs. Prev Cycle</th><th>Source</th></tr></thead>
+            <tbody>
+            <tr><td>LR2 MEG/Japan (TC1 75kt)</td><td>WS446 ($120K/day TCE)</td><td>+101% (1 week)</td><td>Hellenic Shipping News</td></tr>
+            <tr><td>Supertanker Charter</td><td>All-time high</td><td>Continued rise</td><td>MarineLink</td></tr>
+            <tr><td>US Govt Reinsurance</td><td>$20B programme</td><td>New this cycle</td><td>CNBC</td></tr>
+            <tr><td>Hormuz Transit Status</td><td>Near-standstill</td><td>Unchanged from prev cycle</td><td>France24</td></tr>
+            <tr><td>BIMCO War Risk Zones</td><td>5 zones flagged</td><td>Expanded scope</td><td>Hellenic Shipping News</td></tr>
+            </tbody></table>
+            <hr class="section-end" style="border-color: #2c8c99;">
+        </section>
+
+<div class="wi-section">
+    <h2>WARNING INDICATORS</h2>
+    <div class="wi-item">
+        <span class="wi-level" style="background:#c0392b;">RED</span>
+        <span class="wi-indicator">Direct Iran-Israel exchange</span>
+        <p class="wi-assessment">Remains triggered. IAF struck Iranian jets at Isfahan, oil depots in Tehran, and 50 ammunition bunkers. Iranian missiles reached Jerusalem. No de-escalation.</p>
+    </div>
+    <div class="wi-item">
+        <span class="wi-level" style="background:#c0392b;">RED</span>
+        <span class="wi-indicator">Strait of Hormuz disruption</span>
+        <p class="wi-assessment">Remains RED. Traffic near-standstill. LR2 freight doubled in one week. US $20B reinsurance programme confirms private market failure. No change in physical transit status from previous cycle.</p>
+    </div>
+    <div class="wi-item">
+        <span class="wi-level" style="background:#c0392b;">RED</span>
+        <span class="wi-indicator">Iranian leadership decapitation / succession</span>
+        <p class="wi-assessment">Updated: Mojtaba Khamenei formalised as supreme leader with IRGC and military pledges of allegiance (Al Jazeera, 9 Mar). Succession complete but governance legitimacy unresolved. Trump declared new leader will 'not last long.'</p>
+    </div>
+    <div class="wi-item">
+        <span class="wi-level" style="background:#c0392b;">RED</span>
+        <span class="wi-indicator">Lebanon theatre expansion</span>
+        <p class="wi-assessment">Elevated from AMBER to RED. Israel struck a hotel in central Beirut targeting IRGC commanders, killing 4 (France24, 8 Mar). Lebanon death toll past 400; 517,000 displaced. Campaign expects 2 more weeks (France24, 8 Mar).</p>
+    </div>
+    <div class="wi-item">
+        <span class="wi-level" style="background:#c0392b;">RED</span>
+        <span class="wi-indicator">Gulf state airspace / territory under fire</span>
+        <p class="wi-assessment">Remains RED. Five Gulf states struck by Iranian missiles. Two killed in Saudi Arabia from projectile on residential building. IRGC targeted radar systems including Al-Kharj (Al Jazeera, 8 Mar).</p>
+    </div>
+    <div class="wi-item">
+        <span class="wi-level" style="background:#d4a017;">AMBER</span>
+        <span class="wi-indicator">Internet / communications blackout</span>
+        <p class="wi-assessment">Week 2. Iran's internet blackout continues since 28 Feb cutoff (CNBC, 7 Mar). Constrains OSINT collection on internal dynamics. No change in status.</p>
+    </div>
+    <div class="wi-item">
+        <span class="wi-level" style="background:#d4a017;">AMBER</span>
+        <span class="wi-indicator">Kurdish internal front activation</span>
+        <p class="wi-assessment">Remains AMBER. Trump engaged Kurdish opposition on 4 Mar (Responsible Statecraft, 8 Mar). No confirmed Kurdish military operations inside Iran this cycle. Status depends on whether proxy operations materialise.</p>
+    </div>
+    <div class="wi-item">
+        <span class="wi-level" style="background:#d4a017;">AMBER</span>
+        <span class="wi-indicator">Horn of Africa / Red Sea expansion</span>
+        <p class="wi-assessment">Newly flagged. CTP-ISW assessed Houthis and Iran could target Emirati, Israeli, or US positions in the Horn of Africa (CTP-ISW, 8 Mar). No confirmed operations yet, but potential for battlespace extension to East Africa.</p>
+    </div>
+    <div class="wi-item">
+        <span class="wi-level" style="background:#d4a017;">AMBER</span>
+        <span class="wi-indicator">European coalition strain</span>
+        <p class="wi-assessment">Newly flagged. European polls show majority opposition to intervention across Spain, Italy, Germany, UK (Anadolu, 7 Mar). UK characterising base-sharing as 'defensive' while London mayor publicly opposes PM's posture. Gap between government action and public opinion widening.</p>
+    </div>
+</div>
+
+<div class="gaps-section">
+    <h2>COLLECTION GAPS</h2>
+    <div class="gap-item">
+        <span class="gap-severity gap-critical">CRITICAL</span>
+        <span class="gap-domain">[d1]</span>
+        AP and Reuters main feeds not collected (HTTP 403/401)
+        <p class="gap-sig">Two primary Tier 1 wire services blocked this cycle. Assessments draw on Al Jazeera (Tier 1) and corroborated Tier 2 sources (BBC, France24, Jerusalem Post) for the factual floor.</p>
+    </div>
+    <div class="gap-item">
+        <span class="gap-severity gap-significant">SIGNIFICANT</span>
+        <span class="gap-domain">[d1]</span>
+        CENTCOM and IDF Spokesperson statements not collected (HTTP 403)
+        <p class="gap-sig">Unable to verify US and Israeli operational claims from official military sources. Relying on wire service and Tier 2 reporting of military statements.</p>
+    </div>
+    <div class="gap-item">
+        <span class="gap-severity gap-significant">SIGNIFICANT</span>
+        <span class="gap-domain">[d6]</span>
+        NATO Shipping Centre, Lloyd's List, and Ambrey Analytics not collected (HTTP 403/503)
+        <p class="gap-sig">Unable to verify JWC listed area updates, Lloyd's Market Bulletins, or specific war risk premium quotes in USD/GRT. Freight data from Hellenic Shipping News provides proxy quantification.</p>
+    </div>
+    <div class="gap-item">
+        <span class="gap-severity gap-significant">SIGNIFICANT</span>
+        <span class="gap-domain">[d5]</span>
+        Limited cyber-specific intelligence; no CISA advisories in collection window
+        <p class="gap-sig">Iran's internet blackout prevents OSINT on Iranian cyber operations. CISA feed collected but contained no Iran-specific advisories. Assessment confidence for D5 is LOW by design.</p>
+    </div>
+    <div class="gap-item">
+        <span class="gap-severity gap-significant">SIGNIFICANT</span>
+        <span class="gap-domain">[d6]</span>
+        Named-broker war risk premium quotes unavailable
+        <p class="gap-sig">Marsh, Willis, and Aon premium data not collected. LR2 freight and supertanker charter rates serve as proxy indicators for war risk pricing. Recommend named-broker data for next cycle.</p>
+    </div>
+</div>
+
+<div class="caveats">
+    <h2>CAVEATS &amp; SOURCE QUALITY</h2>
+    <div class="caveat"><strong>Cycle:</strong> CYCLE 009 — 9 MARCH 2026</div>
+    <div class="caveat"><strong>ACTIVE CONFLICT:</strong> Assessments are based on 569 items triaged from 60 successfully collected sources as of 0117 UTC 9 Mar. The operational tempo of this conflict means material changes may occur between drafting and distribution. The Israeli military expects the current campaign phase to continue for approximately two more weeks (France24, 8 Mar).</div>
+    <div class="caveat"><strong>TIER 1 GAPS:</strong> AP and Reuters main feeds were not collected this cycle due to HTTP access restrictions. Al Jazeera English serves as the primary Tier 1 factual backbone. CENTCOM, IDF Spokesperson, and NATO Shipping Centre sources also failed collection. Assessments are weighted toward available Tier 1 (Al Jazeera, CTP-ISW, IG P&I) and corroborated Tier 2 reporting (France24, BBC, Jerusalem Post, Hellenic Shipping News).</div>
+    <div class="caveat"><strong>IRANIAN CLAIMS:</strong> Iranian state media claims are treated as 'Iranian government asserts' and are never used as factual input. IRGC claims of six-month war sustainability and Iranian claims regarding struck US assets require independent verification before incorporation.</div>
+    <div class="caveat"><strong>SUCCESSION INTELLIGENCE:</strong> Reporting on the Mojtaba Khamenei succession is drawn from Al Jazeera (Tier 1), Iran International (Tier 2), and Jerusalem Post (Tier 2). Internal IRGC factional dynamics and Assembly of Experts deliberations cannot be independently verified due to Iran's internet blackout. Assessment of IRGC-Pezeshkian factional split is inferred from the observable contradiction between the presidential apology and continued military strikes.</div>
+    <div class="caveat"><strong>WAR RISK DATA LIMITATIONS:</strong> Specific named-broker war risk premium quotes (USD/GRT) were not available this cycle. LR2 freight rates and the US government reinsurance programme serve as proxy indicators. The 'market failure' characterisation is inferred from the combination of government backstop requirement and binary operator behaviour, not from direct insurer commentary.</div>
+    <div class="conf-assessment">HIGH confidence in overall conflict trajectory, succession assessment, and energy market indicators given Al Jazeera Tier 1 confirmation and multiple Tier 2 corroboration. MODERATE confidence in maritime war risk assessment; quantitative freight data is strong but named-broker premium data is absent. LOW confidence in cyber domain due to blackout-induced collection limitations and absence of CISA advisories.</div>
+    <div class="caveat" style="margin-top:0.5rem; border-left: 2px dashed var(--accent-gold); padding-left: 0.8rem;"><strong>ANALYST B:</strong> ANALYST B assesses a 15-25% probability that the Pezeshkian faction could exploit the succession transition to propose a unilateral ceasefire within 7-10 days. BBC Persian analysis suggests the presidential apology 'may hint at political repositioning inside Iran' (BBC, 7 Mar). This view is not shared by the primary assessment.</div>
+    <div class="caveat" style="margin-top:0.8rem;"><strong>Source Quality:</strong> 569 items triaged from 60 successfully collected sources (73 attempted). Tier 1: Al Jazeera English, CTP-ISW, IAEA, UKMTO, BIMCO, IG P&I, IMO. Tier 2: BBC, CNBC, France24, Iran International, Alma Research, Jerusalem Post, Hellenic Shipping News, MarineLink, Responsible Statecraft, RFI, Anadolu, and 33 additional sources. Five Tier 1 sources failed collection (AP, Reuters, CENTCOM, IDF, NATO Shipping Centre).</div>
+    <div class="caveat"><strong>Handling:</strong> This brief is classified PROTECTED B and distributed under TLP:AMBER. Do not share beyond authorized recipients.</div>
+</div>
+
+<div class="footer">
+    PROTECTED B // TLP:AMBER &middot; footer-009<br>
+    Sources: Al Jazeera, CTP-ISW, IAEA, UKMTO, BIMCO, IG P&I, IMO, BBC, CNBC, France24, Iran International, Alma Research, Jerusalem Post, Hellenic Shipping News, MarineLink, Responsible Statecraft, RFI, Anadolu, CISA, NetBlocks, Splash 247, Xeneta, and 38 additional open sources.<br>
+    This intelligence product is intended for Canadian government decision-makers and authorized allies. Further distribution requires originator approval.
+</div>
+
+</body>
+</html>
