@@ -251,6 +251,82 @@ sources:
       Independent outlet with strong Gulf and Iran bureau. Good on
       Houthi operational reporting and GCC internal politics.
 
+  - id: al_arabiya_en
+    name: "Al Arabiya English"
+    tier: 2
+    domains: [d1, d2, d4]
+    method: scrape
+    url: "https://english.alarabiya.net/News/middle-east"
+    status: likely
+    enabled: true
+    notes: >
+      Saudi-owned, Dubai-based. Strong Gulf perspective and Tehran bureau.
+      No public RSS — scrape Middle East section page with requests+BS4.
+      Useful counterweight to Al Jazeera on GCC positioning.
+
+  - id: arab_news
+    name: "Arab News"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://www.arabnews.com/rss.xml"
+    status: working
+    enabled: true
+    notes: >
+      Real RSS confirmed. Saudi English-language daily. Riyadh and Jeddah
+      bureaux. Good on Saudi diplomatic positioning and GCC consensus framing.
+
+  - id: the_national_uae
+    name: "The National (UAE)"
+    tier: 2
+    domains: [d4, d3]
+    method: scrape
+    url: "https://www.thenationalnews.com/news/mena/"
+    status: likely
+    enabled: true
+    notes: >
+      Abu Dhabi-based. Emirati government-adjacent editorial line. Useful for
+      UAE diplomatic positioning, Abraham Accords dynamics, and Gulf energy policy.
+
+  - id: nikkei_asia
+    name: "Nikkei Asia"
+    tier: 2
+    domains: [d3, d4]
+    method: rss
+    url: "https://asia.nikkei.com/rss/feed/nar"
+    status: working
+    enabled: true
+    notes: >
+      Real RSS confirmed. Asian energy dependency angle — Japan, South Korea,
+      India crude import disruption. Good on Chinese diplomatic positioning
+      and Asian buyer response to sanctions / supply disruption.
+
+  - id: the_hindu_intl
+    name: "The Hindu International"
+    tier: 2
+    domains: [d3, d4]
+    method: rss
+    url: "https://www.thehindu.com/news/international/feeder/default.rss"
+    status: working
+    enabled: true
+    notes: >
+      Real RSS confirmed. Indian perspective on Iran energy imports, Chabahar
+      port dynamics, and Indian Ocean maritime security. India is Iran's
+      second-largest oil customer — essential for d3 demand-side coverage.
+
+  - id: dawn_news
+    name: "Dawn"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://www.dawn.com/feeds/home"
+    status: working
+    enabled: true
+    notes: >
+      Real RSS confirmed. Pakistan's premier English-language daily. Covers
+      Balochistan border dynamics, Pakistan-Iran pipeline politics, and
+      Pakistani government positioning on regional escalation.
+
   - id: france24_en
     name: "France 24 English"
     tier: 2
