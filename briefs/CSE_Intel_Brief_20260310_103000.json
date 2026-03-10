@@ -1,0 +1,710 @@
+{
+  "meta": {
+    "cycleId": "CSE_Intel_Brief_20260310_103000",
+    "cycleNum": "010",
+    "classification": "PROTECTED B",
+    "tlp": "AMBER",
+    "timestamp": "2026-03-10T10:30:00Z",
+    "region": "Iran / Gulf Region / Eastern Mediterranean / Horn of Africa",
+    "analystUnit": "CSE Conflict Assessment Unit",
+    "threatLevel": "CRITICAL",
+    "threatTrajectory": "escalating",
+    "subtitle": "Day 11 of US-Israeli Campaign Against Iran — Ghalibaf Rejects Ceasefire, IRGC Drone Strikes Tanker in Hormuz, Oil Swings $30 in 24 Hours",
+    "contextNote": "Active multi-theatre conflict entering second week. Parliament Speaker Ghalibaf declared Tehran not seeking ceasefire; IRGC drone struck tanker transiting Strait of Hormuz. Oil swung from near $120 to below $90 after Trump hinted war could end 'soon', then rebounded. Hormuz transits remain at near-standstill. IDF launched ground raid in southern Lebanon. P&I Clubs revised war coverage following Iranian retaliation against Gulf states. Internet blackout continues into Week 2.",
+    "stripCells": [
+      { "top": "CRITICAL", "bot": "THREAT LEVEL" },
+      { "top": ">90%", "bot": "HORMUZ DROP" },
+      { "top": "$90–120", "bot": "BRENT SWING" },
+      { "top": "DAY 11", "bot": "CAMPAIGN" },
+      { "top": "MOJTABA", "bot": "NEW SUPREME LDR" },
+      { "top": "WEEK 2", "bot": "INTERNET BLACKOUT" }
+    ]
+  },
+
+  "strategicHeader": {
+    "headlineJudgment": "The conflict has entered a contradiction phase: Trump signalled the war could end 'soon' while simultaneously threatening to strike Iran 'twenty times harder' if it blocks Hormuz, and Tehran's parliament speaker rejected ceasefire talks — indicating both sides are escalating rhetoric while testing whether the other will flinch first. The IRGC's drone strike on a tanker transiting Hormuz confirms Iran is enforcing a de facto maritime exclusion zone that neither US naval escorts nor the $20 billion DFC reinsurance programme have yet broken.",
+    "trajectoryRationale": "Three indicators point to continued escalation despite Trump's market-calming rhetoric. First, Ghalibaf stated Tehran is 'not seeking a ceasefire' and that 'the aggressor must be struck to prevent future attacks' (Iran International, 10 Mar). Second, the IRGC struck a tanker with a drone for 'violating' its self-declared Hormuz passage ban (TradeWinds, 9 Mar), demonstrating willingness to enforce the blockade with force. Third, the IDF launched a ground operation in southern Lebanon while Israel's military assessed Iran retains capacity for 'extended' fire despite a 75% reduction in ballistic missile stocks (Jerusalem Post, 10 Mar). Countervailing signal: Trump told Republicans the war may end 'pretty quickly' and crude fell below $90 before rebounding, but no ceasefire mechanism has been proposed by either side."
+  },
+
+  "flashPoints": [
+    {
+      "id": "fp-010-1",
+      "timestamp": "2026-03-10T06:00:00Z",
+      "domain": "d3",
+      "headline": "IRGC drone strikes tanker transiting Hormuz",
+      "detail": "Iran's enforcement of its self-declared Strait of Hormuz passage ban has escalated to direct attacks on commercial shipping. The IRGC claims it struck a tanker with a drone for violating the ban, confirming the maritime exclusion zone is now being enforced with force rather than threat alone (TradeWinds, 9 Mar).",
+      "confidence": "high",
+      "citations": [
+        { "source": "TradeWinds", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" }
+      ]
+    },
+    {
+      "id": "fp-010-2",
+      "timestamp": "2026-03-10T04:00:00Z",
+      "domain": "d2",
+      "headline": "Ghalibaf rejects ceasefire: 'aggressor must be struck'",
+      "detail": "Iran's parliament speaker declared Tehran is not seeking a ceasefire and that 'the aggressor must be struck to prevent future attacks', closing a key diplomatic offramp. Foreign Minister Araghchi separately stated negotiations with the US are 'no longer on the agenda' (Iran International, 10 Mar; Al Jazeera, 10 Mar).",
+      "confidence": "high",
+      "citations": [
+        { "source": "Iran International", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T04:00:00Z" },
+        { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" }
+      ]
+    },
+    {
+      "id": "fp-010-3",
+      "timestamp": "2026-03-09T18:00:00Z",
+      "domain": "d1",
+      "headline": "IDF ground raid launched in southern Lebanon",
+      "detail": "The IDF initiated what it described as a 'targeted and limited raid' in southern Lebanon to dismantle Hezbollah infrastructure, with air and ground strikes preceding the operation. Hezbollah missiles injured sixteen in Israel in response (ICG CrisisWatch, 9 Mar).",
+      "confidence": "high",
+      "citations": [
+        { "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:29:00Z" },
+        { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" }
+      ]
+    }
+  ],
+
+  "executive": {
+    "bluf": "The war entered Day 11 with both sides hardening positions: Iran rejected ceasefire talks and enforced its Hormuz exclusion zone with a drone strike on a tanker, while Trump oscillated between signalling the war could end 'soon' and threatening to escalate 'twenty times harder'. Oil whipsawed $30 in 24 hours — surging near $120 before crashing below $90 on Trump's remarks, then rebounding — reflecting a market unable to price the conflict's trajectory. The IDF expanded operations into southern Lebanon with a ground raid, confirming the campaign now spans four theatres: Iran proper, the Gulf maritime domain, Lebanon, and the information space. The $20 billion US DFC reinsurance programme remains weeks from operationalisation, leaving the London market as the sole provider of Hormuz war risk cover at crisis-level premiums.",
+    "keyJudgments": [
+      {
+        "id": "kj-exec-1",
+        "domain": "d1",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "Multiple sources confirm the coalition campaign now spans four active theatres — Iran, Gulf maritime, Lebanon, and cyber/information — with the IDF launching ground operations in southern Lebanon while sustaining strikes on Iranian military infrastructure.",
+        "basis": "ICG CrisisWatch documented the IDF ground raid in southern Lebanon on 9 Mar; Al Jazeera confirmed continued strikes on Tehran and the Bekaa Valley; Jerusalem Post reported 75% destruction of IRGC ballistic missile launchers.",
+        "citations": [
+          { "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:29:00Z" },
+          { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "Jerusalem Post", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" }
+        ]
+      },
+      {
+        "id": "kj-exec-2",
+        "domain": "d2",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "The balance of reporting points to continued escalation despite Trump's market-calming rhetoric, given Iran's explicit rejection of ceasefire talks and the IRGC's enforcement of the Hormuz passage ban with direct attacks on shipping.",
+        "basis": "Ghalibaf's statement rejecting ceasefire was reported by Iran International on 10 Mar; Araghchi told PBS negotiations are off the table (Al Jazeera, 10 Mar); TradeWinds confirmed IRGC drone strike on tanker.",
+        "citations": [
+          { "source": "Iran International", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T04:00:00Z" },
+          { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "TradeWinds", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" }
+        ]
+      },
+      {
+        "id": "kj-exec-3",
+        "domain": "d3",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "Multiple sources confirm the Strait of Hormuz remains effectively closed, with a greater than 90% drop in transits, tanker charterers cancelling voyages, and oil prices whipsawing between $90 and $120 as markets react to every signal.",
+        "basis": "Hellenic Shipping News confirmed >90% transit drop and charterers cancelling voyages; CNBC reported oil plunging below $90 on Trump comments before rebounding; Saudi Aramco CEO warned of 'catastrophic consequences' for oil markets.",
+        "citations": [
+          { "source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "CNBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "Middle East Eye", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" }
+        ]
+      },
+      {
+        "id": "kj-exec-4",
+        "domain": "d4",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Reporting suggests diplomatic pathways remain closed; Iran rejected negotiations, Trump demanded regime approval rights, and Turkey warned Iran against violating Istanbul's airspace — signalling even neutral states are hardening positions.",
+        "basis": "Araghchi stated negotiations are off the table (Al Jazeera, 10 Mar); Turkey's Fidan warned Iran on airspace violations (Middle East Eye, 10 Mar); Lebanese President Aoun proposed ceasefire but lacks leverage (Jerusalem Post, 10 Mar).",
+        "citations": [
+          { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "Middle East Eye", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "Jerusalem Post", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" }
+        ]
+      },
+      {
+        "id": "kj-exec-5",
+        "domain": "d6",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Available evidence suggests the maritime war risk market remains in crisis pricing, with the US DFC $20 billion reinsurance scheme weeks from operationalisation while the London market insists cover remains available at elevated premiums.",
+        "basis": "Bunkerspot reported the DFC reinsurance scheme details on 6 Mar; TradeWinds confirmed the London market is providing cover; JMIC noted strikes are creating 'operational uncertainty' rather than sustained sinking campaigns (Bunkerspot, 9 Mar).",
+        "citations": [
+          { "source": "Bunkerspot", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" },
+          { "source": "TradeWinds", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" },
+          { "source": "IG P&I Clubs", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" }
+        ]
+      }
+    ],
+    "kpis": [
+      { "domain": "d1", "number": "4", "label": "ACTIVE THEATRES", "changeDirection": "up" },
+      { "domain": "d2", "number": "↑ HIGH", "label": "ESCALATION RISK" },
+      { "domain": "d3", "number": "$90–120", "label": "BRENT 24H RANGE", "changeDirection": "neutral" },
+      { "domain": "d4", "number": "0", "label": "CEASEFIRE OFFERS" },
+      { "domain": "d6", "number": "$20B", "label": "DFC SCHEME (PENDING)" }
+    ]
+  },
+
+  "domains": [
+    {
+      "id": "d1",
+      "num": "01",
+      "title": "BATTLESPACE — KINETIC",
+      "assessmentQuestion": "What is the current disposition of forces, and what military operations occurred across all theatres in the last 24 hours?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d1",
+        "domain": "d1",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "The balance of reporting points to coalition operations expanding into a fourth theatre with IDF ground forces entering southern Lebanon, even as strikes continue against Iranian military headquarters and IRGC commanders.",
+        "basis": "ICG CrisisWatch confirmed IDF ground raid in southern Lebanon on 9 Mar. The IDF reported killing the head of the Military Office of the Supreme Leader and the Chief of Staff of Khatam al-Anbiya (ICG, 8 Mar). Jerusalem Post reported 75% of IRGC ballistic missile launchers destroyed.",
+        "citations": [
+          { "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:29:00Z" },
+          { "source": "Jerusalem Post", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "The IDF initiated a 'targeted and limited raid' in southern Lebanon on 9 Mar, striking what it described as Hezbollah infrastructure with combined air and ground operations. Israel separately warned of imminent strikes on the coastal cities of Tyre and Sidon, signalling the buffer zone may expand further south (Al Jazeera, 10 Mar 0600 UTC; ICG CrisisWatch, 9 Mar). Hezbollah responded with missile fire that injured sixteen in Israel. Human Rights Watch accused Israel of using white phosphorus over the Lebanese town of Yohmor on 3 Mar (France24, 10 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:29:00Z" },
+            { "source": "France24", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" }
+          ]
+        },
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "Inside Iran, coalition strikes continued against oil depots in Tehran and Karaj overnight, producing large fires visible on social media (BBC, 10 Mar). A US Tomahawk missile struck a military base near a primary school in southern Iran where Iranian authorities reported 168 killed, confirmed by BBC video analysis (BBC, 10 Mar). The IDF reported killing the new Head of the Military Office of the Supreme Leader and the Chief of Staff of Khatam al-Anbiya Central Headquarters on 8 Mar (ICG CrisisWatch, 8 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:24:00Z" }
+          ]
+        },
+        {
+          "subLabel": "OPERATIONAL ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "The campaign has shifted from air-only operations to combined arms across four theatres: Iran proper, Gulf maritime, Lebanon, and information/cyber. The IDF assesses Iran can sustain fire for an 'extended period' despite a reported 75% reduction in ballistic missile stocks, suggesting the decapitation strategy has degraded but not eliminated Iran's retaliatory capacity (Jerusalem Post, 10 Mar). Iran's doctrine of absorbing shock and 'turning time into a weapon' — described by Al Jazeera as the 'Fourth Successor' strategy — appears designed for protracted resistance rather than decisive counter-offensive (Al Jazeera, 10 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "Jerusalem Post", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" }
+          ],
+          "confidenceLanguage": "highly-likely"
+        }
+      ],
+      "timeline": [
+        {
+          "timestamp": "0600 UTC 8 Mar",
+          "actor": "IDF",
+          "action": "Killed Head of Military Office of Supreme Leader and Khatam al-Anbiya Chief of Staff",
+          "confidence": "high",
+          "domain": "d1",
+          "citations": [{ "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-08T12:00:00Z" }]
+        },
+        {
+          "timestamp": "1200 UTC 9 Mar",
+          "actor": "IDF",
+          "action": "Launched ground raid in southern Lebanon targeting Hezbollah infrastructure",
+          "confidence": "high",
+          "domain": "d1",
+          "citations": [{ "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:29:00Z" }]
+        },
+        {
+          "timestamp": "1800 UTC 9 Mar",
+          "actor": "Hezbollah",
+          "action": "Missile fire injures sixteen in Israel",
+          "confidence": "high",
+          "domain": "d1",
+          "citations": [{ "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:29:00Z" }]
+        },
+        {
+          "timestamp": "0600 UTC 10 Mar",
+          "actor": "IRGC",
+          "action": "Drone strike on tanker transiting Strait of Hormuz",
+          "confidence": "high",
+          "domain": "d1",
+          "citations": [{ "source": "TradeWinds", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" }]
+        }
+      ],
+      "analystNote": {
+        "title": "ANALYTICAL NOTE — BATTLESPACE",
+        "cycleRef": "CYCLE 010 · 10 MARCH 2026",
+        "text": "The expansion to four simultaneous theatres marks a qualitative shift from the first week's air-focused campaign. The ground operation in Lebanon — however described as 'limited' — commits Israeli forces to a secondary front that historically proves difficult to contain. The IDF's own assessment that Iran can sustain fire for an 'extended period' contradicts the administration's narrative that the campaign is 'ahead of schedule'. The gap between political messaging and military reality is widening."
+      }
+    },
+    {
+      "id": "d2",
+      "num": "02",
+      "title": "ESCALATION — TRAJECTORY",
+      "assessmentQuestion": "What is the probability and direction of conflict escalation or de-escalation in the next 24-72 hours?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d2",
+        "domain": "d2",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "The balance of reporting points to continued escalation in the next 72 hours, given Iran's explicit rejection of ceasefire talks, enforcement of the Hormuz ban with force, and the absence of any proposed diplomatic offramp by either side.",
+        "basis": "Ghalibaf rejected ceasefire (Iran International, 10 Mar). Araghchi stated negotiations are off the table (Al Jazeera, 10 Mar). Trump simultaneously signalled war could end 'soon' and threatened to hit Iran 'twenty times harder' (CNBC, 10 Mar). No ceasefire proposal has been tabled.",
+        "citations": [
+          { "source": "Iran International", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T04:00:00Z" },
+          { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "CNBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ESCALATION INDICATORS",
+          "subLabelVariant": "observed",
+          "text": "Three escalation signals converged on 9-10 Mar. First, Parliament Speaker Ghalibaf declared Iran is 'not seeking a ceasefire' and insisted 'the aggressor must be struck to prevent future attacks' (Iran International, 10 Mar). Second, the IRGC enforced its Hormuz passage ban with a drone strike on a tanker, escalating from threat to action (TradeWinds, 9 Mar). Third, Secretary of State Rubio stated Iran's 'military is getting the job done' and 'every single day this regime has less missiles', signalling no US appetite for restraint (ICG CrisisWatch, 9 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "Iran International", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T04:00:00Z" },
+            { "source": "TradeWinds", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" },
+            { "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:26:00Z" }
+          ]
+        },
+        {
+          "subLabel": "CONTAINMENT SIGNALS",
+          "subLabelVariant": "observed",
+          "text": "Two tentative de-escalation signals appeared. Trump told Republicans the war may end 'pretty quickly' and described it as 'ahead of schedule', triggering a crude price crash below $90 (CNBC, 10 Mar; Al Jazeera, 10 Mar). Lebanese President Aoun proposed a ceasefire with Israel and pledged to disarm Hezbollah, though Beirut lacks leverage to enforce either commitment (Jerusalem Post, 10 Mar). Iran's previous apology to Gulf neighbours for missile strikes — President Pezeshkian's 7 Mar statement — has not translated into operational restraint.",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "CNBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "Jerusalem Post", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:22:00Z" }
+          ]
+        },
+        {
+          "subLabel": "TRAJECTORY ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "The dominant pattern is rhetorical de-escalation from Washington layered over operational escalation on the ground. Trump's contradictory messaging — war ending 'soon' versus striking 'twenty times harder' — reflects an attempt to manage market panic without conceding strategic objectives. Iran's posture is more internally consistent: the Mojtaba succession, Ghalibaf's ceasefire rejection, and the Hormuz enforcement all point toward a strategy of protracted resistance. The Quincy Institute assessed that Trump 'wants out of war' but has no exit mechanism (Responsible Statecraft, 10 Mar). The next 72-hour tripwire is whether the IRGC escalates from drone harassment to mine-laying or anti-ship missile use in the Strait.",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "Responsible Statecraft", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" }
+          ],
+          "confidenceLanguage": "highly-likely"
+        }
+      ],
+      "actorMatrix": [
+        {
+          "actor": "United States",
+          "posture": "Offensive — sustained strikes, contradictory signalling",
+          "changeSincePrevCycle": "Trump signalling war could end 'soon' while threatening harder strikes",
+          "assessment": "Attempting to manage market impact without conceding objectives",
+          "confidence": "high"
+        },
+        {
+          "actor": "Iran (Mojtaba regime)",
+          "posture": "Defensive resistance — Hormuz enforcement, ceasefire rejection",
+          "changeSincePrevCycle": "Ghalibaf rejected ceasefire; IRGC enforced Hormuz ban with drone strike",
+          "assessment": "Consolidated around protracted resistance doctrine under new leadership",
+          "confidence": "high"
+        },
+        {
+          "actor": "Israel",
+          "posture": "Expanding — ground operations in Lebanon, continued strikes on Iran",
+          "changeSincePrevCycle": "Ground raid in southern Lebanon; warned of strikes on Tyre and Sidon",
+          "assessment": "Campaign scope widening despite stretched force commitments",
+          "confidence": "high"
+        },
+        {
+          "actor": "Gulf States",
+          "posture": "Defensive — intercepting Iranian missiles, absorbing strikes",
+          "changeSincePrevCycle": "Bahraini civilian killed by Iranian missile; Australia sending missiles to UAE",
+          "assessment": "Under fire but not joining offensive operations",
+          "confidence": "moderate"
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "num": "03",
+      "title": "ENERGY — ECONOMIC",
+      "assessmentQuestion": "What is the impact on energy markets, shipping routes, and regional economic stability?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d3",
+        "domain": "d3",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "Multiple sources confirm energy markets remain in structural disruption with Hormuz transits down over 90%, oil swinging $30 in 24 hours, and tanker charterers cancelling Gulf voyages en masse.",
+        "basis": "Hellenic Shipping News confirmed >90% transit drop and charter cancellations. CNBC reported oil crashed from near $120 to below $90 on Trump comments. Saudi Aramco CEO warned of 'catastrophic consequences' (CNBC, 10 Mar). Germany's economy hit by energy crunch as Hormuz remains blocked (Hellenic Shipping News, 10 Mar).",
+        "citations": [
+          { "source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "CNBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ENERGY INDICATORS",
+          "subLabelVariant": "observed",
+          "text": "Brent crude whipsawed approximately $30 within 24 hours, surging near $120/bbl before crashing below $90 after Trump hinted the war could end 'soon', then rebounding as markets digested the lack of any ceasefire mechanism (CNBC, 10 Mar 0600 UTC). Trump announced some sanctions on oil producers would be lifted to increase supply, but provided no specifics (Al Jazeera, 10 Mar). Saudi Aramco posted $104.7 billion adjusted net income for 2025 while its CEO warned of 'catastrophic consequences' for the oil market from the conflict (CNBC, 10 Mar; Bunkerspot, 9 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "CNBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "Bunkerspot", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" }
+          ]
+        },
+        {
+          "subLabel": "SUPPLY CHAIN DISRUPTION",
+          "subLabelVariant": "observed",
+          "text": "Strait of Hormuz commercial traffic has reached near-standstill, with AIS data showing most vessels anchored in the Gulf rather than transiting (Hellenic Shipping News, 10 Mar). Tanker charterers cancelled voyages and deferred deals, with owners seeking employment outside the Gulf to maintain cashflow (Hellenic Shipping News, 10 Mar). Four Dynacom vessels entered the Gulf against the trend, but a growing flotilla of empty tankers remains waiting outside the Strait (TradeWinds, 9 Mar). Asia-US container rates rose as Middle East conflict disrupted global routing, with bunker prices surging alongside crude (Hellenic Shipping News, 10 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "TradeWinds", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" }
+          ]
+        },
+        {
+          "subLabel": "CANADIAN EXPOSURE",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests Canadian economic exposure continues to rise on two fronts. First, G7 finance ministers discussed 'necessary measures' to support energy supplies, indicating policy intervention is being considered but not yet enacted (BBC, 10 Mar). Second, Congressional Democrats demanded reversal of Russian oil sales waivers to India, arguing the Iran war makes enabling Russian energy exports indefensible — a move that could tighten global supply further if adopted (Hellenic Shipping News, 10 Mar). German economic contraction from the Hormuz blockade foreshadows the impact on other energy-importing economies.",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "BBC", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" }
+          ],
+          "confidenceLanguage": "likely"
+        }
+      ],
+      "tables": [
+        {
+          "caption": "Energy Market Snapshot — 10 Mar 0600 UTC",
+          "headers": ["Indicator", "Current", "24h Change", "Status"],
+          "rows": [
+            { "label": "Brent Crude", "values": ["~$95/bbl", "Swing $90–120", "VOLATILE"], "status": "critical" },
+            { "label": "Hormuz Transits", "values": [">90% drop", "Near-standstill", "CLOSED DE FACTO"], "status": "critical" },
+            { "label": "Tanker Charters", "values": ["Mass cancellations", "Owners seeking alt routes", "DISRUPTED"], "status": "critical" },
+            { "label": "Container Rates (Asia-US)", "values": ["Rising", "Up WoW", "ELEVATED"], "status": "elevated" },
+            { "label": "Bunker Prices", "values": ["Surging with crude", "Up sharply", "ELEVATED"], "status": "elevated" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "num": "04",
+      "title": "DIPLOMATIC — POLITICAL",
+      "assessmentQuestion": "What are the positions of key state actors, and are there diplomatic shifts that signal changed intent or new negotiating dynamics?",
+      "confidence": "moderate",
+      "keyJudgment": {
+        "id": "kj-d4",
+        "domain": "d4",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Reporting suggests all diplomatic offramps remain closed, with Iran rejecting negotiations, Turkey warning Iran on airspace violations, and Trump claiming authority to approve or reject Iran's new supreme leader.",
+        "basis": "Araghchi told PBS negotiations with the US are off the table (Al Jazeera, 10 Mar). Turkey's FM Fidan warned Iran against violating Istanbul airspace (Middle East Eye, 10 Mar). Trump asserted Iran's next leader needs US 'approval' (ICG CrisisWatch, 8 Mar).",
+        "citations": [
+          { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "Middle East Eye", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:23:00Z" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "STATE POSITIONS",
+          "subLabelVariant": "observed",
+          "text": "Iran's diplomatic posture hardened on two fronts. Foreign Minister Araghchi told PBS that 'talking or negotiating with the US is no longer on the agenda' following what he termed the 'bitter experience' of previous engagement (Al Jazeera, 10 Mar 0600 UTC). Parliament Speaker Ghalibaf separately declared Tehran is not seeking a ceasefire (Iran International, 10 Mar). Meanwhile, Iran's foreign minister contended that Hormuz has not been formally closed, arguing disruption results from US-Israeli aggression rather than Iranian action — a legal distinction that may be tested at the IMO (ICG CrisisWatch, 9 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "Iran International", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T04:00:00Z" },
+            { "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:27:00Z" }
+          ]
+        },
+        {
+          "subLabel": "STATE POSITIONS",
+          "subLabelVariant": "observed",
+          "text": "Turkey issued a direct warning to Iran against violating Istanbul's airspace with ballistic missiles, marking a hardening of Ankara's position from studied neutrality toward active boundary-setting (Middle East Eye, 10 Mar). Australia announced it would send missiles to the UAE and a surveillance plane to support Gulf defence, joining the US-led coalition (Al Jazeera, 10 Mar). The US ended prosecution of Turkey's Halkbank over Iran sanctions violations, with prosecutors citing Turkish assistance in Gaza ceasefire negotiations — suggesting Washington is using legal concessions to build coalition support (Al Jazeera, 10 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "Middle East Eye", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" }
+          ]
+        },
+        {
+          "subLabel": "MEDIATION STATUS",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests no viable mediation pathway exists. Lebanese President Aoun proposed a ceasefire with Israel and pledged Hezbollah disarmament, but lacks the institutional authority to deliver either commitment (Jerusalem Post, 10 Mar). France24 assessed that Trump is trying to gauge whether Mojtaba Khamenei is 'a leader he can work with', but this framing is contradicted by Trump's assertion that Iran's next leader requires US 'approval' — a demand no Iranian government could accept (France24, 10 Mar; ICG CrisisWatch, 8 Mar). The Stimson Center's Barbara Slavin assessed 'there never was a plan' behind the war, suggesting the exit strategy remains undefined (France24, 10 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "Jerusalem Post", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "France24", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "ICG CrisisWatch", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T23:23:00Z" }
+          ],
+          "confidenceLanguage": "likely"
+        }
+      ],
+      "actorMatrix": [
+        {
+          "actor": "Iran (Mojtaba regime)",
+          "posture": "Ceasefire rejected; negotiations off table",
+          "changeSincePrevCycle": "Ghalibaf rejected ceasefire; Araghchi ruled out negotiations",
+          "assessment": "Hardened under new leadership; no diplomatic flexibility visible",
+          "confidence": "high"
+        },
+        {
+          "actor": "United States",
+          "posture": "Contradictory — 'war ending soon' vs 'twenty times harder'",
+          "changeSincePrevCycle": "Trump signalled potential end while threatening escalation",
+          "assessment": "Attempting market management without strategic concession",
+          "confidence": "moderate"
+        },
+        {
+          "actor": "Turkey",
+          "posture": "Active boundary-setting — airspace warning to Iran",
+          "changeSincePrevCycle": "FM Fidan warned Iran on airspace; Halkbank prosecution ended",
+          "assessment": "Shifting from neutrality toward Western alignment",
+          "confidence": "moderate"
+        },
+        {
+          "actor": "Australia",
+          "posture": "Joining coalition — missiles to UAE, surveillance aircraft",
+          "changeSincePrevCycle": "New commitment announced by PM Albanese",
+          "assessment": "First significant non-NATO coalition expansion",
+          "confidence": "high"
+        },
+        {
+          "actor": "China",
+          "posture": "Evacuating citizens; suspended oil export certificates",
+          "changeSincePrevCycle": "Evacuated 10,000+ nationals from Middle East",
+          "assessment": "Preparing for protracted disruption; not mediating",
+          "confidence": "moderate"
+        }
+      ]
+    },
+    {
+      "id": "d5",
+      "num": "05",
+      "title": "CYBER — INFORMATION OPS",
+      "assessmentQuestion": "What Iranian-affiliated cyber operations and information operations are observable in open source?",
+      "confidence": "low",
+      "keyJudgment": {
+        "id": "kj-d5",
+        "domain": "d5",
+        "confidence": "low",
+        "probabilityRange": "45–55%",
+        "language": "possibly",
+        "text": "Reporting indicates, though corroboration is limited, that Iran's internet blackout entering Week 2 continues to serve dual purposes: suppressing domestic dissent and controlling the wartime information environment while maintaining online access for regime-aligned voices.",
+        "basis": "Iran International reported regime-loyal voices retain internet access while the public faces record blackout (Iran International, 10 Mar). Dubai influencers posted coordinated 'safety' videos using identical templates (France24, 10 Mar). CISA added three exploited vulnerabilities to its catalogue but no Iran-specific attribution (CISA, 10 Mar).",
+        "citations": [
+          { "source": "Iran International", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+          { "source": "France24", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "Iran's nationwide internet blackout continued into its second week, with the regime maintaining selective access for loyalist voices and state media while the general public remains cut off. Iran International reported that parliament, military, and IRGC-affiliated accounts retain connectivity, creating an asymmetric information environment where the state narrative faces no domestic counter-narrative (Iran International, 10 Mar 0600 UTC). The US State Department rejected Iran's claim that 100 Americans were killed in Dubai, illustrating the fog-of-war information competition between state actors (Iran International, 10 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "Iran International", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" }
+          ]
+        },
+        {
+          "subLabel": "ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests the information environment is being shaped by coordinated campaigns on both sides. Dubai-based influencers posted near-identical videos praising the city's 'safety' using the same template, music, and captions — a coordinated messaging effort likely directed by UAE authorities to counter narrative damage from Iranian missile strikes on Gulf states (France24, 10 Mar). The lack of independent reporting from inside Iran due to the blackout means casualty figures and damage assessments from both sides remain unverifiable. CISA added three known exploited vulnerabilities to its catalogue on 10 Mar, but none carried Iran-specific attribution (CISA, 10 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "France24", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "CISA", "tier": 3, "verificationStatus": "claimed", "timestamp": "2026-03-10T06:00:00Z" }
+          ],
+          "confidenceLanguage": "possibly"
+        }
+      ]
+    },
+    {
+      "id": "d6",
+      "num": "06",
+      "title": "WAR RISK INSURANCE — MARITIME FINANCE",
+      "assessmentQuestion": "How is the insurance market pricing and responding to war risk in the Gulf, Red Sea, and Eastern Mediterranean — and what does this signal about underwriter confidence in conflict trajectory?",
+      "confidence": "moderate",
+      "keyJudgment": {
+        "id": "kj-d6",
+        "domain": "d6",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Available evidence suggests the war risk market remains in crisis pricing with the US $20 billion DFC reinsurance facility weeks from activation, the JMIC characterising Gulf strikes as creating 'operational uncertainty', and the London market insisting cover remains available at elevated premiums.",
+        "basis": "Bunkerspot reported JMIC assessment of strike patterns and DFC reinsurance details (9 Mar). TradeWinds confirmed London market availability. IG P&I Clubs updated war coverage for Iran/Persian Gulf (IG P&I, 10 Mar). IRGC drone strike on tanker escalated from threat to kinetic enforcement.",
+        "citations": [
+          { "source": "Bunkerspot", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" },
+          { "source": "TradeWinds", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" },
+          { "source": "IG P&I Clubs", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "JWC / LISTED AREAS",
+          "subLabelVariant": "observed",
+          "text": "The International Group of P&I Clubs issued an update on war coverage changes following Iran's retaliation against Gulf states supporting US military bases, outlining revised approaches for clubs providing cover in the Persian Gulf region (IG P&I Clubs, 10 Mar 0600 UTC). The Group Excess of Loss reinsurance contract (GXL) structure for the 2026/27 policy year has been finalised against this backdrop of active conflict. Shipowners face additional premiums with expanded war risk zones now covering the Gulf, Red Sea, and Eastern Mediterranean (TradeWinds, 9 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "IG P&I Clubs", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-10T06:00:00Z" },
+            { "source": "TradeWinds", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" }
+          ]
+        },
+        {
+          "subLabel": "PREMIUM MARKET",
+          "subLabelVariant": "observed",
+          "text": "The Joint Maritime Information Center assessed that the pattern of strikes against shipping in Arabian Gulf waters is 'indicative of a campaign to create operational uncertainty rather than a sustained attempt to sink vessels', but advised US and Israeli-affiliated vessels to exercise heightened caution (Bunkerspot, 9 Mar). The US Development Finance Corporation detailed its $20 billion rolling reinsurance facility covering hull and machinery war risk, but the programme remains weeks from activation — leaving the London market as the sole commercial provider (Bunkerspot, 6 Mar; TradeWinds, 9 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "Bunkerspot", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" },
+            { "source": "TradeWinds", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" }
+          ]
+        },
+        {
+          "subLabel": "CAPACITY & UNDERWRITER POSTURE",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests the market is bifurcating between government-backed reinsurance (DFC) and commercial cover (London). The London market insists Hormuz cover remains available, but premiums reflect near-wartime conditions (TradeWinds, 9 Mar). The IRGC's drone strike on a tanker is the first confirmed kinetic enforcement of the Hormuz passage ban against a specific vessel, which may trigger further premium escalation and coverage exclusions. The Stifel assessment that the Middle East has entered a 'volatile phase' driving investors from growth to value stocks reflects broader financial contagion beyond the shipping sector (Hellenic Shipping News, 10 Mar).",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "TradeWinds", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" },
+            { "source": "Hellenic Shipping News", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-10T06:00:00Z" }
+          ],
+          "confidenceLanguage": "likely"
+        },
+        {
+          "subLabel": "VESSEL OPERATIONS IMPACT",
+          "subLabelVariant": "observed",
+          "text": "The IRGC claimed it struck a tanker with a drone for 'violating' its self-declared Strait of Hormuz passage ban, with crew reported safe (TradeWinds, 9 Mar). A separate Iranian sabotage attack targeted a US-managed tanker in the Middle East Gulf, again with crew safe (TradeWinds, 9 Mar). A drone hit the Fujairah oil storage terminal as Iran targeted regional energy hubs, expanding the threat beyond shipping to port infrastructure (TradeWinds, 9 Mar). These incidents confirm a shift from threatened to actual enforcement of the maritime exclusion zone.",
+          "timestamp": "As of 0600 UTC 10 Mar",
+          "citations": [
+            { "source": "TradeWinds", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-09T12:00:00Z" }
+          ]
+        }
+      ],
+      "tables": [
+        {
+          "caption": "War Risk Market Status — 10 Mar 0600 UTC",
+          "headers": ["Mechanism", "Status", "Coverage", "Assessment"],
+          "rows": [
+            { "label": "US DFC Reinsurance", "values": ["Announced", "$20B rolling", "Weeks from activation"], "status": "rising" },
+            { "label": "London Market H&M", "values": ["Available", "Crisis premiums", "Sole commercial provider"], "status": "critical" },
+            { "label": "P&I Club War Cover", "values": ["Revised", "Updated for Iran/Gulf", "GXL 26/27 finalised"], "status": "elevated" },
+            { "label": "JWC Listed Areas", "values": ["Expanded", "Gulf + Red Sea + E Med", "Additional premiums apply"], "status": "elevated" }
+          ]
+        }
+      ]
+    }
+  ],
+
+  "warningIndicators": [
+    {
+      "id": "wi-010-1",
+      "indicator": "Iran enforces Hormuz exclusion zone with kinetic action against commercial vessels",
+      "domain": "d3",
+      "status": "triggered",
+      "change": "elevated",
+      "detail": "The IRGC struck a tanker with a drone for 'violating' its self-declared Hormuz passage ban on 9 Mar, escalating from verbal threats to kinetic enforcement (TradeWinds, 9 Mar). A separate sabotage attack targeted a US-managed tanker. This indicator has moved from 'elevated' to 'triggered' as the IRGC is now actively attacking vessels."
+    },
+    {
+      "id": "wi-010-2",
+      "indicator": "Iran explicitly rejects ceasefire or negotiations",
+      "domain": "d2",
+      "status": "triggered",
+      "change": "new",
+      "detail": "Parliament Speaker Ghalibaf declared on 10 Mar that Tehran is 'not seeking a ceasefire' and that 'the aggressor must be struck'. Foreign Minister Araghchi separately stated negotiations are 'no longer on the agenda' (Iran International, 10 Mar; Al Jazeera, 10 Mar). Both statements represent the first explicit rejection of all diplomatic pathways under the Mojtaba regime."
+    },
+    {
+      "id": "wi-010-3",
+      "indicator": "Coalition ground forces deployed outside Iran proper",
+      "domain": "d1",
+      "status": "triggered",
+      "change": "new",
+      "detail": "The IDF launched a 'targeted and limited raid' in southern Lebanon on 9 Mar, the first ground operation in a secondary theatre during this conflict. Israel warned of imminent strikes on Tyre and Sidon (ICG CrisisWatch, 9 Mar; Al Jazeera, 10 Mar). This indicator was triggered when ground operations commenced outside the primary Iran theatre."
+    },
+    {
+      "id": "wi-010-4",
+      "indicator": "Oil prices sustain above $100/bbl for more than 48 hours",
+      "domain": "d3",
+      "status": "elevated",
+      "change": "unchanged",
+      "detail": "Oil briefly exceeded $100/bbl but crashed below $90 on Trump's 'war ending soon' comments before rebounding to approximately $95. The indicator remains elevated rather than triggered because the $100 threshold has not been sustained for 48 hours. A return above $100 would trigger this indicator."
+    },
+    {
+      "id": "wi-010-5",
+      "indicator": "Third-party state issues military warning to Iran",
+      "domain": "d4",
+      "status": "elevated",
+      "change": "new",
+      "detail": "Turkey's FM Fidan warned Iran against violating Istanbul's airspace with ballistic missiles (Middle East Eye, 10 Mar). Australia announced missile deployments to UAE. These represent the first cases of non-belligerent states issuing direct military warnings or deployments. Full triggering requires a non-belligerent state threatening military action."
+    }
+  ],
+
+  "collectionGaps": [
+    {
+      "id": "cg-010-1",
+      "domain": "d1",
+      "gap": "AP, Reuters, and CENTCOM feeds all failed or were blocked during this collection cycle",
+      "significance": "The brief lacks its three primary Tier 1 factual backbone sources for military operations. All battlespace reporting relies on Tier 2 sources (ICG CrisisWatch, BBC, Jerusalem Post) and Al Jazeera. Strike counts and US military operational details cannot be independently confirmed.",
+      "severity": "critical"
+    },
+    {
+      "id": "cg-010-2",
+      "domain": "d5",
+      "gap": "No independent reporting from inside Iran due to ongoing internet blackout",
+      "significance": "Casualty figures, infrastructure damage assessments, and domestic political dynamics are filtered through either Iranian state media or external intelligence assessments. Ground truth on Iranian military capacity, civilian impact, and regime stability is effectively unverifiable.",
+      "severity": "critical"
+    },
+    {
+      "id": "cg-010-3",
+      "domain": "d3",
+      "gap": "Real-time oil price and freight rate data unavailable — Kpler API key not configured",
+      "significance": "Energy market figures are derived from news reports with variable lag times. The $90–120 oil range and charter cancellation data come from Tier 2 reporting rather than real-time market feeds. Precise LR2 freight rates, VLCC spot rates, and Hormuz transit counts require API access.",
+      "severity": "significant"
+    },
+    {
+      "id": "cg-010-4",
+      "domain": "d1",
+      "gap": "IDF Spokesperson and NATO Shipping Centre feeds blocked by WAF/bot protection",
+      "significance": "Official Israeli military press releases and NATO maritime security assessments are unavailable. IDF operational claims are sourced through Jerusalem Post and ICG rather than directly.",
+      "severity": "significant"
+    }
+  ],
+
+  "caveats": {
+    "cycleRef": "CYCLE 010 · 10 MARCH 2026",
+    "items": [
+      { "label": "SOURCE GAPS", "text": "AP, Reuters, and CENTCOM — three of five primary Tier 1 sources — failed or were blocked during collection. All military reporting is derived from Tier 2 sources and Al Jazeera." },
+      { "label": "INFORMATION BLACKOUT", "text": "Iran's nationwide internet shutdown entering Week 2 makes all casualty figures, damage assessments, and domestic political reporting from inside Iran unverifiable by independent sources." },
+      { "label": "MARKET DATA", "text": "Energy market figures are derived from news reporting with variable lag. Real-time API feeds (Kpler, Signal Ocean) are not configured. Oil price ranges and freight rates are directional rather than precise." },
+      { "label": "TEMPORAL COVERAGE", "text": "This brief covers developments through approximately 0600 UTC 10 Mar 2026. Events after this timestamp are not reflected." }
+    ],
+    "confidenceAssessment": "Overall analytical confidence for this cycle is MODERATE. The loss of AP, Reuters, and CENTCOM as collection sources degrades the factual floor, particularly for US military operations and verified strike data. The Iranian internet blackout prevents independent verification of all claims from within Iran. The strongest collection was in maritime/insurance (Tier 1 P&I and IMO sources active) and regional media (Al Jazeera, BBC, France24 all producing). Key judgments are supported by multiple Tier 2 sources with corroboration across outlets, but the absence of the primary Tier 1 backbone warrants caution on specific claims.",
+    "dissenterNotes": [
+      {
+        "analystId": "ANALYST B",
+        "domain": "d2",
+        "text": "Trump's contradictory messaging may reflect a deliberate negotiating strategy rather than incoherence. The pattern of threatening escalation while hinting at resolution mirrors the 2018 North Korea approach. The market's initial positive reaction to 'war ending soon' suggests this signalling has some credibility with financial actors, even if no diplomatic mechanism exists. The escalation trajectory may be less linear than the primary assessment suggests."
+      }
+    ],
+    "sourceQuality": "58 of 73 sources collected successfully. 8 Tier 1 sources operational (Al Jazeera, CTP-ISW, IAEA, BIMCO, IG P&I Clubs, IMO, UKMTO, USMTO). 5 Tier 1 sources failed (AP, Reuters, CENTCOM, IDF Spokesperson, NATO Shipping Centre). Collection quality is DEGRADED for military operations and STRONG for maritime insurance and regional media.",
+    "handling": "PROTECTED B // TLP:AMBER — Recipients may share within their organisation and with clients who need to know. Not for public release or social media."
+  },
+
+  "footer": {
+    "id": "CSE_Intel_Brief_20260310_103000",
+    "classification": "PROTECTED B",
+    "sources": "Al Jazeera, BBC, BIMCO, Bunkerspot, CISA, CNBC, CTP-ISW, France24, Hellenic Shipping News, ICG CrisisWatch, IG P&I Clubs, IMO, Iran International, Jerusalem Post, JMIC, Middle East Eye, Quincy Institute/Responsible Statecraft, TradeWinds, UKMTO, USMTO",
+    "handling": "TLP:AMBER — Limited distribution. Not for public release."
+  }
+}
