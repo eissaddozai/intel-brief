@@ -47,12 +47,12 @@ Produce:
 - GUARDED: Conflict active but contained; diplomatic track functional; markets stable
 - LOW: Ceasefire holding; de-escalation underway; warning indicators clearing
 
-**Confidence Language Ladder** (use EXACTLY these phrases if needed in rationale):
-- "We assess with high confidence..." → 95–99% (almost-certainly)
-- "We judge it highly likely..." → 75–95% (highly-likely)
+**Confidence Language Ladder** (use EXACTLY these phrases if needed — NEVER use first-person plural):
+- "Evidence strongly indicates..." / direct declarative → 95–99% (almost-certainly)
+- "The balance of reporting points to..." / "Multiple sources confirm..." → 75–95% (highly-likely)
 - "Available evidence suggests..." → 55–75% (likely)
 - "Reporting indicates, though corroboration is limited..." → 45–55% (possibly)
-- "We judge it unlikely, though we cannot exclude..." → 20–45% (unlikely)
+- "This remains unlikely, though it cannot be excluded..." → 20–45% (unlikely)
 
 **Writing Rules (MANDATORY — violations trigger automated rejection):**
 

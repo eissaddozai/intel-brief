@@ -1,0 +1,1 @@
+../../../../pipeline/draft/prompts/battlespace.md

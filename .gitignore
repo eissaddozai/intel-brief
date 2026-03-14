@@ -1,8 +1,11 @@
 node_modules/
 dist/
+.venv/
 pipeline/.cache/
 pipeline/__pycache__/
 pipeline/**/__pycache__/
 *.pyc
 .env
 *.log
+logs/
+scratch/

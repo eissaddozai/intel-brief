@@ -26,7 +26,12 @@ import sys
 from datetime import datetime, timezone
 from pathlib import Path
 
+# Load .env file if present
+from dotenv import load_dotenv
+
 PIPELINE_DIR = Path(__file__).parent
+REPO_ROOT_FOR_ENV = PIPELINE_DIR.parent
+load_dotenv(REPO_ROOT_FOR_ENV / '.env')
 REPO_ROOT = PIPELINE_DIR.parent
 sys.path.insert(0, str(PIPELINE_DIR))
 
@@ -279,7 +284,10 @@ def _build_placeholder_draft(tagged_items: list[dict], target_date: datetime) ->
         'flashPoints': [],
         'executive': {
             'bluf': f'PLACEHOLDER — {total} items across 6 domains. Re-run after funding API.',
-            'keyJudgments': [d['keyJudgment']['text'] for d in domains],
+            'keyJudgments': [
+                {'id': f'kj-{d["id"]}', 'text': d['keyJudgment']['text'], 'domain': d['id'], 'confidence': d['keyJudgment'].get('confidence', 'low')}
+                for d in domains
+            ],
             'kpis': [],
         },
         'domains': domains,

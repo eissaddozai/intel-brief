@@ -44,13 +44,13 @@ Key indicators to assess: Lloyd's JWC listed area changes (add/remove), war risk
 
 **Timeline requirement:** If ≥2 discrete insurance market events occurred in the past 24h, produce a `timeline` array.
 
-**Confidence Language Ladder** (use EXACTLY these phrases):
-- "We assess with high confidence..." → 95–99%
-- "We judge it highly likely..." → 75–95%
+**Confidence Language Ladder** (use EXACTLY these phrases — NEVER use first-person plural):
+- "Evidence strongly indicates..." / direct declarative → 95–99% (almost-certainly)
+- "The balance of reporting points to..." / "Multiple sources confirm..." → 75–95% (highly-likely)
 - "Available evidence suggests..." → 55–75%
 - "Reporting indicates, though corroboration is limited..." → 45–55%
-- "We judge it unlikely, though we cannot exclude..." → 20–45%
-- "We assess with high confidence this will not..." → 1–5%
+- "This remains unlikely, though it cannot be excluded..." → 20–45% (unlikely)
+- "Nothing in the reporting supports..." → 1–5% (almost-certainly-not)
 
 **Attribution Rules:**
 - JWC listed area changes = Tier 1 "confirmed" (cite Lloyd's Market Bulletin number)
@@ -66,7 +66,7 @@ Key indicators to assess: Lloyd's JWC listed area changes (add/remove), war risk
 - BAD: "War risk premiums rose." (This is a price ticker. What does the movement SIGNAL about underwriter confidence?)
 - BAD: "The insurance market reacted to events." (Which market? Which events? By how much?)
 - BAD: "Premiums continued to increase." (Continued from when? By how much? Driven by what?)
-- GOOD: "We assess underwriters are pricing-in a sustained escalation scenario, with Hormuz transit premiums rising 18% since the previous cycle to $0.045/GRT/day (Marsh, 15 Mar)."
+- GOOD: "Underwriters are pricing-in a sustained escalation scenario, with Hormuz transit premiums rising 18% since the previous cycle to $0.045/GRT/day (Marsh, 15 Mar)."
 - GOOD: "Available evidence suggests underwriting capacity for Gulf of Oman transits contracted by approximately 15%, with Hiscox and Beazley reducing lead line sizes (Lloyd's List, 14 Mar)."
 
 *2. Quantification is mandatory:*
@@ -84,7 +84,7 @@ Key indicators to assess: Lloyd's JWC listed area changes (add/remove), war risk
 
 *4. Causation discipline:*
 - Distinguish conflict-driven premium hardening (military events → underwriter risk reassessment) from demand/capacity-driven hardening (natural market cycle, reinsurance renewal, loss experience)
-- If both are in play: "We assess approximately X% of the premium increase reflects conflict risk reassessment, with the remainder attributable to Q1 reinsurance renewal dynamics."
+- If both are in play: "Approximately X% of the premium increase reflects conflict risk reassessment, with the remainder attributable to Q1 reinsurance renewal dynamics."
 - Never assert conflict causation for premium movements without a broker or underwriter citation attributing it
 
 *5. When sources are thin:*
@@ -114,7 +114,7 @@ Return valid JSON matching this schema exactly. Return raw JSON only — no mark
     "confidence": "high|moderate|low",
     "probabilityRange": "e.g. 55–75%",
     "language": "likely|possibly|highly-likely|almost-certainly|unlikely|almost-certainly-not",
-    "text": "We assess underwriters are pricing-in sustained escalation: Hormuz transit premiums rose 18% to $0.045/GRT/day, and Hiscox reduced Gulf lead lines by 30%.",
+    "text": "Underwriters are pricing-in sustained escalation: Hormuz transit premiums rose 18% to $0.045/GRT/day, and Hiscox reduced Gulf lead lines by 30%.",
     "basis": "Marsh confirmed the premium increase; Hiscox's capacity reduction was reported in Lloyd's List. No JWC area changes occurred, indicating the hardening is market-driven rather than regulatory.",
     "citations": [
       {"source": "Marsh", "tier": 2, "timestamp": "2024-03-15T10:00:00Z", "verificationStatus": "reported"},
@@ -142,7 +142,7 @@ Return valid JSON matching this schema exactly. Return raw JSON only — no mark
     {
       "subLabel": "CAPACITY & UNDERWRITER POSTURE",
       "subLabelVariant": "assessment",
-      "text": "Available evidence suggests underwriting capacity for Gulf transits contracted: Hiscox reduced lead line sizes from $50M to $35M for Hormuz-transiting vessels, and Beazley is reported to have suspended new Gulf quotes pending reinsurer guidance (Lloyd's List, 14 Mar 1600 UTC). We assess this is conflict-driven rather than cyclical.",
+      "text": "Available evidence suggests underwriting capacity for Gulf transits contracted: Hiscox reduced lead line sizes from $50M to $35M for Hormuz-transiting vessels, and Beazley is reported to have suspended new Gulf quotes pending reinsurer guidance (Lloyd's List, 14 Mar 1600 UTC). The pattern is conflict-driven rather than cyclical.",
       "citations": [
         {"source": "Lloyd's List", "tier": 2, "timestamp": "2024-03-14T16:00:00Z", "verificationStatus": "reported"}
       ]

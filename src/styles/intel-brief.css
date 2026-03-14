@@ -1146,6 +1146,8 @@
 .data-table-unit {
   font-weight: 400;
   margin-left: 6px;
+}
+
 .data-table-caption__unit {
   font-weight: 400;
   margin-left: var(--sp-8);
