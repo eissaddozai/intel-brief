@@ -6,15 +6,15 @@
 
 :root {
 
-  /* ── PAGE & SURFACE LAYERS ─────────────────────────────────────────────── */
-  --color-page:        #050810;
-  --color-panel:       #0B0F1E;
-  --color-header-bg:   #030508;
-  --color-strip-bg:    #07091A;
-  --color-meta-bg:     #050710;
-  --color-exec-bg:     #07091C;
-  --color-table-head:  #040710;
-  --color-table-base:  #0B0F1E;
+  /* ── PAGE & SURFACE LAYERS (improved for readability) ──────────────────── */
+  --color-page:        #0A0E18;
+  --color-panel:       #101420;
+  --color-header-bg:   #080C14;
+  --color-strip-bg:    #0C1020;
+  --color-meta-bg:     #0A0E18;
+  --color-exec-bg:     #0C1024;
+  --color-table-head:  #080C18;
+  --color-table-base:  #101420;
 
   /* ── ANALYST / CAVEAT SURFACES ─────────────────────────────────────────── */
   --color-note-hdr:    #191400;
@@ -167,11 +167,11 @@
   --traj-flat: #7888A0;
   --traj-down: #26A050;
 
-  /* ── TEXT HIERARCHY ────────────────────────────────────────────────────── */
-  --text-hi:   #ECE6DE;
-  --text-md:   #A8A098;
-  --text-lo:   #686058;
-  --text-dim:  #383840;
+  /* ── TEXT HIERARCHY (improved contrast for readability) ─────────────────── */
+  --text-hi:   #F5F2EE;
+  --text-md:   #C8C0B8;
+  --text-lo:   #888078;
+  --text-dim:  #505058;
 
   /* ── TYPOGRAPHY ────────────────────────────────────────────────────────── */
   --font-display: "Palatino Linotype", "Palatino", Georgia, serif;
@@ -179,22 +179,22 @@
   --font-ui:      "Trebuchet MS", "Gill Sans", Arial, sans-serif;
   --font-data:    "IBM Plex Mono", "Courier New", Courier, monospace;
 
-  /* ── TYPE SCALE ────────────────────────────────────────────────────────── */
-  --size-root:       11pt;
-  --size-masthead:   52px;
-  --size-cycle:      52px;
-  --size-domain-num: 26px;
-  --size-judgment:   17px;
-  --size-section:    13px;
-  --size-aq:         11px;
-  --size-kj:         15px;
-  --size-body:       14px;
-  --size-badge:      9px;
-  --size-kpi-num:    28px;
-  --size-note-h:     11px;
-  --size-note-b:     13px;
-  --size-meta:       10px;
-  --size-foot:       10px;
+  /* ── TYPE SCALE (improved for readability) ─────────────────────────────── */
+  --size-root:       12pt;
+  --size-masthead:   48px;
+  --size-cycle:      48px;
+  --size-domain-num: 24px;
+  --size-judgment:   18px;
+  --size-section:    15px;
+  --size-aq:         13px;
+  --size-kj:         18px;
+  --size-body:       17px;
+  --size-badge:      10px;
+  --size-kpi-num:    26px;
+  --size-note-h:     12px;
+  --size-note-b:     15px;
+  --size-meta:       11px;
+  --size-foot:       11px;
 
   /* ── DECORATIVE ICON SIZES (::before pseudo-element glyphs) ────────────── */
   --size-icon-xs:  5px;
@@ -244,9 +244,9 @@
   --lh-compact:   1.4;
   --lh-snug:      1.45;
   --lh-normal:    1.5;
-  --lh-body:      1.55;
+  --lh-body:      1.60;
   --lh-kj:        1.62;
-  --lh-reading:   1.65;
+  --lh-reading:   1.72;
 
   /* ── BORDER-WIDTH SCALE ────────────────────────────────────────────────── */
   --bw-rule:   1px;

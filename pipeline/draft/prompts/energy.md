@@ -33,13 +33,13 @@ Key indicators to assess: Brent crude price movement and causation, Hormuz trans
 
 **Timeline requirement:** If ≥2 maritime incidents occurred in the past 24h, produce a `timeline` array with those events.
 
-**Confidence Language Ladder** (use EXACTLY these phrases):
-- "We assess with high confidence..." → 95–99%
-- "We judge it highly likely..." → 75–95%
+**Confidence Language Ladder** (use EXACTLY these phrases — NEVER use first-person plural):
+- "Evidence strongly indicates..." / direct declarative → 95–99% (almost-certainly)
+- "The balance of reporting points to..." / "Multiple sources confirm..." → 75–95% (highly-likely)
 - "Available evidence suggests..." → 55–75%
 - "Reporting indicates, though corroboration is limited..." → 45–55%
-- "We judge it unlikely, though we cannot exclude..." → 20–45%
-- "We assess with high confidence this will not..." → 1–5%
+- "This remains unlikely, though it cannot be excluded..." → 20–45% (unlikely)
+- "Nothing in the reporting supports..." → 1–5% (almost-certainly-not)
 
 **Attribution Rules:**
 - UKMTO bulletins for maritime incidents — Tier 1 "confirmed"
@@ -55,7 +55,7 @@ Key indicators to assess: Brent crude price movement and causation, Hormuz trans
 - BAD: "Brent crude rose to $94." (This is a price ticker, not an assessment.)
 - BAD: "Oil prices continued to increase." (Description with no causation.)
 - BAD: "Markets reacted to the latest developments." ("Markets reacted" says nothing. How? By how much? Driven by what?)
-- GOOD: "We assess conflict-driven supply risk is the primary driver of the $2.40/bbl rise in Brent crude since the previous cycle; demand-side fundamentals remain neutral (CNBC, 15 Mar 0800 UTC)."
+- GOOD: "Conflict-driven supply risk is the primary driver of the $2.40/bbl rise in Brent crude since the previous cycle; demand-side fundamentals remain neutral (CNBC, 15 Mar 0800 UTC)."
 - GOOD: "Available evidence suggests Hormuz transit disruption has reached a level that will materially affect Q2 Canadian gasoline pricing if sustained beyond 14 days."
 
 *2. Quantification is mandatory — this section lives and dies by numbers:*
@@ -67,13 +67,13 @@ Key indicators to assess: Brent crude price movement and causation, Hormuz trans
 
 *3. Sentence construction:*
 - Every paragraph must contain at least two sentences. No fragment leads.
-- Active voice: "We assess", "Brent crude closed at" — never "It was observed that prices..."
+- Active voice: "Reporting suggests", "Evidence indicates", "Brent crude closed at" — never "It was observed that prices...". NEVER use first-person plural ("we assess", "we judge").
 - Never nominalize: "the disruption of supply chains" → "supply chains are disrupted"; "the increase in premiums" → "premiums increased by $X"
 - Verb precision: "closed at" (market price), "re-routed" (vessel), "surged" (>5% move), "declined" (negative), "held steady" (±0.5%) — not "experienced movement", "saw changes"
 
 *4. Causation discipline — the hardest part of this section:*
 - Always decompose price movements: what fraction is attributable to the conflict vs. other factors?
-- If you cannot decompose: "The $2.40 rise reflects both conflict risk premium and a concurrent OPEC+ production signal; we cannot disaggregate with available data."
+- If you cannot decompose: "The $2.40 rise reflects both conflict risk premium and a concurrent OPEC+ production signal; disaggregation is not possible with available data."
 - Never assert conflict causation without evidence. A price move concurrent with military events is correlation, not causation, unless market commentary explicitly attributes it.
 - Canadian exposure must be concrete: "WTI-Brent spread widened to -$4.20/bbl" not "Canadian oil prices are affected"
 
@@ -104,7 +104,7 @@ Return valid JSON matching this schema exactly. Return raw JSON only — no mark
     "confidence": "high|moderate|low",
     "probabilityRange": "e.g. 55–75%",
     "language": "likely|possibly|highly-likely|almost-certainly|unlikely|almost-certainly-not",
-    "text": "We assess conflict-driven supply risk accounts for approximately 60% of the $2.40/bbl Brent crude rise since the previous cycle.",
+    "text": "Conflict-driven supply risk accounts for approximately 60% of the $2.40/bbl Brent crude rise since the previous cycle.",
     "basis": "Brent closed at $94.20/bbl (+2.6%); UKMTO confirmed one maritime incident in the Red Sea; Cape diversions continue at 42% of Suez-bound traffic (CNBC, UKMTO, Kpler).",
     "citations": [
       {"source": "CNBC", "tier": 2, "timestamp": "2024-03-15T08:00:00Z", "verificationStatus": "reported"},
@@ -132,7 +132,7 @@ Return valid JSON matching this schema exactly. Return raw JSON only — no mark
     {
       "subLabel": "CANADIAN EXPOSURE",
       "subLabelVariant": "assessment",
-      "text": "The WTI-Brent spread widened to -$4.20/bbl, compressing Canadian producer margins; if sustained for >14 days, we assess downstream gasoline prices in central Canada will reflect a 3–5¢/L conflict premium.",
+      "text": "The WTI-Brent spread widened to -$4.20/bbl, compressing Canadian producer margins; if sustained for >14 days, downstream gasoline prices in central Canada will likely reflect a 3–5¢/L conflict premium.",
       "citations": []
     }
   ],
