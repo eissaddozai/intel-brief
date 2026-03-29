@@ -1,0 +1,982 @@
+# ═══════════════════════════════════════════════════════════════════════════════
+# CSE INTEL BRIEF — SOURCE REGISTRY  (exhaustive, 2026-03)
+# ═══════════════════════════════════════════════════════════════════════════════
+#
+# TIER DEFINITIONS
+#   1 — Factual backbone. Items → verification_status: "confirmed"
+#   2 — Analytical depth / context. Items → "reported"
+#   3 — Domain-specific triggers. Items → "claimed"
+#
+# METHOD: rss | scrape | email
+#
+# STATUS (honest assessment as of 2026-03)
+#   working  — confirmed functional, tested
+#   likely   — real URL, untested in this environment (proxy-blocked sandbox)
+#   paywall  — returns login/stub; disabled until cookie auth is implemented
+#   removed  — documented below with reason; do not re-add
+# ═══════════════════════════════════════════════════════════════════════════════
+
+sources:
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # TIER 1 — FACTUAL BACKBONE
+  # These are the evidentiary floor. AP + AJ + Reuters not reporting = unconfirmed.
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  - id: ap_wire
+    name: "Associated Press"
+    tier: 1
+    domains: [d1, d2, d3, d4, d5]
+    method: rss
+    url: "https://feeds.apnews.com/rss/apf-intlnews"
+    status: likely
+    enabled: true
+    notes: >
+      Real AP international RSS feed. General world news — relevance filter
+      at ingest drops non-Iran/Gulf items. AP not reporting = unconfirmed.
+
+  - id: al_jazeera_en
+    name: "Al Jazeera English"
+    tier: 1
+    domains: [d1, d2, d4]
+    method: rss
+    url: "https://www.aljazeera.com/xml/rss/all.xml"
+    status: likely
+    enabled: true
+    notes: >
+      Real public RSS. Strong regional bureau including Tehran, Beirut,
+      Gaza, Riyadh. Factual backbone for Arab-world perspective.
+
+  - id: reuters_mideast
+    name: "Reuters Middle East"
+    tier: 1
+    domains: [d1, d2, d3, d4]
+    method: scrape
+    url: "https://www.reuters.com/world/middle-east/"
+    status: likely
+    enabled: true
+    notes: >
+      Reuters killed their public RSS in 2020. Scraped with requests+BS4
+      from the Middle East topic page. Static HTML — no JS rendering needed.
+      Reuters is the second pillar of the factual backbone alongside AP.
+
+  - id: ctpiw_evening
+    name: "CTP-ISW Evening Report"
+    tier: 1
+    domains: [d1, d2]
+    method: scrape
+    url: "https://www.criticalthreats.org/analysis/iran-war-updates"
+    status: likely
+    enabled: true
+    notes: >
+      Primary backbone for Battlespace (d1). Every claim is footnoted.
+      Evening report covers the full 24h operational picture.
+      Scraped with requests+BS4 from article listing page.
+
+  - id: iaea
+    name: "IAEA Statements"
+    tier: 1
+    domains: [d2]
+    method: rss
+    url: "https://www.iaea.org/feeds/topstories.xml"
+    status: working
+    enabled: true
+    notes: >
+      Definitive source for Iranian nuclear compliance and inspector access.
+      New IAEA statement = mandatory inclusion regardless of novelty filter.
+
+  - id: centcom
+    name: "CENTCOM Press Releases"
+    tier: 1
+    domains: [d1]
+    method: scrape
+    url: "https://www.centcom.mil/MEDIA/NEWS-ARTICLES/"
+    status: likely
+    enabled: true
+    notes: >
+      US government static HTML. Official floor for US strikes, force
+      posture, and US casualty figures.
+
+  - id: ukmto
+    name: "UKMTO Maritime Bulletins"
+    tier: 1
+    domains: [d1, d3]
+    method: scrape
+    url: "https://www.ukmto.org/indian-ocean/recent-incidents"
+    status: likely
+    enabled: true
+    notes: >
+      No RSS. Definitive maritime incident record for Hormuz/Red Sea.
+      Scrapes incident table daily.
+
+  - id: idf_spokesperson
+    name: "IDF Spokesperson"
+    tier: 1
+    domains: [d1]
+    method: scrape
+    url: "https://www.idf.il/en/mini-sites/idf-website/press-releases/"
+    status: likely
+    enabled: true
+    notes: >
+      Official IDF press releases. Primary source for Israeli casualty
+      figures and strike assessments. Treat as 'confirmed' for Israeli
+      military actions only.
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # TIER 2 — ANALYTICAL DEPTH
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  - id: cfr_daily
+    name: "CFR Daily News Brief"
+    tier: 2
+    domains: [d4]
+    method: email
+    schedule_hint: "06:00 ET"
+    enabled: true
+    notes: >
+      Subscribe at cfr.org/daily-news-brief. Forward to monitored inbox.
+      Best single input for Diplomatic (d4): UN, G7, multilateral positioning.
+
+  - id: ctpiw_morning
+    name: "CTP-ISW Morning Report"
+    tier: 2
+    domains: [d1, d2]
+    method: scrape
+    url: "https://www.criticalthreats.org/analysis/iran-war-updates"
+    status: likely
+    enabled: true
+    notes: >
+      Same URL as evening report — scraper extracts most recent article.
+      Lower priority. Use for overnight events predating previous evening run.
+
+  - id: cnn_mideast
+    name: "CNN Middle East"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "http://rss.cnn.com/rss/edition_middleeast.rss"
+    status: likely
+    enabled: true
+    notes: >
+      Real CNN RSS feed for Middle East edition. Israel embed reporters,
+      White House track. General relevance filter applied at ingest.
+
+  - id: cnbc_world
+    name: "CNBC World News"
+    tier: 2
+    domains: [d3, d4]
+    method: rss
+    url: "https://www.cnbc.com/id/100727362/device/rss/rss.html"
+    status: likely
+    enabled: true
+    notes: >
+      Real CNBC world news RSS feed. Goldman Sachs analyst commentary,
+      US market reactions to conflict events.
+
+  - id: cnbc_energy
+    name: "CNBC Energy"
+    tier: 2
+    domains: [d3]
+    method: rss
+    url: "https://www.cnbc.com/id/19832390/device/rss/rss.html"
+    status: likely
+    enabled: true
+    notes: >
+      Real CNBC energy RSS. Primary live input for Energy/Economic (d3).
+      Brent crude, GasBuddy US pump prices, Goldman energy desk.
+
+  - id: bbc_mideast
+    name: "BBC Middle East"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://feeds.bbci.co.uk/news/world/middle_east/rss.xml"
+    status: working
+    enabled: true
+
+  - id: nyt_world
+    name: "New York Times World"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://rss.nytimes.com/services/xml/rss/nyt/World.xml"
+    status: likely
+    enabled: true
+    notes: >
+      Real NYT world RSS. Limited free articles but headlines and
+      abstracts are available without subscription. Relevance-filtered.
+
+  - id: guardian_mideast
+    name: "The Guardian Middle East"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://www.theguardian.com/world/middleeast/rss"
+    status: likely
+    enabled: true
+    notes: "Real Guardian RSS for Middle East section. Good for UK/EU framing."
+
+  - id: times_of_israel
+    name: "Times of Israel"
+    tier: 2
+    domains: [d1, d2, d4]
+    method: rss
+    url: "https://www.timesofisrael.com/feed/"
+    status: likely
+    enabled: true
+    notes: >
+      Real Times of Israel RSS. English-language Israeli daily.
+      Closest to IDF-side granular reporting short of Haaretz.
+      No paywall — full article content in feed.
+
+  - id: jerusalem_post
+    name: "Jerusalem Post"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://www.jpost.com/rss/rssfeedsfrontpage.aspx"
+    status: likely
+    enabled: true
+    notes: "Real JPost RSS. Useful for Israeli government and military statements."
+
+  - id: middle_east_eye
+    name: "Middle East Eye"
+    tier: 2
+    domains: [d1, d2, d4]
+    method: rss
+    url: "https://www.middleeasteye.net/rss"
+    status: likely
+    enabled: true
+    notes: >
+      Independent outlet with strong Gulf and Iran bureau. Good on
+      Houthi operational reporting and GCC internal politics.
+
+  - id: france24_en
+    name: "France 24 English"
+    tier: 2
+    domains: [d4]
+    method: rss
+    url: "https://www.france24.com/en/rss"
+    status: working
+    enabled: true
+    notes: "EU Council dynamics, French government positioning."
+
+  - id: france24_observers
+    name: "France 24 Observers"
+    tier: 2
+    domains: [d2, d5]
+    method: rss
+    url: "https://observers.france24.com/en/rss"
+    status: likely
+    enabled: true
+    notes: "Video authentication. Use for hacktivist claim verification."
+
+  - id: dw_en
+    name: "Deutsche Welle"
+    tier: 2
+    domains: [d4]
+    method: rss
+    url: "https://rss.dw.com/rdf/rss-en-all"
+    status: working
+    enabled: true
+    notes: "Russian and Chinese diplomatic positioning. NATO implications."
+
+  - id: rfi_en
+    name: "RFI English"
+    tier: 2
+    domains: [d4]
+    method: rss
+    url: "https://www.rfi.fr/en/rss"
+    status: likely
+    enabled: true
+
+  - id: rfi_persian
+    name: "RFI Persian"
+    tier: 2
+    domains: [d1, d2]
+    method: rss
+    url: "https://www.rfi.fr/fa/rss"
+    status: likely
+    enabled: true
+    notes: "Persian-language. Primary inside-Iran supplement during blackouts."
+
+  - id: anadolu
+    name: "Anadolu Agency"
+    tier: 2
+    domains: [d1, d4]
+    method: rss
+    url: "https://www.aa.com.tr/en/rss/default?cat=world"
+    status: likely
+    enabled: true
+    notes: "Turkish positioning, Caucasus/northern flank, Tehran bureau."
+
+  - id: rudaw
+    name: "Rudaw"
+    tier: 2
+    domains: [d1]
+    method: rss
+    url: "https://www.rudaw.net/english/rss.xml"
+    status: likely
+    enabled: true
+    notes: "Ground coverage of Kurdistan Region of Iraq. Proxy activity."
+
+  - id: icg
+    name: "International Crisis Group"
+    tier: 2
+    domains: [d2, d4]
+    method: rss
+    url: "https://www.crisisgroup.org/rss.xml"
+    status: likely
+    enabled: true
+    notes: "Ali Vaez escalation framing. Best public voice on Iranian decision-making."
+
+  - id: quincy_inst
+    name: "Responsible Statecraft"
+    tier: 2
+    domains: [d2]
+    method: rss
+    url: "https://responsiblestatecraft.org/feed/"
+    status: likely
+    enabled: true
+    notes: "Restraint framing. Include to prevent hawkish-framing default."
+
+  - id: alma_research
+    name: "Alma Research"
+    tier: 2
+    domains: [d1, d2]
+    method: scrape
+    url: "https://israel-alma.org/category/reports/"
+    status: likely
+    enabled: true
+    notes: >
+      IDF-side operational depth. Best public source on northern front
+      (Hezbollah) order of battle. WordPress category page, BS4 scrape.
+
+  - id: iran_intl
+    name: "Iran International"
+    tier: 2
+    domains: [d1, d2]
+    method: scrape
+    url: "https://www.iranintl.com/en"
+    status: likely
+    enabled: true
+    notes: >
+      Inside-Iran footage and IRGC internal dynamics. Homepage scrape.
+      May return partial content if JS-rendered; we take what's available.
+
+  - id: bbc_persian
+    name: "BBC Persian"
+    tier: 2
+    domains: [d1, d2]
+    method: scrape
+    url: "https://www.bbc.com/persian"
+    status: likely
+    enabled: true
+    notes: "Persian-language BBC. Static headline extraction."
+
+  - id: haaretz
+    name: "Haaretz"
+    tier: 2
+    domains: [d1, d4]
+    method: scrape
+    url: "https://www.haaretz.com/middle-east-news"
+    status: paywall
+    enabled: false
+    notes: >
+      Hard paywall — returns login page without auth cookies. Disabled.
+      Essential for war-cabinet dissent and IDF internal disputes.
+      Re-enable after implementing cookie auth.
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # TIER 3 — DOMAIN-SPECIFIC TRIGGERS
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  - id: recorded_future
+    name: "Recorded Future Research Blog"
+    tier: 3
+    domains: [d5]
+    method: rss
+    url: "https://www.recordedfuture.com/research/feed"
+    trigger: cyber_activity
+    status: likely
+    enabled: true
+    notes: "Threat intel reports. Pull on new publication."
+
+  - id: cisa_advisories
+    name: "CISA Cybersecurity Advisories"
+    tier: 3
+    domains: [d5]
+    method: rss
+    url: "https://www.cisa.gov/cybersecurity-advisories/all.xml"
+    trigger: cyber_activity
+    status: working
+    enabled: true
+    notes: "US government advisories. Attribution-grade claims only."
+
+  - id: mandiant_blog
+    name: "Mandiant / Google Threat Intel"
+    tier: 3
+    domains: [d5]
+    method: rss
+    url: "https://www.mandiant.com/resources/blog/rss.xml"
+    trigger: cyber_activity
+    status: likely
+    enabled: true
+    notes: "Iranian APT attribution. Treat as 'reported' not 'confirmed'."
+
+  - id: netblocks
+    name: "NetBlocks Internet Observatory"
+    tier: 3
+    domains: [d5]
+    method: scrape
+    url: "https://netblocks.org"
+    trigger: cyber_activity
+    status: likely
+    enabled: true
+    notes: "Iran internet shutdown/throttling. Include only when status changes."
+
+  - id: eia_weekly
+    name: "EIA Weekly Petroleum Status"
+    tier: 3
+    domains: [d3]
+    method: scrape
+    url: "https://www.eia.gov/petroleum/supply/weekly/"
+    trigger: energy_disruption
+    schedule_hint: "Wednesday 10:30 ET"
+    status: likely
+    enabled: true
+    notes: "US petroleum stockpile report. Trigger if Brent moves >5% / 24h."
+
+  - id: opec_statements
+    name: "OPEC Press Releases"
+    tier: 3
+    domains: [d3]
+    method: scrape
+    url: "https://www.opec.org/opec_web/en/press_room/4567.htm"
+    trigger: energy_disruption
+    status: likely
+    enabled: true
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # DOMAIN D6 — WAR RISK INSURANCE · MARITIME FINANCE
+  # These sources feed the war_risk_ingest.py parallel collection engine.
+  # All items pass through war_risk_significance.py before reaching triage.
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  # ── TIER 1 — Authoritative market / regulatory bodies ──
+
+  - id: lloyds_mkt_bulletins
+    name: "Lloyd's Market Bulletin"
+    tier: 1
+    domains: [d6]
+    method: scrape
+    url: "https://www.lloyds.com/news-and-insights/market-bulletins"
+    status: likely
+    enabled: true
+    notes: >
+      Lloyd's Market Bulletins include Joint War Committee (JWC) listed area
+      changes, premium directives, and market-wide risk advisories. A new JWC
+      listing = mandatory d6 inclusion regardless of significance score.
+
+  - id: jwc_listed_areas
+    name: "Joint War Committee Listed Areas"
+    tier: 1
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.lmalloyds.com/LMA/Underwriting_Committees/Marine_Committees/LMA_JWC/JWC_war_listed_areas.aspx"
+    status: likely
+    enabled: true
+    notes: >
+      Authoritative JWC listed areas page. Any add/remove of a geographic
+      zone immediately reprices war risk for all vessels transiting that area.
+      Changes here are the single most significant signal for d6.
+
+  - id: imo_circular
+    name: "IMO Circulars & Alerts"
+    tier: 1
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.imo.org/en/MediaCentre/IMONewsletterAndUpdates/Pages/default.aspx"
+    status: likely
+    enabled: true
+    notes: >
+      IMO Maritime Safety Committee circulars on high-risk areas, piracy,
+      and armed conflict. Circular to master notifications = Tier 1 for d6.
+
+  - id: ig_pic_circulars
+    name: "International Group of P&I Clubs"
+    tier: 1
+    domains: [d6]
+    method: scrape
+    url: "https://www.igpandi.org/news/"
+    status: likely
+    enabled: true
+    notes: >
+      The 13 principal P&I clubs collectively insure ~90% of ocean-going
+      tonnage. New circulars on war risk, sanctions, or HRA designations are
+      Tier 1 factual floor for d6. Scrape news listing page.
+
+  - id: bimco_news
+    name: "BIMCO News & Alerts"
+    tier: 1
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.bimco.org/rss/news"
+    status: likely
+    enabled: true
+    notes: >
+      Baltic and International Maritime Council. Industry standard-setter on
+      war risk clauses (CONWARTIME, VOYWAR). New clause guidance = Tier 1 d6.
+
+  - id: nato_shipping_centre
+    name: "NATO Shipping Centre Advisories"
+    tier: 1
+    domains: [d6, d1, d3]
+    method: scrape
+    url: "https://shipping.nato.int/nsc/operations/news"
+    status: likely
+    enabled: true
+    notes: >
+      Official allied maritime advisories including threat level changes for
+      specific sea areas. Treat as Tier 1 confirmed for operational sea areas.
+
+  - id: usmto
+    name: "US Maritime Transportation System ISAC"
+    tier: 1
+    domains: [d6, d1]
+    method: scrape
+    url: "https://www.maritimesecurity.org/news/"
+    status: likely
+    enabled: true
+    notes: >
+      US maritime security advisories complementing UKMTO. Useful for
+      Gulf of Oman, Arabian Sea corridor threat environment.
+
+  # ── TIER 2 — Analytical depth / market intelligence ──
+
+  - id: lloyds_list
+    name: "Lloyd's List"
+    tier: 2
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.lloydslist.com/ll/sector/insurance-and-legal/"
+    status: likely
+    enabled: true
+    notes: >
+      Premier maritime trade publication. War risk premium data, underwriter
+      capacity changes, and P&I club commentary. Paywall for full articles;
+      headlines and abstracts are available. Relevance filter essential.
+
+  - id: tradewinds_insurance
+    name: "TradeWinds — Insurance"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.tradewindsnews.com/insurance"
+    status: likely
+    enabled: true
+    notes: >
+      Shipping industry news with strong insurance desk. War risk premium
+      movements, broker commentary, and shipowner responses to HRA changes.
+
+  - id: reinsurance_news
+    name: "Reinsurance News"
+    tier: 2
+    domains: [d6]
+    method: rss
+    url: "https://www.reinsurancene.ws/feed/"
+    status: likely
+    enabled: true
+    notes: >
+      Specialist reinsurance trade press. Munich Re, Swiss Re, and Lloyd's
+      syndicates commentary on war risk capacity and retrocession pricing.
+
+  - id: insurance_journal
+    name: "Insurance Journal — Marine"
+    tier: 2
+    domains: [d6]
+    method: rss
+    url: "https://www.insurancejournal.com/rss/topics/marine/"
+    status: likely
+    enabled: true
+    notes: >
+      Real Insurance Journal RSS. Marine insurance news including war risk.
+      Good for US market perspective on Lloyd's pricing movements.
+
+  - id: insurance_insider
+    name: "Insurance Insider"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.insuranceinsider.com/marine"
+    status: likely
+    enabled: true
+    notes: >
+      Specialist Lloyd's market intelligence. Syndicate capacity, line-size
+      changes, and market-hardening signals. Partial paywall.
+
+  - id: marine_link
+    name: "MarineLink — Insurance"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.marinelink.com/rss/news"
+    status: likely
+    enabled: true
+    notes: "Broad maritime news; relevance filter for insurance/war risk items."
+
+  - id: splash247
+    name: "Splash 247"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://splash247.com/feed/"
+    status: likely
+    enabled: true
+    notes: >
+      Independent shipping media. War risk commentary, shipowner reactions,
+      and broker market reads. No paywall — full content in RSS.
+
+  - id: hellenicshipping
+    name: "Hellenic Shipping News"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.hellenicshippingnews.com/feed/"
+    status: working
+    enabled: true
+    notes: >
+      Greek shipping hub aggregates Lloyd's List, TradeWinds, and broker
+      circulars. Useful for rapid premium move coverage. Real RSS confirmed.
+
+  - id: bunkerspot
+    name: "Bunkerspot / Maritime Intelligence"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.bunkerspot.com/rss"
+    status: likely
+    enabled: true
+    notes: "Bunkering and fuel market; war risk surcharge implications."
+
+  - id: dryad_global
+    name: "Dryad Global Maritime Security"
+    tier: 2
+    domains: [d6, d1, d3]
+    method: scrape
+    url: "https://www.dryadglobal.com/news"
+    status: likely
+    enabled: true
+    notes: >
+      Specialist maritime risk intelligence firm. Dryad threat-level changes
+      for sea areas directly influence underwriter risk assessments. Their
+      Red Sea/Gulf of Aden updates are key inputs for JWC area decisions.
+
+  - id: ambrey_analytics
+    name: "Ambrey Maritime Security"
+    tier: 2
+    domains: [d6, d1]
+    method: scrape
+    url: "https://www.ambrey.com/intelligence/"
+    status: likely
+    enabled: true
+    notes: >
+      Maritime intelligence firm; route risk assessments fed into Lloyd's
+      war risk syndicate models. Monthly HRA updates and incident analyses.
+
+  - id: eos_risk
+    name: "EOS Risk Group"
+    tier: 2
+    domains: [d6, d1]
+    method: scrape
+    url: "https://www.eosrisk.com/news/"
+    status: likely
+    enabled: true
+    notes: >
+      Risk management consultancy. War risk and kidnap-for-ransom (K&FR)
+      assessments used by marine insurers to price additional premium.
+
+  - id: iumi_news
+    name: "International Union of Marine Insurance"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://iumi.com/news"
+    status: likely
+    enabled: true
+    notes: >
+      IUMI represents marine insurers globally. Annual loss statistics and
+      mid-year market updates on war risk capacity and premium levels.
+
+  - id: marsh_marine
+    name: "Marsh — Marine Risk"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.marsh.com/us/industries/marine/insights.html"
+    status: likely
+    enabled: true
+    notes: >
+      Marsh McLennan war risk desk commentary. Broker market reports on
+      capacity, appetite changes, and client advisory notes.
+
+  - id: willis_marine
+    name: "WTW Marine & Cargo"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.wtwco.com/en-US/Insights/industries/marine"
+    status: likely
+    enabled: true
+    notes: >
+      Willis Towers Watson marine insights. War risk rate forecasts and
+      market-turn analysis from the second-largest marine broker.
+
+  - id: aon_marine
+    name: "Aon Marine Risk"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.aon.com/reinsurance/thought-leadership/marine-insights.jsp"
+    status: likely
+    enabled: true
+    notes: "Aon war risk desk. Quarterly marine market reports."
+
+  - id: clarksons_research
+    name: "Clarksons Research — Shipping Intelligence"
+    tier: 2
+    domains: [d6, d3]
+    method: scrape
+    url: "https://sin.clarksons.net/News"
+    status: likely
+    enabled: true
+    notes: >
+      Clarksons shipping data arm. Vessel diversions, Red Sea transit volumes,
+      and time-charter rate impacts from war risk designations.
+
+  - id: intercargo_news
+    name: "INTERCARGO"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.intercargo.org/news/"
+    status: likely
+    enabled: true
+    notes: "International Association of Dry Cargo Shipowners war risk guidance."
+
+  - id: intertanko_news
+    name: "INTERTANKO"
+    tier: 2
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.intertanko.com/news/"
+    status: likely
+    enabled: true
+    notes: >
+      Tanker owners association. Mandatory additional war risk premium (AWRP)
+      circulars and Hormuz/Red Sea passage guidance are key d6 inputs.
+
+  - id: icc_imb
+    name: "ICC International Maritime Bureau"
+    tier: 2
+    domains: [d6, d1]
+    method: scrape
+    url: "https://www.icc-ccs.org/icc/imb"
+    status: likely
+    enabled: true
+    notes: >
+      IMB Piracy Reporting Centre. Live maritime crime data; armed robbery
+      and piracy incidents feed directly into war risk premium calculations.
+
+  - id: safety4sea
+    name: "Safety4Sea"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://safety4sea.com/feed/"
+    status: likely
+    enabled: true
+    notes: "Maritime safety and risk news. War risk and HRA coverage."
+
+  - id: maritime_executive
+    name: "The Maritime Executive"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://maritime-executive.com/rss/articles"
+    status: likely
+    enabled: true
+    notes: "US-based maritime trade media. Insurance and regulatory coverage."
+
+  - id: offshore_energy
+    name: "Offshore Energy — Insurance"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.offshore-energy.biz/feed/"
+    status: likely
+    enabled: true
+    notes: "Offshore sector insurance; relevant for Persian Gulf platform risk."
+
+  - id: gallagher_marine
+    name: "Gallagher Marine Risk"
+    tier: 2
+    domains: [d6]
+    method: scrape
+    url: "https://www.ajg.com/us/industries/marine/insights/"
+    status: likely
+    enabled: true
+    notes: "Gallagher broker war risk commentary and client circulars."
+
+  - id: dnv_maritime
+    name: "DNV — Maritime"
+    tier: 2
+    domains: [d6, d3]
+    method: rss
+    url: "https://www.dnv.com/maritime/news-and-events/news/index.html"
+    status: likely
+    enabled: true
+    notes: >
+      DNV class society news. Ship detentions, flag state advisories, and
+      seaworthiness issues arising from conflict-zone damage reports.
+
+  # ── TIER 3 — Specialist triggers ──
+
+  - id: signal_ocean
+    name: "Signal Ocean — Vessel Tracking"
+    tier: 3
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.signalocean.com/blog"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      Vessel AIS data. War risk trigger: measurable route diversion away from
+      JWC-listed areas or significant drop in transits through Bab el-Mandeb
+      / Hormuz. Diversion data = confirmed premium pressure signal.
+
+  - id: moodys_shipping
+    name: "Moody's — Shipping Sector"
+    tier: 3
+    domains: [d6]
+    method: scrape
+    url: "https://www.moodys.com/researchandratings/market-segment/transportation/shipping/-/0015"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      Credit rating actions on shipping companies citing war risk exposure.
+      Downgrade citing 'heightened war risk costs' = significant d6 signal.
+
+  - id: swissre_sigma
+    name: "Swiss Re Sigma — Marine"
+    tier: 3
+    domains: [d6]
+    method: rss
+    url: "https://www.swissre.com/institute/research/sigma-research/rss.xml"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      Swiss Re annual sigma marine report and emergency research notes.
+      Trigger: sigma note or media release referencing war risk losses.
+
+  - id: munichre_marine
+    name: "Munich Re — Marine"
+    tier: 3
+    domains: [d6]
+    method: scrape
+    url: "https://www.munichre.com/en/solutions/for-industry-clients/marine.html"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      Munich Re lead reinsurer commentary. Any public statement on war risk
+      retrocession pricing or capacity withdrawal is high-significance for d6.
+
+  - id: credit_agricole_shipping
+    name: "Credit Agricole CIB — Shipping Finance"
+    tier: 3
+    domains: [d6, d3]
+    method: scrape
+    url: "https://www.ca-cib.com/our-expertise/global-investment-banking/natural-resources-infrastructure/shipping"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      Shipping finance lender commentary on war risk costs affecting vessel
+      valuations and loan covenants. Relevant when war risk premiums threaten
+      P&L viability of affected routes.
+
+  - id: unctad_maritime
+    name: "UNCTAD Maritime Transport"
+    tier: 3
+    domains: [d6, d3]
+    method: scrape
+    url: "https://unctad.org/topic/transport-and-trade-logistics/maritime-transport"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: >
+      UN agency. Annual Review of Maritime Transport and emergency reports
+      on conflict impacts on shipping. Useful for systemic assessment of
+      war risk cost pass-through to global trade.
+
+  - id: iras_war_risk
+    name: "International Risk & Advisory Services — War Risk"
+    tier: 3
+    domains: [d6]
+    method: scrape
+    url: "https://www.iras.co.uk/news/"
+    status: likely
+    enabled: true
+    trigger: war_risk_premium_move
+    notes: "Specialist war risk and K&FR broker. Niche but authoritative."
+
+# ─────────────────────────────────────────────────────────────────────────────
+# REMOVED SOURCES — documented, do not re-add
+# ─────────────────────────────────────────────────────────────────────────────
+# reuters_rss — feeds.reuters.com/reuters/worldNews
+#   Reuters removed all public RSS feeds in 2020. 404s. Replaced by
+#   reuters_mideast scrape of reuters.com/world/middle-east/.
+#
+# cnn_live  — cnn.com/world/live-news/iran-war-{YYYY-MM-DD}
+# cnbc_live — cnbc.com/iran-war-live-updates-{YYYY-MM-DD}
+# nbc_live  — nbcnews.com/world/iran/live-blog-{YYYY-MM-DD}
+# cbs_live  — cbsnews.com/live-updates/iran-war-{YYYY-MM-DD}
+#   All four: fabricated URL slug patterns. These specific daily live-blog
+#   URLs do not exist. Replaced by CNN/CNBC real RSS feeds above.
+#
+# al_jazeera_tracker — aljazeera.com/news/liveblog/iran-war-casualty-tracker
+#   Speculative campaign-specific URL. Replaced by al_jazeera_en RSS.
+#
+# kpler_blog — kpler.com/blog
+#   JS-rendered, blank page without headless browser. Removed.
+
+# ─────────────────────────────────────────────────────────────────────────────
+# EXCLUDED SOURCES
+# ─────────────────────────────────────────────────────────────────────────────
+
+excluded:
+  state_media_iranian:
+    names:
+      - "Tehran Times"
+      - "PressTV"
+      - "IRNA (Islamic Republic News Agency)"
+      - "Mehr News Agency"
+      - "Fars News Agency"
+      - "Tasnim News Agency"
+    policy: "Label as 'Iranian government asserts...' — never use as independent corroboration."
+
+  raw_osint:
+    names:
+      - "Raw Twitter/X OSINT accounts (unvetted)"
+      - "Telegram channels without editorial accountability"
+    policy: "Do not ingest raw social media."
+
+  policy_advocacy:
+    names:
+      - "Foundation for Defense of Democracies (FDD)"
+      - "Long War Journal"
+    policy: "Event tracking usable as Tier 3 with hedging. Not policy recommendations."

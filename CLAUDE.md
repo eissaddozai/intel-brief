@@ -20,16 +20,33 @@ The pipeline feeds the template. The template is what the analyst receives.
 ---
 
 ## Writing voice (NEVER violate — applies to all content in cycle JSON files)
+
+**Target voice: The Economist meets Reuters.** Clean, precise, authoritative editorial prose. No intelligence-community jargon. No first-person plural ("we assess", "we judge"). The writing should read like a senior wire-service analyst filing a confidential briefing — not an IC product.
+
 - Every paragraph ≥ 2 sentences; no fragment leads
-- **Lead sentences are assessments, not factual descriptions**
+- **Lead sentences are analytical judgments, not bare descriptions**
   - BAD: "Three BTGs were observed near Kherson."
-  - GOOD: "We assess offensive preparations are underway; three BTGs have repositioned near Kherson."
+  - GOOD: "Offensive preparations appear underway; three BTGs have repositioned near Kherson."
+  - BAD: "We assess the coalition has shifted to attrition."
+  - GOOD: "The coalition has shifted to attrition, as confirmed by White House statements and strike-rate data."
+- **NEVER use first-person plural.** No "we assess", "we judge", "we evaluate", "our assessment". Use instead:
+  - "Reporting suggests…", "Evidence indicates…", "Multiple sources confirm…"
+  - "The balance of reporting points to…", "This likely reflects…", "The pattern is consistent with…"
+  - Direct declarative statements where confidence is high: "The air campaign has entered a new phase."
 - Use confidence language from the `ConfidenceLanguage` enum — no ad-hoc hedging phrases
-- Temporal precision on all kinetic claims: "As of 0600 UTC 15 Mar"
+- **Every hedged judgment requires a "because" clause or evidence citation.** The confidence phrase alone is insufficient. BAD: "Escalation is likely." GOOD: "Escalation is likely, given the simultaneous IRGC repositioning and IAEA access suspension (Reuters, 15 Mar)."
+- **Sentence discipline (from CIA/Mercyhurst style guides):**
+  - Noun + verb within the first six words of every sentence
+  - Target 12–20 words per sentence, averaging ~15
+  - Paragraphs: max 6 typed lines
+  - Cut "it is", "there is", "there are" — these are sentence stretchers
+  - Never nominalize verbs: "conduct an inspection" → "inspect"; "make a decision" → "decide"
+  - Limit words of 3+ syllables to ~15% of total
+- Temporal precision on all claims: "As of 0600 UTC 15 Mar"
 - Source attribution in parenthetical italic at sentence end: "(AP, 15 Mar 0620 UTC)"
 - Distinguish OBSERVED (Tier 1 facts) from ASSESSMENT (analytical judgment) with explicit sub-labels
 - Dissenting views go in `DissenterNote` blocks, attributed "ANALYST B" — never anonymously
-- Forbidden jargon: "kinetic activity", "threat actors", "threat landscape", "robust", "leverage" (verb)
+- Forbidden jargon: "kinetic activity", "threat actors", "threat landscape", "robust", "leverage" (verb), "we assess", "we judge", "we evaluate", "due to the fact that", "duties and responsibilities", "importance and significance"
 
 ---
 
@@ -44,12 +61,12 @@ The pipeline feeds the template. The template is what the analyst receives.
 ## Confidence language ladder (from ConfidenceLanguage enum)
 | Enum value | Rendered phrase | Probability |
 |---|---|---|
-| `almost-certainly` | "We assess with high confidence…" | 95–99% |
-| `highly-likely` | "We judge it highly likely…" | 75–95% |
-| `likely` | "Available evidence suggests…" | 55–75% |
+| `almost-certainly` | "Evidence strongly indicates…" / direct declarative statement | 95–99% |
+| `highly-likely` | "The balance of reporting points to…" / "Multiple sources confirm…" | 75–95% |
+| `likely` | "Reporting suggests…" / "Available evidence points to…" | 55–75% |
 | `possibly` | "Reporting indicates, though corroboration is limited…" | 45–55% |
-| `unlikely` | "We judge it unlikely, though we cannot exclude…" | 20–45% |
-| `almost-certainly-not` | "We assess with high confidence this will not…" | 1–5% |
+| `unlikely` | "This remains unlikely, though it cannot be excluded…" | 20–45% |
+| `almost-certainly-not` | "Nothing in the reporting supports…" / "Evidence strongly indicates this will not…" | 1–5% |
 
 ---
 

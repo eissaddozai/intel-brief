@@ -1,0 +1,491 @@
+{
+  "meta": {
+    "cycleId": "cycle004_20260306",
+    "cycleNum": "004",
+    "classification": "PROTECTED B",
+    "tlp": "AMBER",
+    "timestamp": "2026-03-06T06:00:00Z",
+    "region": "Iran · Gulf Region · Eastern Mediterranean",
+    "analystUnit": "CSE Conflict Assessment Unit",
+    "threatLevel": "CRITICAL",
+    "threatTrajectory": "escalating",
+    "subtitle": "Iran War File — Daily Assessment",
+    "contextNote": "Cycle covers the 24-hour period ending 0600 UTC 06 March 2026. All times UTC unless noted.",
+    "stripCells": [
+      {"top": "CRITICAL", "bot": "THREAT LEVEL"},
+      {"top": "DAY 7", "bot": "OPERATION EPIC FURY"},
+      {"top": "$92.69", "bot": "BRENT CRUDE"},
+      {"top": "81% ↓", "bot": "HORMUZ TRANSITS"},
+      {"top": "3", "bot": "FLASH POINTS"}
+    ]
+  },
+  "strategicHeader": {
+    "headlineJudgment": "We assess with high confidence that the US-Israeli campaign has achieved tactical air superiority over Iran and degraded 90% of Iranian ballistic missile launch capability — however, horizontal escalation continues as Hezbollah formally entered the conflict, the US submarine sank the IRIS Dena destroyer, and the White House announced strikes will continue for 'four to six weeks.'",
+    "trajectoryRationale": "Multi-front escalation with Lebanon ground incursion active; US sinks Iranian warship; Hormuz transits collapsed 81%; White House signals extended campaign duration."
+  },
+  "flashPoints": [
+    {
+      "id": "fp-1",
+      "domain": "d1",
+      "headline": "IDF launches ground incursion into southern Lebanon",
+      "detail": "We assess the IDF has escalated to ground operations following Hezbollah's resumption of cross-border attacks; evacuation orders affecting 800,000 civilians issued for areas south of the Litani River, with 100,000+ reserves called up.",
+      "timestamp": "2026-03-06T06:00:00Z",
+      "confidence": "high",
+      "citations": [{"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T06:00:00Z"}]
+    },
+    {
+      "id": "fp-2",
+      "domain": "d3",
+      "headline": "P&I clubs cancel Persian Gulf war risk coverage effective March 5",
+      "detail": "We assess the insurance market has determined Gulf transit risk exceeds acceptable thresholds — Gard, Skuld, NorthStandard, London P&I Club and American Club all issued cancellation notices; new coverage available at 0.04-0.06% rates representing significant premium increase.",
+      "timestamp": "2026-03-05T00:00:00Z",
+      "confidence": "high",
+      "citations": [{"source": "Lloyd's List", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T06:00:00Z"}]
+    },
+    {
+      "id": "fp-3",
+      "domain": "d3",
+      "headline": "Brent crude surges 35% for largest weekly gain in futures history",
+      "detail": "We assess markets are pricing sustained supply disruption — Brent settled at $92.69/bbl; Iraqi production shut down 1.5M bpd; Kuwait cutting output due to storage constraints; JPMorgan estimates disruption could reach 6M bpd if Hormuz remains closed.",
+      "timestamp": "2026-03-06T06:00:00Z",
+      "confidence": "high",
+      "citations": [{"source": "CNBC Energy", "tier": 2, "verificationStatus": "reported", "timestamp": "2026-03-06T06:00:00Z"}]
+    }
+  ],
+  "executive": {
+    "bluf": "We assess with high confidence that the US-Israeli campaign has achieved tactical success in degrading Iranian military capability — ballistic missile attacks are down 90% and drone attacks down 83% since February 28. However, horizontal escalation has accelerated: Hezbollah formally entered the conflict on March 1, triggering an IDF ground incursion into Lebanon; the insurance market has effectively closed the Strait of Hormuz by cancelling war risk coverage; and Brent crude posted its largest weekly gain in futures history at 35%. The conflict has entered a phase where market mechanisms, not missiles, are determining strategic chokepoint access. Canada's energy import partners face acute supply risk as LNG rerouting adds 14 days transit time.",
+    "keyJudgments": [
+      {
+        "id": "kj-exec-1",
+        "domain": "d1",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that the combined force has achieved local air superiority over Iran and substantially degraded IRGC retaliatory capability; Iranian ballistic missile attacks are down 90% and drone attacks down 83% since campaign initiation.",
+        "basis": "IDF assessment of 300 launchers destroyed; CTP-ISW confirmed strike cadence of 2,000+ targets; US Joint Chiefs announced air superiority over Tehran on March 2.",
+        "citations": [
+          {"source": "CTP-ISW Evening", "tier": 1, "verificationStatus": "confirmed"},
+          {"source": "CENTCOM", "tier": 1, "verificationStatus": "confirmed"}
+        ]
+      },
+      {
+        "id": "kj-exec-2",
+        "domain": "d2",
+        "confidence": "high",
+        "probabilityRange": "95–99%",
+        "language": "almost-certainly",
+        "text": "We assess with high confidence that horizontal escalation will continue — Hezbollah's formal entry into the conflict on March 1 and the IDF ground incursion into Lebanon represent a second active front that will persist regardless of developments in Iran.",
+        "basis": "Hezbollah secretary-general Naim Qassem vowed retaliation following Khamenei's death; IDF Chief of Staff announced 'offensive campaign' against Hezbollah; 100,000+ reserves mobilized.",
+        "citations": [
+          {"source": "Times of Israel", "tier": 2, "verificationStatus": "reported"},
+          {"source": "Al Jazeera", "tier": 1, "verificationStatus": "confirmed"}
+        ]
+      },
+      {
+        "id": "kj-exec-3",
+        "domain": "d3",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that energy markets have entered a structural crisis phase — Hormuz transits down 81%, P&I club war risk cancellations effective, and production shutdowns in Iraq and Kuwait represent supply constraints that cannot be offset by emergency reserves.",
+        "basis": "Lloyd's List reports Hormuz transits collapsed to 4 vessels vs 24/day average; major P&I clubs cancelled coverage effective March 5; Iraq shut 1.5M bpd production; JPMorgan estimates potential 6M bpd disruption.",
+        "citations": [
+          {"source": "Lloyd's List", "tier": 2, "verificationStatus": "reported"},
+          {"source": "CNBC Energy", "tier": 2, "verificationStatus": "reported"}
+        ]
+      },
+      {
+        "id": "kj-exec-4",
+        "domain": "d4",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Available evidence suggests the UN Security Council remains deadlocked with no viable ceasefire pathway — Russia and China condemned US-Israeli strikes but no resolution has been passed; Council members unable to agree on March work programme.",
+        "basis": "UNSC emergency session held February 28 with no resolution; Russia-China requested meeting but no vote occurred; disagreement over Iran sanctions snapback mechanism.",
+        "citations": [
+          {"source": "AP", "tier": 1, "verificationStatus": "confirmed"},
+          {"source": "Security Council Report", "tier": 2, "verificationStatus": "reported"}
+        ]
+      },
+      {
+        "id": "kj-exec-5",
+        "domain": "d5",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Available evidence suggests Iran's internet blackout reflects coordinated US-Israeli cyber operations targeting IRGC command-and-control concurrent with kinetic strikes — connectivity at 1% for six consecutive days represents deliberate infrastructure targeting rather than government throttling alone.",
+        "basis": "NetBlocks confirms connectivity at 1% since February 28; timing correlates precisely with Operation Epic Fury initiation; reports of cyber attacks on telecom infrastructure and IRGC networks.",
+        "citations": [
+          {"source": "NetBlocks", "tier": 3, "verificationStatus": "claimed"},
+          {"source": "CNBC", "tier": 2, "verificationStatus": "reported"}
+        ]
+      }
+    ],
+    "kpis": [
+      {"domain": "d1", "number": "2,000+", "label": "TARGETS STRUCK", "changeDirection": "up"},
+      {"domain": "d2", "number": "95–99%", "label": "ESCALATION PROB", "changeDirection": "up"},
+      {"domain": "d3", "number": "$92.69", "label": "BRENT (USD/BBL)", "changeDirection": "up"},
+      {"domain": "d4", "number": "0", "label": "UNSC RESOLUTIONS", "changeDirection": "neutral"},
+      {"domain": "d6", "number": "81% ↓", "label": "HORMUZ TRANSITS", "changeDirection": "up"}
+    ]
+  },
+  "domains": [
+    {
+      "id": "d1",
+      "num": "01",
+      "title": "BATTLESPACE · KINETIC",
+      "assessmentQuestion": "What is the current disposition of forces, and what military operations occurred across all theatres in the last 24 hours?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d1",
+        "domain": "d1",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely the combined force has transitioned to Phase 2 targeting Iranian defense industrial base while simultaneously opening a second front in Lebanon following Hezbollah's formal entry into the conflict.",
+        "basis": "CTP-ISW reports combined force targeting missile production facilities after suppressing air defenses; IDF announced ground operations in southern Lebanon with 100,000+ reserves mobilized.",
+        "citations": [
+          {"source": "CTP-ISW Evening", "tier": 1, "timestamp": "2026-03-05T23:00:00Z", "verificationStatus": "confirmed"},
+          {"source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "confirmed"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY — IRAN THEATRE",
+          "subLabelVariant": "observed",
+          "text": "As of 0600 UTC 06 Mar, the US-Israeli combined force has struck over 2,000 targets in Iran since operations began February 28 — Airwars characterized this as 'significantly more targets than any campaign in recent decades' (Al Jazeera, 06 Mar). White House Press Secretary Karoline Leavitt announced strikes will continue for 'four to six weeks' (Al Jazeera, 06 Mar 2046 UTC). IDF announced destruction of Khamenei's bunker, which was being used by top military brass; IDF assessed approximately 300 Iranian missile launchers destroyed with ballistic missile attacks down 90% and drone attacks down 83% (Times of Israel, 06 Mar). A US submarine torpedoed the IRIS Dena destroyer in the Indian Ocean south of Sri Lanka with more than 100 personnel aboard; Defense Secretary Hegseth confirmed the sinking (BBC, 05 Mar 0652 UTC). BBC Verify confirmed satellite imagery showing at least 11 Iranian naval vessels destroyed and damage to nuclear sites. Iranian death toll has risen to 1,332 per Tasnim, including 181 children per UNICEF; six US service members killed.",
+          "timestamp": "2026-03-06T06:00:00Z",
+          "citations": [
+            {"source": "CTP-ISW Evening", "tier": 1, "timestamp": "2026-03-05T23:00:00Z", "verificationStatus": "confirmed"},
+            {"source": "CENTCOM", "tier": 1, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "confirmed"}
+          ],
+          "confidenceLanguage": "highly-likely"
+        },
+        {
+          "subLabel": "OBSERVED ACTIVITY — LEBANON THEATRE",
+          "subLabelVariant": "observed",
+          "text": "As of 0600 UTC 06 Mar, Hezbollah formally entered the conflict on March 1-2 following confirmation of Supreme Leader Khamenei's death, firing rockets and drones at northern Israel including Haifa and the Upper Galilee (Times of Israel, 05 Mar). IDF Chief of Staff Lt. Gen. Eyal Zamir announced an 'offensive campaign' against Hezbollah that would last 'several days'; IDF troops are operating in southern Lebanon in a ground incursion described as a 'forward defence' measure (Al Jazeera, 05 Mar). The IDF Arabic-language spokesperson issued evacuation orders affecting at least 800,000 civilians to move north of the Litani River; Israel called up more than 100,000 reserves for Lebanon operations. Israeli strikes on Beirut suburbs and southern Lebanon killed at least 52 and injured 154 on March 4 according to Lebanese state media. Lebanese President Aoun declared the government's ban on Hezbollah military activity 'final' and demanded the group surrender weapons to the state.",
+          "timestamp": "2026-03-06T06:00:00Z",
+          "citations": [
+            {"source": "Times of Israel", "tier": 2, "timestamp": "2026-03-05T18:00:00Z", "verificationStatus": "reported"},
+            {"source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-05T20:00:00Z", "verificationStatus": "confirmed"}
+          ],
+          "confidenceLanguage": "highly-likely"
+        },
+        {
+          "subLabel": "OPERATIONAL ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "We assess the combined force has achieved its Phase 1 objectives of air defense suppression and command decapitation, and is now systematically degrading Iranian defense industrial capacity. The sinking of IRIS Dena and destruction of 11+ naval vessels demonstrates expansion of targeting to maritime assets. Israel is reportedly backing a potential Kurdish offensive into Iran with talks ongoing for one year — Kurdish militants are poised to assault border territories and fight IRGC; senior PDKI official confirmed readiness to join (Times of Israel, 06 Mar). Iran preemptively struck Kurdish headquarters in Iraq (BBC, 05 Mar). The 90% reduction in ballistic missile attacks indicates IRGC launch capability substantially neutralized. Hezbollah rearmed for months before the conflict with a $50M monthly budget largely supplied by Iran and its own weapons factories in Lebanon (Times of Israel/Reuters, 06 Mar). The Lebanese government's ban on Hezbollah military activity has no enforcement mechanism.",
+          "citations": [
+            {"source": "CTP-ISW Evening", "tier": 1, "timestamp": "2026-03-05T23:00:00Z", "verificationStatus": "confirmed"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "num": "02",
+      "title": "ESCALATION · TRAJECTORY",
+      "assessmentQuestion": "What is the probability that the conflict will escalate, de-escalate, or stabilize in the next 24–72 hours?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d2",
+        "domain": "d2",
+        "confidence": "high",
+        "probabilityRange": "95–99%",
+        "language": "almost-certainly",
+        "text": "We assess with high confidence that further escalation is almost certain within 72 hours — the conflict has expanded to two active fronts, Houthi threats to resume Red Sea attacks persist, and no diplomatic off-ramp exists.",
+        "basis": "Lebanon ground incursion active; Houthis threatened attack resumption on February 28 though internal debate continues; UNSC deadlocked with no resolution pathway.",
+        "citations": [
+          {"source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "confirmed"},
+          {"source": "gCaptain", "tier": 2, "timestamp": "2026-03-05T12:00:00Z", "verificationStatus": "reported"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ESCALATION INDICATORS",
+          "subLabelVariant": "observed",
+          "text": "As of 0600 UTC 06 Mar, the conflict has expanded from one theatre to two with Hezbollah's formal entry and the IDF ground incursion into Lebanon (Al Jazeera, 05 Mar). Houthis threatened to resume Red Sea attacks on February 28 following the strikes on Iran; as of March 4 there is reportedly internal debate within the group over response, with no confirmed new maritime strikes verified (gCaptain, 05 Mar). Iran launched retaliatory strikes across nine countries — Bahrain, Iraq, Jordan, Kuwait, Oman, Qatar, Saudi Arabia, UAE, and a drone strike on a UK base in Cyprus — indicating willingness to escalate regionally. Two Iranian drones struck the US Embassy in Riyadh on March 2, causing limited damage but representing direct attack on US diplomatic facility in a third country (CTP-ISW Evening, 03 Mar).",
+          "timestamp": "2026-03-06T06:00:00Z",
+          "citations": [
+            {"source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-05T20:00:00Z", "verificationStatus": "confirmed"},
+            {"source": "gCaptain", "tier": 2, "timestamp": "2026-03-05T12:00:00Z", "verificationStatus": "reported"},
+            {"source": "CTP-ISW Evening", "tier": 1, "timestamp": "2026-03-03T23:00:00Z", "verificationStatus": "confirmed"}
+          ],
+          "confidenceLanguage": "almost-certainly"
+        },
+        {
+          "subLabel": "TRAJECTORY ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "We assess the conflict is on a sustained escalation trajectory with no near-term de-escalation pathway. The combined force's stated objective of regime change — confirmed by multiple US officials to the New York Times — means operations will continue until either Iranian government collapse or coalition exhaustion. Horizontal escalation continues as additional actors enter: Hezbollah formally, Houthis potentially, and Iran's regional retaliatory strikes demonstrate willingness to widen the conflict geographically. The only potential constraint is coalition casualty tolerance — six US service members killed represents the first significant American losses — but this threshold has not been reached. We assess 72-hour escalation probability at 95-99%.",
+          "citations": [
+            {"source": "CTP-ISW Evening", "tier": 1, "timestamp": "2026-03-05T23:00:00Z", "verificationStatus": "confirmed"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "num": "03",
+      "title": "ENERGY · ECONOMIC",
+      "assessmentQuestion": "How are energy markets and global supply chains responding to conflict developments?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d3",
+        "domain": "d3",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely energy markets have entered a structural crisis — Brent posted 35% weekly gain (largest in futures history), Hormuz transits collapsed 81%, and regional production shutdowns represent supply constraints exceeding emergency reserve capacity.",
+        "basis": "CNBC confirms Brent at $92.69/bbl with 35% weekly gain; Lloyd's List reports Hormuz transits at 4/day vs 24/day average; Iraq shut 1.5M bpd production; Kuwait cutting output.",
+        "citations": [
+          {"source": "CNBC Energy", "tier": 2, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "reported"},
+          {"source": "Lloyd's List", "tier": 2, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "reported"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "As of 0600 UTC 06 Mar, Brent crude settled at $92.69/bbl, up 8.52% on the day and 35% for the week — the largest weekly gain in futures trading history dating to 1983 (CNBC, 06 Mar). A drone evaded defenses and ignited a massive fire at an oil facility for foreign companies in southern Iraq's Basra (Al Jazeera, 06 Mar 2343 UTC). Strait of Hormuz transits collapsed 81% compared to the previous week, with only 4 vessels transiting on March 1 versus a 24/day average (Lloyd's List, 05 Mar). Approximately 200 crude and product tankers are stranded in the Persian Gulf. Iraq shut down 1.5 million bpd of production; Kuwait began cutting output after exhausting storage capacity; QatarEnergy halted downstream production (CTP-ISW Evening, 03 Mar). Al Jazeera reports the Iran war is the 'latest threat to a global economy already rattled by Trump' with rising energy prices threatening to stoke inflation worldwide (Al Jazeera, 06 Mar). US gasoline prices rose 27 cents/gallon to $3.25 average. Trump administration announced $20 billion insurance program for Gulf tankers.",
+          "timestamp": "2026-03-06T06:00:00Z",
+          "citations": [
+            {"source": "CNBC Energy", "tier": 2, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "reported"},
+            {"source": "Lloyd's List", "tier": 2, "timestamp": "2026-03-05T18:00:00Z", "verificationStatus": "reported"},
+            {"source": "CTP-ISW Evening", "tier": 1, "timestamp": "2026-03-03T23:00:00Z", "verificationStatus": "confirmed"}
+          ],
+          "confidenceLanguage": "highly-likely"
+        },
+        {
+          "subLabel": "MARKET ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "We assess the market has shifted from pricing geopolitical risk to pricing tangible operational disruption, as JPMorgan's head of commodities research characterized. The 81% collapse in Hormuz transits represents de facto chokepoint closure achieved through market mechanisms rather than military blockade — shipping companies have self-selected out of the route. JPMorgan estimates production disruptions could approach 6 million bpd by end of next week if Hormuz remains closed, a deficit that exceeds global spare capacity and strategic reserve release capability. The Trump administration's $20 billion insurance program requires weeks to operationalize per Marsh; it cannot address immediate supply constraints. We assess Brent will remain above $90/bbl for conflict duration with potential to breach $100 if Houthis resume Red Sea attacks.",
+          "citations": [
+            {"source": "CNBC Energy", "tier": 2, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "reported"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "num": "04",
+      "title": "DIPLOMATIC · POLITICAL",
+      "assessmentQuestion": "What diplomatic initiatives are active, and how are key state actors positioning?",
+      "confidence": "moderate",
+      "keyJudgment": {
+        "id": "kj-d4",
+        "domain": "d4",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Available evidence suggests the multilateral diplomatic track is paralyzed — UNSC held emergency session but passed no resolution; Russia and China condemned strikes but offered no enforcement mechanism; no ceasefire pathway exists through current channels.",
+        "basis": "UNSC emergency meeting February 28 produced no resolution; Council members unable to agree on March work programme; US-Israeli stated objective of regime change precludes negotiated settlement.",
+        "citations": [
+          {"source": "AP", "tier": 1, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "confirmed"},
+          {"source": "Security Council Report", "tier": 2, "timestamp": "2026-03-05T18:00:00Z", "verificationStatus": "reported"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "As of 0600 UTC 06 Mar, Saudi Arabia is intensifying talks with Iran to defuse the conflict — officials from several Gulf states complain they were not given earlier notice about initial US-Israeli strikes (Times of Israel, 06 Mar 2323 UTC). Iranian UN Ambassador Amir-Saeid Iravani urged the Security Council to stop the 'criminal war' (Al Jazeera, 06 Mar 2314 UTC). Russia is reportedly supplying Iran with intelligence on US military assets while Ukraine has dispatched military drone experts to the Gulf to assist US and allies (Times of Israel, 06 Mar 1707 UTC). Qatar partially reopened airspace for evacuation and cargo flights though scheduled services remain suspended (Al Jazeera, 06 Mar 2208 UTC). Azerbaijan announced it foiled Iranian terror attacks planned against a synagogue, the Israeli embassy, Jewish community leaders, and an oil pipeline servicing Israeli imports; at least 7 Azerbaijani nationals detained (Times of Israel, 06 Mar 2059 UTC). French President Macron urged PM Netanyahu not to order a ground offensive in Lebanon.",
+          "timestamp": "2026-03-06T06:00:00Z",
+          "citations": [
+            {"source": "AP", "tier": 1, "timestamp": "2026-03-02T18:00:00Z", "verificationStatus": "confirmed"},
+            {"source": "Security Council Report", "tier": 2, "timestamp": "2026-03-05T18:00:00Z", "verificationStatus": "reported"},
+            {"source": "Times of Israel", "tier": 2, "timestamp": "2026-03-05T15:00:00Z", "verificationStatus": "reported"}
+          ],
+          "confidenceLanguage": "likely"
+        },
+        {
+          "subLabel": "DIPLOMATIC ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "We assess diplomatic channels are non-functional because the US-Israeli stated war aim of regime change is structurally incompatible with negotiated settlement. Previous Oman-mediated back-channels (last held February 6) are moot following Khamenei's assassination — there is no Iranian interlocutor with authority to negotiate. Russia and China's UNSC condemnation provides rhetorical cover but no enforcement mechanism; neither has signaled willingness to intervene militarily or economically. Lebanon's government is attempting to distance itself from Hezbollah but lacks capacity to constrain the organization. We assess no diplomatic breakthrough is possible within the 72-hour window; conflict termination will be determined by military outcomes rather than negotiation.",
+          "citations": [
+            {"source": "AP", "tier": 1, "timestamp": "2026-03-02T18:00:00Z", "verificationStatus": "confirmed"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d5",
+      "num": "05",
+      "title": "CYBER · INFORMATION OPS",
+      "assessmentQuestion": "What cyber operations or information warfare activities have been detected?",
+      "confidence": "moderate",
+      "keyJudgment": {
+        "id": "kj-d5",
+        "domain": "d5",
+        "confidence": "moderate",
+        "probabilityRange": "55–75%",
+        "language": "likely",
+        "text": "Available evidence suggests Iran is experiencing coordinated cyber-kinetic attack — internet connectivity at 1% for six consecutive days combined with reports of targeted IRGC C2 infrastructure attacks indicates deliberate US-Israeli cyber campaign concurrent with air strikes.",
+        "basis": "NetBlocks confirms 1% connectivity since February 28; CNBC reports cyber operations targeted IRGC command-and-control; timing precisely correlates with Operation Epic Fury.",
+        "citations": [
+          {"source": "NetBlocks", "tier": 3, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "claimed"},
+          {"source": "CNBC", "tier": 2, "timestamp": "2026-03-02T18:00:00Z", "verificationStatus": "reported"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "As of 0600 UTC 06 Mar, Iran's internet connectivity remains at approximately 1% of normal levels for the sixth consecutive day since February 28, according to NetBlocks (NetBlocks, 06 Mar). The measure affects TIC, MCI, and Rightel providers; social media platforms and VPN traffic are suppressed. Reports indicate concurrent US-Israeli cyber operations deliberately targeted telecommunications infrastructure to disrupt IRGC command-and-control networks during kinetic strikes (CNBC, 02 Mar). Multiple government-aligned Iranian news sites were attacked. BadeSaba Calendar, a religious calendar app with 5 million downloads, was compromised to display messages urging Iranian armed forces to 'give up weapons and join the people' (TechCrunch, 02 Mar). Unit 42 (Palo Alto Networks) issued threat brief warning of surge in Iranian hacktivist activity with approximately 60 groups active including pro-Russian actors (Unit 42, 02 Mar).",
+          "timestamp": "2026-03-06T06:00:00Z",
+          "citations": [
+            {"source": "NetBlocks", "tier": 3, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "claimed"},
+            {"source": "CNBC", "tier": 2, "timestamp": "2026-03-02T18:00:00Z", "verificationStatus": "reported"}
+          ],
+          "confidenceLanguage": "likely"
+        },
+        {
+          "subLabel": "ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "We assess the internet blackout reflects a coordinated cyber-kinetic campaign rather than Iranian government throttling alone. The precise timing correlation with Operation Epic Fury initiation, combined with reports of targeted IRGC C2 attacks, indicates offensive cyber operations designed to degrade Iranian military coordination during air strikes. The sustained 1% connectivity for six days exceeds typical Iranian government throttling patterns, which historically maintained higher baseline connectivity for economic functions. The hacktivist surge (60+ groups) represents opportunistic actors rather than state-directed operations; Iranian APT response has been limited despite FDD assessment that pro-regime hackers 'cannot back up their claims of successful cyber attacks.' We assess Iran's cyber response capability has been degraded alongside its kinetic capability.",
+          "citations": [
+            {"source": "NetBlocks", "tier": 3, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "claimed"},
+            {"source": "FDD", "tier": 3, "timestamp": "2026-03-04T18:00:00Z", "verificationStatus": "claimed"}
+          ]
+        }
+      ]
+    },
+    {
+      "id": "d6",
+      "num": "06",
+      "title": "WAR RISK INSURANCE · MARITIME FINANCE",
+      "assessmentQuestion": "How are insurance markets pricing conflict risk and what are the implications for maritime trade?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d6",
+        "domain": "d6",
+        "confidence": "high",
+        "probabilityRange": "75–95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely insurance markets have effectively closed the Strait of Hormuz — P&I clubs cancelled war risk coverage effective March 5; new coverage available at significantly increased rates; 200 tankers stranded in Gulf; Trump $20B program requires weeks to operationalize.",
+        "basis": "Lloyd's List confirms Gard, Skuld, NorthStandard, London P&I, American Club all cancelled coverage; LMA states cover available but at 0.04-0.06% rates; Marsh estimates government program needs weeks.",
+        "citations": [
+          {"source": "Lloyd's List", "tier": 2, "timestamp": "2026-03-06T06:00:00Z", "verificationStatus": "reported"},
+          {"source": "Bloomberg", "tier": 2, "timestamp": "2026-03-05T18:00:00Z", "verificationStatus": "reported"}
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "As of 0600 UTC 06 Mar, leading P&I clubs including Gard, Skuld, NorthStandard, London P&I Club and American Club issued notices on March 2 cancelling war risk coverage for Iranian waters, the Gulf, adjacent areas, and the Strait of Hormuz, effective midnight March 5 (Lloyd's List, 05 Mar). Lloyd's Market Association confirmed cover remains available but at significantly increased rates of 0.04-0.06% of limit purchased; for lower limits rates may reach 0.06% (Bloomberg, 05 Mar). Approximately 200 internationally trading crude and product tankers are stranded in the Persian Gulf (Lloyd's List, 05 Mar). Marsh initial estimates indicated marine hull insurance rates in the Gulf could increase 25-50%, but this was before at least four ships were directly struck by missiles/projectiles. UKMTO reported multiple maritime incidents including one vessel west of Sharjah struck by explosion from unknown projectile, a tanker north of Muscat struck above waterline causing fire, and a third vessel northwest of Mina Saqr hit by projectile igniting blaze (Fox News, 01 Mar).",
+          "timestamp": "2026-03-06T06:00:00Z",
+          "citations": [
+            {"source": "Lloyd's List", "tier": 2, "timestamp": "2026-03-05T18:00:00Z", "verificationStatus": "reported"},
+            {"source": "Bloomberg", "tier": 2, "timestamp": "2026-03-05T15:00:00Z", "verificationStatus": "reported"}
+          ],
+          "confidenceLanguage": "highly-likely"
+        },
+        {
+          "subLabel": "INSURANCE MARKET ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "We assess the insurance market has become the primary mechanism constraining Hormuz traffic rather than Iranian military action. The P&I club cancellations represent a coordinated market judgment that transit risk exceeds acceptable loss ratios — this is the functional equivalent of a blockade achieved through commercial rather than military means. The Trump administration's $20 billion DFC insurance program, while politically significant, requires several weeks to operationalize according to Marsh; it cannot address the immediate transit collapse. Shipowners face a binary choice: transit without P&I coverage (exposing total vessel value) or wait for new underwriting terms. We assess the stranded 200-tanker situation will persist for at least 7-10 days until new coverage arrangements are finalized, maintaining supply pressure regardless of military developments.",
+          "citations": [
+            {"source": "Lloyd's List", "tier": 2, "timestamp": "2026-03-05T18:00:00Z", "verificationStatus": "reported"},
+            {"source": "Insurance Journal", "tier": 2, "timestamp": "2026-03-05T18:00:00Z", "verificationStatus": "reported"}
+          ]
+        }
+      ]
+    }
+  ],
+  "warningIndicators": [
+    {
+      "id": "wi-1",
+      "indicator": "P&I club war risk coverage cancellation",
+      "domain": "d6",
+      "status": "triggered",
+      "change": "new",
+      "detail": "Major P&I clubs (Gard, Skuld, NorthStandard, London P&I, American Club) cancelled Persian Gulf war risk coverage effective midnight March 5. New coverage available at 0.04-0.06% rates.",
+      "assessment": "Insurance market has functionally closed Hormuz independent of military action; 200 tankers stranded; supply disruption locked in regardless of combat developments for 7-10 days minimum."
+    },
+    {
+      "id": "wi-2",
+      "indicator": "Hezbollah formal entry into conflict",
+      "domain": "d1",
+      "status": "triggered",
+      "change": "new",
+      "detail": "Hezbollah resumed rocket and drone attacks on northern Israel March 1-2 following Khamenei's death. IDF launched 'offensive campaign' and ground incursion into Lebanon.",
+      "assessment": "Second active front opened; 100,000+ IDF reserves mobilized; 800,000 civilians ordered to evacuate south of Litani. Conflict now requires simultaneous Iran and Lebanon operations."
+    },
+    {
+      "id": "wi-3",
+      "indicator": "Houthi threat to resume Red Sea attacks",
+      "domain": "d3",
+      "status": "elevated",
+      "change": "elevated",
+      "detail": "Houthis threatened attack resumption on February 28; as of March 4 internal debate continues with no confirmed new strikes. Three-and-a-half month pause at risk of ending.",
+      "assessment": "Red Sea attacks would compound Gulf shipping crisis; BIMCO warned war risk premiums would increase sharply if attacks resume. Monitor for confirmed strike to trigger full shipping closure."
+    },
+    {
+      "id": "wi-4",
+      "indicator": "Iranian internet connectivity below 5%",
+      "domain": "d5",
+      "status": "triggered",
+      "change": "elevated",
+      "detail": "NetBlocks confirms 1% connectivity for six consecutive days since February 28. Cyber-kinetic coordination evident.",
+      "assessment": "Sustained blackout indicates either catastrophic infrastructure damage or deliberate isolation; either limits IRGC coordination and domestic information flow. Duration unprecedented."
+    },
+    {
+      "id": "wi-5",
+      "indicator": "Regional production shutdowns",
+      "domain": "d3",
+      "status": "triggered",
+      "change": "new",
+      "detail": "Iraq shut 1.5M bpd production; Kuwait cutting output due to storage exhaustion; QatarEnergy halted downstream products.",
+      "assessment": "Supply disruption spreading beyond direct conflict participants; storage constraints forcing production cuts create compounding effect on global supply independent of Hormuz status."
+    }
+  ],
+  "collectionGaps": [
+    {
+      "id": "gap-1",
+      "domain": "d2",
+      "gap": "Iranian leadership succession unclear following Khamenei assassination.",
+      "significance": "Unable to assess who has decision authority for Iranian military operations, potential ceasefire authority, or regime stability trajectory.",
+      "severity": "critical"
+    },
+    {
+      "id": "gap-2",
+      "domain": "d1",
+      "gap": "Limited visibility into Houthi internal deliberations on attack resumption.",
+      "significance": "Unable to predict timing of potential Red Sea attack resumption; current reporting indicates debate but no resolution.",
+      "severity": "significant"
+    },
+    {
+      "id": "gap-3",
+      "domain": "d6",
+      "gap": "No direct Lloyd's syndicate or broker quotes on specific premium levels post-March 5 cancellations.",
+      "significance": "Assessment of new coverage terms relies on range estimates (0.04-0.06%); actual pricing may vary significantly by vessel class and route.",
+      "severity": "significant"
+    },
+    {
+      "id": "gap-4",
+      "domain": "d5",
+      "gap": "Unable to confirm attribution of Iranian internet blackout — government vs external cyber attack.",
+      "significance": "Affects assessment of US-Israeli cyber capability and Iranian regime intent; both hypotheses remain viable.",
+      "severity": "minor"
+    }
+  ],
+  "caveats": {
+    "cycleRef": "CSE-BRIEF-004 · 06 MARCH 2026",
+    "items": [
+      {"label": "COLLECTION WINDOW", "text": "This cycle covers the 24-hour period ending 0600 UTC 06 March 2026."},
+      {"label": "IRANIAN LEADERSHIP", "text": "Assessment of Iranian decision-making limited by succession uncertainty following Khamenei assassination."},
+      {"label": "INSURANCE DATA", "text": "D6 premium estimates based on range guidance; no direct broker quotes available this cycle."}
+    ],
+    "confidenceAssessment": "Overall assessment confidence is HIGH for D1, D3, D6 based on Tier 1/2 sourcing from CTP-ISW, Lloyd's List, CNBC. D2 HIGH for trajectory but Iranian intent assessment limited. D4 MODERATE due to UNSC deadlock uncertainty. D5 MODERATE due to cyber attribution gap.",
+    "dissenterNotes": [],
+    "sourceQuality": "Tier 1 sources (CTP-ISW, CENTCOM, Al Jazeera, AP, UKMTO) provide factual floor. Tier 2 (Lloyd's List, Times of Israel, CNBC Energy, Bloomberg) provide analytical depth. Tier 3 (NetBlocks, FDD, Unit 42) used with appropriate caveats.",
+    "handling": "PROTECTED B // TLP:AMBER — Not for public release"
+  },
+  "footer": {
+    "id": "cycle004_20260306",
+    "classification": "PROTECTED B // TLP:AMBER",
+    "sources": "CTP-ISW · CENTCOM · Al Jazeera · AP · UKMTO · Lloyd's List · CNBC · Bloomberg · Times of Israel · NetBlocks",
+    "handling": "CSE Conflict Assessment Unit — 06 March 2026"
+  }
+}

@@ -24,7 +24,7 @@ body {
   position: relative;
 }
 
-/* ── RADIAL VIGNETTE ──────────────────────────────────────────────────────── */
+/* ── SUBTLE VIGNETTE (modern, not heavy) ───────────────────────────────────── */
 body::before {
   content: "";
   position: fixed;
@@ -32,27 +32,13 @@ body::before {
   pointer-events: none;
   z-index: 0;
   background: radial-gradient(
-    ellipse 140% 100% at 50% 50%,
-    transparent 40%,
-    var(--color-vignette) 100%
+    ellipse 150% 100% at 50% 0%,
+    transparent 60%,
+    rgba(0, 0, 0, 0.3) 100%
   );
 }
 
-/* ── SCANLINE CRT OVERLAY ─────────────────────────────────────────────────── */
-body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9998;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent 0px,
-    transparent var(--sp-2),
-    var(--color-scanline) var(--sp-2),
-    var(--color-scanline) var(--sp-3)
-  );
-}
+/* CRT scanlines disabled for cleaner look */
 
 /* ── DOCUMENT WRAPPER ─────────────────────────────────────────────────────── */
 .brief {
