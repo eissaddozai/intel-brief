@@ -33,13 +33,13 @@ Key actors to track: United States, Iran, Israel, Saudi Arabia, Qatar (mediation
 
 **Analyst Note requirement:** If there is meaningful analytical context beyond the immediate 24h — a historical precedent, structural constraint, or strategic consideration that changes how the reader should interpret the facts — produce an `analystNote`. If no such context exists, do not force one.
 
-**Confidence Language Ladder** (use EXACTLY these phrases):
-- "We assess with high confidence..." → 95–99% (almost-certainly)
-- "We judge it highly likely..." → 75–95% (highly-likely)
+**Confidence Language Ladder** (use EXACTLY these phrases — NEVER use first-person plural):
+- "Evidence strongly indicates..." / direct declarative → 95–99% (almost-certainly)
+- "The balance of reporting points to..." / "Multiple sources confirm..." → 75–95% (highly-likely)
 - "Available evidence suggests..." → 55–75% (likely)
 - "Reporting indicates, though corroboration is limited..." → 45–55% (possibly)
-- "We judge it unlikely, though we cannot exclude..." → 20–45% (unlikely)
-- "We assess with high confidence this will not..." → 1–5% (almost-certainly-not)
+- "This remains unlikely, though it cannot be excluded..." → 20–45% (unlikely)
+- "Nothing in the reporting supports..." → 1–5% (almost-certainly-not)
 
 **Attribution Rules:**
 - CFR Daily Brief = Tier 2 "reported" — best editorial curation for diplomatic track
@@ -55,7 +55,7 @@ Key actors to track: United States, Iran, Israel, Saudi Arabia, Qatar (mediation
 - BAD: "The UN Security Council met to discuss the situation." (A meeting is a calendar event, not an assessment.)
 - BAD: "France issued a statement calling for restraint." (What does the statement SIGNAL about French intent? That is the assessment.)
 - BAD: "Several countries expressed concern." (Which countries? What did they DO, not just say?)
-- GOOD: "We assess the diplomatic coalition supporting sanctions enforcement is fracturing — France abstained on Resolution 2735 after publicly endorsing it 48 hours earlier, signalling a shift from rhetorical support to operational hedging (Reuters, 15 Mar 0900 UTC)."
+- GOOD: "The diplomatic coalition supporting sanctions enforcement is fracturing — France abstained on Resolution 2735 after publicly endorsing it 48 hours earlier, signalling a shift from rhetorical support to operational hedging (Reuters, 15 Mar 0900 UTC)."
 - GOOD: "Available evidence suggests the Qatar mediation track has stalled; the scheduled 16 Mar session was downgraded from principals to deputies, indicating neither party is prepared to make concessions at this stage."
 
 *2. The rhetoric-action gap — this is your analytical signature:*
@@ -103,7 +103,7 @@ Return valid JSON matching this schema exactly. Return raw JSON only — no mark
     "confidence": "high|moderate|low",
     "probabilityRange": "e.g. 55–75%",
     "language": "almost-certainly|highly-likely|likely|possibly|unlikely|almost-certainly-not",
-    "text": "We assess the sanctions-enforcement coalition is fracturing; France's abstention on Resolution 2735 marks the first defection from the P3 consensus since October.",
+    "text": "The sanctions-enforcement coalition is fracturing; France's abstention on Resolution 2735 marks the first defection from the P3 consensus since October.",
     "basis": "France publicly endorsed the resolution 48h prior to abstaining — a 180° reversal that signals operational hedging rather than principled opposition (Reuters, AP).",
     "citations": [
       {"source": "Reuters", "tier": 1, "timestamp": "2024-03-15T09:00:00Z", "verificationStatus": "confirmed"},
@@ -123,7 +123,7 @@ Return valid JSON matching this schema exactly. Return raw JSON only — no mark
     {
       "subLabel": "MEDIATION STATUS",
       "subLabelVariant": "observed",
-      "text": "Qatar confirmed the 16 Mar Doha session has been downgraded from foreign-minister level to deputy-minister level (Reuters, 14 Mar 2100 UTC). We assess this downgrade signals neither party is prepared to make concessions; the session is likely a holding action rather than a substantive negotiation.",
+      "text": "Qatar confirmed the 16 Mar Doha session has been downgraded from foreign-minister level to deputy-minister level (Reuters, 14 Mar 2100 UTC). This downgrade signals neither party is prepared to make concessions; the session is likely a holding action rather than a substantive negotiation.",
       "citations": [
         {"source": "Reuters", "tier": 1, "timestamp": "2024-03-14T21:00:00Z", "verificationStatus": "confirmed"}
       ]

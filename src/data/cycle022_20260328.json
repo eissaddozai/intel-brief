@@ -1,0 +1,321 @@
+{
+  "meta": {
+    "cycleId": "cycle022_20260328",
+    "cycleNum": "022",
+    "classification": "PROTECTED B",
+    "tlp": "AMBER",
+    "timestamp": "2026-03-28T06:00:00Z",
+    "region": "Iran · Gulf Region · Eastern Mediterranean",
+    "analystUnit": "CSE Conflict Assessment Unit",
+    "threatLevel": "SEVERE",
+    "threatTrajectory": "escalating",
+    "subtitle": "Iran War File — Daily Assessment [PLACEHOLDER — NO AI SYNTHESIS]",
+    "contextNote": "Placeholder draft — 41 items collected for 28 March 2026. Fund Anthropic API and re-run `brief run --stage draft` to generate analysis.",
+    "stripCells": [
+      {
+        "top": "SEVERE",
+        "bot": "THREAT LEVEL"
+      },
+      {
+        "top": "41",
+        "bot": "ITEMS INGESTED"
+      },
+      {
+        "top": "—",
+        "bot": "BRENT CRUDE"
+      },
+      {
+        "top": "ACTIVE",
+        "bot": "HORMUZ STATUS"
+      },
+      {
+        "top": "—",
+        "bot": "FLASH POINTS"
+      }
+    ]
+  },
+  "strategicHeader": {
+    "headlineJudgment": "PLACEHOLDER — 41 items ingested, no AI synthesis.",
+    "oneLineSummary": "Fund API credits and re-run draft stage."
+  },
+  "flashPoints": [],
+  "executive": {
+    "bluf": "PLACEHOLDER — 41 items across 6 domains. Re-run after funding API.",
+    "keyJudgments": [
+      {
+        "id": "kj-d1",
+        "text": "36 items collected (25 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "domain": "d1",
+        "confidence": "high"
+      },
+      {
+        "id": "kj-d2",
+        "text": "35 items collected (25 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "domain": "d2",
+        "confidence": "high"
+      },
+      {
+        "id": "kj-d3",
+        "text": "9 items collected (1 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "domain": "d3",
+        "confidence": "high"
+      },
+      {
+        "id": "kj-d4",
+        "text": "29 items collected (25 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "domain": "d4",
+        "confidence": "high"
+      },
+      {
+        "id": "kj-d5",
+        "text": "2 items collected (0 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "domain": "d5",
+        "confidence": "moderate"
+      },
+      {
+        "id": "kj-d6",
+        "text": "5 items collected (1 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "domain": "d6",
+        "confidence": "high"
+      }
+    ],
+    "kpis": []
+  },
+  "domains": [
+    {
+      "id": "d1",
+      "num": "01",
+      "title": "BATTLESPACE · KINETIC",
+      "keyJudgment": {
+        "text": "36 items collected (25 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "",
+          "citations": [
+            {
+              "ref": "Al Jazeera English",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "",
+          "citations": [
+            {
+              "ref": "Al Jazeera English",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "",
+          "citations": [
+            {
+              "ref": "Al Jazeera English",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d2",
+      "num": "02",
+      "title": "ESCALATION · TRAJECTORY",
+      "keyJudgment": {
+        "text": "35 items collected (25 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "",
+          "citations": [
+            {
+              "ref": "Al Jazeera English",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "",
+          "citations": [
+            {
+              "ref": "Al Jazeera English",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "",
+          "citations": [
+            {
+              "ref": "Al Jazeera English",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d3",
+      "num": "03",
+      "title": "ENERGY · ECONOMIC",
+      "keyJudgment": {
+        "text": "9 items collected (1 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "International Maritime Organization (IMO) 4 Albert Embankment, London SE1 7SR, United Kingdom. International Maritime Organization (IMO) 4 Albert Embankment, London SE1 7SR, United Kingdom",
+          "citations": [
+            {
+              "ref": "IMO Circulars & Alerts",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d4",
+      "num": "04",
+      "title": "DIPLOMATIC · POLITICAL",
+      "keyJudgment": {
+        "text": "29 items collected (25 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "",
+          "citations": [
+            {
+              "ref": "Al Jazeera English",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "",
+          "citations": [
+            {
+              "ref": "Al Jazeera English",
+              "tier": 1
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 3",
+          "text": "",
+          "citations": [
+            {
+              "ref": "Al Jazeera English",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "d5",
+      "num": "05",
+      "title": "CYBER · INFORMATION OPS",
+      "keyJudgment": {
+        "text": "2 items collected (0 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "moderate",
+        "probabilityRange": "placeholder",
+        "corroborated": false
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "In today's complex global marine environment, managing risk is essential. Whether you operate a shipping fleet, manage o. In today's complex global marine environment, managing risk is essential. Whether you operate a shipping fleet, manage offshore energy projects or transport high-value cargo across borders, your business faces a unique and ever-evolving set of risks. From regulatory compliance and environmental risks to cybersecurity threats and supply chain disruptions, businesses involved i",
+          "citations": [
+            {
+              "ref": "Gallagher Marine Risk",
+              "tier": 2
+            }
+          ]
+        },
+        {
+          "subLabel": "ITEM 2",
+          "text": "Gallagher's specialty programs for marine insurance were developed by our marine professionals and address the unique an. Gallagher's specialty programs for marine insurance were developed by our marine professionals and address the unique and complex risks of the maritime industry. Innovation is a critical part of our approach. Our Marine Insurance team combines traditional insurance knowledge with advanced analytics, digital platforms and emerging risk insights. Our suite of products and servi",
+          "citations": [
+            {
+              "ref": "Gallagher Marine Risk",
+              "tier": 2
+            }
+          ]
+        }
+      ],
+      "confidence": "moderate"
+    },
+    {
+      "id": "d6",
+      "num": "06",
+      "title": "WAR RISK INSURANCE · MARITIME FINANCE",
+      "keyJudgment": {
+        "text": "5 items collected (1 Tier 1). Re-run after adding Anthropic API credits for AI synthesis.",
+        "confidence": "high",
+        "probabilityRange": "placeholder",
+        "corroborated": true
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ITEM 1",
+          "text": "International Maritime Organization (IMO) 4 Albert Embankment, London SE1 7SR, United Kingdom. International Maritime Organization (IMO) 4 Albert Embankment, London SE1 7SR, United Kingdom",
+          "citations": [
+            {
+              "ref": "IMO Circulars & Alerts",
+              "tier": 1
+            }
+          ]
+        }
+      ],
+      "confidence": "high"
+    }
+  ],
+  "warningIndicators": [],
+  "collectionGaps": [],
+  "caveats": {
+    "cycleRef": "CSE-BRIEF-PLACEHOLDER · 28 MARCH 2026",
+    "items": [
+      {
+        "label": "PLACEHOLDER",
+        "text": "Not an intelligence product."
+      }
+    ],
+    "confidenceAssessment": "N/A",
+    "dissenterNotes": [],
+    "sourceQuality": "See domain citations.",
+    "handling": "DRAFT — NOT FOR DISTRIBUTION"
+  },
+  "footer": {
+    "id": "CSE-BRIEF-PLACEHOLDER-20260328",
+    "classification": "PROTECTED B // TLP:AMBER",
+    "sources": "See domain citations",
+    "handling": "PLACEHOLDER — NOT FOR DISTRIBUTION"
+  }
+}

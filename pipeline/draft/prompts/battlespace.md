@@ -26,13 +26,13 @@ Theatres to cover (if reporting exists): Israeli-Iranian direct exchange, Gaza, 
 3. **OPERATIONAL ASSESSMENT** — Sub-section. Analytical interpretation. What does the observed pattern mean? What operational trajectory does it imply? Connect facts to judgment explicitly.
 4. **FORCE DISPOSITION NOTE** (optional) — If significant positional changes occurred, note them. Omit if nothing changed.
 
-**Confidence Language Ladder** (use EXACTLY these phrases — never invent hedging language):
-- "We assess with high confidence..." → 95–99% (almost-certainly)
-- "We judge it highly likely..." → 75–95% (highly-likely)
-- "Available evidence suggests..." → 55–75% (likely)
+**Confidence Language Ladder** (use EXACTLY these forms — never invent hedging language, NEVER use first-person plural):
+- "Evidence strongly indicates..." / direct declarative → 95–99% (almost-certainly)
+- "The balance of reporting points to..." / "Multiple sources confirm..." → 75–95% (highly-likely)
+- "Reporting suggests..." / "Available evidence points to..." → 55–75% (likely)
 - "Reporting indicates, though corroboration is limited..." → 45–55% (possibly)
-- "We judge it unlikely, though we cannot exclude..." → 20–45% (unlikely)
-- "We assess with high confidence this will not..." → 1–5% (almost-certainly-not)
+- "This remains unlikely, though it cannot be excluded..." → 20–45% (unlikely)
+- "Nothing in the reporting supports..." → 1–5% (almost-certainly-not)
 
 **Attribution Rules:**
 - Cite every factual claim with source and timestamp: `(AP, 15 Mar 0620 UTC)` or `(CTP-ISW Evening, 14 Mar)`
@@ -50,13 +50,13 @@ Theatres to cover (if reporting exists): Israeli-Iranian direct exchange, Gaza, 
 - BAD: "Overnight, Iranian proxies launched a barrage of rockets." (Chronological narration belongs in a news wire, not an intelligence brief.)
 - BAD: "There were six strikes in the Bekaa Valley." (Existential "there were" construction is the weakest possible lead.)
 - BAD: "Tensions rose as Israel continued operations." ("Tensions rose" is a cliché that conveys nothing the reader cannot infer.)
-- GOOD: "We judge the IDF has shifted to a sustained attrition posture targeting Hezbollah command infrastructure; six confirmed strikes in the Bekaa Valley between 0200–0500 UTC constitute the primary evidence (AP, 15 Mar 0620 UTC)."
-- GOOD: "We assess offensive preparations are underway; three BTGs have repositioned near Kherson within the past 48 hours (CTP-ISW, 14 Mar)."
-- GOOD: "Available evidence suggests a deliberate acceleration of Israeli strike tempo, consistent with pre-emptive degradation rather than punitive retaliation."
+- GOOD: "The IDF has shifted to a sustained attrition posture targeting Hezbollah command infrastructure; six confirmed strikes in the Bekaa Valley between 0200–0500 UTC constitute the primary evidence (AP, 15 Mar 0620 UTC)."
+- GOOD: "Offensive preparations appear underway; three BTGs have repositioned near Kherson within the past 48 hours (CTP-ISW, 14 Mar)."
+- GOOD: "The pattern points to a deliberate acceleration of Israeli strike tempo, consistent with pre-emptive degradation rather than punitive retaliation."
 
 *2. Sentence construction — every sentence must earn its place:*
 - Every paragraph must contain at least two sentences. No fragment leads. No one-line paragraphs.
-- Active voice always. The analyst is the subject: "We assess", "We judge", "Available evidence suggests". Never: "It is assessed that", "Escalation is being considered likely", "Operations were conducted."
+- Active voice always. NEVER use first-person plural ("we assess", "we judge", "our assessment"). Instead use: "Reporting suggests", "Evidence indicates", "The pattern points to", or direct declarative statements. Never: "It is assessed that", "Escalation is being considered likely", "Operations were conducted."
 - Never nominalize verbs. BAD: "the conduct of strikes", "the deployment of forces", "the implementation of operations". GOOD: "struck", "deployed", "executed".
 - Be verb-precise. Use the specific verb that describes what happened:
   * "struck" (air/missile), "interdicted" (supply line), "sortied" (aircraft), "repositioned" (forces), "fired" (artillery/rockets), "breached" (perimeter), "intercepted" (missile/drone)
@@ -109,7 +109,7 @@ Return valid JSON matching this schema exactly. Do not include markdown fences i
     "confidence": "high|moderate|low",
     "probabilityRange": "e.g. 75–95%",
     "language": "almost-certainly|highly-likely|likely|possibly|unlikely|almost-certainly-not",
-    "text": "We judge it highly likely that the IDF has shifted to a sustained attrition posture, with sortie rates at levels unseen since October 2023.",
+    "text": "The IDF has shifted to a sustained attrition posture, with sortie rates at levels unseen since October 2023.",
     "basis": "Six confirmed strikes in the Bekaa Valley within a 3-hour window, combined with B-2 repositioning to Diego Garcia, indicate deliberate escalation of operational tempo (AP, CTP-ISW).",
     "citations": [
       {"source": "AP", "tier": 1, "timestamp": "2024-03-15T06:20:00Z", "verificationStatus": "confirmed"},
@@ -131,7 +131,7 @@ Return valid JSON matching this schema exactly. Do not include markdown fences i
     {
       "subLabel": "OPERATIONAL ASSESSMENT",
       "subLabelVariant": "assessment",
-      "text": "Available evidence suggests a deliberate acceleration of Israeli strike tempo against Hezbollah command-and-control nodes, consistent with pre-emptive degradation rather than punitive retaliation. The B-2 deployment signals U.S. willingness to position strategic assets forward — we assess this is intended as deterrent signalling toward Tehran rather than preparation for offensive operations against Iranian territory.",
+      "text": "The pattern points to a deliberate acceleration of Israeli strike tempo against Hezbollah command-and-control nodes, consistent with pre-emptive degradation rather than punitive retaliation. The B-2 deployment signals U.S. willingness to position strategic assets forward — this is more plausibly deterrent signalling toward Tehran than preparation for offensive operations against Iranian territory.",
       "citations": [
         {"source": "CTP-ISW Evening", "tier": 1, "timestamp": "2024-03-14T22:00:00Z", "verificationStatus": "confirmed"}
       ]

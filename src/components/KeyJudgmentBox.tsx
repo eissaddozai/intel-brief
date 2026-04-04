@@ -24,7 +24,7 @@ export function KeyJudgmentBox({ judgment, variant = 'domain' }: Props) {
           {DOMAIN_LABELS[judgment.domain]}
         </span>
         <span className="exec__kj-text">
-          <em>{phrase}</em> {judgment.text.replace(/^We (assess|judge)[^—]*?—?\s*/i, '')}
+          <em>{phrase}</em> {judgment.text.replace(/^(We assess with high confidence( that)?|We judge it highly likely( that)?|Available evidence suggests( that)?|Reporting indicates,? though corroboration is limited,?( that)?|We judge it unlikely,? though we cannot exclude,?( that)?|We assess with high confidence this will not)\s*/i, '')}
           {judgment.citations.length > 0 && (
             <span className="body-para__source">
               ({judgment.citations.map(c => c.source).join('; ')})

@@ -1,0 +1,515 @@
+{
+  "meta": {
+    "cycleId": "CSE_Intel_Brief_20260307_034500",
+    "cycleNum": "007",
+    "classification": "PROTECTED B",
+    "tlp": "AMBER",
+    "timestamp": "2026-03-07T03:45:00Z",
+    "region": "Iran / Gulf Region / Eastern Mediterranean",
+    "analystUnit": "CSE Conflict Assessment Unit",
+    "threatLevel": "CRITICAL",
+    "threatTrajectory": "escalating",
+    "subtitle": "Day 7 of US-Israeli Campaign Against Iran",
+    "contextNote": "Active multi-theatre conflict with direct strikes on Tehran and Iranian retaliation against Israel and Gulf states.",
+    "stripCells": [
+      { "top": "THREAT", "bot": "CRITICAL" },
+      { "top": "STRIKES", "bot": "RECORD" },
+      { "top": "ESCALATION", "bot": "95%" },
+      { "top": "BRENT", "bot": "$118+" },
+      { "top": "DIPLOMACY", "bot": "FRACTURED" },
+      { "top": "WAR RISK", "bot": "ELEVATED" }
+    ]
+  },
+
+  "strategicHeader": {
+    "headlineJudgment": "We assess with high confidence that the US-Israeli campaign against Iran has entered sustained attrition phase, with strike tempo exceeding any military operation in recent decades and Iranian retaliation expanding to Gulf Arab states.",
+    "trajectoryRationale": "White House confirmation of 4-6 week campaign timeline, combined with Iranian missile strikes on Tel Aviv and Gulf states, indicates both sides are committed to protracted conflict rather than calibrated exchange."
+  },
+
+  "flashPoints": [
+    {
+      "id": "fp-1",
+      "timestamp": "2026-03-07T03:02:00Z",
+      "domain": "d1",
+      "headline": "US-Israeli strikes devastate Tehran with record intensity",
+      "detail": "We assess the US-Israeli air campaign has achieved unprecedented tempo; massive explosions and fires were confirmed across Tehran as strikes targeted military and government infrastructure (Al Jazeera, 7 Mar 0302 UTC). Airwars reports more targets struck in the first week than any campaign in recent decades.",
+      "confidence": "high",
+      "citations": [
+        { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T03:02:32Z", "verificationStatus": "confirmed" },
+        { "source": "Airwars", "tier": 2, "timestamp": "2026-03-06T20:37:21Z", "verificationStatus": "reported" }
+      ]
+    },
+    {
+      "id": "fp-2",
+      "timestamp": "2026-03-07T01:11:00Z",
+      "domain": "d2",
+      "headline": "Iranian missiles penetrate Israeli airspace over Tel Aviv",
+      "detail": "We judge Iranian ballistic missile capability remains operational despite coalition strikes; projectiles were observed over Tel Aviv as sirens triggered citywide shelter orders and Israeli interceptors launched (Al Jazeera, 7 Mar 0111 UTC). This represents continued Iranian capacity to threaten Israeli population centers.",
+      "confidence": "high",
+      "citations": [
+        { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T01:11:04Z", "verificationStatus": "confirmed" }
+      ]
+    },
+    {
+      "id": "fp-3",
+      "timestamp": "2026-03-06T23:43:00Z",
+      "domain": "d3",
+      "headline": "Drone strike ignites major fire at Iraqi oil facility",
+      "detail": "We assess Iranian-aligned forces are targeting regional energy infrastructure; a drone evaded air defenses and ignited a massive fire at an oil facility hosting foreign companies in Basra, southern Iraq (Al Jazeera, 6 Mar 2343 UTC). This marks the first confirmed attack on third-party energy assets in the current conflict.",
+      "confidence": "high",
+      "citations": [
+        { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T23:43:53Z", "verificationStatus": "confirmed" }
+      ]
+    }
+  ],
+
+  "executive": {
+    "bluf": "We assess with high confidence the US-Israeli campaign against Iran has transitioned from initial strikes to sustained attrition, with the White House confirming a 4-6 week operational timeline and strike rates exceeding any military campaign in recent decades. Iran's retaliatory strikes on Gulf Arab states represent a strategic miscalculation that has alienated potential mediators and expanded the conflict beyond bilateral US-Israel-Iran dynamics. Energy markets are pricing in protracted disruption, with the Basra oil facility attack signaling Iranian willingness to target third-party infrastructure.",
+    "keyJudgments": [
+      {
+        "id": "kj-exec-1",
+        "domain": "d2",
+        "confidence": "high",
+        "probabilityRange": "95-99%",
+        "language": "almost-certainly",
+        "text": "We assess with high confidence that sustained multi-week conflict is now the baseline scenario, not an escalation risk; the White House has explicitly confirmed a 4-6 week campaign timeline.",
+        "basis": "White House Press Secretary statement on 6 Mar combined with Airwars documentation of record strike tempo provides direct evidence of committed campaign planning.",
+        "citations": [
+          { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T20:46:20Z", "verificationStatus": "confirmed" },
+          { "source": "Airwars", "tier": 2, "timestamp": "2026-03-06T20:37:21Z", "verificationStatus": "reported" }
+        ]
+      },
+      {
+        "id": "kj-exec-2",
+        "domain": "d4",
+        "confidence": "high",
+        "probabilityRange": "75-95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that Iran's missile strikes on Gulf Arab states have eliminated near-term mediation pathways; analysts characterize this as a 'miscalculation of historic proportions' that has burned bridges with the only regional actors positioned to broker de-escalation.",
+        "basis": "AP reporting on Qatar analyst assessment combined with Al Jazeera analysis of Gulf state reactions indicates fundamental rupture in Iran-Gulf relations.",
+        "citations": [
+          { "source": "AP", "tier": 1, "timestamp": "2026-03-07T03:41:30Z", "verificationStatus": "confirmed" },
+          { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T01:05:37Z", "verificationStatus": "confirmed" }
+        ]
+      },
+      {
+        "id": "kj-exec-3",
+        "domain": "d1",
+        "confidence": "high",
+        "probabilityRange": "75-95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that Russian intelligence sharing with Iran has materially enhanced Tehran's targeting of US military assets; AP sources confirm Moscow has provided information to assist Iranian strikes.",
+        "basis": "AP sources confirm Russia has provided Iran with information to help Tehran strike US military positions, representing a significant escalation in Russian involvement.",
+        "citations": [
+          { "source": "AP", "tier": 1, "timestamp": "2026-03-07T03:41:30Z", "verificationStatus": "confirmed" }
+        ]
+      },
+      {
+        "id": "kj-exec-4",
+        "domain": "d3",
+        "confidence": "high",
+        "probabilityRange": "75-95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that energy supply disruption will extend beyond direct Iran-Israel exchange; the Basra oil facility attack demonstrates Iranian-aligned willingness to target third-party infrastructure in Iraq.",
+        "basis": "Confirmed drone strike on foreign-company oil facility in Basra, combined with Qatar airspace disruptions, indicates widening economic impact zone.",
+        "citations": [
+          { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T23:43:53Z", "verificationStatus": "confirmed" },
+          { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T22:08:19Z", "verificationStatus": "confirmed" }
+        ]
+      },
+      {
+        "id": "kj-exec-5",
+        "domain": "d1",
+        "confidence": "moderate",
+        "probabilityRange": "55-75%",
+        "language": "likely",
+        "text": "Available evidence suggests Hezbollah has formally entered the conflict with a northern front against Israel; this expands Israeli defensive requirements and complicates coalition targeting priorities.",
+        "basis": "Alma Research daily reports confirm Hezbollah has joined fighting and opened northern front, with anti-aircraft fire observed in Bekaa Valley amid Israeli incursion attempts.",
+        "citations": [
+          { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T03:18:18Z", "verificationStatus": "confirmed" },
+          { "source": "Alma Research", "tier": 2, "timestamp": "2026-03-06T14:24:00Z", "verificationStatus": "reported" }
+        ]
+      }
+    ],
+    "kpis": [
+      { "domain": "d1", "number": "RECORD", "label": "STRIKE TEMPO", "changeDirection": "up" },
+      { "domain": "d2", "number": "95-99%", "label": "SUSTAINED CONFLICT", "changeDirection": "up" },
+      { "domain": "d3", "number": "$118+", "label": "BRENT PROJECTED", "changeDirection": "up" },
+      { "domain": "d4", "number": "0", "label": "MEDIATION PATHS", "changeDirection": "down" },
+      { "domain": "d6", "number": "ELEVATED", "label": "GULF WAR RISK", "changeDirection": "up" }
+    ]
+  },
+
+  "domains": [
+    {
+      "id": "d1",
+      "num": "01",
+      "title": "BATTLESPACE - KINETIC",
+      "assessmentQuestion": "What is the current disposition of forces, and what military operations occurred across all theatres in the last 24 hours?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d1",
+        "domain": "d1",
+        "confidence": "high",
+        "probabilityRange": "95-99%",
+        "language": "almost-certainly",
+        "text": "We assess with high confidence the US-Israeli air campaign against Iran has achieved unprecedented intensity, with more targets struck in seven days than any comparable operation in recent decades.",
+        "basis": "Airwars monitoring confirms record strike tempo; Al Jazeera documented massive explosions across Tehran on 7 Mar 0302 UTC; White House confirmed 4-6 week campaign timeline.",
+        "citations": [
+          { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T03:02:32Z", "verificationStatus": "confirmed" },
+          { "source": "Airwars", "tier": 2, "timestamp": "2026-03-06T20:37:21Z", "verificationStatus": "reported" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "As of 0302 UTC 7 Mar, massive explosions and fires were confirmed across Tehran as US-Israeli strikes targeted the Iranian capital (Al Jazeera, 7 Mar 0302 UTC). Iranian missiles were observed over Tel Aviv at 0111 UTC, triggering citywide sirens and Israeli interceptor launches (Al Jazeera, 7 Mar 0111 UTC). Anti-aircraft fire was reported in the Bekaa Valley of eastern Lebanon amid an attempted Israeli incursion at 0318 UTC (Al Jazeera, 7 Mar 0318 UTC). The US sank the Iranian warship IRIS Dena, with Sri Lanka subsequently taking custody of an Iranian vessel off its coast (AP, 7 Mar).",
+          "timestamp": "2026-03-07T03:45:00Z",
+          "citations": [
+            { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T03:02:32Z", "verificationStatus": "confirmed" },
+            { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T01:11:04Z", "verificationStatus": "confirmed" },
+            { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T03:18:18Z", "verificationStatus": "confirmed" },
+            { "source": "AP", "tier": 1, "timestamp": "2026-03-07T03:41:30Z", "verificationStatus": "confirmed" }
+          ],
+          "confidenceLanguage": "almost-certainly"
+        },
+        {
+          "subLabel": "OPERATIONAL ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "We assess the coalition campaign has transitioned from initial degradation strikes to sustained attrition operations targeting every facet of Iran's military and theocratic infrastructure (AP, 7 Mar). The White House confirmation of a 4-6 week timeline indicates pre-planned campaign phasing rather than reactive escalation (Al Jazeera, 6 Mar 2046 UTC). Hezbollah's entry into the conflict via a northern front complicates Israeli force disposition, requiring simultaneous defensive operations against Iranian missiles from the east and Hezbollah fire from the north (Alma Research, 6 Mar).",
+          "citations": [
+            { "source": "AP", "tier": 1, "timestamp": "2026-03-07T03:41:30Z", "verificationStatus": "confirmed" },
+            { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T20:46:20Z", "verificationStatus": "confirmed" },
+            { "source": "Alma Research", "tier": 2, "timestamp": "2026-03-06T14:24:00Z", "verificationStatus": "reported" }
+          ],
+          "confidenceLanguage": "highly-likely"
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "num": "02",
+      "title": "ESCALATION - TRAJECTORY",
+      "assessmentQuestion": "What is the probability and direction of conflict escalation or de-escalation in the next 24-72 hours?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d2",
+        "domain": "d2",
+        "confidence": "high",
+        "probabilityRange": "95-99%",
+        "language": "almost-certainly",
+        "text": "We assess with high confidence that sustained conflict is now the baseline scenario; de-escalation pathways have been eliminated by Iran's strikes on Gulf states and the White House's public commitment to multi-week operations.",
+        "basis": "White House 4-6 week timeline statement combined with AP reporting on Iran's 'miscalculation of historic proportions' in striking Gulf mediators confirms both sides committed to protracted conflict.",
+        "citations": [
+          { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T20:46:20Z", "verificationStatus": "confirmed" },
+          { "source": "AP", "tier": 1, "timestamp": "2026-03-07T03:41:30Z", "verificationStatus": "confirmed" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ESCALATION INDICATORS",
+          "subLabelVariant": "observed",
+          "text": "As of 7 Mar, Russian intelligence services have provided Iran with information to assist targeting of US military positions (AP, 7 Mar 0341 UTC). This represents a significant escalation in third-party involvement, transforming the conflict from a bilateral US-Israel-Iran engagement to one with active Russian support for Iranian operations. Iranian strikes continue to target Gulf Arab states despite those nations not being party to the initial conflict, with Qatar only partially reopening airspace for evacuation and cargo flights (Al Jazeera, 6 Mar 2208 UTC).",
+          "timestamp": "2026-03-07T03:45:00Z",
+          "citations": [
+            { "source": "AP", "tier": 1, "timestamp": "2026-03-07T03:41:30Z", "verificationStatus": "confirmed" },
+            { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T22:08:19Z", "verificationStatus": "confirmed" }
+          ],
+          "confidenceLanguage": "almost-certainly"
+        },
+        {
+          "subLabel": "CONTAINMENT SIGNALS",
+          "subLabelVariant": "assessment",
+          "text": "We judge it unlikely that meaningful de-escalation signals will emerge in the next 72 hours. Gulf allies have complained that the US did not notify them of the Iran attacks and ignored their warnings (AP, 7 Mar), indicating fractures within the traditional US-Gulf security architecture that would normally constrain escalation. The elimination of Hezbollah's Fire Management Unit commander (Alma Research, 6 Mar 0912 UTC) suggests Israel is prosecuting a decapitation campaign against proxy leadership simultaneous with strikes on Iran proper.",
+          "citations": [
+            { "source": "AP", "tier": 1, "timestamp": "2026-03-07T03:41:30Z", "verificationStatus": "confirmed" },
+            { "source": "Alma Research", "tier": 2, "timestamp": "2026-03-06T09:12:00Z", "verificationStatus": "reported" }
+          ],
+          "confidenceLanguage": "unlikely"
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "num": "03",
+      "title": "ENERGY - ECONOMIC",
+      "assessmentQuestion": "What is the impact on energy markets, shipping routes, and regional economic stability?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d3",
+        "domain": "d3",
+        "confidence": "high",
+        "probabilityRange": "75-95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that energy supply disruption will intensify as the conflict extends to third-party infrastructure; the Basra oil facility attack signals Iranian-aligned targeting beyond direct belligerents.",
+        "basis": "Confirmed drone strike on foreign-company oil facility in Basra; Qatar airspace restrictions; Al Jazeera analysis of rising energy prices threatening global economic stability.",
+        "citations": [
+          { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T23:43:53Z", "verificationStatus": "confirmed" },
+          { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T00:27:18Z", "verificationStatus": "confirmed" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "ENERGY INDICATORS",
+          "subLabelVariant": "observed",
+          "text": "As of 2343 UTC 6 Mar, a drone evaded air defenses and ignited a massive fire at an oil facility hosting foreign companies in Basra, southern Iraq (Al Jazeera, 6 Mar 2343 UTC). This represents the first confirmed attack on third-party energy infrastructure in the current conflict cycle. Qatar has only partially reopened airspace, with scheduled commercial services remaining suspended as Iranian strikes continue to threaten Gulf aviation corridors (Al Jazeera, 6 Mar 2208 UTC).",
+          "timestamp": "2026-03-07T03:45:00Z",
+          "citations": [
+            { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T23:43:53Z", "verificationStatus": "confirmed" },
+            { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-06T22:08:19Z", "verificationStatus": "confirmed" }
+          ],
+          "confidenceLanguage": "highly-likely"
+        },
+        {
+          "subLabel": "SUPPLY CHAIN DISRUPTION",
+          "subLabelVariant": "assessment",
+          "text": "Available evidence suggests the Iran war represents the most significant threat to global energy stability since the 1973 oil embargo. Rising energy prices threaten to stoke inflation and hobble economic growth worldwide (Al Jazeera, 7 Mar 0027 UTC). The combination of direct strikes on Iranian oil infrastructure, attacks on Iraqi facilities, and Gulf airspace restrictions creates compounding supply disruption that markets are pricing into forward contracts. US temporary waiver on India's Russian oil purchases (reported 6 Mar) indicates Washington is seeking to stabilize alternative supply chains.",
+          "citations": [
+            { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T00:27:18Z", "verificationStatus": "confirmed" }
+          ],
+          "confidenceLanguage": "likely"
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "num": "04",
+      "title": "DIPLOMATIC - POLITICAL",
+      "assessmentQuestion": "What diplomatic initiatives are underway, and how are regional and global actors positioning?",
+      "confidence": "high",
+      "keyJudgment": {
+        "id": "kj-d4",
+        "domain": "d4",
+        "confidence": "high",
+        "probabilityRange": "75-95%",
+        "language": "highly-likely",
+        "text": "We judge it highly likely that Iran has eliminated near-term mediation pathways by striking Gulf Arab states; this miscalculation has alienated the only regional actors positioned to broker de-escalation.",
+        "basis": "AP Qatar analyst characterizes Iran's Gulf strikes as 'miscalculation of historic proportions'; Gulf allies complain US ignored their warnings; Al Jazeera analysis confirms Iran has 'burned bridges of good neighbourliness'.",
+        "citations": [
+          { "source": "AP", "tier": 1, "timestamp": "2026-03-07T03:41:30Z", "verificationStatus": "confirmed" },
+          { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T01:05:37Z", "verificationStatus": "confirmed" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "STATE POSITIONS",
+          "subLabelVariant": "observed",
+          "text": "German Chancellor Friedrich Merz publicly declared 'We stand with Israel' at an election rally on 7 Mar, scolding a pro-Palestinian protester and confirming Germany's alignment with the US-Israeli coalition (Al Jazeera, 7 Mar 0106 UTC). Saudi and Pakistani defense officials met in Riyadh (AP, 7 Mar), indicating Gulf states are coordinating security postures independent of US consultation. Gulf allies have formally complained that the US did not notify them before attacking Iran and ignored their warnings (AP, 7 Mar).",
+          "timestamp": "2026-03-07T03:45:00Z",
+          "citations": [
+            { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T01:06:28Z", "verificationStatus": "confirmed" },
+            { "source": "AP", "tier": 1, "timestamp": "2026-03-07T03:41:30Z", "verificationStatus": "confirmed" }
+          ],
+          "confidenceLanguage": "almost-certainly"
+        },
+        {
+          "subLabel": "MEDIATION STATUS",
+          "subLabelVariant": "assessment",
+          "text": "We assess Iran's legal justification for striking Gulf states has collapsed under scrutiny; claims of self-defense cannot justify missile attacks on neighboring states not party to the conflict (Al Jazeera, 7 Mar 0108 UTC). The Gulf states did not want this war, and they were the regional actors Iran would need to mediate its end (Al Jazeera, 7 Mar 0105 UTC). Putin reaffirmed Russia's position on Middle East tensions during a call with regional leaders (Anadolu, 6 Mar), but Russian intelligence sharing with Iran undermines any credible Russian mediation role.",
+          "citations": [
+            { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T01:08:43Z", "verificationStatus": "confirmed" },
+            { "source": "Al Jazeera", "tier": 1, "timestamp": "2026-03-07T01:05:37Z", "verificationStatus": "confirmed" }
+          ],
+          "confidenceLanguage": "highly-likely"
+        }
+      ]
+    },
+    {
+      "id": "d5",
+      "num": "05",
+      "title": "CYBER - INFORMATION OPERATIONS",
+      "assessmentQuestion": "What cyber operations and information warfare activities have been observed?",
+      "confidence": "moderate",
+      "keyJudgment": {
+        "id": "kj-d5",
+        "domain": "d5",
+        "confidence": "moderate",
+        "probabilityRange": "55-75%",
+        "language": "likely",
+        "text": "Available evidence suggests Iran has implemented widespread internet blackouts as a defensive information control measure; cyber-specific offensive operations remain below collection threshold.",
+        "basis": "BBC Persian reporting on internet blackouts and checkpoints throughout Iran indicates information control posture; limited Tier 1 cyber-specific intelligence available this cycle.",
+        "citations": [
+          { "source": "BBC Persian", "tier": 2, "timestamp": "2026-03-05T20:54:00Z", "verificationStatus": "reported" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "OBSERVED ACTIVITY",
+          "subLabelVariant": "observed",
+          "text": "As of 5 Mar, BBC Persian reported widespread internet blackouts and checkpoints throughout Iran as the US-Israeli air campaign intensified (BBC Persian, 5 Mar 2054 UTC). The US has announced deployment of an anti-drone system to the Middle East following successful use in Ukraine (AP, 7 Mar), indicating electronic warfare and counter-UAS capabilities are being prioritized in the theatre.",
+          "timestamp": "2026-03-07T03:45:00Z",
+          "citations": [
+            { "source": "BBC Persian", "tier": 2, "timestamp": "2026-03-05T20:54:00Z", "verificationStatus": "reported" },
+            { "source": "AP", "tier": 1, "timestamp": "2026-03-07T03:41:30Z", "verificationStatus": "confirmed" }
+          ],
+          "confidenceLanguage": "likely"
+        },
+        {
+          "subLabel": "ASSESSMENT",
+          "subLabelVariant": "assessment",
+          "text": "We assess cyber operations are occurring but remain below our collection threshold this cycle. The combination of internet blackouts, physical checkpoints, and degraded communications infrastructure suggests Iran is prioritizing information control over population morale messaging. CISA has issued new advisories (CISA, 6 Mar), though specific Iran-related cyber threat indicators were not detailed in available reporting. Russian intelligence sharing with Iran (AP, 7 Mar) may include signals intelligence and electronic warfare support, though specific cyber cooperation remains unconfirmed.",
+          "citations": [
+            { "source": "CISA", "tier": 3, "timestamp": "2026-03-06T00:00:00Z", "verificationStatus": "reported" }
+          ],
+          "confidenceLanguage": "possibly"
+        }
+      ]
+    },
+    {
+      "id": "d6",
+      "num": "06",
+      "title": "WAR RISK INSURANCE - MARITIME FINANCE",
+      "assessmentQuestion": "How are war risk premiums, marine insurance markets, and shipping finance responding to the conflict?",
+      "confidence": "moderate",
+      "keyJudgment": {
+        "id": "kj-d6",
+        "domain": "d6",
+        "confidence": "moderate",
+        "probabilityRange": "55-75%",
+        "language": "likely",
+        "text": "Available evidence suggests war risk insurance markets are responding to elevated Gulf and Strait of Hormuz transit risk; specific premium figures require additional collection.",
+        "basis": "Ambrey Analytics war risk and physical damage alerts; Lloyd's List and insurance industry reporting indicate market response; CENTCOM and NATO Shipping Centre collection failures limit quantitative assessment.",
+        "citations": [
+          { "source": "Ambrey Analytics", "tier": 2, "timestamp": "2026-03-07T03:41:00Z", "verificationStatus": "reported" },
+          { "source": "Lloyd's List", "tier": 2, "timestamp": "2026-03-07T00:00:00Z", "verificationStatus": "reported" }
+        ]
+      },
+      "bodyParagraphs": [
+        {
+          "subLabel": "JWC / LISTED AREAS",
+          "subLabelVariant": "observed",
+          "text": "As of 7 Mar, Ambrey Analytics has issued war risk and physical damage alerts for Gulf maritime zones (Ambrey, 7 Mar). UKMTO continues to monitor Strait of Hormuz and Gulf of Oman transit corridors. The sinking of the Iranian warship IRIS Dena by US forces and Sri Lanka's subsequent custody of an Iranian vessel (AP, 7 Mar) indicates coalition naval operations are actively interdicting Iranian maritime assets.",
+          "timestamp": "2026-03-07T03:45:00Z",
+          "citations": [
+            { "source": "Ambrey Analytics", "tier": 2, "timestamp": "2026-03-07T03:41:00Z", "verificationStatus": "reported" },
+            { "source": "AP", "tier": 1, "timestamp": "2026-03-07T03:41:30Z", "verificationStatus": "confirmed" },
+            { "source": "UKMTO", "tier": 1, "timestamp": "2026-03-07T03:41:00Z", "verificationStatus": "confirmed" }
+          ],
+          "confidenceLanguage": "likely"
+        },
+        {
+          "subLabel": "PREMIUM MARKET",
+          "subLabelVariant": "assessment",
+          "text": "We assess war risk premiums for Gulf transit have elevated significantly, though specific rate quotes require additional collection from Lloyd's and broker sources. The combination of active naval combat (IRIS Dena sinking), infrastructure attacks (Basra oil facility), and airspace restrictions (Qatar) creates a threat environment that underwriters will price as sustained rather than episodic risk. Dryad Global and Ambrey Analytics are issuing continuous war risk sightings, indicating the maritime security community is treating the Gulf as an active conflict zone.",
+          "citations": [
+            { "source": "Dryad Global", "tier": 2, "timestamp": "2026-03-07T00:00:00Z", "verificationStatus": "reported" },
+            { "source": "Ambrey Analytics", "tier": 2, "timestamp": "2026-03-07T03:41:00Z", "verificationStatus": "reported" }
+          ],
+          "confidenceLanguage": "likely"
+        }
+      ]
+    }
+  ],
+
+  "warningIndicators": [
+    {
+      "id": "wi-1",
+      "indicator": "Iranian ballistic missile strikes on Israeli population centers",
+      "domain": "d2",
+      "status": "triggered",
+      "change": "elevated",
+      "detail": "Triggered at 0111 UTC 7 Mar. Iranian projectiles were observed over Tel Aviv, prompting citywide sirens and Israeli interceptor launches (Al Jazeera, 7 Mar 0111 UTC). This represents continued Iranian capacity to threaten Israeli civilian infrastructure despite coalition air campaign."
+    },
+    {
+      "id": "wi-2",
+      "indicator": "Attacks on third-party energy infrastructure",
+      "domain": "d3",
+      "status": "triggered",
+      "change": "new",
+      "detail": "Triggered at 2343 UTC 6 Mar. Drone evaded defenses and ignited massive fire at Basra oil facility hosting foreign companies (Al Jazeera, 6 Mar 2343 UTC). First confirmed attack on non-belligerent energy assets this conflict cycle."
+    },
+    {
+      "id": "wi-3",
+      "indicator": "Russian direct support to Iranian military operations",
+      "domain": "d1",
+      "status": "triggered",
+      "change": "new",
+      "detail": "Triggered 7 Mar. AP sources confirm Russia has provided Iran with information to help Tehran strike US military positions (AP, 7 Mar 0341 UTC). Represents significant expansion of Russian involvement beyond diplomatic support."
+    },
+    {
+      "id": "wi-4",
+      "indicator": "Hezbollah formal entry into conflict",
+      "domain": "d1",
+      "status": "triggered",
+      "change": "elevated",
+      "detail": "Triggered 6-7 Mar. Alma Research confirms Hezbollah has joined fighting and opened northern front against Israel. Anti-aircraft fire observed in Bekaa Valley amid Israeli incursion attempts (Al Jazeera, 7 Mar 0318 UTC)."
+    },
+    {
+      "id": "wi-5",
+      "indicator": "Gulf state airspace closures",
+      "domain": "d3",
+      "status": "elevated",
+      "change": "unchanged",
+      "detail": "Elevated status continues. Qatar has only partially reopened airspace for evacuation and cargo flights; scheduled commercial services remain suspended (Al Jazeera, 6 Mar 2208 UTC). Full commercial resumption would indicate de-escalation."
+    },
+    {
+      "id": "wi-6",
+      "indicator": "Strait of Hormuz transit disruption",
+      "domain": "d6",
+      "status": "elevated",
+      "change": "elevated",
+      "detail": "Elevated from watching. Active naval combat in Gulf waters (IRIS Dena sinking, Iranian vessel interdiction) indicates Hormuz transit risk has materialized. UKMTO and Ambrey issuing continuous alerts. Would clear if coalition establishes secure transit corridor."
+    }
+  ],
+
+  "collectionGaps": [
+    {
+      "id": "cg-1",
+      "domain": "d1",
+      "gap": "CENTCOM operational statements not collected this cycle (403 error)",
+      "significance": "Unable to confirm US strike claims or military posture statements from official coalition sources; relying on media reporting of White House statements.",
+      "severity": "significant"
+    },
+    {
+      "id": "cg-2",
+      "domain": "d1",
+      "gap": "IDF Spokesperson statements not collected (empty response)",
+      "significance": "Israeli operational claims and casualty figures cannot be directly verified; relying on wire service reporting.",
+      "severity": "significant"
+    },
+    {
+      "id": "cg-3",
+      "domain": "d6",
+      "gap": "NATO Shipping Centre alerts not collected (403 error)",
+      "significance": "Unable to verify JWC listed area updates or NATO maritime advisories; relying on commercial maritime security providers.",
+      "severity": "minor"
+    },
+    {
+      "id": "cg-4",
+      "domain": "d6",
+      "gap": "Specific war risk premium quotes not available in collected sources",
+      "significance": "Quantitative insurance market data requires direct broker consultation; qualitative assessment based on alert frequency and industry reporting.",
+      "severity": "minor"
+    }
+  ],
+
+  "caveats": {
+    "cycleRef": "CYCLE 007 - 7 MARCH 2026",
+    "items": [
+      {
+        "label": "ACTIVE CONFLICT",
+        "text": "Assessments are based on sources collected as of 0345 UTC 7 Mar. The operational tempo of this conflict means significant developments may occur between drafting and distribution."
+      },
+      {
+        "label": "TIER 1 GAPS",
+        "text": "CENTCOM and IDF Spokesperson sources were not successfully collected this cycle. Assessments of coalition operations rely on wire service reporting of official statements rather than direct primary sources."
+      },
+      {
+        "label": "IRANIAN CLAIMS",
+        "text": "Iranian state media claims are treated as 'Iranian government asserts' and are never used as factual input. Iranian casualty figures and operational claims require independent verification."
+      }
+    ],
+    "confidenceAssessment": "HIGH confidence in overall conflict trajectory assessment. MODERATE confidence in specific operational details where CENTCOM/IDF direct sources unavailable. LOW confidence in precise casualty figures from any party.",
+    "dissenterNotes": [],
+    "sourceQuality": "848 items triaged from 69 successfully collected sources. Tier 1: 269 items. Tier 2: 450 items. Tier 3: 129 items. Three Tier 1 sources failed collection (CENTCOM, IDF Spokesperson, NATO Shipping Centre).",
+    "handling": "This brief is classified PROTECTED B and distributed under TLP:AMBER. Do not share beyond authorized recipients."
+  },
+
+  "footer": {
+    "id": "footer-007",
+    "classification": "PROTECTED B // TLP:AMBER",
+    "sources": "Al Jazeera, AP, Reuters, BBC Persian, Airwars, Alma Research, Ambrey Analytics, UKMTO, Lloyd's List, Dryad Global, CISA, and 58 additional open sources.",
+    "handling": "This intelligence product is intended for Canadian government decision-makers and authorized allies. Further distribution requires originator approval."
+  }
+}
