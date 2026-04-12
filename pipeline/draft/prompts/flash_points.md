@@ -41,7 +41,7 @@ Return valid JSON matching this schema exactly. Return raw JSON only — no mark
     "timestamp": "2026-03-06T04:30:00Z",
     "domain": "d1",
     "headline": "IRGC missile salvo strikes Haifa port",
-    "detail": "We assess with high confidence that the overnight IRGC ballistic missile strike on Haifa port represents a material escalation; four missiles penetrated Israeli air defenses, damaging fuel infrastructure. (CTP-ISW, 06 Mar 0600 UTC)",
+    "detail": "Evidence strongly indicates that the overnight IRGC ballistic missile strike on Haifa port represents a material escalation; four missiles penetrated Israeli air defenses, damaging fuel infrastructure. (CTP-ISW, 06 Mar 0600 UTC)",
     "confidence": "high",
     "citations": [
       {"source": "CTP-ISW Evening Report", "tier": 1, "verificationStatus": "confirmed", "timestamp": "2026-03-06T06:00:00Z"}

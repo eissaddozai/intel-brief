@@ -1,0 +1,1 @@
+../../../../pipeline/draft/prompts/strategic_header.md
