@@ -40,7 +40,7 @@ Synthesize the six domain sections into an integrated executive assessment with:
   * BAD: "Several developments occurred in the past 24 hours." (This is a content-free sentence.)
   * BAD: "Tensions continued to rise amid ongoing fighting." (Three forbidden phrases and no analytical content.)
   * GOOD: "The probability of regional escalation has risen materially — simultaneous Israeli strikes on Hezbollah C2 and IRGC naval repositioning in the Strait of Hormuz represent the first multi-theatre escalation convergence since October 2023."
-  * GOOD: "We judge it highly likely that the sanctions-enforcement coalition is fracturing; France's abstention on Resolution 2735 marks the first P3 defection and signals a shift from rhetorical solidarity to operational hedging."
+  * GOOD: "The sanctions-enforcement coalition is fracturing; France's abstention on Resolution 2735 marks the first P3 defection and signals a shift from rhetorical solidarity to operational hedging."
 - Identify the single most consequential development and state what it MEANS — not what happened
 - State the implication for Canadian interests or regional stability in concrete terms
 - Explicitly note if threat trajectory has changed from the previous cycle
@@ -70,13 +70,13 @@ Synthesize the six domain sections into an integrated executive assessment with:
 - D6: War risk premium level or change (e.g., "$0.045/GRT" or "+18% vs prior cycle")
 - Include `changeDirection`: "up" | "down" | "neutral" for each
 
-**Confidence Language Ladder** (use EXACTLY these phrases):
-- "We assess with high confidence..." → 95–99% (almost-certainly)
-- "We judge it highly likely..." → 75–95% (highly-likely)
+**Confidence Language Ladder** (use EXACTLY these phrases — NEVER use first-person plural):
+- "Evidence strongly indicates..." / direct declarative → 95–99% (almost-certainly)
+- "The balance of reporting points to..." / "Multiple sources confirm..." → 75–95% (highly-likely)
 - "Available evidence suggests..." → 55–75% (likely)
 - "Reporting indicates, though corroboration is limited..." → 45–55% (possibly)
-- "We judge it unlikely, though we cannot exclude..." → 20–45% (unlikely)
-- "We assess with high confidence this will not..." → 1–5% (almost-certainly-not)
+- "This remains unlikely, though it cannot be excluded..." → 20–45% (unlikely)
+- "Nothing in the reporting supports..." → 1–5% (almost-certainly-not)
 
 **Writing Rules (MANDATORY — violations trigger automated rejection):**
 
@@ -88,10 +88,10 @@ Synthesize the six domain sections into an integrated executive assessment with:
 *2. Cross-domain synthesis — the primary value of the executive:*
 - Domain sections give depth. The executive gives breadth and integration.
 - Connect military events (D1) to escalation trajectory (D2) to economic impact (D3) to diplomatic response (D4) to insurance market pricing (D6)
-- A good executive KJ ties two or more domains together: "The insurance market's 18% premium hardening validates our D2 escalation assessment — underwriters are pricing in sustained conflict, not a one-cycle spike."
+- A good executive KJ ties two or more domains together: "The insurance market's 18% premium hardening validates the D2 escalation assessment — underwriters are pricing in sustained conflict, not a one-cycle spike."
 
 *3. Sentence construction:*
-- Active voice always: "We assess", "We judge" — never "It is assessed", "It should be noted"
+- Active voice always: "Reporting suggests", "Evidence indicates", "The pattern points to" — never "It is assessed", "It should be noted". NEVER use first-person plural ("we assess", "we judge").
 - Never nominalize: "the implementation of sanctions" → "sanctions were imposed"
 - Cut every word that adds no information. The executive is the tightest section.
 - No fragment leads. Every paragraph ≥ 2 sentences.
@@ -110,7 +110,7 @@ Return valid JSON matching this schema exactly. Return raw JSON only — no mark
 
 ```json
 {
-  "bluf": "We assess the probability of regional escalation has risen materially — simultaneous Israeli strikes on Hezbollah C2 nodes and IRGC naval repositioning in the Strait of Hormuz constitute the first multi-theatre escalation convergence since October 2023. The insurance market corroborates: Hormuz transit premiums hardened 18% and Hiscox reduced Gulf lead lines by 30%, pricing in sustained conflict rather than a one-cycle spike. France's abstention on Resolution 2735 signals the sanctions-enforcement coalition is fracturing, removing a key diplomatic constraint on further escalation.",
+  "bluf": "The probability of regional escalation has risen materially — simultaneous Israeli strikes on Hezbollah C2 nodes and IRGC naval repositioning in the Strait of Hormuz constitute the first multi-theatre escalation convergence since October 2023. The insurance market corroborates: Hormuz transit premiums hardened 18% and Hiscox reduced Gulf lead lines by 30%, pricing in sustained conflict rather than a one-cycle spike. France's abstention on Resolution 2735 signals the sanctions-enforcement coalition is fracturing, removing a key diplomatic constraint on further escalation.",
   "keyJudgments": [
     {
       "id": "kj-exec-1",
@@ -118,7 +118,7 @@ Return valid JSON matching this schema exactly. Return raw JSON only — no mark
       "confidence": "high",
       "probabilityRange": "75–95%",
       "language": "highly-likely",
-      "text": "We judge it highly likely that the conflict trajectory has shifted from calibrated exchange to sustained attrition, as indicated by the convergence of multi-theatre military escalation, insurance market hardening, and diplomatic coalition fracture.",
+      "text": "The conflict trajectory has shifted, with high probability, from calibrated exchange to sustained attrition, as indicated by the convergence of multi-theatre military escalation, insurance market hardening, and diplomatic coalition fracture.",
       "basis": "Simultaneous Bekaa Valley strikes, IRGC repositioning, and France's UNSC abstention represent three independent escalation signals in a 24-hour window.",
       "citations": [
         {"source": "AP", "tier": 1, "verificationStatus": "confirmed"},

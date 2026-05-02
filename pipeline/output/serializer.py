@@ -17,7 +17,7 @@ try:
 except ImportError:
     HAS_JSONSCHEMA = False
 
-from pipeline.draft.quality_checks import validate_cycle as run_quality_checks
+from draft.quality_checks import validate_cycle as run_quality_checks
 
 log = logging.getLogger(__name__)
 

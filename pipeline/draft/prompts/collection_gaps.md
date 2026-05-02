@@ -67,7 +67,7 @@ Return valid JSON. Return raw JSON only — no markdown fences.
     "id": "gap-01",
     "domain": "d1",
     "gap": "IDF ground forces order of battle inside northern Gaza — no reliable satellite imagery published since 12 Mar. Commercial providers (Planet, Maxar) have not released Gaza-specific imagery this cycle.",
-    "significance": "This gap prevents confident assessment of whether the northern campaign is consolidating or preparing for withdrawal. Our D1 operational assessment rests on strike pattern analysis alone, which is sufficient for tempo assessment but insufficient for posture assessment.",
+    "significance": "This gap prevents confident assessment of whether the northern campaign is consolidating or preparing for withdrawal. The D1 operational assessment rests on strike pattern analysis alone, which is sufficient for tempo assessment but insufficient for posture assessment.",
     "severity": "significant"
   },
   {

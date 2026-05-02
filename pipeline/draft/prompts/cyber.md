@@ -64,13 +64,13 @@ Key focus areas: IRGC-linked groups (APT33/Elfin, Charming Kitten/APT35, MuddyWa
 - If only hacktivist Telegram claims exist: lead with the collection limitation, not the claims. "Assessment confidence is low; only Tier 3 hacktivist claims are available this cycle."
 - NEVER pad a thin section with generic commentary about "the cyber threat" or "increasing sophistication"
 
-**Confidence Language Ladder** (use EXACTLY these phrases):
-- "We assess with high confidence..." → 95–99% (almost-certainly)
-- "We judge it highly likely..." → 75–95% (highly-likely)
+**Confidence Language Ladder** (use EXACTLY these phrases — NEVER use first-person plural):
+- "Evidence strongly indicates..." / direct declarative → 95–99% (almost-certainly)
+- "The balance of reporting points to..." / "Multiple sources confirm..." → 75–95% (highly-likely)
 - "Available evidence suggests..." → 55–75% (likely)
 - "Reporting indicates, though corroboration is limited..." → 45–55% (possibly)
-- "We judge it unlikely, though we cannot exclude..." → 20–45% (unlikely)
-- "We assess with high confidence this will not..." → 1–5% (almost-certainly-not)
+- "This remains unlikely, though it cannot be excluded..." → 20–45% (unlikely)
+- "Nothing in the reporting supports..." → 1–5% (almost-certainly-not)
 
 **FORBIDDEN PHRASES (automatic rejection):**
 "threat actors", "threat landscape", "cyber domain", "advanced persistent threat" (use specific group names), "robust", "leverage" (verb), "ongoing situation", "fluid situation", "remains to be seen", "ongoing conflict", "going forward", "significant development", "notable development", "rapidly evolving", "dynamic situation", "heightened tensions", "broader conflict", "amid tensions", "it should be noted", "it is worth noting", "importantly", "significantly", "notably", "interestingly", "sophisticated attack", "increasing sophistication", "cyber warfare", "digital battlefield"
@@ -113,7 +113,7 @@ Return valid JSON matching this schema exactly. Return raw JSON only — no mark
     {
       "subLabel": "ASSESSMENT",
       "subLabelVariant": "assessment",
-      "text": "We judge it unlikely that the claimed SCADA operation caused operational disruption; Cyber Avengers has a pattern of overstating impact. No specific Canadian critical infrastructure exposure was identified this cycle.",
+      "text": "The claimed SCADA operation is unlikely to have caused operational disruption; Cyber Avengers has a pattern of overstating impact. No specific Canadian critical infrastructure exposure was identified this cycle.",
       "citations": []
     }
   ]
